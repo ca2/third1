@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="axisbzip2" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../../../stage/x86/libaxisbzip2.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../../../stage/x86/" />
+				<Option object_output="../../../time/intermediate/app/axisbzip2" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+				</Compiler>
+				<Linker>
+					<Add directory="../../../stage/x86" />
+				</Linker>
+			</Target>
+			<Target title="memdleak">
+				<Option output="../../../stage/x86/libaxisbzip2.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../../../stage/x86/" />
+				<Option object_output="../../../time/intermediate/app/axisbzip2" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add option="-DMEMDLEAK" />
+				</Compiler>
+				<Linker>
+					<Add directory="../../../stage/x86" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-std=c++0x" />
+			<Add option="-fexceptions" />
+			<Add option="-fnon-call-exceptions" />
+			<Add option="-fno-pie" />
+			<Add option="-fno-stack-protector" />
+			<Add option="-Wno-pointer-arith" />
+			<Add option="-Wno-attributes" />
+			<Add option="-Winvalid-pch" />
+			<Add option="-fPIC" />
+			<Add option="-DLINUX" />
+			<Add directory="../../../include" />
+			<Add directory="../../include" />
+			<Add directory="framework" />
+			<Add directory=".." />
+			<Add directory="../.." />
+			<Add directory="../../appseed/aura" />
+			<Add directory="../../.." />
+			<Add directory="../../appseed" />
+			<Add directory="../../appseed/axis" />
+		</Compiler>
+		<Linker>
+			<Add option="-Wl,-R\\$$$ORIGIN" />
+			<Add option="-Wl,-z,origin" />
+			<Add option="-ldl" />
+			<Add option="-lpthread" />
+			<Add option="-lX11" />
+			<Add option="-lXmu" />
+			<Add option="-Wl,-z,defs" />
+			<Add directory="../../../stage/x86" />
+		</Linker>
+		<Unit filename="../../include/bzlib.h" />
+		<Unit filename="CHANGES" />
+		<Unit filename="LICENSE" />
+		<Unit filename="Makefile" />
+		<Unit filename="Makefile-libbz2_so" />
+		<Unit filename="README" />
+		<Unit filename="README.COMPILATION.PROBLEMS" />
+		<Unit filename="README.XML.STUFF" />
+		<Unit filename="axisbzip2.def" />
+		<Unit filename="axisbzip2.layout" />
+		<Unit filename="axisbzip2.sln" />
+		<Unit filename="axisbzip2.vcxproj" />
+		<Unit filename="blocksort.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="bsdiff/bsdiff_bsdiff.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="bsdiff/bsdiff_bspatch.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="bsdiff/libbsdiff.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="bz-common.xsl" />
+		<Unit filename="bz-fo.xsl" />
+		<Unit filename="bz-html.xsl" />
+		<Unit filename="bzdiff" />
+		<Unit filename="bzdiff.1" />
+		<Unit filename="bzgrep" />
+		<Unit filename="bzgrep.1" />
+		<Unit filename="bzip.css" />
+		<Unit filename="bzip2.1" />
+		<Unit filename="bzip2.1.preformatted" />
+		<Unit filename="bzip2.txt" />
+		<Unit filename="bzlib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="bzlib_private.h" />
+		<Unit filename="bzmore" />
+		<Unit filename="bzmore.1" />
+		<Unit filename="compress.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crctable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="decompress.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="entities.xml" />
+		<Unit filename="format.pl" />
+		<Unit filename="huffman.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libbz2.def" />
+		<Unit filename="makefile.msc" />
+		<Unit filename="manual.html" />
+		<Unit filename="manual.pdf" />
+		<Unit filename="manual.ps" />
+		<Unit filename="manual.xml" />
+		<Unit filename="randtable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="sample1.bz2" />
+		<Unit filename="sample1.ref" />
+		<Unit filename="sample2.bz2" />
+		<Unit filename="sample2.ref" />
+		<Unit filename="sample3.bz2" />
+		<Unit filename="sample3.ref" />
+		<Unit filename="words0" />
+		<Unit filename="words1" />
+		<Unit filename="words2" />
+		<Unit filename="words3" />
+		<Unit filename="xmlproc.sh" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

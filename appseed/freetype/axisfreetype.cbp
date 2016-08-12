@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="axisfreetype" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../../../stage/x86/libaxisfreetype.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../../../stage/x86/" />
+				<Option object_output="../../../time/intermediate/app/axisfreetype" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+				</Compiler>
+				<Linker>
+					<Add directory="../../../stage/x86" />
+				</Linker>
+			</Target>
+			<Target title="memdleak">
+				<Option output="../../../stage/x86/libaxisfreetype.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../../../stage/x86/" />
+				<Option object_output="../../../time/intermediate/app/axisfreetype" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add option="-DMEMDLEAK" />
+				</Compiler>
+				<Linker>
+					<Add directory="../../../stage/x86" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-std=c++0x" />
+			<Add option="-fexceptions" />
+			<Add option="-fnon-call-exceptions" />
+			<Add option="-fno-pie" />
+			<Add option="-fno-stack-protector" />
+			<Add option="-Wno-pointer-arith" />
+			<Add option="-Wno-attributes" />
+			<Add option="-Winvalid-pch" />
+			<Add option="-fPIC" />
+			<Add option="-DLINUX" />
+			<Add option="-D_DEBUG" />
+			<Add option="-D_LIB" />
+			<Add option="-DFT_DEBUG_LEVEL_ERROR" />
+			<Add option="-DFT_DEBUG_LEVEL_TRACE" />
+			<Add option="-DFT2_BUILD_LIBRARY" />
+			<Add directory="../../../include" />
+			<Add directory="../../include" />
+			<Add directory="framework" />
+			<Add directory="." />
+			<Add directory=".." />
+			<Add directory="../.." />
+			<Add directory="../../.." />
+			<Add directory="../../include/config" />
+			<Add directory="../../axis" />
+		</Compiler>
+		<Linker>
+			<Add option="-Wl,-R\\$$$ORIGIN" />
+			<Add option="-Wl,-z,origin" />
+			<Add option="-ldl" />
+			<Add option="-lpthread" />
+			<Add option="-laxiscrypto" />
+			<Add option="-laxiszlib" />
+			<Add option="-laxispng" />
+			<Add option="-laxisbzip2" />
+			<Add option="-Wl,-z,defs" />
+			<Add directory="../../../stage/x86" />
+		</Linker>
+		<Unit filename="../../include/ft2build.h">
+			<Option compilerVar="CC" />
+			<Option weight="10" />
+		</Unit>
+		<Unit filename="builds/unix/ftsystem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/autofit/autofit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/basepic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/basepic.h" />
+		<Unit filename="src/base/ftadvanc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftapi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftbase.h" />
+		<Unit filename="src/base/ftbbox.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftbdf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftbitmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftcalc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftcid.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftdbgmem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftdebug.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftfstype.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftgasp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftgloadr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftglyph.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftgxval.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftinit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftlcdfil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftmm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftobjs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftotval.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftoutln.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftpatent.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftpfr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftpic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftrfork.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftsnames.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftstream.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftstroke.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftsynth.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/fttrigon.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/fttype1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftwinfnt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/base/ftxf86.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/bdf/bdf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/bdf/bdf.h" />
+		<Unit filename="src/bdf/bdfdrivr.h" />
+		<Unit filename="src/bdf/bdferror.h" />
+		<Unit filename="src/bzip2/ftbzip2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/cache/ftccache.h" />
+		<Unit filename="src/cache/ftccback.h" />
+		<Unit filename="src/cache/ftcerror.h" />
+		<Unit filename="src/cache/ftcglyph.h" />
+		<Unit filename="src/cache/ftcimage.h" />
+		<Unit filename="src/cache/ftcmanag.h" />
+		<Unit filename="src/cache/ftcmru.h" />
+		<Unit filename="src/cache/ftcsbits.h" />
+		<Unit filename="src/cff/cf2arrst.h" />
+		<Unit filename="src/cff/cf2blues.h" />
+		<Unit filename="src/cff/cf2error.h" />
+		<Unit filename="src/cff/cf2fixed.h" />
+		<Unit filename="src/cff/cf2font.h" />
+		<Unit filename="src/cff/cf2ft.h" />
+		<Unit filename="src/cff/cf2glue.h" />
+		<Unit filename="src/cff/cf2hints.h" />
+		<Unit filename="src/cff/cf2intrp.h" />
+		<Unit filename="src/cff/cf2read.h" />
+		<Unit filename="src/cff/cf2stack.h" />
+		<Unit filename="src/cff/cf2types.h" />
+		<Unit filename="src/cff/cff.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/cff/cffcmap.h" />
+		<Unit filename="src/cff/cffdrivr.h" />
+		<Unit filename="src/cff/cfferrs.h" />
+		<Unit filename="src/cff/cffgload.h" />
+		<Unit filename="src/cff/cffload.h" />
+		<Unit filename="src/cff/cffobjs.h" />
+		<Unit filename="src/cff/cffparse.h" />
+		<Unit filename="src/cff/cffpic.h" />
+		<Unit filename="src/cff/cfftoken.h" />
+		<Unit filename="src/cff/cfftypes.h" />
+		<Unit filename="src/cid/ciderrs.h" />
+		<Unit filename="src/cid/cidgload.h" />
+		<Unit filename="src/cid/cidload.h" />
+		<Unit filename="src/cid/cidobjs.h" />
+		<Unit filename="src/cid/cidparse.h" />
+		<Unit filename="src/cid/cidriver.h" />
+		<Unit filename="src/cid/cidtoken.h" />
+		<Unit filename="src/cid/type1cid.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/gxvalid/gxvalid.h" />
+		<Unit filename="src/gxvalid/gxvcommn.h" />
+		<Unit filename="src/gxvalid/gxverror.h" />
+		<Unit filename="src/gxvalid/gxvfeat.h" />
+		<Unit filename="src/gxvalid/gxvmod.h" />
+		<Unit filename="src/gxvalid/gxvmort.h" />
+		<Unit filename="src/gxvalid/gxvmorx.h" />
+		<Unit filename="src/gzip/ftgzip.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/gzip/infblock.h" />
+		<Unit filename="src/gzip/infcodes.h" />
+		<Unit filename="src/gzip/inffixed.h" />
+		<Unit filename="src/gzip/inftrees.h" />
+		<Unit filename="src/gzip/infutil.h" />
+		<Unit filename="src/gzip/zconf.h" />
+		<Unit filename="src/gzip/zlib.h" />
+		<Unit filename="src/gzip/zutil.h" />
+		<Unit filename="src/lzw/ftlzw.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/lzw/ftzopen.h" />
+		<Unit filename="src/otvalid/otvalid.h" />
+		<Unit filename="src/otvalid/otvcommn.h" />
+		<Unit filename="src/otvalid/otverror.h" />
+		<Unit filename="src/otvalid/otvgpos.h" />
+		<Unit filename="src/otvalid/otvmod.h" />
+		<Unit filename="src/pcf/pcf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pcf/pcf.h" />
+		<Unit filename="src/pcf/pcfdrivr.h" />
+		<Unit filename="src/pcf/pcferror.h" />
+		<Unit filename="src/pcf/pcfread.h" />
+		<Unit filename="src/pcf/pcfutil.h" />
+		<Unit filename="src/pfr/pfr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pfr/pfrcmap.h" />
+		<Unit filename="src/pfr/pfrdrivr.h" />
+		<Unit filename="src/pfr/pfrerror.h" />
+		<Unit filename="src/pfr/pfrgload.h" />
+		<Unit filename="src/pfr/pfrload.h" />
+		<Unit filename="src/pfr/pfrobjs.h" />
+		<Unit filename="src/pfr/pfrsbit.h" />
+		<Unit filename="src/pfr/pfrtypes.h" />
+		<Unit filename="src/psaux/afmparse.h" />
+		<Unit filename="src/psaux/psaux.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/psaux/psauxerr.h" />
+		<Unit filename="src/psaux/psauxmod.h" />
+		<Unit filename="src/psaux/psconv.h" />
+		<Unit filename="src/psaux/psobjs.h" />
+		<Unit filename="src/psaux/t1cmap.h" />
+		<Unit filename="src/psaux/t1decode.h" />
+		<Unit filename="src/pshinter/pshalgo.h" />
+		<Unit filename="src/pshinter/pshglob.h" />
+		<Unit filename="src/pshinter/pshinter.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pshinter/pshmod.h" />
+		<Unit filename="src/pshinter/pshnterr.h" />
+		<Unit filename="src/pshinter/pshpic.h" />
+		<Unit filename="src/pshinter/pshrec.h" />
+		<Unit filename="src/psnames/psmodule.h" />
+		<Unit filename="src/psnames/psnamerr.h" />
+		<Unit filename="src/psnames/psnames.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/psnames/pspic.h" />
+		<Unit filename="src/psnames/pstables.h" />
+		<Unit filename="src/raster/ftmisc.h" />
+		<Unit filename="src/raster/ftraster.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/raster/ftraster.h" />
+		<Unit filename="src/raster/ftrend1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/raster/ftrend1.h" />
+		<Unit filename="src/raster/rasterrs.h" />
+		<Unit filename="src/raster/rastpic.h" />
+		<Unit filename="src/sfnt/pngshim.h" />
+		<Unit filename="src/sfnt/sfdriver.h" />
+		<Unit filename="src/sfnt/sferrors.h" />
+		<Unit filename="src/sfnt/sfnt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/sfnt/sfntpic.h" />
+		<Unit filename="src/sfnt/sfobjs.h" />
+		<Unit filename="src/sfnt/ttbdf.h" />
+		<Unit filename="src/sfnt/ttcmap.h" />
+		<Unit filename="src/sfnt/ttcmapc.h" />
+		<Unit filename="src/sfnt/ttkern.h" />
+		<Unit filename="src/sfnt/ttload.h" />
+		<Unit filename="src/sfnt/ttmtx.h" />
+		<Unit filename="src/sfnt/ttpost.h" />
+		<Unit filename="src/sfnt/ttsbit.h" />
+		<Unit filename="src/smooth/ftgrays.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smooth/ftgrays.h" />
+		<Unit filename="src/smooth/ftsmerrs.h" />
+		<Unit filename="src/smooth/ftsmooth.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/smooth/ftsmooth.h" />
+		<Unit filename="src/smooth/ftspic.h" />
+		<Unit filename="src/truetype/truetype.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/truetype/ttdriver.h" />
+		<Unit filename="src/truetype/tterrors.h" />
+		<Unit filename="src/truetype/ttgload.h" />
+		<Unit filename="src/truetype/ttgxvar.h" />
+		<Unit filename="src/truetype/ttinterp.h" />
+		<Unit filename="src/truetype/ttobjs.h" />
+		<Unit filename="src/truetype/ttpic.h" />
+		<Unit filename="src/truetype/ttpload.h" />
+		<Unit filename="src/truetype/ttsubpix.h" />
+		<Unit filename="src/type1/t1afm.h" />
+		<Unit filename="src/type1/t1driver.h" />
+		<Unit filename="src/type1/t1errors.h" />
+		<Unit filename="src/type1/t1gload.h" />
+		<Unit filename="src/type1/t1load.h" />
+		<Unit filename="src/type1/t1objs.h" />
+		<Unit filename="src/type1/t1parse.h" />
+		<Unit filename="src/type1/t1tokens.h" />
+		<Unit filename="src/type1/type1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/type42/t42drivr.h" />
+		<Unit filename="src/type42/t42error.h" />
+		<Unit filename="src/type42/t42objs.h" />
+		<Unit filename="src/type42/t42parse.h" />
+		<Unit filename="src/type42/t42types.h" />
+		<Unit filename="src/type42/type42.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/winfonts/fnterrs.h" />
+		<Unit filename="src/winfonts/winfnt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/winfonts/winfnt.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

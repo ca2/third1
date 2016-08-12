@@ -1,0 +1,715 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>axisfreerdp</ProjectName>
+    <ProjectGuid>{E0D54AEC-E0A5-475B-8A02-8758BDD686E1}</ProjectGuid>
+    <RootNamespace>axisfreerdp</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v140</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>11.0.51106.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/FreeImage.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../app/include/;$(ProjectDir);$(ProjectDir)../../include;.;framework;$(SolutionDir)../../../include;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WITH_OPENH264;WIN32;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;_DEBUG;HAVE_CONFIG_H;EXT_PATH="C:/Program Files (x86)/FreeRDP/lib/freerdp/extensions";CMAKE_BUILD_TYPE=Release;CMAKE_INTDIR="Debug";freerdp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>false</StringPooling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <CompileAsManaged>false</CompileAsManaged>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <ForcedIncludeFiles>
+      </ForcedIncludeFiles>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
+      <DisableSpecificWarnings>4018</DisableSpecificWarnings>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <FixedBaseAddress>false</FixedBaseAddress>
+      <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalDependencies>mfuuid.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Ws2_32.lib;Shlwapi.lib;Ntdsapi.lib;Rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ShowProgress>NotSet</ShowProgress>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Xdcmake>
+      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
+    </Xdcmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/FreeImage.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../app/include/;$(ProjectDir);$(ProjectDir)../../include;.;framework;$(SolutionDir)../../../include;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WITH_OPENH264;WIN32;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;_DEBUG;HAVE_CONFIG_H;EXT_PATH="C:/Program Files (x86)/FreeRDP/lib/freerdp/extensions";CMAKE_BUILD_TYPE=Release;CMAKE_INTDIR="Debug";freerdp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <CompileAsManaged>false</CompileAsManaged>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>true</OpenMPSupport>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <SDLCheck>
+      </SDLCheck>
+      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <ForcedIncludeFiles>
+      </ForcedIncludeFiles>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <DisableSpecificWarnings>4018</DisableSpecificWarnings>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <TargetMachine>MachineX86</TargetMachine>
+      <FixedBaseAddress>false</FixedBaseAddress>
+      <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalDependencies>mfuuid.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Ws2_32.lib;Shlwapi.lib;Ntdsapi.lib;Rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ShowProgress>NotSet</ShowProgress>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Xdcmake>
+      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
+    </Xdcmake>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>.\Debug/FreeImage.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../app/include/;$(ProjectDir);$(ProjectDir)../../include;.;framework;$(SolutionDir)../../../include;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;_DEBUG;HAVE_CONFIG_H;EXT_PATH="C:/Program Files/FreeRDP/lib/freerdp/extensions";CMAKE_BUILD_TYPE=Release;CMAKE_INTDIR="Debug";freerdp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>false</StringPooling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <CompileAsManaged>false</CompileAsManaged>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <OmitFramePointers>false</OmitFramePointers>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>false</OpenMPSupport>
+      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x64/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../../time/library/x64/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <FixedBaseAddress>false</FixedBaseAddress>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Ws2_32.lib;Shlwapi.lib;Ntdsapi.lib;Rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>.\Debug/FreeImage.tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../app/include/;$(ProjectDir);$(ProjectDir)../../include;.;framework;$(SolutionDir)../../../include;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;_DEBUG;HAVE_CONFIG_H;EXT_PATH="C:/Program Files/FreeRDP/lib/freerdp/extensions";CMAKE_BUILD_TYPE=Release;CMAKE_INTDIR="Debug";freerdp_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <CompileAsManaged>false</CompileAsManaged>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <OmitFramePointers>true</OmitFramePointers>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <OpenMPSupport>true</OpenMPSupport>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <SDLCheck>
+      </SDLCheck>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x64/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <AdditionalLibraryDirectories>$(IntDir);$(SolutionDir)../../../time/library/x64/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <FixedBaseAddress>false</FixedBaseAddress>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;Ws2_32.lib;Shlwapi.lib;Ntdsapi.lib;Rpcrt4.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\appseed\aura\aura.vcxproj">
+      <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\appseed\axis\axis.vcxproj">
+      <Project>{73a245f9-c92f-4487-aef7-cb0531f665bd}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\crypto\axiscrypto.vcxproj">
+      <Project>{39807406-816f-4c0d-a632-4bb8ab13887b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\openh264\codec\build\win32\dec\WelsDecCore.vcxproj">
+      <Project>{01b4ae41-6ad6-4caf-aeb3-c42f7f9121d5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\openh264\codec\build\win32\dec\WelsDecPlus.vcxproj">
+      <Project>{1131558a-9986-4f4b-a13f-8b7f4c8438bf}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\openh264\codec\build\win32\enc\WelsEncCore.vcxproj">
+      <Project>{59208004-1774-4816-ac24-31ff44c324b4}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\openh264\codec\build\win32\enc\WelsEncPlus.vcxproj">
+      <Project>{1e7b4e9a-986e-4167-8c70-6e4f60eaee7f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\openh264\codec\processing\build\win32\WelsVP.vcxproj">
+      <Project>{e8dfafa1-8dac-4127-8d27-fbd5819ee562}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\openssl\axisopenssl.vcxproj">
+      <Project>{29676444-4d0f-4dd0-9104-0499d94da2c9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\winpr\axiswinpr.vcxproj">
+      <Project>{e4841f02-7cca-4144-89a2-149302677b3f}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\freerdp\addin.h" />
+    <ClInclude Include="..\..\include\freerdp\altsec.h" />
+    <ClInclude Include="..\..\include\freerdp\api.h" />
+    <ClInclude Include="..\..\include\freerdp\assistance.h" />
+    <ClInclude Include="..\..\include\freerdp\client.h" />
+    <ClInclude Include="..\..\include\freerdp\constants.h" />
+    <ClInclude Include="..\..\include\freerdp\dvc.h" />
+    <ClInclude Include="..\..\include\freerdp\error.h" />
+    <ClInclude Include="..\..\include\freerdp\event.h" />
+    <ClInclude Include="..\..\include\freerdp\extension.h" />
+    <ClInclude Include="..\..\include\freerdp\freerdp.h" />
+    <ClInclude Include="..\..\include\freerdp\graphics.h" />
+    <ClInclude Include="..\..\include\freerdp\input.h" />
+    <ClInclude Include="..\..\include\freerdp\listener.h" />
+    <ClInclude Include="..\..\include\freerdp\message.h" />
+    <ClInclude Include="..\..\include\freerdp\metrics.h" />
+    <ClInclude Include="..\..\include\freerdp\peer.h" />
+    <ClInclude Include="..\..\include\freerdp\pointer.h" />
+    <ClInclude Include="..\..\include\freerdp\primary.h" />
+    <ClInclude Include="..\..\include\freerdp\primitives.h" />
+    <ClInclude Include="..\..\include\freerdp\rail.h" />
+    <ClInclude Include="..\..\include\freerdp\scancode.h" />
+    <ClInclude Include="..\..\include\freerdp\secondary.h" />
+    <ClInclude Include="..\..\include\freerdp\settings.h" />
+    <ClInclude Include="..\..\include\freerdp\svc.h" />
+    <ClInclude Include="..\..\include\freerdp\types.h" />
+    <ClInclude Include="..\..\include\freerdp\update.h" />
+    <ClInclude Include="..\..\include\freerdp\window.h" />
+    <ClInclude Include="config.h" />
+    <ClInclude Include="libfreerdp\codec\nsc_encode.h" />
+    <ClInclude Include="libfreerdp\codec\nsc_sse2.h" />
+    <ClInclude Include="libfreerdp\codec\nsc_types.h" />
+    <ClInclude Include="libfreerdp\codec\rfx_bitstream.h" />
+    <ClInclude Include="libfreerdp\codec\rfx_constants.h" />
+    <ClInclude Include="libfreerdp\codec\rfx_decode.h" />
+    <ClInclude Include="libfreerdp\codec\rfx_differential.h" />
+    <ClInclude Include="libfreerdp\codec\rfx_dwt.h" />
+    <ClInclude Include="libfreerdp\codec\rfx_encode.h" />
+    <ClInclude Include="libfreerdp\codec\rfx_neon.h" />
+    <ClInclude Include="libfreerdp\codec\rfx_quantization.h" />
+    <ClInclude Include="libfreerdp\codec\rfx_rlgr.h" />
+    <ClInclude Include="libfreerdp\codec\rfx_sse2.h" />
+    <ClInclude Include="libfreerdp\codec\rfx_types.h" />
+    <ClInclude Include="libfreerdp\core\activation.h" />
+    <ClInclude Include="libfreerdp\core\autodetect.h" />
+    <ClInclude Include="libfreerdp\core\bulk.h" />
+    <ClInclude Include="libfreerdp\core\capabilities.h" />
+    <ClInclude Include="libfreerdp\core\certificate.h" />
+    <ClInclude Include="libfreerdp\core\channels.h" />
+    <ClInclude Include="libfreerdp\core\client.h" />
+    <ClInclude Include="libfreerdp\core\connection.h" />
+    <ClInclude Include="libfreerdp\core\errinfo.h" />
+    <ClInclude Include="libfreerdp\core\fastpath.h" />
+    <ClInclude Include="libfreerdp\core\gateway\http.h" />
+    <ClInclude Include="libfreerdp\core\gateway\ncacn_http.h" />
+    <ClInclude Include="libfreerdp\core\gateway\ntlm.h" />
+    <ClInclude Include="libfreerdp\core\gateway\rdg.h" />
+    <ClInclude Include="libfreerdp\core\gateway\rpc.h" />
+    <ClInclude Include="libfreerdp\core\gateway\rpc_bind.h" />
+    <ClInclude Include="libfreerdp\core\gateway\rpc_client.h" />
+    <ClInclude Include="libfreerdp\core\gateway\rpc_fault.h" />
+    <ClInclude Include="libfreerdp\core\gateway\rts.h" />
+    <ClInclude Include="libfreerdp\core\gateway\rts_signature.h" />
+    <ClInclude Include="libfreerdp\core\gateway\tsg.h" />
+    <ClInclude Include="libfreerdp\core\gcc.h" />
+    <ClInclude Include="libfreerdp\core\heartbeat.h" />
+    <ClInclude Include="libfreerdp\core\info.h" />
+    <ClInclude Include="libfreerdp\core\input.h" />
+    <ClInclude Include="libfreerdp\core\license.h" />
+    <ClInclude Include="libfreerdp\core\listener.h" />
+    <ClInclude Include="libfreerdp\core\mcs.h" />
+    <ClInclude Include="libfreerdp\core\message.h" />
+    <ClInclude Include="libfreerdp\core\multitransport.h" />
+    <ClInclude Include="libfreerdp\core\nego.h" />
+    <ClInclude Include="libfreerdp\core\nla.h" />
+    <ClInclude Include="libfreerdp\core\orders.h" />
+    <ClInclude Include="libfreerdp\core\peer.h" />
+    <ClInclude Include="libfreerdp\core\rdp.h" />
+    <ClInclude Include="libfreerdp\core\redirection.h" />
+    <ClInclude Include="libfreerdp\core\security.h" />
+    <ClInclude Include="libfreerdp\core\server.h" />
+    <ClInclude Include="libfreerdp\core\surface.h" />
+    <ClInclude Include="libfreerdp\core\tcp.h" />
+    <ClInclude Include="libfreerdp\core\timezone.h" />
+    <ClInclude Include="libfreerdp\core\tpdu.h" />
+    <ClInclude Include="libfreerdp\core\tpkt.h" />
+    <ClInclude Include="libfreerdp\core\transport.h" />
+    <ClInclude Include="libfreerdp\core\update.h" />
+    <ClInclude Include="libfreerdp\core\window.h" />
+    <ClInclude Include="libfreerdp\gdi\gdi.h" />
+    <ClInclude Include="libfreerdp\gdi\graphics.h" />
+    <ClInclude Include="libfreerdp\locale\keyboard_sun.h" />
+    <ClInclude Include="libfreerdp\locale\keyboard_x11.h" />
+    <ClInclude Include="libfreerdp\locale\keyboard_xkbfile.h" />
+    <ClInclude Include="libfreerdp\locale\liblocale.h" />
+    <ClInclude Include="libfreerdp\locale\xkb_layout_ids.h" />
+    <ClInclude Include="libfreerdp\primitives\prim_16to32bpp.h" />
+    <ClInclude Include="libfreerdp\primitives\prim_add.h" />
+    <ClInclude Include="libfreerdp\primitives\prim_alphaComp.h" />
+    <ClInclude Include="libfreerdp\primitives\prim_andor.h" />
+    <ClInclude Include="libfreerdp\primitives\prim_colors.h" />
+    <ClInclude Include="libfreerdp\primitives\prim_internal.h" />
+    <ClInclude Include="libfreerdp\primitives\prim_set.h" />
+    <ClInclude Include="libfreerdp\primitives\prim_shift.h" />
+    <ClInclude Include="libfreerdp\primitives\prim_sign.h" />
+    <ClInclude Include="libfreerdp\primitives\prim_templates.h" />
+    <ClInclude Include="libfreerdp\primitives\prim_YCoCg.h" />
+    <ClInclude Include="libfreerdp\primitives\prim_YUV.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="libfreerdp\cache\bitmap.c" />
+    <ClCompile Include="libfreerdp\cache\brush.c" />
+    <ClCompile Include="libfreerdp\cache\cache.c" />
+    <ClCompile Include="libfreerdp\cache\glyph.c" />
+    <ClCompile Include="libfreerdp\cache\nine_grid.c" />
+    <ClCompile Include="libfreerdp\cache\offscreen.c" />
+    <ClCompile Include="libfreerdp\cache\palette.c" />
+    <ClCompile Include="libfreerdp\cache\pointer.c" />
+    <ClCompile Include="libfreerdp\codec\audio.c" />
+    <ClCompile Include="libfreerdp\codec\bitmap.c" />
+    <ClCompile Include="libfreerdp\codec\clear.c" />
+    <ClCompile Include="libfreerdp\codec\color.c" />
+    <ClCompile Include="libfreerdp\codec\dsp.c" />
+    <ClCompile Include="libfreerdp\codec\h264.c" />
+    <ClCompile Include="libfreerdp\codec\interleaved.c" />
+    <ClCompile Include="libfreerdp\codec\jpeg.c" />
+    <ClCompile Include="libfreerdp\codec\mppc.c" />
+    <ClCompile Include="libfreerdp\codec\ncrush.c" />
+    <ClCompile Include="libfreerdp\codec\nsc.c" />
+    <ClCompile Include="libfreerdp\codec\nsc_encode.c" />
+    <ClCompile Include="libfreerdp\codec\nsc_sse2.c" />
+    <ClCompile Include="libfreerdp\codec\planar.c" />
+    <ClCompile Include="libfreerdp\codec\progressive.c" />
+    <ClCompile Include="libfreerdp\codec\region.c" />
+    <ClCompile Include="libfreerdp\codec\rfx.c" />
+    <ClCompile Include="libfreerdp\codec\rfx_decode.c" />
+    <ClCompile Include="libfreerdp\codec\rfx_differential.c" />
+    <ClCompile Include="libfreerdp\codec\rfx_dwt.c" />
+    <ClCompile Include="libfreerdp\codec\rfx_encode.c" />
+    <ClCompile Include="libfreerdp\codec\rfx_neon.c" />
+    <ClCompile Include="libfreerdp\codec\rfx_quantization.c" />
+    <ClCompile Include="libfreerdp\codec\rfx_rlgr.c" />
+    <ClCompile Include="libfreerdp\codec\rfx_sse2.c" />
+    <ClCompile Include="libfreerdp\codec\xcrush.c" />
+    <ClCompile Include="libfreerdp\codec\zgfx.c" />
+    <ClCompile Include="libfreerdp\common\addin.c" />
+    <ClCompile Include="libfreerdp\common\assistance.c" />
+    <ClCompile Include="libfreerdp\common\settings.c" />
+    <ClCompile Include="libfreerdp\core\activation.c" />
+    <ClCompile Include="libfreerdp\core\autodetect.c" />
+    <ClCompile Include="libfreerdp\core\bulk.c" />
+    <ClCompile Include="libfreerdp\core\capabilities.c" />
+    <ClCompile Include="libfreerdp\core\certificate.c" />
+    <ClCompile Include="libfreerdp\core\channels.c" />
+    <ClCompile Include="libfreerdp\core\client.c" />
+    <ClCompile Include="libfreerdp\core\codecs.c" />
+    <ClCompile Include="libfreerdp\core\connection.c" />
+    <ClCompile Include="libfreerdp\core\errbase.c" />
+    <ClCompile Include="libfreerdp\core\errconnect.c" />
+    <ClCompile Include="libfreerdp\core\errinfo.c" />
+    <ClCompile Include="libfreerdp\core\fastpath.c" />
+    <ClCompile Include="libfreerdp\core\freerdp.c" />
+    <ClCompile Include="libfreerdp\core\gateway\http.c" />
+    <ClCompile Include="libfreerdp\core\gateway\ncacn_http.c" />
+    <ClCompile Include="libfreerdp\core\gateway\ntlm.c" />
+    <ClCompile Include="libfreerdp\core\gateway\rdg.c" />
+    <ClCompile Include="libfreerdp\core\gateway\rpc.c" />
+    <ClCompile Include="libfreerdp\core\gateway\rpc_bind.c" />
+    <ClCompile Include="libfreerdp\core\gateway\rpc_client.c" />
+    <ClCompile Include="libfreerdp\core\gateway\rpc_fault.c" />
+    <ClCompile Include="libfreerdp\core\gateway\rts.c" />
+    <ClCompile Include="libfreerdp\core\gateway\rts_signature.c" />
+    <ClCompile Include="libfreerdp\core\gateway\tsg.c" />
+    <ClCompile Include="libfreerdp\core\gcc.c" />
+    <ClCompile Include="libfreerdp\core\graphics.c" />
+    <ClCompile Include="libfreerdp\core\heartbeat.c" />
+    <ClCompile Include="libfreerdp\core\info.c" />
+    <ClCompile Include="libfreerdp\core\input.c" />
+    <ClCompile Include="libfreerdp\core\license.c" />
+    <ClCompile Include="libfreerdp\core\listener.c" />
+    <ClCompile Include="libfreerdp\core\mcs.c" />
+    <ClCompile Include="libfreerdp\core\message.c" />
+    <ClCompile Include="libfreerdp\core\metrics.c" />
+    <ClCompile Include="libfreerdp\core\multitransport.c" />
+    <ClCompile Include="libfreerdp\core\nego.c" />
+    <ClCompile Include="libfreerdp\core\nla.c" />
+    <ClCompile Include="libfreerdp\core\orders.c" />
+    <ClCompile Include="libfreerdp\core\peer.c" />
+    <ClCompile Include="libfreerdp\core\rdp.c" />
+    <ClCompile Include="libfreerdp\core\redirection.c" />
+    <ClCompile Include="libfreerdp\core\security.c" />
+    <ClCompile Include="libfreerdp\core\server.c" />
+    <ClCompile Include="libfreerdp\core\settings.c" />
+    <ClCompile Include="libfreerdp\core\surface.c" />
+    <ClCompile Include="libfreerdp\core\tcp.c" />
+    <ClCompile Include="libfreerdp\core\timezone.c" />
+    <ClCompile Include="libfreerdp\core\tpdu.c" />
+    <ClCompile Include="libfreerdp\core\tpkt.c" />
+    <ClCompile Include="libfreerdp\core\transport.c" />
+    <ClCompile Include="libfreerdp\core\update.c" />
+    <ClCompile Include="libfreerdp\core\window.c" />
+    <ClCompile Include="libfreerdp\crypto\base64.c" />
+    <ClCompile Include="libfreerdp\crypto\ber.c" />
+    <ClCompile Include="libfreerdp\crypto\certificate.c" />
+    <ClCompile Include="libfreerdp\crypto\crypto.c" />
+    <ClCompile Include="libfreerdp\crypto\der.c" />
+    <ClCompile Include="libfreerdp\crypto\er.c" />
+    <ClCompile Include="libfreerdp\crypto\per.c" />
+    <ClCompile Include="libfreerdp\crypto\tls.c" />
+    <ClCompile Include="libfreerdp\gdi\16bpp.c" />
+    <ClCompile Include="libfreerdp\gdi\32bpp.c" />
+    <ClCompile Include="libfreerdp\gdi\8bpp.c" />
+    <ClCompile Include="libfreerdp\gdi\bitmap.c" />
+    <ClCompile Include="libfreerdp\gdi\brush.c" />
+    <ClCompile Include="libfreerdp\gdi\clipping.c" />
+    <ClCompile Include="libfreerdp\gdi\dc.c" />
+    <ClCompile Include="libfreerdp\gdi\drawing.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi.c" />
+    <ClCompile Include="libfreerdp\gdi\gfx.c" />
+    <ClCompile Include="libfreerdp\gdi\graphics.c" />
+    <ClCompile Include="libfreerdp\gdi\line.c" />
+    <ClCompile Include="libfreerdp\gdi\palette.c" />
+    <ClCompile Include="libfreerdp\gdi\pen.c" />
+    <ClCompile Include="libfreerdp\gdi\region.c" />
+    <ClCompile Include="libfreerdp\gdi\shape.c" />
+    <ClCompile Include="libfreerdp\locale\keyboard.c" />
+    <ClCompile Include="libfreerdp\locale\keyboard_layout.c" />
+    <ClCompile Include="libfreerdp\locale\locale.c" />
+    <ClCompile Include="libfreerdp\locale\timezone.c" />
+    <ClCompile Include="libfreerdp\locale\xkb_layout_ids.c" />
+    <ClCompile Include="libfreerdp\primitives\primitives.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_16to32bpp.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_16to32bpp_opt.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_add.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_add_opt.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_alphaComp.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_alphaComp_opt.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_andor.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_andor_opt.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_colors.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_colors_opt.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_copy.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_set.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_set_opt.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_shift.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_shift_opt.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_sign.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_sign_opt.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_YCoCg.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_YCoCg_opt.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_YUV.c" />
+    <ClCompile Include="libfreerdp\primitives\prim_YUV_opt.c" />
+    <ClCompile Include="libfreerdp\utils\passphrase.c" />
+    <ClCompile Include="libfreerdp\utils\pcap.c" />
+    <ClCompile Include="libfreerdp\utils\profiler.c" />
+    <ClCompile Include="libfreerdp\utils\ringbuffer.c" />
+    <ClCompile Include="libfreerdp\utils\signal.c" />
+    <ClCompile Include="libfreerdp\utils\stopwatch.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\include\freerdp\version.h.in" />
+    <None Include="axisfreerdp.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="libfreerdp\core\CMakeLists.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

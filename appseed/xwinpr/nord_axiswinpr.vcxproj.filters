@@ -1,0 +1,921 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{e2c5ec16-1f98-421b-8aee-986ba907260b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libwinpr">
+      <UniqueIdentifier>{fd9322bd-e5e6-443c-be3c-9aaa3c91b63e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libwinpr\crt">
+      <UniqueIdentifier>{207a0d4f-1cd0-405e-9e4f-41e1cb38a60b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libwinpr\crypto">
+      <UniqueIdentifier>{0ce65649-f8ad-4029-b810-9e0b4612f2c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libwinpr\handle">
+      <UniqueIdentifier>{1bec48bd-b2bd-4d10-9dfd-323fee2075f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libwinpr\io">
+      <UniqueIdentifier>{f0af4130-1434-4113-a6e9-edd3de3c641a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libwinpr\nt">
+      <UniqueIdentifier>{07edc363-f2cd-4496-8c76-813b2c700c30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libwinpr\pipe">
+      <UniqueIdentifier>{a3d3ccab-8106-418f-8579-e2ea0c359a19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libwinpr\pool">
+      <UniqueIdentifier>{00e9db88-a882-45b8-9dbf-e59b2f4b5a9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libwinpr\registry">
+      <UniqueIdentifier>{646de0b9-fa6b-49ab-a240-b6a6bce8e482}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libwinpr\rpc">
+      <UniqueIdentifier>{7ff21c5e-c128-4d47-83e6-45ee606ec007}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libwinpr\security">
+      <UniqueIdentifier>{2d972c7d-d02f-4c9b-8a95-71d471db03e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libwinpr\sspi">
+      <UniqueIdentifier>{1826dbb8-103a-4f93-a60e-526efd7b3b9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libwinpr\sspi\CredSSP">
+      <UniqueIdentifier>{d21fa4b9-df76-4af0-899c-29074b2d3de4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libwinpr\synch">
+      <UniqueIdentifier>{97f887b6-0e3f-4346-96c8-42564119f840}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libwinpr\thread">
+      <UniqueIdentifier>{9f69577c-2919-4851-9d91-7a7c93e6a658}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libwinpr\utils">
+      <UniqueIdentifier>{dbf4b38f-e4a4-4126-8ba6-04043abd0bbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libwinpr\utils\trio">
+      <UniqueIdentifier>{24c9446b-0b3c-4c34-a395-64932a2b4334}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libwinpr\utils\wlog">
+      <UniqueIdentifier>{9e24d3be-eebd-4fb6-bfcb-2ca340025ebe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libwinpr\smartcard">
+      <UniqueIdentifier>{458ab64b-6341-4902-9e3e-5485eef5ce7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\include">
+      <UniqueIdentifier>{21466784-0232-451b-a2cf-8e2cc3eb17f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{f82219e6-7e96-4f0f-8108-07d879add235}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr">
+      <UniqueIdentifier>{d486d541-01ca-4e8c-8b50-7130bd918b72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\asn1">
+      <UniqueIdentifier>{ed67f516-4568-4036-8c17-4c060a87c4c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\bcrypt">
+      <UniqueIdentifier>{5cda426b-8217-4ad5-ba00-ef11ecb8420e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\com">
+      <UniqueIdentifier>{b742ce8f-e127-4b88-af6b-80c1ba9c65eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\credentials">
+      <UniqueIdentifier>{51d43129-6bb1-4978-8c2f-b2d87039c0ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\credui">
+      <UniqueIdentifier>{834ef677-ffa3-4ce0-b594-2ba8688a47de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\crt">
+      <UniqueIdentifier>{a1b313c1-29bc-4e79-b3d6-aac6a1bf2642}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\crypto">
+      <UniqueIdentifier>{658d7349-76f2-4fef-8bc6-c435e6e08dcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\dsparse">
+      <UniqueIdentifier>{2f2795df-c874-4629-98e4-8757f0b2f2eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\environment">
+      <UniqueIdentifier>{4b716651-b446-4f82-82d4-5ddae2b06513}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\error">
+      <UniqueIdentifier>{16b4523b-6aa8-4ed7-b71e-c464a35d35a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\file">
+      <UniqueIdentifier>{146f8446-5159-4db2-ab2e-ec70012ed388}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\handle">
+      <UniqueIdentifier>{76f7497b-e0cf-4490-a8f9-66fa3be4ba43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\heap">
+      <UniqueIdentifier>{0bb8b74c-81e4-4e6b-bacf-5a64bfff7d64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\input">
+      <UniqueIdentifier>{ff0c48eb-cc12-4718-a7d4-2f3b62963cc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\interlocked">
+      <UniqueIdentifier>{a5d64762-10a7-4f93-aa5b-e44147cfc2de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\io">
+      <UniqueIdentifier>{5cb8eb91-9ba4-42f5-b604-33133cc3bf0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\library">
+      <UniqueIdentifier>{b7735444-a31f-4202-8a3f-c1c4520cd1ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\nt">
+      <UniqueIdentifier>{aa2fea66-f433-4d43-935f-990ec8347935}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\path">
+      <UniqueIdentifier>{dd25b927-aadb-41f2-8c98-4491955f5529}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\pipe">
+      <UniqueIdentifier>{dd5e9eb9-0a48-48df-ad5f-b70b6f555808}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\pool">
+      <UniqueIdentifier>{13bfc6e0-296b-4d7c-9c9b-82bb93ab74fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\rpc">
+      <UniqueIdentifier>{0d381ae2-9ad7-47b3-8018-054174c76605}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\security">
+      <UniqueIdentifier>{be2a37e4-bcf4-43a3-8490-9b721b3d3d83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\sspi">
+      <UniqueIdentifier>{f61849df-6394-4c86-a52c-9d64f5009101}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\sspi\CredSSP">
+      <UniqueIdentifier>{1713ae85-d7af-4fd0-a9b5-51bb5c442ec5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\sspi\Schannel">
+      <UniqueIdentifier>{d06c77f5-c7f3-442e-b0e5-d5503e40ffb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\sspi\NTLM">
+      <UniqueIdentifier>{d49c7344-c5c6-4023-b687-815dc9fcbb03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\sspi\Negotiate">
+      <UniqueIdentifier>{8904f769-e981-4fb0-972c-a21858b5cc70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\sspi\lodepng">
+      <UniqueIdentifier>{8b01d2e8-805c-4a58-a9b4-6af6ee707241}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\sspicli">
+      <UniqueIdentifier>{3745f6c0-4567-458a-948d-d2a34ea5e1ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\synch">
+      <UniqueIdentifier>{06c7130e-1afa-4025-8ca5-09dddbe0fd48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\sysinfo">
+      <UniqueIdentifier>{3ffdf009-e480-49ed-9176-04e55bab435f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\thread">
+      <UniqueIdentifier>{34df9f98-b9c7-4334-b04d-f92747480a3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\timezone">
+      <UniqueIdentifier>{6e16f3c8-2b65-431f-8ddc-a5ad58409dfb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\utils">
+      <UniqueIdentifier>{c7eb86fd-08c0-4471-af23-356c1581f706}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\utils\collections">
+      <UniqueIdentifier>{5ad0017f-a9bf-4f12-b4d0-fda908cf35cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\utils\trio">
+      <UniqueIdentifier>{c1d4057e-69d7-43da-bef0-0079dfda6301}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\utils\wlog">
+      <UniqueIdentifier>{ce61dd6b-a643-48eb-a00b-448c33693969}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\winhttp">
+      <UniqueIdentifier>{4a8833d8-c5aa-4c7e-ae0e-66f56b6b6332}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\winsock">
+      <UniqueIdentifier>{6d23e723-5bcb-4552-9219-9bc0578f42c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\wtsapi">
+      <UniqueIdentifier>{a2111e7e-8cad-4396-9c03-884ee891f49b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\smartcard">
+      <UniqueIdentifier>{dae8926b-e29f-4a14-9edd-658001445e72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\libwinpr\registry">
+      <UniqueIdentifier>{208e7742-14b3-44c7-88af-e1da9a4366c0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="libwinpr\crt\utf.h">
+      <Filter>Header Files\libwinpr\crt</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\crypto\crypto.h">
+      <Filter>Header Files\libwinpr\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\handle\handle.h">
+      <Filter>Header Files\libwinpr\handle</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\io\io.h">
+      <Filter>Header Files\libwinpr\io</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\nt\nt.h">
+      <Filter>Header Files\libwinpr\nt</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\pipe\pipe.h">
+      <Filter>Header Files\libwinpr\pipe</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\pool\pool.h">
+      <Filter>Header Files\libwinpr\pool</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\registry\registry_reg.h">
+      <Filter>Header Files\libwinpr\registry</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\rpc\ndr_array.h">
+      <Filter>Header Files\libwinpr\rpc</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\rpc\ndr_context.h">
+      <Filter>Header Files\libwinpr\rpc</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\rpc\ndr_correlation.h">
+      <Filter>Header Files\libwinpr\rpc</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\rpc\ndr_pointer.h">
+      <Filter>Header Files\libwinpr\rpc</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\rpc\ndr_private.h">
+      <Filter>Header Files\libwinpr\rpc</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\rpc\ndr_simple.h">
+      <Filter>Header Files\libwinpr\rpc</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\rpc\ndr_string.h">
+      <Filter>Header Files\libwinpr\rpc</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\rpc\ndr_structure.h">
+      <Filter>Header Files\libwinpr\rpc</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\rpc\ndr_union.h">
+      <Filter>Header Files\libwinpr\rpc</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\security\security.h">
+      <Filter>Header Files\libwinpr\security</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\sspi\sspi.h">
+      <Filter>Header Files\libwinpr\sspi</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\sspi\CredSSP\credssp.h">
+      <Filter>Header Files\libwinpr\sspi\CredSSP</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\synch\synch.h">
+      <Filter>Header Files\libwinpr\synch</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\thread\thread.h">
+      <Filter>Header Files\libwinpr\thread</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\utils\trio\strio.h">
+      <Filter>Header Files\libwinpr\utils\trio</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\utils\trio\trio.h">
+      <Filter>Header Files\libwinpr\utils\trio</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\utils\trio\triodef.h">
+      <Filter>Header Files\libwinpr\utils\trio</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\utils\trio\trionan.h">
+      <Filter>Header Files\libwinpr\utils\trio</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\utils\trio\triop.h">
+      <Filter>Header Files\libwinpr\utils\trio</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\utils\trio\triostr.h">
+      <Filter>Header Files\libwinpr\utils\trio</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\utils\wlog\Appender.h">
+      <Filter>Header Files\libwinpr\utils\wlog</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\utils\wlog\BinaryAppender.h">
+      <Filter>Header Files\libwinpr\utils\wlog</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\utils\wlog\ConsoleAppender.h">
+      <Filter>Header Files\libwinpr\utils\wlog</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\utils\wlog\DataMessage.h">
+      <Filter>Header Files\libwinpr\utils\wlog</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\utils\wlog\FileAppender.h">
+      <Filter>Header Files\libwinpr\utils\wlog</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\utils\wlog\ImageMessage.h">
+      <Filter>Header Files\libwinpr\utils\wlog</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\utils\wlog\Layout.h">
+      <Filter>Header Files\libwinpr\utils\wlog</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\utils\wlog\Message.h">
+      <Filter>Header Files\libwinpr\utils\wlog</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\utils\wlog\PacketMessage.h">
+      <Filter>Header Files\libwinpr\utils\wlog</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\utils\wlog\TextMessage.h">
+      <Filter>Header Files\libwinpr\utils\wlog</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\utils\wlog\wlog.h">
+      <Filter>Header Files\libwinpr\utils\wlog</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\smartcard\smartcard.h">
+      <Filter>Header Files\libwinpr\smartcard</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\smartcard\smartcard_inspect.h">
+      <Filter>Header Files\libwinpr\smartcard</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\smartcard\smartcard_pcsc.h">
+      <Filter>Header Files\libwinpr\smartcard</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\smartcard\smartcard_winscard.h">
+      <Filter>Header Files\libwinpr\smartcard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\asn1.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\bcrypt.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\bitstream.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\cmdline.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\collections.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\comm.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\credentials.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\credui.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\crt.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\crypto.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\debug.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\dsparse.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\endian.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\environment.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\error.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\file.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\handle.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\heap.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\ini.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\input.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\interlocked.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\io.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\library.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\locale.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\memory.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\midl.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\ndr.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\nt.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\ntlm.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\path.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\pipe.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\platform.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\pool.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\print.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\registry.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\rpc.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\sam.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\schannel.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\security.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\smartcard.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\spec.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\ssl.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\sspi.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\sspicli.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\stream.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\string.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\synch.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\sysinfo.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\tchar.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\thread.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\timezone.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\windows.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\winhttp.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\winpr.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\winsock.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\wlog.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\wnd.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\wtsapi.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\winpr\wtypes.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="axiswinpr.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="libwinpr\asn1\asn1.c">
+      <Filter>Source Files\libwinpr\asn1</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\bcrypt\bcrypt.c">
+      <Filter>Source Files\libwinpr\bcrypt</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\com\com.c">
+      <Filter>Source Files\libwinpr\com</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\credentials\credentials.c">
+      <Filter>Source Files\libwinpr\credentials</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\credui\credui.c">
+      <Filter>Source Files\libwinpr\credui</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\crt\alignment.c">
+      <Filter>Source Files\libwinpr\crt</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\crt\buffer.c">
+      <Filter>Source Files\libwinpr\crt</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\crt\conversion.c">
+      <Filter>Source Files\libwinpr\crt</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\crt\memory.c">
+      <Filter>Source Files\libwinpr\crt</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\crt\string.c">
+      <Filter>Source Files\libwinpr\crt</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\crt\unicode.c">
+      <Filter>Source Files\libwinpr\crt</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\crt\utf.c">
+      <Filter>Source Files\libwinpr\crt</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\crypto\cert.c">
+      <Filter>Source Files\libwinpr\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\crypto\crypto.c">
+      <Filter>Source Files\libwinpr\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\dsparse\dsparse.c">
+      <Filter>Source Files\libwinpr\dsparse</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\environment\environment.c">
+      <Filter>Source Files\libwinpr\environment</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\file\file.c">
+      <Filter>Source Files\libwinpr\file</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\file\pattern.c">
+      <Filter>Source Files\libwinpr\file</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\handle\handle.c">
+      <Filter>Source Files\libwinpr\handle</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\heap\heap.c">
+      <Filter>Source Files\libwinpr\heap</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\input\keycode.c">
+      <Filter>Source Files\libwinpr\input</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\input\scancode.c">
+      <Filter>Source Files\libwinpr\input</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\input\virtualkey.c">
+      <Filter>Source Files\libwinpr\input</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\interlocked\interlocked.c">
+      <Filter>Source Files\libwinpr\interlocked</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\io\device.c">
+      <Filter>Source Files\libwinpr\io</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\io\io.c">
+      <Filter>Source Files\libwinpr\io</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\library\library.c">
+      <Filter>Source Files\libwinpr\library</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\nt\nt.c">
+      <Filter>Source Files\libwinpr\nt</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\path\path.c">
+      <Filter>Source Files\libwinpr\path</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\path\shell.c">
+      <Filter>Source Files\libwinpr\path</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\pipe\pipe.c">
+      <Filter>Source Files\libwinpr\pipe</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\pool\callback.c">
+      <Filter>Source Files\libwinpr\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\pool\callback_cleanup.c">
+      <Filter>Source Files\libwinpr\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\pool\callback_environment.c">
+      <Filter>Source Files\libwinpr\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\pool\cleanup_group.c">
+      <Filter>Source Files\libwinpr\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\rpc\midl.c">
+      <Filter>Source Files\libwinpr\rpc</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\rpc\ndr.c">
+      <Filter>Source Files\libwinpr\rpc</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\rpc\ndr_array.c">
+      <Filter>Source Files\libwinpr\rpc</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\rpc\ndr_context.c">
+      <Filter>Source Files\libwinpr\rpc</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\rpc\ndr_correlation.c">
+      <Filter>Source Files\libwinpr\rpc</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\rpc\ndr_pointer.c">
+      <Filter>Source Files\libwinpr\rpc</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\rpc\ndr_private.c">
+      <Filter>Source Files\libwinpr\rpc</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\rpc\ndr_simple.c">
+      <Filter>Source Files\libwinpr\rpc</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\rpc\ndr_string.c">
+      <Filter>Source Files\libwinpr\rpc</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\rpc\ndr_structure.c">
+      <Filter>Source Files\libwinpr\rpc</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\rpc\ndr_union.c">
+      <Filter>Source Files\libwinpr\rpc</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\rpc\rpc.c">
+      <Filter>Source Files\libwinpr\rpc</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\security\security.c">
+      <Filter>Source Files\libwinpr\security</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\sspi.c">
+      <Filter>Source Files\libwinpr\sspi</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\sspi_export.c">
+      <Filter>Source Files\libwinpr\sspi</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\sspi_winpr.c">
+      <Filter>Source Files\libwinpr\sspi</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\CredSSP\credssp.c">
+      <Filter>Source Files\libwinpr\sspi\CredSSP</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\Schannel\schannel.c">
+      <Filter>Source Files\libwinpr\sspi\Schannel</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\Schannel\schannel_openssl.c">
+      <Filter>Source Files\libwinpr\sspi\Schannel</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\NTLM\ntlm.c">
+      <Filter>Source Files\libwinpr\sspi\NTLM</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\NTLM\ntlm_av_pairs.c">
+      <Filter>Source Files\libwinpr\sspi\NTLM</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\NTLM\ntlm_compute.c">
+      <Filter>Source Files\libwinpr\sspi\NTLM</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\NTLM\ntlm_message.c">
+      <Filter>Source Files\libwinpr\sspi\NTLM</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\Negotiate\negotiate.c">
+      <Filter>Source Files\libwinpr\sspi\Negotiate</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\lodepng\lodepng.c">
+      <Filter>Source Files\libwinpr\sspi\lodepng</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspicli\sspicli.c">
+      <Filter>Source Files\libwinpr\sspicli</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\synch\address.c">
+      <Filter>Source Files\libwinpr\synch</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\synch\barrier.c">
+      <Filter>Source Files\libwinpr\synch</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\synch\condition.c">
+      <Filter>Source Files\libwinpr\synch</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\synch\critical.c">
+      <Filter>Source Files\libwinpr\synch</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\synch\event.c">
+      <Filter>Source Files\libwinpr\synch</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\synch\init.c">
+      <Filter>Source Files\libwinpr\synch</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\synch\mutex.c">
+      <Filter>Source Files\libwinpr\synch</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\synch\semaphore.c">
+      <Filter>Source Files\libwinpr\synch</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\synch\sleep.c">
+      <Filter>Source Files\libwinpr\synch</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\synch\srw.c">
+      <Filter>Source Files\libwinpr\synch</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\synch\timer.c">
+      <Filter>Source Files\libwinpr\synch</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\synch\wait.c">
+      <Filter>Source Files\libwinpr\synch</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sysinfo\sysinfo.c">
+      <Filter>Source Files\libwinpr\sysinfo</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\thread\argv.c">
+      <Filter>Source Files\libwinpr\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\thread\process.c">
+      <Filter>Source Files\libwinpr\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\thread\processor.c">
+      <Filter>Source Files\libwinpr\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\thread\thread.c">
+      <Filter>Source Files\libwinpr\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\thread\tls.c">
+      <Filter>Source Files\libwinpr\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\timezone\timezone.c">
+      <Filter>Source Files\libwinpr\timezone</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\cmdline.c">
+      <Filter>Source Files\libwinpr\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\debug.c">
+      <Filter>Source Files\libwinpr\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\image.c">
+      <Filter>Source Files\libwinpr\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\ini.c">
+      <Filter>Source Files\libwinpr\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\print.c">
+      <Filter>Source Files\libwinpr\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\sam.c">
+      <Filter>Source Files\libwinpr\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\ssl.c">
+      <Filter>Source Files\libwinpr\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\stream.c">
+      <Filter>Source Files\libwinpr\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\collections\ArrayList.c">
+      <Filter>Source Files\libwinpr\utils\collections</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\collections\BitStream.c">
+      <Filter>Source Files\libwinpr\utils\collections</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\collections\BufferPool.c">
+      <Filter>Source Files\libwinpr\utils\collections</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\collections\CountdownEvent.c">
+      <Filter>Source Files\libwinpr\utils\collections</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\collections\Dictionary.c">
+      <Filter>Source Files\libwinpr\utils\collections</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\collections\HashTable.c">
+      <Filter>Source Files\libwinpr\utils\collections</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\collections\KeyValuePair.c">
+      <Filter>Source Files\libwinpr\utils\collections</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\collections\LinkedList.c">
+      <Filter>Source Files\libwinpr\utils\collections</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\collections\ListDictionary.c">
+      <Filter>Source Files\libwinpr\utils\collections</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\collections\MessagePipe.c">
+      <Filter>Source Files\libwinpr\utils\collections</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\collections\MessageQueue.c">
+      <Filter>Source Files\libwinpr\utils\collections</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\collections\ObjectPool.c">
+      <Filter>Source Files\libwinpr\utils\collections</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\collections\PubSub.c">
+      <Filter>Source Files\libwinpr\utils\collections</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\collections\Queue.c">
+      <Filter>Source Files\libwinpr\utils\collections</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\collections\Reference.c">
+      <Filter>Source Files\libwinpr\utils\collections</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\collections\Stack.c">
+      <Filter>Source Files\libwinpr\utils\collections</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\collections\StreamPool.c">
+      <Filter>Source Files\libwinpr\utils\collections</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\trio\trio.c">
+      <Filter>Source Files\libwinpr\utils\trio</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\trio\trionan.c">
+      <Filter>Source Files\libwinpr\utils\trio</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\trio\triostr.c">
+      <Filter>Source Files\libwinpr\utils\trio</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\wlog\Appender.c">
+      <Filter>Source Files\libwinpr\utils\wlog</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\wlog\BinaryAppender.c">
+      <Filter>Source Files\libwinpr\utils\wlog</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\wlog\CallbackAppender.c">
+      <Filter>Source Files\libwinpr\utils\wlog</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\wlog\ConsoleAppender.c">
+      <Filter>Source Files\libwinpr\utils\wlog</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\wlog\DataMessage.c">
+      <Filter>Source Files\libwinpr\utils\wlog</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\wlog\FileAppender.c">
+      <Filter>Source Files\libwinpr\utils\wlog</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\wlog\ImageMessage.c">
+      <Filter>Source Files\libwinpr\utils\wlog</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\wlog\Layout.c">
+      <Filter>Source Files\libwinpr\utils\wlog</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\wlog\Message.c">
+      <Filter>Source Files\libwinpr\utils\wlog</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\wlog\PacketMessage.c">
+      <Filter>Source Files\libwinpr\utils\wlog</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\wlog\TextMessage.c">
+      <Filter>Source Files\libwinpr\utils\wlog</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\wlog\wlog.c">
+      <Filter>Source Files\libwinpr\utils\wlog</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\winhttp\winhttp.c">
+      <Filter>Source Files\libwinpr\winhttp</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\winsock\winsock.c">
+      <Filter>Source Files\libwinpr\winsock</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\wtsapi\wtsapi.c">
+      <Filter>Source Files\libwinpr\wtsapi</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\registry\registry.c">
+      <Filter>Source Files\libwinpr\registry</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\registry\registry_reg.c">
+      <Filter>Source Files\libwinpr\registry</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\handle\nonehandle.c">
+      <Filter>Source Files\libwinpr\handle</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\error\err_err.c">
+      <Filter>Source Files\libwinpr\error</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\pool\io.c">
+      <Filter>Source Files\libwinpr\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\pool\pool.c">
+      <Filter>Source Files\libwinpr\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\pool\synch.c">
+      <Filter>Source Files\libwinpr\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\pool\timer.c">
+      <Filter>Source Files\libwinpr\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\pool\work.c">
+      <Filter>Source Files\libwinpr\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\smartcard\smartcard.c" />
+    <ClCompile Include="libwinpr\smartcard\smartcard_inspect.c" />
+    <ClCompile Include="libwinpr\smartcard\smartcard_pcsc.c" />
+    <ClCompile Include="libwinpr\smartcard\smartcard_winscard.c" />
+    <ClCompile Include="libwinpr\utils\ntlm.c">
+      <Filter>Source Files\libwinpr\utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

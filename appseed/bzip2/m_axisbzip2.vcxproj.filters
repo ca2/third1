@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{7750c98b-2e4c-4369-96e1-6cef121a899f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{37335ce6-f523-4340-947f-0f7bfa298304}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\bsdiff">
+      <UniqueIdentifier>{06b27e67-421a-4b2f-85d4-27b95da017ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\bsdiff">
+      <UniqueIdentifier>{0ff7d22b-ad9e-4408-8f35-881278440883}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="bzlib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bzlib_private.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bsdiff\libbsdiff.h">
+      <Filter>Header Files\bsdiff</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="blocksort.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bzlib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="compress.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="crctable.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="decompress.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="huffman.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="randtable.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bsdiff\bsdiff_bsdiff.c">
+      <Filter>Source Files\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="bsdiff\bsdiff_bspatch.c">
+      <Filter>Source Files\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="bsdiff\libbsdiff.c">
+      <Filter>Source Files\bsdiff</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="metrowin_axisbzip2.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

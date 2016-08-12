@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="axiswinpr" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Option extended_obj_names="1" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../../../stage/x86/libaxiswinpr.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../../../stage/x86/" />
+				<Option object_output="../../../time/intermediate/app/axiswinpr" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add directory="." />
+					<Add directory=".." />
+					<Add directory="../.." />
+					<Add directory="../../.." />
+					<Add directory="../../ca2" />
+					<Add directory="../../../nodeapp/linux" />
+					<Add directory="../../../nodeapp/linux/include" />
+					<Add directory="../../../.." />
+				</Compiler>
+				<Linker>
+					<Add directory="../../../stage/x86" />
+				</Linker>
+			</Target>
+			<Target title="memdleak">
+				<Option output="../../../stage/x86/libaxiswinpr.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../../../stage/x86/" />
+				<Option object_output="../../../time/intermediate/app/axiswinpr" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add option="-DMEMDLEAK" />
+					<Add directory="." />
+					<Add directory=".." />
+					<Add directory="../.." />
+					<Add directory="../../.." />
+					<Add directory="../../ca2" />
+					<Add directory="../../../nodeapp/linux" />
+					<Add directory="../../../nodeapp/linux/include" />
+					<Add directory="../../../.." />
+				</Compiler>
+				<Linker>
+					<Add directory="../../../stage/x86" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-fexceptions" />
+			<Add option="-fnon-call-exceptions" />
+			<Add option="-fno-pie" />
+			<Add option="-fno-stack-protector" />
+			<Add option="-Wno-pointer-arith" />
+			<Add option="-Wno-attributes" />
+			<Add option="-Winvalid-pch" />
+			<Add option="-fPIC" />
+			<Add option="-D__linux__" />
+			<Add option="-DLINUX" />
+			<Add option="-DHAVE_CONFIG_H" />
+			<Add option="-DBYEWINDOWS_UNICODE" />
+			<Add directory="../../../../include" />
+			<Add directory="../../../include" />
+			<Add directory="../../include" />
+			<Add directory="../../../.." />
+			<Add directory="../../../appseed" />
+			<Add directory="../../appseed" />
+			<Add directory="../../../appseed/base" />
+			<Add directory="../../../appseed/axis" />
+			<Add directory="../../../appseed/aura" />
+			<Add directory="libwinpr/utils" />
+			<Add directory="libwinpr/utils/trio" />
+		</Compiler>
+		<Linker>
+			<Add option="-Wl,-R\\$$$ORIGIN" />
+			<Add option="-Wl,-z,origin" />
+			<Add option="-lrt" />
+			<Add option="-ldl" />
+			<Add option="-lpthread" />
+			<Add option="-laxiscrypto" />
+			<Add option="-laxisopenssl" />
+			<Add option="-Wl,-z,defs" />
+			<Add directory="../../../../stage/x86" />
+		</Linker>
+		<Unit filename="config.h" />
+		<Unit filename="libwinpr/asn1/asn1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/bcrypt/bcrypt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/clipboard/clipboard.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/clipboard/clipboard.h" />
+		<Unit filename="libwinpr/clipboard/synthetic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/com/com.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/comm/comm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/comm/comm.h" />
+		<Unit filename="libwinpr/comm/comm_io.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/comm/comm_ioctl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/comm/comm_ioctl.h" />
+		<Unit filename="libwinpr/comm/comm_sercx2_sys.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/comm/comm_sercx2_sys.h" />
+		<Unit filename="libwinpr/comm/comm_sercx_sys.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/comm/comm_sercx_sys.h" />
+		<Unit filename="libwinpr/comm/comm_serial_sys.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/comm/comm_serial_sys.h" />
+		<Unit filename="libwinpr/credentials/credentials.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/credui/credui.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/crt/alignment.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/crt/buffer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/crt/conversion.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/crt/memory.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/crt/module.def" />
+		<Unit filename="libwinpr/crt/string.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/crt/unicode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/crt/utf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/crt/utf.h" />
+		<Unit filename="libwinpr/crypto/cert.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/crypto/crypto.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/crypto/crypto.h" />
+		<Unit filename="libwinpr/dsparse/dsparse.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/dummy.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/environment/environment.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/error/err_err.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/file/file.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/file/pattern.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/handle/handle.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/handle/handle.h" />
+		<Unit filename="libwinpr/handle/nonehandle.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/handle/nonehandle.h" />
+		<Unit filename="libwinpr/heap/heap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/input/keycode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/input/scancode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/input/virtualkey.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/interlocked/interlocked.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/io/device.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/io/io.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/io/io.h" />
+		<Unit filename="libwinpr/library/library.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/locale/locale.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/log.h" />
+		<Unit filename="libwinpr/memory/memory.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/memory/memory.h" />
+		<Unit filename="libwinpr/nt/nt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/nt/nt.h" />
+		<Unit filename="libwinpr/path/path.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/path/shell.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/pipe/pipe.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/pipe/pipe.h" />
+		<Unit filename="libwinpr/pool/callback.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/pool/callback_cleanup.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/pool/callback_environment.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/pool/cleanup_group.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/pool/io.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/pool/pool.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/pool/pool.h" />
+		<Unit filename="libwinpr/pool/synch.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/pool/timer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/pool/work.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/registry/registry.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/registry/registry_reg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/registry/registry_reg.h" />
+		<Unit filename="libwinpr/rpc/midl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/rpc/ndr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/rpc/ndr_array.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/rpc/ndr_array.h" />
+		<Unit filename="libwinpr/rpc/ndr_context.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/rpc/ndr_context.h" />
+		<Unit filename="libwinpr/rpc/ndr_correlation.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/rpc/ndr_correlation.h" />
+		<Unit filename="libwinpr/rpc/ndr_pointer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/rpc/ndr_pointer.h" />
+		<Unit filename="libwinpr/rpc/ndr_private.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/rpc/ndr_private.h" />
+		<Unit filename="libwinpr/rpc/ndr_simple.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/rpc/ndr_simple.h" />
+		<Unit filename="libwinpr/rpc/ndr_string.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/rpc/ndr_string.h" />
+		<Unit filename="libwinpr/rpc/ndr_structure.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/rpc/ndr_structure.h" />
+		<Unit filename="libwinpr/rpc/ndr_union.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/rpc/ndr_union.h" />
+		<Unit filename="libwinpr/rpc/rpc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/security/security.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/security/security.h" />
+		<Unit filename="libwinpr/shell/shell.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/smartcard/smartcard.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/smartcard/smartcard.h" />
+		<Unit filename="libwinpr/smartcard/smartcard_inspect.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/smartcard/smartcard_inspect.h" />
+		<Unit filename="libwinpr/smartcard/smartcard_pcsc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/smartcard/smartcard_pcsc.h" />
+		<Unit filename="libwinpr/smartcard/smartcard_winscard.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/smartcard/smartcard_winscard.h" />
+		<Unit filename="libwinpr/sspi/CredSSP/credssp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/sspi/CredSSP/credssp.h" />
+		<Unit filename="libwinpr/sspi/NTLM/ntlm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/sspi/NTLM/ntlm.h" />
+		<Unit filename="libwinpr/sspi/NTLM/ntlm_av_pairs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/sspi/NTLM/ntlm_av_pairs.h" />
+		<Unit filename="libwinpr/sspi/NTLM/ntlm_compute.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/sspi/NTLM/ntlm_compute.h" />
+		<Unit filename="libwinpr/sspi/NTLM/ntlm_message.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/sspi/NTLM/ntlm_message.h" />
+		<Unit filename="libwinpr/sspi/Negotiate/negotiate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/sspi/Negotiate/negotiate.h" />
+		<Unit filename="libwinpr/sspi/Schannel/schannel.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/sspi/Schannel/schannel.h" />
+		<Unit filename="libwinpr/sspi/Schannel/schannel_openssl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/sspi/Schannel/schannel_openssl.h" />
+		<Unit filename="libwinpr/sspi/sspi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/sspi/sspi.h" />
+		<Unit filename="libwinpr/sspi/sspi_export.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/sspi/sspi_winpr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/sspi/sspi_winpr.h" />
+		<Unit filename="libwinpr/sspicli/sspicli.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/synch/address.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/synch/barrier.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/synch/condition.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/synch/critical.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/synch/event.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/synch/init.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/synch/mutex.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/synch/semaphore.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/synch/sleep.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/synch/srw.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/synch/synch.h" />
+		<Unit filename="libwinpr/synch/timer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/synch/wait.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/sysinfo/sysinfo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/thread/argv.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/thread/process.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/thread/processor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/thread/thread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/thread/thread.h" />
+		<Unit filename="libwinpr/thread/tls.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/timezone/timezone.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/cmdline.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/collections/ArrayList.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/collections/BipBuffer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/collections/BitStream.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/collections/BufferPool.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/collections/CountdownEvent.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/collections/Dictionary.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/collections/HashTable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/collections/KeyValuePair.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/collections/LinkedList.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/collections/ListDictionary.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/collections/MessagePipe.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/collections/MessageQueue.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/collections/ObjectPool.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/collections/PubSub.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/collections/Queue.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/collections/Reference.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/collections/Stack.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/collections/StreamPool.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/corkscrew/backtrace.h" />
+		<Unit filename="libwinpr/utils/corkscrew/demangle.h" />
+		<Unit filename="libwinpr/utils/corkscrew/map_info.h" />
+		<Unit filename="libwinpr/utils/corkscrew/ptrace.h" />
+		<Unit filename="libwinpr/utils/corkscrew/symbol_table.h" />
+		<Unit filename="libwinpr/utils/debug.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/image.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/ini.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/lodepng/lodepng.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/lodepng/lodepng.h" />
+		<Unit filename="libwinpr/utils/ntlm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/print.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/sam.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/ssl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/stream.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/trio/strio.h" />
+		<Unit filename="libwinpr/utils/trio/trio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/trio/trio.h" />
+		<Unit filename="libwinpr/utils/trio/triodef.h" />
+		<Unit filename="libwinpr/utils/trio/trionan.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/trio/trionan.h" />
+		<Unit filename="libwinpr/utils/trio/triop.h" />
+		<Unit filename="libwinpr/utils/trio/triostr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/trio/triostr.h" />
+		<Unit filename="libwinpr/utils/wlog/Appender.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/wlog/Appender.h" />
+		<Unit filename="libwinpr/utils/wlog/BinaryAppender.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/wlog/BinaryAppender.h" />
+		<Unit filename="libwinpr/utils/wlog/CallbackAppender.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/wlog/CallbackAppender.h" />
+		<Unit filename="libwinpr/utils/wlog/ConsoleAppender.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/wlog/ConsoleAppender.h" />
+		<Unit filename="libwinpr/utils/wlog/DataMessage.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/wlog/DataMessage.h" />
+		<Unit filename="libwinpr/utils/wlog/FileAppender.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/wlog/FileAppender.h" />
+		<Unit filename="libwinpr/utils/wlog/ImageMessage.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/wlog/ImageMessage.h" />
+		<Unit filename="libwinpr/utils/wlog/Layout.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/wlog/Layout.h" />
+		<Unit filename="libwinpr/utils/wlog/Message.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/wlog/Message.h" />
+		<Unit filename="libwinpr/utils/wlog/PacketMessage.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/wlog/PacketMessage.h" />
+		<Unit filename="libwinpr/utils/wlog/TextMessage.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/wlog/TextMessage.h" />
+		<Unit filename="libwinpr/utils/wlog/wlog.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/utils/wlog/wlog.h" />
+		<Unit filename="libwinpr/winhttp/winhttp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/winsock/winsock.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/wnd/wnd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/wnd/wnd.h" />
+		<Unit filename="libwinpr/wtsapi/wtsapi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/wtsapi/wtsapi.h" />
+		<Unit filename="libwinpr/wtsapi/wtsapi_win32.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

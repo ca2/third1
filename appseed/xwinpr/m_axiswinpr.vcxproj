@@ -1,0 +1,527 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="basis|ARM">
+      <Configuration>basis</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="basis|Win32">
+      <Configuration>basis</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="basis|x64">
+      <Configuration>basis</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="profiler|ARM">
+      <Configuration>profiler</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="profiler|Win32">
+      <Configuration>profiler</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="profiler|x64">
+      <Configuration>profiler</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\winpr\asn1.h" />
+    <ClInclude Include="..\..\include\winpr\bcrypt.h" />
+    <ClInclude Include="..\..\include\winpr\bitstream.h" />
+    <ClInclude Include="..\..\include\winpr\cmdline.h" />
+    <ClInclude Include="..\..\include\winpr\collections.h" />
+    <ClInclude Include="..\..\include\winpr\comm.h" />
+    <ClInclude Include="..\..\include\winpr\credentials.h" />
+    <ClInclude Include="..\..\include\winpr\credui.h" />
+    <ClInclude Include="..\..\include\winpr\crt.h" />
+    <ClInclude Include="..\..\include\winpr\crypto.h" />
+    <ClInclude Include="..\..\include\winpr\debug.h" />
+    <ClInclude Include="..\..\include\winpr\dsparse.h" />
+    <ClInclude Include="..\..\include\winpr\endian.h" />
+    <ClInclude Include="..\..\include\winpr\environment.h" />
+    <ClInclude Include="..\..\include\winpr\error.h" />
+    <ClInclude Include="..\..\include\winpr\file.h" />
+    <ClInclude Include="..\..\include\winpr\handle.h" />
+    <ClInclude Include="..\..\include\winpr\heap.h" />
+    <ClInclude Include="..\..\include\winpr\ini.h" />
+    <ClInclude Include="..\..\include\winpr\input.h" />
+    <ClInclude Include="..\..\include\winpr\interlocked.h" />
+    <ClInclude Include="..\..\include\winpr\io.h" />
+    <ClInclude Include="..\..\include\winpr\library.h" />
+    <ClInclude Include="..\..\include\winpr\locale.h" />
+    <ClInclude Include="..\..\include\winpr\memory.h" />
+    <ClInclude Include="..\..\include\winpr\midl.h" />
+    <ClInclude Include="..\..\include\winpr\ndr.h" />
+    <ClInclude Include="..\..\include\winpr\nt.h" />
+    <ClInclude Include="..\..\include\winpr\ntlm.h" />
+    <ClInclude Include="..\..\include\winpr\path.h" />
+    <ClInclude Include="..\..\include\winpr\pipe.h" />
+    <ClInclude Include="..\..\include\winpr\platform.h" />
+    <ClInclude Include="..\..\include\winpr\pool.h" />
+    <ClInclude Include="..\..\include\winpr\print.h" />
+    <ClInclude Include="..\..\include\winpr\registry.h" />
+    <ClInclude Include="..\..\include\winpr\rpc.h" />
+    <ClInclude Include="..\..\include\winpr\sam.h" />
+    <ClInclude Include="..\..\include\winpr\schannel.h" />
+    <ClInclude Include="..\..\include\winpr\security.h" />
+    <ClInclude Include="..\..\include\winpr\smartcard.h" />
+    <ClInclude Include="..\..\include\winpr\spec.h" />
+    <ClInclude Include="..\..\include\winpr\ssl.h" />
+    <ClInclude Include="..\..\include\winpr\sspi.h" />
+    <ClInclude Include="..\..\include\winpr\sspicli.h" />
+    <ClInclude Include="..\..\include\winpr\stream.h" />
+    <ClInclude Include="..\..\include\winpr\string.h" />
+    <ClInclude Include="..\..\include\winpr\synch.h" />
+    <ClInclude Include="..\..\include\winpr\sysinfo.h" />
+    <ClInclude Include="..\..\include\winpr\tchar.h" />
+    <ClInclude Include="..\..\include\winpr\thread.h" />
+    <ClInclude Include="..\..\include\winpr\timezone.h" />
+    <ClInclude Include="..\..\include\winpr\windows.h" />
+    <ClInclude Include="..\..\include\winpr\winhttp.h" />
+    <ClInclude Include="..\..\include\winpr\winpr.h" />
+    <ClInclude Include="..\..\include\winpr\winsock.h" />
+    <ClInclude Include="..\..\include\winpr\wlog.h" />
+    <ClInclude Include="..\..\include\winpr\wnd.h" />
+    <ClInclude Include="..\..\include\winpr\wtsapi.h" />
+    <ClInclude Include="..\..\include\winpr\wtypes.h" />
+    <ClInclude Include="libwinpr\crt\utf.h" />
+    <ClInclude Include="libwinpr\crypto\crypto.h" />
+    <ClInclude Include="libwinpr\handle\handle.h" />
+    <ClInclude Include="libwinpr\io\io.h" />
+    <ClInclude Include="libwinpr\nt\nt.h" />
+    <ClInclude Include="libwinpr\pipe\pipe.h" />
+    <ClInclude Include="libwinpr\pool\pool.h" />
+    <ClInclude Include="libwinpr\registry\registry_reg.h" />
+    <ClInclude Include="libwinpr\rpc\ndr_array.h" />
+    <ClInclude Include="libwinpr\rpc\ndr_context.h" />
+    <ClInclude Include="libwinpr\rpc\ndr_correlation.h" />
+    <ClInclude Include="libwinpr\rpc\ndr_pointer.h" />
+    <ClInclude Include="libwinpr\rpc\ndr_private.h" />
+    <ClInclude Include="libwinpr\rpc\ndr_simple.h" />
+    <ClInclude Include="libwinpr\rpc\ndr_string.h" />
+    <ClInclude Include="libwinpr\rpc\ndr_structure.h" />
+    <ClInclude Include="libwinpr\rpc\ndr_union.h" />
+    <ClInclude Include="libwinpr\security\security.h" />
+    <ClInclude Include="libwinpr\smartcard\smartcard.h" />
+    <ClInclude Include="libwinpr\smartcard\smartcard_inspect.h" />
+    <ClInclude Include="libwinpr\smartcard\smartcard_pcsc.h" />
+    <ClInclude Include="libwinpr\smartcard\smartcard_winscard.h" />
+    <ClInclude Include="libwinpr\sspi\CredSSP\credssp.h" />
+    <ClInclude Include="libwinpr\sspi\sspi.h" />
+    <ClInclude Include="libwinpr\synch\synch.h" />
+    <ClInclude Include="libwinpr\thread\thread.h" />
+    <ClInclude Include="libwinpr\utils\trio\strio.h" />
+    <ClInclude Include="libwinpr\utils\trio\trio.h" />
+    <ClInclude Include="libwinpr\utils\trio\triodef.h" />
+    <ClInclude Include="libwinpr\utils\trio\trionan.h" />
+    <ClInclude Include="libwinpr\utils\trio\triop.h" />
+    <ClInclude Include="libwinpr\utils\trio\triostr.h" />
+    <ClInclude Include="libwinpr\utils\wlog\Appender.h" />
+    <ClInclude Include="libwinpr\utils\wlog\BinaryAppender.h" />
+    <ClInclude Include="libwinpr\utils\wlog\ConsoleAppender.h" />
+    <ClInclude Include="libwinpr\utils\wlog\DataMessage.h" />
+    <ClInclude Include="libwinpr\utils\wlog\FileAppender.h" />
+    <ClInclude Include="libwinpr\utils\wlog\ImageMessage.h" />
+    <ClInclude Include="libwinpr\utils\wlog\Layout.h" />
+    <ClInclude Include="libwinpr\utils\wlog\Message.h" />
+    <ClInclude Include="libwinpr\utils\wlog\PacketMessage.h" />
+    <ClInclude Include="libwinpr\utils\wlog\TextMessage.h" />
+    <ClInclude Include="libwinpr\utils\wlog\wlog.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="axiswinpr.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="libwinpr\asn1\asn1.c" />
+    <ClCompile Include="libwinpr\bcrypt\bcrypt.c" />
+    <ClCompile Include="libwinpr\com\com.c" />
+    <ClCompile Include="libwinpr\credentials\credentials.c" />
+    <ClCompile Include="libwinpr\credui\credui.c" />
+    <ClCompile Include="libwinpr\crt\alignment.c" />
+    <ClCompile Include="libwinpr\crt\buffer.c" />
+    <ClCompile Include="libwinpr\crt\conversion.c" />
+    <ClCompile Include="libwinpr\crt\memory.c" />
+    <ClCompile Include="libwinpr\crt\string.c" />
+    <ClCompile Include="libwinpr\crt\unicode.c" />
+    <ClCompile Include="libwinpr\crt\utf.c" />
+    <ClCompile Include="libwinpr\crypto\cert.c" />
+    <ClCompile Include="libwinpr\crypto\crypto.c" />
+    <ClCompile Include="libwinpr\dsparse\dsparse.c" />
+    <ClCompile Include="libwinpr\environment\environment.c" />
+    <ClCompile Include="libwinpr\error\err_err.c" />
+    <ClCompile Include="libwinpr\file\file.c" />
+    <ClCompile Include="libwinpr\file\pattern.c" />
+    <ClCompile Include="libwinpr\handle\handle.c" />
+    <ClCompile Include="libwinpr\heap\heap.c" />
+    <ClCompile Include="libwinpr\input\keycode.c" />
+    <ClCompile Include="libwinpr\input\scancode.c" />
+    <ClCompile Include="libwinpr\input\virtualkey.c" />
+    <ClCompile Include="libwinpr\interlocked\interlocked.c" />
+    <ClCompile Include="libwinpr\io\device.c" />
+    <ClCompile Include="libwinpr\io\io.c" />
+    <ClCompile Include="libwinpr\library\library.c" />
+    <ClCompile Include="libwinpr\nt\nt.c" />
+    <ClCompile Include="libwinpr\path\path.c" />
+    <ClCompile Include="libwinpr\path\shell.c" />
+    <ClCompile Include="libwinpr\pipe\pipe.c" />
+    <ClCompile Include="libwinpr\pool\callback.c" />
+    <ClCompile Include="libwinpr\pool\callback_cleanup.c" />
+    <ClCompile Include="libwinpr\pool\callback_environment.c" />
+    <ClCompile Include="libwinpr\pool\cleanup_group.c" />
+    <ClCompile Include="libwinpr\pool\pool_io.c" />
+    <ClCompile Include="libwinpr\pool\pool_pool.c" />
+    <ClCompile Include="libwinpr\pool\pool_synch.c" />
+    <ClCompile Include="libwinpr\pool\pool_timer.c" />
+    <ClCompile Include="libwinpr\pool\pool_work.c" />
+    <ClCompile Include="libwinpr\rpc\midl.c" />
+    <ClCompile Include="libwinpr\rpc\ndr.c" />
+    <ClCompile Include="libwinpr\rpc\ndr_array.c" />
+    <ClCompile Include="libwinpr\rpc\ndr_context.c" />
+    <ClCompile Include="libwinpr\rpc\ndr_correlation.c" />
+    <ClCompile Include="libwinpr\rpc\ndr_pointer.c" />
+    <ClCompile Include="libwinpr\rpc\ndr_private.c" />
+    <ClCompile Include="libwinpr\rpc\ndr_simple.c" />
+    <ClCompile Include="libwinpr\rpc\ndr_string.c" />
+    <ClCompile Include="libwinpr\rpc\ndr_structure.c" />
+    <ClCompile Include="libwinpr\rpc\ndr_union.c" />
+    <ClCompile Include="libwinpr\rpc\rpc.c" />
+    <ClCompile Include="libwinpr\security\security.c" />
+    <ClCompile Include="libwinpr\smartcard\smartcard.c" />
+    <ClCompile Include="libwinpr\smartcard\smartcard_inspect.c" />
+    <ClCompile Include="libwinpr\smartcard\smartcard_link.c" />
+    <ClCompile Include="libwinpr\smartcard\smartcard_pcsc.c" />
+    <ClCompile Include="libwinpr\smartcard\smartcard_winscard.c" />
+    <ClCompile Include="libwinpr\sspicli\sspicli.c" />
+    <ClCompile Include="libwinpr\sspi\CredSSP\credssp.c" />
+    <ClCompile Include="libwinpr\sspi\Negotiate\negotiate.c" />
+    <ClCompile Include="libwinpr\sspi\NTLM\ntlm.c" />
+    <ClCompile Include="libwinpr\sspi\NTLM\ntlm_av_pairs.c" />
+    <ClCompile Include="libwinpr\sspi\NTLM\ntlm_compute.c" />
+    <ClCompile Include="libwinpr\sspi\NTLM\ntlm_message.c" />
+    <ClCompile Include="libwinpr\sspi\Schannel\schannel.c" />
+    <ClCompile Include="libwinpr\sspi\Schannel\schannel_openssl.c" />
+    <ClCompile Include="libwinpr\sspi\sspi.c" />
+    <ClCompile Include="libwinpr\sspi\sspi_export.c" />
+    <ClCompile Include="libwinpr\sspi\sspi_winpr.c" />
+    <ClCompile Include="libwinpr\synch\address.c" />
+    <ClCompile Include="libwinpr\synch\barrier.c" />
+    <ClCompile Include="libwinpr\synch\condition.c" />
+    <ClCompile Include="libwinpr\synch\critical.c" />
+    <ClCompile Include="libwinpr\synch\event.c" />
+    <ClCompile Include="libwinpr\synch\init.c" />
+    <ClCompile Include="libwinpr\synch\mutex.c" />
+    <ClCompile Include="libwinpr\synch\semaphore.c" />
+    <ClCompile Include="libwinpr\synch\sleep.c" />
+    <ClCompile Include="libwinpr\synch\srw.c" />
+    <ClCompile Include="libwinpr\synch\timer.c" />
+    <ClCompile Include="libwinpr\synch\wait.c" />
+    <ClCompile Include="libwinpr\sysinfo\sysinfo.c" />
+    <ClCompile Include="libwinpr\thread\argv.c" />
+    <ClCompile Include="libwinpr\thread\process.c" />
+    <ClCompile Include="libwinpr\thread\processor.c" />
+    <ClCompile Include="libwinpr\thread\thread.c" />
+    <ClCompile Include="libwinpr\thread\tls.c" />
+    <ClCompile Include="libwinpr\timezone\timezone.c" />
+    <ClCompile Include="libwinpr\utils\cmdline.c" />
+    <ClCompile Include="libwinpr\utils\collections\ArrayList.c" />
+    <ClCompile Include="libwinpr\utils\collections\BitStream.c" />
+    <ClCompile Include="libwinpr\utils\collections\BufferPool.c" />
+    <ClCompile Include="libwinpr\utils\collections\CountdownEvent.c" />
+    <ClCompile Include="libwinpr\utils\collections\Dictionary.c" />
+    <ClCompile Include="libwinpr\utils\collections\HashTable.c" />
+    <ClCompile Include="libwinpr\utils\collections\KeyValuePair.c" />
+    <ClCompile Include="libwinpr\utils\collections\LinkedList.c" />
+    <ClCompile Include="libwinpr\utils\collections\ListDictionary.c" />
+    <ClCompile Include="libwinpr\utils\collections\MessagePipe.c" />
+    <ClCompile Include="libwinpr\utils\collections\MessageQueue.c" />
+    <ClCompile Include="libwinpr\utils\collections\ObjectPool.c" />
+    <ClCompile Include="libwinpr\utils\collections\PubSub.c" />
+    <ClCompile Include="libwinpr\utils\collections\Queue.c" />
+    <ClCompile Include="libwinpr\utils\collections\Reference.c" />
+    <ClCompile Include="libwinpr\utils\collections\Stack.c" />
+    <ClCompile Include="libwinpr\utils\collections\StreamPool.c" />
+    <ClCompile Include="libwinpr\utils\debug.c" />
+    <ClCompile Include="libwinpr\utils\image.c" />
+    <ClCompile Include="libwinpr\utils\ini.c" />
+    <ClCompile Include="libwinpr\utils\lodepng\lodepng.c" />
+    <ClCompile Include="libwinpr\utils\print.c" />
+    <ClCompile Include="libwinpr\utils\sam.c" />
+    <ClCompile Include="libwinpr\utils\ssl.c" />
+    <ClCompile Include="libwinpr\utils\stream.c" />
+    <ClCompile Include="libwinpr\utils\trio\trio.c" />
+    <ClCompile Include="libwinpr\utils\trio\trionan.c" />
+    <ClCompile Include="libwinpr\utils\trio\triostr.c" />
+    <ClCompile Include="libwinpr\utils\utils_ntlm.c" />
+    <ClCompile Include="libwinpr\utils\wlog\Appender.c" />
+    <ClCompile Include="libwinpr\utils\wlog\BinaryAppender.c" />
+    <ClCompile Include="libwinpr\utils\wlog\CallbackAppender.c" />
+    <ClCompile Include="libwinpr\utils\wlog\ConsoleAppender.c" />
+    <ClCompile Include="libwinpr\utils\wlog\DataMessage.c" />
+    <ClCompile Include="libwinpr\utils\wlog\FileAppender.c" />
+    <ClCompile Include="libwinpr\utils\wlog\ImageMessage.c" />
+    <ClCompile Include="libwinpr\utils\wlog\Layout.c" />
+    <ClCompile Include="libwinpr\utils\wlog\Message.c" />
+    <ClCompile Include="libwinpr\utils\wlog\PacketMessage.c" />
+    <ClCompile Include="libwinpr\utils\wlog\TextMessage.c" />
+    <ClCompile Include="libwinpr\utils\wlog\wlog.c" />
+    <ClCompile Include="libwinpr\winhttp\winhttp.c" />
+    <ClCompile Include="libwinpr\winsock\winsock.c" />
+    <ClCompile Include="libwinpr\wtsapi\wtsapi.c" />
+    <ClCompile Include="libwinpr\wtsapi\wtsapi_win32.c" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7D711787-C992-4087-85AA-349C64755F53}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectName>axiswinpr</ProjectName>
+    <RootNamespace>axiswinpr</RootNamespace>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
+    <AppContainerApplication>true</AppContainerApplication>
+    <ApplicationType>Windows Store</ApplicationType>
+    <ApplicationTypeRevision>8.1</ApplicationTypeRevision>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='profiler|ARM'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='profiler|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(SolutionDir)..\..\..\stage\x86\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\x86\$(ProjectName)\</IntDir>
+    <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
+    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
+    <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
+    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
+    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(SolutionDir)..\..\..\stage\x86\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\x86\$(ProjectName)\</IntDir>
+    <IncludePath>$(VCInstallDir)include;$(WindowsSDK_IncludePath);</IncludePath>
+    <ReferencePath>$(VCInstallDir)lib</ReferencePath>
+    <LibraryPath>$(VCInstallDir)lib;$(WindowsSDK_LibraryPath_x86);</LibraryPath>
+    <SourcePath>$(VCInstallDir)crt\src;</SourcePath>
+    <ExcludePath>$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSDK_IncludePath);$(MSBuildToolsPath32);$(VCInstallDir)atlmfc\lib;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\include</ExcludePath>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(SolutionDir)..\..\..\stage\x86\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|ARM'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;WINPR_EXPORTS;WIN32;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;WINPR_EXPORTS;_DEBUG;HAVE_CONFIG_H;CMAKE_INTDIR="Debug";winpr_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Zm384 /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAsManaged>false</CompileAsManaged>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalDependencies>Oleaut32.lib;Msxml6.lib;DWrite.lib;D3D11.lib;D2D1.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>metrowin_base.def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>$(SolutionDir)../../../time/library/x86/$(Configuration)/$(TargetName).lib</ImportLibrary>
+    </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;WINPR_EXPORTS;WIN32;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;WINPR_EXPORTS;_DEBUG;HAVE_CONFIG_H;CMAKE_INTDIR="Debug";winpr_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Zm384 /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAsManaged>false</CompileAsManaged>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalDependencies>DWrite.lib;Msxml6.lib;D3D11.lib;D2D1.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>metrowin_base.def</ModuleDefinitionFile>
+    </Link>
+    <PreBuildEvent>
+      <Command>copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\msvcp110d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\msvcr110d.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\m_freetype.dll" "$(OutDir)"
+copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)"
+</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|arm'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|arm'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;WINPR_EXPORTS;WIN32;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;WINPR_EXPORTS;_DEBUG;HAVE_CONFIG_H;CMAKE_INTDIR="Debug";winpr_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>-Zm384 /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <CompileAsManaged>false</CompileAsManaged>
+      <ExceptionHandling>Async</ExceptionHandling>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <ModuleDefinitionFile>metrowin_base.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profiler|arm'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;WINPR_EXPORTS;WIN32;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;WINPR_EXPORTS;_DEBUG;HAVE_CONFIG_H;CMAKE_INTDIR="Debug";winpr_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <ModuleDefinitionFile>metrowin_base.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|arm'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;WINPR_EXPORTS;WIN32;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;WINPR_EXPORTS;_DEBUG;HAVE_CONFIG_H;CMAKE_INTDIR="Debug";winpr_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <ModuleDefinitionFile>metrowin_base.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;WINPR_EXPORTS;WIN32;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0501;WIN32_WINNT=0x0501;WINPR_EXPORTS;FREERDP_EXPORTS;WINPR_EXPORTS;_DEBUG;HAVE_CONFIG_H;CMAKE_INTDIR="Debug";winpr_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <ModuleDefinitionFile>metrowin_base.def</ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

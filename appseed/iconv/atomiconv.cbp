@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="atomiconv" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../../../stage/x86/libatomiconv.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../../../stage/x86/" />
+				<Option object_output="../../../time/intermediate/app/atomiconv" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add directory="../../appseed" />
+				</Compiler>
+				<Linker>
+					<Add directory="../../../stage/x86" />
+				</Linker>
+			</Target>
+			<Target title="memdleak">
+				<Option output="../../../stage/x86/libatomiconv.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../../../stage/x86/" />
+				<Option object_output="../../../time/intermediate/app/atomiconv" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add option="-DMEMDLEAK" />
+				</Compiler>
+				<Linker>
+					<Add directory="../../../stage/x86" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-std=c++0x" />
+			<Add option="-fexceptions" />
+			<Add option="-fnon-call-exceptions" />
+			<Add option="-fno-pie" />
+			<Add option="-fno-stack-protector" />
+			<Add option="-Wno-pointer-arith" />
+			<Add option="-Wno-attributes" />
+			<Add option="-Winvalid-pch" />
+			<Add option="-fPIC" />
+			<Add option="-DLINUX" />
+			<Add option="-DNO_XMALLOC" />
+			<Add option="-DENABLE_EXTRA" />
+			<Add directory="../../atom" />
+			<Add directory="srclib" />
+			<Add directory="../iconv" />
+			<Add directory="lib" />
+			<Add directory="windows/include" />
+			<Add directory="include" />
+			<Add directory="../../../app" />
+		</Compiler>
+		<Linker>
+			<Add option="-Wl,-R\\$$$ORIGIN" />
+			<Add option="-Wl,-z,origin" />
+			<Add option="-Wl,-z,defs" />
+			<Add directory="../../../stage/x86" />
+		</Linker>
+		<Unit filename="config.h" />
+		<Unit filename="include/export.h" />
+		<Unit filename="lib/aliases.h" />
+		<Unit filename="lib/aliases2.h" />
+		<Unit filename="lib/aliases_aix.h" />
+		<Unit filename="lib/aliases_aix_sysaix.h" />
+		<Unit filename="lib/aliases_dos.h" />
+		<Unit filename="lib/aliases_extra.h" />
+		<Unit filename="lib/aliases_osf1.h" />
+		<Unit filename="lib/aliases_osf1_sysosf1.h" />
+		<Unit filename="lib/aliases_sysaix.h" />
+		<Unit filename="lib/aliases_syshpux.h" />
+		<Unit filename="lib/aliases_sysosf1.h" />
+		<Unit filename="lib/aliases_syssolaris.h" />
+		<Unit filename="lib/armscii_8.h" />
+		<Unit filename="lib/ascii.h" />
+		<Unit filename="lib/atarist.h" />
+		<Unit filename="lib/big5.h" />
+		<Unit filename="lib/big5_2003.h" />
+		<Unit filename="lib/big5hkscs1999.h" />
+		<Unit filename="lib/big5hkscs2001.h" />
+		<Unit filename="lib/big5hkscs2004.h" />
+		<Unit filename="lib/big5hkscs2008.h" />
+		<Unit filename="lib/c99.h" />
+		<Unit filename="lib/canonical.h" />
+		<Unit filename="lib/canonical_aix.h" />
+		<Unit filename="lib/canonical_aix_sysaix.h" />
+		<Unit filename="lib/canonical_dos.h" />
+		<Unit filename="lib/canonical_extra.h" />
+		<Unit filename="lib/canonical_local.h" />
+		<Unit filename="lib/canonical_local_sysaix.h" />
+		<Unit filename="lib/canonical_local_syshpux.h" />
+		<Unit filename="lib/canonical_local_sysosf1.h" />
+		<Unit filename="lib/canonical_local_syssolaris.h" />
+		<Unit filename="lib/canonical_osf1.h" />
+		<Unit filename="lib/canonical_osf1_sysosf1.h" />
+		<Unit filename="lib/canonical_sysaix.h" />
+		<Unit filename="lib/canonical_syshpux.h" />
+		<Unit filename="lib/canonical_sysosf1.h" />
+		<Unit filename="lib/canonical_syssolaris.h" />
+		<Unit filename="lib/ces_big5.h" />
+		<Unit filename="lib/ces_gbk.h" />
+		<Unit filename="lib/cjk_variants.h" />
+		<Unit filename="lib/cns11643.h" />
+		<Unit filename="lib/cns11643_1.h" />
+		<Unit filename="lib/cns11643_15.h" />
+		<Unit filename="lib/cns11643_2.h" />
+		<Unit filename="lib/cns11643_3.h" />
+		<Unit filename="lib/cns11643_4.h" />
+		<Unit filename="lib/cns11643_4a.h" />
+		<Unit filename="lib/cns11643_4b.h" />
+		<Unit filename="lib/cns11643_5.h" />
+		<Unit filename="lib/cns11643_6.h" />
+		<Unit filename="lib/cns11643_7.h" />
+		<Unit filename="lib/cns11643_inv.h" />
+		<Unit filename="lib/converters.h" />
+		<Unit filename="lib/cp1046.h" />
+		<Unit filename="lib/cp1124.h" />
+		<Unit filename="lib/cp1125.h" />
+		<Unit filename="lib/cp1129.h" />
+		<Unit filename="lib/cp1131.h" />
+		<Unit filename="lib/cp1133.h" />
+		<Unit filename="lib/cp1161.h" />
+		<Unit filename="lib/cp1162.h" />
+		<Unit filename="lib/cp1163.h" />
+		<Unit filename="lib/cp1250.h" />
+		<Unit filename="lib/cp1251.h" />
+		<Unit filename="lib/cp1252.h" />
+		<Unit filename="lib/cp1253.h" />
+		<Unit filename="lib/cp1254.h" />
+		<Unit filename="lib/cp1255.h" />
+		<Unit filename="lib/cp1256.h" />
+		<Unit filename="lib/cp1257.h" />
+		<Unit filename="lib/cp1258.h" />
+		<Unit filename="lib/cp437.h" />
+		<Unit filename="lib/cp737.h" />
+		<Unit filename="lib/cp775.h" />
+		<Unit filename="lib/cp850.h" />
+		<Unit filename="lib/cp852.h" />
+		<Unit filename="lib/cp853.h" />
+		<Unit filename="lib/cp855.h" />
+		<Unit filename="lib/cp856.h" />
+		<Unit filename="lib/cp857.h" />
+		<Unit filename="lib/cp858.h" />
+		<Unit filename="lib/cp860.h" />
+		<Unit filename="lib/cp861.h" />
+		<Unit filename="lib/cp862.h" />
+		<Unit filename="lib/cp863.h" />
+		<Unit filename="lib/cp864.h" />
+		<Unit filename="lib/cp865.h" />
+		<Unit filename="lib/cp866.h" />
+		<Unit filename="lib/cp869.h" />
+		<Unit filename="lib/cp874.h" />
+		<Unit filename="lib/cp922.h" />
+		<Unit filename="lib/cp932.h" />
+		<Unit filename="lib/cp932ext.h" />
+		<Unit filename="lib/cp936.h" />
+		<Unit filename="lib/cp936ext.h" />
+		<Unit filename="lib/cp943.h" />
+		<Unit filename="lib/cp949.h" />
+		<Unit filename="lib/cp950.h" />
+		<Unit filename="lib/cp950ext.h" />
+		<Unit filename="lib/dec_hanyu.h" />
+		<Unit filename="lib/dec_kanji.h" />
+		<Unit filename="lib/euc_cn.h" />
+		<Unit filename="lib/euc_jisx0213.h" />
+		<Unit filename="lib/euc_jp.h" />
+		<Unit filename="lib/euc_kr.h" />
+		<Unit filename="lib/euc_tw.h" />
+		<Unit filename="lib/flags.h" />
+		<Unit filename="lib/flushwc.h" />
+		<Unit filename="lib/gb12345.h" />
+		<Unit filename="lib/gb12345ext.h" />
+		<Unit filename="lib/gb18030.h" />
+		<Unit filename="lib/gb18030ext.h" />
+		<Unit filename="lib/gb18030uni.h" />
+		<Unit filename="lib/gb2312.h" />
+		<Unit filename="lib/gbk.h" />
+		<Unit filename="lib/gbkext1.h" />
+		<Unit filename="lib/gbkext2.h" />
+		<Unit filename="lib/gbkext_inv.h" />
+		<Unit filename="lib/georgian_academy.h" />
+		<Unit filename="lib/georgian_ps.h" />
+		<Unit filename="lib/gunibreak.h" />
+		<Unit filename="lib/gunicomp.h" />
+		<Unit filename="lib/gunidecomp.h" />
+		<Unit filename="lib/hkscs1999.h" />
+		<Unit filename="lib/hkscs2001.h" />
+		<Unit filename="lib/hkscs2004.h" />
+		<Unit filename="lib/hkscs2008.h" />
+		<Unit filename="lib/hp_roman8.h" />
+		<Unit filename="lib/hz.h" />
+		<Unit filename="lib/iconv.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="lib/iconv_open1.h" />
+		<Unit filename="lib/iconv_open2.h" />
+		<Unit filename="lib/idn-free.h" />
+		<Unit filename="lib/idna.h" />
+		<Unit filename="lib/iso2022_cn.h" />
+		<Unit filename="lib/iso2022_cnext.h" />
+		<Unit filename="lib/iso2022_jp.h" />
+		<Unit filename="lib/iso2022_jp1.h" />
+		<Unit filename="lib/iso2022_jp2.h" />
+		<Unit filename="lib/iso2022_jp3.h" />
+		<Unit filename="lib/iso2022_kr.h" />
+		<Unit filename="lib/iso646_cn.h" />
+		<Unit filename="lib/iso646_jp.h" />
+		<Unit filename="lib/iso8859_1.h" />
+		<Unit filename="lib/iso8859_10.h" />
+		<Unit filename="lib/iso8859_11.h" />
+		<Unit filename="lib/iso8859_13.h" />
+		<Unit filename="lib/iso8859_14.h" />
+		<Unit filename="lib/iso8859_15.h" />
+		<Unit filename="lib/iso8859_16.h" />
+		<Unit filename="lib/iso8859_2.h" />
+		<Unit filename="lib/iso8859_3.h" />
+		<Unit filename="lib/iso8859_4.h" />
+		<Unit filename="lib/iso8859_5.h" />
+		<Unit filename="lib/iso8859_6.h" />
+		<Unit filename="lib/iso8859_7.h" />
+		<Unit filename="lib/iso8859_8.h" />
+		<Unit filename="lib/iso8859_9.h" />
+		<Unit filename="lib/isoir165.h" />
+		<Unit filename="lib/isoir165ext.h" />
+		<Unit filename="lib/java.h" />
+		<Unit filename="lib/jisx0201.h" />
+		<Unit filename="lib/jisx0208.h" />
+		<Unit filename="lib/jisx0212.h" />
+		<Unit filename="lib/jisx0213.h" />
+		<Unit filename="lib/johab.h" />
+		<Unit filename="lib/johab_hangul.h" />
+		<Unit filename="lib/koi8_r.h" />
+		<Unit filename="lib/koi8_ru.h" />
+		<Unit filename="lib/koi8_t.h" />
+		<Unit filename="lib/koi8_u.h" />
+		<Unit filename="lib/ksc5601.h" />
+		<Unit filename="lib/loop_unicode.h" />
+		<Unit filename="lib/loop_wchar.h" />
+		<Unit filename="lib/loops.h" />
+		<Unit filename="lib/mac_arabic.h" />
+		<Unit filename="lib/mac_centraleurope.h" />
+		<Unit filename="lib/mac_croatian.h" />
+		<Unit filename="lib/mac_cyrillic.h" />
+		<Unit filename="lib/mac_greek.h" />
+		<Unit filename="lib/mac_hebrew.h" />
+		<Unit filename="lib/mac_iceland.h" />
+		<Unit filename="lib/mac_roman.h" />
+		<Unit filename="lib/mac_romania.h" />
+		<Unit filename="lib/mac_thai.h" />
+		<Unit filename="lib/mac_turkish.h" />
+		<Unit filename="lib/mac_ukraine.h" />
+		<Unit filename="lib/mulelao.h" />
+		<Unit filename="lib/nextstep.h" />
+		<Unit filename="lib/pr29.h" />
+		<Unit filename="lib/pt154.h" />
+		<Unit filename="lib/punycode.h" />
+		<Unit filename="lib/relocatable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="lib/relocatable.h" />
+		<Unit filename="lib/riscos1.h" />
+		<Unit filename="lib/rk1048.h" />
+		<Unit filename="lib/shift_jisx0213.h" />
+		<Unit filename="lib/sjis.h" />
+		<Unit filename="lib/stringprep.h" />
+		<Unit filename="lib/tcvn.h" />
+		<Unit filename="lib/tds565.h" />
+		<Unit filename="lib/tis620.h" />
+		<Unit filename="lib/tld.h" />
+		<Unit filename="lib/translit.h" />
+		<Unit filename="lib/ucs2.h" />
+		<Unit filename="lib/ucs2be.h" />
+		<Unit filename="lib/ucs2internal.h" />
+		<Unit filename="lib/ucs2le.h" />
+		<Unit filename="lib/ucs2swapped.h" />
+		<Unit filename="lib/ucs4.h" />
+		<Unit filename="lib/ucs4be.h" />
+		<Unit filename="lib/ucs4internal.h" />
+		<Unit filename="lib/ucs4le.h" />
+		<Unit filename="lib/ucs4swapped.h" />
+		<Unit filename="lib/uhc_1.h" />
+		<Unit filename="lib/uhc_2.h" />
+		<Unit filename="lib/utf16.h" />
+		<Unit filename="lib/utf16be.h" />
+		<Unit filename="lib/utf16le.h" />
+		<Unit filename="lib/utf32.h" />
+		<Unit filename="lib/utf32be.h" />
+		<Unit filename="lib/utf32le.h" />
+		<Unit filename="lib/utf7.h" />
+		<Unit filename="lib/utf8.h" />
+		<Unit filename="lib/vietcomb.h" />
+		<Unit filename="lib/viscii.h" />
+		<Unit filename="libcharset/include/export.h" />
+		<Unit filename="libcharset/lib/localcharset.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libcharset/lib/relocatable.h" />
+		<Unit filename="src/idn_cmd.h" />
+		<Unit filename="windows/include/ac-stdint.h" />
+		<Unit filename="windows/include/config.h" />
+		<Unit filename="windows/include/idn-int.h" />
+		<Unit filename="windows/include/stdbool.h" />
+		<Unit filename="windows/include/unistd.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

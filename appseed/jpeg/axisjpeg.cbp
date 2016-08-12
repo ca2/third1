@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="axisjpeg" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../../../stage/x86/libaxisjpeg.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../../../stage/x86/" />
+				<Option object_output="../../../time/intermediate/app/axisjpeg" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="../../../stage/x86/libaxisjpeg.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../../../stage/x86/" />
+				<Option object_output="../../../time/intermediate/app/axisjpeg" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-O3" />
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+				</Compiler>
+			</Target>
+			<Target title="memdleak">
+				<Option output="../../../stage/x86/libaxis_image_jpeg.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../../../stage/x86/" />
+				<Option object_output="../../../time/intermediate/app/axis_image_jpeg" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add option="-DMEMDLEAK" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-std=c++0x" />
+			<Add option="-fexceptions" />
+			<Add option="-fnon-call-exceptions" />
+			<Add option="-fno-pie" />
+			<Add option="-fno-stack-protector" />
+			<Add option="-fno-omit-frame-pointer" />
+			<Add option="-Wno-pointer-arith" />
+			<Add option="-Wno-attributes" />
+			<Add option="-Winvalid-pch" />
+			<Add option="-Wno-conversion-null" />
+			<Add option="-fPIC" />
+			<Add option="-DVARIADIC_TEMPLATE_FORMAT2" />
+			<Add directory="../jpeg" />
+			<Add directory="../../../include" />
+			<Add directory="../../appseed" />
+			<Add directory="../freeimage/Source/FreeImage" />
+			<Add directory="../../../../ca2" />
+			<Add directory="../../appseed/aura" />
+			<Add directory="../freeimage/Source" />
+			<Add directory="../../include" />
+		</Compiler>
+		<Linker>
+			<Add option="-Wl,-R\\$$$ORIGIN" />
+			<Add option="-Wl,-z,origin" />
+			<Add option="-Wl,-z,defs" />
+			<Add directory="../../../stage/x86" />
+			<Add directory="/usr/lib64/mysql/" />
+		</Linker>
+		<Unit filename="Source/LibJPEG/cderror.h" />
+		<Unit filename="Source/LibJPEG/cdjpeg.h" />
+		<Unit filename="Source/LibJPEG/jconfig.h" />
+		<Unit filename="Source/LibJPEG/jdct.h" />
+		<Unit filename="Source/LibJPEG/jerror.h" />
+		<Unit filename="Source/LibJPEG/jinclude.h" />
+		<Unit filename="Source/LibJPEG/jmemsys.h" />
+		<Unit filename="Source/LibJPEG/jmorecfg.h" />
+		<Unit filename="Source/LibJPEG/jpegint.h" />
+		<Unit filename="Source/LibJPEG/jpeglib.h" />
+		<Unit filename="Source/LibJPEG/jversion.h" />
+		<Unit filename="Source/LibJPEG/transupp.h" />
+		<Unit filename="cderror.h" />
+		<Unit filename="cdjpeg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cdjpeg.h" />
+		<Unit filename="jaricom.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jcapimin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jcapistd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jcarith.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jccoefct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jccolor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jcdctmgr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jchuff.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jcinit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jcmainct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jcmarker.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jcmaster.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jcomapi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jcparam.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jcprepct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jcsample.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jctrans.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jdapimin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jdapistd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jdarith.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jdatadst.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jdatasrc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jdcoefct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jdcolor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jdct.h" />
+		<Unit filename="jddctmgr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jdhuff.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jdinput.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jdmainct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jdmarker.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jdmaster.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jdmerge.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jdpostct.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jdsample.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jdtrans.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jerror.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jfdctflt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jfdctfst.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jfdctint.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jidctflt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jidctfst.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jidctint.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jmemansi.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jmemmgr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jmemsys.h" />
+		<Unit filename="jpegint.h" />
+		<Unit filename="jquant1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jquant2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jutils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="jversion.h" />
+		<Unit filename="rdbmp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="rdcolmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="rdgif.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="rdppm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="rdrle.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="rdswitch.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="rdtarga.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="transupp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="transupp.h" />
+		<Unit filename="wrbmp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="wrgif.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="wrppm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="wrrle.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="wrtarga.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
