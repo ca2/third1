@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="WelsCommon" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../../../stage/x86/libWelsCommon.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../../../stage/x86/" />
+				<Option object_output="../../../time/intermediate/app/WelsCommon" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+				</Compiler>
+				<Linker>
+					<Add directory="../../../stage/x86" />
+				</Linker>
+			</Target>
+			<Target title="memdleak">
+				<Option output="../../../stage/x86/libWelsCommon.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../../../stage/x86/" />
+				<Option object_output="../../../time/intermediate/app/WelsCommon" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add option="-DMEMDLEAK" />
+				</Compiler>
+				<Linker>
+					<Add directory="../../../stage/x86" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-std=c++0x" />
+			<Add option="-fexceptions" />
+			<Add option="-fnon-call-exceptions" />
+			<Add option="-fno-pie" />
+			<Add option="-fno-stack-protector" />
+			<Add option="-Wno-pointer-arith" />
+			<Add option="-Wno-attributes" />
+			<Add option="-Winvalid-pch" />
+			<Add option="-fPIC" />
+			<Add option="-DLINUX" />
+			<Add directory="codec/common/inc" />
+			<Add directory="codec/api/svc" />
+			<Add directory="../../include" />
+			<Add directory="../../.." />
+		</Compiler>
+		<Linker>
+			<Add option="-Wl,-R\\$$$ORIGIN" />
+			<Add option="-Wl,-z,origin" />
+			<Add option="-lpthread" />
+			<Add option="-Wl,-z,defs" />
+			<Add directory="../../../stage/x86" />
+		</Linker>
+		<Unit filename="codec/common/inc/WelsThreadLib.h" />
+		<Unit filename="codec/common/inc/copy_mb.h" />
+		<Unit filename="codec/common/inc/cpu.h" />
+		<Unit filename="codec/common/inc/cpu_core.h" />
+		<Unit filename="codec/common/inc/crt_util_safe_x.h" />
+		<Unit filename="codec/common/inc/deblocking_common.h" />
+		<Unit filename="codec/common/inc/expand_pic.h" />
+		<Unit filename="codec/common/inc/golomb_common.h" />
+		<Unit filename="codec/common/inc/intra_pred_common.h" />
+		<Unit filename="codec/common/inc/ls_defines.h" />
+		<Unit filename="codec/common/inc/macros.h" />
+		<Unit filename="codec/common/inc/mc.h" />
+		<Unit filename="codec/common/inc/measure_time.h" />
+		<Unit filename="codec/common/inc/memory_align.h" />
+		<Unit filename="codec/common/inc/sad_common.h" />
+		<Unit filename="codec/common/inc/typedefs.h" />
+		<Unit filename="codec/common/inc/utils.h" />
+		<Unit filename="codec/common/inc/version.h" />
+		<Unit filename="codec/common/inc/welsCodecTrace.h" />
+		<Unit filename="codec/common/inc/wels_common_defs.h" />
+		<Unit filename="codec/common/inc/wels_const_common.h" />
+		<Unit filename="codec/common/src/WelsThreadLib.cpp" />
+		<Unit filename="codec/common/src/common_tables.cpp" />
+		<Unit filename="codec/common/src/copy_mb.cpp" />
+		<Unit filename="codec/common/src/cpu.cpp" />
+		<Unit filename="codec/common/src/crt_util_safe_x.cpp" />
+		<Unit filename="codec/common/src/deblocking_common.cpp" />
+		<Unit filename="codec/common/src/expand_pic.cpp" />
+		<Unit filename="codec/common/src/intra_pred_common.cpp" />
+		<Unit filename="codec/common/src/mc.cpp" />
+		<Unit filename="codec/common/src/memory_align.cpp" />
+		<Unit filename="codec/common/src/sad_common.cpp" />
+		<Unit filename="codec/common/src/utils.cpp" />
+		<Unit filename="codec/common/src/welsCodecTrace.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

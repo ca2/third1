@@ -1,0 +1,679 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="axismysql" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../../../stage/x86/libaxismysql.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../../../stage/x86/" />
+				<Option object_output="../../../time/intermediate/app/axismysql" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+				</Compiler>
+				<Linker>
+					<Add directory="../../../stage/x86" />
+				</Linker>
+			</Target>
+			<Target title="memdleak">
+				<Option output="../../../stage/x86/libaxismysql.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../../../stage/x86/" />
+				<Option object_output="../../../time/intermediate/app/axismysql" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add option="-DMEMDLEAK" />
+				</Compiler>
+				<Linker>
+					<Add directory="../../../stage/x86" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-std=c99" />
+			<Add option="-fexceptions" />
+			<Add option="-fnon-call-exceptions" />
+			<Add option="-fno-pie" />
+			<Add option="-fno-stack-protector" />
+			<Add option="-Wno-pointer-arith" />
+			<Add option="-Wno-attributes" />
+			<Add option="-Wno-invalid-pch" />
+			<Add option="-fPIC" />
+			<Add option="-DLINUX" />
+			<Add directory="../../../include" />
+			<Add directory="../../include" />
+			<Add directory="framework" />
+			<Add directory="." />
+			<Add directory=".." />
+			<Add directory="../.." />
+			<Add directory="../../.." />
+			<Add directory="../../appseed" />
+			<Add directory="../../appseed/axis" />
+			<Add directory="../../appseed/aura" />
+		</Compiler>
+		<Linker>
+			<Add option="-Wl,-R\\$$$ORIGIN" />
+			<Add option="-Wl,-z,origin" />
+			<Add option="-ldl" />
+			<Add option="-lpthread" />
+			<Add option="-lz" />
+			<Add option="-laxiscrypto" />
+			<Add option="-laxisopenssl" />
+			<Add option="-Wl,-z,defs" />
+			<Add directory="../../../stage/x86" />
+		</Linker>
+		<Unit filename="atomic/gcc_builtins.h" />
+		<Unit filename="atomic/generic-msvc.h" />
+		<Unit filename="atomic/nolock.h" />
+		<Unit filename="atomic/rwlock.h" />
+		<Unit filename="atomic/solaris.h" />
+		<Unit filename="atomic/x86-gcc.h" />
+		<Unit filename="base64.h" />
+		<Unit filename="big_endian.h" />
+		<Unit filename="byte_order_generic.h" />
+		<Unit filename="byte_order_generic_x86.h" />
+		<Unit filename="byte_order_generic_x86_64.h" />
+		<Unit filename="crypt_genhash_impl.h" />
+		<Unit filename="dbug/dbug.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="dbug/dbug_long.h" />
+		<Unit filename="decimal.h" />
+		<Unit filename="dur_prop.h" />
+		<Unit filename="errmsg.h" />
+		<Unit filename="hash.h" />
+		<Unit filename="heap.h" />
+		<Unit filename="keycache.h" />
+		<Unit filename="lf.h" />
+		<Unit filename="libmysql/authentication_win/common.h" />
+		<Unit filename="libmysql/authentication_win/handshake.h" />
+		<Unit filename="libmysql/client_settings.h" />
+		<Unit filename="libmysql/errmsg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libmysql/get_password.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libmysql/libmysql.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="little_endian.h" />
+		<Unit filename="m_ctype.h" />
+		<Unit filename="m_string.h" />
+		<Unit filename="my_aes.h" />
+		<Unit filename="my_alarm.h" />
+		<Unit filename="my_alloc.h" />
+		<Unit filename="my_atomic.h" />
+		<Unit filename="my_attribute.h" />
+		<Unit filename="my_base.h" />
+		<Unit filename="my_bit.h" />
+		<Unit filename="my_bitmap.h" />
+		<Unit filename="my_byteorder.h" />
+		<Unit filename="my_compare.h" />
+		<Unit filename="my_compiler.h" />
+		<Unit filename="my_config.h" />
+		<Unit filename="my_dbug.h" />
+		<Unit filename="my_default.h" />
+		<Unit filename="my_dir.h" />
+		<Unit filename="my_getopt.h" />
+		<Unit filename="my_global.h">
+			<Option compilerVar="CC" />
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="my_global_cc.h">
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="my_icp.h" />
+		<Unit filename="my_list.h" />
+		<Unit filename="my_md5.h" />
+		<Unit filename="my_net.h" />
+		<Unit filename="my_pthread.h" />
+		<Unit filename="my_rdtsc.h" />
+		<Unit filename="my_rnd.h" />
+		<Unit filename="my_stacktrace.h" />
+		<Unit filename="my_sys.h" />
+		<Unit filename="my_time.h" />
+		<Unit filename="my_tree.h" />
+		<Unit filename="my_uctype.h" />
+		<Unit filename="my_xml.h" />
+		<Unit filename="myisampack.h" />
+		<Unit filename="mysql.h" />
+		<Unit filename="mysql/client_authentication.h" />
+		<Unit filename="mysql/client_plugin.h" />
+		<Unit filename="mysql/get_password.h" />
+		<Unit filename="mysql/plugin_auth_common.h" />
+		<Unit filename="mysql/psi/mysql_file.h" />
+		<Unit filename="mysql/psi/mysql_idle.h" />
+		<Unit filename="mysql/psi/mysql_socket.h" />
+		<Unit filename="mysql/psi/mysql_stage.h" />
+		<Unit filename="mysql/psi/mysql_statement.h" />
+		<Unit filename="mysql/psi/mysql_table.h" />
+		<Unit filename="mysql/psi/mysql_thread.h" />
+		<Unit filename="mysql/psi/psi.h" />
+		<Unit filename="mysql/psi/psi_abi_v0.h" />
+		<Unit filename="mysql/psi/psi_abi_v1.h" />
+		<Unit filename="mysql/psi/psi_abi_v2.h" />
+		<Unit filename="mysql_com.h" />
+		<Unit filename="mysql_com_server.h" />
+		<Unit filename="mysql_embed.h" />
+		<Unit filename="mysql_time.h" />
+		<Unit filename="mysql_version.h" />
+		<Unit filename="mysqld_ername.h" />
+		<Unit filename="mysqld_error.h" />
+		<Unit filename="mysys/array.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/base64.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/charset-def.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/charset.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/checksum.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/errors.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/hash.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/lf_alloc-pin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/lf_dynarray.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/lf_hash.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/list.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/mf_arr_appstr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/mf_cache.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/mf_dirname.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/mf_fn_ext.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/mf_format.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/mf_getdate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/mf_iocache.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/mf_iocache2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/mf_keycache.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/mf_keycaches.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/mf_loadpath.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/mf_pack.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/mf_path.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/mf_qsort.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/mf_qsort2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/mf_radix.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/mf_same.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/mf_sort.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/mf_soundex.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/mf_tempdir.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/mf_tempfile.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/mf_unixpath.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/mf_wcomp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/mulalloc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_access.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_alarm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_alloc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_bit.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_bitmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_chsize.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_compare.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_compress.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_conio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_copy.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_crc32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_create.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_delete.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_div.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_error.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_file.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_fopen.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_fstream.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_gethwaddr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_getncpus.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_getpagesize.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_getsystime.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_getwd.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_handler_errors.h" />
+		<Unit filename="mysys/my_init.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_isnan.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_largepage.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_lib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_lock.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_malloc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_memmem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_mess.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_mkdir.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_mmap.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_once.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_open.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_pread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_pthread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_rdtsc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_read.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_redel.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_rename.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_seek.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_sleep.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_static.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_static.h" />
+		<Unit filename="mysys/my_symlink.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_symlink2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_sync.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_syslog.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_thr_init.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/my_write.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/mysys_priv.h">
+			<Option compilerVar="CC" />
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="mysys/psi_noop.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/ptr_cmp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/queues.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/stacktrace.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/string.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/thr_alarm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/thr_lock.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/thr_mutex.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/thr_rwlock.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/tree.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys/typelib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mysys_err.h" />
+		<Unit filename="mysys_ssl/crypt_genhash_impl.cc" />
+		<Unit filename="mysys_ssl/my_aes.cc" />
+		<Unit filename="mysys_ssl/my_default.cc" />
+		<Unit filename="mysys_ssl/my_default_priv.h" />
+		<Unit filename="mysys_ssl/my_getopt.cc" />
+		<Unit filename="mysys_ssl/my_md5.cc" />
+		<Unit filename="mysys_ssl/my_rnd.cc" />
+		<Unit filename="mysys_ssl/my_sha1.cc" />
+		<Unit filename="mysys_ssl/my_sha2.cc" />
+		<Unit filename="password.h" />
+		<Unit filename="probes_mysql.h" />
+		<Unit filename="probes_mysql_nodtrace.h" />
+		<Unit filename="queues.h" />
+		<Unit filename="regex/cclass.h" />
+		<Unit filename="regex/cname.h" />
+		<Unit filename="regex/my_regex.h" />
+		<Unit filename="regex/regex2.h" />
+		<Unit filename="regex/tests_include.h" />
+		<Unit filename="regex/utils.h" />
+		<Unit filename="sha1.h" />
+		<Unit filename="sha2.h" />
+		<Unit filename="sql-common/client.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="sql-common/client_authentication.cc" />
+		<Unit filename="sql-common/client_plugin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="sql-common/my_time.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="sql-common/pack.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="sql/auth/password.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="sql/net_serv.cc" />
+		<Unit filename="sql/sql_string.h" />
+		<Unit filename="sql_common.h" />
+		<Unit filename="sql_state.h" />
+		<Unit filename="sslopt-case.h" />
+		<Unit filename="sslopt-longopts.h" />
+		<Unit filename="sslopt-vars.h" />
+		<Unit filename="strings/bchange.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/ctype-big5.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/ctype-bin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/ctype-cp932.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/ctype-czech.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/ctype-euc_kr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/ctype-eucjpms.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/ctype-extra.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/ctype-gb2312.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/ctype-gbk.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/ctype-latin1.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/ctype-mb.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/ctype-simple.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/ctype-sjis.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/ctype-tis620.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/ctype-uca.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/ctype-ucs2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/ctype-ujis.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/ctype-utf8.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/ctype-win1250ch.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/ctype.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/decimal.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/dtoa.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/int2str.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/is_prefix.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/llstr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/longlong2str.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/my_strchr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/my_strtoll10.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/my_vsnprintf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/str2int.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/str_alloc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/strappend.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/strcend.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/strcont.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/strend.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/strfill.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/strmake.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/strmov.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/strnlen.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/strnmov.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/strxmov.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/strxnmov.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="strings/t_ctype.h" />
+		<Unit filename="strings/xml.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="thr_alarm.h" />
+		<Unit filename="thr_lock.h" />
+		<Unit filename="typelib.h" />
+		<Unit filename="vio/vio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="vio/vio_priv.h" />
+		<Unit filename="vio/viopipe.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="vio/vioshm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="vio/viosocket.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="vio/viossl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="vio/viosslfactories.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="violite.h" />
+		<Unit filename="welcome_copyright_notice.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="axisclientchannels" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Option extended_obj_names="1" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../../../stage/x86/libaxisclientchannels.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../../../stage/x86/" />
+				<Option object_output="../../../time/intermediate/app/axisclientchannels" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add directory="." />
+					<Add directory=".." />
+					<Add directory="../.." />
+					<Add directory="../../.." />
+					<Add directory="../../ca2" />
+					<Add directory="../../../nodeapp/linux" />
+					<Add directory="../../../nodeapp/linux/include" />
+					<Add directory="../../../.." />
+				</Compiler>
+				<Linker>
+					<Add directory="../../../stage/x86" />
+				</Linker>
+			</Target>
+			<Target title="memdleak">
+				<Option output="../../../stage/x86/libaxisclientchannels.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../../../stage/x86/" />
+				<Option object_output="../../../time/intermediate/app/axisclientchannels" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add option="-DMEMDLEAK" />
+					<Add directory="." />
+					<Add directory=".." />
+					<Add directory="../.." />
+					<Add directory="../../.." />
+					<Add directory="../../ca2" />
+					<Add directory="../../../nodeapp/linux" />
+					<Add directory="../../../nodeapp/linux/include" />
+					<Add directory="../../../.." />
+				</Compiler>
+				<Linker>
+					<Add directory="../../../stage/x86" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-fexceptions" />
+			<Add option="-fnon-call-exceptions" />
+			<Add option="-fno-pie" />
+			<Add option="-fno-stack-protector" />
+			<Add option="-Wno-pointer-arith" />
+			<Add option="-Wno-attributes" />
+			<Add option="-Winvalid-pch" />
+			<Add option="-fPIC" />
+			<Add option="-DLINUX" />
+			<Add option="-DHAVE_CONFIG_H" />
+			<Add option="-DBYEWINDOWS_UNICODE" />
+			<Add directory="../../../../include" />
+			<Add directory="../../../include" />
+			<Add directory="../../include" />
+			<Add directory="../../../.." />
+			<Add directory="../../../appseed/c" />
+			<Add directory="../../../appseed" />
+			<Add directory="../../appseed" />
+			<Add directory="../../../appseed/base" />
+			<Add directory="../../../appseed/axis" />
+			<Add directory="../../../appseed/aura" />
+			<Add directory="channels/audin/client" />
+			<Add directory="channels/rdpsnd/client" />
+			<Add directory="channels/tsmf/client" />
+			<Add directory="channels/urbdrc/client" />
+		</Compiler>
+		<Linker>
+			<Add option="-Wl,-R\\$$$ORIGIN" />
+			<Add option="-Wl,-z,origin" />
+			<Add option="-lpthread" />
+			<Add option="-lpulse" />
+			<Add option="-laxiswinpr" />
+			<Add option="-laxisfreerdp" />
+			<Add option="-lasound" />
+			<Add option="-lusb-1.0" />
+			<Add option="-lcups" />
+			<Add option="-ludev" />
+			<Add option="-Wl,-z,defs" />
+			<Add directory="../../../../stage/x86" />
+		</Linker>
+		<Unit filename="channels/audin/client/alsa/audin_alsa.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/audin/client/audin_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/audin/client/audin_main.h" />
+		<Unit filename="channels/audin/client/opensles/opensl_io.h" />
+		<Unit filename="channels/audin/client/pulse/audin_pulse.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/client/addin.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/client/addin.h" />
+		<Unit filename="channels/client/tables.h" />
+		<Unit filename="channels/client/tables_linux.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/cliprdr/client/cliprdr_format.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/cliprdr/client/cliprdr_format.h" />
+		<Unit filename="channels/cliprdr/client/cliprdr_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/cliprdr/client/cliprdr_main.h" />
+		<Unit filename="channels/cliprdr/server/cliprdr_main.h" />
+		<Unit filename="channels/disp/client/disp_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/disp/client/disp_main.h" />
+		<Unit filename="channels/drdynvc/client/drdynvc_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/drdynvc/client/drdynvc_main.h" />
+		<Unit filename="channels/drdynvc/client/drdynvc_types.h" />
+		<Unit filename="channels/drdynvc/client/dvcman.h" />
+		<Unit filename="channels/drdynvc/server/drdynvc_main.h" />
+		<Unit filename="channels/drive/client/dirent.h" />
+		<Unit filename="channels/drive/client/drive_file.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/drive/client/drive_file.h" />
+		<Unit filename="channels/drive/client/drive_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/drive/client/statvfs.h" />
+		<Unit filename="channels/echo/client/echo_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/echo/client/echo_main.h" />
+		<Unit filename="channels/encomsp/client/encomsp_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/encomsp/client/encomsp_main.h" />
+		<Unit filename="channels/encomsp/server/encomsp_main.h" />
+		<Unit filename="channels/parallel/client/parallel_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/printer/client/printer_cups.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/printer/client/printer_cups.h" />
+		<Unit filename="channels/printer/client/printer_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/printer/client/printer_main.h" />
+		<Unit filename="channels/printer/client/printer_win.h" />
+		<Unit filename="channels/rail/client/rail_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/rail/client/rail_main.h" />
+		<Unit filename="channels/rail/client/rail_orders.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/rail/client/rail_orders.h" />
+		<Unit filename="channels/rail/rail_common.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/rail/rail_common.h" />
+		<Unit filename="channels/rdpdr/client/devman.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/rdpdr/client/devman.h" />
+		<Unit filename="channels/rdpdr/client/irp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/rdpdr/client/irp.h" />
+		<Unit filename="channels/rdpdr/client/rdpdr_capabilities.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/rdpdr/client/rdpdr_capabilities.h" />
+		<Unit filename="channels/rdpdr/client/rdpdr_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/rdpdr/client/rdpdr_main.h" />
+		<Unit filename="channels/rdpdr/server/rdpdr_main.h" />
+		<Unit filename="channels/rdpei/client/rdpei_common.h" />
+		<Unit filename="channels/rdpei/client/rdpei_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/rdpei/client/rdpei_main.h" />
+		<Unit filename="channels/rdpei/rdpei_common.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/rdpgfx/client/rdpgfx_codec.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/rdpgfx/client/rdpgfx_codec.h" />
+		<Unit filename="channels/rdpgfx/client/rdpgfx_common.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/rdpgfx/client/rdpgfx_common.h" />
+		<Unit filename="channels/rdpgfx/client/rdpgfx_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/rdpgfx/client/rdpgfx_main.h" />
+		<Unit filename="channels/rdpsnd/client/alsa/rdpsnd_alsa.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/rdpsnd/client/ios/TPCircularBuffer.h" />
+		<Unit filename="channels/rdpsnd/client/opensles/opensl_io.h" />
+		<Unit filename="channels/rdpsnd/client/pulse/rdpsnd_pulse.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/rdpsnd/client/rdpsnd_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/rdpsnd/client/rdpsnd_main.h" />
+		<Unit filename="channels/rdpsnd/server/rdpsnd_main.h" />
+		<Unit filename="channels/remdesk/client/remdesk_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/remdesk/client/remdesk_main.h" />
+		<Unit filename="channels/remdesk/server/remdesk_main.h" />
+		<Unit filename="channels/serial/client/serial_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/server/channels.h" />
+		<Unit filename="channels/smartcard/client/smartcard_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/smartcard/client/smartcard_main.h" />
+		<Unit filename="channels/smartcard/client/smartcard_operations.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/smartcard/client/smartcard_pack.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/smartcard/client/smartcard_pack.h" />
+		<Unit filename="channels/tsmf/client/alsa/tsmf_alsa.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/tsmf/client/gstreamer/tsmf_platform.h" />
+		<Unit filename="channels/tsmf/client/tsmf_audio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/tsmf/client/tsmf_audio.h" />
+		<Unit filename="channels/tsmf/client/tsmf_codec.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/tsmf/client/tsmf_codec.h" />
+		<Unit filename="channels/tsmf/client/tsmf_constants.h" />
+		<Unit filename="channels/tsmf/client/tsmf_decoder.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/tsmf/client/tsmf_decoder.h" />
+		<Unit filename="channels/tsmf/client/tsmf_ifman.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/tsmf/client/tsmf_ifman.h" />
+		<Unit filename="channels/tsmf/client/tsmf_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/tsmf/client/tsmf_main.h" />
+		<Unit filename="channels/tsmf/client/tsmf_media.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/tsmf/client/tsmf_media.h" />
+		<Unit filename="channels/tsmf/client/tsmf_types.h" />
+		<Unit filename="channels/urbdrc/client/data_transfer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/urbdrc/client/data_transfer.h" />
+		<Unit filename="channels/urbdrc/client/isoch_queue.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/urbdrc/client/isoch_queue.h" />
+		<Unit filename="channels/urbdrc/client/libusb/libusb_udevice.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/urbdrc/client/libusb/libusb_udevice.h" />
+		<Unit filename="channels/urbdrc/client/libusb/libusb_udevman.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/urbdrc/client/libusb/request_queue.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/urbdrc/client/libusb/request_queue.h" />
+		<Unit filename="channels/urbdrc/client/searchman.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/urbdrc/client/searchman.h" />
+		<Unit filename="channels/urbdrc/client/urbdrc_main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="channels/urbdrc/client/urbdrc_main.h" />
+		<Unit filename="channels/urbdrc/client/urbdrc_types.h" />
+		<Unit filename="config.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

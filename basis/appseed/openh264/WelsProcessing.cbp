@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="WelsP" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../../../stage/x86/libWelsP.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../../../stage/x86/" />
+				<Option object_output="../../../time/intermediate/app/WelsP" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+				</Compiler>
+				<Linker>
+					<Add directory="../../../stage/x86" />
+				</Linker>
+			</Target>
+			<Target title="memdleak">
+				<Option output="../../../stage/x86/libWelsP.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../../../stage/x86/" />
+				<Option object_output="../../../time/intermediate/app/WelsP" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add option="-DMEMDLEAK" />
+				</Compiler>
+				<Linker>
+					<Add directory="../../../stage/x86" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-std=c++0x" />
+			<Add option="-fexceptions" />
+			<Add option="-fnon-call-exceptions" />
+			<Add option="-fno-pie" />
+			<Add option="-fno-stack-protector" />
+			<Add option="-Wno-pointer-arith" />
+			<Add option="-Wno-attributes" />
+			<Add option="-Winvalid-pch" />
+			<Add option="-fPIC" />
+			<Add option="-DLINUX" />
+			<Add directory="codec/processing/interface" />
+			<Add directory="codec/processing/src/common" />
+			<Add directory="codec/common/inc" />
+			<Add directory="../../include" />
+			<Add directory="../../.." />
+		</Compiler>
+		<Linker>
+			<Add option="-Wl,-R\\$$$ORIGIN" />
+			<Add option="-Wl,-z,origin" />
+			<Add option="-lWelsCommon" />
+			<Add option="-Wl,-z,defs" />
+			<Add directory="../../../stage/x86" />
+		</Linker>
+		<Unit filename="codec/processing/interface/IWelsVP.h" />
+		<Unit filename="codec/processing/src/adaptivequantization/AdaptiveQuantization.cpp" />
+		<Unit filename="codec/processing/src/adaptivequantization/AdaptiveQuantization.h" />
+		<Unit filename="codec/processing/src/backgrounddetection/BackgroundDetection.cpp" />
+		<Unit filename="codec/processing/src/backgrounddetection/BackgroundDetection.h" />
+		<Unit filename="codec/processing/src/common/WelsFrameWork.cpp" />
+		<Unit filename="codec/processing/src/common/WelsFrameWork.h" />
+		<Unit filename="codec/processing/src/common/WelsFrameWorkEx.cpp" />
+		<Unit filename="codec/processing/src/common/common.h" />
+		<Unit filename="codec/processing/src/common/memory.cpp" />
+		<Unit filename="codec/processing/src/common/memory.h" />
+		<Unit filename="codec/processing/src/common/resource.h" />
+		<Unit filename="codec/processing/src/common/typedef.h" />
+		<Unit filename="codec/processing/src/common/util.h" />
+		<Unit filename="codec/processing/src/complexityanalysis/ComplexityAnalysis.cpp" />
+		<Unit filename="codec/processing/src/complexityanalysis/ComplexityAnalysis.h" />
+		<Unit filename="codec/processing/src/denoise/denoise.cpp" />
+		<Unit filename="codec/processing/src/denoise/denoise.h" />
+		<Unit filename="codec/processing/src/denoise/denoise_filter.cpp" />
+		<Unit filename="codec/processing/src/downsample/downsample.cpp" />
+		<Unit filename="codec/processing/src/downsample/downsample.h" />
+		<Unit filename="codec/processing/src/downsample/downsamplefuncs.cpp" />
+		<Unit filename="codec/processing/src/imagerotate/imagerotate.cpp" />
+		<Unit filename="codec/processing/src/imagerotate/imagerotate.h" />
+		<Unit filename="codec/processing/src/imagerotate/imagerotatefuncs.cpp" />
+		<Unit filename="codec/processing/src/scenechangedetection/SceneChangeDetection.cpp" />
+		<Unit filename="codec/processing/src/scenechangedetection/SceneChangeDetection.h" />
+		<Unit filename="codec/processing/src/scrolldetection/ScrollDetection.cpp" />
+		<Unit filename="codec/processing/src/scrolldetection/ScrollDetection.h" />
+		<Unit filename="codec/processing/src/scrolldetection/ScrollDetectionFuncs.cpp" />
+		<Unit filename="codec/processing/src/scrolldetection/ScrollDetectionFuncs.h" />
+		<Unit filename="codec/processing/src/vaacalc/vaacalcfuncs.cpp" />
+		<Unit filename="codec/processing/src/vaacalc/vaacalculation.cpp" />
+		<Unit filename="codec/processing/src/vaacalc/vaacalculation.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="basis|ARM">
+      <Configuration>basis</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="basis|Win32">
+      <Configuration>basis</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="basis|x64">
+      <Configuration>basis</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="stage|ARM">
+      <Configuration>stage</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="stage|Win32">
+      <Configuration>stage</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="stage|x64">
+      <Configuration>stage</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\common\x86\cpuid.asm" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\common\x86\deblock.asm" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\common\x86\expand_picture.asm" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\common\x86\mb_copy.asm" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\common\x86\mc_chroma.asm" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\common\x86\mc_luma.asm" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\decoder\core\x86\dct.asm" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\..\decoder\core\x86\intra_pred.asm" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\common\inc\copy_mb.h" />
+    <ClInclude Include="..\..\..\common\inc\cpu.h" />
+    <ClInclude Include="..\..\..\common\inc\cpu_core.h" />
+    <ClInclude Include="..\..\..\common\inc\deblocking_common.h" />
+    <ClInclude Include="..\..\..\common\inc\expand_pic.h" />
+    <ClInclude Include="..\..\..\common\inc\ls_defines.h" />
+    <ClInclude Include="..\..\..\common\inc\macros.h" />
+    <ClInclude Include="..\..\..\common\inc\mc.h" />
+    <ClInclude Include="..\..\..\common\inc\measure_time.h" />
+    <ClInclude Include="..\..\..\common\inc\memory_align.h" />
+    <ClInclude Include="..\..\..\common\inc\typedefs.h" />
+    <ClInclude Include="..\..\..\common\inc\utils.h" />
+    <ClInclude Include="..\..\..\common\inc\wels_common_defs.h" />
+    <ClInclude Include="..\..\..\common\inc\wels_const_common.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\au_parser.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\bit_stream.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\cabac_decoder.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\deblocking.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\decoder.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\decoder_context.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\decoder_core.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\decode_mb_aux.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\decode_slice.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\dec_frame.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\dec_golomb.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\error_code.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\error_concealment.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\fmo.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\get_intra_predictor.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\manage_dec_ref.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\mb_cache.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\memmgr_nal_unit.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\mv_pred.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\nalu.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\nal_prefix.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\parameter_sets.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\parse_mb_syn_cabac.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\parse_mb_syn_cavlc.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\picture.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\pic_queue.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\rec_mb.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\slice.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\vlc_decoder.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\wels_common_basis.h" />
+    <ClInclude Include="..\..\..\decoder\core\inc\wels_const.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\common\src\common_tables.cpp" />
+    <ClCompile Include="..\..\..\common\src\copy_mb.cpp" />
+    <ClCompile Include="..\..\..\common\src\cpu.cpp" />
+    <ClCompile Include="..\..\..\common\src\crt_util_safe_x.cpp" />
+    <ClCompile Include="..\..\..\common\src\deblocking_common.cpp" />
+    <ClCompile Include="..\..\..\common\src\expand_pic.cpp" />
+    <ClCompile Include="..\..\..\common\src\mc.cpp" />
+    <ClCompile Include="..\..\..\common\src\memory_align.cpp" />
+    <ClCompile Include="..\..\..\common\src\utils.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\au_parser.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\bit_stream.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\cabac_decoder.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\deblocking.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\decoder.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\decoder_core.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\decoder_data_tables.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\decode_mb_aux.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\decode_slice.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\error_concealment.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\fmo.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\get_intra_predictor.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\manage_dec_ref.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\memmgr_nal_unit.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\mv_pred.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\parse_mb_syn_cabac.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\parse_mb_syn_cavlc.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\pic_queue.cpp" />
+    <ClCompile Include="..\..\..\decoder\core\src\rec_mb.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{535150F8-2B28-4AE8-A0E8-BFEC144A747D}</ProjectGuid>
+    <Keyword>DynamicLibrary</Keyword>
+    <ProjectName>WelsDecCore</ProjectName>
+    <RootNamespace>WelsDecCore</RootNamespace>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <AppContainerApplication>true</AppContainerApplication>
+    <ApplicationType>Windows Store</ApplicationType>
+    <WindowsTargetPlatformVersion>10.0.10240.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.10240.0</WindowsTargetPlatformMinVersion>
+    <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(SolutionName)\$(PlatformName)\$(MSBuildProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(SolutionName)\$(PlatformName)\$(MSBuildProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(SolutionName)\$(PlatformName)\$(MSBuildProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(SolutionName)\$(PlatformName)\$(MSBuildProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(SolutionDir)..\..\..\stage\$(SolutionName)\$(PlatformName)\$(MSBuildProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(SolutionName)\$(PlatformName)\$(MSBuildProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;LIBIDN_BUILDING;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\decoder\core\inc;..\..\..\common\inc;..\..\..\api\svc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>-Zm384 /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <CompileAsManaged>false</CompileAsManaged>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalLibraryDirectories>$(OutDir);$(IntDir);$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <AdditionalIncludeDirectories>..\..\..\decoder\core\inc;..\..\..\common\inc;..\..\..\api\svc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|arm'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <CompileAsManaged>false</CompileAsManaged>
+      <AdditionalIncludeDirectories>..\..\..\decoder\core\inc;..\..\..\common\inc;..\..\..\api\svc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|arm'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <AdditionalIncludeDirectories>..\..\..\decoder\core\inc;..\..\..\common\inc;..\..\..\api\svc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <CompileAsManaged>false</CompileAsManaged>
+      <AdditionalIncludeDirectories>..\..\..\decoder\core\inc;..\..\..\common\inc;..\..\..\api\svc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <AdditionalIncludeDirectories>..\..\..\decoder\core\inc;..\..\..\common\inc;..\..\..\api\svc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
