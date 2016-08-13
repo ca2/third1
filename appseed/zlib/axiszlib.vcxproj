@@ -22,7 +22,8 @@
     <ProjectGuid>{34FCFBF1-E922-4FDC-BC83-B3C04623E8C2}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>axiszlib2</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <ProjectName>zlib</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
@@ -71,28 +72,28 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
@@ -137,6 +138,8 @@
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+      <ImportLibrary>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(PlatformName)\$(Configuration)\$(TargetName).lib</ImportLibrary>
     </Link>
     <PreLinkEvent>
       <Command>
@@ -194,6 +197,8 @@
       <FixedBaseAddress>false</FixedBaseAddress>
       <MergeSections>
       </MergeSections>
+      <ProgramDatabaseFile>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+      <ImportLibrary>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(PlatformName)\$(Configuration)\$(TargetName).lib</ImportLibrary>
     </Link>
     <PreLinkEvent>
       <Command>
@@ -241,6 +246,8 @@
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <ProgramDatabaseFile>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+      <ImportLibrary>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(PlatformName)\$(Configuration)\$(TargetName).lib</ImportLibrary>
     </Link>
     <PreLinkEvent>
       <Command>
@@ -294,6 +301,8 @@
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <FixedBaseAddress>false</FixedBaseAddress>
+      <ProgramDatabaseFile>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+      <ImportLibrary>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(PlatformName)\$(Configuration)\$(TargetName).lib</ImportLibrary>
     </Link>
     <PreLinkEvent>
       <Command>
@@ -333,7 +342,7 @@
     <ClInclude Include="zutil.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="axiszlib.def" />
+    <None Include="zlib.def" />
     <CustomBuild Include="contrib\masmx64\gvmat64.asm">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>

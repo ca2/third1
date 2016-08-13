@@ -84,11 +84,7 @@
  * The hwcryptohook.h included here is from May 2000.
  * [Richard Levitte]
  */
-#ifdef FLAT_INC
 #include "hwcryptohook.h"
-#else
-#include "vendor_defns/hwcryptohook.h"
-#endif
 
 #define HWCRHK_LIB_NAME "CHIL engine"
 #include "e_chil_err.c"

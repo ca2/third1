@@ -19,472 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x86\avcodec-56.dll">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x86\avformat-56.dll">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x86\avutil-54.dll">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x86\swscale-3.dll">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x86\avcodec-56.dll">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x86\avformat-56.dll">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x86\avutil-54.dll">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x86\swscale-3.dll">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x64\avcodec-56.dll">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x64\avformat-56.dll">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x64\avutil-54.dll">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x64\swscale-3.dll">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x64\avcodec-56.dll">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</ExcludedFromBuild>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x64\avformat-56.dll">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</ExcludedFromBuild>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x64\avutil-54.dll">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</ExcludedFromBuild>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x64\swscale-3.dll">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</ExcludedFromBuild>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x86\swresample-1.dll">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x86\swresample-1.dll">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x64\swresample-1.dll">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</ExcludedFromBuild>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x64\swresample-1.dll">
-      <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='basis|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</TreatOutputAsContent>
-      <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">copy %(FullPath) $(OutDir)%(Filename)%(Extension)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(OutDir)%(Filename)%(Extension)</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</LinkObjects>
-      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</TreatOutputAsContent>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
-    </CustomBuild>
-    <None Include="axisclientchannels.def" />
+    <None Include="clientchannels.def" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\appseed\ace\ace.vcxproj">
-      <Project>{21dcc811-4bce-4f16-b674-c0941f847127}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\appseed\ace\_ace.vcxproj">
-      <Project>{699d6807-4f43-40e9-86ab-2a8b856707a9}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\appseed\aura\aura.vcxproj">
-      <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\appseed\axis\axis.vcxproj">
-      <Project>{73a245f9-c92f-4487-aef7-cb0531f665bd}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\freerdp\axisfreerdp.vcxproj">
       <Project>{e0d54aec-e0a5-475b-8a02-8758bdd686e1}</Project>
     </ProjectReference>
@@ -575,10 +112,10 @@
     <ClCompile Include="channels\smartcard\client\smartcard_pack.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>axisclientchannels</ProjectName>
+    <ProjectName>clientchannels</ProjectName>
     <ProjectGuid>{3C27B10B-E5DB-4DBA-8292-051830AAF103}</ProjectGuid>
     <RootNamespace>baseclientchannels</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
@@ -630,27 +167,27 @@
     <_ProjectFileVersion>11.0.51106.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
-    <OutDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
-    <OutDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
-    <OutDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
-    <OutDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
@@ -710,7 +247,7 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
@@ -723,6 +260,7 @@
       <AdditionalDependencies>swresample.lib;avutil.lib;avformat.lib;avcodec.lib;Mfplat.lib;Strmiids.lib;mfuuid.lib;Ws2_32.lib;winmm.lib;Shlwapi.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <ImportLibrary>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(PlatformName)\$(Configuration)\$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -800,6 +338,8 @@
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <AdditionalDependencies>swresample.lib;avutil.lib;avformat.lib;avcodec.lib;Mfplat.lib;Strmiids.lib;mfuuid.lib;Ws2_32.lib;winmm.lib;Shlwapi.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <ProgramDatabaseFile>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+      <ImportLibrary>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(PlatformName)\$(Configuration)\$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -862,7 +402,7 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <TargetMachine>MachineX64</TargetMachine>
@@ -874,6 +414,7 @@
       <AdditionalDependencies>swresample.lib;avutil.lib;avformat.lib;avcodec.lib;Mfplat.lib;Strmiids.lib;mfuuid.lib;Ws2_32.lib;winmm.lib;Shlwapi.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <ImportLibrary>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(PlatformName)\$(Configuration)\$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -939,7 +480,7 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <TargetMachine>MachineX64</TargetMachine>
@@ -949,6 +490,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <AdditionalDependencies>swresample.lib;avutil.lib;avformat.lib;avcodec.lib;Mfplat.lib;Strmiids.lib;mfuuid.lib;Ws2_32.lib;winmm.lib;Shlwapi.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(PlatformName)\$(Configuration)\$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
       <Command>

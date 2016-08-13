@@ -1,21 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="basis|Android">
+    <ProjectConfiguration Include="basis|Win32">
       <Configuration>basis</Configuration>
-      <Platform>Android</Platform>
+      <Platform>Win32</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="codeanalysis|Android">
-      <Configuration>codeanalysis</Configuration>
-      <Platform>Android</Platform>
+    <ProjectConfiguration Include="basis|x64">
+      <Configuration>basis</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="stage|Win32">
+      <Configuration>stage</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="stage|x64">
+      <Configuration>stage</Configuration>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>atomiconv</ProjectName>
+    <ProjectName>iconv</ProjectName>
     <ProjectGuid>{7CFB99A0-47A8-4485-BEFF-3D0104D66509}</ProjectGuid>
     <RootNamespace>auracharguess</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
@@ -23,6 +44,43 @@
   <PropertyGroup>
     <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
+    <Link>
+      <ProgramDatabaseFile>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <Link>
+      <ProgramDatabaseFile>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+      <ImportLibrary>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(PlatformName)\$(Configuration)\$(TargetName).lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
+    <Link>
+      <ProgramDatabaseFile>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+    <Link>
+      <ProgramDatabaseFile>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\iconv.h" />
     <ClInclude Include="libcharset\include\localcharset.h" />

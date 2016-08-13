@@ -69,11 +69,7 @@
 #ifndef OPENSSL_NO_HW
 #ifndef OPENSSL_NO_HW_4758_CCA
 
-#ifdef FLAT_INC
 #include "hw_4758_cca.h"
-#else
-#include "vendor_defns/hw_4758_cca.h"
-#endif
 
 #include "e_4758cca_err.c"
 

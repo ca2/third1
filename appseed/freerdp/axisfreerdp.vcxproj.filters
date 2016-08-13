@@ -66,15 +66,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\freerdp\addin.h">
-      <Filter>Header Files\libfreerdp\codec</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\altsec.h">
-      <Filter>Header Files\libfreerdp\codec</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\api.h">
-      <Filter>Header Files\libfreerdp\codec</Filter>
-    </ClInclude>
     <ClInclude Include="libfreerdp\codec\nsc_encode.h">
       <Filter>Header Files\libfreerdp\codec</Filter>
     </ClInclude>
@@ -248,81 +239,6 @@
     </ClInclude>
     <ClInclude Include="libfreerdp\core\activation.h">
       <Filter>Header Files\libfreerdp</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\assistance.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\client.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\constants.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\dvc.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\error.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\event.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\extension.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\freerdp.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\graphics.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\input.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\listener.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\message.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\metrics.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\peer.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\pointer.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\primary.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\primitives.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\rail.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\scancode.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\secondary.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\settings.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\svc.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\types.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\update.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\freerdp\window.h">
-      <Filter>Header Files\include</Filter>
     </ClInclude>
     <ClInclude Include="libfreerdp\core\server.h">
       <Filter>Header Files\libfreerdp\core</Filter>
@@ -838,11 +754,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="axisfreerdp.def">
+    <None Include="freerdp.def">
       <Filter>Source Files</Filter>
-    </None>
-    <None Include="..\..\include\freerdp\version.h.in">
-      <Filter>Header Files\include</Filter>
     </None>
   </ItemGroup>
 </Project>

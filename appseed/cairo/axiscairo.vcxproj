@@ -19,10 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>axiscairo</ProjectName>
+    <ProjectName>cairo</ProjectName>
     <ProjectGuid>{E6C58C82-71E5-48E6-98ED-1B505D6F10C2}</ProjectGuid>
     <RootNamespace>axiscairo</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
@@ -74,26 +74,26 @@
     <_ProjectFileVersion>11.0.51106.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
-    <OutDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
-    <OutDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
-    <OutDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
-    <OutDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
@@ -110,7 +110,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../include;$(ProjectDir)../../..;$(ProjectDir)../../appseed/aura;$(ProjectDir)../../appseed;$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir);src;$(ProjectDir)../../include;$(ProjectDir)../pixman/pixman;$(ProjectDir)../freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../app/include;$(SolutionDir)../../../include;$(ProjectDir)../../..;$(ProjectDir)../../appseed/aura;$(ProjectDir)../../appseed;$(ProjectDir)../..;$(ProjectDir)..;$(ProjectDir);src;$(ProjectDir)../../include;$(ProjectDir)../pixman/pixman;$(ProjectDir)../freetype/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>__STDC__;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -160,10 +160,12 @@
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <AdditionalDependencies>opengl32.lib;glu32.lib;Msimg32.lib;kernel32.lib;user32.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;opengl32.lib;glu32.lib;Msimg32.lib;kernel32.lib;user32.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <ShowProgress>NotSet</ShowProgress>
+      <ProgramDatabaseFile>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+      <ImportLibrary>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(PlatformName)\$(Configuration)\$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -246,6 +248,8 @@
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <MergeSections>
       </MergeSections>
+      <ProgramDatabaseFile>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+      <ImportLibrary>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(PlatformName)\$(Configuration)\$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -322,6 +326,8 @@
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <SubSystem>Windows</SubSystem>
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <ProgramDatabaseFile>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+      <ImportLibrary>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(PlatformName)\$(Configuration)\$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -401,6 +407,8 @@
       <SubSystem>Windows</SubSystem>
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <ProgramDatabaseFile>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+      <ImportLibrary>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(PlatformName)\$(Configuration)\$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -408,7 +416,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="axiscairo.def" />
+    <None Include="cairo.def" />
     <None Include="src\cairo-features.h" />
   </ItemGroup>
   <ItemGroup>
@@ -1946,11 +1954,11 @@
     <ClInclude Include="src\win32\cairo-win32-private.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\appseed\ace\ace.vcxproj">
+    <ProjectReference Include="..\..\..\app\appseed\ace\ace.vcxproj">
       <Project>{21dcc811-4bce-4f16-b674-c0941f847127}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\appseed\aura\aura.vcxproj">
-      <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
+    <ProjectReference Include="..\..\..\app\appseed\ace\_ace.vcxproj">
+      <Project>{699d6807-4f43-40e9-86ab-2a8b856707a9}</Project>
     </ProjectReference>
     <ProjectReference Include="..\freetype\axisfreetype.vcxproj">
       <Project>{78b079bd-9fc7-4b9e-b4a6-96da0f00248b}</Project>

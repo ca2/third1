@@ -154,7 +154,7 @@
 #include "kssl_lcl.h"
 #ifndef OPENSSL_NO_TLSEXT
 #ifndef OPENSSL_NO_EC
-#include "app/axis/crypto/crypto/ec/ec_lcl.h"
+#include "ec_lcl.h"
 #endif /* OPENSSL_NO_EC */
 #endif /* OPENSSL_NO_TLSEXT */
 #include <openssl/md5.h>

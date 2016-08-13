@@ -19,10 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>axisfreerdp</ProjectName>
+    <ProjectName>freerdp</ProjectName>
     <ProjectGuid>{E0D54AEC-E0A5-475B-8A02-8758BDD686E1}</ProjectGuid>
     <RootNamespace>axisfreerdp</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
@@ -75,28 +75,28 @@
     <_ProjectFileVersion>11.0.51106.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
-    <OutDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
-    <OutDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
-    <OutDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
-    <OutDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
@@ -159,7 +159,7 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
@@ -170,7 +170,8 @@
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <SubSystem>Windows</SubSystem>
       <ShowProgress>NotSet</ShowProgress>
-      <AdditionalDependencies>ntdsapi.lib;rpcrt4.lib;ws2_32.lib;axiscrypto.lib;basewelsdecplus.lib;basewelsencplus.lib;axisopenssl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ntdsapi.lib;rpcrt4.lib;ws2_32.lib;crypto.lib;welsdecplus.lib;welsencplus.lib;openssl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(PlatformName)\$(Configuration)\$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -241,7 +242,7 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <TargetMachine>MachineX86</TargetMachine>
@@ -251,9 +252,10 @@
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>ntdsapi.lib;rpcrt4.lib;ws2_32.lib;axiscrypto.lib;basewelsdecplus.lib;basewelsencplus.lib;axisopenssl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ntdsapi.lib;rpcrt4.lib;ws2_32.lib;crypto.lib;welsdecplus.lib;welsencplus.lib;openssl.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>NotSet</ShowProgress>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <ImportLibrary>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(PlatformName)\$(Configuration)\$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -319,7 +321,7 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <TargetMachine>MachineX64</TargetMachine>
@@ -328,9 +330,10 @@
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <AdditionalDependencies>ntdsapi.lib;rpcrt4.lib;ws2_32.lib;axiscrypto.lib;basewelsdecplus.lib;basewelsencplus.lib;axisopenssl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ntdsapi.lib;rpcrt4.lib;ws2_32.lib;crypto.lib;welsdecplus.lib;welsencplus.lib;openssl.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <ImportLibrary>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(PlatformName)\$(Configuration)\$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -398,7 +401,7 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <TargetMachine>MachineX64</TargetMachine>
@@ -407,10 +410,11 @@
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <AdditionalDependencies>ntdsapi.lib;rpcrt4.lib;ws2_32.lib;axiscrypto.lib;basewelsdecplus.lib;basewelsencplus.lib;axisopenssl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ntdsapi.lib;rpcrt4.lib;ws2_32.lib;crypto.lib;welsdecplus.lib;welsencplus.lib;openssl.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <ImportLibrary>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(PlatformName)\$(Configuration)\$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -418,51 +422,11 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\appseed\ace\ace.vcxproj">
-      <Project>{21dcc811-4bce-4f16-b674-c0941f847127}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\appseed\ace\_ace.vcxproj">
-      <Project>{699d6807-4f43-40e9-86ab-2a8b856707a9}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\appseed\aura\aura.vcxproj">
-      <Project>{03e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\appseed\axis\axis.vcxproj">
-      <Project>{73a245f9-c92f-4487-aef7-cb0531f665bd}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\winpr\axiswinpr.vcxproj">
       <Project>{e4841f02-7cca-4144-89a2-149302677b3f}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\freerdp\addin.h" />
-    <ClInclude Include="..\..\include\freerdp\altsec.h" />
-    <ClInclude Include="..\..\include\freerdp\api.h" />
-    <ClInclude Include="..\..\include\freerdp\assistance.h" />
-    <ClInclude Include="..\..\include\freerdp\client.h" />
-    <ClInclude Include="..\..\include\freerdp\constants.h" />
-    <ClInclude Include="..\..\include\freerdp\dvc.h" />
-    <ClInclude Include="..\..\include\freerdp\error.h" />
-    <ClInclude Include="..\..\include\freerdp\event.h" />
-    <ClInclude Include="..\..\include\freerdp\extension.h" />
-    <ClInclude Include="..\..\include\freerdp\freerdp.h" />
-    <ClInclude Include="..\..\include\freerdp\graphics.h" />
-    <ClInclude Include="..\..\include\freerdp\input.h" />
-    <ClInclude Include="..\..\include\freerdp\listener.h" />
-    <ClInclude Include="..\..\include\freerdp\message.h" />
-    <ClInclude Include="..\..\include\freerdp\metrics.h" />
-    <ClInclude Include="..\..\include\freerdp\peer.h" />
-    <ClInclude Include="..\..\include\freerdp\pointer.h" />
-    <ClInclude Include="..\..\include\freerdp\primary.h" />
-    <ClInclude Include="..\..\include\freerdp\primitives.h" />
-    <ClInclude Include="..\..\include\freerdp\rail.h" />
-    <ClInclude Include="..\..\include\freerdp\scancode.h" />
-    <ClInclude Include="..\..\include\freerdp\secondary.h" />
-    <ClInclude Include="..\..\include\freerdp\settings.h" />
-    <ClInclude Include="..\..\include\freerdp\svc.h" />
-    <ClInclude Include="..\..\include\freerdp\types.h" />
-    <ClInclude Include="..\..\include\freerdp\update.h" />
-    <ClInclude Include="..\..\include\freerdp\window.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="libfreerdp\codec\nsc_encode.h" />
     <ClInclude Include="libfreerdp\codec\nsc_sse2.h" />
@@ -695,8 +659,7 @@
     <ClCompile Include="libfreerdp\utils\stopwatch.c" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\include\freerdp\version.h.in" />
-    <None Include="axisfreerdp.def" />
+    <None Include="freerdp.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
