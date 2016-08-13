@@ -71,11 +71,7 @@
 #ifndef OPENSSL_NO_HW
 #ifndef OPENSSL_NO_HW_SUREWARE
 
-#ifdef FLAT_INC
 #include "sureware.h"
-#else
-#include "vendor_defns/sureware.h"
-#endif
 
 #define SUREWARE_LIB_NAME "sureware engine"
 #include "e_sureware_err.c"

@@ -31,7 +31,7 @@
 # define STRINGPREP_H
 
 
-//#include "_stdint.h"
+#include <stdint.h>
 
 
 # ifndef IDNAPI
@@ -231,7 +231,8 @@ extern "C"
 						      *req_version);
 
 /* Utility */
-#define ssize_t int_ptr
+
+#define ssize_t int64_t
   extern IDNAPI int stringprep_unichar_to_utf8 (uint32_t c, char *outbuf);
   extern IDNAPI uint32_t stringprep_utf8_to_unichar (const char *p);
 

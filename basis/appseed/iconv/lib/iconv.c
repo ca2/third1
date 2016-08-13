@@ -18,7 +18,7 @@
  * Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-#include "atom/iconv/include/iconv.h"
+#include "app/include/iconv.h"
 
 #include <stdlib.h>
 #include <string.h>

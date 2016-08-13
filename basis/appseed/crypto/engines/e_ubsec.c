@@ -78,11 +78,7 @@
 #ifndef OPENSSL_NO_HW
 #ifndef OPENSSL_NO_HW_UBSEC
 
-#ifdef FLAT_INC
 #include "hw_ubsec.h"
-#else
-#include "vendor_defns/hw_ubsec.h"
-#endif
 
 #define UBSEC_LIB_NAME "ubsec engine"
 #include "e_ubsec_err.c"

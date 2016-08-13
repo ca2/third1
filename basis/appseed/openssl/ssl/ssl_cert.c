@@ -121,7 +121,7 @@
 # include <sys/types.h>
 #endif
 
-#include "app/axis/crypto/crypto/o_dir.h"
+#include "o_dir.h"
 #include <openssl/objects.h>
 #include <openssl/bio.h>
 #include <openssl/pem.h>

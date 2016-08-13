@@ -102,11 +102,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="axiszlib.def">
-      <Filter>Source Files</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <CustomBuild Include="contrib\masmx86\inffas32.asm">
       <Filter>Assembler Files\x86</Filter>
     </CustomBuild>
@@ -119,5 +114,10 @@
     <CustomBuild Include="contrib\masmx64\inffasx64.asm">
       <Filter>Assembler Files\x64</Filter>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="zlib.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

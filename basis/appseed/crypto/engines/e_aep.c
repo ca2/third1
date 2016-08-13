@@ -88,11 +88,7 @@ extern int GetThreadID(void);
 
 #ifndef OPENSSL_NO_HW
 #ifndef OPENSSL_NO_HW_AEP
-#ifdef FLAT_INC
 #include "aep.h"
-#else
-#include "vendor_defns/aep.h"
-#endif
 
 #define AEP_LIB_NAME "aep engine"
 #define FAIL_TO_SW 0x10101010

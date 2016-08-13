@@ -89,11 +89,7 @@
  * simply to keep the file sizes reasonable.
  * [Geoff]
  */
-#ifdef FLAT_INC
 #include "cswift.h"
-#else
-#include "vendor_defns/cswift.h"
-#endif
 
 #define CSWIFT_LIB_NAME "cswift engine"
 #include "e_cswift_err.c"

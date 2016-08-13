@@ -76,11 +76,7 @@
 #ifndef OPENSSL_NO_HW
 #ifndef OPENSSL_NO_HW_ATALLA
 
-#ifdef FLAT_INC
 #include "atalla.h"
-#else
-#include "vendor_defns/atalla.h"
-#endif
 
 #define ATALLA_LIB_NAME "atalla engine"
 #include "e_atalla_err.c"

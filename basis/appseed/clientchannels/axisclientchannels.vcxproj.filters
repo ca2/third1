@@ -118,30 +118,6 @@
     <Filter Include="Source Files\channels\remdesk">
       <UniqueIdentifier>{99d42a8c-f8aa-4769-8db4-482447a99760}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Binary Files">
-      <UniqueIdentifier>{77d4b073-ae7b-4f27-8b62-32862e9dc1a3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Binary Files\x86">
-      <UniqueIdentifier>{8970b845-ff0d-44ad-8fda-e937aa403209}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Binary Files\x86\Release">
-      <UniqueIdentifier>{bc95d541-4860-4c4e-b677-e281fc3b4b1f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Binary Files\x86\Debug">
-      <UniqueIdentifier>{d18f5b5d-1602-421a-89fc-69226f2b26f3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Binary Files\x64">
-      <UniqueIdentifier>{04261a17-9085-4099-b3f8-bb4be62dc807}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Binary Files\x64\Release">
-      <UniqueIdentifier>{9cef9ebd-8742-45d3-b5db-df49bdf38a6b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Binary Files\x64\Debug">
-      <UniqueIdentifier>{4b0ccc60-c020-49d9-b0fc-412eb1f4a5a6}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="axisclientchannels.def" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="channels\audin\client\audin_main.h">
@@ -358,65 +334,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x86\avcodec-56.dll">
-      <Filter>Binary Files\x86\Release</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x86\avformat-56.dll">
-      <Filter>Binary Files\x86\Release</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x86\avutil-54.dll">
-      <Filter>Binary Files\x86\Release</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x86\swscale-3.dll">
-      <Filter>Binary Files\x86\Release</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x86\avcodec-56.dll">
-      <Filter>Binary Files\x86\Debug</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x86\avformat-56.dll">
-      <Filter>Binary Files\x86\Debug</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x86\avutil-54.dll">
-      <Filter>Binary Files\x86\Debug</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x86\swscale-3.dll">
-      <Filter>Binary Files\x86\Debug</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x64\avcodec-56.dll">
-      <Filter>Binary Files\x64\Release</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x64\avformat-56.dll">
-      <Filter>Binary Files\x64\Release</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x64\avutil-54.dll">
-      <Filter>Binary Files\x64\Release</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x64\swscale-3.dll">
-      <Filter>Binary Files\x64\Release</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x64\avcodec-56.dll">
-      <Filter>Binary Files\x64\Debug</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x64\avformat-56.dll">
-      <Filter>Binary Files\x64\Debug</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x64\avutil-54.dll">
-      <Filter>Binary Files\x64\Debug</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x64\swscale-3.dll">
-      <Filter>Binary Files\x64\Debug</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x86\swresample-1.dll">
-      <Filter>Binary Files\x86\Release</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x86\swresample-1.dll">
-      <Filter>Binary Files\x86\Debug</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x64\swresample-1.dll">
-      <Filter>Binary Files\x64\Release</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x64\swresample-1.dll">
-      <Filter>Binary Files\x64\Debug</Filter>
-    </CustomBuild>
+    <None Include="clientchannels.def" />
   </ItemGroup>
 </Project>

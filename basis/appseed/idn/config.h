@@ -1,7 +1,10 @@
 #pragma once
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
-#include "aura/aura/aura.h"
+#include <stdlib.h>
+#include <stdint.h>
+
+#include "app/appseed/ace/ace.h"
 
 /* Define to the number of bits in type 'ptrdiff_t'. */
 #undef BITSIZEOF_PTRDIFF_T

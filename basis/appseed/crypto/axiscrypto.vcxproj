@@ -19,10 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>axiscrypto</ProjectName>
+    <ProjectName>crypto</ProjectName>
     <ProjectGuid>{39807406-816F-4C0D-A632-4BB8AB13887B}</ProjectGuid>
     <RootNamespace>axiscrypto</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
@@ -73,27 +73,27 @@
     <_ProjectFileVersion>11.0.51106.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
-    <OutDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
-    <OutDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
-    <OutDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
     <EmbedManifest>false</EmbedManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
-    <OutDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <GenerateManifest>false</GenerateManifest>
@@ -110,7 +110,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include/;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../nodeapp/thirdparty/include;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(ProjectDir)../../axis/freetype/include;$(SolutionDir)../../../app/base/include/;crypto;crypto/asn1;crypto/evp;crypto/modes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include/;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../nodeapp/thirdparty/include;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(ProjectDir)../../axis/freetype/include;$(SolutionDir)../../../app/base/include/;$(SolutionDir)../../../nodeapp/include/crypto;$(SolutionDir)../../../nodeapp/include/openssl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>USE_SOCKETS;OPENSSL_NO_CAPIENG;NOCRYPT;OPENSSL_USING_WINDOWS_DEFINITION_FILE;NO_WINDOWS_BRAINDEATH;OPENSSL_SYSNAME_WIN32;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;OPENSSL_BUILD_SHLIBCRYPTO;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -163,6 +163,8 @@
       <SubSystem>Windows</SubSystem>
       <ShowProgress>NotSet</ShowProgress>
       <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ProgramDatabaseFile>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+      <ImportLibrary>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(PlatformName)\$(Configuration)\$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -188,7 +190,7 @@ ml /safeseh /coff /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir
     </Midl>
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include/;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../nodeapp/thirdparty/include;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(ProjectDir)../../axis/freetype/include;$(SolutionDir)../../../app/base/include/;crypto;crypto/asn1;crypto/evp;crypto/modes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include/;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../nodeapp/thirdparty/include;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(ProjectDir)../../axis/freetype/include;$(SolutionDir)../../../app/base/include/;$(SolutionDir)../../../nodeapp/include/crypto;$(SolutionDir)../../../nodeapp/include/openssl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>USE_SOCKETS;OPENSSL_NO_CAPIENG;NOCRYPT;OPENSSL_USING_WINDOWS_DEFINITION_FILE;NO_WINDOWS_BRAINDEATH;OPENSSL_SYSNAME_WIN32;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;OPENSSL_BUILD_SHLIBCRYPTO;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -243,6 +245,8 @@ ml /safeseh /coff /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
+      <ProgramDatabaseFile>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+      <ImportLibrary>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(PlatformName)\$(Configuration)\$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -265,7 +269,7 @@ ml /safeseh /coff /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include/;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../nodeapp/thirdparty/include;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(ProjectDir)../../axis/freetype/include;$(SolutionDir)../../../app/base/include/;crypto;crypto/asn1;crypto/evp;crypto/modes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include/;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../nodeapp/thirdparty/include;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(ProjectDir)../../axis/freetype/include;$(SolutionDir)../../../app/base/include/;$(SolutionDir)../../../nodeapp/include/crypto;$(SolutionDir)../../../nodeapp/include/openssl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>USE_SOCKETS;OPENSSL_NO_CAPIENG;NOCRYPT;OPENSSL_USING_WINDOWS_DEFINITION_FILE;NO_WINDOWS_BRAINDEATH;OPENSSL_SYSNAME_WIN32;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;OPENSSL_BUILD_SHLIBCRYPTO;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -320,6 +324,8 @@ ml /safeseh /coff /Zi /Fo"$(IntDir)rc4.o" /c /Fl"$(IntDir)rc4.lst" "$(ProjectDir
       <AdditionalDependencies>Crypt32.lib;Ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <ProgramDatabaseFile>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+      <ImportLibrary>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(PlatformName)\$(Configuration)\$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -355,7 +361,7 @@ ml64 /Zi /Fo"$(IntDir)x64cpuid.o" /c /Fl"$(IntDir)x64cpuid.lst" "$(ProjectDir)as
     </Midl>
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include/;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../nodeapp/thirdparty/include;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(ProjectDir)../../axis/freetype/include;$(SolutionDir)../../../app/base/include/;crypto;crypto/asn1;crypto/evp;crypto/modes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include/;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../nodeapp/thirdparty/include;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(ProjectDir)../../axis/freetype/include;$(SolutionDir)../../../app/base/include/;$(SolutionDir)../../../nodeapp/include/crypto;$(SolutionDir)../../../nodeapp/include/openssl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>USE_SOCKETS;OPENSSL_NO_CAPIENG;NOCRYPT;OPENSSL_USING_WINDOWS_DEFINITION_FILE;NO_WINDOWS_BRAINDEATH;OPENSSL_SYSNAME_WIN32;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;OPENSSL_BUILD_SHLIBCRYPTO;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>false</StringPooling>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -414,6 +420,8 @@ ml64 /Zi /Fo"$(IntDir)x64cpuid.o" /c /Fl"$(IntDir)x64cpuid.lst" "$(ProjectDir)as
       <AdditionalDependencies>Crypt32.lib;Ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <SubSystem>Windows</SubSystem>
+      <ProgramDatabaseFile>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+      <ImportLibrary>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(PlatformName)\$(Configuration)\$(TargetName).lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -4755,29 +4763,167 @@ ml64 /Zi /Fo"$(IntDir)x64cpuid.o" /c /Fl"$(IntDir)x64cpuid.lst" "$(ProjectDir)as
     <ClCompile Include="engines\_engines.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="crypto\arm_arch.h" />
-    <ClInclude Include="crypto\asn1\asn1.h" />
-    <ClInclude Include="crypto\asn1\asn1t.h" />
-    <ClInclude Include="crypto\asn1\asn1_locl.h" />
-    <ClInclude Include="crypto\asn1\asn1_mac.h" />
-    <ClInclude Include="crypto\asn1\charmap.h" />
-    <ClInclude Include="crypto\cryptlib.h" />
-    <ClInclude Include="crypto\crypto.h" />
-    <ClInclude Include="crypto\ebcdic.h" />
-    <ClInclude Include="crypto\fips_err.h" />
-    <ClInclude Include="crypto\md32_common.h" />
-    <ClInclude Include="crypto\opensslconf.h" />
-    <ClInclude Include="crypto\opensslv.h" />
-    <ClInclude Include="crypto\ossl_typ.h" />
-    <ClInclude Include="crypto\o_dir.h" />
-    <ClInclude Include="crypto\o_str.h" />
-    <ClInclude Include="crypto\o_time.h" />
-    <ClInclude Include="crypto\symhacks.h" />
-    <ClInclude Include="crypto\vms_rms.h" />
-    <ClInclude Include="e_os.h" />
-    <ClInclude Include="e_os2.h" />
-    <ClInclude Include="e_os2_ca2specific.h" />
-    <ClInclude Include="e_os2_original.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\aep.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\aes.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\aes_locl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\arm_arch.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\asn1.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\asn1t.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\asn1_locl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\asn1_mac.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\atalla.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\bf_locl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\bf_pi.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\bio.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\bio_lcl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\blowfish.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\bn.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\bn_lcl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\bn_prime.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\buffer.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\camellia.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\cast.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\cast_lcl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\cast_s.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\charmap.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\cmac.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\cmll_locl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\cms.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\cms_lcl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\comp.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\conf.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\conf_api.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\conf_def.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\cryptlib.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\crypto.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\cswift.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\des.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\des_locl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\des_old.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\des_ver.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\dh.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\dsa.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\dsa_locl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\dso.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\dtls1.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\ebcdic.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\ec.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\ecdh.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\ecdsa.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\ech_locl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\ecs_locl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\ec_lcl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\engine.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\eng_int.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\err.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\evp.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\evp_locl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\ext_dat.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\e_4758cca_err.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\e_aep_err.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\e_atalla_err.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\e_capi_err.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\e_chil_err.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\e_cswift_err.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\e_gmp_err.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\e_gost_err.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\e_nuron_err.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\e_os.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\e_os2.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\e_os2_ca2specific.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\e_os2_original.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\e_sureware_err.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\e_ubsec_err.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\fips_err.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\gost2001_keyx.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\gost89.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\gosthash.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\gost_keywrap.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\gost_lcl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\gost_params.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\hmac.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\hwcryptohook.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\hw_4758_cca.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\hw_ubsec.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\idea.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\idea_lcl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\jpake.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\krb5_asn.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\kssl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\kssl_lcl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\lhash.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\md2.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\md32_common.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\md4.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\md4_locl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\md5.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\md5_locl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\mdc2.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\modes.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\modes_lcl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\objects.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\obj_dat.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\obj_mac.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\obj_xref.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\ocsp.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\opensslconf.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\opensslv.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\ossl_typ.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\o_dir.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\o_str.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\o_time.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\pcy_int.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\pem.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\pem2.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\pkcs12.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\pkcs7.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\pqueue.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\rand.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\rand_lcl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\rc2.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\rc2_locl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\rc4.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\rc4_locl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\rc5.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\rc5_locl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\ripemd.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\rmdconst.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\rmd_locl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\rpc_des.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\rsa.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\rsa_locl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\safestack.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\seed.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\seed_locl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\sha.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\sha_locl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\spr.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\srp.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\srp_grps.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\srp_lcl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\srtp.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\ssl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\ssl2.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\ssl23.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\ssl3.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\ssl_locl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\stack.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\store.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\str_locl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\sureware.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\symhacks.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\tls1.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\ts.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\txt_db.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\ui.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\ui_compat.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\ui_locl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\vms_rms.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\whrlpool.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\wp_locl.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\x509.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\x509v3.h" />
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\x509_vfy.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="asm\x64-win32-masm\aes\aes-x86_64.asm">
@@ -4919,14 +5065,14 @@ ml64 /Zi /Fo"$(IntDir)x64cpuid.o" /c /Fl"$(IntDir)x64cpuid.lst" "$(ProjectDir)as
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </CustomBuild>
-    <None Include="axiscrypto.def" />
+    <None Include="crypto.def" />
     <None Include="crypto\bn\asm\modexp512-x86_64-masm.asm" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\appseed\ace\ace.vcxproj">
+    <ProjectReference Include="..\..\..\app\appseed\ace\ace.vcxproj">
       <Project>{21dcc811-4bce-4f16-b674-c0941f847127}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\appseed\ace\_ace.vcxproj">
+    <ProjectReference Include="..\..\..\app\appseed\ace\_ace.vcxproj">
       <Project>{699d6807-4f43-40e9-86ab-2a8b856707a9}</Project>
     </ProjectReference>
   </ItemGroup>
