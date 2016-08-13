@@ -66,6 +66,7 @@
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
 			<Add option="-Wl,-z,origin" />
+			<Add option="-lace" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
