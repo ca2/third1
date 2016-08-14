@@ -218,7 +218,7 @@ int audio_decode_example2(AAC_CONTEXT* h264,void ** pout,const void * inbuf,int 
    int data_size = 0;
    AAC_CONTEXT_MF* sys = h264->pSystemData;
    /* decode until eof */
-   
+
    if(!sys->decoded_frame)
    {
       if(!(sys->decoded_frame = av_frame_alloc()))
@@ -240,19 +240,21 @@ int audio_decode_example2(AAC_CONTEXT* h264,void ** pout,const void * inbuf,int 
    sys->avpkt.size = sin;
    int i;
 
+#ifdef LINUX
 
-//   sys->len = avcodec_decode_audio4(sys->c,sys->decoded_frame,&sys->got_frame,&sys->avpkt);
-
-   int iRet1 = avcodec_send_packet(sys->c, &sys->avpkt);
+   sys->len = avcodec_decode_audio4(sys->c,sys->decoded_frame,&sys->got_frame,&sys->avpkt);
 
    // sys->len = avcodec_decode_audio4(sys->c, sys->decoded_frame, &sys->got_frame, &sys->avpkt);
+#else
+
+   int iRet1 = avcodec_send_packet(sys->c, &sys->avpkt);
 
    sys->len = 0;
 
    sys->got_frame = 0;
 
    int iRet2 = -1;
-   
+
    if (iRet1 >= 0)
    {
 
@@ -268,6 +270,8 @@ int audio_decode_example2(AAC_CONTEXT* h264,void ** pout,const void * inbuf,int 
       }
 
    }
+#endif // LINUX
+
 
    av_free(mem);
    if(sys->len < 0)
@@ -366,13 +370,13 @@ int mf_aac_uninit(AAC_CONTEXT* h264)
    AAC_CONTEXT_MF* sys = h264->pSystemData;
 
    avcodec_close(sys->c);
-   
+
    avcodec_free_context(&sys->c);
-   
+
    free(h264->pSystemData);
-   
+
    free(h264);
 
    return 0;
-   
+
 }

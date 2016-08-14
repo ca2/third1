@@ -8,7 +8,7 @@
 		<Option extended_obj_names="1" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../stage/x86/libaxisfreerdp.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../nodeapp/thirdparty/library/x64/libaxisfreerdp.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
 				<Option object_output="../../../time/intermediate/app/axisfreerdp" />
 				<Option type="3" />
@@ -81,6 +81,8 @@
 			<Add directory="../../../appseed/base" />
 			<Add directory="../../../appseed/axis" />
 			<Add directory="../../../appseed/aura" />
+			<Add directory="../../../app/include" />
+			<Add directory="../../../nodeapp/operational_system" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />

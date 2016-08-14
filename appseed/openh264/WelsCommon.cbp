@@ -7,7 +7,7 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../stage/x86/libWelsCommon.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../nodeapp/thirdparty/library/x64/libWelsCommon.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
 				<Option object_output="../../../time/intermediate/app/WelsCommon" />
 				<Option type="3" />
@@ -55,6 +55,7 @@
 			<Add directory="codec/api/svc" />
 			<Add directory="../../include" />
 			<Add directory="../../.." />
+			<Add directory="../../../app/include" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
