@@ -7,7 +7,7 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../stage/x86/libstrophe.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../nodeapp/thirdparty/library/x64/libstrophe.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
 				<Option object_output="../../../time/intermediate/app-core/strophe" />
 				<Option type="3" />
@@ -70,6 +70,7 @@
 			<Add directory="../../../app/appseed/aura" />
 			<Add directory="../../../app/appseed/axis" />
 			<Add directory="../../../app/axis" />
+			<Add directory="../../../app/include/strophe" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-rpath,\\$$ORIGIN" />
