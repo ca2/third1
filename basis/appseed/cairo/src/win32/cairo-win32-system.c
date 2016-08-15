@@ -61,6 +61,9 @@
 
 #include <windows.h>
 
+
+void win32_gl_initialize();
+
 /* declare to avoid "no previous prototype for 'DllMain'" warning */
 BOOL WINAPI
 DllMain (HINSTANCE hinstDLL,
@@ -74,7 +77,11 @@ DllMain (HINSTANCE hinstDLL,
 {
     switch (fdwReason) {
         case DLL_PROCESS_ATTACH:
-            CAIRO_MUTEX_INITIALIZE ();
+		{
+			win32_gl_initialize();
+			CAIRO_MUTEX_INITIALIZE();
+
+		}
             break;
 
         case DLL_PROCESS_DETACH:

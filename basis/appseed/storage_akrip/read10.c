@@ -22,7 +22,7 @@
  **********************************************************************
  *
  */
-#include "framework.h"
+#include "akrip32_internal.h"
 
 
 extern CDHANDLEREC *cdHandles;
@@ -45,7 +45,7 @@ uint32_t initREAD10_2( HCDROM hCD )
   uint32_t dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
-  int_ptr idx = (int_ptr)hCD - 1;
+  int idx = (int)hCD - 1;
   int32_t i;
   BYTE init1[] = { 0, 0, 0, 0x08, 0, 0, 0, 0, 0, 0, 0x09, 0x30, 0x23, 6, 0, 0, 0, 0, 0, 0x80 };
   BYTE init2[] =
@@ -126,7 +126,7 @@ uint32_t initREAD10( HCDROM hCD )
   uint32_t dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
-  int_ptr idx = (int_ptr)hCD - 1;
+  int idx = (int)hCD - 1;
   //  int32_t i;
   BYTE init1[] = { 0, 0, 0, 0x08, 0, 0, 0, 0, 0, 0, 0x09, 0x30 };
 
@@ -199,7 +199,7 @@ uint32_t deinitREAD10( HCDROM hCD )
   uint32_t dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
-  int_ptr idx = (int_ptr)hCD - 1;
+  int idx = (int)hCD - 1;
   BYTE init1[] = { 0, 0, 0, 8, 83, 0, 0, 0, 0, 0, 8, 0 };
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
@@ -252,7 +252,7 @@ uint32_t readCDAudioLBA_READ10( HCDROM hCD, LPTRACKBUF t )
   uint32_t dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
-  int_ptr idx = (int_ptr)hCD - 1;
+  int idx = (int)hCD - 1;
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
     {
