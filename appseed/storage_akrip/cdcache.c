@@ -26,7 +26,7 @@
  **********************************************************************
  *
  */
-#include "framework.h"
+#include "akrip32_internal.h"
 
 
 #include <time.h>
@@ -49,7 +49,7 @@ void getWord( char **inBuf, char *outBuf, int32_t len );
 uint32_t genCDPlayerIniIndex( HCDROM hCD );
 void MSB2DWORD( uint32_t *d, BYTE *b );
 uint32_t getDiskInfoCDPlayerIni( LPCDDBQUERYITEM lpq, char *szCDDBEntry, int32_t maxLen );
-bool isCDinCDPlayerIni( char *s );
+int isCDinCDPlayerIni( char *s );
 void addCDPlayerCDDBIndex( uint32_t cdpIdx, uint32_t cddbId, uint32_t numTracks, uint32_t offsets[100] );
 void writeCDPlayerIniEntry( LPCDDBQUERYITEM lpq, char *szCDDBEntry );
 char *base64Encode( char *tgt, BYTE *src );
@@ -75,8 +75,8 @@ extern BYTE alAspiErr;
 
 extern uint32_t (*pfnSendASPI32Command)(LPSRB);
 
-//static bool bCacheInitMutex = FALSE;
-static bool bCacheInit = FALSE;
+//static int bCacheInitMutex = FALSE;
+static int bCacheInit = FALSE;
 
 static char szCacheDir[MAX_PATH+1];
 //static HANDLE hCacheMutex = NULL;
@@ -85,20 +85,20 @@ static char szCacheDir[MAX_PATH+1];
 static char szCDPlayerIni[] = "cdplayer.ini";
 static char szProxyAddr[256] = "";
 static char szUserAuth[129] = "";
-static bool bProxyAuth = FALSE;
+static int bProxyAuth = FALSE;
 static int32_t  iProxyPort = 0;
 static char szCDDBServer[256] = "freedb.freedb.org";
-static bool bUseProxy = FALSE;
+static int bUseProxy = FALSE;
 static char szAgent[61] = "akrip32dll 0.91";
 static char szUser[65] = "user@akrip.sourceforge.net";
 static char szCddbCGI[81] = "/~cddb/cddb.cgi";
 static char szSubmitCGI[81] = "/~cddb/submit.cgi";
 static int32_t  iHTTPPort = 80;
-static bool bUseCDPlayerIni = TRUE;
+static int bUseCDPlayerIni = TRUE;
 //static uint32_t dwCDDB2CDPlayer[20][3];
 static CDDB2CDPLAYER cddb2cdplayer[20];
 static int32_t iNextIndex = -1;
-static bool bUseHTTP1_0 = TRUE;
+static int bUseHTTP1_0 = TRUE;
 static int32_t protoLevel = 5;
 
 uint32_t CDDBSum( uint32_t n )
@@ -130,12 +130,12 @@ uint32_t GetCDDBDiskID( HCDROM hCD, uint32_t *pID, int32_t numEntries )
 {
   TOC toc;
   TOCTRACK *t1, *t2;
-  int_ptr idx = (int_ptr)hCD - 1;
+  int idx = (int)hCD - 1;
   uint32_t t;
   uint32_t n;
   int32_t i;
   int32_t j;
-  bool bMSF;
+  int bMSF;
 
   *pID = 0;
 
@@ -193,7 +193,7 @@ uint32_t GetCDDBDiskID( HCDROM hCD, uint32_t *pID, int32_t numEntries )
 }
 
 
-bool InitCache( const char * lpszDir )
+int InitCache( const char * lpszDir )
 {
   if ( bCacheInit )
     return FALSE;
@@ -669,7 +669,7 @@ void GetLineFromBuf( char **src, char *tgt, int32_t len )
  */
 int32_t extractCDDBQueryInfo( LPCDDBQUERYITEM lpq, char *linebuf )
 {
-  int_ptr i;
+  int i;
   char *p = linebuf;
   char *t;
 
@@ -1014,8 +1014,8 @@ void getWord( char **inBuf, char *outBuf, int32_t len )
 uint32_t genCDPlayerIniIndex( HCDROM hCD )
 {
   uint32_t retVal = 0;
-  bool bMSF;
-  int_ptr idx = (int_ptr)hCD - 1;
+  int bMSF;
+  int idx = (int)hCD - 1;
   int32_t i;
   TOC toc;
   uint32_t dwAddr;
@@ -1159,7 +1159,7 @@ uint32_t getDiskInfoCDPlayerIni( LPCDDBQUERYITEM lpq, char *szCDDBEntry, int32_t
 }
 
 
-bool isCDinCDPlayerIni( char *s )
+int isCDinCDPlayerIni( char *s )
 {
   uint32_t uiVal;
 
@@ -1268,7 +1268,7 @@ void writeCDPlayerIniEntry( LPCDDBQUERYITEM lpq, char *szCDDBEntry )
 }
 
 
-uint32_t CDDBSubmit( uint32_t dwDiscID, bool bTest, char *szEmail, char *szCategory,
+uint32_t CDDBSubmit( uint32_t dwDiscID, int bTest, char *szEmail, char *szCategory,
 		  char *szEntry )
 {
   uint32_t dwRetVal = SS_COMP;

@@ -22,7 +22,7 @@
  **********************************************************************
  *
  */
-#include "framework.h"
+#include "akrip32_internal.h"
 
 
 extern CDHANDLEREC *cdHandles;
@@ -35,7 +35,7 @@ extern int32_t *nextHandle;
 /*
  * external prototypes
  */
-bool UsingSCSIPT( void );
+int UsingSCSIPT( void );
 void SPTIOpenCDHandle( BYTE ha, BYTE tgt, BYTE lun );
 
 
@@ -64,7 +64,7 @@ HCDROM  GetCDHandle( LPGETCDHAND lpcd )
   BYTE devType;
   //LPBYTE pDevType = &devType;
   HANDLE hMutex;
-  //bool bSkip;
+  //int bSkip;
 
   if ( !lpcd )
     {
@@ -133,7 +133,7 @@ HCDROM  GetCDHandle( LPGETCDHAND lpcd )
 
   for( i = 0; i < MAXCDHAND; i++ )
     {
-       int_ptr j;
+       int j;
       j = (i + *nextHandle ) % MAXCDHAND;
 
       if ( !cdHandles[j].used )
@@ -201,9 +201,9 @@ HCDROM  GetCDHandle( LPGETCDHAND lpcd )
  * Releases a CD Handle.
  *
  ****************************************************************/
-bool CloseCDHandle( HCDROM hCD )
+int CloseCDHandle( HCDROM hCD )
 {
-   int_ptr idx = (int_ptr)hCD - 1;
+   int idx = (int)hCD - 1;
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
     return FALSE;

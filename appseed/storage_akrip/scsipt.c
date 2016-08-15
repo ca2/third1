@@ -32,7 +32,7 @@
  **********************************************************************
  *
  */
-#include "framework.h"
+#include "akrip32_internal.h"
 
 
 
@@ -42,7 +42,7 @@ typedef struct {
   BYTE tgt;
   BYTE lun;
   BYTE driveLetter;
-  bool bUsed;
+  int bUsed;
   HANDLE hDevice;
   BYTE inqData[36];
 } DRIVE;
@@ -57,12 +57,12 @@ BYTE SPTIGetNumAdapters( void );
 BYTE SPTIGetDeviceIndex( BYTE ha, BYTE tgt, BYTE lun );
 uint32_t SPTIHandleHaInquiry( LPSRB_HAInquiry lpsrb );
 uint32_t SPTIGetDeviceType( LPSRB_GDEVBlock lpsrb );
-uint32_t SPTIExecSCSICommand( LPSRB_ExecSCSICmd lpsrb, bool bBeenHereBefore );
+uint32_t SPTIExecSCSICommand( LPSRB_ExecSCSICmd lpsrb, int bBeenHereBefore );
 HANDLE GetFileHandle( BYTE i );
 
-static bool bSCSIPTInit = FALSE;
+static int bSCSIPTInit = FALSE;
 static SPTIGLOBAL sptiglobal;
-static bool bUsingSCSIPT = FALSE;
+static int bUsingSCSIPT = FALSE;
 
 /*
  * Initialization of SCSI Pass Through Interface code.  Responsible for
@@ -227,7 +227,8 @@ HANDLE GetFileHandle( BYTE i )
 
   // if Win2K map greater, add GENERIC_WRITE
   dwFlags = GENERIC_READ;
-  if (is_windows_2000_or_greater())
+//  if (is_windows_2000_or_greater())
+  if (1)
   {
      dwFlags |= GENERIC_WRITE;
 #ifdef _DEBUG_SCSIPT
@@ -456,7 +457,7 @@ BYTE SPTIGetDeviceIndex( BYTE ha, BYTE tgt, BYTE lun )
 /*
  * Converts ASPI-style SRB to SCSI Pass Through IOCTL
  */
-uint32_t SPTIExecSCSICommand( LPSRB_ExecSCSICmd lpsrb, bool bBeenHereBefore )
+uint32_t SPTIExecSCSICommand( LPSRB_ExecSCSICmd lpsrb, int bBeenHereBefore )
 {
   BOOLEAN status;
   SCSI_PASS_THROUGH_DIRECT_WITH_BUFFER swb;
@@ -553,7 +554,7 @@ uint32_t SPTIExecSCSICommand( LPSRB_ExecSCSICmd lpsrb, bool bBeenHereBefore )
 
 
 
-bool UsingSCSIPT( void )
+int UsingSCSIPT( void )
 {
   return bUsingSCSIPT;
 }

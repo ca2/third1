@@ -1,7 +1,7 @@
 /*
- * atapi.c - Copyright (C) 1999 Jay A. Key
+ * readd8.c - Copyright (C) 1999 Jay A. Key
  *
- * Functions for the CDR_ATAPI1, CDR_ATAPI2 class of read/init/deinit functions
+ * Functions for the CDR_READ_D8 class of read/init/deinit functions
  *
  **********************************************************************
  *
@@ -22,7 +22,7 @@
  **********************************************************************
  *
  */
-#include "framework.h"
+#include "akrip32_internal.h"
 
 
 extern CDHANDLEREC *cdHandles;
@@ -35,22 +35,22 @@ extern int32_t *nextHandle;
 extern uint32_t (*pfnSendASPI32Command)(LPSRB);
 
 
+
 /***************************************************************************
- * readCDAudioLBA_ATAPI
+ * readCDAudioLBA_D8
  ***************************************************************************/
-uint32_t readCDAudioLBA_ATAPI( HCDROM hCD, LPTRACKBUF t )
+uint32_t readCDAudioLBA_D8( HCDROM hCD, LPTRACKBUF t )
 {
   uint32_t dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
-  int_ptr idx = (int_ptr)hCD - 1;
+  int idx = (int)hCD - 1;
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
     {
       alErrCode = ALERR_INVHANDLE;
       return SS_ERR;
     }
-
 
   if ( t->numFrames * 2352 > t->maxLen )
     {
@@ -65,8 +65,14 @@ uint32_t readCDAudioLBA_ATAPI( HCDROM hCD, LPTRACKBUF t )
       return SS_ERR;
     }
 
+  if ( !cdHandles[idx].bInit )
+    {
+      pauseResumeCD( hCD, TRUE );  // stop the unit if happens to be playing
+      cdHandles[idx].bInit = TRUE;
+    }
+
 #ifdef DEBUG
-  dbprintf( "akrip32: readCDAudioLBA_ATAPI: (%d:%d:%d) %06X:%02X", 
+  dbprintf( "akrip32: readCDAudioLBA_D8: (%d:%d:%d) %08X:%02X", 
 	    cdHandles[idx].ha, cdHandles[idx].tgt, cdHandles[idx].lun,
 	    t->startFrame, t->numFrames );
 #endif
@@ -79,18 +85,17 @@ uint32_t readCDAudioLBA_ATAPI( HCDROM hCD, LPTRACKBUF t )
   s.SRB_Target     = cdHandles[idx].tgt;
   s.SRB_Lun        = cdHandles[idx].lun;
   s.SRB_Flags      = SRB_DIR_IN | SRB_EVENT_NOTIFY;
-  s.SRB_BufLen     = t->maxLen;
+  s.SRB_BufLen     = t->numFrames * 2352;
   s.SRB_BufPointer = &(t->buf[0]);
   s.SRB_SenseLen   = SENSE_LEN;
   s.SRB_CDBLen     = 12;
   s.SRB_PostProc   = (LPVOID)heventSRB;
-  s.CDBByte[0]     = 0xBE;
-  //s.CDBByte[1]     = 0x04;
+  s.CDBByte[0]     = 0xD8;
+  //s.CDBByte[1]     = cdHandles[idx].lun << 5;
   s.CDBByte[3]     = (BYTE)((t->startFrame >> 16) & 0xFF);
   s.CDBByte[4]     = (BYTE)((t->startFrame >> 8) & 0xFF);
   s.CDBByte[5]     = (BYTE)(t->startFrame & 0xFF);
-  s.CDBByte[8]     = (BYTE)(t->numFrames & 0xFF);
-  s.CDBByte[9]     = (cdHandles[idx].readType==CDR_ATAPI1)?0x10:0xF0;
+  s.CDBByte[9]     = (BYTE)(t->numFrames & 0xFF);
 
   ResetEvent( heventSRB );
   dwStatus = pfnSendASPI32Command( (LPSRB)&s );
@@ -104,7 +109,7 @@ uint32_t readCDAudioLBA_ATAPI( HCDROM hCD, LPTRACKBUF t )
     {
 #ifdef DEBUG
       BYTE *p;
-      dbprintf( "akrip32: readCDAudioLBA_ATAPI: ERROR! 0x%08X\n", s.SRB_Status );
+      dbprintf( "akrip32: readCDAudioLBA_D8: ERROR! 0x%08X\n", s.SRB_Status );
       dbprintf( "akrip32:  haStat == %d (0x%04X), tgtStat == %d (0x%04X)",
 	       s.SRB_HaStat, s.SRB_HaStat, s.SRB_TargStat, s.SRB_TargStat );
       p = s.SenseArea;
@@ -127,3 +132,5 @@ uint32_t readCDAudioLBA_ATAPI( HCDROM hCD, LPTRACKBUF t )
   ReleaseMutex( cdMutexes[idx] );
   return s.SRB_Status;
 }
+
+
