@@ -67,7 +67,7 @@ const char* DATA_PDU_TYPE_STRINGS[80] =
 		"ARC Status", /* 0x32 */
 		"?", "?", "?", /* 0x33 - 0x35 */
 		"Status Info", /* 0x36 */
-		"Monitor Layout" /* 0x37 */
+		"Monitor Layout", /* 0x37 */
 		"FrameAcknowledge", "?", "?", /* 0x38 - 0x40 */
 		"?", "?", "?", "?", "?", "?" /* 0x41 - 0x46 */
 };
@@ -204,8 +204,7 @@ static int rdp_security_stream_init(rdpRdp* rdp, wStream* s, BOOL sec_header)
 int rdp_init_stream(rdpRdp* rdp, wStream* s)
 {
 	Stream_Seek(s, RDP_PACKET_HEADER_MAX_LENGTH);
-	rdp_security_stream_init(rdp, s, FALSE);
-	return 0;
+	return rdp_security_stream_init(rdp, s, FALSE);
 }
 
 wStream* rdp_send_stream_init(rdpRdp* rdp)
@@ -249,15 +248,19 @@ BOOL rdp_set_error_info(rdpRdp* rdp, UINT32 errorInfo)
 
 	if (rdp->errorInfo != ERRINFO_SUCCESS)
 	{
-		ErrorInfoEventArgs e;
-		rdpContext* context = rdp->instance->context;
-
-		rdp->context->LastError = MAKE_FREERDP_ERROR(ERRINFO, errorInfo);
+		rdpContext* context = rdp->context;
 		rdp_print_errinfo(rdp->errorInfo);
-
-		EventArgsInit(&e, "freerdp");
-		e.code = rdp->errorInfo;
-		PubSub_OnErrorInfo(context->pubSub, context, &e);
+		if (context)
+		{
+			context->LastError = MAKE_FREERDP_ERROR(ERRINFO, errorInfo);
+			if (context->pubSub)
+			{
+				ErrorInfoEventArgs e;
+				EventArgsInit(&e, "freerdp");
+				e.code = rdp->errorInfo;
+				PubSub_OnErrorInfo(context->pubSub, context, &e);
+			}
+		}
 	}
 	else
 	{
@@ -307,7 +310,7 @@ BOOL rdp_read_header(rdpRdp* rdp, wStream* s, UINT16* length, UINT16* channelId)
 	{
 		if (code == X224_TPDU_DISCONNECT_REQUEST)
 		{
-			rdp->disconnect = TRUE;
+			freerdp_abort_connect(rdp->instance);
 			return TRUE;
 		}
 
@@ -340,10 +343,7 @@ BOOL rdp_read_header(rdpRdp* rdp, wStream* s, UINT16* length, UINT16* channelId)
 			return FALSE;
 
 		if (!rdp->instance)
-		{
-			rdp->disconnect = TRUE;
 			return FALSE;
-		}
 
 		context = rdp->instance->context;
 
@@ -363,8 +363,8 @@ BOOL rdp_read_header(rdpRdp* rdp, wStream* s, UINT16* length, UINT16* channelId)
 				rdp_set_error_info(rdp, ERRINFO_RPC_INITIATED_DISCONNECT);
 		}
 
-		WLog_ERR(TAG, "DisconnectProviderUltimatum: reason: %d", reason);
-		rdp->disconnect = TRUE;
+		WLog_DBG(TAG, "DisconnectProviderUltimatum: reason: %d", reason);
+		freerdp_abort_connect(rdp->instance);
 
 		EventArgsInit(&e, "freerdp");
 		e.code = 0;
@@ -671,8 +671,7 @@ BOOL rdp_recv_set_error_info_data_pdu(rdpRdp* rdp, wStream* s)
 		return FALSE;
 
 	Stream_Read_UINT32(s, errorInfo); /* errorInfo (4 bytes) */
-	rdp_set_error_info(rdp, errorInfo);
-	return TRUE;
+	return rdp_set_error_info(rdp, errorInfo);
 }
 
 BOOL rdp_recv_server_auto_reconnect_status_pdu(rdpRdp* rdp, wStream* s)
@@ -706,13 +705,14 @@ BOOL rdp_recv_monitor_layout_pdu(rdpRdp* rdp, wStream* s)
 	UINT32 monitorCount;
 	MONITOR_DEF* monitor;
 	MONITOR_DEF* monitorDefArray;
+	BOOL ret = TRUE;
 
 	if (Stream_GetRemainingLength(s) < 4)
 		return FALSE;
 
 	Stream_Read_UINT32(s, monitorCount); /* monitorCount (4 bytes) */
 
-	if (Stream_GetRemainingLength(s) < (monitorCount * 20))
+	if ((Stream_GetRemainingLength(s) / 20) < monitorCount)
 		return FALSE;
 
 	monitorDefArray = (MONITOR_DEF*) calloc(monitorCount, sizeof(MONITOR_DEF));
@@ -720,9 +720,8 @@ BOOL rdp_recv_monitor_layout_pdu(rdpRdp* rdp, wStream* s)
 	if (!monitorDefArray)
 		return FALSE;
 
-	for (index = 0; index < monitorCount; index++)
+	for (monitor = monitorDefArray, index = 0; index < monitorCount; index++, monitor++)
 	{
-		monitor = &(monitorDefArray[index]);
 		Stream_Read_UINT32(s, monitor->left); /* left (4 bytes) */
 		Stream_Read_UINT32(s, monitor->top); /* top (4 bytes) */
 		Stream_Read_UINT32(s, monitor->right); /* right (4 bytes) */
@@ -730,27 +729,30 @@ BOOL rdp_recv_monitor_layout_pdu(rdpRdp* rdp, wStream* s)
 		Stream_Read_UINT32(s, monitor->flags); /* flags (4 bytes) */
 	}
 
+	IFCALLRET(rdp->update->RemoteMonitors, ret, rdp->context, monitorCount, monitorDefArray);
+
 	free(monitorDefArray);
 
-	return TRUE;
+	return ret;
 }
 
-BOOL rdp_write_monitor_layout_pdu(wStream* s, UINT32 monitorCount, MONITOR_DEF* monitorDefArray)
+BOOL rdp_write_monitor_layout_pdu(wStream* s, UINT32 monitorCount, const rdpMonitor* monitorDefArray)
 {
 	UINT32 index;
-	MONITOR_DEF* monitor;
+	const rdpMonitor* monitor;
+
 	if (!Stream_EnsureRemainingCapacity(s, 4 + (monitorCount * 20)))
 		return FALSE;
+
 	Stream_Write_UINT32(s, monitorCount); /* monitorCount (4 bytes) */
 
-	for (index = 0; index < monitorCount; index++)
+	for (index = 0, monitor = monitorDefArray; index < monitorCount; index++, monitor++)
 	{
-		monitor = &(monitorDefArray[index]);
-		Stream_Write_UINT32(s, monitor->left); /* left (4 bytes) */
-		Stream_Write_UINT32(s, monitor->top); /* top (4 bytes) */
-		Stream_Write_UINT32(s, monitor->right); /* right (4 bytes) */
-		Stream_Write_UINT32(s, monitor->bottom); /* bottom (4 bytes) */
-		Stream_Write_UINT32(s, monitor->flags); /* flags (4 bytes) */
+		Stream_Write_UINT32(s, monitor->x); /* left (4 bytes) */
+		Stream_Write_UINT32(s, monitor->y); /* top (4 bytes) */
+		Stream_Write_UINT32(s, monitor->x + monitor->width - 1); /* right (4 bytes) */
+		Stream_Write_UINT32(s, monitor->y + monitor->height - 1); /* bottom (4 bytes) */
+		Stream_Write_UINT32(s, monitor->is_primary ? 0x01 : 0x00); /* flags (4 bytes) */
 	}
 
 	return TRUE;
@@ -1058,7 +1060,7 @@ BOOL rdp_decrypt(rdpRdp* rdp, wStream* s, int length, UINT16 securityFlags)
 			return FALSE; /* TODO */
 		}
 
-		Stream_Length(s) -= pad;
+		Stream_SetLength(s, Stream_Length(s) - pad);
 		return TRUE;
 	}
 
@@ -1117,7 +1119,7 @@ static int rdp_recv_tpkt_pdu(rdpRdp* rdp, wStream* s)
 		return -1;
 	}
 
-	if (rdp->disconnect)
+	if (freerdp_shall_disconnect(rdp->instance))
 		return 0;
  
 	if (rdp->autodetect->bandwidthMeasureStarted)
@@ -1291,16 +1293,46 @@ int rdp_recv_callback(rdpTransport* transport, wStream* s, void* extra)
 	switch (rdp->state)
 	{
 		case CONNECTION_STATE_NLA:
-			if (nla_recv_pdu(rdp->nla, s) < 1)
+			if (rdp->nla->state < NLA_STATE_AUTH_INFO)
 			{
-				WLog_ERR(TAG, "rdp_recv_callback: CONNECTION_STATE_NLA - nla_recv_pdu() fail");
-				return -1;
+				if (nla_recv_pdu(rdp->nla, s) < 1)
+				{
+					WLog_ERR(TAG, "rdp_recv_callback: CONNECTION_STATE_NLA - nla_recv_pdu() fail");
+					return -1;
+				}
+			}
+			else if (rdp->nla->state == NLA_STATE_POST_NEGO)
+			{
+				nego_recv(rdp->transport, s, (void*) rdp->nego);
+
+				if (rdp->nego->state != NEGO_STATE_FINAL)
+				{
+					WLog_ERR(TAG, "rdp_recv_callback: CONNECTION_STATE_NLA - nego_recv() fail");
+					return -1;
+				}
+
+				rdp->nla->state = NLA_STATE_FINAL;
 			}
 
 			if (rdp->nla->state == NLA_STATE_AUTH_INFO)
 			{
 				transport_set_nla_mode(rdp->transport, FALSE);
 
+				if (rdp->settings->VmConnectMode)
+				{
+					rdp->nego->state = NEGO_STATE_NLA;
+					rdp->nego->RequestedProtocols = PROTOCOL_NLA | PROTOCOL_TLS;
+					nego_send_negotiation_request(rdp->nego);
+					rdp->nla->state = NLA_STATE_POST_NEGO;
+				}
+				else
+				{
+					rdp->nla->state = NLA_STATE_FINAL;
+				}
+			}
+
+			if (rdp->nla->state == NLA_STATE_FINAL)
+			{
 				nla_free(rdp->nla);
 				rdp->nla = NULL;
 
@@ -1412,6 +1444,8 @@ BOOL rdp_send_error_info(rdpRdp* rdp)
 		return TRUE;
 
 	s = rdp_data_pdu_init(rdp);
+	if (!s)
+		return FALSE;
 
 	Stream_Write_UINT32(s, rdp->errorInfo); /* error id (4 bytes) */
 
@@ -1590,31 +1624,31 @@ void rdp_reset(rdpRdp* rdp)
 
 	if (rdp->rc4_decrypt_key)
 	{
-		crypto_rc4_free(rdp->rc4_decrypt_key);
+		winpr_RC4_Free(rdp->rc4_decrypt_key);
 		rdp->rc4_decrypt_key = NULL;
 	}
 
 	if (rdp->rc4_encrypt_key)
 	{
-		crypto_rc4_free(rdp->rc4_encrypt_key);
+		winpr_RC4_Free(rdp->rc4_encrypt_key);
 		rdp->rc4_encrypt_key = NULL;
 	}
 
 	if (rdp->fips_encrypt)
 	{
-		crypto_des3_free(rdp->fips_encrypt);
+		winpr_Cipher_Free(rdp->fips_encrypt);
 		rdp->fips_encrypt = NULL;
 	}
 
 	if (rdp->fips_decrypt)
 	{
-		crypto_des3_free(rdp->fips_decrypt);
+		winpr_Cipher_Free(rdp->fips_decrypt);
 		rdp->fips_decrypt = NULL;
 	}
 
 	if (rdp->fips_hmac)
 	{
-		crypto_hmac_free(rdp->fips_hmac);
+		free(rdp->fips_hmac);
 		rdp->fips_hmac = NULL;
 	}
 
@@ -1647,7 +1681,6 @@ void rdp_reset(rdpRdp* rdp)
 	rdp->nego = nego_new(rdp->transport);
 	rdp->mcs = mcs_new(rdp->transport);
 	rdp->transport->layer = TRANSPORT_LAYER_TCP;
-	rdp->disconnect = FALSE;
 	rdp->errorInfo = 0;
 	rdp->deactivation_reactivation = 0;
 	rdp->finalize_sc_pdus = 0;
@@ -1662,11 +1695,11 @@ void rdp_free(rdpRdp* rdp)
 {
 	if (rdp)
 	{
-		crypto_rc4_free(rdp->rc4_decrypt_key);
-		crypto_rc4_free(rdp->rc4_encrypt_key);
-		crypto_des3_free(rdp->fips_encrypt);
-		crypto_des3_free(rdp->fips_decrypt);
-		crypto_hmac_free(rdp->fips_hmac);
+		winpr_RC4_Free(rdp->rc4_decrypt_key);
+		winpr_RC4_Free(rdp->rc4_encrypt_key);
+		winpr_Cipher_Free(rdp->fips_encrypt);
+		winpr_Cipher_Free(rdp->fips_decrypt);
+		free(rdp->fips_hmac);
 		freerdp_settings_free(rdp->settings);
 		freerdp_settings_free(rdp->settingsCopy);
 		transport_free(rdp->transport);

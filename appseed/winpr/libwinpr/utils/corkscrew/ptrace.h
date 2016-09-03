@@ -24,7 +24,7 @@
 
 #include <sys/types.h>
 #include <stdbool.h>
-#include "_stdint.h"
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {

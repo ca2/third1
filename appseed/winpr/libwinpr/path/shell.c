@@ -34,8 +34,12 @@
 
 #include <winpr/path.h>
 
-#if defined(WIN32)
+#if defined(_UWP)
+#include <sys/types.h>
+#elif defined(WIN32)
 #include <Shlobj.h>
+#else
+#include <errno.h>
 #endif
 
 static char* GetPath_XDG_CONFIG_HOME(void);
@@ -74,13 +78,10 @@ static char* GetPath_HOME(void)
 {
 	char* path = NULL;
 
-#ifdef _WIN32
+#ifdef _UWP
+   path = _strdup("");
+#elif defined(_WIN32)
 	path = GetEnvAlloc("UserProfile");
-#elif defined(ANDROID)
-	path = malloc(2);
-	if (!path)
-		return NULL;
-	strcpy(path, "/");
 #else
 	path = GetEnvAlloc("HOME");
 #endif
@@ -147,13 +148,12 @@ static char* GetPath_XDG_CONFIG_HOME(void)
 {
 	char* path = NULL;
 
-#if defined(WIN32)
+#if defined(WIN32) && !defined(_UWP)
 	path = calloc(MAX_PATH, sizeof(char));
 	if (!path)
 		return NULL;
 
-	if (FAILED(SHGetFolderPathA(0, CSIDL_APPDATA, NULL,
-			     SHGFP_TYPE_CURRENT, path)))
+	if (FAILED(SHGetFolderPathA(0, CSIDL_APPDATA, NULL, SHGFP_TYPE_CURRENT, path)))
 	{
 		free(path);
 		return NULL;
@@ -245,13 +245,13 @@ static char* GetPath_XDG_CACHE_HOME(void)
 char* GetPath_XDG_RUNTIME_DIR(void)
 {
 	char* path = NULL;
-#if defined(WIN32)
+
+#if defined(WIN32) && !defined(_UWP)
 	path = calloc(MAX_PATH, sizeof(char));
 	if (!path)
 		return NULL;
 
-	if (FAILED(SHGetFolderPathA(0, CSIDL_LOCAL_APPDATA, NULL,
-			     SHGFP_TYPE_CURRENT, path)))
+	if (FAILED(SHGetFolderPathA(0, CSIDL_LOCAL_APPDATA, NULL, SHGFP_TYPE_CURRENT, path)))
 	{
 		free(path);
 		return NULL;
@@ -394,9 +394,9 @@ char* GetCombinedPath(const char* basePath, const char* subPath)
 	int subPathLength = 0;
 
 	if (basePath)
-		basePathLength = strlen(basePath);
+		basePathLength = (int) strlen(basePath);
 	if (subPath)
-		subPathLength = strlen(subPath);
+		subPathLength = (int) strlen(subPath);
 
 	length = basePathLength + subPathLength + 1;
 	path = (char*) malloc(length + 1);
@@ -444,47 +444,104 @@ char* GetCombinedPath(const char* basePath, const char* subPath)
 
 BOOL PathMakePathA(LPCSTR path, LPSECURITY_ATTRIBUTES lpAttributes)
 {
-	size_t length;
-	const char delim = PathGetSeparatorA(0);
-	char* cur;
-	char* copy_org = _strdup(path);
-	char* copy = copy_org;
+#if defined(_UWP)
 
-	if (!copy_org)
+   if (!path)
+      return FALSE;
+
+   if (PathFileExistsA(path))
+      return TRUE;
+      const char delim = PathGetSeparatorA(PATH_STYLE_NATIVE);
+   char* dup;
+   char* p;
+
+   /* we only operate on a non-null, absolute path */
+   //if (!path || *path != delim)
+     // return FALSE;
+
+
+   if (!(dup = _strdup(path)))
+      return FALSE;
+
+   bool bFirst = true;
+
+   for (p = dup; p;)
+   {
+      if ((p = strchr(p + 1, delim)))
+         *p = '\0';
+
+      if (bFirst)
+      {
+
+         bFirst = false;
+
+      }
+      else
+      {
+      uint32_t dw = GetFileAttributesA(dup);
+      if (dw == INVALID_FILE_ATTRIBUTES)
+      {
+         CreateDirectoryA(dup, NULL);
+      }
+      }
+      if (p)
+         *p = delim;
+   }
+
+   free(dup);
+   return PathFileExistsA(path);
+
+#elif defined(_WIN32)
+	return (SHCreateDirectoryExA(NULL, path, lpAttributes) == ERROR_SUCCESS);
+#else
+	const char delim = PathGetSeparatorA(PATH_STYLE_NATIVE);
+	char* dup;
+	char* p;
+
+	/* we only operate on a non-null, absolute path */
+	if (!path || *path != delim)
 		return FALSE;
 
-	length = strlen(copy_org);
+	if (!(dup = _strdup(path)))
+		return FALSE;
 
-	/* Find first path element that exists. */
-	while (copy)
+	for (p = dup; p;)
 	{
-		if (!PathFileExistsA(copy))
-		{
-			cur = strrchr(copy, delim);
-			if (cur)
-				*cur = '\0';
-		}
-		else
-			break;
-	}
+		if ((p = strchr(p + 1, delim)))
+			*p = '\0';
 
-	/* Create directories. */
-	while(copy)
-	{
-		if (!PathFileExistsA(copy))
-		{
-			if (!CreateDirectoryA(copy, NULL))
+		if (mkdir(dup, 0777) != 0)
+			if (errno != EEXIST)
 				break;
-		}
-		if (strlen(copy) < length)
-			copy[strlen(copy)] = delim;
-		else
-			break;
+		if (p)
+			*p = delim;
 	}
-	free (copy_org);
 
-	return PathFileExistsA(path);
+	free(dup);
+	return (p == NULL);
+#endif
 }
+
+#if defined(_UWP)
+BOOL PathFileExistsA(LPCSTR pszPath)
+{
+   uint32_t dw = GetFileAttributesA(pszPath);
+   if (dw == INVALID_FILE_ATTRIBUTES)
+   {
+
+      return FALSE;
+
+   }
+
+   return TRUE;
+}
+
+BOOL PathFileExistsW(LPCWSTR pszPath)
+{
+   return FALSE;
+}
+
+#elif !defined(_WIN32) 
 
 BOOL PathFileExistsA(LPCSTR pszPath)
 {
@@ -501,3 +558,10 @@ BOOL PathFileExistsW(LPCWSTR pszPath)
 	return FALSE;
 }
 
+#else
+
+#ifdef _WIN32
+#pragma comment(lib, "shlwapi.lib")
+#endif
+
+#endif

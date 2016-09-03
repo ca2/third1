@@ -64,21 +64,21 @@
  * SizeofResource
  */
 
-#if !defined(_WIN32) || defined(METROWIN)
+#if !defined(_WIN32) || defined(_UWP)
 
-#ifndef METROWIN
+#ifndef _WIN32
+
 #include <dlfcn.h>
-#endif
 #include <stdio.h>
 #include <stdlib.h>
-#ifndef METROWIN
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#endif
 
 #ifdef __MACOSX__
 #include <mach-o/dyld.h>
+#endif
+
 #endif
 
 DLL_DIRECTORY_COOKIE AddDllDirectory(PCWSTR NewDirectory)
@@ -98,53 +98,76 @@ BOOL SetDefaultDllDirectories(DWORD DirectoryFlags)
 
 HMODULE LoadLibraryA(LPCSTR lpLibFileName)
 {
-	HMODULE library;
-#ifdef METROWIN
-   library  = LoadPackagedLibrary(lpLibFileName, 0);
+#if defined(_UWP)
+	int status;
+	HMODULE hModule = NULL;
+	WCHAR* filenameW = NULL;
+
+	if (!lpLibFileName)
+		return NULL;
+
+	status = ConvertToUnicode(CP_UTF8, 0, lpLibFileName, -1, &filenameW, 0);
+
+	if (status < 1)
+		return NULL;
+
+	hModule = LoadPackagedLibrary(filenameW, 0);
+
+	free(filenameW);
+
+	return hModule;
 #else
+	HMODULE library;
+
 	library = dlopen(lpLibFileName, RTLD_LOCAL | RTLD_LAZY);
-#endif
+
 	if (!library)
 	{
-#ifndef METROWIN
 		WLog_ERR(TAG, "LoadLibraryA: %s", dlerror());
-#endif
 		return NULL;
 	}
 
 	return library;
+#endif
 }
 
 HMODULE LoadLibraryW(LPCWSTR lpLibFileName)
 {
+#if defined(_UWP)
+	return LoadPackagedLibrary(lpLibFileName, 0);
+#else
 	return (HMODULE) NULL;
+#endif
 }
 
 HMODULE LoadLibraryExA(LPCSTR lpLibFileName, HANDLE hFile, DWORD dwFlags)
 {
+#if !defined(_UWP)
 	HMODULE library;
-#ifdef METROWIN
-   library  = LoadPackagedLibrary(lpLibFileName,0);
-#else
-   library = dlopen(lpLibFileName, RTLD_LOCAL | RTLD_LAZY);
-#endif
+
+	library = dlopen(lpLibFileName, RTLD_LOCAL | RTLD_LAZY);
 
 	if (!library)
 	{
-#ifndef METROWIN
 		WLog_ERR(TAG, "LoadLibraryExA: failed to open %s: %s", lpLibFileName, dlerror());
-#endif
 		return NULL;
 	}
 
 	return library;
+#else
+	return (HMODULE)NULL;
+#endif
 }
 
 HMODULE LoadLibraryExW(LPCWSTR lpLibFileName, HANDLE hFile, DWORD dwFlags)
 {
 	return (HMODULE) NULL;
 }
-#ifndef METROWIN
+
+#endif
+
+#ifndef _WIN32
+
 FARPROC GetProcAddress(HMODULE hModule, LPCSTR lpProcName)
 {
 	FARPROC proc;
@@ -169,7 +192,6 @@ BOOL FreeLibrary(HMODULE hLibModule)
 
 	return TRUE;
 }
-#endif
 
 HMODULE GetModuleHandleA(LPCSTR lpModuleName)
 {
@@ -188,9 +210,11 @@ HMODULE GetModuleHandleW(LPCWSTR lpModuleName)
  * Finding current executable's path without /proc/self/exe:
  * http://stackoverflow.com/questions/1023306/finding-current-executables-path-without-proc-self-exe
  */
-#ifndef METROWIN
+
 DWORD GetModuleFileNameW(HMODULE hModule, LPWSTR lpFilename, DWORD nSize)
 {
+	WLog_ERR(TAG, "%s is not implemented", __FUNCTION__);
+	SetLastError(ERROR_CALL_NOT_IMPLEMENTED);
 	return 0;
 }
 
@@ -208,7 +232,10 @@ DWORD GetModuleFileNameA(HMODULE hModule, LPSTR lpFilename, DWORD nSize)
 		status = readlink(path, buffer, sizeof(buffer));
 
 		if (status < 0)
+		{
+			SetLastError(ERROR_INTERNAL_ERROR);
 			return 0;
+		}
 
 		buffer[status] = '\0';
 		length = strlen(buffer);
@@ -217,14 +244,13 @@ DWORD GetModuleFileNameA(HMODULE hModule, LPSTR lpFilename, DWORD nSize)
 		{
 			CopyMemory(lpFilename, buffer, length);
 			lpFilename[length] = '\0';
-		}
-		else
-		{
-			CopyMemory(lpFilename, buffer, nSize - 1);
-			lpFilename[nSize - 1] = '\0';
+			return length;
 		}
 
-		return 0;
+		CopyMemory(lpFilename, buffer, nSize - 1);
+		lpFilename[nSize - 1] = '\0';
+		SetLastError(ERROR_INSUFFICIENT_BUFFER);
+		return nSize;
 	}
 
 #elif defined(__MACOSX__)
@@ -241,6 +267,7 @@ DWORD GetModuleFileNameA(HMODULE hModule, LPSTR lpFilename, DWORD nSize)
 		if (status != 0)
 		{
 			/* path too small */
+			SetLastError(ERROR_INTERNAL_ERROR);
 			return 0;
 		}
 
@@ -255,20 +282,20 @@ DWORD GetModuleFileNameA(HMODULE hModule, LPSTR lpFilename, DWORD nSize)
 		{
 			CopyMemory(lpFilename, buffer, length);
 			lpFilename[length] = '\0';
-		}
-		else
-		{
-			CopyMemory(lpFilename, buffer, nSize - 1);
-			lpFilename[nSize - 1] = '\0';
+			return length;
 		}
 
-		return 0;
+		CopyMemory(lpFilename, buffer, nSize - 1);
+		lpFilename[nSize - 1] = '\0';
+		SetLastError(ERROR_INSUFFICIENT_BUFFER);
+		return nSize;
 	}
 
 #endif
+	WLog_ERR(TAG, "%s is not implemented", __FUNCTION__);
+	SetLastError(ERROR_CALL_NOT_IMPLEMENTED);
 	return 0;
 }
-#endif
 
 #endif
 

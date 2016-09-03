@@ -94,17 +94,17 @@ const RECTANGLE_16 *region16_rects(const REGION16 *region, int *nbRects)
 	REGION16_DATA *data;
 
 	assert(region);
-	assert(region->data);
 
 	data = region->data;
 	if (!data)
 	{
 		if (nbRects)
 			*nbRects = 0;
-		return 0;
+		return NULL;
 	}
 
-	*nbRects = data->nbRects;
+	if (nbRects)
+		*nbRects = data->nbRects;
 	return (RECTANGLE_16 *)(data + 1);
 }
 
@@ -529,7 +529,7 @@ BOOL region16_union_rect(REGION16 *dst, const REGION16 *src, const RECTANGLE_16 
 		dstRect->top = rect->top;
 		dstRect->left = rect->left;
 		dstRect->right = rect->right;
-		dstRect->bottom = srcExtents->top;
+		dstRect->bottom = MIN(srcExtents->top, rect->bottom);
 
 		usedRects++;
 		dstRect++;

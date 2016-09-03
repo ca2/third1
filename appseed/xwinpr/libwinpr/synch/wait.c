@@ -285,9 +285,9 @@ DWORD WaitForSingleObject(HANDLE hHandle, DWORD dwMilliseconds)
 
 DWORD WaitForSingleObjectEx(HANDLE hHandle, DWORD dwMilliseconds, BOOL bAlertable)
 {
-	WLog_ERR(TAG, "Function not implemented.");
-	assert(0);
-	return WAIT_OBJECT_0;
+	WLog_ERR(TAG, "%s: Not implemented.");
+	SetLastError(ERROR_NOT_SUPPORTED);
+	return WAIT_FAILED;
 }
 
 DWORD WaitForMultipleObjects(DWORD nCount, const HANDLE *lpHandles, BOOL bWaitAll, DWORD dwMilliseconds)
@@ -297,8 +297,8 @@ DWORD WaitForMultipleObjects(DWORD nCount, const HANDLE *lpHandles, BOOL bWaitAl
 	unsigned long long diff;
 	DWORD signalled;
 	DWORD polled;
-	DWORD *poll_map;
-	BOOL *signalled_idx;
+	DWORD *poll_map = NULL;
+	BOOL *signalled_idx = NULL;
 	int fd = -1;
 	int index;
 	int status;
@@ -479,9 +479,9 @@ DWORD WaitForMultipleObjects(DWORD nCount, const HANDLE *lpHandles, BOOL bWaitAl
 			signal_set = pollfds[index].revents & pollfds[index].events;
 #else
 			if (Object->Mode & WINPR_FD_READ)
-				signal_set = FD_ISSET(fd, &rfds);
+				signal_set = FD_ISSET(fd, &rfds) ? 1 : 0;
 			if (Object->Mode & WINPR_FD_WRITE)
-				signal_set = FD_ISSET(fd, &wfds);
+				signal_set |= FD_ISSET(fd, &wfds) ? 1 : 0;
 #endif
 			if (signal_set)
 			{
@@ -525,9 +525,9 @@ DWORD WaitForMultipleObjectsEx(DWORD nCount, const HANDLE *lpHandles, BOOL bWait
 
 DWORD SignalObjectAndWait(HANDLE hObjectToSignal, HANDLE hObjectToWaitOn, DWORD dwMilliseconds, BOOL bAlertable)
 {
-	WLog_ERR(TAG, "Function not implemented.");
-	assert(0);
-	return 0;
+	WLog_ERR(TAG, "%s: Not implemented.");
+	SetLastError(ERROR_NOT_SUPPORTED);
+	return WAIT_FAILED;
 }
 
 #endif

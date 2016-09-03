@@ -17,7 +17,7 @@
 #ifndef _CORKSCREW_SYMBOL_TABLE_H
 #define _CORKSCREW_SYMBOL_TABLE_H
 
-#include "_stdint.h"
+#include <stdint.h>
 #include <sys/types.h>
 
 #ifdef __cplusplus

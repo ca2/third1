@@ -24,9 +24,7 @@
 #include <winpr/ntlm.h>
 
 #include <winpr/crt.h>
-
-#include <openssl/ssl.h>
-#include <openssl/md4.h>
+#include <winpr/crypto.h>
 
 /**
  * Define NTOWFv1(Password, User, Domain) as
@@ -36,17 +34,24 @@
 
 BYTE* NTOWFv1W(LPWSTR Password, UINT32 PasswordLength, BYTE* NtHash)
 {
-	MD4_CTX md4_ctx;
+	BOOL allocate = !NtHash;
+	WINPR_MD4_CTX md4;
 
 	if (!Password)
 		return NULL;
 
-	if (!NtHash && !(NtHash = malloc(16)))
+	if (!winpr_MD4_Init(&md4))
 		return NULL;
-
-	MD4_Init(&md4_ctx);
-	MD4_Update(&md4_ctx, Password, PasswordLength);
-	MD4_Final((void*) NtHash, &md4_ctx);
+	if (!winpr_MD4_Update(&md4, (BYTE*) Password, (size_t) PasswordLength))
+		return NULL;
+	if (!NtHash && !(NtHash = malloc(WINPR_MD4_DIGEST_LENGTH)))
+		return NULL;
+	if (!winpr_MD4_Final(&md4, NtHash, WINPR_MD4_DIGEST_LENGTH))
+	{
+		if (allocate)
+			free(NtHash);
+		return NULL;
+	}
 
 	return NtHash;
 }
@@ -79,11 +84,12 @@ BYTE* NTOWFv2W(LPWSTR Password, UINT32 PasswordLength, LPWSTR User,
 {
 	BYTE* buffer;
 	BYTE NtHashV1[16];
+	BYTE* result = NtHash;
 
 	if ((!User) || (!Password))
 		return NULL;
 
-	if (!NtHash && !(NtHash = (BYTE*) malloc(16)))
+	if (!NtHash && !(NtHash = (BYTE*) malloc(WINPR_MD4_DIGEST_LENGTH)))
 		return NULL;
 
 	if (!NTOWFv1W(Password, PasswordLength, NtHashV1))
@@ -105,11 +111,12 @@ BYTE* NTOWFv2W(LPWSTR Password, UINT32 PasswordLength, LPWSTR User,
 	CopyMemory(&buffer[UserLength], Domain, DomainLength);
 
 	/* Compute the HMAC-MD5 hash of the above value using the NTLMv1 hash as the key, the result is the NTLMv2 hash */
-	HMAC(EVP_md5(), (void*) NtHashV1, 16, buffer, UserLength + DomainLength, (void*) NtHash, NULL);
+	if (!winpr_HMAC(WINPR_MD_MD5, NtHashV1, 16, buffer, UserLength + DomainLength, NtHash, WINPR_MD4_DIGEST_LENGTH))
+		result = NULL;
 
 	free(buffer);
 
-	return NtHash;
+	return result;
 }
 
 BYTE* NTOWFv2A(LPSTR Password, UINT32 PasswordLength, LPSTR User,
@@ -143,11 +150,12 @@ out_fail:
 BYTE* NTOWFv2FromHashW(BYTE* NtHashV1, LPWSTR User, UINT32 UserLength, LPWSTR Domain, UINT32 DomainLength, BYTE* NtHash)
 {
 	BYTE* buffer;
+	BYTE* result = NtHash;
 
 	if (!User)
 		return NULL;
 
-	if (!NtHash && !(NtHash = (BYTE*) malloc(16)))
+	if (!NtHash && !(NtHash = (BYTE*) malloc(WINPR_MD4_DIGEST_LENGTH)))
 		return NULL;
 
 	if (!(buffer = (BYTE*) malloc(UserLength + DomainLength)))
@@ -167,11 +175,12 @@ BYTE* NTOWFv2FromHashW(BYTE* NtHashV1, LPWSTR User, UINT32 UserLength, LPWSTR Do
 	}
 
 	/* Compute the HMAC-MD5 hash of the above value using the NTLMv1 hash as the key, the result is the NTLMv2 hash */
-	HMAC(EVP_md5(), (void*) NtHashV1, 16, buffer, UserLength + DomainLength, (void*) NtHash, NULL);
+	if (!winpr_HMAC(WINPR_MD_MD5, NtHashV1, 16, buffer, UserLength + DomainLength, NtHash, WINPR_MD4_DIGEST_LENGTH))
+		result = NULL;
 
 	free(buffer);
 
-	return NtHash;
+	return result;
 }
 
 BYTE* NTOWFv2FromHashA(BYTE* NtHashV1, LPSTR User, UINT32 UserLength, LPSTR Domain, UINT32 DomainLength, BYTE* NtHash)

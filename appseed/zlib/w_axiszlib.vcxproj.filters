@@ -10,49 +10,14 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{66a6a34e-1b59-4f45-b1ed-094afb2984d0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assembler Files\x86">
+      <UniqueIdentifier>{093b94a4-21ab-4037-9f9c-682d9c3b964c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\x64">
+      <UniqueIdentifier>{9dc065a3-3e43-4ea7-ab96-e5aa592f9b2f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="crc32.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="deflate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="gzguts.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="inffast.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="inffixed.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="inflate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="inftrees.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="trees.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="zutil.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="contrib\masmx64\gvmat64.asm">
-      <Filter>Assembler Files</Filter>
-    </None>
-    <None Include="contrib\masmx64\inffasx64.asm">
-      <Filter>Assembler Files</Filter>
-    </None>
-    <None Include="contrib\masmx86\inffas32.asm">
-      <Filter>Assembler Files</Filter>
-    </None>
-    <None Include="contrib\masmx86\match686.asm">
-      <Filter>Assembler Files</Filter>
-    </None>
     <None Include="axiszlib.def">
       <Filter>Source Files</Filter>
     </None>
@@ -106,5 +71,15 @@
     <ClCompile Include="zutil.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="contrib\masmx86\inffas32.asm">
+      <Filter>Assembler Files\x86</Filter>
+    </CustomBuild>
+    <CustomBuild Include="contrib\masmx86\match686.asm">
+      <Filter>Assembler Files\x86</Filter>
+    </CustomBuild>
+    <CustomBuild Include="contrib\masmx64\gvmat64.asm" />
+    <CustomBuild Include="contrib\masmx64\inffasx64.asm" />
   </ItemGroup>
 </Project>

@@ -76,30 +76,30 @@ static char* REG_DATA_TYPE_STRINGS[] =
 
 static void reg_load_start(Reg* reg)
 {
-	long int file_size_t;
+	long int file_size;
 	fseek(reg->fp, 0, SEEK_END);
-	file_size_t = ftell(reg->fp);
+	file_size = ftell(reg->fp);
 	fseek(reg->fp, 0, SEEK_SET);
 	reg->line = NULL;
 	reg->next_line = NULL;
 	reg->buffer = NULL;
 
-	if (file_size_t < 1)
+	if (file_size < 1)
 		return;
 
-	reg->buffer = (char*) malloc(file_size_t + 2);
+	reg->buffer = (char*) malloc(file_size + 2);
 	if (!reg->buffer)
 		return ;
 
-	if (fread(reg->buffer, file_size_t, 1, reg->fp) != 1)
+	if (fread(reg->buffer, file_size, 1, reg->fp) != 1)
 	{
 		free(reg->buffer);
 		reg->buffer = NULL;
 		return;
 	}
 
-	reg->buffer[file_size_t] = '\n';
-	reg->buffer[file_size_t + 1] = '\0';
+	reg->buffer[file_size] = '\n';
+	reg->buffer[file_size + 1] = '\0';
 	reg->next_line = strtok(reg->buffer, "\n");
 }
 

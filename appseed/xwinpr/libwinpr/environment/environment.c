@@ -28,7 +28,7 @@
 
 #include <winpr/environment.h>
 
-#if !defined(_WIN32) || defined(METROWIN)
+#ifndef _WIN32
 
 #define stricmp strcasecmp
 #define strnicmp strncasecmp
@@ -46,7 +46,7 @@
 #include <crt_externs.h>
 #define environ (*_NSGetEnviron())
 #endif
-#ifndef METROWIN
+
 DWORD GetCurrentDirectoryA(DWORD nBufferLength, LPSTR lpBuffer)
 {
 	char* cwd;
@@ -100,7 +100,7 @@ BOOL SetCurrentDirectoryW(LPCWSTR lpPathName)
 {
 	return TRUE;
 }
-#endif
+
 DWORD SearchPathA(LPCSTR lpPath, LPCSTR lpFileName, LPCSTR lpExtension, DWORD nBufferLength, LPSTR lpBuffer, LPSTR* lpFilePart)
 {
 	return 0;
@@ -111,21 +111,6 @@ DWORD SearchPathW(LPCWSTR lpPath, LPCWSTR lpFileName, LPCWSTR lpExtension, DWORD
 	return 0;
 }
 
-HANDLE GetStdHandle(DWORD nStdHandle)
-{
-	return NULL;
-}
-
-BOOL SetStdHandle(DWORD nStdHandle, HANDLE hHandle)
-{
-	return TRUE;
-}
-
-BOOL SetStdHandleEx(DWORD dwStdHandle, HANDLE hNewHandle, HANDLE* phOldHandle)
-{
-	return TRUE;
-}
-#if !defined(METROWIN)
 LPSTR GetCommandLineA(VOID)
 {
 	return NULL;
@@ -135,7 +120,7 @@ LPWSTR GetCommandLineW(VOID)
 {
 	return NULL;
 }
-#endif
+
 BOOL NeedCurrentDirectoryForExePathA(LPCSTR ExeName)
 {
 	return TRUE;
@@ -146,8 +131,13 @@ BOOL NeedCurrentDirectoryForExePathW(LPCWSTR ExeName)
 	return TRUE;
 }
 
+#endif
+
+#if !defined(_WIN32) || defined(_UWP)
+
 DWORD GetEnvironmentVariableA(LPCSTR lpName, LPSTR lpBuffer, DWORD nSize)
 {
+#if !defined(_UWP)
 	int length;
 	char* env = NULL;
 
@@ -159,14 +149,6 @@ DWORD GetEnvironmentVariableA(LPCSTR lpName, LPSTR lpBuffer, DWORD nSize)
 		return 0;
 	}
 
-#ifdef METROWIN
-   if(!*env)
-   {
-      SetLastError(ERROR_ENVVAR_NOT_FOUND);
-      return 0;
-   }
-#endif
-
 	length = strlen(env);
 
 	if ((length + 1 > nSize) || (!lpBuffer))
@@ -175,22 +157,21 @@ DWORD GetEnvironmentVariableA(LPCSTR lpName, LPSTR lpBuffer, DWORD nSize)
 	CopyMemory(lpBuffer, env, length + 1);
 
 	return length;
+#else
+	SetLastError(ERROR_ENVVAR_NOT_FOUND);
+	return 0;
+#endif
 }
 
 DWORD GetEnvironmentVariableW(LPCWSTR lpName, LPWSTR lpBuffer, DWORD nSize)
 {
+	SetLastError(ERROR_ENVVAR_NOT_FOUND);
 	return 0;
 }
 
-
 BOOL SetEnvironmentVariableA(LPCSTR lpName, LPCSTR lpValue)
 {
-#ifdef METROWIN
-
-   return TRUE;
-#else
-
-
+#if !defined(_UWP)
 	if (!lpName)
 		return FALSE;
 
@@ -206,12 +187,14 @@ BOOL SetEnvironmentVariableA(LPCSTR lpName, LPCSTR lpValue)
 	}
 
 	return TRUE;
+#else
+	return FALSE;
 #endif
 }
 
 BOOL SetEnvironmentVariableW(LPCWSTR lpName, LPCWSTR lpValue)
 {
-	return TRUE;
+	return FALSE;
 }
 
 /**
@@ -232,11 +215,9 @@ BOOL SetEnvironmentVariableW(LPCWSTR lpName, LPCWSTR lpValue)
 
 extern char** environ;
 
-LPCH GetEnvironmentStrings(VOID)
+LPCH GetEnvironmentStringsA(VOID)
 {
-#ifdef METROWIN
-   return NULL;
-#else
+#if !defined(_UWP)
 	char* p;
 	int offset;
 	int length;
@@ -254,9 +235,9 @@ LPCH GetEnvironmentStrings(VOID)
 
 	while (*envp)
 	{
-		length = strlen(*envp);
+		length = (int) strlen(*envp);
 
-		while ((offset + length + 8) > cchEnvironmentBlock)
+		while ((offset + length + 8) > (int) cchEnvironmentBlock)
 		{
 			DWORD new_size;
 			LPCH new_blk;
@@ -285,6 +266,8 @@ LPCH GetEnvironmentStrings(VOID)
 	lpszEnvironmentBlock[offset] = '\0';
 
 	return lpszEnvironmentBlock;
+#else
+	return NULL;
 #endif
 }
 
@@ -355,7 +338,7 @@ LPCH MergeEnvironmentStrings(PCSTR original, PCSTR merge)
 
 	while (*cp && *(cp + 1))
 	{
-		length = strlen(cp);
+		length = (int) strlen(cp);
 
 		if (mergeStringLength == mergeArraySize)
 		{
@@ -366,7 +349,7 @@ LPCH MergeEnvironmentStrings(PCSTR original, PCSTR merge)
 
 			if (!new_str)
 			{
-				free(mergeStrings);
+				free((void*) mergeStrings);
 				return NULL;
 			}
 			mergeStrings = new_str;
@@ -384,7 +367,7 @@ LPCH MergeEnvironmentStrings(PCSTR original, PCSTR merge)
 
 	if (!lpszEnvironmentBlock)
 	{
-		free (mergeStrings);
+		free((void*) mergeStrings);
 		return NULL;
 	}
 
@@ -393,9 +376,9 @@ LPCH MergeEnvironmentStrings(PCSTR original, PCSTR merge)
 	while ((original != NULL) && (*envp && *(envp+1)))
 	{
 		ULONG old_offset = offset;
-		length = strlen(envp);
+		length = (int) strlen(envp);
 
-		while ((offset + length + 8) > cchEnvironmentBlock)
+		while ((offset + length + 8) > (int) cchEnvironmentBlock)
 		{
 			LPCH tmp;
 			cchEnvironmentBlock *= 2;
@@ -403,8 +386,8 @@ LPCH MergeEnvironmentStrings(PCSTR original, PCSTR merge)
 
 			if (!tmp)
 			{
-				free (lpszEnvironmentBlock);
-				free (mergeStrings);
+				free((void*) lpszEnvironmentBlock);
+				free((void*) mergeStrings);
 				return NULL;
 			}
 			lpszEnvironmentBlock = tmp;
@@ -419,7 +402,7 @@ LPCH MergeEnvironmentStrings(PCSTR original, PCSTR merge)
 			if (!mergeStrings[run])
 				continue;
 
-			mergeLength = strlen(mergeStrings[run]);
+			mergeLength = (int) strlen(mergeStrings[run]);
 			foundEquals = strstr(mergeStrings[run], "=");
 
 			if (!foundEquals)
@@ -435,7 +418,7 @@ LPCH MergeEnvironmentStrings(PCSTR original, PCSTR merge)
 				}
 				else
 				{
-					while ((offset + mergeLength + 8) > cchEnvironmentBlock)
+					while ((offset + mergeLength + 8) > (int) cchEnvironmentBlock)
 					{
 						LPCH tmp;
 						cchEnvironmentBlock *= 2;
@@ -443,8 +426,8 @@ LPCH MergeEnvironmentStrings(PCSTR original, PCSTR merge)
 
 						if (!tmp)
 						{
-							free(lpszEnvironmentBlock);
-							free (mergeStrings);
+							free((void*) lpszEnvironmentBlock);
+							free((void*) mergeStrings);
 							return NULL;
 						}
 						lpszEnvironmentBlock = tmp;
@@ -476,9 +459,9 @@ LPCH MergeEnvironmentStrings(PCSTR original, PCSTR merge)
 		if (!mergeStrings[run])
 			continue;
 
-		mergeLength = strlen(mergeStrings[run]);
+		mergeLength = (int) strlen(mergeStrings[run]);
 
-		while ((offset + mergeLength + 8) > cchEnvironmentBlock)
+		while ((offset + mergeLength + 8) > (int) cchEnvironmentBlock)
 		{
 			LPCH tmp;
 			cchEnvironmentBlock *= 2;
@@ -486,8 +469,8 @@ LPCH MergeEnvironmentStrings(PCSTR original, PCSTR merge)
 
 			if (!tmp)
 			{
-				free(lpszEnvironmentBlock);
-				free (mergeStrings);
+				free((void*) lpszEnvironmentBlock);
+				free((void*) mergeStrings);
 				return NULL;
 			}
 
@@ -520,14 +503,14 @@ DWORD GetEnvironmentVariableEBA(LPCSTR envBlock, LPCSTR lpName, LPSTR lpBuffer, 
 	if (!lpName || NULL == envBlock)
 		return 0;
 
-	lpNameLength = strlen(lpName);
+	lpNameLength = (int) strlen(lpName);
 
 	if (lpNameLength < 1)
 		return 0;
 
 	while (*penvb && *(penvb + 1))
 	{
-		fLength = strlen(penvb);
+		fLength = (int) strlen(penvb);
 		foundEquals = strstr(penvb,"=");
 
 		if (!foundEquals)
@@ -536,7 +519,7 @@ DWORD GetEnvironmentVariableEBA(LPCSTR envBlock, LPCSTR lpName, LPSTR lpBuffer, 
 			return 0;
 		}
 
-		nLength = foundEquals - penvb;
+		nLength = (int) (foundEquals - penvb);
 
 		if (nLength != lpNameLength)
 		{
@@ -556,9 +539,9 @@ DWORD GetEnvironmentVariableEBA(LPCSTR envBlock, LPCSTR lpName, LPSTR lpBuffer, 
 	if (!env)
 		return 0;
 
-	vLength = strlen(env);
+	vLength = (int) strlen(env);
 
-	if ((vLength + 1 > nSize) || (!lpBuffer))
+	if ((vLength + 1 > (int) nSize) || (!lpBuffer))
 		return vLength + 1;
 
 	CopyMemory(lpBuffer, env, vLength + 1);
@@ -577,7 +560,7 @@ BOOL SetEnvironmentVariableEBA(LPSTR* envBlock, LPCSTR lpName, LPCSTR lpValue)
 
 	if (lpValue)
 	{
-		length = strlen(lpName) + strlen(lpValue) + 2; /* +2 because of = and \0 */
+		length = (int) (strlen(lpName) + strlen(lpValue) + 2); /* +2 because of = and \0 */
 		envstr = (char*) malloc(length + 1); /* +1 because of closing \0 */
 
 		if (!envstr)
@@ -587,7 +570,7 @@ BOOL SetEnvironmentVariableEBA(LPSTR* envBlock, LPCSTR lpName, LPCSTR lpValue)
 	}
 	else
 	{
-		length = strlen(lpName) + 2; /* +2 because of = and \0 */
+		length = (int) strlen(lpName) + 2; /* +2 because of = and \0 */
 		envstr = (char*) malloc(length + 1); /* +1 because of closing \0 */
 
 		if (!envstr)
@@ -606,4 +589,53 @@ BOOL SetEnvironmentVariableEBA(LPSTR* envBlock, LPCSTR lpName, LPCSTR lpValue)
 	*envBlock = newEB;
 
 	return TRUE;
+}
+
+char** EnvironmentBlockToEnvpA(LPCH lpszEnvironmentBlock)
+{
+	char* p;
+	int index;
+	int count;
+	int length;
+	char** envp = NULL;
+
+	count = 0;
+	if (!lpszEnvironmentBlock)
+		return NULL;
+
+	p = (char*) lpszEnvironmentBlock;
+
+	while (p[0] && p[1])
+	{
+		length = (int) strlen(p);
+		p += (length + 1);
+		count++;
+	}
+
+	index = 0;
+	p = (char*) lpszEnvironmentBlock;
+
+	envp = (char**) calloc(count + 1, sizeof(char*));
+	if (!envp)
+		return NULL;
+	envp[count] = NULL;
+
+	while (p[0] && p[1])
+	{
+		length = (int) strlen(p);
+		envp[index] = _strdup(p);
+		if (!envp[index])
+		{
+			for (index -= 1; index >= 0; --index)
+			{
+				free(envp[index]);
+			}
+			free(envp);
+			return NULL;
+		}
+		p += (length + 1);
+		index++;
+	}
+
+	return envp;
 }

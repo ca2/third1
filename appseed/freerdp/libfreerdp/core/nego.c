@@ -143,20 +143,27 @@ BOOL nego_connect(rdpNego* nego)
 		}
 	}
 
-	do
+	if (!nego->NegotiateSecurityLayer)
 	{
-		WLog_DBG(TAG, "state: %s", NEGO_STATE_STRINGS[nego->state]);
-
-		nego_send(nego);
-
-		if (nego->state == NEGO_STATE_FAIL)
-		{
-			WLog_ERR(TAG, "Protocol Security Negotiation Failure");
-			nego->state = NEGO_STATE_FINAL;
-			return FALSE;
-		}
+		nego->state = NEGO_STATE_FINAL;
 	}
-	while (nego->state != NEGO_STATE_FINAL);
+	else
+	{
+		do
+		{
+			WLog_DBG(TAG, "state: %s", NEGO_STATE_STRINGS[nego->state]);
+
+			nego_send(nego);
+
+			if (nego->state == NEGO_STATE_FAIL)
+			{
+				WLog_ERR(TAG, "Protocol Security Negotiation Failure");
+				nego->state = NEGO_STATE_FINAL;
+				return FALSE;
+			}
+		}
+		while (nego->state != NEGO_STATE_FINAL);
+	}
 
 	WLog_DBG(TAG, "Negotiated %s security", PROTOCOL_SECURITY_STRINGS[nego->SelectedProtocol]);
 
@@ -185,9 +192,6 @@ BOOL nego_connect(rdpNego* nego)
 		WLog_DBG(TAG, "Failed to connect with %s security", PROTOCOL_SECURITY_STRINGS[nego->SelectedProtocol]);
 		return FALSE;
 	}
-
-	if (!(nego->flags & DYNVC_GFX_PROTOCOL_SUPPORTED))
-		settings->NetworkAutoDetect = FALSE;
 
 	return TRUE;
 }
@@ -1089,7 +1093,7 @@ BOOL nego_send_negotiation_response(rdpNego* nego)
 				settings->EncryptionLevel = ENCRYPTION_LEVEL_NONE;
 			}
 
-			if (!settings->RdpServerRsaKey && !settings->RdpKeyFile)
+			if (!settings->RdpServerRsaKey && !settings->RdpKeyFile && !settings->RdpKeyContent)
 			{
 				WLog_ERR(TAG, "Missing server certificate");
 				return FALSE;

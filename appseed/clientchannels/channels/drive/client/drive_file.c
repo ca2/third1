@@ -5,6 +5,10 @@
  * Copyright 2010-2012 Marc-Andre Moreau <marcandre.moreau@gmail.com>
  * Copyright 2010-2011 Vic Lee
  * Copyright 2012 Gerald Richter
+ * Copyright 2015 Thincast Technologies GmbH
+ * Copyright 2015 DI (FH) Martin Haimberger <martin.haimberger@thincast.com>
+ * Copyright 2016 Inuvika Inc.
+ * Copyright 2016 David PHAM-VAN <d.phamvan@inuvika.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,6 +43,7 @@
 #include <sys/stat.h>
 
 #include <winpr/crt.h>
+#include <winpr/path.h>
 #include <winpr/file.h>
 #include <winpr/stream.h>
 
@@ -57,6 +62,8 @@
 #ifdef _WIN32
 #pragma comment(lib, "Shlwapi.lib")
 #include <Shlwapi.h>
+#else
+#include <winpr/path.h>
 #endif
 
 #include "drive_file.h"
@@ -96,6 +103,11 @@ static char* drive_file_combine_fullpath(const char* base_path, const char* path
 	char* fullpath;
 
 	fullpath = (char*) malloc(strlen(base_path) + strlen(path) + 1);
+	if (!fullpath)
+	{
+		WLog_ERR(TAG, "malloc failed!");
+		return NULL;
+	}
 	strcpy(fullpath, base_path);
 	strcat(fullpath, path);
 	drive_file_fix_path(fullpath);
@@ -127,6 +139,11 @@ static BOOL drive_file_remove_dir(const char* path)
 		}
 
 		p = (char*) malloc(strlen(path) + strlen(pdirent->d_name) + 2);
+		if (!p)
+		{
+			WLog_ERR(TAG, "malloc failed!");
+			return FALSE;
+		}
 		sprintf(p, "%s/%s", path, pdirent->d_name);
 
 		if (STAT(p, &st) != 0)
@@ -299,8 +316,12 @@ DRIVE_FILE* drive_file_new(const char* base_path, const char* path, UINT32 id,
 {
 	DRIVE_FILE* file;
 
-	file = (DRIVE_FILE*) malloc(sizeof(DRIVE_FILE));
-	ZeroMemory(file, sizeof(DRIVE_FILE));
+	file = (DRIVE_FILE*) calloc(1, sizeof(DRIVE_FILE));
+	if (!file)
+	{
+		WLog_ERR(TAG, "calloc failed!");
+		return NULL;
+	}
 
 	file->id = id;
 	file->basepath = (char*) base_path;
@@ -466,9 +487,7 @@ out_fail:
 
 int dir_empty(const char *path)
 {
-#ifdef METROWIN
-   return 1;
-#elif _WIN32
+#ifdef _WIN32
 	return PathIsDirectoryEmptyA(path);
 #else
 	struct dirent *dp;
@@ -493,18 +512,23 @@ BOOL drive_file_set_information(DRIVE_FILE* file, UINT32 FsInformationClass, UIN
 {
 	char* s = NULL;
 	mode_t m;
-	UINT64 size;
+	INT64 size;
 	int status;
 	char* fullpath;
-	struct STAT st;
-#if defined(__linux__) && !defined(ANDROID) || defined(sun)
-	struct timespec tv[2];
-#else
-	struct timeval tv[2];
-#endif
-	UINT64 LastWriteTime;
+	ULARGE_INTEGER liCreationTime;
+	ULARGE_INTEGER liLastAccessTime;
+	ULARGE_INTEGER liLastWriteTime;
+	ULARGE_INTEGER liChangeTime;
+	FILETIME ftCreationTime;
+	FILETIME ftLastAccessTime;
+	FILETIME ftLastWriteTime;
+	FILETIME* pftCreationTime = NULL;
+	FILETIME* pftLastAccessTime = NULL;
+	FILETIME* pftLastWriteTime = NULL;
 	UINT32 FileAttributes;
 	UINT32 FileNameLength;
+	HANDLE hFd;
+	LARGE_INTEGER liSize;
 
 	m = 0;
 
@@ -512,55 +536,73 @@ BOOL drive_file_set_information(DRIVE_FILE* file, UINT32 FsInformationClass, UIN
 	{
 		case FileBasicInformation:
 			/* http://msdn.microsoft.com/en-us/library/cc232094.aspx */
-			Stream_Seek_UINT64(input); /* CreationTime */
-			Stream_Seek_UINT64(input); /* LastAccessTime */
-			Stream_Read_UINT64(input, LastWriteTime);
-			Stream_Seek_UINT64(input); /* ChangeTime */
+			Stream_Read_UINT64(input, liCreationTime.QuadPart);
+			Stream_Read_UINT64(input, liLastAccessTime.QuadPart);
+			Stream_Read_UINT64(input, liLastWriteTime.QuadPart);
+			Stream_Read_UINT64(input, liChangeTime.QuadPart);
 			Stream_Read_UINT32(input, FileAttributes);
 
-			if (FSTAT(file->fd, &st) != 0)
+			if (!PathFileExistsA(file->fullpath))
 				return FALSE;
-
-			tv[0].tv_sec = st.st_atime;
-			tv[1].tv_sec = (LastWriteTime > 0 ? FILE_TIME_RDP_TO_SYSTEM(LastWriteTime) : st.st_mtime);
-#ifndef WIN32
-			/* TODO on win32 */
-#ifdef ANDROID
-			tv[0].tv_usec = 0;
-			tv[1].tv_usec = 0;
-			utimes(file->fullpath, tv);
-#elif defined (__linux__) || defined (sun)
-			tv[0].tv_nsec = 0;
-			tv[1].tv_nsec = 0;			
-			futimens(file->fd, tv);
-#else
-			tv[0].tv_usec = 0;
-			tv[1].tv_usec = 0;
-			futimes(file->fd, tv);
-#endif
-
-			if (FileAttributes > 0)
+			hFd = CreateFileA(file->fullpath, GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+			if (hFd == INVALID_HANDLE_VALUE)
 			{
-				m = st.st_mode;
-				if ((FileAttributes & FILE_ATTRIBUTE_READONLY) == 0)
-					m |= S_IWUSR;
-				else
-					m &= ~S_IWUSR;
-				if (m != st.st_mode)
-					fchmod(file->fd, st.st_mode);
+				WLog_ERR(TAG, "Unable to set file time %s to %d", file->fullpath);
+				return FALSE;
 			}
-#endif
+			if (liCreationTime.QuadPart != 0)
+			{
+				ftCreationTime.dwHighDateTime = liCreationTime.HighPart;
+				ftCreationTime.dwLowDateTime = liCreationTime.LowPart;
+				pftCreationTime = &ftCreationTime;
+			}
+			if (liLastAccessTime.QuadPart != 0)
+			{
+				ftLastAccessTime.dwHighDateTime = liLastAccessTime.HighPart;
+				ftLastAccessTime.dwLowDateTime = liLastAccessTime.LowPart;
+				pftLastAccessTime = &ftLastAccessTime;
+			}
+			if (liLastWriteTime.QuadPart != 0)
+			{
+				ftLastWriteTime.dwHighDateTime = liLastWriteTime.HighPart;
+				ftLastWriteTime.dwLowDateTime = liLastWriteTime.LowPart;
+				pftLastWriteTime = &ftLastWriteTime;
+			}
+			if (liChangeTime.QuadPart != 0 && liChangeTime.QuadPart > liLastWriteTime.QuadPart)
+			{
+				ftLastWriteTime.dwHighDateTime = liChangeTime.HighPart;
+				ftLastWriteTime.dwLowDateTime = liChangeTime.LowPart;
+				pftLastWriteTime = &ftLastWriteTime;
+			}
+			if (!SetFileTime(hFd, pftCreationTime, pftLastAccessTime, pftLastWriteTime))
+			{
+				WLog_ERR(TAG, "Unable to set file time %s to %d", file->fullpath);
+				CloseHandle(hFd);
+				return FALSE;
+			}
+			CloseHandle(hFd);
 			break;
 
 		case FileEndOfFileInformation:
 			/* http://msdn.microsoft.com/en-us/library/cc232067.aspx */
 		case FileAllocationInformation:
 			/* http://msdn.microsoft.com/en-us/library/cc232076.aspx */
-			Stream_Read_UINT64(input, size);
-#ifndef _WIN32
-			if (ftruncate(file->fd, size) != 0)
+			Stream_Read_INT64(input, size);
+
+			hFd = CreateFileA(file->fullpath, GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+			if (hFd == INVALID_HANDLE_VALUE)
+			{
+				WLog_ERR(TAG, "Unable to truncate %s to %d", file->fullpath, size);
 				return FALSE;
-#endif
+			}
+			liSize.QuadPart = size;
+			if (SetFilePointer(hFd, liSize.LowPart, &liSize.HighPart, FILE_BEGIN) == 0)
+			{
+				WLog_ERR(TAG, "Unable to truncate %s to %d", file->fullpath, size);
+				CloseHandle(hFd);
+				return FALSE;
+			}
+			CloseHandle(hFd);
 			break;
 
 		case FileDispositionInformation:
@@ -585,9 +627,19 @@ BOOL drive_file_set_information(DRIVE_FILE* file, UINT32 FsInformationClass, UIN
 					FileNameLength / 2, &s, 0, NULL, NULL);
 
 			if (status < 1)
-				s = (char*) calloc(1, 1);
+				if (!(s = (char*) calloc(1, 1)))
+				{
+					WLog_ERR(TAG, "calloc failed!");
+					return FALSE;
+				}
 
 			fullpath = drive_file_combine_fullpath(file->basepath, s);
+			if (!fullpath)
+			{
+				WLog_ERR(TAG, "drive_file_combine_fullpath failed!");
+				free (s);
+				return FALSE;
+			}
 			free(s);
 
 #ifdef _WIN32
@@ -638,7 +690,13 @@ BOOL drive_file_query_directory(DRIVE_FILE* file, UINT32 FsInformationClass, BYT
 		free(file->pattern);
 
 		if (path[0])
-			file->pattern = _strdup(strrchr(path, '\\') + 1);
+		{
+			if (!(file->pattern = _strdup(strrchr(path, '\\') + 1)))
+			{
+				WLog_ERR(TAG, "_strdup failed!");
+				return FALSE;
+			}
+		}
 		else
 			file->pattern = NULL;
 	}
@@ -672,6 +730,11 @@ BOOL drive_file_query_directory(DRIVE_FILE* file, UINT32 FsInformationClass, BYT
 
 	memset(&st, 0, sizeof(struct STAT));
 	ent_path = (WCHAR*) malloc(strlen(file->fullpath) + strlen(ent->d_name) + 2);
+	if (!ent_path)
+	{
+		WLog_ERR(TAG, "malloc failed!");
+		return FALSE;
+	}
 	sprintf((char*) ent_path, "%s/%s", file->fullpath, ent->d_name);
 
 	if (STAT((char*) ent_path, &st) != 0)

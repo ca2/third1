@@ -566,7 +566,8 @@ BOOL ThreadCloseHandle(HANDLE handle)
 HANDLE CreateRemoteThread(HANDLE hProcess, LPSECURITY_ATTRIBUTES lpThreadAttributes, SIZE_T dwStackSize,
 						  LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD lpThreadId)
 {
-	WLog_ERR(TAG, "not implemented");
+	WLog_ERR(TAG, "%s: not implemented", __FUNCTION__);
+	SetLastError(ERROR_CALL_NOT_IMPLEMENTED);
 	return NULL;
 }
 
@@ -663,8 +664,7 @@ DWORD GetCurrentThreadId(VOID)
 
 	/* Since pthread_t can be 64-bits on some systems, take just the    */
 	/* lower 32-bits of it for the thread ID returned by this function. */
-	tid = (long)tid & 0xffffffff;
-	return (DWORD) tid;
+	return (DWORD)tid & 0xffffffffUL;
 }
 
 DWORD ResumeThread(HANDLE hThread)
@@ -699,13 +699,20 @@ DWORD ResumeThread(HANDLE hThread)
 
 DWORD SuspendThread(HANDLE hThread)
 {
-	WLog_ERR(TAG, "Function not implemented!");
-	return 0;
+	WLog_ERR(TAG, "%s: not implemented", __FUNCTION__);
+	SetLastError(ERROR_CALL_NOT_IMPLEMENTED);
+	return (DWORD)-1;
 }
 
 BOOL SwitchToThread(VOID)
 {
-	WLog_ERR(TAG, "Function not implemented!");
+	/**
+	 * Note: on some operating systems sched_yield is a stub returning -1.
+	 * usleep should at least trigger a context switch if any thread is waiting.
+	 */
+	if (!sched_yield())
+		usleep(1);
+
 	return TRUE;
 }
 

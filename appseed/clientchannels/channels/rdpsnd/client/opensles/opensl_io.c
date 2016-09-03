@@ -29,7 +29,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <assert.h>
 
-#include "../rdpsnd_main.h"
+#include "rdpsnd_main.h"
 #include "opensl_io.h"
 #define CONV16BIT 32768
 #define CONVMYFLT (1./32768.)
@@ -293,11 +293,20 @@ int android_AudioOut(OPENSL_STREAM *p, const short *buffer,int size)
 	assert(size > 0);
 
 	/* Assure, that the queue is not full. */
-	if (p->queuesize <= Queue_Count(p->queue))
-		WaitForSingleObject(p->queue->event, INFINITE);
+	if (p->queuesize <= Queue_Count(p->queue) && WaitForSingleObject(p->queue->event, INFINITE) == WAIT_FAILED)
+    {
+        DEBUG_SND("WaitForSingleObject failed!");
+        return -1;
+    }
 
 	void *data = calloc(size, sizeof(short));
+	if (!data)
+	{
+		DEBUG_SND("unable to allocate a buffer");
+		return -1;
+	}
 	memcpy(data, buffer, size * sizeof(short));
+	Queue_Enqueue(p->queue, data);
  	(*p->bqPlayerBufferQueue)->Enqueue(p->bqPlayerBufferQueue, 
 	 	data, sizeof(short) * size);
   

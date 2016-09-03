@@ -55,11 +55,12 @@
 * copied and put under another distribution licence
 * [including the GNU Public Licence.]
 */
+#include <stdint.h>
+#include "ace/ace.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <openssl/crypto.h>
 #include "cryptlib.h"
-#include "ace/ace.h"
 
 
 unsigned char cleanse_ctr = 0;

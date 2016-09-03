@@ -30,6 +30,7 @@
 #include <freerdp/client/rdpgfx.h>
 #include <freerdp/channels/log.h>
 #include <freerdp/codec/zgfx.h>
+#include <freerdp/freerdp.h>
 
 struct _RDPGFX_CHANNEL_CALLBACK
 {
@@ -65,6 +66,7 @@ struct _RDPGFX_PLUGIN
 	BOOL Progressive;
 	BOOL ProgressiveV2;
 	BOOL H264;
+	BOOL AVC444;
 
 	ZGFX_CONTEXT* zgfx;
 	UINT32 UnacknowledgedFrames;
@@ -75,6 +77,7 @@ struct _RDPGFX_PLUGIN
 
 	UINT16 MaxCacheSlot;
 	void* CacheSlots[25600];
+	rdpContext* rdpcontext;
 };
 typedef struct _RDPGFX_PLUGIN RDPGFX_PLUGIN;
 

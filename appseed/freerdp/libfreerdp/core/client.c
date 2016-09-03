@@ -3,6 +3,8 @@
  * Client Channels
  *
  * Copyright 2014 Marc-Andre Moreau <marcandre.moreau@gmail.com>
+ * Copyright 2015 Thincast Technologies GmbH
+ * Copyright 2015 DI (FH) Martin Haimberger <martin.haimberger@thincast.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -154,9 +156,14 @@ void freerdp_channels_free(rdpChannels* channels)
 	free(channels);
 }
 
-int freerdp_drdynvc_on_channel_connected(DrdynvcClientContext* context, const char* name, void* pInterface)
+/**
+ * Function description
+ *
+ * @return 0 on success, otherwise a Win32 error code
+ */
+UINT freerdp_drdynvc_on_channel_connected(DrdynvcClientContext* context, const char* name, void* pInterface)
 {
-	int status = 0;
+	UINT status = CHANNEL_RC_OK;
 	ChannelConnectedEventArgs e;
 	rdpChannels* channels = (rdpChannels*) context->custom;
 	freerdp* instance = channels->instance;
@@ -169,9 +176,14 @@ int freerdp_drdynvc_on_channel_connected(DrdynvcClientContext* context, const ch
 	return status;
 }
 
-int freerdp_drdynvc_on_channel_disconnected(DrdynvcClientContext* context, const char* name, void* pInterface)
+/**
+ * Function description
+ *
+ * @return 0 on success, otherwise a Win32 error code
+ */
+UINT freerdp_drdynvc_on_channel_disconnected(DrdynvcClientContext* context, const char* name, void* pInterface)
 {
-	int status = 0;
+	UINT status = CHANNEL_RC_OK;
 	ChannelDisconnectedEventArgs e;
 	rdpChannels* channels = (rdpChannels*) context->custom;
 	freerdp* instance = channels->instance;
@@ -188,8 +200,9 @@ int freerdp_drdynvc_on_channel_disconnected(DrdynvcClientContext* context, const
  * go through and inform all the libraries that we are initialized
  * called only from main thread
  */
-int freerdp_channels_pre_connect(rdpChannels* channels, freerdp* instance)
+UINT freerdp_channels_pre_connect(rdpChannels* channels, freerdp* instance)
 {
+	UINT error = CHANNEL_RC_OK;
 	int index;
 	CHANNEL_CLIENT_DATA* pChannelClientData;
 
@@ -200,10 +213,14 @@ int freerdp_channels_pre_connect(rdpChannels* channels, freerdp* instance)
 		pChannelClientData = &channels->clientDataList[index];
 
 		if (pChannelClientData->pChannelInitEventProc)
-			pChannelClientData->pChannelInitEventProc(pChannelClientData->pInitHandle, CHANNEL_EVENT_INITIALIZED, 0, 0);
+			pChannelClientData->pChannelInitEventProc(
+					pChannelClientData->pInitHandle,
+					CHANNEL_EVENT_INITIALIZED, 0, 0);
+		if (CHANNEL_RC_OK != getChannelError(instance->context))
+			break;
 	}
 
-	return 0;
+	return error;
 }
 
 /**
@@ -211,10 +228,11 @@ int freerdp_channels_pre_connect(rdpChannels* channels, freerdp* instance)
  * this will tell the libraries that its ok to call MyVirtualChannelOpen
  * called only from main thread
  */
-int freerdp_channels_post_connect(rdpChannels* channels, freerdp* instance)
+UINT freerdp_channels_post_connect(rdpChannels* channels, freerdp* instance)
 {
+	UINT error = CHANNEL_RC_OK;
 	int index;
-	char* name;
+	char* name = NULL;
 	char* hostname;
 	int hostnameLength;
 	CHANNEL_CLIENT_DATA* pChannelClientData;
@@ -234,11 +252,17 @@ int freerdp_channels_post_connect(rdpChannels* channels, freerdp* instance)
 
 			pChannelOpenData = &channels->openDataList[index];
 
-			pChannelClientData->pChannelInitEventProc(pChannelClientData->pInitHandle, CHANNEL_EVENT_CONNECTED, hostname, hostnameLength);
+			pChannelClientData->pChannelInitEventProc(pChannelClientData->pInitHandle,
+					CHANNEL_EVENT_CONNECTED, hostname, hostnameLength);
+			if (getChannelError(instance->context) != CHANNEL_RC_OK)
+				goto fail;
 
 			name = (char*) malloc(9);
 			if (!name)
-				return -1;
+			{
+				error = CHANNEL_RC_NO_MEMORY;
+				goto fail;
+			}
 			CopyMemory(name, pChannelOpenData->name, 8);
 			name[8] = '\0';
 
@@ -248,6 +272,7 @@ int freerdp_channels_post_connect(rdpChannels* channels, freerdp* instance)
 			PubSub_OnChannelConnected(instance->context->pubSub, instance->context, &e);
 
 			free(name);
+			name = NULL;
 		}
 	}
 
@@ -260,7 +285,9 @@ int freerdp_channels_post_connect(rdpChannels* channels, freerdp* instance)
 		channels->drdynvc->OnChannelDisconnected = freerdp_drdynvc_on_channel_disconnected;
 	}
 
-	return 0;
+fail:
+	free (name);
+	return error;
 }
 
 int freerdp_channels_data(freerdp* instance, UINT16 channelId, BYTE* data, int dataSize, int flags, int totalSize)
@@ -425,8 +452,9 @@ BOOL freerdp_channels_check_fds(rdpChannels* channels, freerdp* instance)
 	return TRUE;
 }
 
-int freerdp_channels_disconnect(rdpChannels* channels, freerdp* instance)
+UINT freerdp_channels_disconnect(rdpChannels* channels, freerdp* instance)
 {
+	UINT error = CHANNEL_RC_OK;
 	int index;
 	char* name;
 	CHANNEL_OPEN_DATA* pChannelOpenData;
@@ -446,7 +474,11 @@ int freerdp_channels_disconnect(rdpChannels* channels, freerdp* instance)
 		pChannelClientData = &channels->clientDataList[index];
 
 		if (pChannelClientData->pChannelInitEventProc)
-			pChannelClientData->pChannelInitEventProc(pChannelClientData->pInitHandle, CHANNEL_EVENT_DISCONNECTED, 0, 0);
+			pChannelClientData->pChannelInitEventProc(
+					pChannelClientData->pInitHandle,
+					CHANNEL_EVENT_DISCONNECTED, 0, 0);
+		if (getChannelError(instance->context) != CHANNEL_RC_OK)
+			goto fail;
 
 		pChannelOpenData = &channels->openDataList[index];
 
@@ -464,7 +496,8 @@ int freerdp_channels_disconnect(rdpChannels* channels, freerdp* instance)
 		free(name);
 	}
 
-	return 0;
+fail:
+	return error;
 }
 
 void freerdp_channels_close(rdpChannels* channels, freerdp* instance)
@@ -670,7 +703,10 @@ UINT VCAPITYPE FreeRDP_VirtualChannelWrite(DWORD openHandle, LPVOID pData, ULONG
 	pChannelOpenEvent->pChannelOpenData = pChannelOpenData;
 
 	if (!MessageQueue_Post(channels->queue, (void*) channels, 0, (void*) pChannelOpenEvent, NULL))
+	{
+		free(pChannelOpenEvent);
 		return CHANNEL_RC_NO_MEMORY;
+	}
 
 	return CHANNEL_RC_OK;
 }
@@ -723,6 +759,7 @@ int freerdp_channels_client_load(rdpChannels* channels, rdpSettings* settings, P
 	EntryPoints.MagicNumber = FREERDP_CHANNEL_MAGIC_NUMBER;
 	EntryPoints.ppInterface = &g_pInterface;
 	EntryPoints.pExtendedData = data;
+	EntryPoints.context = ((freerdp*)settings->instance)->context;
 
 	/* enable VirtualChannelInit */
 	channels->can_call_init = TRUE;

@@ -557,6 +557,13 @@ BOOL WTSVirtualChannelManagerIsChannelJoined(HANDLE hServer, const char* name)
 	return wts_get_joined_channel_by_name(vcm->rdp->mcs, name) == NULL ? FALSE : TRUE;
 }
 
+BYTE WTSVirtualChannelManagerGetDrdynvcState(HANDLE hServer)
+{
+	WTSVirtualChannelManager* vcm = (WTSVirtualChannelManager*) hServer;
+
+	return vcm->drdynvc_state;
+}
+
 UINT16 WTSChannelGetId(freerdp_peer* client, const char* channel_name)
 {
 	rdpMcsChannel* channel;
@@ -983,7 +990,6 @@ HANDLE WINAPI FreeRDP_WTSVirtualChannelOpen(HANDLE hServer, DWORD SessionId, LPS
 			goto error_receiveData;
 		}
 		channel->queue = MessageQueue_New(NULL);
-		channel->queue = MessageQueue_New(NULL);
 		if (!channel->queue)
 			goto error_queue;
 
@@ -1206,6 +1212,7 @@ BOOL WINAPI FreeRDP_WTSVirtualChannelWrite(HANDLE hChannelHandle, PCHAR Buffer, 
 	BYTE* buffer;
 	UINT32 length;
 	UINT32 written;
+	UINT32 totalWritten = 0;
 	rdpPeerChannel* channel = (rdpPeerChannel*) hChannelHandle;
 	BOOL ret = TRUE;
 
@@ -1222,6 +1229,8 @@ BOOL WINAPI FreeRDP_WTSVirtualChannelWrite(HANDLE hChannelHandle, PCHAR Buffer, 
 			return FALSE;
 		}
 		CopyMemory(buffer, Buffer, length);
+
+		totalWritten = Length;
 
 		ret = wts_queue_send_item(channel, buffer, length);
 	}
@@ -1271,13 +1280,14 @@ BOOL WINAPI FreeRDP_WTSVirtualChannelWrite(HANDLE hChannelHandle, PCHAR Buffer, 
 
 			Length -= written;
 			Buffer += written;
+			totalWritten += written;
 
 			ret = wts_queue_send_item(channel->vcm->drdynvc_channel, buffer, length);
 		}
 	}
 
 	if (pBytesWritten)
-		*pBytesWritten = Length;
+		*pBytesWritten = totalWritten;
 
 	return ret;
 }
