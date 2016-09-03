@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ca2.c" />
     <ClCompile Include="libwinpr\asn1\asn1.c" />
     <ClCompile Include="libwinpr\bcrypt\bcrypt.c" />
     <ClCompile Include="libwinpr\com\com.c" />
@@ -32,11 +33,15 @@
     <ClCompile Include="libwinpr\crt\unicode.c" />
     <ClCompile Include="libwinpr\crt\utf.c" />
     <ClCompile Include="libwinpr\crypto\cert.c" />
+    <ClCompile Include="libwinpr\crypto\cipher.c" />
     <ClCompile Include="libwinpr\crypto\crypto.c" />
+    <ClCompile Include="libwinpr\crypto\hash.c" />
+    <ClCompile Include="libwinpr\crypto\rand.c" />
     <ClCompile Include="libwinpr\dsparse\dsparse.c" />
     <ClCompile Include="libwinpr\environment\environment.c" />
-    <ClCompile Include="libwinpr\error\err_err.c" />
+    <ClCompile Include="libwinpr\error\error_out_of_winpr.c" />
     <ClCompile Include="libwinpr\file\file.c" />
+    <ClCompile Include="libwinpr\file\generic.c" />
     <ClCompile Include="libwinpr\file\pattern.c" />
     <ClCompile Include="libwinpr\handle\handle.c" />
     <ClCompile Include="libwinpr\heap\heap.c" />
@@ -58,7 +63,6 @@
     <ClCompile Include="libwinpr\pipe\pipe.c" />
     <ClCompile Include="libwinpr\pool\callback.c" />
     <ClCompile Include="libwinpr\pool\callback_cleanup.c" />
-    <ClCompile Include="libwinpr\pool\callback_environment.c" />
     <ClCompile Include="libwinpr\pool\cleanup_group.c" />
     <ClCompile Include="libwinpr\pool\io.c" />
     <ClCompile Include="libwinpr\pool\pool.c" />
@@ -154,6 +158,7 @@
     <ClCompile Include="libwinpr\utils\wlog\Message.c" />
     <ClCompile Include="libwinpr\utils\wlog\PacketMessage.c" />
     <ClCompile Include="libwinpr\utils\wlog\TextMessage.c" />
+    <ClCompile Include="libwinpr\utils\wlog\UdpAppender.c" />
     <ClCompile Include="libwinpr\utils\wlog\wlog.c" />
     <ClCompile Include="libwinpr\winhttp\winhttp.c" />
     <ClCompile Include="libwinpr\winsock\winsock.c" />
@@ -513,7 +518,6 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>Debug</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <TargetMachine>MachineX64</TargetMachine>
@@ -593,7 +597,6 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <TargetMachine>MachineX64</TargetMachine>

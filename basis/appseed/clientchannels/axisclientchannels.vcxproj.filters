@@ -118,6 +118,9 @@
     <Filter Include="Source Files\channels\remdesk">
       <UniqueIdentifier>{99d42a8c-f8aa-4769-8db4-482447a99760}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ca2">
+      <UniqueIdentifier>{4723dc1f-a0d9-44e3-a735-f3c15fde1cae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="channels\audin\client\audin_main.h">
@@ -284,9 +287,6 @@
     <ClCompile Include="channels\rdpei\client\rdpei_main.c">
       <Filter>Source Files\channels\rdpei</Filter>
     </ClCompile>
-    <ClCompile Include="channels\rdpgfx\client\rdpgfx_common.c">
-      <Filter>Source Files\channels\rdpgfx</Filter>
-    </ClCompile>
     <ClCompile Include="channels\rdpgfx\client\rdpgfx_main.c">
       <Filter>Source Files\channels\rdpgfx</Filter>
     </ClCompile>
@@ -323,14 +323,17 @@
     <ClCompile Include="channels\remdesk\client\remdesk_main.c">
       <Filter>Source Files\channels\remdesk</Filter>
     </ClCompile>
-    <ClCompile Include="channels\client\tables.c">
-      <Filter>Source Files\channels\client</Filter>
-    </ClCompile>
     <ClCompile Include="channels\rdpei\rdpei_common.c">
       <Filter>Source Files\channels\rdpei</Filter>
     </ClCompile>
     <ClCompile Include="channels\rdpsnd\client\codec_aac.c">
       <Filter>Source Files\channels\rdpsnd</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\tables_windows.c">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="channels\rdpgfx\rdpgfx_common.c">
+      <Filter>Source Files\channels\rdpgfx</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

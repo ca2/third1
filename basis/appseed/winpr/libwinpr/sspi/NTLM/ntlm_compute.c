@@ -56,7 +56,11 @@ void ntlm_get_version_info(NTLM_VERSION_INFO* versionInfo)
 {
 	OSVERSIONINFOA osVersionInfo;
 	osVersionInfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFOA);
-	GetVersionExA(&osVersionInfo);
+#if defined(_WIN32) && !defined(_UWP)
+   get_version_ex_a(&osVersionInfo);
+#else
+   GetVersionExA(&osVersionInfo);
+#endif
 	versionInfo->ProductMajorVersion = (UINT8) osVersionInfo.dwMajorVersion;
 	versionInfo->ProductMinorVersion = (UINT8) osVersionInfo.dwMinorVersion;
 	versionInfo->ProductBuild = (UINT16) osVersionInfo.dwBuildNumber;
