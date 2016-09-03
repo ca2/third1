@@ -23,6 +23,8 @@
 #include "config.h"
 #endif
 
+#include "app/appseed/ace/ace.h"
+
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -270,7 +272,7 @@ RFX_CONTEXT* rfx_context_new(BOOL encoder)
 		ZeroMemory(&verinfo, sizeof(OSVERSIONINFOA));
 		verinfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFOA);
 
-		GetVersionExA(&verinfo);
+		get_version_ex_a(&verinfo);
 		isVistaOrLater = ((verinfo.dwMajorVersion >= 6) && (verinfo.dwMinorVersion >= 0)) ? TRUE : FALSE;
 
 		priv->UseThreads = isVistaOrLater;

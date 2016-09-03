@@ -38,7 +38,7 @@
 #include <freerdp/codec/dsp.h>
 #include <freerdp/channels/log.h>
 
-#include "rdpsnd_main.h"
+#include "../rdpsnd_main.h"
 
 typedef struct rdpsnd_winmm_plugin rdpsndWinmmPlugin;
 
