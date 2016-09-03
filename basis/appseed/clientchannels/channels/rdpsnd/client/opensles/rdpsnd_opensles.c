@@ -3,6 +3,8 @@
  * Audio Output Virtual Channel
  *
  * Copyright 2013 Armin Novak <armin.novak@gmail.com>
+ * Copyright 2015 Thincast Technologies GmbH
+ * Copyright 2015 DI (FH) Martin Haimberger <martin.haimberger@thincast.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,45 +40,9 @@
 #include <freerdp/channels/log.h>
 
 #include "opensl_io.h"
-#include "../rdpsnd_main.h"
-#include "../codec_aac.h"
+#include "rdpsnd_main.h"
 
 typedef struct rdpsnd_opensles_plugin rdpsndopenslesPlugin;
-
-void assert3(int i)
-{
-
-   assert(i);
-}
-
-#define assert assert3
-
-
-
-void assert4(int i)
-{
-   assert(i);
-}
-void assert5(int i)
-{
-   assert(i);
-}
-void assert6(int i)
-{
-   assert(i);
-}
-void assert7(int i)
-{
-   assert(i);
-}
-void assert8(int i)
-{
-   assert(i);
-}
-void assert9(int i)
-{
-   assert(i);
-}
 
 struct rdpsnd_opensles_plugin
 {
@@ -95,10 +61,6 @@ struct rdpsnd_opensles_plugin
 	UINT32 channels;
 	int format;
 	FREERDP_DSP_CONTEXT* dsp_context;
-
-   AAC_CONTEXT * aac_context;
-   AAC_CONTEXT_MF * aac_context_mf;
-
 };
 
 static int rdpsnd_opensles_volume_to_millibel(unsigned short level, int max)
@@ -133,7 +95,7 @@ static bool rdpsnd_opensles_check_handle(const rdpsndopenslesPlugin *hdl)
 		rc = false;
 	else
 	{
-		if (!hdl->dsp_context && !hdl->aac_context)
+		if (!hdl->dsp_context)
 			rc = false;
 		if (!hdl->stream)
 			rc = false;
@@ -142,7 +104,7 @@ static bool rdpsnd_opensles_check_handle(const rdpsndopenslesPlugin *hdl)
 	return rc;
 }
 
-static void rdpsnd_opensles_set_volume(rdpsndDevicePlugin* device,
+static BOOL rdpsnd_opensles_set_volume(rdpsndDevicePlugin* device,
 		UINT32 volume);
 
 static int rdpsnd_opensles_set_params(rdpsndopenslesPlugin* opensles)
@@ -160,7 +122,7 @@ static int rdpsnd_opensles_set_params(rdpsndopenslesPlugin* opensles)
 	return 0;
 }
 
-static void rdpsnd_opensles_set_format(rdpsndDevicePlugin* device,
+static BOOL rdpsnd_opensles_set_format(rdpsndDevicePlugin* device,
 		AUDIO_FORMAT* format, int latency)
 {
 	rdpsndopenslesPlugin* opensles = (rdpsndopenslesPlugin*) device;
@@ -176,42 +138,17 @@ static void rdpsnd_opensles_set_format(rdpsndDevicePlugin* device,
 
 		opensles->rate = format->nSamplesPerSec;
 		opensles->channels = format->nChannels;
-
-		switch (format->wFormatTag)
-		{
-			case WAVE_FORMAT_PCM:
-				switch (format->wBitsPerSample)
-				{
-					case 4:
-						opensles->format = WAVE_FORMAT_ADPCM;
-						break;
-
-					case 8:
-						opensles->format = WAVE_FORMAT_PCM;
-						break;
-
-					case 16:
-						opensles->format = WAVE_FORMAT_ADPCM;
-						break;
-				}
-				break;
-
-			case WAVE_FORMAT_ADPCM:
-			case WAVE_FORMAT_DVI_ADPCM:
-				opensles->format = format->wFormatTag;
-				break;
-		}
-	
+		opensles->format = format->wFormatTag;
 		opensles->wformat = format->wFormatTag;
 		opensles->block_size = format->nBlockAlign;
 	}
 
 	opensles->latency = latency;
 
-	rdpsnd_opensles_set_params(opensles);
+	return (rdpsnd_opensles_set_params(opensles) == 0);
 }
 
-static void rdpsnd_opensles_open(rdpsndDevicePlugin* device,
+static BOOL rdpsnd_opensles_open(rdpsndDevicePlugin* device,
 		AUDIO_FORMAT* format, int latency)
 {
 	rdpsndopenslesPlugin* opensles = (rdpsndopenslesPlugin*) device;
@@ -219,24 +156,11 @@ static void rdpsnd_opensles_open(rdpsndDevicePlugin* device,
 	DEBUG_SND("opensles=%p format=%p, latency=%d, rate=%d",
 			opensles, format, latency, opensles->rate);
 	
+	if (rdpsnd_opensles_check_handle(opensles))
+		return TRUE;
 
-   if(format->wFormatTag == 41222)
-   {
-      opensles->dsp_context = NULL;
-      opensles->format = 1;
-      opensles->aac_context = calloc(1,sizeof(AAC_CONTEXT));
-      if(!mf_aac_init(opensles->aac_context,opensles->rate, opensles->channels, format))
-      {
-         WLog_ERR(TAG,"mf_aac_init failed");
-      }
-   }
-
-   if(rdpsnd_opensles_check_handle(opensles))
-      return;
-
-	opensles->stream = android_OpenAudioDevice(
-		opensles->rate, opensles->channels, 20);
-	assert4(opensles->stream);
+	opensles->stream = android_OpenAudioDevice(opensles->rate, opensles->channels, 20);
+	assert(opensles->stream);
 
 	if (!opensles->stream)
 		WLog_ERR(TAG, "android_OpenAudioDevice failed");
@@ -244,6 +168,7 @@ static void rdpsnd_opensles_open(rdpsndDevicePlugin* device,
 		rdpsnd_opensles_set_volume(device, opensles->volume);
 
 	rdpsnd_opensles_set_format(device, format, latency);
+	return TRUE;
 }
 
 static void rdpsnd_opensles_close(rdpsndDevicePlugin* device)
@@ -313,14 +238,6 @@ static BOOL rdpsnd_opensles_format_supported(rdpsndDevicePlugin* device,
 		case WAVE_FORMAT_GSM610:
 		default:
 			break;
-      case 41222:
-      {
-         if(format->cbSize == 0 &&
-            format->nSamplesPerSec <= 48000 &&
-            (format->wBitsPerSample == 8 || format->wBitsPerSample == 16) &&
-            (format->nChannels == 1 || format->nChannels == 2))
-            return TRUE;
-      }
 	}
 
 	return FALSE;
@@ -350,7 +267,7 @@ static UINT32 rdpsnd_opensles_get_volume(rdpsndDevicePlugin* device)
 	return opensles->volume;
 }
 
-static void rdpsnd_opensles_set_volume(rdpsndDevicePlugin* device,
+static BOOL rdpsnd_opensles_set_volume(rdpsndDevicePlugin* device,
 		UINT32 value)
 {
 	rdpsndopenslesPlugin* opensles = (rdpsndopenslesPlugin*) device;
@@ -373,6 +290,8 @@ static void rdpsnd_opensles_set_volume(rdpsndDevicePlugin* device,
 			android_SetOutputVolume(opensles->stream, vol);
 		}
 	}
+
+	return TRUE;
 }
 
 static void rdpsnd_opensles_play(rdpsndDevicePlugin* device,
@@ -412,35 +331,19 @@ static void rdpsnd_opensles_play(rdpsndDevicePlugin* device,
 		size = opensles->dsp_context->adpcm_size;
 		src.b = opensles->dsp_context->adpcm_buffer;
 	}
-   else if(opensles->aac_context != NULL)
-   {
-      void * out;
-      size = audio_decode_example2(opensles->aac_context,&out,data,size);
-      //free(wave->data);
-      src.b = out;
-   }
-   else
+	else
 	{   
 		src.b = data;
 	} 
 
-   if(size > 0)
-   {
+	DEBUG_SND("size=%d, src=%p", size, src.b);
+	assert(0 == size % 2);
+	assert(size > 0);
+	assert(src.b);
 
-      DEBUG_SND("size=%d, src=%p",size,src.b);
-      assert5(0 == size % 2);
-      assert6(size > 0);
-      assert7(src.b);
-
-      ret = android_AudioOut(opensles->stream,src.s,size / 2);
-      if(ret < 0)
-         WLog_ERR(TAG,"android_AudioOut failed (%d)",ret);
-      if(opensles->aac_context != NULL)
-      {
-         free(src.b);
-      }
-
-   }
+	ret = android_AudioOut(opensles->stream, src.s, size / 2);
+	if (ret < 0)
+		WLog_ERR(TAG, "android_AudioOut failed (%d)", ret);
 }
 
 static void rdpsnd_opensles_start(rdpsndDevicePlugin* device)
@@ -490,6 +393,8 @@ static int rdpsnd_opensles_parse_addin_args(rdpsndDevicePlugin* device,
 		CommandLineSwitchCase(arg, "dev")
 		{
 			opensles->device_name = _strdup(arg->Value);
+			if (!opensles->device_name)
+				return ERROR_OUTOFMEMORY;
 		}
 
 		CommandLineSwitchEnd(arg)
@@ -499,21 +404,31 @@ static int rdpsnd_opensles_parse_addin_args(rdpsndDevicePlugin* device,
 	return status;
 }
 
-#ifdef STATIC_CHANNELS
+#ifdef BUILTIN_CHANNELS
 #define freerdp_rdpsnd_client_subsystem_entry \
 	opensles_freerdp_rdpsnd_client_subsystem_entry
+#else
+#define freerdp_rdpsnd_client_subsystem_entry \
+	FREERDP_API freerdp_rdpsnd_client_subsystem_entry
 #endif
 
-int freerdp_rdpsnd_client_subsystem_entry(
+/**
+ * Function description
+ *
+ * @return 0 on success, otherwise a Win32 error code
+ */
+UINT freerdp_rdpsnd_client_subsystem_entry(
 		PFREERDP_RDPSND_DEVICE_ENTRY_POINTS pEntryPoints)
 {
 	ADDIN_ARGV* args;
 	rdpsndopenslesPlugin* opensles;
+	UINT error;
 
 	DEBUG_SND("pEntryPoints=%p", pEntryPoints);
 
-	opensles = (rdpsndopenslesPlugin*) malloc(sizeof(rdpsndopenslesPlugin));
-	ZeroMemory(opensles, sizeof(rdpsndopenslesPlugin));
+	opensles = (rdpsndopenslesPlugin*) calloc(1, sizeof(rdpsndopenslesPlugin));
+	if (!opensles)
+		return CHANNEL_RC_NO_MEMORY;
 
 	opensles->device.Open = rdpsnd_opensles_open;
 	opensles->device.FormatSupported = rdpsnd_opensles_format_supported;
@@ -529,17 +444,34 @@ int freerdp_rdpsnd_client_subsystem_entry(
 	rdpsnd_opensles_parse_addin_args((rdpsndDevicePlugin*) opensles, args);
 
 	if (!opensles->device_name)
+	{
 		opensles->device_name = _strdup("default");
+		if (!opensles->device_name)
+		{
+			error = CHANNEL_RC_NO_MEMORY;
+			goto outstrdup;
+		}
+	}
 
 	opensles->rate = 44100;
 	opensles->channels = 2;
 	opensles->format = WAVE_FORMAT_ADPCM;
 
 	opensles->dsp_context = freerdp_dsp_context_new();
+	if (!opensles->dsp_context)
+	{
+		error = CHANNEL_RC_NO_MEMORY;
+		goto out_dsp_new;
+	}
 
 	pEntryPoints->pRegisterRdpsndDevice(pEntryPoints->rdpsnd,
 			(rdpsndDevicePlugin*) opensles);
 
 	DEBUG_SND("success");
-	return 0;
+	return CHANNEL_RC_OK;
+out_dsp_new:
+	free(opensles->device_name);
+outstrdup:
+	free(opensles);
+	return error;
 }

@@ -2208,6 +2208,12 @@ unsigned lodepng_zlib_compress(unsigned char** out, size_t* outsize, const unsig
     *out = outv.data;
     *outsize = outv.size;
   }
+  else
+  {
+    *out = NULL;
+    *outsize = 0;
+    ucvector_cleanup(&outv);
+  }
 
   return error;
 }
@@ -4632,7 +4638,7 @@ unsigned lodepng_decode(unsigned char** out, unsigned* w, unsigned* h,
     }
 
     outsize = lodepng_get_raw_size(*w, *h, &state->info_raw);
-    *out = (unsigned char*)malloc(outsize);
+    *out = (unsigned char*)calloc(outsize, sizeof(unsigned char));
     if(!(*out))
     {
       state->error = 83; /*alloc fail*/

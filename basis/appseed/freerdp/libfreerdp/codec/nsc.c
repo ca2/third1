@@ -26,10 +26,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#ifdef HAVE_STDINT_H
-#include "_stdint.h"
-#endif
-
 #include <winpr/crt.h>
 
 #include <freerdp/codec/nsc.h>
@@ -270,9 +266,15 @@ static void nsc_profiler_print(NSC_CONTEXT* context)
 	PROFILER_PRINT_FOOTER;
 }
 
-int nsc_context_reset(NSC_CONTEXT* context)
+BOOL nsc_context_reset(NSC_CONTEXT* context, UINT32 width, UINT32 height)
 {
-	return 1;
+	if (!context)
+		return FALSE;
+
+	context->width = width;
+	context->height = height;
+
+	return TRUE;
 }
 
 NSC_CONTEXT* nsc_context_new(void)

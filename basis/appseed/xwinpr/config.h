@@ -1,3 +1,7 @@
+#ifdef METROWIN
+#define _WIN32_WINNT 0x0A00
+#endif
+
 #ifndef __CONFIG_H
 #define __CONFIG_H
 
@@ -115,3 +119,4 @@
 #define HAVE_PTHREAD_MUTEX_TIMEDLOCK
 #define _strdup strdup
 #endif
+

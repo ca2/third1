@@ -219,10 +219,18 @@ static BOOL freerdp_peer_initialize(freerdp_peer* client)
 	if (settings->RdpKeyFile)
 	{
 		settings->RdpServerRsaKey = key_new(settings->RdpKeyFile);
-
 		if (!settings->RdpServerRsaKey)
 		{
 			WLog_ERR(TAG, "invalid RDP key file %s", settings->RdpKeyFile);
+			return FALSE;
+		}
+	}
+	else if (settings->RdpKeyContent)
+	{
+		settings->RdpServerRsaKey = key_new_from_content(settings->RdpKeyContent, NULL);
+		if (!settings->RdpServerRsaKey)
+		{
+			WLog_ERR(TAG, "invalid RDP key content");
 			return FALSE;
 		}
 	}
@@ -356,7 +364,7 @@ static int peer_recv_tpkt_pdu(freerdp_peer* client, wStream* s)
 		return -1;
 	}
 
-	if (rdp->disconnect)
+	if (freerdp_shall_disconnect(rdp->instance))
 		return 0;
  
 	if (rdp->settings->UseRdpSecurityLayer)
@@ -467,6 +475,10 @@ static int peer_recv_callback(rdpTransport* transport, wStream* s, void* extra)
 				WLog_ERR(TAG, "peer_recv_callback: CONNECTION_STATE_INITIAL - rdp_server_accept_nego() fail");
 				return -1;
 			}
+
+			client->settings->NlaSecurity = (rdp->nego->SelectedProtocol & PROTOCOL_NLA) ? TRUE : FALSE;
+			client->settings->TlsSecurity = (rdp->nego->SelectedProtocol & PROTOCOL_TLS) ? TRUE : FALSE;
+			client->settings->RdpSecurity = (rdp->nego->SelectedProtocol & PROTOCOL_RDP) ? TRUE : FALSE;
 
 			if (rdp->nego->SelectedProtocol & PROTOCOL_NLA)
 			{
@@ -678,6 +690,7 @@ BOOL freerdp_peer_context_new(freerdp_peer* client)
 
 	context->peer = client;
 	context->ServerMode = TRUE;
+	context->settings = client->settings;
 
 	if (!(context->metrics = metrics_new(context)))
 		goto fail_metrics;

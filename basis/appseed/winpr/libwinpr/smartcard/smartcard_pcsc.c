@@ -673,6 +673,7 @@ char* PCSC_ConvertReaderNameToWinSCard(const char* name)
 	char* p, *q;
 	char* tokens[64][2];
 	char* nameWinSCard;
+	char *checkAliasName;
 	/**
 	 * pcsc-lite reader name format:
 	 * name [interface] (serial) index slot
@@ -796,10 +797,20 @@ char* PCSC_ConvertReaderNameToWinSCard(const char* name)
 	/**
 	 * pcsc-lite appears to use an index number based on all readers,
 	 * while WinSCard uses an index number based on readers of the same name.
-	 * Force an index number of 0 for now, fix later.
+	 * Set index for this reader by checking if index is already used by another reader
+	 * and incrementing until available index found.
 	 */
 	index = 0;
 	sprintf_s(nameWinSCard, size, "%.*s %d", length, p, index);
+
+	checkAliasName = PCSC_GetReaderNameFromAlias(nameWinSCard);
+	while ((checkAliasName != NULL) && (strcmp(checkAliasName, name) != 0))
+	{
+		index++;
+		sprintf_s(nameWinSCard, size, "%.*s %d", length, p, index);
+		checkAliasName = PCSC_GetReaderNameFromAlias(nameWinSCard);
+	}
+
 	return nameWinSCard;
 }
 
@@ -1985,7 +1996,7 @@ WINSCARDAPI LONG WINAPI PCSC_SCardStatus_Internal(SCARDHANDLE hCard,
 		{
 			if (pcchReaderLenAlloc)
 			{
-#ifdef __MAXOSX__
+#ifdef __MACOSX__
 				/**
 				* Workaround for SCardStatus Bug in MAC OS X Yosemite
 				*/
@@ -2416,7 +2427,10 @@ WINSCARDAPI LONG WINAPI PCSC_SCardGetAttrib_FriendlyName(SCARDHANDLE hCard, DWOR
 		friendlyNameA = _strdup(nameWinSCard);
 
 		if (!friendlyNameA)
+		{
+			free(namePCSC);
 			return SCARD_E_NO_MEMORY;
+		}
 	}
 	else
 	{
@@ -2431,7 +2445,10 @@ WINSCARDAPI LONG WINAPI PCSC_SCardGetAttrib_FriendlyName(SCARDHANDLE hCard, DWOR
 		free(friendlyNameA);
 
 		if (!friendlyNameW)
+		{
+			free(namePCSC);
 			return SCARD_E_NO_MEMORY;
+		}
 
 		if (cbAttrLen == SCARD_AUTOALLOCATE)
 		{
@@ -2444,6 +2461,7 @@ WINSCARDAPI LONG WINAPI PCSC_SCardGetAttrib_FriendlyName(SCARDHANDLE hCard, DWOR
 			if ((length * 2) > cbAttrLen)
 			{
 				free(friendlyNameW);
+				free(namePCSC);
 				return SCARD_E_INSUFFICIENT_BUFFER;
 			}
 			else
@@ -2467,6 +2485,7 @@ WINSCARDAPI LONG WINAPI PCSC_SCardGetAttrib_FriendlyName(SCARDHANDLE hCard, DWOR
 			if ((length + 1) > cbAttrLen)
 			{
 				free(friendlyNameA);
+				free(namePCSC);
 				return SCARD_E_INSUFFICIENT_BUFFER;
 			}
 			else

@@ -29,6 +29,7 @@
 
 #include "smartcard_inspect.h"
 
+
 static BOOL g_Initialized = FALSE;
 static PSCardApiFunctionTable g_SCardApi = NULL;
 

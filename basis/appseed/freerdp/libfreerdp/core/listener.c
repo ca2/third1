@@ -48,36 +48,6 @@
 
 #define TAG FREERDP_TAG("core.listener")
 
-#ifdef _WIN32
-#if _WIN32_WINNT < 0x0600
-static const char* inet_ntop(int af, const void* src, char* dst, size_t cnt)
-{
-	if (af == AF_INET)
-	{
-		struct sockaddr_in in;
-
-		memset(&in, 0, sizeof(in));
-		in.sin_family = AF_INET;
-		memcpy(&in.sin_addr, src, sizeof(struct in_addr));
-		getnameinfo((struct sockaddr *)&in, sizeof(struct sockaddr_in), dst, cnt, NULL, 0, NI_NUMERICHOST);
-		return dst;
-	}
-	else if (af == AF_INET6)
-	{
-		struct sockaddr_in6 in;
-
-		memset(&in, 0, sizeof(in));
-		in.sin6_family = AF_INET6;
-		memcpy(&in.sin6_addr, src, sizeof(struct in_addr6));
-		getnameinfo((struct sockaddr*) &in, sizeof(struct sockaddr_in6), dst, cnt, NULL, 0, NI_NUMERICHOST);
-		return dst;
-	}
-	
-	return NULL;
-}
-#endif
-#endif
-
 static BOOL freerdp_listener_open(freerdp_listener* instance, const char* bind_address, UINT16 port)
 {
 	int status;
@@ -171,8 +141,13 @@ static BOOL freerdp_listener_open(freerdp_listener* instance, const char* bind_a
 		/* FIXME: these file descriptors do not work on Windows */
 
 		listener->sockfds[listener->num_sockfds] = sockfd;
-		listener->events[listener->num_sockfds] =
-			CreateFileDescriptorEvent(NULL, FALSE, FALSE, sockfd, WINPR_FD_READ);
+		listener->events[listener->num_sockfds] = WSACreateEvent();
+		if (!listener->events[listener->num_sockfds])
+		{
+			listener->num_sockfds = 0;
+			break;
+		}
+		WSAEventSelect(sockfd, listener->events[listener->num_sockfds], FD_READ | FD_ACCEPT | FD_CLOSE);
 		listener->num_sockfds++;
 
 		WLog_INFO(TAG, "Listening on %s:%s", addr, servname);
@@ -336,7 +311,7 @@ static BOOL freerdp_listener_check_fds(freerdp_listener* instance)
 	void* sin_addr;
 	int peer_sockfd;
 	freerdp_peer* client = NULL;
-	socklen_t peer_addr_size;
+	int peer_addr_size;
 	struct sockaddr_storage peer_addr;
 	rdpListener* listener = (rdpListener*) instance->listener;
 	static const BYTE localhost6_bytes[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 };
@@ -347,8 +322,10 @@ static BOOL freerdp_listener_check_fds(freerdp_listener* instance)
 
 	for (i = 0; i < listener->num_sockfds; i++)
 	{
+		WSAResetEvent(listener->events[i]);
+
 		peer_addr_size = sizeof(peer_addr);
-		peer_sockfd = accept(listener->sockfds[i], (struct sockaddr*) &peer_addr, &peer_addr_size);
+		peer_sockfd = _accept(listener->sockfds[i], (struct sockaddr*) &peer_addr, &peer_addr_size);
 		peer_accepted = FALSE;
 
 		if (peer_sockfd == -1)

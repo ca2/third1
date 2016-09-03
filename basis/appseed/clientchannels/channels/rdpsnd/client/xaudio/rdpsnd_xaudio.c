@@ -27,7 +27,6 @@
 #include <string.h>
 
 
-__declspec(dllimport) unsigned int  get_tick_count();
 
 
 //// -  -  - BA7C - 066C40B5E2B9
@@ -695,7 +694,7 @@ static BOOL rdpsnd_xaudio_convert_format(const AUDIO_FORMAT* in, WAVEFORMATEX* o
 	return result;
 }
 
-static void rdpsnd_xaudio_set_format(rdpsndDevicePlugin* device, AUDIO_FORMAT* format, int latency)
+static BOOL rdpsnd_xaudio_set_format(rdpsndDevicePlugin* device, AUDIO_FORMAT* format, int latency)
 {
 	rdpsndWinmmPlugin* xaudio = (rdpsndWinmmPlugin*) device;
 
@@ -706,6 +705,8 @@ static void rdpsnd_xaudio_set_format(rdpsndDevicePlugin* device, AUDIO_FORMAT* f
 		xaudio->wformat = format->wFormatTag;
 		xaudio->block_size = format->nBlockAlign;
 	}
+
+   return TRUE;
 }
 
 static void CALLBACK rdpsnd_xaudio_callback_function(HWAVEOUT hwo, UINT uMsg, DWORD_PTR dwInstance, DWORD_PTR dwParam1, DWORD_PTR dwParam2)
@@ -739,7 +740,7 @@ static void CALLBACK rdpsnd_xaudio_callback_function(HWAVEOUT hwo, UINT uMsg, DW
 
 				WLog_DBG(TAG,  "MM_WOM_DONE: dwBufferLength: %d cBlockNo: %d",
 						 lpWaveHdr->dwBufferLength, wave->cBlockNo);
-				wave->wLocalTimeB = get_tick_count();
+				wave->wLocalTimeB = (unsigned int) GetTickCount64();
 				wTimeDelta = wave->wLocalTimeB - wave->wLocalTimeA;
 				wave->wTimeStampB = wave->wTimeStampA + wTimeDelta;
 
@@ -769,13 +770,13 @@ static void CALLBACK rdpsnd_xaudio_callback_function(HWAVEOUT hwo, UINT uMsg, DW
 }
 
 
-static void rdpsnd_xaudio_open(rdpsndDevicePlugin* device, AUDIO_FORMAT* format, int latency)
+static BOOL rdpsnd_xaudio_open(rdpsndDevicePlugin* device, AUDIO_FORMAT* format, int latency)
 {
 	MMRESULT mmResult;
 	rdpsndWinmmPlugin* xaudio = (rdpsndWinmmPlugin*) device;
 
 	if (xaudio->hWaveOut)
-		return;
+		return TRUE;
 
    rdpsnd_xaudio_set_format(device,format,latency);
    //freerdp_dsp_context_reset_adpcm(xaudio->dsp_context);
@@ -788,6 +789,7 @@ static void rdpsnd_xaudio_open(rdpsndDevicePlugin* device, AUDIO_FORMAT* format,
       if(!mf_aac_init(xaudio->aac_context, xaudio->format.nSamplesPerSec, xaudio->format.nChannels,format))
       {
          WLog_ERR(TAG,"mf_aac_init failed");
+         return FALSE;
       }
    }
 
@@ -797,8 +799,13 @@ static void rdpsnd_xaudio_open(rdpsndDevicePlugin* device, AUDIO_FORMAT* format,
 	if (mmResult != MMSYSERR_NOERROR)
 	{
 		WLog_ERR(TAG,  "waveOutOpen failed: %d", mmResult);
+      return FALSE;
 	}
+
+   return TRUE;
+
 }
+
 
 static void rdpsnd_xaudio_close(rdpsndDevicePlugin* device)
 {

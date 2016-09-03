@@ -28,10 +28,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#ifdef HAVE_STDINT_H
-#include "_stdint.h"
-#endif
-
 #include <winpr/crt.h>
 #include <winpr/tchar.h>
 #include <winpr/sysinfo.h>
@@ -43,6 +39,7 @@
 #include <freerdp/constants.h>
 #include <freerdp/primitives.h>
 #include <freerdp/codec/region.h>
+#include <freerdp/config.h>
 
 #include "rfx_constants.h"
 #include "rfx_types.h"
@@ -265,16 +262,16 @@ RFX_CONTEXT* rfx_context_new(BOOL encoder)
 	if (!priv->BufferPool)
 		goto error_BufferPool;
 
-#if defined(_WIN32) && !defined(METROWIN)
+#ifdef _WIN32
 	{
 		BOOL isVistaOrLater;
+		OSVERSIONINFOA verinfo;
 
-      RTL_OSVERSIONINFOEXW osVersionInfo;
-      osVersionInfo.dwOSVersionInfoSize = sizeof(RTL_OSVERSIONINFOEXW);
-      LONG(WINAPI *pfnRtlGetVersion)(RTL_OSVERSIONINFOEXW*);
-      pfnRtlGetVersion =(LONG(WINAPI *)(RTL_OSVERSIONINFOEXW*)) GetProcAddress(GetModuleHandle(_T("ntdll.dll")),"RtlGetVersion");
-      pfnRtlGetVersion(&osVersionInfo);
-      isVistaOrLater = ((osVersionInfo.dwMajorVersion >= 6) && (osVersionInfo.dwMinorVersion >= 0)) ? TRUE : FALSE;
+		ZeroMemory(&verinfo, sizeof(OSVERSIONINFOA));
+		verinfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFOA);
+
+		GetVersionExA(&verinfo);
+		isVistaOrLater = ((verinfo.dwMajorVersion >= 6) && (verinfo.dwMinorVersion >= 0)) ? TRUE : FALSE;
 
 		priv->UseThreads = isVistaOrLater;
 	}
@@ -360,6 +357,9 @@ void rfx_context_free(RFX_CONTEXT* context)
 {
 	RFX_CONTEXT_PRIV *priv;
 
+	if (!context)
+		return;
+
 	assert(NULL != context);
 	assert(NULL != context->priv);
 	assert(NULL != context->priv->TilePool);
@@ -422,10 +422,17 @@ void rfx_context_set_pixel_format(RFX_CONTEXT* context, RDP_PIXEL_FORMAT pixel_f
 	}
 }
 
-void rfx_context_reset(RFX_CONTEXT* context)
+BOOL rfx_context_reset(RFX_CONTEXT* context, UINT32 width, UINT32 height)
 {
+	if (!context)
+		return FALSE;
+
+	context->width = width;
+	context->height = height;
 	context->state = RFX_STATE_SEND_HEADERS;
 	context->frameIdx = 0;
+
+	return TRUE;
 }
 
 static BOOL rfx_process_message_sync(RFX_CONTEXT* context, wStream* s)
@@ -676,10 +683,12 @@ static BOOL rfx_process_message_region(RFX_CONTEXT* context, RFX_MESSAGE* messag
 
 	if (message->numRects < 1)
 	{
-		/* Unfortunately, it isn't documented.
-		It seems that server asks to clip whole session when numRects = 0.
-		Issue: https://github.com/FreeRDP/FreeRDP/issues/1738 */
-		WLog_ERR(TAG, "no rects. Clip whole session.");
+		/*
+		   If numRects is zero the decoder must generate a rectangle with
+		   coordinates (0, 0, width, height).
+		   See [MS-RDPRFX] (revision >= 17.0) 2.2.2.3.3 TS_RFX_REGION
+		   https://msdn.microsoft.com/en-us/library/ff635233.aspx
+		*/
 
 		if (!(message->rects = (RFX_RECT*) malloc(sizeof(RFX_RECT))))
 			return FALSE;
@@ -806,8 +815,8 @@ static BOOL rfx_process_message_tileset(RFX_CONTEXT* context, RFX_MESSAGE* messa
 
 	if (message->numTiles < 1)
 	{
-		WLog_ERR(TAG, "no tiles.");
-		return FALSE;
+		/* Windows Server 2012 (not R2) can send empty tile sets */
+		return TRUE;
 	}
 
 	Stream_Read_UINT32(s, tilesDataSize); /* tilesDataSize (4 bytes) */
@@ -1552,12 +1561,20 @@ skip_encoding_loop:
 
 	if (success && message->numTiles != maxNbTiles)
 	{
-		void* pmem = realloc((void*) message->tiles, sizeof(RFX_TILE*) * message->numTiles);
+		if (message->numTiles > 0)
+		{
+			void* pmem = realloc((void*) message->tiles, sizeof(RFX_TILE*) * message->numTiles);
 
-		if (pmem)
-			message->tiles = (RFX_TILE**) pmem;
+			if (pmem)
+				message->tiles = (RFX_TILE**) pmem;
+			else
+				success = FALSE;
+		}
 		else
+		{
+			free(message->tiles);
 			success = FALSE;
+		}
 	}
 
 	/* when using threads ensure all computations are done */

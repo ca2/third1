@@ -36,7 +36,6 @@
 #include "xkb_layout_ids.h"
 #include "liblocale.h"
 
-// libxkbfile-deb (Ubuntu)
 #include <X11/Xlib.h>
 #include <X11/XKBlib.h>
 #include <X11/extensions/XKBfile.h>

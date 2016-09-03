@@ -213,9 +213,6 @@
     <ClInclude Include="channels\rdpei\client\rdpei_main.h">
       <Filter>Header Files\channels\rdpei</Filter>
     </ClInclude>
-    <ClInclude Include="channels\rdpgfx\client\rdpgfx_common.h">
-      <Filter>Header Files\channels\rdpgfx</Filter>
-    </ClInclude>
     <ClInclude Include="channels\rdpgfx\client\rdpgfx_main.h">
       <Filter>Header Files\channels\rdpgfx</Filter>
     </ClInclude>
@@ -251,6 +248,9 @@
     </ClInclude>
     <ClInclude Include="channels\rdpsnd\client\xaudio\rdpsnd_xaudio_out.h">
       <Filter>Header Files\channels\rdpsnd\xaudio</Filter>
+    </ClInclude>
+    <ClInclude Include="channels\rdpgfx\rdpgfx_common.h">
+      <Filter>Header Files\channels\rdpgfx</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -323,9 +323,6 @@
     <ClCompile Include="channels\rdpgfx\client\rdpgfx_codec.c">
       <Filter>Source Files\channels\rdpgfx</Filter>
     </ClCompile>
-    <ClCompile Include="channels\rdpgfx\client\rdpgfx_common.c">
-      <Filter>Source Files\channels\rdpgfx</Filter>
-    </ClCompile>
     <ClCompile Include="channels\rdpgfx\client\rdpgfx_main.c">
       <Filter>Source Files\channels\rdpgfx</Filter>
     </ClCompile>
@@ -350,82 +347,53 @@
     <ClCompile Include="channels\remdesk\client\remdesk_main.c">
       <Filter>Source Files\channels\remdesk</Filter>
     </ClCompile>
-    <ClCompile Include="channels\client\table_metrowin.c">
-      <Filter>Source Files\channels\client</Filter>
+    <ClCompile Include="channels\rdpsnd\client\xaudio\rdpsnd_xaudio_out.cpp">
+      <Filter>Source Files\channels\rdpsnd\xaudio</Filter>
     </ClCompile>
-    <ClCompile Include="channels\rdpsnd\client\codec_aac.c">
-      <Filter>Source Files\channels\rdpsnd</Filter>
+    <ClCompile Include="channels\client\tables_metrowin.c">
+      <Filter>Source Files\channels\client</Filter>
     </ClCompile>
     <ClCompile Include="channels\rdpsnd\client\xaudio\rdpsnd_xaudio.c">
       <Filter>Source Files\channels\rdpsnd\xaudio</Filter>
     </ClCompile>
-    <ClCompile Include="channels\rdpsnd\client\xaudio\rdpsnd_xaudio_out.cpp">
-      <Filter>Source Files\channels\rdpsnd\xaudio</Filter>
+    <ClCompile Include="channels\rdpsnd\client\codec_aac.c">
+      <Filter>Source Files\channels\rdpsnd</Filter>
+    </ClCompile>
+    <ClCompile Include="channels\rdpgfx\rdpgfx_common.c">
+      <Filter>Source Files\channels\rdpgfx</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="axisclientchannels.def" />
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x86\avcodec-56.dll">
+    <None Include="..\..\..\nodeapp\thirdparty\binary\Win32\stage\avcodec-57.dll">
       <Filter>Binary Files\x86\Release</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x86\avformat-56.dll">
+    </None>
+    <None Include="..\..\..\nodeapp\thirdparty\binary\Win32\stage\avformat-57.dll">
       <Filter>Binary Files\x86\Release</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x86\avutil-54.dll">
+    </None>
+    <None Include="..\..\..\nodeapp\thirdparty\binary\Win32\stage\avutil-55.dll">
       <Filter>Binary Files\x86\Release</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x86\swscale-3.dll">
+    </None>
+    <None Include="..\..\..\nodeapp\thirdparty\binary\Win32\stage\swresample-2.dll">
       <Filter>Binary Files\x86\Release</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x86\swresample-1.dll">
+    </None>
+    <None Include="..\..\..\nodeapp\thirdparty\binary\Win32\stage\swscale-4.dll">
       <Filter>Binary Files\x86\Release</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x86\avcodec-56.dll">
+    </None>
+    <None Include="..\..\..\nodeapp\thirdparty\binary\Win32\basis\avcodec-57.dll">
       <Filter>Binary Files\x86\Debug</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x86\avformat-56.dll">
+    </None>
+    <None Include="..\..\..\nodeapp\thirdparty\binary\Win32\basis\avformat-57.dll">
       <Filter>Binary Files\x86\Debug</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x86\avutil-54.dll">
+    </None>
+    <None Include="..\..\..\nodeapp\thirdparty\binary\Win32\basis\avutil-55.dll">
       <Filter>Binary Files\x86\Debug</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x86\swscale-3.dll">
+    </None>
+    <None Include="..\..\..\nodeapp\thirdparty\binary\Win32\basis\swresample-2.dll">
       <Filter>Binary Files\x86\Debug</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x86\swresample-1.dll">
+    </None>
+    <None Include="..\..\..\nodeapp\thirdparty\binary\Win32\basis\swscale-4.dll">
       <Filter>Binary Files\x86\Debug</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x64\avcodec-56.dll">
-      <Filter>Binary Files\x64\Release</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x64\avformat-56.dll">
-      <Filter>Binary Files\x64\Release</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x64\avutil-54.dll">
-      <Filter>Binary Files\x64\Release</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x64\swscale-3.dll">
-      <Filter>Binary Files\x64\Release</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\release\x64\swresample-1.dll">
-      <Filter>Binary Files\x64\Release</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x64\avcodec-56.dll">
-      <Filter>Binary Files\x64\Debug</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x64\avformat-56.dll">
-      <Filter>Binary Files\x64\Debug</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x64\avutil-54.dll">
-      <Filter>Binary Files\x64\Debug</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x64\swscale-3.dll">
-      <Filter>Binary Files\x64\Debug</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\..\..\nodeapp\thirdparty\binary\debug\x64\swresample-1.dll">
-      <Filter>Binary Files\x64\Debug</Filter>
-    </CustomBuild>
+    </None>
   </ItemGroup>
 </Project>

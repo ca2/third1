@@ -287,80 +287,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="crypto\arm_arch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\cryptlib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\crypto.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\ebcdic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\fips_err.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\md32_common.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\opensslconf.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\opensslv.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\ossl_typ.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\o_dir.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\o_str.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\o_time.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\symhacks.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\vms_rms.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="e_os.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="e_os2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="e_os2_ca2specific.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="e_os2_original.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\asn1\asn1.h">
-      <Filter>Header Files\crypto\asn1</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\asn1\asn1t.h">
-      <Filter>Header Files\crypto\asn1</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\asn1\asn1_locl.h">
-      <Filter>Header Files\crypto\asn1</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\asn1\asn1_mac.h">
-      <Filter>Header Files\crypto\asn1</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto\asn1\charmap.h">
-      <Filter>Header Files\crypto\asn1</Filter>
+    <ClInclude Include="..\..\..\nodeapp\include\openssl\e_os2.h">
+      <Filter>Header Files\include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="openssl_exception.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="crypto\cpt_err.c">
       <Filter>Source Files\crypto</Filter>
     </ClCompile>
@@ -2448,6 +2379,9 @@
     </ClCompile>
     <ClCompile Include="crypto\mem_ace.c">
       <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="openssl_exception.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

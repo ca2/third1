@@ -106,8 +106,8 @@ char* rdpsnd_get_audio_tag_string(UINT16 wFormatTag)
 		case WAVE_FORMAT_WMAUDIO2:
 			return "WAVE_FORMAT_WMAUDIO2";
 
-      case 41222:
-         return "WAVE_FORMAT_AAC";
+		case WAVE_FORMAT_AAC_MS:
+			return "WAVE_FORMAT_AAC_MS";
 	}
 
 	return "WAVE_FORMAT_UNKNOWN";

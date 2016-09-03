@@ -3,6 +3,8 @@
  * Image Utils
  *
  * Copyright 2014 Marc-Andre Moreau <marcandre.moreau@gmail.com>
+ * Copyright 2016 Inuvika Inc.
+ * Copyright 2016 David PHAM-VAN <d.phamvan@inuvika.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -116,7 +118,10 @@ int winpr_image_png_read_fp(wImage* image, FILE* fp)
 		return -1;
 
 	if (fread((void*) data, size, 1, fp) != 1)
+	{
+		free(data);
 		return -1;
+	}
 
 	lodepng_status = lodepng_decode32(&(image->data), &width, &height, data, size);
 
@@ -305,7 +310,7 @@ int winpr_image_read(wImage* image, const char* filename)
 	BYTE sig[8];
 	int status = -1;
 
-	fp = fopen(filename, "r+b");
+	fp = fopen(filename, "rb");
 
 	if (!fp)
 	{
