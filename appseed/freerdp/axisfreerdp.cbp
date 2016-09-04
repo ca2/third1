@@ -59,6 +59,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-march=core2" />
+			<Add option="-std=c++14" />
 			<Add option="-fexceptions" />
 			<Add option="-fnon-call-exceptions" />
 			<Add option="-fno-pie" />
@@ -79,9 +80,6 @@
 			<Add directory="../../../.." />
 			<Add directory="../../../appseed" />
 			<Add directory="../../appseed" />
-			<Add directory="../../../appseed/base" />
-			<Add directory="../../../appseed/axis" />
-			<Add directory="../../../appseed/aura" />
 			<Add directory="../../../app/include" />
 			<Add directory="../../../nodeapp/operational_system" />
 		</Compiler>
