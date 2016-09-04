@@ -23,6 +23,10 @@
 #include "config.h"
 #endif
 
+#ifndef WINDOWS
+#define _strdup strdup
+#endif
+
 #include "info.h"
 #include "input.h"
 #include "rdp.h"

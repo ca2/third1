@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-#include "tables.h"
+#include "channels/client/tables.h"
 
 
 

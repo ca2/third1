@@ -22,7 +22,9 @@
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
-
+#ifndef WINDOWS
+#define _strdup strdup
+#endif
 #include <winpr/crt.h>
 #include <winpr/tchar.h>
 #include <winpr/dsparse.h>
@@ -243,7 +245,7 @@ BOOL ntlm_authenticate(rdpNtlm* ntlm)
 		if ((status != SEC_E_OK) && ntlm->table->CompleteAuthToken)
 		{
 			SECURITY_STATUS cStatus;
-			
+
 			cStatus = ntlm->table->CompleteAuthToken(&ntlm->context, &ntlm->outputBufferDesc);
 
 			if (cStatus != SEC_E_OK)

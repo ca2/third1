@@ -72,6 +72,7 @@
 			<Add option="-DBYEWINDOWS_UNICODE" />
 			<Add option="-DWITH_OPENH264" />
 			<Add option="-DSIXTY_FOUR_BIT_LONG" />
+			<Add directory="../freerdp" />
 			<Add directory="../../../../include" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
@@ -90,15 +91,14 @@
 			<Add option="-lpthread" />
 			<Add option="-lX11" />
 			<Add option="-lxkbfile" />
-			<Add option="-laura" />
 			<Add option="-lcrypto" />
 			<Add option="-laxiswinpr" />
-			<Add option="-laxisfreeimage" />
 			<Add option="-lssl" />
 			<Add option="-lWelsDecoder" />
 			<Add option="-lWelsEncoder" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../../stage/x86" />
+			<Add directory="../../../nodeapp/thirdparty/library/x64" />
 		</Linker>
 		<Unit filename="config.h" />
 		<Unit filename="dummy.c">
@@ -528,9 +528,6 @@
 		<Unit filename="libfreerdp/locale/keyboard_xkbfile.h" />
 		<Unit filename="libfreerdp/locale/liblocale.h" />
 		<Unit filename="libfreerdp/locale/locale.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/locale/timezone.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libfreerdp/locale/xkb_layout_ids.c">
