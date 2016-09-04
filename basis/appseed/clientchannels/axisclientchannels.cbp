@@ -58,6 +58,7 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-std=c++14" />
 			<Add option="-fexceptions" />
 			<Add option="-fnon-call-exceptions" />
 			<Add option="-fno-pie" />
@@ -75,12 +76,8 @@
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
 			<Add directory="../../../.." />
-			<Add directory="../../../appseed/c" />
 			<Add directory="../../../appseed" />
 			<Add directory="../../appseed" />
-			<Add directory="../../../appseed/base" />
-			<Add directory="../../../appseed/axis" />
-			<Add directory="../../../appseed/aura" />
 			<Add directory="channels/audin/client" />
 			<Add directory="channels/rdpsnd/client" />
 			<Add directory="channels/tsmf/client" />
