@@ -26,6 +26,7 @@ extern void disp_DVCPluginEntry();
 extern void echo_DVCPluginEntry();
 extern void rdpei_DVCPluginEntry();
 extern void rdpgfx_DVCPluginEntry();
+extern void tsmf_DVCPluginEntry();
 
 extern BOOL VCAPITYPE cliprdr_VirtualChannelEntry(PCHANNEL_ENTRY_POINTS);
 extern BOOL VCAPITYPE drdynvc_VirtualChannelEntry(PCHANNEL_ENTRY_POINTS);
@@ -87,7 +88,6 @@ extern void alsa_freerdp_rdpsnd_client_subsystem_entry();
 extern void pulse_freerdp_audin_client_subsystem_entry();
 extern void pulse_freerdp_rdpsnd_client_subsystem_entry();
 
-
 const STATIC_SUBSYSTEM_ENTRY CLIENT_AUDIN_SUBSYSTEM_TABLE[] =
 {
 	{ "alsa", "", alsa_freerdp_audin_client_subsystem_entry },
@@ -144,6 +144,16 @@ const STATIC_SUBSYSTEM_ENTRY CLIENT_RDPSND_SUBSYSTEM_TABLE[] =
 	{ "pulse", "", pulse_freerdp_rdpsnd_client_subsystem_entry },
 	{ NULL, NULL, NULL }
 };
+
+extern void alsa_freerdp_tsmf_client_audio_subsystem_entry();
+//extern void pulse_freerdp_tsmf_client_audio_subsystem_entry();
+
+const STATIC_SUBSYSTEM_ENTRY CLIENT_TSMF_SUBSYSTEM_TABLE[] =
+{
+	{ "alsa", "", alsa_freerdp_tsmf_client_audio_subsystem_entry },
+	//{ "pulse", "", pulse_freerdp_tsmf_client_audio_subsystem_entry },
+	{ NULL, NULL, NULL }
+};
 const STATIC_SUBSYSTEM_ENTRY CLIENT_REMDESK_SUBSYSTEM_TABLE[] =
 {
 	{ NULL, NULL, NULL }
@@ -169,6 +179,7 @@ const STATIC_ADDIN_TABLE CLIENT_STATIC_ADDIN_TABLE[] =
 	{ "rdpsnd", rdpsnd_VirtualChannelEntry, CLIENT_RDPSND_SUBSYSTEM_TABLE },
 	{ "remdesk", remdesk_VirtualChannelEntry, CLIENT_REMDESK_SUBSYSTEM_TABLE },
 	{ "smartcard", smartcard_DeviceServiceEntry, CLIENT_SMARTCARD_SUBSYSTEM_TABLE },
+	{ "tsmf", tsmf_DVCPluginEntry, CLIENT_TSMF_SUBSYSTEM_TABLE },
 	{ NULL, NULL, NULL }
 };
 
