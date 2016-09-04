@@ -20,7 +20,9 @@
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
-
+#ifndef WINDOWS
+#define _strdup strdup
+#endif
 #include <assert.h>
 
 #include <winpr/crt.h>
@@ -479,7 +481,7 @@ BOOL rdg_process_in_channel_authorization(rdpRdg* rdg, HttpResponse* response)
 		return FALSE;
 
 	status = tls_write_all(rdg->tlsIn, Stream_Buffer(s), Stream_Length(s));
-	
+
 	Stream_Free(s, TRUE);
 
 	if (status <= 0)
@@ -1177,28 +1179,28 @@ BOOL rdg_process_close_packet(rdpRdg* rdg)
 	wStream* sChunk;
 	int packetSize = 12;
 	char chunkSize[11];
-    
+
 	sprintf_s(chunkSize, sizeof(chunkSize), "%X\r\n", packetSize);
-    
+
 	sChunk = Stream_New(NULL, strlen(chunkSize) + packetSize + 2);
-    
+
 	if (!sChunk)
 		return FALSE;
-    
+
 	Stream_Write(sChunk, chunkSize, strlen(chunkSize));
-    
+
 	Stream_Write_UINT16(sChunk, PKT_TYPE_CLOSE_CHANNEL_RESPONSE);   /* Type */
 	Stream_Write_UINT16(sChunk, 0);   /* Reserved */
 	Stream_Write_UINT32(sChunk, packetSize);   /* Packet length */
-    
+
 	Stream_Write_UINT32(sChunk, 0);   /* Status code */
-    
+
 	Stream_Write(sChunk, "\r\n", 2);
 	Stream_SealLength(sChunk);
-    
+
 	status = tls_write_all(rdg->tlsIn, Stream_Buffer(sChunk), Stream_Length(sChunk));
 	Stream_Free(sChunk, TRUE);
-    
+
 	return (status < 0 ? FALSE : TRUE);
 }
 
@@ -1208,26 +1210,26 @@ BOOL rdg_process_keep_alive_packet(rdpRdg* rdg)
 	wStream* sChunk;
 	int packetSize = 8;
 	char chunkSize[11];
-    
+
 	sprintf_s(chunkSize, sizeof(chunkSize), "%X\r\n", packetSize);
-    
+
 	sChunk = Stream_New(NULL, strlen(chunkSize) + packetSize + 2);
-    
+
 	if (!sChunk)
 		return FALSE;
-    
+
 	Stream_Write(sChunk, chunkSize, strlen(chunkSize));
-    
+
 	Stream_Write_UINT16(sChunk, PKT_TYPE_KEEPALIVE);   /* Type */
 	Stream_Write_UINT16(sChunk, 0);   /* Reserved */
 	Stream_Write_UINT32(sChunk, packetSize);   /* Packet length */
-    
+
 	Stream_Write(sChunk, "\r\n", 2);
 	Stream_SealLength(sChunk);
-    
+
 	status = tls_write_all(rdg->tlsIn, Stream_Buffer(sChunk), Stream_Length(sChunk));
 	Stream_Free(sChunk, TRUE);
-    
+
 	return (status < 0 ? FALSE : TRUE);
 }
 
@@ -1284,7 +1286,7 @@ BOOL rdg_process_control_packet(rdpRdg* rdg, int type, int packetLength)
 			status = rdg_process_keep_alive_packet(rdg);
 			LeaveCriticalSection(&rdg->writeSection);
 			break;
-            
+
 		default:
 			status = rdg_process_unknown_packet(rdg, type);
 			break;
@@ -1616,7 +1618,7 @@ rdpRdg* rdg_new(rdpTransport* transport)
 
 		if (!rdg->readEvent)
 			goto rdg_alloc_error;
-        
+
 		InitializeCriticalSection(&rdg->writeSection);
 	}
 
@@ -1661,7 +1663,7 @@ void rdg_free(rdpRdg* rdg)
 		CloseHandle(rdg->readEvent);
 		rdg->readEvent = NULL;
 	}
-    
+
 	DeleteCriticalSection(&rdg->writeSection);
 
 	free(rdg);

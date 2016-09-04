@@ -21,6 +21,9 @@
 #include "config.h"
 #endif
 
+#ifndef WINDOWS
+#define _strdup strdup
+#endif
 #include <winpr/crt.h>
 #include <winpr/print.h>
 #include <winpr/stream.h>

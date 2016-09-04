@@ -22,6 +22,10 @@
 #include "config.h"
 #endif
 
+#ifndef WINDOWS
+#define _strdup strdup
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

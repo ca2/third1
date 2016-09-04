@@ -66,9 +66,11 @@
 			<Add option="-Wno-attributes" />
 			<Add option="-Winvalid-pch" />
 			<Add option="-fPIC" />
+			<Add option="`pkgconf --cflags uuid`" />
 			<Add option="-DLINUX" />
 			<Add option="-DHAVE_CONFIG_H" />
 			<Add option="-DBYEWINDOWS_UNICODE" />
+			<Add option="-DBUILTIN_CHANNELS" />
 			<Add directory="../../../../include" />
 			<Add directory="../../../include" />
 			<Add directory="../../include" />
@@ -90,7 +92,7 @@
 			<Add option="-Wl,-z,origin" />
 			<Add option="-lpthread" />
 			<Add option="-lpulse" />
-			<Add option="-laura" />
+			<Add option="-lace" />
 			<Add option="-laxiswinpr" />
 			<Add option="-laxisfreerdp" />
 			<Add option="-lasound" />
@@ -110,6 +112,9 @@
 			<Add after="cp ../../../nodeapp/thirdparty/library/x64/libswresample.so.1 ../../../stage/x86/" />
 			<Mode after="always" />
 		</ExtraCommands>
+		<Unit filename="ca2/tables_linux.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="channels/audin/client/alsa/audin_alsa.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -126,9 +131,6 @@
 		</Unit>
 		<Unit filename="channels/client/addin.h" />
 		<Unit filename="channels/client/tables.h" />
-		<Unit filename="channels/client/tables_linux.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="channels/cliprdr/client/cliprdr_format.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -220,14 +222,14 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="channels/rdpgfx/client/rdpgfx_codec.h" />
-		<Unit filename="channels/rdpgfx/client/rdpgfx_common.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="channels/rdpgfx/client/rdpgfx_common.h" />
 		<Unit filename="channels/rdpgfx/client/rdpgfx_main.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="channels/rdpgfx/client/rdpgfx_main.h" />
+		<Unit filename="channels/rdpgfx/rdpgfx_common.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="channels/rdpsnd/client/alsa/rdpsnd_alsa.c">
 			<Option compilerVar="CC" />
 		</Unit>

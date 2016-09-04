@@ -117,3 +117,9 @@
 #ifdef LINUX
 #define _strdup strdup
 #endif
+
+
+
+#ifndef WINDOWS
+#define _strdup strdup
+#endif

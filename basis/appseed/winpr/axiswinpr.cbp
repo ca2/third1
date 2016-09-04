@@ -90,6 +90,7 @@
 			<Add option="-lrt" />
 			<Add option="-ldl" />
 			<Add option="-lpthread" />
+			<Add option="-lace" />
 			<Add option="-lcrypto" />
 			<Add option="-lssl" />
 			<Add option="-Wl,-z,defs" />
@@ -167,10 +168,19 @@
 		<Unit filename="libwinpr/crypto/cert.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="libwinpr/crypto/cipher.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libwinpr/crypto/crypto.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/crypto/crypto.h" />
+		<Unit filename="libwinpr/crypto/hash.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/crypto/rand.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libwinpr/dsparse/dsparse.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -180,10 +190,16 @@
 		<Unit filename="libwinpr/environment/environment.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libwinpr/error/err_err.c">
+		<Unit filename="libwinpr/error/error_out_of_winpr.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/file/file.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/file/generic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/file/namedPipeClient.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/file/pattern.c">
@@ -248,9 +264,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/pool/callback_cleanup.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libwinpr/pool/callback_environment.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/pool/cleanup_group.c">
@@ -597,10 +610,16 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/utils/wlog/PacketMessage.h" />
+		<Unit filename="libwinpr/utils/wlog/SyslogAppender.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libwinpr/utils/wlog/TextMessage.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/utils/wlog/TextMessage.h" />
+		<Unit filename="libwinpr/utils/wlog/UdpAppender.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libwinpr/utils/wlog/wlog.c">
 			<Option compilerVar="CC" />
 		</Unit>
