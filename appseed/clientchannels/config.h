@@ -104,3 +104,7 @@
 #endif
 
 
+
+
+
+#define WITH_OPENH264 1
