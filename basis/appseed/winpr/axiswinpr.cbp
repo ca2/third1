@@ -9,7 +9,7 @@
 		<Build>
 			<Target title="Debug">
 				<Option output="../../../nodeapp/thirdparty/library/x64/libaxiswinpr.so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="../../../stage/x86/" />
+				<Option working_dir="../../../time/x64/basis/" />
 				<Option object_output="../../../time/intermediate/app/axiswinpr" />
 				<Option type="3" />
 				<Option compiler="gcc" />
@@ -28,12 +28,12 @@
 					<Add directory="../../../.." />
 				</Compiler>
 				<Linker>
-					<Add directory="../../../stage/x86" />
+					<Add directory="../../../time/x64/basis" />
 				</Linker>
 			</Target>
 			<Target title="memdleak">
-				<Option output="../../../stage/x86/libaxiswinpr.so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="../../../stage/x86/" />
+				<Option output="../../../time/x64/basis/libaxiswinpr.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../../../time/x64/basis/" />
 				<Option object_output="../../../time/intermediate/app/axiswinpr" />
 				<Option type="3" />
 				<Option compiler="gcc" />
@@ -53,7 +53,7 @@
 					<Add directory="../../../.." />
 				</Compiler>
 				<Linker>
-					<Add directory="../../../stage/x86" />
+					<Add directory="../../../time/x64/basis" />
 				</Linker>
 			</Target>
 		</Build>
@@ -92,7 +92,7 @@
 			<Add option="-lcrypto" />
 			<Add option="-lssl" />
 			<Add option="-Wl,-z,defs" />
-			<Add directory="../../../../stage/x86" />
+			<Add directory="../../../../time/x64/basis" />
 		</Linker>
 		<Unit filename="config.h" />
 		<Unit filename="libwinpr/asn1/asn1.c">

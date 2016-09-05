@@ -7,8 +7,8 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../stage/x86/libaxiscrypto.so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="../../../stage/x86/" />
+				<Option output="../../../time/x64/basis/libaxiscrypto.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../../../time/x64/basis/" />
 				<Option object_output="../../../time/intermediate/app/axiscrypto" />
 				<Option type="3" />
 				<Option compiler="gcc" />
@@ -19,12 +19,12 @@
 					<Add option="-D_DEBUG" />
 				</Compiler>
 				<Linker>
-					<Add directory="../../../stage/x86" />
+					<Add directory="../../../time/x64/basis" />
 				</Linker>
 			</Target>
 			<Target title="memdleak">
-				<Option output="../../../stage/x86/libaxisopenssl.so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="../../../stage/x86/" />
+				<Option output="../../../time/x64/basis/libaxisopenssl.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../../../time/x64/basis/" />
 				<Option object_output="../../../time/intermediate/app/axisopenssl" />
 				<Option type="3" />
 				<Option compiler="gcc" />
@@ -36,7 +36,7 @@
 					<Add option="-DMEMDLEAK" />
 				</Compiler>
 				<Linker>
-					<Add directory="../../../stage/x86" />
+					<Add directory="../../../time/x64/basis" />
 				</Linker>
 			</Target>
 		</Build>
@@ -80,7 +80,7 @@
 			<Add option="-lpthread" />
 			<Add option="-laura" />
 			<Add option="-Wl,-z,defs" />
-			<Add directory="../../../stage/x86" />
+			<Add directory="../../../time/x64/basis" />
 		</Linker>
 		<Unit filename="asm/x64-elf-gas/aes/aes-x86_64.s" />
 		<Unit filename="asm/x64-elf-gas/aes/aesni-sha1-x86_64.s" />
