@@ -49,6 +49,27 @@
 			remoteGlobalIDString = 9AE24D871904CF46001AEFFB;
 			remoteInfo = axiscrypto_ios;
 		};
+		9A26A0081D7ED714001F47A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A26A0021D7ED714001F47A8 /* ace.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A574B9816AAB906000CC4EF;
+			remoteInfo = ace;
+		};
+		9A26A00A1D7ED714001F47A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A26A0021D7ED714001F47A8 /* ace.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B65764190F3CA2002DAADE;
+			remoteInfo = ios_ace;
+		};
+		9A26A00C1D7ED714001F47A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A26A0021D7ED714001F47A8 /* ace.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B65773190F3CA2002DAADE;
+			remoteInfo = ace_iosTests;
+		};
 		9AE24D9D1904CF46001AEFFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A1B2F7F16A2AF5C00875A94 /* Project object */;
@@ -98,6 +119,7 @@
 		077CEF071B23BC7A009A57EF /* _ssl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = _ssl.c; path = ssl/_ssl.c; sourceTree = "<group>"; };
 		07B2729219A019AB00E822E1 /* libios_axisopenssl.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_axisopenssl.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B2729A19A01A4600E822E1 /* libaxisopenssl.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libaxisopenssl.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A26A0021D7ED714001F47A8 /* ace.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ace.xcodeproj; path = ../../../app/appseed/ace/ace.xcodeproj; sourceTree = "<group>"; };
 		9A92C9051D2058690069D173 /* axisopenssl_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = axisopenssl_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -158,12 +180,23 @@
 		9A1B2F7D16A2AF5C00875A94 = {
 			isa = PBXGroup;
 			children = (
+				9A26A0021D7ED714001F47A8 /* ace.xcodeproj */,
 				07502CB31B252A49008D207C /* axiscrypto.xcodeproj */,
 				9A4E844B1D1FD22B008A419B /* openssl */,
 				07783306199FE94D00206CA1 /* ssl */,
 				9A4E84491D1FD21A008A419B /* Products */,
 				9A92C9051D2058690069D173 /* axisopenssl_iosTests.xctest */,
 			);
+			sourceTree = "<group>";
+		};
+		9A26A0031D7ED714001F47A8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A26A0091D7ED714001F47A8 /* libace.a */,
+				9A26A00B1D7ED714001F47A8 /* libios_ace.dylib */,
+				9A26A00D1D7ED714001F47A8 /* ace_iosTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		9A4E84491D1FD21A008A419B /* Products */ = {
@@ -271,6 +304,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 9A26A0031D7ED714001F47A8 /* Products */;
+					ProjectRef = 9A26A0021D7ED714001F47A8 /* ace.xcodeproj */;
+				},
+				{
 					ProductGroup = 07502CB41B252A49008D207C /* Products */;
 					ProjectRef = 07502CB31B252A49008D207C /* axiscrypto.xcodeproj */;
 				},
@@ -304,6 +341,28 @@
 			fileType = wrapper.cfbundle;
 			path = axiscrypto_iosTests.xctest;
 			remoteRef = 07502CBD1B252A49008D207C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A26A0091D7ED714001F47A8 /* libace.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libace.a;
+			remoteRef = 9A26A0081D7ED714001F47A8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A26A00B1D7ED714001F47A8 /* libios_ace.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			name = libios_ace.dylib;
+			path = libios_ace.a;
+			remoteRef = 9A26A00A1D7ED714001F47A8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A26A00D1D7ED714001F47A8 /* ace_iosTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ace_iosTests.xctest;
+			remoteRef = 9A26A00C1D7ED714001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -369,6 +428,8 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				INSTALL_PATH = /Library/Frameworks/ca2/basis;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2/basis";
 				MACH_O_TYPE = mh_dylib;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -382,6 +443,8 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				INSTALL_PATH = /Library/Frameworks/ca2/stage;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2/stage";
 				MACH_O_TYPE = mh_dylib;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -426,7 +489,6 @@
 					"$(WorkspaceDir)/../../../app/base/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
-				INSTALL_PATH = "@executable_path";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -437,7 +499,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../nodeapp/include/openssl";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
@@ -474,7 +536,6 @@
 					"$(WorkspaceDir)/../../../app/base/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
-				INSTALL_PATH = "@executable_path";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -484,7 +545,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../nodeapp/include/openssl";
 				VALIDATE_PRODUCT = YES;
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};

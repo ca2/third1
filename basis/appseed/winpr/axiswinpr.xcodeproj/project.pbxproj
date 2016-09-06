@@ -87,8 +87,6 @@
 		07DD600A1B5F0B4E003A1CE1 /* dummy.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5E591B5F0B4C003A1CE1 /* dummy.c */; };
 		07DD600B1B5F0B4E003A1CE1 /* environment.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5E5D1B5F0B4C003A1CE1 /* environment.c */; };
 		07DD600C1B5F0B4E003A1CE1 /* environment.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5E5D1B5F0B4C003A1CE1 /* environment.c */; };
-		07DD600D1B5F0B4E003A1CE1 /* err_err.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5E631B5F0B4C003A1CE1 /* err_err.c */; };
-		07DD600E1B5F0B4E003A1CE1 /* err_err.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5E631B5F0B4C003A1CE1 /* err_err.c */; };
 		07DD60111B5F0B4E003A1CE1 /* file.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5E6A1B5F0B4C003A1CE1 /* file.c */; };
 		07DD60121B5F0B4E003A1CE1 /* file.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5E6A1B5F0B4C003A1CE1 /* file.c */; };
 		07DD60131B5F0B4E003A1CE1 /* pattern.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5E6C1B5F0B4C003A1CE1 /* pattern.c */; };
@@ -143,8 +141,6 @@
 		07DD604E1B5F0B4E003A1CE1 /* callback.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EC11B5F0B4D003A1CE1 /* callback.c */; };
 		07DD604F1B5F0B4E003A1CE1 /* callback_cleanup.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EC21B5F0B4D003A1CE1 /* callback_cleanup.c */; };
 		07DD60501B5F0B4E003A1CE1 /* callback_cleanup.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EC21B5F0B4D003A1CE1 /* callback_cleanup.c */; };
-		07DD60511B5F0B4E003A1CE1 /* callback_environment.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EC31B5F0B4D003A1CE1 /* callback_environment.c */; };
-		07DD60521B5F0B4E003A1CE1 /* callback_environment.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EC31B5F0B4D003A1CE1 /* callback_environment.c */; };
 		07DD60531B5F0B4E003A1CE1 /* cleanup_group.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EC41B5F0B4D003A1CE1 /* cleanup_group.c */; };
 		07DD60541B5F0B4E003A1CE1 /* cleanup_group.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5EC41B5F0B4D003A1CE1 /* cleanup_group.c */; };
 		07DD60591B5F0B4E003A1CE1 /* pool.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD5ECB1B5F0B4D003A1CE1 /* pool.h */; };
@@ -449,6 +445,14 @@
 		07DD619C1B5F0B4E003A1CE1 /* wtsapi_win32.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD5FBA1B5F0B4D003A1CE1 /* wtsapi_win32.h */; };
 		07DD61A11B5F0B4E003A1CE1 /* makecert.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5FC61B5F0B4E003A1CE1 /* makecert.c */; };
 		07DD61A21B5F0B4E003A1CE1 /* makecert.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5FC61B5F0B4E003A1CE1 /* makecert.c */; };
+		9A26A0511D7EDD6A001F47A8 /* error_out_of_winpr.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0501D7EDD6A001F47A8 /* error_out_of_winpr.c */; };
+		9A26A0541D7EDD8A001F47A8 /* generic.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0521D7EDD8A001F47A8 /* generic.c */; };
+		9A26A0551D7EDD8A001F47A8 /* namedPipeClient.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0531D7EDD8A001F47A8 /* namedPipeClient.c */; };
+		9A26A0591D7EDDA7001F47A8 /* cipher.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0561D7EDDA7001F47A8 /* cipher.c */; };
+		9A26A05A1D7EDDA7001F47A8 /* hash.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0571D7EDDA7001F47A8 /* hash.c */; };
+		9A26A05B1D7EDDA7001F47A8 /* rand.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0581D7EDDA7001F47A8 /* rand.c */; };
+		9A26A0621D7EDE5E001F47A8 /* UdpAppender.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0611D7EDE5E001F47A8 /* UdpAppender.c */; };
+		9A26A0971D7EE017001F47A8 /* libace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A269FF11D7ED70E001F47A8 /* libace.a */; };
 		9A331C771D4BCDF100255105 /* libaxisopenssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C701D4BCDDB00255105 /* libaxisopenssl.dylib */; };
 		9A331C7A1D4BCE0300255105 /* libios_axisopenssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C721D4BCDDB00255105 /* libios_axisopenssl.dylib */; };
 		9A4E86211D1FD812008A419B /* libaxiscrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E86201D1FD811008A419B /* libaxiscrypto.dylib */; };
@@ -456,6 +460,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9A269FF01D7ED70E001F47A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A269FEA1D7ED70E001F47A8 /* ace.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A574B9816AAB906000CC4EF;
+			remoteInfo = ace;
+		};
+		9A269FF21D7ED70E001F47A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A269FEA1D7ED70E001F47A8 /* ace.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B65764190F3CA2002DAADE;
+			remoteInfo = ios_ace;
+		};
+		9A269FF41D7ED70E001F47A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A269FEA1D7ED70E001F47A8 /* ace.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07B65773190F3CA2002DAADE;
+			remoteInfo = ace_iosTests;
+		};
+		9A26A05F1D7EDE1E001F47A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A269FEA1D7ED70E001F47A8 /* ace.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A574B9716AAB906000CC4EF;
+			remoteInfo = ace;
+		};
 		9A331C6F1D4BCDDB00255105 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A331C691D4BCDDB00255105 /* axisopenssl.xcodeproj */;
@@ -535,7 +567,6 @@
 		07DD5E561B5F0B4C003A1CE1 /* dsparse.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dsparse.c; sourceTree = "<group>"; };
 		07DD5E591B5F0B4C003A1CE1 /* dummy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dummy.c; sourceTree = "<group>"; };
 		07DD5E5D1B5F0B4C003A1CE1 /* environment.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = environment.c; sourceTree = "<group>"; };
-		07DD5E631B5F0B4C003A1CE1 /* err_err.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = err_err.c; sourceTree = "<group>"; };
 		07DD5E6A1B5F0B4C003A1CE1 /* file.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = file.c; sourceTree = "<group>"; };
 		07DD5E6C1B5F0B4C003A1CE1 /* pattern.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pattern.c; sourceTree = "<group>"; };
 		07DD5E701B5F0B4C003A1CE1 /* handle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = handle.c; sourceTree = "<group>"; };
@@ -563,7 +594,6 @@
 		07DD5EBF1B5F0B4D003A1CE1 /* pipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pipe.h; sourceTree = "<group>"; };
 		07DD5EC11B5F0B4D003A1CE1 /* callback.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = callback.c; sourceTree = "<group>"; };
 		07DD5EC21B5F0B4D003A1CE1 /* callback_cleanup.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = callback_cleanup.c; sourceTree = "<group>"; };
-		07DD5EC31B5F0B4D003A1CE1 /* callback_environment.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = callback_environment.c; sourceTree = "<group>"; };
 		07DD5EC41B5F0B4D003A1CE1 /* cleanup_group.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cleanup_group.c; sourceTree = "<group>"; };
 		07DD5ECB1B5F0B4D003A1CE1 /* pool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pool.h; sourceTree = "<group>"; };
 		07DD5ED91B5F0B4D003A1CE1 /* registry.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = registry.c; sourceTree = "<group>"; };
@@ -718,6 +748,14 @@
 		07DD5FC31B5F0B4E003A1CE1 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		07DD5FC61B5F0B4E003A1CE1 /* makecert.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = makecert.c; sourceTree = "<group>"; };
 		9A1B358C16A2D7A500875A94 /* libaxiswinpr.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxiswinpr.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A269FEA1D7ED70E001F47A8 /* ace.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ace.xcodeproj; path = ../../../app/appseed/ace/ace.xcodeproj; sourceTree = "<group>"; };
+		9A26A0501D7EDD6A001F47A8 /* error_out_of_winpr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = error_out_of_winpr.c; sourceTree = "<group>"; };
+		9A26A0521D7EDD8A001F47A8 /* generic.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = generic.c; sourceTree = "<group>"; };
+		9A26A0531D7EDD8A001F47A8 /* namedPipeClient.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = namedPipeClient.c; sourceTree = "<group>"; };
+		9A26A0561D7EDDA7001F47A8 /* cipher.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cipher.c; sourceTree = "<group>"; };
+		9A26A0571D7EDDA7001F47A8 /* hash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hash.c; sourceTree = "<group>"; };
+		9A26A0581D7EDDA7001F47A8 /* rand.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rand.c; sourceTree = "<group>"; };
+		9A26A0611D7EDE5E001F47A8 /* UdpAppender.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = UdpAppender.c; sourceTree = "<group>"; };
 		9A331C691D4BCDDB00255105 /* axisopenssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisopenssl.xcodeproj; path = ../openssl/axisopenssl.xcodeproj; sourceTree = "<group>"; };
 		9A4E86201D1FD811008A419B /* libaxiscrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxiscrypto.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/core-mac-ekqwiewkpeyhdudtxguywfqohhby/Build/Products/Debug/libaxiscrypto.dylib"; sourceTree = "<group>"; };
 		9A986D111D226A70001F4C04 /* libios_axiscrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axiscrypto.dylib; path = "../crypto/build/Debug-iphoneos/libios_axiscrypto.dylib"; sourceTree = "<group>"; };
@@ -737,6 +775,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A26A0971D7EE017001F47A8 /* libace.a in Frameworks */,
 				9A331C771D4BCDF100255105 /* libaxisopenssl.dylib in Frameworks */,
 				9A4E86211D1FD812008A419B /* libaxiscrypto.dylib in Frameworks */,
 			);
@@ -890,6 +929,9 @@
 		07DD5E4B1B5F0B4C003A1CE1 /* crypto */ = {
 			isa = PBXGroup;
 			children = (
+				9A26A0561D7EDDA7001F47A8 /* cipher.c */,
+				9A26A0571D7EDDA7001F47A8 /* hash.c */,
+				9A26A0581D7EDDA7001F47A8 /* rand.c */,
 				07DD5E4C1B5F0B4C003A1CE1 /* cert.c */,
 				07DD5E4F1B5F0B4C003A1CE1 /* crypto.c */,
 				07DD5E501B5F0B4C003A1CE1 /* crypto.h */,
@@ -916,7 +958,7 @@
 		07DD5E601B5F0B4C003A1CE1 /* error */ = {
 			isa = PBXGroup;
 			children = (
-				07DD5E631B5F0B4C003A1CE1 /* err_err.c */,
+				9A26A0501D7EDD6A001F47A8 /* error_out_of_winpr.c */,
 			);
 			path = error;
 			sourceTree = "<group>";
@@ -924,6 +966,8 @@
 		07DD5E671B5F0B4C003A1CE1 /* file */ = {
 			isa = PBXGroup;
 			children = (
+				9A26A0521D7EDD8A001F47A8 /* generic.c */,
+				9A26A0531D7EDD8A001F47A8 /* namedPipeClient.c */,
 				07DD5E6A1B5F0B4C003A1CE1 /* file.c */,
 				07DD5E6C1B5F0B4C003A1CE1 /* pattern.c */,
 			);
@@ -1047,7 +1091,6 @@
 				0775CAC81B848722005F8295 /* work.c */,
 				07DD5EC11B5F0B4D003A1CE1 /* callback.c */,
 				07DD5EC21B5F0B4D003A1CE1 /* callback_cleanup.c */,
-				07DD5EC31B5F0B4D003A1CE1 /* callback_environment.c */,
 				07DD5EC41B5F0B4D003A1CE1 /* cleanup_group.c */,
 				07DD5ECB1B5F0B4D003A1CE1 /* pool.h */,
 			);
@@ -1318,6 +1361,7 @@
 		07DD5F881B5F0B4D003A1CE1 /* wlog */ = {
 			isa = PBXGroup;
 			children = (
+				9A26A0611D7EDE5E001F47A8 /* UdpAppender.c */,
 				07DD5F891B5F0B4D003A1CE1 /* Appender.c */,
 				07DD5F8A1B5F0B4D003A1CE1 /* Appender.h */,
 				07DD5F8B1B5F0B4D003A1CE1 /* BinaryAppender.c */,
@@ -1417,6 +1461,7 @@
 		9A1B358116A2D7A500875A94 = {
 			isa = PBXGroup;
 			children = (
+				9A269FEA1D7ED70E001F47A8 /* ace.xcodeproj */,
 				9A331C691D4BCDDB00255105 /* axisopenssl.xcodeproj */,
 				9A986D111D226A70001F4C04 /* libios_axiscrypto.dylib */,
 				9A4E86201D1FD811008A419B /* libaxiscrypto.dylib */,
@@ -1430,6 +1475,16 @@
 			children = (
 				9A1B358C16A2D7A500875A94 /* libaxiswinpr.dylib */,
 				07DD5DF91B5F0A1E003A1CE1 /* libios_axiswinpr.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A269FEB1D7ED70E001F47A8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A269FF11D7ED70E001F47A8 /* libace.a */,
+				9A269FF31D7ED70E001F47A8 /* libios_ace.dylib */,
+				9A269FF51D7ED70E001F47A8 /* ace_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1635,6 +1690,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A26A0601D7EDE1E001F47A8 /* PBXTargetDependency */,
 				9A331C761D4BCDE400255105 /* PBXTargetDependency */,
 			);
 			name = axiswinpr;
@@ -1663,6 +1719,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 9A269FEB1D7ED70E001F47A8 /* Products */;
+					ProjectRef = 9A269FEA1D7ED70E001F47A8 /* ace.xcodeproj */;
+				},
+				{
 					ProductGroup = 9A331C6A1D4BCDDB00255105 /* Products */;
 					ProjectRef = 9A331C691D4BCDDB00255105 /* axisopenssl.xcodeproj */;
 				},
@@ -1676,6 +1736,28 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		9A269FF11D7ED70E001F47A8 /* libace.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libace.a;
+			remoteRef = 9A269FF01D7ED70E001F47A8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A269FF31D7ED70E001F47A8 /* libios_ace.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			name = libios_ace.dylib;
+			path = libios_ace.a;
+			remoteRef = 9A269FF21D7ED70E001F47A8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A269FF51D7ED70E001F47A8 /* ace_iosTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ace_iosTests.xctest;
+			remoteRef = 9A269FF41D7ED70E001F47A8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		9A331C701D4BCDDB00255105 /* libaxisopenssl.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1750,7 +1832,6 @@
 				07DD61141B5F0B4E003A1CE1 /* HashTable.c in Sources */,
 				07DD60E81B5F0B4E003A1CE1 /* init.c in Sources */,
 				07DD60E21B5F0B4E003A1CE1 /* condition.c in Sources */,
-				07DD60521B5F0B4E003A1CE1 /* callback_environment.c in Sources */,
 				07DD609C1B5F0B4E003A1CE1 /* security.c in Sources */,
 				07DD602E1B5F0B4E003A1CE1 /* library.c in Sources */,
 				07DD61621B5F0B4E003A1CE1 /* BinaryAppender.c in Sources */,
@@ -1765,7 +1846,6 @@
 				07DD616E1B5F0B4E003A1CE1 /* DataMessage.c in Sources */,
 				07DD617E1B5F0B4E003A1CE1 /* Message.c in Sources */,
 				07DD60461B5F0B4E003A1CE1 /* path.c in Sources */,
-				07DD600E1B5F0B4E003A1CE1 /* err_err.c in Sources */,
 				07DD60281B5F0B4E003A1CE1 /* device.c in Sources */,
 				07DD618A1B5F0B4E003A1CE1 /* wlog.c in Sources */,
 				07DD61501B5F0B4E003A1CE1 /* trionan.c in Sources */,
@@ -1871,6 +1951,7 @@
 				07DD60951B5F0B4E003A1CE1 /* ndr_union.c in Sources */,
 				07DD610F1B5F0B4E003A1CE1 /* CountdownEvent.c in Sources */,
 				07DD5FFD1B5F0B4E003A1CE1 /* utf.c in Sources */,
+				9A26A0621D7EDE5E001F47A8 /* UdpAppender.c in Sources */,
 				07DD5FD91B5F0B4E003A1CE1 /* comm_io.c in Sources */,
 				07DD60C11B5F0B4E003A1CE1 /* ntlm_compute.c in Sources */,
 				07DD60911B5F0B4E003A1CE1 /* ndr_structure.c in Sources */,
@@ -1891,6 +1972,7 @@
 				07DD60EB1B5F0B4E003A1CE1 /* semaphore.c in Sources */,
 				0775CACC1B848722005F8295 /* timer.c in Sources */,
 				07DD606B1B5F0B4E003A1CE1 /* registry.c in Sources */,
+				9A26A05B1D7EDDA7001F47A8 /* rand.c in Sources */,
 				07DD601F1B5F0B4E003A1CE1 /* keycode.c in Sources */,
 				07DD60491B5F0B4E003A1CE1 /* pipe.c in Sources */,
 				0775CAC21B8486E6005F8295 /* ntlm.c in Sources */,
@@ -1904,8 +1986,8 @@
 				07DD61131B5F0B4E003A1CE1 /* HashTable.c in Sources */,
 				07DD60E71B5F0B4E003A1CE1 /* init.c in Sources */,
 				07DD60E11B5F0B4E003A1CE1 /* condition.c in Sources */,
-				07DD60511B5F0B4E003A1CE1 /* callback_environment.c in Sources */,
 				07DD609B1B5F0B4E003A1CE1 /* security.c in Sources */,
+				9A26A0591D7EDDA7001F47A8 /* cipher.c in Sources */,
 				07DD602D1B5F0B4E003A1CE1 /* library.c in Sources */,
 				07DD61611B5F0B4E003A1CE1 /* BinaryAppender.c in Sources */,
 				07DD60CD1B5F0B4E003A1CE1 /* schannel_openssl.c in Sources */,
@@ -1914,12 +1996,12 @@
 				07DD60851B5F0B4E003A1CE1 /* ndr_private.c in Sources */,
 				07DD61451B5F0B4E003A1CE1 /* stream.c in Sources */,
 				07DD609F1B5F0B4E003A1CE1 /* smartcard.c in Sources */,
+				9A26A0511D7EDD6A001F47A8 /* error_out_of_winpr.c in Sources */,
 				07DD60811B5F0B4E003A1CE1 /* ndr_pointer.c in Sources */,
 				07DD60B11B5F0B4E003A1CE1 /* credssp.c in Sources */,
 				07DD616D1B5F0B4E003A1CE1 /* DataMessage.c in Sources */,
 				07DD617D1B5F0B4E003A1CE1 /* Message.c in Sources */,
 				07DD60451B5F0B4E003A1CE1 /* path.c in Sources */,
-				07DD600D1B5F0B4E003A1CE1 /* err_err.c in Sources */,
 				07DD60271B5F0B4E003A1CE1 /* device.c in Sources */,
 				0775CACA1B848722005F8295 /* pool.c in Sources */,
 				07DD61891B5F0B4E003A1CE1 /* wlog.c in Sources */,
@@ -1971,6 +2053,7 @@
 				07DD61431B5F0B4E003A1CE1 /* ssl.c in Sources */,
 				07DD601D1B5F0B4E003A1CE1 /* heap.c in Sources */,
 				07DD60A91B5F0B4E003A1CE1 /* smartcard_pcsc.c in Sources */,
+				9A26A0541D7EDD8A001F47A8 /* generic.c in Sources */,
 				07DD608D1B5F0B4E003A1CE1 /* ndr_string.c in Sources */,
 				07DD60C91B5F0B4E003A1CE1 /* schannel.c in Sources */,
 				07DD618F1B5F0B4E003A1CE1 /* winsock.c in Sources */,
@@ -1993,6 +2076,7 @@
 				07DD611D1B5F0B4E003A1CE1 /* MessageQueue.c in Sources */,
 				07DD60751B5F0B4E003A1CE1 /* ndr_array.c in Sources */,
 				07DD60211B5F0B4E003A1CE1 /* scancode.c in Sources */,
+				9A26A05A1D7EDDA7001F47A8 /* hash.c in Sources */,
 				07DD60AD1B5F0B4E003A1CE1 /* smartcard_winscard.c in Sources */,
 				07DD60BD1B5F0B4E003A1CE1 /* ntlm_av_pairs.c in Sources */,
 				07DD60711B5F0B4E003A1CE1 /* midl.c in Sources */,
@@ -2011,12 +2095,18 @@
 				07DD5FF11B5F0B4E003A1CE1 /* buffer.c in Sources */,
 				07DD61711B5F0B4E003A1CE1 /* FileAppender.c in Sources */,
 				07DD5FD11B5F0B4E003A1CE1 /* synthetic.c in Sources */,
+				9A26A0551D7EDD8A001F47A8 /* namedPipeClient.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9A26A0601D7EDE1E001F47A8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ace;
+			targetProxy = 9A26A05F1D7EDE1E001F47A8 /* PBXContainerItemProxy */;
+		};
 		9A331C761D4BCDE400255105 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = axisopenssl;
@@ -2082,7 +2172,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INSTALL_PATH = "@executable_path";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2131,7 +2220,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INSTALL_PATH = "@executable_path";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2151,6 +2239,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2/basis";
 			};
 			name = Debug;
 		};
@@ -2158,6 +2247,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2/stage";
 			};
 			name = Release;
 		};

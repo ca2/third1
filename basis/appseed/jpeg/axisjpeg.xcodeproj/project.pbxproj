@@ -144,26 +144,26 @@
 			remoteGlobalIDString = 07B65763190F3CA2002DAADE;
 			remoteInfo = math_ios;
 		};
-		9A342F471D5B7E8E00D00D4A /* PBXContainerItemProxy */ = {
+		9A26A0141D7ED717001F47A8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A342F411D5B7E8E00D00D4A /* axispng.xcodeproj */;
+			containerPortal = 9A26A00E1D7ED717001F47A8 /* ace.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A574B9816AAB906000CC4EF;
-			remoteInfo = axispng;
+			remoteInfo = ace;
 		};
-		9A342F491D5B7E8E00D00D4A /* PBXContainerItemProxy */ = {
+		9A26A0161D7ED717001F47A8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A342F411D5B7E8E00D00D4A /* axispng.xcodeproj */;
+			containerPortal = 9A26A00E1D7ED717001F47A8 /* ace.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 07B65764190F3CA2002DAADE;
-			remoteInfo = ios_axispng;
+			remoteInfo = ios_ace;
 		};
-		9A342F4B1D5B7E8E00D00D4A /* PBXContainerItemProxy */ = {
+		9A26A0181D7ED717001F47A8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A342F411D5B7E8E00D00D4A /* axispng.xcodeproj */;
+			containerPortal = 9A26A00E1D7ED717001F47A8 /* ace.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 07B65773190F3CA2002DAADE;
-			remoteInfo = axispng_iosTests;
+			remoteInfo = ace_iosTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -182,7 +182,7 @@
 /* Begin PBXFileReference section */
 		07B65764190F3CA2002DAADE /* libios_axisjpeg.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_axisjpeg.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B65773190F3CA2002DAADE /* axisjpeg_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = axisjpeg_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A342F411D5B7E8E00D00D4A /* axispng.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axispng.xcodeproj; path = ../png/axispng.xcodeproj; sourceTree = "<group>"; };
+		9A26A00E1D7ED717001F47A8 /* ace.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ace.xcodeproj; path = ../../../app/appseed/ace/ace.xcodeproj; sourceTree = "<group>"; };
 		9A4E86AC1D1FD9F3008A419B /* cderror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cderror.h; sourceTree = "<group>"; };
 		9A4E86AD1D1FD9F3008A419B /* cdjpeg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cdjpeg.c; sourceTree = "<group>"; };
 		9A4E86AE1D1FD9F3008A419B /* cdjpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cdjpeg.h; sourceTree = "<group>"; };
@@ -278,12 +278,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9A342F421D5B7E8E00D00D4A /* Products */ = {
+		9A26A00F1D7ED717001F47A8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A342F481D5B7E8E00D00D4A /* libaxispng.dylib */,
-				9A342F4A1D5B7E8E00D00D4A /* libios_axispng.dylib */,
-				9A342F4C1D5B7E8E00D00D4A /* axispng_iosTests.xctest */,
+				9A26A0151D7ED717001F47A8 /* libace.a */,
+				9A26A0171D7ED717001F47A8 /* libios_ace.dylib */,
+				9A26A0191D7ED717001F47A8 /* ace_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -364,7 +364,7 @@
 		9A574B8D16AAB906000CC4EF = {
 			isa = PBXGroup;
 			children = (
-				9A342F411D5B7E8E00D00D4A /* axispng.xcodeproj */,
+				9A26A00E1D7ED717001F47A8 /* ace.xcodeproj */,
 				9A4E86A41D1FD9D8008A419B /* jpeg */,
 				9A574B9916AAB906000CC4EF /* Products */,
 			);
@@ -477,8 +477,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9A342F421D5B7E8E00D00D4A /* Products */;
-					ProjectRef = 9A342F411D5B7E8E00D00D4A /* axispng.xcodeproj */;
+					ProductGroup = 9A26A00F1D7ED717001F47A8 /* Products */;
+					ProjectRef = 9A26A00E1D7ED717001F47A8 /* ace.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -491,25 +491,26 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A342F481D5B7E8E00D00D4A /* libaxispng.dylib */ = {
+		9A26A0151D7ED717001F47A8 /* libace.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libaxispng.dylib;
-			remoteRef = 9A342F471D5B7E8E00D00D4A /* PBXContainerItemProxy */;
+			path = libace.a;
+			remoteRef = 9A26A0141D7ED717001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A342F4A1D5B7E8E00D00D4A /* libios_axispng.dylib */ = {
+		9A26A0171D7ED717001F47A8 /* libios_ace.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_axispng.dylib;
-			remoteRef = 9A342F491D5B7E8E00D00D4A /* PBXContainerItemProxy */;
+			name = libios_ace.dylib;
+			path = libios_ace.a;
+			remoteRef = 9A26A0161D7ED717001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A342F4C1D5B7E8E00D00D4A /* axispng_iosTests.xctest */ = {
+		9A26A0191D7ED717001F47A8 /* ace_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = axispng_iosTests.xctest;
-			remoteRef = 9A342F4B1D5B7E8E00D00D4A /* PBXContainerItemProxy */;
+			path = ace_iosTests.xctest;
+			remoteRef = 9A26A0181D7ED717001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -829,7 +830,6 @@
 					"$(WorkspaceDir)/../../../app/base/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
-				INSTALL_PATH = "@executable_path";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -872,7 +872,6 @@
 					"$(WorkspaceDir)/../../../app/base/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
-				INSTALL_PATH = "@executable_path";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -892,6 +891,7 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PREFIX_HEADER = "";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2/basis";
 			};
 			name = Debug;
 		};
@@ -900,6 +900,7 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PREFIX_HEADER = "";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2/stage";
 			};
 			name = Release;
 		};
