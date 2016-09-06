@@ -932,7 +932,7 @@
 		9A269F7F1D7ED6CA001F47A8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A269F851D7ED6CA001F47A8 /* libace.dylib */,
+				9A269F851D7ED6CA001F47A8 /* libace.a */,
 				9A269F871D7ED6CA001F47A8 /* libios_ace.dylib */,
 				9A269F891D7ED6CA001F47A8 /* ace_iosTests.xctest */,
 			);
@@ -1250,18 +1250,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A269F851D7ED6CA001F47A8 /* libace.dylib */ = {
+		9A269F851D7ED6CA001F47A8 /* libace.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libace.a;
+			name = libace.a;
+			path = libace.dylib;
 			remoteRef = 9A269F841D7ED6CA001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9A269F871D7ED6CA001F47A8 /* libios_ace.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			name = libios_ace.dylib;
-			path = libios_ace.a;
+			path = libios_ace.dylib;
 			remoteRef = 9A269F861D7ED6CA001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1430,7 +1430,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				INSTALL_PATH = /Library/Frameworks/ca2/basis;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2/basis";
 				MACH_O_TYPE = mh_dylib;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -1445,7 +1444,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				INSTALL_PATH = /Library/Frameworks/ca2/stage;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2/stage";
 				MACH_O_TYPE = mh_dylib;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -1490,7 +1488,8 @@
 					"$(WorkspaceDir)/../../../app/base/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
+				INSTALL_PATH = "@executable_path";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(TARGET_BUILD_DIR)",
@@ -1539,7 +1538,8 @@
 					"$(WorkspaceDir)/../../../app/base/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
+				INSTALL_PATH = "@executable_path";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(TARGET_BUILD_DIR)",
