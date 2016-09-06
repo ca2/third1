@@ -1,0 +1,1190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="basis|ARM">
+      <Configuration>basis</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="basis|Win32">
+      <Configuration>basis</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="basis|x64">
+      <Configuration>basis</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="stage|ARM">
+      <Configuration>stage</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="stage|Win32">
+      <Configuration>stage</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="stage|x64">
+      <Configuration>stage</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\app\appseed\ace\_w_ace.vcxproj">
+      <Project>{f9116331-25d4-4634-8eea-078aedb82161}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\check_neon.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\dct36_3dnow.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\dct36_3dnowext.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\dct36_avx.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\dct36_neon.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\dct36_neon64.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\dct36_sse.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\dct36_x86_64.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\dct64_3dnow.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\dct64_3dnowext.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\dct64_avx.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\dct64_avx_float.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\dct64_mmx.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\dct64_neon.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\dct64_neon64.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\dct64_neon64_float.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\dct64_neon_float.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\dct64_sse.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\dct64_sse_float.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\dct64_x86_64.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\dct64_x86_64_float.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\equalizer_3dnow.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\getcpuflags.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\getcpuflags_x86_64.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_3dnow.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_3dnowext.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_arm.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_arm_accurate.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_i586.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_i586_dither.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_mmx.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_neon.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_neon64.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_neon64_accurate.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_neon64_float.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_neon64_s32.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_neon_accurate.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_neon_float.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_neon_s32.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_sse.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_sse_accurate.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_sse_float.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_sse_s32.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_stereo_avx.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_stereo_avx_accurate.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_stereo_avx_float.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_stereo_avx_s32.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_stereo_neon.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_stereo_neon64.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_stereo_neon64_accurate.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_stereo_neon64_float.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_stereo_neon64_s32.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_stereo_neon_accurate.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_stereo_neon_float.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_stereo_neon_s32.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_stereo_sse_accurate.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_stereo_sse_float.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_stereo_sse_s32.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_stereo_x86_64.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_stereo_x86_64_accurate.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_stereo_x86_64_float.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_stereo_x86_64_s32.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_x86_64.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_x86_64_accurate.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_x86_64_float.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\synth_x86_64_s32.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\tabinit_mmx.S">
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">$(IntDir)%(FileName).obj</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">cl /I "." /I "$(ProjectDir)src" /EP /TC "%(FullPath)" /nologo &gt; "$(IntDir)%(FileName).asm"
+yasm -a x86 -p gas -r raw -f win32 -g null -m x86 -o "$(IntDir)%(FileName).obj" "$(IntDir)%(FileName).asm"</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">$(IntDir)%(FileName).obj</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\app\include\mpg123.h" />
+    <ClInclude Include="src\config.h" />
+    <ClInclude Include="src\libmpg123\abi_align.h" />
+    <ClInclude Include="src\libmpg123\debug.h" />
+    <ClInclude Include="src\libmpg123\decode.h" />
+    <ClInclude Include="src\libmpg123\dither.h" />
+    <ClInclude Include="src\libmpg123\frame.h" />
+    <ClInclude Include="src\libmpg123\gapless.h" />
+    <ClInclude Include="src\libmpg123\getbits.h" />
+    <ClInclude Include="src\libmpg123\getcpuflags.h" />
+    <ClInclude Include="src\libmpg123\huffman.h" />
+    <ClInclude Include="src\libmpg123\icy.h" />
+    <ClInclude Include="src\libmpg123\icy2utf8.h" />
+    <ClInclude Include="src\libmpg123\id3.h" />
+    <ClInclude Include="src\libmpg123\index.h" />
+    <ClInclude Include="src\libmpg123\intsym.h" />
+    <ClInclude Include="src\libmpg123\l12_integer_tables.h" />
+    <ClInclude Include="src\libmpg123\l2tables.h" />
+    <ClInclude Include="src\libmpg123\l3_integer_tables.h" />
+    <ClInclude Include="src\libmpg123\mangle.h" />
+    <ClInclude Include="src\libmpg123\mpeghead.h" />
+    <ClInclude Include="src\libmpg123\mpg123lib_intern.h" />
+    <ClInclude Include="src\libmpg123\newhuffman.h" />
+    <ClInclude Include="src\libmpg123\optimize.h" />
+    <ClInclude Include="src\libmpg123\parse.h" />
+    <ClInclude Include="src\libmpg123\reader.h" />
+    <ClInclude Include="src\libmpg123\sample.h" />
+    <ClInclude Include="src\libmpg123\synth.h" />
+    <ClInclude Include="src\libmpg123\synths.h" />
+    <ClInclude Include="src\libmpg123\synth_8bit.h" />
+    <ClInclude Include="src\libmpg123\synth_mono.h" />
+    <ClInclude Include="src\libmpg123\synth_ntom.h" />
+    <ClInclude Include="src\libmpg123\synth_sse3d.h" />
+    <ClInclude Include="src\libmpg123\true.h" />
+    <None Include="basempg123.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\libmpg123\compat.c" />
+    <ClCompile Include="src\libmpg123\dct64.c" />
+    <ClCompile Include="src\libmpg123\dct64_altivec.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\dct64_i386.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\dct64_i486.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\dither.c" />
+    <ClCompile Include="src\libmpg123\equalizer.c" />
+    <ClCompile Include="src\libmpg123\feature.c" />
+    <ClCompile Include="src\libmpg123\format.c" />
+    <ClCompile Include="src\libmpg123\frame.c" />
+    <ClCompile Include="src\libmpg123\getcpuflags_arm.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\icy.c" />
+    <ClCompile Include="src\libmpg123\icy2utf8.c" />
+    <ClCompile Include="src\libmpg123\id3.c" />
+    <ClCompile Include="src\libmpg123\index.c" />
+    <ClCompile Include="src\libmpg123\layer1.c" />
+    <ClCompile Include="src\libmpg123\layer2.c" />
+    <ClCompile Include="src\libmpg123\layer3.c" />
+    <ClCompile Include="src\libmpg123\lfs_alias.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\lfs_wrap.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\libmpg123.c" />
+    <ClCompile Include="src\libmpg123\ntom.c" />
+    <ClCompile Include="src\libmpg123\optimize.c" />
+    <ClCompile Include="src\libmpg123\parse.c" />
+    <ClCompile Include="src\libmpg123\readers.c" />
+    <ClCompile Include="src\libmpg123\stringbuf.c" />
+    <ClCompile Include="src\libmpg123\synth.c" />
+    <ClCompile Include="src\libmpg123\synth_8bit.c" />
+    <ClCompile Include="src\libmpg123\synth_altivec.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\synth_i486.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\synth_real.c" />
+    <ClCompile Include="src\libmpg123\synth_s32.c" />
+    <ClCompile Include="src\libmpg123\tabinit.c" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{312EB372-D782-400E-9363-61D0153FC70A}</ProjectGuid>
+    <Keyword>DynamicLibrary</Keyword>
+    <ProjectName>mpg123</ProjectName>
+    <RootNamespace>mpg123</RootNamespace>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
+    <AppContainerApplication>true</AppContainerApplication>
+    <ApplicationType>Windows Store</ApplicationType>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.14393.0</WindowsTargetPlatformMinVersion>
+    <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
+    <GenerateManifest>false</GenerateManifest>
+    <IgnoreImportLibrary>false</IgnoreImportLibrary>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <PreprocessorDefinitions>BUILD_MPG123_DLL;WIN32;_CRT_SECURE_NO_WARNINGS;_BASE_LIBMPG123_LIBRARY;OPT_MULTI;OPT_GENERIC;_BIND_TO_CURRENT_VCLIBS_VERSION=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)/src/compat;$(ProjectDir)/src;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>-Zm384 /bigobj </AdditionalOptions>
+      <CompileAsManaged>false</CompileAsManaged>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <ImportLibrary>$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <PreprocessorDefinitions>BUILD_MPG123_DLL;WIN32;_CRT_SECURE_NO_WARNINGS;_BASE_LIBMPG123_LIBRARY;OPT_MULTI;OPT_GENERIC;_BIND_TO_CURRENT_VCLIBS_VERSION=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>-Zm384 /bigobj </AdditionalOptions>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <AdditionalIncludeDirectories>$(ProjectDir)/src/compat;$(ProjectDir)/src;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <ImportLibrary>$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|arm'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|arm'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsManaged>false</CompileAsManaged>
+      <PreprocessorDefinitions>METROWIN;BUILD_MPG123_DLL;WIN32;_CRT_SECURE_NO_WARNINGS;_BASE_LIBMPG123_LIBRARY;OPT_MULTI;OPT_GENERIC;_BIND_TO_CURRENT_VCLIBS_VERSION=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>-Zm384 /bigobj </AdditionalOptions>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <AdditionalIncludeDirectories>$(ProjectDir)/src/compat;$(ProjectDir)/src;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <ImportLibrary>$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|arm'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <PreprocessorDefinitions>METROWIN;BUILD_MPG123_DLL;WIN32;_CRT_SECURE_NO_WARNINGS;_BASE_LIBMPG123_LIBRARY;OPT_MULTI;OPT_GENERIC;_BIND_TO_CURRENT_VCLIBS_VERSION=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>-Zm384 /bigobj </AdditionalOptions>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <AdditionalIncludeDirectories>$(ProjectDir)/src/compat;$(ProjectDir)/src;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <ImportLibrary>$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsManaged>false</CompileAsManaged>
+      <PreprocessorDefinitions>METROWIN;BUILD_MPG123_DLL;WIN32;_CRT_SECURE_NO_WARNINGS;_BASE_LIBMPG123_LIBRARY;OPT_MULTI;OPT_GENERIC;_BIND_TO_CURRENT_VCLIBS_VERSION=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>-Zm384 /bigobj </AdditionalOptions>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <AdditionalIncludeDirectories>$(ProjectDir)/src/compat;$(ProjectDir)/src;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <ImportLibrary>$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <PreprocessorDefinitions>METROWIN;BUILD_MPG123_DLL;WIN32;_CRT_SECURE_NO_WARNINGS;_BASE_LIBMPG123_LIBRARY;OPT_MULTI;OPT_GENERIC;_BIND_TO_CURRENT_VCLIBS_VERSION=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>-Zm384 /bigobj </AdditionalOptions>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <AdditionalIncludeDirectories>$(ProjectDir)/src/compat;$(ProjectDir)/src;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;.;$(ProjectDir)framework;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/base/include;$(SolutionDir)../../../app/base/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../app/axis;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <ImportLibrary>$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

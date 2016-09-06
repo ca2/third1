@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		071B2B4D1B6E639F0088E158 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07502C881B247427008D207C /* libaura.dylib */; };
 		07558DA91B23DD56008C63AF /* bss_dgram.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DA71B23DD56008C63AF /* bss_dgram.c */; };
 		07558DAA1B23DD56008C63AF /* bss_sock.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DA81B23DD56008C63AF /* bss_sock.c */; };
 		07558DAC1B23DD8B008C63AF /* _bn.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DAB1B23DD8B008C63AF /* _bn.c */; };
@@ -31,7 +30,6 @@
 		07558DD01B23E188008C63AF /* _ts.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DCF1B23E188008C63AF /* _ts.c */; };
 		07558DD21B23E19B008C63AF /* txt_db.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DD11B23E19B008C63AF /* txt_db.c */; };
 		07558DD41B23E1C8008C63AF /* v3_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DD31B23E1C8008C63AF /* v3_lib.c */; };
-		07703C361B6FDF95009026EA /* libios_aura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 071B2AFA1B6E63150088E158 /* libios_aura.dylib */; };
 		077CEF191B23C505009A57EF /* _crypto.c in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF181B23C505009A57EF /* _crypto.c */; };
 		077CEF2A1B23DC97009A57EF /* _x509.c in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF291B23DC97009A57EF /* _x509.c */; };
 		077CEF2C1B23DCB7009A57EF /* _x509v3.c in Sources */ = {isa = PBXBuildFile; fileRef = 077CEF2B1B23DCB7009A57EF /* _x509v3.c */; };
@@ -120,40 +118,26 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		071B2AF91B6E63150088E158 /* PBXContainerItemProxy */ = {
+		9A269F841D7ED6CA001F47A8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 07502C811B247427008D207C /* aura.xcodeproj */;
+			containerPortal = 9A269F7E1D7ED6CA001F47A8 /* ace.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 077A080B1B4D7403001C85FF;
-			remoteInfo = ios_aura;
+			remoteGlobalIDString = 9A574B9816AAB906000CC4EF;
+			remoteInfo = ace;
 		};
-		07502C871B247427008D207C /* PBXContainerItemProxy */ = {
+		9A269F861D7ED6CA001F47A8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 07502C811B247427008D207C /* aura.xcodeproj */;
+			containerPortal = 9A269F7E1D7ED6CA001F47A8 /* ace.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
-			remoteInfo = aura;
+			remoteGlobalIDString = 07B65764190F3CA2002DAADE;
+			remoteInfo = ios_ace;
 		};
-		07502C8B1B247427008D207C /* PBXContainerItemProxy */ = {
+		9A269F881D7ED6CA001F47A8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 07502C811B247427008D207C /* aura.xcodeproj */;
+			containerPortal = 9A269F7E1D7ED6CA001F47A8 /* ace.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
-			remoteInfo = aura_iosTests;
-		};
-		07557C421B4D964A0065594B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07502C811B247427008D207C /* aura.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 077A05B41B4D7403001C85FF;
-			remoteInfo = aura_ios;
-		};
-		07557C461B4D96560065594B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 07502C811B247427008D207C /* aura.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
-			remoteInfo = aura;
+			remoteGlobalIDString = 07B65773190F3CA2002DAADE;
+			remoteInfo = ace_iosTests;
 		};
 		9AE24D9D1904CF46001AEFFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -186,7 +170,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07502C811B247427008D207C /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../appseed/aura/aura.xcodeproj; sourceTree = "<group>"; };
 		07558DA71B23DD56008C63AF /* bss_dgram.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bss_dgram.c; sourceTree = "<group>"; };
 		07558DA81B23DD56008C63AF /* bss_sock.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bss_sock.c; sourceTree = "<group>"; };
 		07558DAB1B23DD8B008C63AF /* _bn.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = _bn.c; sourceTree = "<group>"; };
@@ -283,6 +266,7 @@
 		07EDC4C71B4EE45900AF8928 /* _aes.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = _aes.c; sourceTree = "<group>"; };
 		07EDC4C91B4EF66100AF8928 /* _engines.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = _engines.c; sourceTree = "<group>"; };
 		07EDC4E01B4EF9EE00AF8928 /* _ccgost.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = _ccgost.c; sourceTree = "<group>"; };
+		9A269F7E1D7ED6CA001F47A8 /* ace.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ace.xcodeproj; path = ../../../app/appseed/ace/ace.xcodeproj; sourceTree = "<group>"; };
 		9A342FF21D5B94AD00D00D4A /* libace.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libace.dylib; path = ../../appseed/ace/build/Debug/libace.dylib; sourceTree = "<group>"; };
 		9A342FF41D5B94E100D00D4A /* libios_ace.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_ace.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/arcade-ios-biflflzsuoocrodvdsvmkqeosgky/Build/Products/Debug-iphonesimulator/libios_ace.dylib"; sourceTree = "<group>"; };
 		9A9D330519D4C44D00DC2067 /* aes-x86_64.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = "aes-x86_64.s"; sourceTree = "<group>"; };
@@ -327,7 +311,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AD480B71D5A768D00354801 /* libace.dylib in Frameworks */,
-				071B2B4D1B6E639F0088E158 /* libaura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,7 +319,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A342FF51D5B94E100D00D4A /* libios_ace.dylib in Frameworks */,
-				07703C361B6FDF95009026EA /* libios_aura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,16 +332,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		07502C821B247427008D207C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				07502C881B247427008D207C /* libaura.dylib */,
-				071B2AFA1B6E63150088E158 /* libios_aura.dylib */,
-				07502C8C1B247427008D207C /* aura_iosTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		07782A6D199FE92F00206CA1 /* crypto */ = {
 			isa = PBXGroup;
 			children = (
@@ -944,10 +916,10 @@
 		9A1B2F7D16A2AF5C00875A94 = {
 			isa = PBXGroup;
 			children = (
+				9A269F7E1D7ED6CA001F47A8 /* ace.xcodeproj */,
 				9A342FF41D5B94E100D00D4A /* libios_ace.dylib */,
 				9A342FF21D5B94AD00D00D4A /* libace.dylib */,
 				9AD480B61D5A768D00354801 /* libace.dylib */,
-				07502C811B247427008D207C /* aura.xcodeproj */,
 				9A9D32EC19D4C44D00DC2067 /* asm */,
 				0778A257199FFC1600206CA1 /* openssl */,
 				07782A6D199FE92F00206CA1 /* crypto */,
@@ -955,6 +927,16 @@
 				9A4E845A1D1FD2DE008A419B /* Products */,
 				9AF8B7231D1FDDB50087E7A2 /* axiscrypto_iosTests.xctest */,
 			);
+			sourceTree = "<group>";
+		};
+		9A269F7F1D7ED6CA001F47A8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A269F851D7ED6CA001F47A8 /* libace.dylib */,
+				9A269F871D7ED6CA001F47A8 /* libios_ace.dylib */,
+				9A269F891D7ED6CA001F47A8 /* ace_iosTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		9A4E845A1D1FD2DE008A419B /* Products */ = {
@@ -1186,7 +1168,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				07557C471B4D96560065594B /* PBXTargetDependency */,
 			);
 			name = axiscrypto;
 			productName = basefreeimage_ios;
@@ -1204,7 +1185,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				07557C431B4D964A0065594B /* PBXTargetDependency */,
 			);
 			name = ios_axiscrypto;
 			productName = basefreeimage_ios;
@@ -1256,8 +1236,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 07502C821B247427008D207C /* Products */;
-					ProjectRef = 07502C811B247427008D207C /* aura.xcodeproj */;
+					ProductGroup = 9A269F7F1D7ED6CA001F47A8 /* Products */;
+					ProjectRef = 9A269F7E1D7ED6CA001F47A8 /* ace.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1270,25 +1250,26 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		071B2AFA1B6E63150088E158 /* libios_aura.dylib */ = {
+		9A269F851D7ED6CA001F47A8 /* libace.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libios_aura.dylib;
-			remoteRef = 071B2AF91B6E63150088E158 /* PBXContainerItemProxy */;
+			path = libace.a;
+			remoteRef = 9A269F841D7ED6CA001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07502C881B247427008D207C /* libaura.dylib */ = {
+		9A269F871D7ED6CA001F47A8 /* libios_ace.dylib */ = {
 			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libaura.dylib;
-			remoteRef = 07502C871B247427008D207C /* PBXContainerItemProxy */;
+			fileType = archive.ar;
+			name = libios_ace.dylib;
+			path = libios_ace.a;
+			remoteRef = 9A269F861D7ED6CA001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07502C8C1B247427008D207C /* aura_iosTests.xctest */ = {
+		9A269F891D7ED6CA001F47A8 /* ace_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = aura_iosTests.xctest;
-			remoteRef = 07502C8B1B247427008D207C /* PBXContainerItemProxy */;
+			path = ace_iosTests.xctest;
+			remoteRef = 9A269F881D7ED6CA001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1434,16 +1415,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		07557C431B4D964A0065594B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = aura_ios;
-			targetProxy = 07557C421B4D964A0065594B /* PBXContainerItemProxy */;
-		};
-		07557C471B4D96560065594B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = aura;
-			targetProxy = 07557C461B4D96560065594B /* PBXContainerItemProxy */;
-		};
 		9AE24D9E1904CF46001AEFFB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9AE24D871904CF46001AEFFB /* ios_axiscrypto */;
@@ -1458,6 +1429,8 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				INSTALL_PATH = /Library/Frameworks/ca2/basis;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2/basis";
 				MACH_O_TYPE = mh_dylib;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -1471,6 +1444,8 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				INSTALL_PATH = /Library/Frameworks/ca2/stage;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2/stage";
 				MACH_O_TYPE = mh_dylib;
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -1515,7 +1490,6 @@
 					"$(WorkspaceDir)/../../../app/base/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
-				INSTALL_PATH = "@executable_path";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1527,7 +1501,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed crypto/asn1 crypto/evp crypto/modes";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed crypto/asn1 crypto/evp crypto/modes $(WorkspaceDir)/../../../nodeapp/include/openssl";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
@@ -1565,7 +1539,6 @@
 					"$(WorkspaceDir)/../../../app/base/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
-				INSTALL_PATH = "@executable_path";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1576,7 +1549,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed crypto/asn1 crypto/evp crypto/modes";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed crypto/asn1 crypto/evp crypto/modes $(WorkspaceDir)/../../../nodeapp/include/openssl";
 				VALIDATE_PRODUCT = YES;
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};

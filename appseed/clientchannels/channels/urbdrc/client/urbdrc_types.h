@@ -30,7 +30,7 @@
 #include <freerdp/channels/log.h>
 #include <freerdp/utils/msusb.h>
 
-#include <uuid.h>
+#include <uuid/uuid.h>
 #include <pthread.h>
 #include <semaphore.h>
 

@@ -79,7 +79,6 @@
 		0775CB621B848867005F8295 /* keyboard_layout.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB611B848867005F8295 /* keyboard_layout.c */; };
 		0775CB661B848872005F8295 /* keyboard.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB631B848872005F8295 /* keyboard.c */; };
 		0775CB671B848872005F8295 /* locale.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB641B848872005F8295 /* locale.c */; };
-		0775CB681B848872005F8295 /* timezone.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB651B848872005F8295 /* timezone.c */; };
 		0775CB6B1B8488C2005F8295 /* errbase.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB691B8488C2005F8295 /* errbase.c */; };
 		0775CB6C1B8488C2005F8295 /* errconnect.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB6A1B8488C2005F8295 /* errconnect.c */; };
 		0775CB6F1B8488E4005F8295 /* rdg.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB6D1B8488E4005F8295 /* rdg.c */; };
@@ -151,7 +150,6 @@
 		078DF8D01C5299ED00E65274 /* shape.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB4F1B84881C005F8295 /* shape.c */; };
 		078DF8D11C5299ED00E65274 /* keyboard.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB631B848872005F8295 /* keyboard.c */; };
 		078DF8D21C5299ED00E65274 /* locale.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB641B848872005F8295 /* locale.c */; };
-		078DF8D31C5299ED00E65274 /* timezone.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB651B848872005F8295 /* timezone.c */; };
 		078DF8D41C5299ED00E65274 /* keyboard_layout.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB611B848867005F8295 /* keyboard_layout.c */; };
 		078DF8D51C5299ED00E65274 /* msusb.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB1A1B8487B8005F8295 /* msusb.c */; };
 		078DF8D61C5299ED00E65274 /* passphrase.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB1B1B8487B8005F8295 /* passphrase.c */; };
@@ -160,7 +158,6 @@
 		078DF8D91C5299ED00E65274 /* ringbuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB1E1B8487B8005F8295 /* ringbuffer.c */; };
 		078DF8DA1C5299ED00E65274 /* signal.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB1F1B8487B8005F8295 /* signal.c */; };
 		078DF8DB1C5299ED00E65274 /* stopwatch.c in Sources */ = {isa = PBXBuildFile; fileRef = 0775CB201B8487B8005F8295 /* stopwatch.c */; };
-		079FD66B1B601D24007CB5C6 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 079FD6601B601D0B007CB5C6 /* libaura.dylib */; };
 		07B091731B608B6700B5BCA7 /* prim_YCoCg_opt.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BAD1B5F0C61003A1CE1 /* prim_YCoCg_opt.c */; };
 		07B091741B608C7400B5BCA7 /* prim_16to32bpp_opt.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6B921B5F0C60003A1CE1 /* prim_16to32bpp_opt.c */; };
 		07B091751B608C7400B5BCA7 /* prim_sign_opt.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BA91B5F0C61003A1CE1 /* prim_sign_opt.c */; };
@@ -459,7 +456,6 @@
 		07DD6D7E1B5F0C61003A1CE1 /* primitives.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BB11B5F0C61003A1CE1 /* primitives.c */; };
 		07DD710F1B5F173E003A1CE1 /* libaxiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70A91B5F0FD4003A1CE1 /* libaxiswinpr.dylib */; };
 		07DD71121B5F1752003A1CE1 /* libios_axiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70AB1B5F0FD4003A1CE1 /* libios_axiswinpr.dylib */; };
-		9A106A5D1D15E397007288BA /* libios_aura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 079FD6621B601D0B007CB5C6 /* libios_aura.dylib */; };
 		9A25A0A31D2601E80044727D /* libios_axiscrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A25A0A11D2601E80044727D /* libios_axiscrypto.dylib */; };
 		9A25A0A41D2601E80044727D /* libios_axisopenssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A25A0A21D2601E80044727D /* libios_axisopenssl.dylib */; };
 		9A8DBF601D20B041005AF004 /* libaxisopenssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8DBF5F1D20B041005AF004 /* libaxisopenssl.dylib */; };
@@ -471,41 +467,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		079FD65F1B601D0B007CB5C6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 079FD6591B601D0B007CB5C6 /* aura.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
-			remoteInfo = aura;
-		};
-		079FD6611B601D0B007CB5C6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 079FD6591B601D0B007CB5C6 /* aura.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 077A080B1B4D7403001C85FF;
-			remoteInfo = ios_aura;
-		};
-		079FD6631B601D0B007CB5C6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 079FD6591B601D0B007CB5C6 /* aura.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
-			remoteInfo = aura_iosTests;
-		};
-		079FD6671B601D15007CB5C6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 079FD6591B601D0B007CB5C6 /* aura.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A98A6031771D67E000AE16E;
-			remoteInfo = aura;
-		};
-		079FD6691B601D1B007CB5C6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 079FD6591B601D0B007CB5C6 /* aura.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 077A05B41B4D7403001C85FF;
-			remoteInfo = ios_aura;
-		};
 		07DD70A81B5F0FD4003A1CE1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 07DD70A31B5F0FD4003A1CE1 /* axiswinpr.xcodeproj */;
@@ -651,12 +612,10 @@
 		0775CB611B848867005F8295 /* keyboard_layout.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = keyboard_layout.c; sourceTree = "<group>"; };
 		0775CB631B848872005F8295 /* keyboard.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = keyboard.c; sourceTree = "<group>"; };
 		0775CB641B848872005F8295 /* locale.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = locale.c; sourceTree = "<group>"; };
-		0775CB651B848872005F8295 /* timezone.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = timezone.c; sourceTree = "<group>"; };
 		0775CB691B8488C2005F8295 /* errbase.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = errbase.c; sourceTree = "<group>"; };
 		0775CB6A1B8488C2005F8295 /* errconnect.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = errconnect.c; sourceTree = "<group>"; };
 		0775CB6D1B8488E4005F8295 /* rdg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rdg.c; sourceTree = "<group>"; };
 		0775CB6E1B8488E4005F8295 /* rdg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rdg.h; sourceTree = "<group>"; };
-		079FD6591B601D0B007CB5C6 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../appseed/aura/aura.xcodeproj; sourceTree = "<group>"; };
 		07DD674C1B5F0C16003A1CE1 /* libios_axisfreerdp.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_axisfreerdp.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		07DD6AC51B5F0C60003A1CE1 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		07DD6AC61B5F0C60003A1CE1 /* dummy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dummy.c; sourceTree = "<group>"; };
@@ -826,7 +785,6 @@
 				9A25A0A41D2601E80044727D /* libios_axisopenssl.dylib in Frameworks */,
 				9AEFDD351D15F65E00F91F0B /* libios_welsenc.dylib in Frameworks */,
 				9AEFDD2E1D15F5FB00F91F0B /* libios_welsdec.dylib in Frameworks */,
-				9A106A5D1D15E397007288BA /* libios_aura.dylib in Frameworks */,
 				07DD71121B5F1752003A1CE1 /* libios_axiswinpr.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -839,7 +797,6 @@
 				9A8DBF661D20B065005AF004 /* libwelsdec.dylib in Frameworks */,
 				9A8DBF651D20B04D005AF004 /* libaxiscrypto.dylib in Frameworks */,
 				9A8DBF601D20B041005AF004 /* libaxisopenssl.dylib in Frameworks */,
-				079FD66B1B601D24007CB5C6 /* libaura.dylib in Frameworks */,
 				07DD710F1B5F173E003A1CE1 /* libaxiswinpr.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -847,16 +804,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		079FD65A1B601D0B007CB5C6 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				079FD6601B601D0B007CB5C6 /* libaura.dylib */,
-				079FD6621B601D0B007CB5C6 /* libios_aura.dylib */,
-				079FD6641B601D0B007CB5C6 /* aura_iosTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		07DD6ABB1B5F0C60003A1CE1 /* freerdp */ = {
 			isa = PBXGroup;
 			children = (
@@ -1123,7 +1070,6 @@
 			children = (
 				0775CB631B848872005F8295 /* keyboard.c */,
 				0775CB641B848872005F8295 /* locale.c */,
-				0775CB651B848872005F8295 /* timezone.c */,
 				0775CB611B848867005F8295 /* keyboard_layout.c */,
 				07DD6B851B5F0C60003A1CE1 /* liblocale.h */,
 			);
@@ -1202,7 +1148,6 @@
 				9A25A0A21D2601E80044727D /* libios_axisopenssl.dylib */,
 				9A8DBF641D20B04D005AF004 /* libaxiscrypto.dylib */,
 				9A8DBF5F1D20B041005AF004 /* libaxisopenssl.dylib */,
-				079FD6591B601D0B007CB5C6 /* aura.xcodeproj */,
 				07DD70A31B5F0FD4003A1CE1 /* axiswinpr.xcodeproj */,
 				9A106A4B1D15E209007288BA /* welsdec.xcodeproj */,
 				9A106A541D15E225007288BA /* welsenc.xcodeproj */,
@@ -1422,7 +1367,6 @@
 			dependencies = (
 				9AEFDD341D15F65300F91F0B /* PBXTargetDependency */,
 				9AEFDD321D15F64000F91F0B /* PBXTargetDependency */,
-				079FD66A1B601D1B007CB5C6 /* PBXTargetDependency */,
 				07DD71111B5F1748003A1CE1 /* PBXTargetDependency */,
 			);
 			name = ios_axisfreerdp;
@@ -1441,7 +1385,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				079FD6681B601D15007CB5C6 /* PBXTargetDependency */,
 				07DD710E1B5F125A003A1CE1 /* PBXTargetDependency */,
 			);
 			name = axisfreerdp;
@@ -1470,10 +1413,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 079FD65A1B601D0B007CB5C6 /* Products */;
-					ProjectRef = 079FD6591B601D0B007CB5C6 /* aura.xcodeproj */;
-				},
-				{
 					ProductGroup = 07DD70A41B5F0FD4003A1CE1 /* Products */;
 					ProjectRef = 07DD70A31B5F0FD4003A1CE1 /* axiswinpr.xcodeproj */;
 				},
@@ -1495,27 +1434,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		079FD6601B601D0B007CB5C6 /* libaura.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libaura.dylib;
-			remoteRef = 079FD65F1B601D0B007CB5C6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		079FD6621B601D0B007CB5C6 /* libios_aura.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libios_aura.dylib;
-			remoteRef = 079FD6611B601D0B007CB5C6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		079FD6641B601D0B007CB5C6 /* aura_iosTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = aura_iosTests.xctest;
-			remoteRef = 079FD6631B601D0B007CB5C6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		07DD70A91B5F0FD4003A1CE1 /* libaxiswinpr.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -1624,7 +1542,6 @@
 				078DF8D01C5299ED00E65274 /* shape.c in Sources */,
 				078DF8D11C5299ED00E65274 /* keyboard.c in Sources */,
 				078DF8D21C5299ED00E65274 /* locale.c in Sources */,
-				078DF8D31C5299ED00E65274 /* timezone.c in Sources */,
 				078DF8D41C5299ED00E65274 /* keyboard_layout.c in Sources */,
 				078DF8D51C5299ED00E65274 /* msusb.c in Sources */,
 				078DF8D61C5299ED00E65274 /* passphrase.c in Sources */,
@@ -1841,7 +1758,6 @@
 				07DD6D671B5F0C61003A1CE1 /* prim_shift_opt.c in Sources */,
 				0775CB621B848867005F8295 /* keyboard_layout.c in Sources */,
 				07DD6D691B5F0C61003A1CE1 /* prim_sign.c in Sources */,
-				0775CB681B848872005F8295 /* timezone.c in Sources */,
 				0775CADB1B84876F005F8295 /* certificate.c in Sources */,
 				0775CB571B84881C005F8295 /* drawing.c in Sources */,
 				07DD6C971B5F0C61003A1CE1 /* listener.c in Sources */,
@@ -1876,16 +1792,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		079FD6681B601D15007CB5C6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = aura;
-			targetProxy = 079FD6671B601D15007CB5C6 /* PBXContainerItemProxy */;
-		};
-		079FD66A1B601D1B007CB5C6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ios_aura;
-			targetProxy = 079FD6691B601D1B007CB5C6 /* PBXContainerItemProxy */;
-		};
 		07DD710E1B5F125A003A1CE1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = axiswinpr;
@@ -1972,7 +1878,6 @@
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
-				INSTALL_PATH = "@executable_path";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1984,7 +1889,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "../../include . framework $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../ ../../ ../ $(WorkspaceDir)/../../../nodeapp/include";
+				USER_HEADER_SEARCH_PATHS = "../../include . framework $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../ ../../ ../ $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
@@ -2025,7 +1930,6 @@
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
-				INSTALL_PATH = "@executable_path";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2036,7 +1940,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "../../include . framework $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../ ../../ ../ $(WorkspaceDir)/../../../nodeapp/include";
+				USER_HEADER_SEARCH_PATHS = "../../include . framework $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../ ../../ ../ $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Release;

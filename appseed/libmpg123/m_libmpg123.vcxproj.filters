@@ -1,0 +1,413 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{02bf6a00-3d14-4f2e-93b0-f51db8862280}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{5d731364-49dc-4a64-8ae1-48add1059c84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files">
+      <UniqueIdentifier>{858187c3-4d79-47df-8c79-85aef3b5a218}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\libmpg123\dct36_3dnow.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\dct36_3dnowext.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\dct36_avx.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\dct36_neon.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\dct36_neon64.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\dct36_sse.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\dct36_x86_64.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\dct64_3dnow.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\dct64_3dnowext.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\dct64_avx.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\dct64_avx_float.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\dct64_mmx.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\dct64_neon.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\dct64_neon_float.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\dct64_neon64.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\dct64_neon64_float.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\dct64_sse.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\dct64_sse_float.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\dct64_x86_64.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\dct64_x86_64_float.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\equalizer_3dnow.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\getcpuflags.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\getcpuflags_x86_64.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_3dnow.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_3dnowext.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_arm.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_arm_accurate.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_i586.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_i586_dither.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_mmx.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_neon.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_neon_accurate.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_neon_float.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_neon_s32.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_neon64.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_neon64_accurate.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_neon64_float.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_neon64_s32.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_sse.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_sse_accurate.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_sse_float.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_sse_s32.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_stereo_avx.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_stereo_avx_accurate.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_stereo_avx_float.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_stereo_avx_s32.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_stereo_neon.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_stereo_neon_accurate.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_stereo_neon_float.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_stereo_neon_s32.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_stereo_neon64.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_stereo_neon64_accurate.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_stereo_neon64_float.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_stereo_neon64_s32.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_stereo_sse_accurate.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_stereo_sse_float.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_stereo_sse_s32.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_stereo_x86_64.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_stereo_x86_64_accurate.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_stereo_x86_64_float.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_stereo_x86_64_s32.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_x86_64.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_x86_64_accurate.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_x86_64_float.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\synth_x86_64_s32.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\tabinit_mmx.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="src\libmpg123\check_neon.S">
+      <Filter>Assembler Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\libmpg123\compat.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\dct64.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\dct64_i386.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\dct64_i486.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\dither.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\equalizer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\feature.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\format.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\frame.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\getcpuflags_arm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\icy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\icy2utf8.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\id3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\index.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\layer1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\layer2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\layer3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\lfs_alias.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\lfs_wrap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\libmpg123.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\ntom.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\optimize.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\parse.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\readers.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\stringbuf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\synth.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\synth_8bit.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\synth_i486.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\synth_real.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\synth_s32.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\libmpg123\tabinit.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\libmpg123\abi_align.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\compat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\debug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\decode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\dither.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\frame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\gapless.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\getbits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\getcpuflags.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\huffman.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\icy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\icy2utf8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\id3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\index.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\intsym.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\l2tables.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\l3_integer_tables.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\l12_integer_tables.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\mangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\mpeghead.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\mpg123lib_intern.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\newhuffman.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\optimize.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\parse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\reader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\sample.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\synth.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\synth_8bit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\synth_mono.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\synth_ntom.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\synth_sse3d.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\synths.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\libmpg123\true.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

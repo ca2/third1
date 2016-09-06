@@ -45,11 +45,6 @@
 		9A19A15C19C6E1DC0018DF7D /* punycode.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A19A14319C6E1DC0018DF7D /* punycode.c */; };
 		9A19A15D19C6E1DC0018DF7D /* punycode.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A14419C6E1DC0018DF7D /* punycode.h */; };
 		9A19A15E19C6E1DC0018DF7D /* rfc3454.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A19A14519C6E1DC0018DF7D /* rfc3454.c */; };
-		9A19A15F19C6E1DC0018DF7D /* strerror-idna.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A19A14619C6E1DC0018DF7D /* strerror-idna.c */; };
-		9A19A16019C6E1DC0018DF7D /* strerror-pr29.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A19A14719C6E1DC0018DF7D /* strerror-pr29.c */; };
-		9A19A16119C6E1DC0018DF7D /* strerror-punycode.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A19A14819C6E1DC0018DF7D /* strerror-punycode.c */; };
-		9A19A16219C6E1DC0018DF7D /* strerror-stringprep.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A19A14919C6E1DC0018DF7D /* strerror-stringprep.c */; };
-		9A19A16319C6E1DC0018DF7D /* strerror-tld.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A19A14A19C6E1DC0018DF7D /* strerror-tld.c */; };
 		9A19A16419C6E1DC0018DF7D /* stringprep.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A19A14B19C6E1DC0018DF7D /* stringprep.c */; };
 		9A19A16519C6E1DC0018DF7D /* stringprep.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A19A14C19C6E1DC0018DF7D /* stringprep.h */; };
 		9A19A16619C6E1DC0018DF7D /* tld.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A19A14D19C6E1DC0018DF7D /* tld.c */; };
@@ -298,20 +293,15 @@
 			files = (
 				9A19A16819C6E1DC0018DF7D /* tlds.c in Sources */,
 				9A19A15919C6E1DC0018DF7D /* pr29.c in Sources */,
-				9A19A16119C6E1DC0018DF7D /* strerror-punycode.c in Sources */,
 				9A19A16919C6E1DC0018DF7D /* toutf8.c in Sources */,
 				9A19A15519C6E1DC0018DF7D /* idn-free.c in Sources */,
-				9A19A16019C6E1DC0018DF7D /* strerror-pr29.c in Sources */,
 				9A19A16619C6E1DC0018DF7D /* tld.c in Sources */,
 				9A19A15E19C6E1DC0018DF7D /* rfc3454.c in Sources */,
 				9A19A15B19C6E1DC0018DF7D /* profiles.c in Sources */,
 				9A19A16419C6E1DC0018DF7D /* stringprep.c in Sources */,
-				9A19A15F19C6E1DC0018DF7D /* strerror-idna.c in Sources */,
 				9A19A15719C6E1DC0018DF7D /* idna.c in Sources */,
-				9A19A16219C6E1DC0018DF7D /* strerror-stringprep.c in Sources */,
 				9A19A15C19C6E1DC0018DF7D /* punycode.c in Sources */,
 				9A19A15819C6E1DC0018DF7D /* nfkc.c in Sources */,
-				9A19A16319C6E1DC0018DF7D /* strerror-tld.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,7 +355,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = "@executable_path";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -402,7 +391,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = "@executable_path";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -420,6 +408,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2/basis";
 			};
 			name = Debug;
 		};
@@ -427,6 +416,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2/stage";
 			};
 			name = Release;
 		};

@@ -25,29 +25,44 @@
 		07CE92531CA2172C0039EE8B /* xmltok_ns.c in Sources */ = {isa = PBXBuildFile; fileRef = 07CE92411CA2172C0039EE8B /* xmltok_ns.c */; };
 		07CE92541CA2172C0039EE8B /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = 07CE92421CA2172C0039EE8B /* xmltok.c */; };
 		07CE92551CA2172C0039EE8B /* xmltok.h in Headers */ = {isa = PBXBuildFile; fileRef = 07CE92431CA2172C0039EE8B /* xmltok.h */; };
+		9A26A0221D7ED74B001F47A8 /* libace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A269F6D1D7ED6C2001F47A8 /* libace.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		07473E0B1B503FE4004688C5 /* PBXContainerItemProxy */ = {
+		9A269F6C1D7ED6C2001F47A8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */;
+			containerPortal = 9A269F661D7ED6C2001F47A8 /* ace.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 077A080B1B4D7403001C85FF;
-			remoteInfo = ios_aura;
+			remoteGlobalIDString = 9A574B9816AAB906000CC4EF;
+			remoteInfo = ace;
 		};
-		9A1EDB4D19C83FE800F5CCE8 /* PBXContainerItemProxy */ = {
+		9A269F6E1D7ED6C2001F47A8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */;
+			containerPortal = 9A269F661D7ED6C2001F47A8 /* ace.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 9A98A6151771D67E000AE16E;
-			remoteInfo = aura;
+			remoteGlobalIDString = 07B65764190F3CA2002DAADE;
+			remoteInfo = ios_ace;
 		};
-		9A1EDB5119C83FE800F5CCE8 /* PBXContainerItemProxy */ = {
+		9A269F701D7ED6C2001F47A8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */;
+			containerPortal = 9A269F661D7ED6C2001F47A8 /* ace.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 9AE24D431904CEFE001AEFFB;
-			remoteInfo = aura_iosTests;
+			remoteGlobalIDString = 07B65773190F3CA2002DAADE;
+			remoteInfo = ace_iosTests;
+		};
+		9A26A0201D7ED745001F47A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A269F661D7ED6C2001F47A8 /* ace.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A574B9716AAB906000CC4EF;
+			remoteInfo = ace;
+		};
+		9A26A0231D7ED74F001F47A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A269F661D7ED6C2001F47A8 /* ace.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07B65763190F3CA2002DAADE;
+			remoteInfo = ios_ace;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -71,7 +86,7 @@
 		07CE92421CA2172C0039EE8B /* xmltok.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok.c; path = lib/xmltok.c; sourceTree = SOURCE_ROOT; };
 		07CE92431CA2172C0039EE8B /* xmltok.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok.h; path = lib/xmltok.h; sourceTree = SOURCE_ROOT; };
 		07D6A8471B4CBB45004FEBC2 /* libios_auraexpat.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_auraexpat.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../../appseed/aura/aura.xcodeproj; sourceTree = "<group>"; };
+		9A269F661D7ED6C2001F47A8 /* ace.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ace.xcodeproj; path = ../../../app/appseed/ace/ace.xcodeproj; sourceTree = "<group>"; };
 		9AA539B119B763C400B9F861 /* libauraexpat.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libauraexpat.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -87,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A26A0221D7ED74B001F47A8 /* libace.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,7 +112,7 @@
 		9A1B2F7D16A2AF5C00875A94 = {
 			isa = PBXGroup;
 			children = (
-				9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */,
+				9A269F661D7ED6C2001F47A8 /* ace.xcodeproj */,
 				9A1EDAE819C83CD000F5CCE8 /* pcre */,
 				9AA539B119B763C400B9F861 /* libauraexpat.dylib */,
 				07D6A8471B4CBB45004FEBC2 /* libios_auraexpat.dylib */,
@@ -129,12 +145,12 @@
 			path = cpp;
 			sourceTree = "<group>";
 		};
-		9A1EDB4819C83FE800F5CCE8 /* Products */ = {
+		9A269F671D7ED6C2001F47A8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A1EDB4E19C83FE800F5CCE8 /* libaura.dylib */,
-				07473E0C1B503FE4004688C5 /* libaura.dylib */,
-				9A1EDB5219C83FE800F5CCE8 /* aura_iosTests.xctest */,
+				9A269F6D1D7ED6C2001F47A8 /* libace.a */,
+				9A269F6F1D7ED6C2001F47A8 /* libios_ace.dylib */,
+				9A269F711D7ED6C2001F47A8 /* ace_iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -183,6 +199,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A26A0241D7ED74F001F47A8 /* PBXTargetDependency */,
 			);
 			name = ios_auraexpat;
 			productName = FreeImage;
@@ -200,6 +217,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A26A0211D7ED745001F47A8 /* PBXTargetDependency */,
 			);
 			name = auraexpat;
 			productName = FreeImage;
@@ -227,8 +245,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9A1EDB4819C83FE800F5CCE8 /* Products */;
-					ProjectRef = 9A1EDB4719C83FE800F5CCE8 /* aura.xcodeproj */;
+					ProductGroup = 9A269F671D7ED6C2001F47A8 /* Products */;
+					ProjectRef = 9A269F661D7ED6C2001F47A8 /* ace.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -240,25 +258,26 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		07473E0C1B503FE4004688C5 /* libaura.dylib */ = {
+		9A269F6D1D7ED6C2001F47A8 /* libace.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libaura.dylib;
-			remoteRef = 07473E0B1B503FE4004688C5 /* PBXContainerItemProxy */;
+			path = libace.a;
+			remoteRef = 9A269F6C1D7ED6C2001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A1EDB4E19C83FE800F5CCE8 /* libaura.dylib */ = {
+		9A269F6F1D7ED6C2001F47A8 /* libios_ace.dylib */ = {
 			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libaura.dylib;
-			remoteRef = 9A1EDB4D19C83FE800F5CCE8 /* PBXContainerItemProxy */;
+			fileType = archive.ar;
+			name = libios_ace.dylib;
+			path = libios_ace.a;
+			remoteRef = 9A269F6E1D7ED6C2001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A1EDB5219C83FE800F5CCE8 /* aura_iosTests.xctest */ = {
+		9A269F711D7ED6C2001F47A8 /* ace_iosTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = aura_iosTests.xctest;
-			remoteRef = 9A1EDB5119C83FE800F5CCE8 /* PBXContainerItemProxy */;
+			path = ace_iosTests.xctest;
+			remoteRef = 9A269F701D7ED6C2001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -284,6 +303,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9A26A0211D7ED745001F47A8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ace;
+			targetProxy = 9A26A0201D7ED745001F47A8 /* PBXContainerItemProxy */;
+		};
+		9A26A0241D7ED74F001F47A8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_ace;
+			targetProxy = 9A26A0231D7ED74F001F47A8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		07D6A8451B4CBB45004FEBC2 /* Debug */ = {
@@ -338,7 +370,6 @@
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
-				INSTALL_PATH = "@executable_path";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -383,7 +414,6 @@
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
-				INSTALL_PATH = "@executable_path";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -402,6 +432,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2/basis";
 			};
 			name = Debug;
 		};
@@ -409,6 +440,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2/stage";
 			};
 			name = Release;
 		};
