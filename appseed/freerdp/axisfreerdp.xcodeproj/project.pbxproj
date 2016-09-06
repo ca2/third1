@@ -1878,7 +1878,8 @@
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
+				INSTALL_PATH = "@executable_path";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(TARGET_BUILD_DIR)",
@@ -1930,7 +1931,8 @@
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
+				INSTALL_PATH = "@executable_path";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(TARGET_BUILD_DIR)",

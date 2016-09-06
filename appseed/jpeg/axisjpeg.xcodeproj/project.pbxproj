@@ -494,15 +494,15 @@
 		9A26A0151D7ED717001F47A8 /* libace.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libace.a;
+			name = libace.a;
+			path = libace.dylib;
 			remoteRef = 9A26A0141D7ED717001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9A26A0171D7ED717001F47A8 /* libios_ace.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			name = libios_ace.dylib;
-			path = libios_ace.a;
+			path = libios_ace.dylib;
 			remoteRef = 9A26A0161D7ED717001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -830,7 +830,8 @@
 					"$(WorkspaceDir)/../../../app/base/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
+				INSTALL_PATH = "@executable_path";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(TARGET_BUILD_DIR)",
@@ -872,7 +873,8 @@
 					"$(WorkspaceDir)/../../../app/base/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2";
+				INSTALL_PATH = "@executable_path";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(TARGET_BUILD_DIR)",
@@ -891,7 +893,6 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PREFIX_HEADER = "";
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2/basis";
 			};
 			name = Debug;
 		};
@@ -900,7 +901,6 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PREFIX_HEADER = "";
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path /Library/Frameworks/ca2/stage";
 			};
 			name = Release;
 		};
