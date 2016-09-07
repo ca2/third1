@@ -464,17 +464,20 @@
 /* Define to `unsigned long' if <sys/types.h> does not define. */
 //#undef uintptr_t
 
-#ifdef WIN32
 
-   #define strcasecmp _stricmp
-   #define strncasecmp _strnicmp
+
+
+
+#ifdef _MSC_VER
+
+#define strcasecmp _stricmp
+#define strncasecmp _strnicmp
+
 #else
 
-   #define _lseek lseek
-   #define _read read
-   #define _write write
-   #define _strdup strdup
+#define _lseek lseek
+#define _read read
+#define _write write
+#define _strdup strdup
 
 #endif
-
-
