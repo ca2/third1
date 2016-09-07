@@ -21,9 +21,6 @@
 #include "config.h"
 #endif
 
-#ifndef WINDOWS
-#define _strdup strdup
-#endif
 #include "ncacn_http.h"
 
 #include <winpr/crt.h>

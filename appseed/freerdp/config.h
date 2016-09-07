@@ -110,16 +110,12 @@
 /* #undef WITH_DEBUG_ANDROID_JNI */
 /* #undef WITH_DEBUG_RINGBUFFER */
 #endif
-#ifdef WINDOWS
+#ifdef _WIN32
 #include <WinSock2.h>
 #endif
 
-#ifdef LINUX
-#define _strdup strdup
-#endif
 
 
-
-#ifndef WINDOWS
+#ifndef _MSC_VER
 #define _strdup strdup
 #endif

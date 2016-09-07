@@ -113,5 +113,9 @@
 #define HAVE_PTHREAD_GNU_EXT 1
 #define HAVE_UNISTD_H 1
 #define HAVE_PTHREAD_MUTEX_TIMEDLOCK
+#endif
+
+
+#ifndef _MSC_VER
 #define _strdup strdup
 #endif

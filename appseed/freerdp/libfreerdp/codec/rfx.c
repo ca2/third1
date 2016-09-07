@@ -23,8 +23,6 @@
 #include "config.h"
 #endif
 
-#include "app/appseed/ace/ace.h"
-
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
