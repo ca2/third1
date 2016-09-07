@@ -99,7 +99,7 @@
 #define CMAKE_SHARED_LIBRARY_PREFIX "C:\\ca2\\modules\\freerdp\\client\\"
 
 
-#ifdef LINUX
+#ifndef _MSC_VER
 #define _strdup strdup
 #endif
 

@@ -32,10 +32,6 @@
 #include <freerdp/addin.h>
 #include <freerdp/build-config.h>
 
-#ifndef WINDOWS
-
-#define _strdup strdup
-#endif
 
 LPSTR freerdp_get_library_install_path()
 {

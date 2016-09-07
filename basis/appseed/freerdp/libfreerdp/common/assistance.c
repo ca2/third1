@@ -34,9 +34,6 @@
 
 #define TAG FREERDP_TAG("common")
 
-#ifndef WINDOWS
-#define _strdup strdup
-#endif
 
 /**
  * Password encryption in establishing a remote assistance session of type 1:

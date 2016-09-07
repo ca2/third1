@@ -20,9 +20,7 @@
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
-#ifndef WINDOWS
-#define _strdup strdup
-#endif
+
 #include <assert.h>
 
 #include <winpr/crt.h>
