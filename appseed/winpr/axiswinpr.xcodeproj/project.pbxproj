@@ -443,8 +443,6 @@
 		07DD61981B5F0B4E003A1CE1 /* wtsapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD5FB81B5F0B4D003A1CE1 /* wtsapi.h */; };
 		07DD619B1B5F0B4E003A1CE1 /* wtsapi_win32.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD5FBA1B5F0B4D003A1CE1 /* wtsapi_win32.h */; };
 		07DD619C1B5F0B4E003A1CE1 /* wtsapi_win32.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD5FBA1B5F0B4D003A1CE1 /* wtsapi_win32.h */; };
-		07DD61A11B5F0B4E003A1CE1 /* makecert.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5FC61B5F0B4E003A1CE1 /* makecert.c */; };
-		07DD61A21B5F0B4E003A1CE1 /* makecert.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5FC61B5F0B4E003A1CE1 /* makecert.c */; };
 		9A26A0511D7EDD6A001F47A8 /* error_out_of_winpr.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0501D7EDD6A001F47A8 /* error_out_of_winpr.c */; };
 		9A26A0541D7EDD8A001F47A8 /* generic.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0521D7EDD8A001F47A8 /* generic.c */; };
 		9A26A0551D7EDD8A001F47A8 /* namedPipeClient.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0531D7EDD8A001F47A8 /* namedPipeClient.c */; };
@@ -452,10 +450,11 @@
 		9A26A05A1D7EDDA7001F47A8 /* hash.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0571D7EDDA7001F47A8 /* hash.c */; };
 		9A26A05B1D7EDDA7001F47A8 /* rand.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0581D7EDDA7001F47A8 /* rand.c */; };
 		9A26A0621D7EDE5E001F47A8 /* UdpAppender.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0611D7EDE5E001F47A8 /* UdpAppender.c */; };
-		9A26A0971D7EE017001F47A8 /* libace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A269FF11D7ED70E001F47A8 /* libace.a */; };
+		9A26A0971D7EE017001F47A8 /* libace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A269FF11D7ED70E001F47A8 /* libace.dylib */; };
 		9A331C771D4BCDF100255105 /* libaxisopenssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C701D4BCDDB00255105 /* libaxisopenssl.dylib */; };
 		9A331C7A1D4BCE0300255105 /* libios_axisopenssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C721D4BCDDB00255105 /* libios_axisopenssl.dylib */; };
 		9A4E86211D1FD812008A419B /* libaxiscrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E86201D1FD811008A419B /* libaxiscrypto.dylib */; };
+		9A97EF1D1D807ED3000B4EC2 /* makecert.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A97EF1C1D807ED3000B4EC2 /* makecert.c */; };
 		9A986D121D226A70001F4C04 /* libios_axiscrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A986D111D226A70001F4C04 /* libios_axiscrypto.dylib */; };
 /* End PBXBuildFile section */
 
@@ -746,7 +745,6 @@
 		07DD5FB81B5F0B4D003A1CE1 /* wtsapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wtsapi.h; sourceTree = "<group>"; };
 		07DD5FBA1B5F0B4D003A1CE1 /* wtsapi_win32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wtsapi_win32.h; sourceTree = "<group>"; };
 		07DD5FC31B5F0B4E003A1CE1 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		07DD5FC61B5F0B4E003A1CE1 /* makecert.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = makecert.c; sourceTree = "<group>"; };
 		9A1B358C16A2D7A500875A94 /* libaxiswinpr.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxiswinpr.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A269FEA1D7ED70E001F47A8 /* ace.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ace.xcodeproj; path = ../../../app/appseed/ace/ace.xcodeproj; sourceTree = "<group>"; };
 		9A26A0501D7EDD6A001F47A8 /* error_out_of_winpr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = error_out_of_winpr.c; sourceTree = "<group>"; };
@@ -758,6 +756,7 @@
 		9A26A0611D7EDE5E001F47A8 /* UdpAppender.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = UdpAppender.c; sourceTree = "<group>"; };
 		9A331C691D4BCDDB00255105 /* axisopenssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisopenssl.xcodeproj; path = ../openssl/axisopenssl.xcodeproj; sourceTree = "<group>"; };
 		9A4E86201D1FD811008A419B /* libaxiscrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxiscrypto.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/core-mac-ekqwiewkpeyhdudtxguywfqohhby/Build/Products/Debug/libaxiscrypto.dylib"; sourceTree = "<group>"; };
+		9A97EF1C1D807ED3000B4EC2 /* makecert.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = makecert.c; sourceTree = "<group>"; wrapsLines = 1; };
 		9A986D111D226A70001F4C04 /* libios_axiscrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axiscrypto.dylib; path = "../crypto/build/Debug-iphoneos/libios_axiscrypto.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -775,7 +774,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A26A0971D7EE017001F47A8 /* libace.a in Frameworks */,
+				9A26A0971D7EE017001F47A8 /* libace.dylib in Frameworks */,
 				9A331C771D4BCDF100255105 /* libaxisopenssl.dylib in Frameworks */,
 				9A4E86211D1FD812008A419B /* libaxiscrypto.dylib in Frameworks */,
 			);
@@ -1444,9 +1443,9 @@
 		07DD5FC21B5F0B4E003A1CE1 /* makecert */ = {
 			isa = PBXGroup;
 			children = (
+				9A97EF1C1D807ED3000B4EC2 /* makecert.c */,
 				07DD5FC31B5F0B4E003A1CE1 /* .gitignore */,
 				07DD5FC41B5F0B4E003A1CE1 /* cli */,
-				07DD5FC61B5F0B4E003A1CE1 /* makecert.c */,
 			);
 			path = makecert;
 			sourceTree = "<group>";
@@ -1482,7 +1481,7 @@
 		9A269FEB1D7ED70E001F47A8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A269FF11D7ED70E001F47A8 /* libace.a */,
+				9A269FF11D7ED70E001F47A8 /* libace.dylib */,
 				9A269FF31D7ED70E001F47A8 /* libios_ace.dylib */,
 				9A269FF51D7ED70E001F47A8 /* ace_iosTests.xctest */,
 			);
@@ -1736,10 +1735,9 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A269FF11D7ED70E001F47A8 /* libace.a */ = {
+		9A269FF11D7ED70E001F47A8 /* libace.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			name = libace.a;
 			path = libace.dylib;
 			remoteRef = 9A269FF01D7ED70E001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1863,7 +1861,6 @@
 				07DD60501B5F0B4E003A1CE1 /* callback_cleanup.c in Sources */,
 				07DD61381B5F0B4E003A1CE1 /* image.c in Sources */,
 				07DD61861B5F0B4E003A1CE1 /* TextMessage.c in Sources */,
-				07DD61A21B5F0B4E003A1CE1 /* makecert.c in Sources */,
 				07DD60021B5F0B4E003A1CE1 /* cert.c in Sources */,
 				07DD61041B5F0B4E003A1CE1 /* tls.c in Sources */,
 				07DD610C1B5F0B4E003A1CE1 /* BitStream.c in Sources */,
@@ -1942,6 +1939,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07DD61691B5F0B4E003A1CE1 /* ConsoleAppender.c in Sources */,
+				9A97EF1D1D807ED3000B4EC2 /* makecert.c in Sources */,
 				07DD61491B5F0B4E003A1CE1 /* trio.c in Sources */,
 				07DD60DF1B5F0B4E003A1CE1 /* barrier.c in Sources */,
 				07DD60D51B5F0B4E003A1CE1 /* sspi_export.c in Sources */,
@@ -2020,7 +2018,6 @@
 				07DD604F1B5F0B4E003A1CE1 /* callback_cleanup.c in Sources */,
 				07DD61371B5F0B4E003A1CE1 /* image.c in Sources */,
 				07DD61851B5F0B4E003A1CE1 /* TextMessage.c in Sources */,
-				07DD61A11B5F0B4E003A1CE1 /* makecert.c in Sources */,
 				07DD60011B5F0B4E003A1CE1 /* cert.c in Sources */,
 				07DD61031B5F0B4E003A1CE1 /* tls.c in Sources */,
 				07DD610B1B5F0B4E003A1CE1 /* BitStream.c in Sources */,
