@@ -149,6 +149,8 @@
 		07DD711C1B5F18E4003A1CE1 /* libios_axisfreerdp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70D81B5F1025003A1CE1 /* libios_axisfreerdp.dylib */; };
 		07DD711D1B5F18EE003A1CE1 /* libaxisfreerdp.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70D61B5F1025003A1CE1 /* libaxisfreerdp.dylib */; };
 		07DD711E1B5F18F8003A1CE1 /* libaxiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70B21B5F0FF7003A1CE1 /* libaxiswinpr.dylib */; };
+		9A21174D1D833208000C4336 /* tables_ios.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A2117481D8331DE000C4336 /* tables_ios.c */; };
+		9A21174E1D833220000C4336 /* rdpgfx_common.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0B21D7EE264001F47A8 /* rdpgfx_common.c */; };
 		9A25A0A91D2602200044727D /* libios_atomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A25A0A81D2602200044727D /* libios_atomiconv.dylib */; };
 		9A25A0B11D2602930044727D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A25A0B01D2602930044727D /* AudioToolbox.framework */; };
 		9A26A0B41D7EE264001F47A8 /* rdpgfx_common.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0B21D7EE264001F47A8 /* rdpgfx_common.c */; };
@@ -220,6 +222,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = 07DD5D521B5F0A1E003A1CE1;
 			remoteInfo = ios_axiswinpr;
+		};
+		9A2117541D833246000C4336 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A21174F1D833246000C4336 /* atomiconv.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A1647A219C4A73900966C5E;
+			remoteInfo = atomiconv;
+		};
+		9A2117561D833246000C4336 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A21174F1D833246000C4336 /* atomiconv.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 077A01571B4D5479001C85FF;
+			remoteInfo = ios_atomiconv;
+		};
+		9A2117581D833254000C4336 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A21174F1D833246000C4336 /* atomiconv.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 077A014D1B4D5479001C85FF;
+			remoteInfo = ios_atomiconv;
 		};
 		9A269F901D7ED6D7001F47A8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -361,6 +384,9 @@
 		07DD70AC1B5F0FF7003A1CE1 /* axiswinpr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiswinpr.xcodeproj; path = ../winpr/axiswinpr.xcodeproj; sourceTree = "<group>"; };
 		07DD70D01B5F1025003A1CE1 /* axisfreerdp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisfreerdp.xcodeproj; path = ../freerdp/axisfreerdp.xcodeproj; sourceTree = "<group>"; };
 		9A1B358C16A2D7A500875A94 /* libaxisclientchannels.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisclientchannels.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A2117481D8331DE000C4336 /* tables_ios.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tables_ios.c; sourceTree = "<group>"; };
+		9A21174F1D833246000C4336 /* atomiconv.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = atomiconv.xcodeproj; path = ../iconv/atomiconv.xcodeproj; sourceTree = "<group>"; };
+		9A21175C1D83329F000C4336 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/lib/libiconv.tbd; sourceTree = DEVELOPER_DIR; };
 		9A25A0A81D2602200044727D /* libios_atomiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_atomiconv.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-ios-gidstxlhclvvknehqfkxlzuwomwq/Build/Products/Debug-iphonesimulator/libios_atomiconv.dylib"; sourceTree = "<group>"; };
 		9A25A0AA1D26022F0044727D /* libios_axiszlib.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axiszlib.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-ios-gidstxlhclvvknehqfkxlzuwomwq/Build/Products/Debug-iphonesimulator/libios_axiszlib.dylib"; sourceTree = "<group>"; };
 		9A25A0AC1D2602450044727D /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/CoreAudio.framework; sourceTree = DEVELOPER_DIR; };
@@ -904,6 +930,7 @@
 		9A1B358116A2D7A500875A94 = {
 			isa = PBXGroup;
 			children = (
+				9A21175C1D83329F000C4336 /* libiconv.tbd */,
 				9A26A0C31D7EE37B001F47A8 /* CoreServices.framework */,
 				9A269F8A1D7ED6D7001F47A8 /* ace.xcodeproj */,
 				9A9C04531D4EB37A00F173B2 /* libz.tbd */,
@@ -913,6 +940,7 @@
 				9A25A0AA1D26022F0044727D /* libios_axiszlib.dylib */,
 				9A25A0A81D2602200044727D /* libios_atomiconv.dylib */,
 				9A8DBF681D20B096005AF004 /* libcups.tbd */,
+				9A21174F1D833246000C4336 /* atomiconv.xcodeproj */,
 				07DD70D01B5F1025003A1CE1 /* axisfreerdp.xcodeproj */,
 				07DD70AC1B5F0FF7003A1CE1 /* axiswinpr.xcodeproj */,
 				9AEFDD471D16054D00F91F0B /* CoreMedia.framework */,
@@ -951,10 +979,19 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9A2117501D833246000C4336 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A2117551D833246000C4336 /* libatomiconv.dylib */,
+				9A2117571D833246000C4336 /* libios_atomiconv.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9A269F8B1D7ED6D7001F47A8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A269F911D7ED6D7001F47A8 /* libace.a */,
+				9A269F911D7ED6D7001F47A8 /* libace.dylib */,
 				9A269F931D7ED6D7001F47A8 /* libios_ace.dylib */,
 				9A269F951D7ED6D7001F47A8 /* ace_iosTests.xctest */,
 			);
@@ -964,6 +1001,7 @@
 		9A26A0B61D7EE27A001F47A8 /* ca2 */ = {
 			isa = PBXGroup;
 			children = (
+				9A2117481D8331DE000C4336 /* tables_ios.c */,
 				9A26A0BA1D7EE27A001F47A8 /* tables_mac.c */,
 			);
 			path = ca2;
@@ -1049,6 +1087,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A2117591D833254000C4336 /* PBXTargetDependency */,
 				07DD711A1B5F18CA003A1CE1 /* PBXTargetDependency */,
 				07DD71181B5F18C6003A1CE1 /* PBXTargetDependency */,
 			);
@@ -1101,6 +1140,10 @@
 					ProjectRef = 9A269F8A1D7ED6D7001F47A8 /* ace.xcodeproj */;
 				},
 				{
+					ProductGroup = 9A2117501D833246000C4336 /* Products */;
+					ProjectRef = 9A21174F1D833246000C4336 /* atomiconv.xcodeproj */;
+				},
+				{
 					ProductGroup = 07DD70D11B5F1025003A1CE1 /* Products */;
 					ProjectRef = 07DD70D01B5F1025003A1CE1 /* axisfreerdp.xcodeproj */;
 				},
@@ -1146,10 +1189,23 @@
 			remoteRef = 07DD70D71B5F1025003A1CE1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A269F911D7ED6D7001F47A8 /* libace.a */ = {
+		9A2117551D833246000C4336 /* libatomiconv.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			name = libace.a;
+			path = libatomiconv.dylib;
+			remoteRef = 9A2117541D833246000C4336 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A2117571D833246000C4336 /* libios_atomiconv.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_atomiconv.dylib;
+			remoteRef = 9A2117561D833246000C4336 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A269F911D7ED6D7001F47A8 /* libace.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
 			path = libace.dylib;
 			remoteRef = 9A269F901D7ED6D7001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1175,6 +1231,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A21174E1D833220000C4336 /* rdpgfx_common.c in Sources */,
+				9A21174D1D833208000C4336 /* tables_ios.c in Sources */,
 				071EFB621C5562FA00EA68B0 /* drive_main.c in Sources */,
 				071EFB571C555EE700EA68B0 /* drive_file.c in Sources */,
 				078DF8DD1C529B4100E65274 /* codec_aac.c in Sources */,
@@ -1289,6 +1347,11 @@
 			isa = PBXTargetDependency;
 			name = ios_axiswinpr;
 			targetProxy = 07DD71191B5F18CA003A1CE1 /* PBXContainerItemProxy */;
+		};
+		9A2117591D833254000C4336 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_atomiconv;
+			targetProxy = 9A2117581D833254000C4336 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
