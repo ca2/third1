@@ -443,6 +443,15 @@
 		07DD61981B5F0B4E003A1CE1 /* wtsapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD5FB81B5F0B4D003A1CE1 /* wtsapi.h */; };
 		07DD619B1B5F0B4E003A1CE1 /* wtsapi_win32.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD5FBA1B5F0B4D003A1CE1 /* wtsapi_win32.h */; };
 		07DD619C1B5F0B4E003A1CE1 /* wtsapi_win32.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD5FBA1B5F0B4D003A1CE1 /* wtsapi_win32.h */; };
+		9A2116BF1D832931000C4336 /* cipher.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0561D7EDDA7001F47A8 /* cipher.c */; };
+		9A2116C01D832931000C4336 /* hash.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0571D7EDDA7001F47A8 /* hash.c */; };
+		9A2116C11D832931000C4336 /* rand.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0581D7EDDA7001F47A8 /* rand.c */; };
+		9A2116C21D832931000C4336 /* generic.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0521D7EDD8A001F47A8 /* generic.c */; };
+		9A2116C31D832931000C4336 /* namedPipeClient.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0531D7EDD8A001F47A8 /* namedPipeClient.c */; };
+		9A2116C41D832931000C4336 /* UdpAppender.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0611D7EDE5E001F47A8 /* UdpAppender.c */; };
+		9A2116C51D832931000C4336 /* makecert.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A97EF1C1D807ED3000B4EC2 /* makecert.c */; };
+		9A2116CA1D832959000C4336 /* libios_ace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A269FF31D7ED70E001F47A8 /* libios_ace.dylib */; };
+		9A2116CB1D832966000C4336 /* error_out_of_winpr.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0501D7EDD6A001F47A8 /* error_out_of_winpr.c */; };
 		9A26A0511D7EDD6A001F47A8 /* error_out_of_winpr.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0501D7EDD6A001F47A8 /* error_out_of_winpr.c */; };
 		9A26A0541D7EDD8A001F47A8 /* generic.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0521D7EDD8A001F47A8 /* generic.c */; };
 		9A26A0551D7EDD8A001F47A8 /* namedPipeClient.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0531D7EDD8A001F47A8 /* namedPipeClient.c */; };
@@ -765,6 +774,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A2116CA1D832959000C4336 /* libios_ace.dylib in Frameworks */,
 				9A331C7A1D4BCE0300255105 /* libios_axisopenssl.dylib in Frameworks */,
 				9A986D121D226A70001F4C04 /* libios_axiscrypto.dylib in Frameworks */,
 			);
@@ -1784,6 +1794,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A2116CB1D832966000C4336 /* error_out_of_winpr.c in Sources */,
+				9A2116BF1D832931000C4336 /* cipher.c in Sources */,
+				9A2116C01D832931000C4336 /* hash.c in Sources */,
+				9A2116C11D832931000C4336 /* rand.c in Sources */,
+				9A2116C21D832931000C4336 /* generic.c in Sources */,
+				9A2116C31D832931000C4336 /* namedPipeClient.c in Sources */,
+				9A2116C41D832931000C4336 /* UdpAppender.c in Sources */,
+				9A2116C51D832931000C4336 /* makecert.c in Sources */,
 				078DF8351C52978D00E65274 /* io.c in Sources */,
 				078DF8361C52978D00E65274 /* pool.c in Sources */,
 				078DF8371C52978D00E65274 /* synch.c in Sources */,
