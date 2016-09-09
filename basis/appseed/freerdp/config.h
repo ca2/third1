@@ -116,6 +116,3 @@
 
 
 
-#ifndef _MSC_VER
-#define _strdup strdup
-#endif
