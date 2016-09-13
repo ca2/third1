@@ -181,7 +181,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <ClCompile>
       <PreprocessorDefinitions>ANDROID;_FREERDP_RDPCLIENT_DLL;BYEWINDOWS_UNICODE;FREERDP_EXPORTS;HAVE_CONFIG_H;_USRDLL; _CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;..;client;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/axis/freerdp;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;$(SolutionDir)../../../;..\..\..\common\inc;..\..\..\encoder\core\inc;..\..\..\api\svc;..\..\..\processing\interface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-fshort-wchar -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-sometimes-uninitialized -Wno-unused-variable -Wno-incompatible-pointer-types  -Wno-pointer-sign -Wno-typedef-redefinition </AdditionalOptions>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <CLanguageStandard>gnu11</CLanguageStandard>
@@ -191,7 +191,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
     <ClCompile>
       <PreprocessorDefinitions>ANDROID;_FREERDP_RDPCLIENT_DLL;BYEWINDOWS_UNICODE;FREERDP_EXPORTS;HAVE_CONFIG_H;_USRDLL; _CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;..;client;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/axis/freerdp;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;$(SolutionDir)../../../;..\..\..\common\inc;..\..\..\encoder\core\inc;..\..\..\api\svc;..\..\..\processing\interface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-fshort-wchar -Wno-comment -Wno-overloaded-virtual -Wno-unknown-pragmas -Wno-switch -Wno-unused-variable  -Wno-char-subscripts -Wno-format </AdditionalOptions>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <CLanguageStandard>gnu11</CLanguageStandard>
@@ -201,7 +201,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
     <ClCompile>
       <PreprocessorDefinitions>ANDROID;_FREERDP_RDPCLIENT_DLL;BYEWINDOWS_UNICODE;FREERDP_EXPORTS;HAVE_CONFIG_H;_USRDLL; _CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.;..;client;$(SolutionDir)../../../include;$(SolutionDir)../../../app/include/;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/axis/freerdp;$(SolutionDir)../../../app/appseed/axis;$(SolutionDir)../../../app/appseed/base;$(SolutionDir)../../../app/appseed/core;$(SolutionDir)../../../app/appseed/aura;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;$(SolutionDir)../../../;..\..\..\common\inc;..\..\..\encoder\core\inc;..\..\..\api\svc;..\..\..\processing\interface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-fshort-wchar -Wno-comment -Wno-overloaded-virtual -Wno-unknown-pragmas -Wno-switch -Wno-unused-variable  -Wno-char-subscripts -Wno-format </AdditionalOptions>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <CLanguageStandard>gnu11</CLanguageStandard>
