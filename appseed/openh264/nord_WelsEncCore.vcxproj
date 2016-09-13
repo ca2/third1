@@ -19,118 +19,89 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\common\src\common_tables.cpp" />
-    <ClCompile Include="..\..\..\common\src\copy_mb.cpp" />
-    <ClCompile Include="..\..\..\common\src\cpu.cpp" />
-    <ClCompile Include="..\..\..\common\src\crt_util_safe_x.cpp" />
-    <ClCompile Include="..\..\..\common\src\deblocking_common.cpp" />
-    <ClCompile Include="..\..\..\common\src\expand_pic.cpp" />
-    <ClCompile Include="..\..\..\common\src\intra_pred_common.cpp" />
-    <ClCompile Include="..\..\..\common\src\mc.cpp" />
-    <ClCompile Include="..\..\..\common\src\memory_align.cpp" />
-    <ClCompile Include="..\..\..\common\src\sad_common.cpp" />
-    <ClCompile Include="..\..\..\common\src\utils.cpp" />
-    <ClCompile Include="..\..\..\common\src\WelsThreadLib.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\au_set.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\deblocking.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\decode_mb_aux.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\encoder.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\encoder_data_tables.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\encoder_ext.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\encode_mb_aux.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\get_intra_predictor.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\md.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\mv_pred.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\nal_encap.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\picture_handle.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\property.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\ratectl.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\ref_list_mgr_svc.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\sample.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\set_mb_syn_cabac.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\set_mb_syn_cavlc.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\slice_multi_threading.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\svc_base_layer_md.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\svc_encode_mb.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\svc_encode_slice.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\svc_enc_slice_segment.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\svc_mode_decision.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\svc_motion_estimate.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\svc_set_mb_syn_cabac.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\svc_set_mb_syn_cavlc.cpp" />
-    <ClCompile Include="..\..\..\encoder\core\src\wels_preprocess.cpp" />
+    <ClCompile Include="codec\encoder\core\src\au_set.cpp" />
+    <ClCompile Include="codec\encoder\core\src\deblocking.cpp" />
+    <ClCompile Include="codec\encoder\core\src\decode_mb_aux.cpp" />
+    <ClCompile Include="codec\encoder\core\src\encoder.cpp" />
+    <ClCompile Include="codec\encoder\core\src\encoder_data_tables.cpp" />
+    <ClCompile Include="codec\encoder\core\src\encoder_ext.cpp" />
+    <ClCompile Include="codec\encoder\core\src\encode_mb_aux.cpp" />
+    <ClCompile Include="codec\encoder\core\src\get_intra_predictor.cpp" />
+    <ClCompile Include="codec\encoder\core\src\md.cpp" />
+    <ClCompile Include="codec\encoder\core\src\mv_pred.cpp" />
+    <ClCompile Include="codec\encoder\core\src\nal_encap.cpp" />
+    <ClCompile Include="codec\encoder\core\src\picture_handle.cpp" />
+    <ClCompile Include="codec\encoder\core\src\property.cpp" />
+    <ClCompile Include="codec\encoder\core\src\ratectl.cpp" />
+    <ClCompile Include="codec\encoder\core\src\ref_list_mgr_svc.cpp" />
+    <ClCompile Include="codec\encoder\core\src\sample.cpp" />
+    <ClCompile Include="codec\encoder\core\src\set_mb_syn_cabac.cpp" />
+    <ClCompile Include="codec\encoder\core\src\set_mb_syn_cavlc.cpp" />
+    <ClCompile Include="codec\encoder\core\src\slice_multi_threading.cpp" />
+    <ClCompile Include="codec\encoder\core\src\svc_base_layer_md.cpp" />
+    <ClCompile Include="codec\encoder\core\src\svc_encode_mb.cpp" />
+    <ClCompile Include="codec\encoder\core\src\svc_encode_slice.cpp" />
+    <ClCompile Include="codec\encoder\core\src\svc_enc_slice_segment.cpp" />
+    <ClCompile Include="codec\encoder\core\src\svc_mode_decision.cpp" />
+    <ClCompile Include="codec\encoder\core\src\svc_motion_estimate.cpp" />
+    <ClCompile Include="codec\encoder\core\src\svc_set_mb_syn_cabac.cpp" />
+    <ClCompile Include="codec\encoder\core\src\svc_set_mb_syn_cavlc.cpp" />
+    <ClCompile Include="codec\encoder\core\src\wels_preprocess.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\common\inc\copy_mb.h" />
-    <ClInclude Include="..\..\..\common\inc\cpu.h" />
-    <ClInclude Include="..\..\..\common\inc\cpu_core.h" />
-    <ClInclude Include="..\..\..\common\inc\deblocking_common.h" />
-    <ClInclude Include="..\..\..\common\inc\expand_pic.h" />
-    <ClInclude Include="..\..\..\common\inc\golomb_common.h" />
-    <ClInclude Include="..\..\..\common\inc\ls_defines.h" />
-    <ClInclude Include="..\..\..\common\inc\macros.h" />
-    <ClInclude Include="..\..\..\common\inc\mc.h" />
-    <ClInclude Include="..\..\..\common\inc\measure_time.h" />
-    <ClInclude Include="..\..\..\common\inc\memory_align.h" />
-    <ClInclude Include="..\..\..\common\inc\sad_common.h" />
-    <ClInclude Include="..\..\..\common\inc\typedefs.h" />
-    <ClInclude Include="..\..\..\common\inc\utils.h" />
-    <ClInclude Include="..\..\..\common\inc\WelsThreadLib.h" />
-    <ClInclude Include="..\..\..\common\inc\wels_common_defs.h" />
-    <ClInclude Include="..\..\..\common\inc\wels_const_common.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\as264_common.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\au_set.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\deblocking.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\decode_mb_aux.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\dq_map.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\encoder.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\encoder_context.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\encode_mb_aux.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\extern.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\get_intra_predictor.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\mb_cache.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\md.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\mt_defs.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\mv_pred.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\nal_encap.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\parameter_sets.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\param_svc.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\picture.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\picture_handle.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\property.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\rc.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\ref_list_mgr_svc.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\sample.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\set_mb_syn_cabac.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\set_mb_syn_cavlc.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\slice.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\slice_multi_threading.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\stat.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\svc_base_layer_md.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\svc_encode_mb.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\svc_encode_slice.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\svc_enc_frame.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\svc_enc_golomb.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\svc_enc_macroblock.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\svc_enc_slice_segment.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\svc_mode_decision.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\svc_motion_estimate.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\svc_set_mb_syn.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\svc_set_mb_syn_cavlc.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\vlc_encoder.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\wels_common_basis.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\wels_const.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\wels_func_ptr_def.h" />
-    <ClInclude Include="..\..\..\encoder\core\inc\wels_preprocess.h" />
-    <ClInclude Include="..\..\..\processing\interface\IWelsVP.h" />
+    <ClInclude Include="codec\encoder\core\inc\as264_common.h" />
+    <ClInclude Include="codec\encoder\core\inc\au_set.h" />
+    <ClInclude Include="codec\encoder\core\inc\deblocking.h" />
+    <ClInclude Include="codec\encoder\core\inc\decode_mb_aux.h" />
+    <ClInclude Include="codec\encoder\core\inc\dq_map.h" />
+    <ClInclude Include="codec\encoder\core\inc\encoder.h" />
+    <ClInclude Include="codec\encoder\core\inc\encoder_context.h" />
+    <ClInclude Include="codec\encoder\core\inc\encode_mb_aux.h" />
+    <ClInclude Include="codec\encoder\core\inc\extern.h" />
+    <ClInclude Include="codec\encoder\core\inc\get_intra_predictor.h" />
+    <ClInclude Include="codec\encoder\core\inc\mb_cache.h" />
+    <ClInclude Include="codec\encoder\core\inc\md.h" />
+    <ClInclude Include="codec\encoder\core\inc\mt_defs.h" />
+    <ClInclude Include="codec\encoder\core\inc\mv_pred.h" />
+    <ClInclude Include="codec\encoder\core\inc\nal_encap.h" />
+    <ClInclude Include="codec\encoder\core\inc\parameter_sets.h" />
+    <ClInclude Include="codec\encoder\core\inc\param_svc.h" />
+    <ClInclude Include="codec\encoder\core\inc\picture.h" />
+    <ClInclude Include="codec\encoder\core\inc\picture_handle.h" />
+    <ClInclude Include="codec\encoder\core\inc\property.h" />
+    <ClInclude Include="codec\encoder\core\inc\rc.h" />
+    <ClInclude Include="codec\encoder\core\inc\ref_list_mgr_svc.h" />
+    <ClInclude Include="codec\encoder\core\inc\sample.h" />
+    <ClInclude Include="codec\encoder\core\inc\set_mb_syn_cabac.h" />
+    <ClInclude Include="codec\encoder\core\inc\set_mb_syn_cavlc.h" />
+    <ClInclude Include="codec\encoder\core\inc\slice.h" />
+    <ClInclude Include="codec\encoder\core\inc\slice_multi_threading.h" />
+    <ClInclude Include="codec\encoder\core\inc\stat.h" />
+    <ClInclude Include="codec\encoder\core\inc\svc_base_layer_md.h" />
+    <ClInclude Include="codec\encoder\core\inc\svc_encode_mb.h" />
+    <ClInclude Include="codec\encoder\core\inc\svc_encode_slice.h" />
+    <ClInclude Include="codec\encoder\core\inc\svc_enc_frame.h" />
+    <ClInclude Include="codec\encoder\core\inc\svc_enc_golomb.h" />
+    <ClInclude Include="codec\encoder\core\inc\svc_enc_macroblock.h" />
+    <ClInclude Include="codec\encoder\core\inc\svc_enc_slice_segment.h" />
+    <ClInclude Include="codec\encoder\core\inc\svc_mode_decision.h" />
+    <ClInclude Include="codec\encoder\core\inc\svc_motion_estimate.h" />
+    <ClInclude Include="codec\encoder\core\inc\svc_set_mb_syn.h" />
+    <ClInclude Include="codec\encoder\core\inc\svc_set_mb_syn_cavlc.h" />
+    <ClInclude Include="codec\encoder\core\inc\vlc_encoder.h" />
+    <ClInclude Include="codec\encoder\core\inc\wels_common_basis.h" />
+    <ClInclude Include="codec\encoder\core\inc\wels_const.h" />
+    <ClInclude Include="codec\encoder\core\inc\wels_func_ptr_def.h" />
+    <ClInclude Include="codec\encoder\core\inc\wels_preprocess.h" />
+    <ClInclude Include="codec\encoder\core\inc\wels_transpose_matrix.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8B54FB04-F0CC-4DA4-8B90-3473EE947C36}</ProjectGuid>
     <Keyword>Android</Keyword>
     <ApplicationType>Android</ApplicationType>
     <ApplicationTypeRevision>2.0</ApplicationTypeRevision>
-    <ProjectName>WelsEncCore</ProjectName>
-    <RootNamespace>WelsEncCore</RootNamespace>
+    <ProjectName>_welsenccore</ProjectName>
+    <RootNamespace>_welsenccore</RootNamespace>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -143,14 +114,14 @@
     <ThumbMode>Disabled</ThumbMode>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>Gcc_4_9</PlatformToolset>
     <UseOfStl>gnustl_shared</UseOfStl>
     <ThumbMode>Disabled</ThumbMode>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Gcc_4_9</PlatformToolset>
     <AndroidAPILevel>android-19</AndroidAPILevel>
@@ -158,7 +129,7 @@
     <ThumbMode>Disabled</ThumbMode>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Gcc_4_9</PlatformToolset>
     <UseOfStl>gnustl_shared</UseOfStl>
@@ -169,20 +140,20 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
-    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
-    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
-    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
-    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
     <ClCompile>

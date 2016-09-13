@@ -9,24 +9,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\common\inc\welsCodecTrace.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\decoder\plus\inc\welsDecoderExt.h">
+    <ClInclude Include="codec\decoder\plus\inc\welsDecoderExt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\common\src\welsCodecTrace.cpp">
+    <ClCompile Include="codec\decoder\plus\src\welsDecoderExt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\decoder\plus\src\welsDecoderExt.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\decoder\plus\src\wels_dec_export.def">
-      <Filter>Source Files</Filter>
-    </None>
   </ItemGroup>
 </Project>
