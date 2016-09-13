@@ -23,49 +23,49 @@
     <ClCompile Include="codec\common\src\intra_pred_common.cpp" />
     <ClCompile Include="codec\common\src\sad_common.cpp" />
     <ClCompile Include="codec\common\src\WelsThreadLib.cpp" />
-    <ClCompile Include="codec\encoder\src\adaptivequantization\AdaptiveQuantization.cpp" />
-    <ClCompile Include="codec\encoder\src\backgrounddetection\BackgroundDetection.cpp" />
-    <ClCompile Include="codec\encoder\src\common\memory.cpp" />
-    <ClCompile Include="codec\encoder\src\common\WelsFrameWork.cpp" />
-    <ClCompile Include="codec\encoder\src\common\WelsFrameWorkEx.cpp" />
-    <ClCompile Include="codec\encoder\src\complexityanalysis\ComplexityAnalysis.cpp" />
-    <ClCompile Include="codec\encoder\src\denoise\denoise.cpp" />
-    <ClCompile Include="codec\encoder\src\denoise\denoise_filter.cpp" />
-    <ClCompile Include="codec\encoder\src\downsample\downsample.cpp" />
-    <ClCompile Include="codec\encoder\src\downsample\downsamplefuncs.cpp" />
-    <ClCompile Include="codec\encoder\src\imagerotate\imagerotate.cpp" />
-    <ClCompile Include="codec\encoder\src\imagerotate\imagerotatefuncs.cpp" />
-    <ClCompile Include="codec\encoder\src\scenechangedetection\SceneChangeDetection.cpp" />
-    <ClCompile Include="codec\encoder\src\scrolldetection\ScrollDetection.cpp" />
-    <ClCompile Include="codec\encoder\src\scrolldetection\ScrollDetectionFuncs.cpp" />
-    <ClCompile Include="codec\encoder\src\vaacalc\vaacalcfuncs.cpp" />
-    <ClCompile Include="codec\encoder\src\vaacalc\vaacalculation.cpp" />
+    <ClCompile Include="codec\processing\src\adaptivequantization\AdaptiveQuantization.cpp" />
+    <ClCompile Include="codec\processing\src\backgrounddetection\BackgroundDetection.cpp" />
+    <ClCompile Include="codec\processing\src\common\memory.cpp" />
+    <ClCompile Include="codec\processing\src\common\WelsFrameWork.cpp" />
+    <ClCompile Include="codec\processing\src\common\WelsFrameWorkEx.cpp" />
+    <ClCompile Include="codec\processing\src\complexityanalysis\ComplexityAnalysis.cpp" />
+    <ClCompile Include="codec\processing\src\denoise\denoise.cpp" />
+    <ClCompile Include="codec\processing\src\denoise\denoise_filter.cpp" />
+    <ClCompile Include="codec\processing\src\downsample\downsample.cpp" />
+    <ClCompile Include="codec\processing\src\downsample\downsamplefuncs.cpp" />
+    <ClCompile Include="codec\processing\src\imagerotate\imagerotate.cpp" />
+    <ClCompile Include="codec\processing\src\imagerotate\imagerotatefuncs.cpp" />
+    <ClCompile Include="codec\processing\src\scenechangedetection\SceneChangeDetection.cpp" />
+    <ClCompile Include="codec\processing\src\scrolldetection\ScrollDetection.cpp" />
+    <ClCompile Include="codec\processing\src\scrolldetection\ScrollDetectionFuncs.cpp" />
+    <ClCompile Include="codec\processing\src\vaacalc\vaacalcfuncs.cpp" />
+    <ClCompile Include="codec\processing\src\vaacalc\vaacalculation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="codec\common\inc\cpu.h" />
     <ClInclude Include="codec\common\inc\intra_pred_common.h" />
     <ClInclude Include="codec\common\inc\sad_common.h" />
     <ClInclude Include="codec\common\inc\WelsThreadLib.h" />
-    <ClInclude Include="codec\encoder\interface\IWelsVP.h" />
-    <ClInclude Include="codec\encoder\src\adaptivequantization\AdaptiveQuantization.h" />
-    <ClInclude Include="codec\encoder\src\backgrounddetection\BackgroundDetection.h" />
-    <ClInclude Include="codec\encoder\src\common\common.h" />
-    <ClInclude Include="codec\encoder\src\common\memory.h" />
-    <ClInclude Include="codec\encoder\src\common\resource.h" />
-    <ClInclude Include="codec\encoder\src\common\typedef.h" />
-    <ClInclude Include="codec\encoder\src\common\util.h" />
-    <ClInclude Include="codec\encoder\src\common\WelsFrameWork.h" />
-    <ClInclude Include="codec\encoder\src\complexityanalysis\ComplexityAnalysis.h" />
-    <ClInclude Include="codec\encoder\src\denoise\denoise.h" />
-    <ClInclude Include="codec\encoder\src\downsample\downsample.h" />
-    <ClInclude Include="codec\encoder\src\imagerotate\imagerotate.h" />
-    <ClInclude Include="codec\encoder\src\scenechangedetection\SceneChangeDetection.h" />
-    <ClInclude Include="codec\encoder\src\scrolldetection\ScrollDetection.h" />
-    <ClInclude Include="codec\encoder\src\scrolldetection\ScrollDetectionFuncs.h" />
-    <ClInclude Include="codec\encoder\src\vaacalc\vaacalculation.h" />
+    <ClInclude Include="codec\processing\interface\IWelsVP.h" />
+    <ClInclude Include="codec\processing\src\adaptivequantization\AdaptiveQuantization.h" />
+    <ClInclude Include="codec\processing\src\backgrounddetection\BackgroundDetection.h" />
+    <ClInclude Include="codec\processing\src\common\common.h" />
+    <ClInclude Include="codec\processing\src\common\memory.h" />
+    <ClInclude Include="codec\processing\src\common\resource.h" />
+    <ClInclude Include="codec\processing\src\common\typedef.h" />
+    <ClInclude Include="codec\processing\src\common\util.h" />
+    <ClInclude Include="codec\processing\src\common\WelsFrameWork.h" />
+    <ClInclude Include="codec\processing\src\complexityanalysis\ComplexityAnalysis.h" />
+    <ClInclude Include="codec\processing\src\denoise\denoise.h" />
+    <ClInclude Include="codec\processing\src\downsample\downsample.h" />
+    <ClInclude Include="codec\processing\src\imagerotate\imagerotate.h" />
+    <ClInclude Include="codec\processing\src\scenechangedetection\SceneChangeDetection.h" />
+    <ClInclude Include="codec\processing\src\scrolldetection\ScrollDetection.h" />
+    <ClInclude Include="codec\processing\src\scrolldetection\ScrollDetectionFuncs.h" />
+    <ClInclude Include="codec\processing\src\vaacalc\vaacalculation.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="codec\encoder\src\common\WelsVP.def" />
+    <None Include="codec\processing\src\common\WelsVP.def" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C8901976-D974-4D41-9CFE-5A2A1D4E4BEE}</ProjectGuid>
@@ -133,7 +133,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;$(SolutionDir)../../../;../../../common/inc;../../interface;../../src/common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;$(SolutionDir)../../../;codec/common/inc;codec/processing/interface;codec/processing/src/common;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Disabled</ExceptionHandling>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
@@ -145,7 +145,7 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>$(StlLibraryName);m</LibraryDependencies>
+      <LibraryDependencies>m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <SharedLibrarySearchPath>%(SharedLibrarySearchPath);$(Sysroot)\usr\lib</SharedLibrarySearchPath>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
     </Link>
@@ -153,7 +153,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <ClCompile>
       <PreprocessorDefinitions>ANDROID;_FREERDP_RDPCLIENT_DLL;BYEWINDOWS_UNICODE;FREERDP_EXPORTS;HAVE_CONFIG_H;_USRDLL; _CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;$(SolutionDir)../../../;../../../common/inc;../../interface;../../src/common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;$(SolutionDir)../../../;codec/common/inc;codec/processing/interface;codec/processing/src/common;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-fshort-wchar -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-sometimes-uninitialized -Wno-unused-variable -Wno-incompatible-pointer-types  -Wno-pointer-sign -Wno-typedef-redefinition </AdditionalOptions>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <CLanguageStandard>gnu11</CLanguageStandard>
@@ -161,12 +161,13 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <LibraryDependencies>m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
     <ClCompile>
       <PreprocessorDefinitions>ANDROID;_FREERDP_RDPCLIENT_DLL;BYEWINDOWS_UNICODE;FREERDP_EXPORTS;HAVE_CONFIG_H;_USRDLL; _CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;$(SolutionDir)../../../;../../../common/inc;../../interface;../../src/common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;$(SolutionDir)../../../;codec/common/inc;codec/processing/interface;codec/processing/src/common;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-fshort-wchar -Wno-comment -Wno-overloaded-virtual -Wno-unknown-pragmas -Wno-switch -Wno-unused-variable  -Wno-char-subscripts -Wno-format </AdditionalOptions>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <CLanguageStandard>gnu11</CLanguageStandard>
@@ -174,12 +175,13 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <LibraryDependencies>m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
     <ClCompile>
       <PreprocessorDefinitions>ANDROID;_FREERDP_RDPCLIENT_DLL;BYEWINDOWS_UNICODE;FREERDP_EXPORTS;HAVE_CONFIG_H;_USRDLL; _CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;$(SolutionDir)../../../;../../../common/inc;../../interface;../../src/common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);$(SolutionDir)../../../include;$(SolutionDir)../../../app/include;$(SolutionDir)../../../;codec/common/inc;codec/processing/interface;codec/processing/src/common;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-fshort-wchar -Wno-comment -Wno-overloaded-virtual -Wno-unknown-pragmas -Wno-switch -Wno-unused-variable  -Wno-char-subscripts -Wno-format </AdditionalOptions>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <CLanguageStandard>gnu11</CLanguageStandard>
@@ -187,6 +189,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <LibraryDependencies>m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

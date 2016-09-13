@@ -10,6 +10,10 @@
 #ifndef WINCONFIG_H
 #define WINCONFIG_H
 
+
+#include "ace/ace.h"
+
+
 #ifdef VSNORD
 #else
 #define WIN32_LEAN_AND_MEAN
