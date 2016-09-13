@@ -107,7 +107,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);../../include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);$(SolutionDir)../../../app/appseed/;$(SolutionDir)../../../;$(SolutionDir)../../../app/include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>COMPILED_FROM_DSP</PreprocessorDefinitions>
       <ExceptionHandling>Disabled</ExceptionHandling>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
@@ -121,7 +121,7 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>aura;$(StlLibraryName);log;android</LibraryDependencies>
+      <LibraryDependencies>$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <SharedLibrarySearchPath>%(SharedLibrarySearchPath);$(Sysroot)\usr\lib</SharedLibrarySearchPath>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
     </Link>
@@ -129,7 +129,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <ClCompile>
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-but-set-variable -Wno-unused-variable -Wno-unused-value  -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-sometimes-uninitialized -Wno-unused-variable -Wno-incompatible-pointer-types  -Wno-pointer-sign -Wno-typedef-redefinition </AdditionalOptions>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);../../include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);$(SolutionDir)../../../app/appseed/;$(SolutionDir)../../../;$(SolutionDir)../../../app/include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>COMPILED_FROM_DSP</PreprocessorDefinitions>
       <ExceptionHandling>Disabled</ExceptionHandling>
       <CLanguageStandard>gnu11</CLanguageStandard>
@@ -139,7 +139,7 @@
       </ForcedIncludeFiles>
     </ClCompile>
     <Link>
-      <LibraryDependencies>aura;$(StlLibraryName);log;android</LibraryDependencies>
+      <LibraryDependencies>$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <SharedLibrarySearchPath>%(SharedLibrarySearchPath);$(Sysroot)\usr\lib</SharedLibrarySearchPath>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
     </Link>
@@ -147,7 +147,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
     <ClCompile>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);../../include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);$(SolutionDir)../../../app/appseed/;$(SolutionDir)../../../;$(SolutionDir)../../../app/include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>
       </ForcedIncludeFiles>
       <CLanguageStandard>gnu11</CLanguageStandard>
@@ -161,7 +161,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
-      <LibraryDependencies>aura;$(StlLibraryName);log;android</LibraryDependencies>
+      <LibraryDependencies>$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
@@ -172,7 +172,7 @@
       <CLanguageStandard>gnu11</CLanguageStandard>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);../../include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);$(SolutionDir)../../../app/appseed/;$(SolutionDir)../../../;$(SolutionDir)../../../app/include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>
       </ForcedIncludeFiles>
       <PreprocessorDefinitions>COMPILED_FROM_DSP</PreprocessorDefinitions>
@@ -180,7 +180,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
-      <LibraryDependencies>aura;$(StlLibraryName);log;android</LibraryDependencies>
+      <LibraryDependencies>$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
