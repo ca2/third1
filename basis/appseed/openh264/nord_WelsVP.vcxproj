@@ -19,61 +19,61 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\common\src\cpu.cpp" />
-    <ClCompile Include="..\..\..\common\src\intra_pred_common.cpp" />
-    <ClCompile Include="..\..\..\common\src\sad_common.cpp" />
-    <ClCompile Include="..\..\..\common\src\WelsThreadLib.cpp" />
-    <ClCompile Include="..\..\src\adaptivequantization\AdaptiveQuantization.cpp" />
-    <ClCompile Include="..\..\src\backgrounddetection\BackgroundDetection.cpp" />
-    <ClCompile Include="..\..\src\common\memory.cpp" />
-    <ClCompile Include="..\..\src\common\WelsFrameWork.cpp" />
-    <ClCompile Include="..\..\src\common\WelsFrameWorkEx.cpp" />
-    <ClCompile Include="..\..\src\complexityanalysis\ComplexityAnalysis.cpp" />
-    <ClCompile Include="..\..\src\denoise\denoise.cpp" />
-    <ClCompile Include="..\..\src\denoise\denoise_filter.cpp" />
-    <ClCompile Include="..\..\src\downsample\downsample.cpp" />
-    <ClCompile Include="..\..\src\downsample\downsamplefuncs.cpp" />
-    <ClCompile Include="..\..\src\imagerotate\imagerotate.cpp" />
-    <ClCompile Include="..\..\src\imagerotate\imagerotatefuncs.cpp" />
-    <ClCompile Include="..\..\src\scenechangedetection\SceneChangeDetection.cpp" />
-    <ClCompile Include="..\..\src\scrolldetection\ScrollDetection.cpp" />
-    <ClCompile Include="..\..\src\scrolldetection\ScrollDetectionFuncs.cpp" />
-    <ClCompile Include="..\..\src\vaacalc\vaacalcfuncs.cpp" />
-    <ClCompile Include="..\..\src\vaacalc\vaacalculation.cpp" />
+    <ClCompile Include="codec\common\src\cpu.cpp" />
+    <ClCompile Include="codec\common\src\intra_pred_common.cpp" />
+    <ClCompile Include="codec\common\src\sad_common.cpp" />
+    <ClCompile Include="codec\common\src\WelsThreadLib.cpp" />
+    <ClCompile Include="codec\encoder\src\adaptivequantization\AdaptiveQuantization.cpp" />
+    <ClCompile Include="codec\encoder\src\backgrounddetection\BackgroundDetection.cpp" />
+    <ClCompile Include="codec\encoder\src\common\memory.cpp" />
+    <ClCompile Include="codec\encoder\src\common\WelsFrameWork.cpp" />
+    <ClCompile Include="codec\encoder\src\common\WelsFrameWorkEx.cpp" />
+    <ClCompile Include="codec\encoder\src\complexityanalysis\ComplexityAnalysis.cpp" />
+    <ClCompile Include="codec\encoder\src\denoise\denoise.cpp" />
+    <ClCompile Include="codec\encoder\src\denoise\denoise_filter.cpp" />
+    <ClCompile Include="codec\encoder\src\downsample\downsample.cpp" />
+    <ClCompile Include="codec\encoder\src\downsample\downsamplefuncs.cpp" />
+    <ClCompile Include="codec\encoder\src\imagerotate\imagerotate.cpp" />
+    <ClCompile Include="codec\encoder\src\imagerotate\imagerotatefuncs.cpp" />
+    <ClCompile Include="codec\encoder\src\scenechangedetection\SceneChangeDetection.cpp" />
+    <ClCompile Include="codec\encoder\src\scrolldetection\ScrollDetection.cpp" />
+    <ClCompile Include="codec\encoder\src\scrolldetection\ScrollDetectionFuncs.cpp" />
+    <ClCompile Include="codec\encoder\src\vaacalc\vaacalcfuncs.cpp" />
+    <ClCompile Include="codec\encoder\src\vaacalc\vaacalculation.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\common\inc\cpu.h" />
-    <ClInclude Include="..\..\..\common\inc\intra_pred_common.h" />
-    <ClInclude Include="..\..\..\common\inc\sad_common.h" />
-    <ClInclude Include="..\..\..\common\inc\WelsThreadLib.h" />
-    <ClInclude Include="..\..\interface\IWelsVP.h" />
-    <ClInclude Include="..\..\src\adaptivequantization\AdaptiveQuantization.h" />
-    <ClInclude Include="..\..\src\backgrounddetection\BackgroundDetection.h" />
-    <ClInclude Include="..\..\src\common\common.h" />
-    <ClInclude Include="..\..\src\common\memory.h" />
-    <ClInclude Include="..\..\src\common\resource.h" />
-    <ClInclude Include="..\..\src\common\typedef.h" />
-    <ClInclude Include="..\..\src\common\util.h" />
-    <ClInclude Include="..\..\src\common\WelsFrameWork.h" />
-    <ClInclude Include="..\..\src\complexityanalysis\ComplexityAnalysis.h" />
-    <ClInclude Include="..\..\src\denoise\denoise.h" />
-    <ClInclude Include="..\..\src\downsample\downsample.h" />
-    <ClInclude Include="..\..\src\imagerotate\imagerotate.h" />
-    <ClInclude Include="..\..\src\scenechangedetection\SceneChangeDetection.h" />
-    <ClInclude Include="..\..\src\scrolldetection\ScrollDetection.h" />
-    <ClInclude Include="..\..\src\scrolldetection\ScrollDetectionFuncs.h" />
-    <ClInclude Include="..\..\src\vaacalc\vaacalculation.h" />
+    <ClInclude Include="codec\common\inc\cpu.h" />
+    <ClInclude Include="codec\common\inc\intra_pred_common.h" />
+    <ClInclude Include="codec\common\inc\sad_common.h" />
+    <ClInclude Include="codec\common\inc\WelsThreadLib.h" />
+    <ClInclude Include="codec\encoder\interface\IWelsVP.h" />
+    <ClInclude Include="codec\encoder\src\adaptivequantization\AdaptiveQuantization.h" />
+    <ClInclude Include="codec\encoder\src\backgrounddetection\BackgroundDetection.h" />
+    <ClInclude Include="codec\encoder\src\common\common.h" />
+    <ClInclude Include="codec\encoder\src\common\memory.h" />
+    <ClInclude Include="codec\encoder\src\common\resource.h" />
+    <ClInclude Include="codec\encoder\src\common\typedef.h" />
+    <ClInclude Include="codec\encoder\src\common\util.h" />
+    <ClInclude Include="codec\encoder\src\common\WelsFrameWork.h" />
+    <ClInclude Include="codec\encoder\src\complexityanalysis\ComplexityAnalysis.h" />
+    <ClInclude Include="codec\encoder\src\denoise\denoise.h" />
+    <ClInclude Include="codec\encoder\src\downsample\downsample.h" />
+    <ClInclude Include="codec\encoder\src\imagerotate\imagerotate.h" />
+    <ClInclude Include="codec\encoder\src\scenechangedetection\SceneChangeDetection.h" />
+    <ClInclude Include="codec\encoder\src\scrolldetection\ScrollDetection.h" />
+    <ClInclude Include="codec\encoder\src\scrolldetection\ScrollDetectionFuncs.h" />
+    <ClInclude Include="codec\encoder\src\vaacalc\vaacalculation.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\src\common\WelsVP.def" />
+    <None Include="codec\encoder\src\common\WelsVP.def" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C8901976-D974-4D41-9CFE-5A2A1D4E4BEE}</ProjectGuid>
     <Keyword>Android</Keyword>
     <ApplicationType>Android</ApplicationType>
     <ApplicationTypeRevision>2.0</ApplicationTypeRevision>
-    <ProjectName>WelsVP</ProjectName>
-    <RootNamespace>WelsVP</RootNamespace>
+    <ProjectName>welsvp</ProjectName>
+    <RootNamespace>welsvp</RootNamespace>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -112,20 +112,20 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
-    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\intermediate\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
-    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
-    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
-    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
     <ClCompile>
