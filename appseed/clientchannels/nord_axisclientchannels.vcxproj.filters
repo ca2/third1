@@ -121,6 +121,12 @@
     <Filter Include="Source Files\channels\rdpsnd\opensles">
       <UniqueIdentifier>{f1598123-9a11-483e-8966-5286534e4f48}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ca2">
+      <UniqueIdentifier>{f9271da5-37f4-48de-81f8-9c9d3b410072}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\channels\rdpgfx\client">
+      <UniqueIdentifier>{e5e98f3a-ab1f-49d2-b1ed-6398e7eca93e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="channels\audin\client\audin_main.c">
@@ -180,15 +186,6 @@
     <ClCompile Include="channels\rdpei\rdpei_common.c">
       <Filter>Source Files\channels\rdpei</Filter>
     </ClCompile>
-    <ClCompile Include="channels\rdpgfx\client\rdpgfx_codec.c">
-      <Filter>Source Files\channels\rdpgfx</Filter>
-    </ClCompile>
-    <ClCompile Include="channels\rdpgfx\client\rdpgfx_common.c">
-      <Filter>Source Files\channels\rdpgfx</Filter>
-    </ClCompile>
-    <ClCompile Include="channels\rdpgfx\client\rdpgfx_main.c">
-      <Filter>Source Files\channels\rdpgfx</Filter>
-    </ClCompile>
     <ClCompile Include="channels\rdpsnd\client\rdpsnd_main.c">
       <Filter>Source Files\channels\rdpsnd</Filter>
     </ClCompile>
@@ -234,17 +231,23 @@
     <ClCompile Include="channels\rdpsnd\client\opensles\rdpsnd_opensles.c">
       <Filter>Source Files\channels\rdpsnd\opensles</Filter>
     </ClCompile>
-    <ClCompile Include="channels\client\tables_android.c">
-      <Filter>Source Files\channels\client</Filter>
-    </ClCompile>
     <ClCompile Include="channels\rdpsnd\client\opensles\opensl_io.c">
-      <Filter>Source Files\channels\rdpsnd\opensles</Filter>
-    </ClCompile>
-    <ClCompile Include="channels\rdpsnd\client\winmm\rdpsnd_winmm.c">
       <Filter>Source Files\channels\rdpsnd\opensles</Filter>
     </ClCompile>
     <ClCompile Include="channels\rdpsnd\client\codec_aac.c">
       <Filter>Source Files\channels\rdpsnd</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\tables_android.c">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="channels\rdpgfx\client\rdpgfx_main.c">
+      <Filter>Source Files\channels\rdpgfx\client</Filter>
+    </ClCompile>
+    <ClCompile Include="channels\rdpgfx\client\rdpgfx_codec.c">
+      <Filter>Source Files\channels\rdpgfx\client</Filter>
+    </ClCompile>
+    <ClCompile Include="channels\rdpgfx\rdpgfx_common.c">
+      <Filter>Source Files\channels\rdpgfx</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -313,9 +316,6 @@
     </ClInclude>
     <ClInclude Include="channels\rdpei\client\rdpei_main.h">
       <Filter>Header Files\channels\rdpei</Filter>
-    </ClInclude>
-    <ClInclude Include="channels\rdpgfx\client\rdpgfx_common.h">
-      <Filter>Header Files\channels\rdpgfx</Filter>
     </ClInclude>
     <ClInclude Include="channels\rdpgfx\client\rdpgfx_main.h">
       <Filter>Header Files\channels\rdpgfx</Filter>
