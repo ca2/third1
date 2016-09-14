@@ -1,3 +1,4 @@
+#include "nodeapp/operational_system/config_debug.h"
 /*
  *    Stack-less Just-In-Time compiler
  *

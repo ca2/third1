@@ -19,34 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\freerdp\addin.h" />
-    <ClInclude Include="..\..\include\freerdp\altsec.h" />
-    <ClInclude Include="..\..\include\freerdp\api.h" />
-    <ClInclude Include="..\..\include\freerdp\assistance.h" />
-    <ClInclude Include="..\..\include\freerdp\client.h" />
-    <ClInclude Include="..\..\include\freerdp\constants.h" />
-    <ClInclude Include="..\..\include\freerdp\dvc.h" />
-    <ClInclude Include="..\..\include\freerdp\error.h" />
-    <ClInclude Include="..\..\include\freerdp\event.h" />
-    <ClInclude Include="..\..\include\freerdp\extension.h" />
-    <ClInclude Include="..\..\include\freerdp\freerdp.h" />
-    <ClInclude Include="..\..\include\freerdp\graphics.h" />
-    <ClInclude Include="..\..\include\freerdp\input.h" />
-    <ClInclude Include="..\..\include\freerdp\listener.h" />
-    <ClInclude Include="..\..\include\freerdp\message.h" />
-    <ClInclude Include="..\..\include\freerdp\metrics.h" />
-    <ClInclude Include="..\..\include\freerdp\peer.h" />
-    <ClInclude Include="..\..\include\freerdp\pointer.h" />
-    <ClInclude Include="..\..\include\freerdp\primary.h" />
-    <ClInclude Include="..\..\include\freerdp\primitives.h" />
-    <ClInclude Include="..\..\include\freerdp\rail.h" />
-    <ClInclude Include="..\..\include\freerdp\scancode.h" />
-    <ClInclude Include="..\..\include\freerdp\secondary.h" />
-    <ClInclude Include="..\..\include\freerdp\settings.h" />
-    <ClInclude Include="..\..\include\freerdp\svc.h" />
-    <ClInclude Include="..\..\include\freerdp\types.h" />
-    <ClInclude Include="..\..\include\freerdp\update.h" />
-    <ClInclude Include="..\..\include\freerdp\window.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="libfreerdp\codec\nsc_encode.h" />
     <ClInclude Include="libfreerdp\codec\nsc_sse2.h" />
@@ -115,7 +87,6 @@
     <ClInclude Include="libfreerdp\primitives\prim_templates.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\include\freerdp\version.h.in" />
     <None Include="axisfreerdp.def" />
   </ItemGroup>
   <ItemGroup>
@@ -139,7 +110,9 @@
     <ClCompile Include="libfreerdp\codec\ncrush.c" />
     <ClCompile Include="libfreerdp\codec\nsc.c" />
     <ClCompile Include="libfreerdp\codec\nsc_encode.c" />
-    <ClCompile Include="libfreerdp\codec\nsc_sse2.c" />
+    <ClCompile Include="libfreerdp\codec\nsc_sse2.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="libfreerdp\codec\planar.c" />
     <ClCompile Include="libfreerdp\codec\progressive.c" />
     <ClCompile Include="libfreerdp\codec\region.c" />
@@ -151,7 +124,9 @@
     <ClCompile Include="libfreerdp\codec\rfx_neon.c" />
     <ClCompile Include="libfreerdp\codec\rfx_quantization.c" />
     <ClCompile Include="libfreerdp\codec\rfx_rlgr.c" />
-    <ClCompile Include="libfreerdp\codec\rfx_sse2.c" />
+    <ClCompile Include="libfreerdp\codec\rfx_sse2.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="libfreerdp\codec\xcrush.c" />
     <ClCompile Include="libfreerdp\codec\zgfx.c" />
     <ClCompile Include="libfreerdp\common\addin.c" />
@@ -237,7 +212,6 @@
     <ClCompile Include="libfreerdp\locale\keyboard.c" />
     <ClCompile Include="libfreerdp\locale\keyboard_layout.c" />
     <ClCompile Include="libfreerdp\locale\locale.c" />
-    <ClCompile Include="libfreerdp\locale\timezone.c" />
     <ClCompile Include="libfreerdp\locale\xkb_layout_ids.c" />
     <ClCompile Include="libfreerdp\primitives\primitives.c" />
     <ClCompile Include="libfreerdp\primitives\prim_16to32bpp.c" />
@@ -335,11 +309,11 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);$(ProjectDir);$(ProjectDir)../../include;.;framework;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../include;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;$(SolutionDir)../../../include/app/include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WITH_LIBAVCODEC;ANDROID;ANDROID_NDK;_X86_;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;_DEBUG;HAVE_CONFIG_H;CMAKE_INTDIR="Debug";winpr_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/platform_configuration/$(Platform)/$(Configuration);$(ProjectDir);$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/include;.;framework;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../include;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;$(SolutionDir)../../../include/app/include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WITH_OPENH264;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Disabled</ExceptionHandling>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
-      <AdditionalOptions>-fshort-wchar -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-sometimes-uninitialized -Wno-unused-variable -Wno-incompatible-pointer-types  -Wno-pointer-sign -Wno-typedef-redefinition </AdditionalOptions>
+      <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-unused-but-set-variable</AdditionalOptions>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
@@ -347,22 +321,25 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>axisopenssl;axiscrypto;axiswinpr;z;aura;$(StlLibraryName);m</LibraryDependencies>
+      <LibraryDependencies>welsdecplus;welsencplus;axisopenssl;axiscrypto;axiswinpr;z;ace;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <SharedLibrarySearchPath>%(SharedLibrarySearchPath);$(Sysroot)\usr\lib</SharedLibrarySearchPath>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(SolutionDir)../../thirdparty/library/x86/libavcodec-57.so;$(SolutionDir)../../thirdparty/library/x86/libavutil-55.so;$(SolutionDir)../../thirdparty/library/x86/libswresample-2.so</AdditionalDependencies>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <ClCompile>
-      <AdditionalOptions>-fshort-wchar -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-sometimes-uninitialized -Wno-unused-variable -Wno-incompatible-pointer-types  -Wno-pointer-sign -Wno-typedef-redefinition </AdditionalOptions>
+      <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-unused-but-set-variable</AdditionalOptions>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <CLanguageStandard>gnu11</CLanguageStandard>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);$(ProjectDir);$(ProjectDir)../../include;.;framework;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../include;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;$(SolutionDir)../../../include/app/include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/platform_configuration/$(Platform)/$(Configuration);$(ProjectDir);$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/include;.;framework;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../include;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;$(SolutionDir)../../../include/app/include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WITH_OPENH264;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <LibraryDependencies>welsdecplus;welsencplus;axisopenssl;axiscrypto;axiswinpr;z;ace;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
@@ -370,10 +347,13 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <CLanguageStandard>gnu11</CLanguageStandard>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);$(ProjectDir);$(ProjectDir)../../include;.;framework;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../include;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;$(SolutionDir)../../../include/app/include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/platform_configuration/$(Platform)/$(Configuration);$(ProjectDir);$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/include;.;framework;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../include;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;$(SolutionDir)../../../include/app/include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WITH_OPENH264;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-unused-but-set-variable</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <LibraryDependencies>welsdecplus;welsencplus;axisopenssl;axiscrypto;axiswinpr;z;ace;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
@@ -381,10 +361,13 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <CLanguageStandard>gnu11</CLanguageStandard>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);$(ProjectDir);$(ProjectDir)../../include;.;framework;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../include;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;$(SolutionDir)../../../include/app/include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/platform_configuration/$(Platform)/$(Configuration);$(ProjectDir);$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/include;.;framework;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../include;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;$(SolutionDir)../../../include/app/include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WITH_OPENH264;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-unused-but-set-variable</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <LibraryDependencies>welsdecplus;welsencplus;axisopenssl;axiscrypto;axiswinpr;z;ace;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

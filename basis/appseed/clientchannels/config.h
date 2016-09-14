@@ -1,6 +1,8 @@
 #ifndef __CONFIG_H
 #define __CONFIG_H
 
+#include "ace/ace.h"
+
 #define FREERDP_DATA_PATH "${FREERDP_DATA_PATH}"
 #define FREERDP_KEYMAP_PATH "${FREERDP_KEYMAP_PATH}"
 #define FREERDP_PLUGIN_PATH "${FREERDP_PLUGIN_PATH}"
@@ -99,9 +101,6 @@
 #define CMAKE_SHARED_LIBRARY_PREFIX "C:\\ca2\\modules\\freerdp\\client\\"
 
 
-#ifndef _MSC_VER
-#define _strdup strdup
-#endif
 
 
 

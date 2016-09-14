@@ -22,11 +22,11 @@
     <None Include="axisclientchannels.def" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ca2\tables_android.c" />
     <ClCompile Include="channels\audin\client\audin_main.c" />
     <ClCompile Include="channels\audin\client\opensles\audin_opensl_es.c" />
     <ClCompile Include="channels\audin\client\opensles\opensl_io.c" />
     <ClCompile Include="channels\client\addin.c" />
-    <ClCompile Include="channels\client\tables_android.c" />
     <ClCompile Include="channels\cliprdr\client\cliprdr_format.c" />
     <ClCompile Include="channels\cliprdr\client\cliprdr_main.c" />
     <ClCompile Include="channels\disp\client\disp_main.c" />
@@ -46,15 +46,12 @@
     <ClCompile Include="channels\rdpei\client\rdpei_main.c" />
     <ClCompile Include="channels\rdpei\rdpei_common.c" />
     <ClCompile Include="channels\rdpgfx\client\rdpgfx_codec.c" />
-    <ClCompile Include="channels\rdpgfx\client\rdpgfx_common.c" />
     <ClCompile Include="channels\rdpgfx\client\rdpgfx_main.c" />
+    <ClCompile Include="channels\rdpgfx\rdpgfx_common.c" />
     <ClCompile Include="channels\rdpsnd\client\codec_aac.c" />
     <ClCompile Include="channels\rdpsnd\client\opensles\opensl_io.c" />
     <ClCompile Include="channels\rdpsnd\client\opensles\rdpsnd_opensles.c" />
     <ClCompile Include="channels\rdpsnd\client\rdpsnd_main.c" />
-    <ClCompile Include="channels\rdpsnd\client\winmm\rdpsnd_winmm.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="channels\remdesk\client\remdesk_main.c" />
     <ClCompile Include="channels\smartcard\client\smartcard_main.c" />
     <ClCompile Include="channels\smartcard\client\smartcard_operations.c" />
@@ -88,7 +85,6 @@
     <ClInclude Include="channels\rdpdr\client\rdpdr_capabilities.h" />
     <ClInclude Include="channels\rdpdr\client\rdpdr_main.h" />
     <ClInclude Include="channels\rdpei\client\rdpei_main.h" />
-    <ClInclude Include="channels\rdpgfx\client\rdpgfx_common.h" />
     <ClInclude Include="channels\rdpgfx\client\rdpgfx_main.h" />
     <ClInclude Include="channels\rdpsnd\client\codec_aac.h" />
     <ClInclude Include="channels\rdpsnd\client\rdpsnd_main.h" />
@@ -168,11 +164,11 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);..;client;$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>ANDROID;_X86_;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;_DEBUG;HAVE_CONFIG_H;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/platform_configuration/$(Platform)/$(Configuration);..;client;$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>BUILTIN_CHANNELS;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Disabled</ExceptionHandling>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
-      <AdditionalOptions>-fshort-wchar -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-sometimes-uninitialized -Wno-unused-variable -Wno-incompatible-pointer-types  -Wno-pointer-sign -Wno-typedef-redefinition </AdditionalOptions>
+      <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-unused-but-set-variable</AdditionalOptions>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
@@ -180,66 +176,61 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>axisfreerdp;axiswinpr;z;aura;$(StlLibraryName);OpenSLES;m</LibraryDependencies>
+      <LibraryDependencies>avcodec-57;avutil-55;axisfreerdp;axiswinpr;z;ace;$(StlLibraryName);OpenSLES;m</LibraryDependencies>
       <SharedLibrarySearchPath>%(SharedLibrarySearchPath);$(Sysroot)\usr\lib</SharedLibrarySearchPath>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(SolutionDir)../../thirdparty/library/x86/libavcodec-57.so;$(SolutionDir)../../thirdparty/library/x86/libavformat-57.so;$(SolutionDir)../../thirdparty/library/x86/libavutil-55.so;$(SolutionDir)../../thirdparty/library/x86/libswresample-2.so</AdditionalDependencies>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
       <ForceSymbolReferences>
       </ForceSymbolReferences>
     </Link>
     <CustomBuildStep>
-      <Command>mkdir $(SolutionDir)..\..\..\time\x86\basis\nord_app_core_rdpclient\Package\libs\x86\
-copy $(SolutionDir)..\..\thirdparty\library\x86\libavcodec-57.so  $(SolutionDir)..\..\..\time\x86\basis\nord_app_core_rdpclient\Package\libs\x86\libavcodec-57.so
-copy $(SolutionDir)..\..\thirdparty\library\x86\libavformat-57.so  $(SolutionDir)..\..\..\time\x86\basis\nord_app_core_rdpclient\Package\libs\x86\libavformat-57.so
-copy $(SolutionDir)..\..\thirdparty\library\x86\libavutil-55.so  $(SolutionDir)..\..\..\time\x86\basis\nord_app_core_rdpclient\Package\libs\x86\libavutil-55.so
-copy $(SolutionDir)..\..\thirdparty\library\x86\libswresample-2.so  $(SolutionDir)..\..\..\time\x86\basis\nord_app_core_rdpclient\Package\libs\x86\libswresample-2.so
-copy $(SolutionDir)..\..\thirdparty\library\x86\librtmp-1.so  $(SolutionDir)..\..\..\time\x86\basis\nord_app_core_rdpclient\Package\libs\x86\librtmp-1.so
-mkdir $(SolutionDir)..\..\..\time\x86\basis\Package\libs\x86
-copy $(SolutionDir)..\..\thirdparty\library\x86\libavcodec-57.so  $(SolutionDir)..\..\..\time\x86\basis\Package\libs\x86\libavcodec-57.so
-copy $(SolutionDir)..\..\thirdparty\library\x86\libavformat-57.so  $(SolutionDir)..\..\..\time\x86\basis\Package\libs\x86\libavformat-57.so
-copy $(SolutionDir)..\..\thirdparty\library\x86\libavutil-55.so  $(SolutionDir)..\..\..\time\x86\basis\Package\libs\x86\libavutil-55.so
-copy $(SolutionDir)..\..\thirdparty\library\x86\libswresample-2.so  $(SolutionDir)..\..\..\time\x86\basis\Package\libs\x86\libswresample-2.so
-copy $(SolutionDir)..\..\thirdparty\library\x86\librtmp-1.so  $(SolutionDir)..\..\..\time\x86\basis\Package\libs\x86\librtmp-1.so</Command>
-      <Outputs>$(SolutionDir)..\..\..\time\x86\basis\nord_app_core_rdpclient\Package\libs\x86\libavcodec-57.so;$(SolutionDir)..\..\..\time\x86\basis\nord_app_core_rdpclient\Package\libs\x86\libavformat-57.so;$(SolutionDir)..\..\..\time\x86\basis\nord_app_core_rdpclient\Package\libs\x86\libavutil-55.so;$(SolutionDir)..\..\..\time\x86\basis\nord_app_core_rdpclient\Package\libs\x86\libswresample-2.so;$(SolutionDir)..\..\..\time\x86\basis\nord_app_core_rdpclient\Package\libs\x86\librtmp-1.so</Outputs>
+      <Command>
+      </Command>
+      <Outputs>
+      </Outputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);..;client;$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>ANDROID;_X86_;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;_DEBUG;HAVE_CONFIG_H;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>-fshort-wchar -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-sometimes-uninitialized -Wno-unused-variable -Wno-incompatible-pointer-types  -Wno-pointer-sign -Wno-typedef-redefinition </AdditionalOptions>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/platform_configuration/$(Platform)/$(Configuration);..;client;$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>BUILTIN_CHANNELS;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-unused-but-set-variable</AdditionalOptions>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <CLanguageStandard>gnu11</CLanguageStandard>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <LibraryDependencies>avcodec-57;avutil-55;axisfreerdp;axiswinpr;z;ace;$(StlLibraryName);OpenSLES;m</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);..;client;$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>ANDROID;_X86_;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;_DEBUG;HAVE_CONFIG_H;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>-Wno-comment -Wno-unknown-pragmas -Wno-switch -Wno-unused-variable  -Wno-char-subscripts -Wno-format   -Wno-unused-but-set-variable %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/platform_configuration/$(Platform)/$(Configuration);..;client;$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>BUILTIN_CHANNELS;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-unused-but-set-variable</AdditionalOptions>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <CLanguageStandard>gnu11</CLanguageStandard>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <LibraryDependencies>avcodec-57;avutil-55;axisfreerdp;axiswinpr;z;ace;$(StlLibraryName);OpenSLES;m</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);..;client;$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>ANDROID;_X86_;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;_DEBUG;HAVE_CONFIG_H;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>-Wno-comment -Wno-unknown-pragmas -Wno-switch -Wno-unused-variable  -Wno-char-subscripts -Wno-format   -Wno-unused-but-set-variable %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/platform_configuration/$(Platform)/$(Configuration);..;client;$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>BUILTIN_CHANNELS;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-unused-but-set-variable</AdditionalOptions>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <CLanguageStandard>gnu11</CLanguageStandard>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <LibraryDependencies>avcodec-57;avutil-55;axisfreerdp;axiswinpr;z;ace;$(StlLibraryName);OpenSLES;m</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

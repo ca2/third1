@@ -1,3 +1,5 @@
+#include "ace/ace.h"
+
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
 /* Define if building universal (internal helper macro) */
@@ -188,3 +190,5 @@
 
 /* Define to sqrt if you do not have the `sqrtf' function. */
 #undef sqrtf
+
+

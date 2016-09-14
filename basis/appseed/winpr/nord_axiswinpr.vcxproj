@@ -19,70 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\winpr\asn1.h" />
-    <ClInclude Include="..\..\include\winpr\bcrypt.h" />
-    <ClInclude Include="..\..\include\winpr\bitstream.h" />
-    <ClInclude Include="..\..\include\winpr\cmdline.h" />
-    <ClInclude Include="..\..\include\winpr\collections.h" />
-    <ClInclude Include="..\..\include\winpr\comm.h" />
-    <ClInclude Include="..\..\include\winpr\credentials.h" />
-    <ClInclude Include="..\..\include\winpr\credui.h" />
-    <ClInclude Include="..\..\include\winpr\crt.h" />
-    <ClInclude Include="..\..\include\winpr\crypto.h" />
-    <ClInclude Include="..\..\include\winpr\debug.h" />
-    <ClInclude Include="..\..\include\winpr\dsparse.h" />
-    <ClInclude Include="..\..\include\winpr\endian.h" />
-    <ClInclude Include="..\..\include\winpr\environment.h" />
-    <ClInclude Include="..\..\include\winpr\error.h" />
-    <ClInclude Include="..\..\include\winpr\file.h" />
-    <ClInclude Include="..\..\include\winpr\handle.h" />
-    <ClInclude Include="..\..\include\winpr\heap.h" />
-    <ClInclude Include="..\..\include\winpr\ini.h" />
-    <ClInclude Include="..\..\include\winpr\input.h" />
-    <ClInclude Include="..\..\include\winpr\interlocked.h" />
-    <ClInclude Include="..\..\include\winpr\io.h" />
-    <ClInclude Include="..\..\include\winpr\library.h" />
-    <ClInclude Include="..\..\include\winpr\locale.h" />
-    <ClInclude Include="..\..\include\winpr\memory.h" />
-    <ClInclude Include="..\..\include\winpr\midl.h" />
-    <ClInclude Include="..\..\include\winpr\ndr.h" />
-    <ClInclude Include="..\..\include\winpr\nt.h" />
-    <ClInclude Include="..\..\include\winpr\ntlm.h" />
-    <ClInclude Include="..\..\include\winpr\path.h" />
-    <ClInclude Include="..\..\include\winpr\pipe.h" />
-    <ClInclude Include="..\..\include\winpr\platform.h" />
-    <ClInclude Include="..\..\include\winpr\pool.h" />
-    <ClInclude Include="..\..\include\winpr\print.h" />
-    <ClInclude Include="..\..\include\winpr\registry.h" />
-    <ClInclude Include="..\..\include\winpr\rpc.h" />
-    <ClInclude Include="..\..\include\winpr\sam.h" />
-    <ClInclude Include="..\..\include\winpr\schannel.h" />
-    <ClInclude Include="..\..\include\winpr\security.h" />
-    <ClInclude Include="..\..\include\winpr\smartcard.h" />
-    <ClInclude Include="..\..\include\winpr\spec.h" />
-    <ClInclude Include="..\..\include\winpr\ssl.h" />
-    <ClInclude Include="..\..\include\winpr\sspi.h" />
-    <ClInclude Include="..\..\include\winpr\sspicli.h" />
-    <ClInclude Include="..\..\include\winpr\stream.h" />
-    <ClInclude Include="..\..\include\winpr\string.h" />
-    <ClInclude Include="..\..\include\winpr\synch.h" />
-    <ClInclude Include="..\..\include\winpr\sysinfo.h" />
-    <ClInclude Include="..\..\include\winpr\tchar.h" />
-    <ClInclude Include="..\..\include\winpr\thread.h" />
-    <ClInclude Include="..\..\include\winpr\timezone.h" />
-    <ClInclude Include="..\..\include\winpr\windows.h" />
-    <ClInclude Include="..\..\include\winpr\winhttp.h" />
-    <ClInclude Include="..\..\include\winpr\winpr.h" />
-    <ClInclude Include="..\..\include\winpr\winsock.h" />
-    <ClInclude Include="..\..\include\winpr\wlog.h" />
-    <ClInclude Include="..\..\include\winpr\wnd.h" />
-    <ClInclude Include="..\..\include\winpr\wtsapi.h" />
-    <ClInclude Include="..\..\include\winpr\wtypes.h" />
+    <ClInclude Include="config.h" />
     <ClInclude Include="libwinpr\crt\utf.h" />
     <ClInclude Include="libwinpr\crypto\crypto.h" />
     <ClInclude Include="libwinpr\handle\handle.h" />
     <ClInclude Include="libwinpr\io\io.h" />
-    <ClInclude Include="libwinpr\nt\nt.h" />
     <ClInclude Include="libwinpr\pipe\pipe.h" />
     <ClInclude Include="libwinpr\pool\pool.h" />
     <ClInclude Include="libwinpr\registry\registry_reg.h" />
@@ -119,7 +60,6 @@
     <ClInclude Include="libwinpr\utils\wlog\Layout.h" />
     <ClInclude Include="libwinpr\utils\wlog\Message.h" />
     <ClInclude Include="libwinpr\utils\wlog\PacketMessage.h" />
-    <ClInclude Include="libwinpr\utils\wlog\TextMessage.h" />
     <ClInclude Include="libwinpr\utils\wlog\wlog.h" />
   </ItemGroup>
   <ItemGroup>
@@ -139,11 +79,16 @@
     <ClCompile Include="libwinpr\crt\unicode.c" />
     <ClCompile Include="libwinpr\crt\utf.c" />
     <ClCompile Include="libwinpr\crypto\cert.c" />
+    <ClCompile Include="libwinpr\crypto\cipher.c" />
     <ClCompile Include="libwinpr\crypto\crypto.c" />
+    <ClCompile Include="libwinpr\crypto\hash.c" />
+    <ClCompile Include="libwinpr\crypto\rand.c" />
     <ClCompile Include="libwinpr\dsparse\dsparse.c" />
     <ClCompile Include="libwinpr\environment\environment.c" />
-    <ClCompile Include="libwinpr\error\err_err.c" />
+    <ClCompile Include="libwinpr\error\error_out_of_winpr.c" />
     <ClCompile Include="libwinpr\file\file.c" />
+    <ClCompile Include="libwinpr\file\generic.c" />
+    <ClCompile Include="libwinpr\file\namedPipeClient.c" />
     <ClCompile Include="libwinpr\file\pattern.c" />
     <ClCompile Include="libwinpr\handle\handle.c" />
     <ClCompile Include="libwinpr\handle\nonehandle.c" />
@@ -161,7 +106,6 @@
     <ClCompile Include="libwinpr\pipe\pipe.c" />
     <ClCompile Include="libwinpr\pool\callback.c" />
     <ClCompile Include="libwinpr\pool\callback_cleanup.c" />
-    <ClCompile Include="libwinpr\pool\callback_environment.c" />
     <ClCompile Include="libwinpr\pool\cleanup_group.c" />
     <ClCompile Include="libwinpr\pool\io.c" />
     <ClCompile Include="libwinpr\pool\pool.c" />
@@ -259,6 +203,7 @@
     <ClCompile Include="libwinpr\utils\wlog\Message.c" />
     <ClCompile Include="libwinpr\utils\wlog\PacketMessage.c" />
     <ClCompile Include="libwinpr\utils\wlog\TextMessage.c" />
+    <ClCompile Include="libwinpr\utils\wlog\UdpAppender.c" />
     <ClCompile Include="libwinpr\utils\wlog\wlog.c" />
     <ClCompile Include="libwinpr\winhttp\winhttp.c" />
     <ClCompile Include="libwinpr\winsock\winsock.c" />
@@ -330,11 +275,11 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);framework;libwinpr/utils/trio;libwinpr/utils;$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include/;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>ANDROID;_X86_;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;_DEBUG;HAVE_CONFIG_H;CMAKE_INTDIR="Debug";winpr_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/platform_configuration/$(Platform)/$(Configuration);framework;libwinpr/utils/trio;libwinpr/utils;$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include/;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Disabled</ExceptionHandling>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
-      <AdditionalOptions>-fshort-wchar -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-sometimes-uninitialized -Wno-unused-variable -Wno-incompatible-pointer-types  -Wno-pointer-sign -Wno-typedef-redefinition </AdditionalOptions>
+      <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-unused-but-set-variable</AdditionalOptions>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
@@ -342,29 +287,33 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>axisopenssl;axiscrypto;z;aura;$(StlLibraryName);m;log</LibraryDependencies>
+      <LibraryDependencies>axisopenssl;axiscrypto;z;ace;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <SharedLibrarySearchPath>%(SharedLibrarySearchPath);$(Sysroot)\usr\lib</SharedLibrarySearchPath>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);framework;libwinpr/utils/trio;libwinpr/utils;$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include/;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>-fshort-wchar -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-sometimes-uninitialized -Wno-unused-variable -Wno-incompatible-pointer-types  -Wno-pointer-sign -Wno-typedef-redefinition </AdditionalOptions>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/platform_configuration/$(Platform)/$(Configuration);framework;libwinpr/utils/trio;libwinpr/utils;$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include/;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-unused-but-set-variable</AdditionalOptions>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <CLanguageStandard>gnu11</CLanguageStandard>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
+      <PreprocessorDefinitions>_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <LibraryDependencies>axisopenssl;axiscrypto;z;ace;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);framework;libwinpr/utils/trio;libwinpr/utils;$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include/;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/platform_configuration/$(Platform)/$(Configuration);framework;libwinpr/utils/trio;libwinpr/utils;$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include/;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <CLanguageStandard>gnu11</CLanguageStandard>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
+      <PreprocessorDefinitions>_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-unused-but-set-variable</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
@@ -372,10 +321,12 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../include/$(Platform)/$(Configuration);framework;libwinpr/utils/trio;libwinpr/utils;$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include/;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/platform_configuration/$(Platform)/$(Configuration);framework;libwinpr/utils/trio;libwinpr/utils;$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include/;$(SolutionDir)../../../app/include/;.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <CLanguageStandard>gnu11</CLanguageStandard>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
+      <PreprocessorDefinitions>_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-unused-but-set-variable</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>

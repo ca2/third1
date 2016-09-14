@@ -72,6 +72,7 @@ defined(__OpenBSD__) || defined(__DragonFly__)
 #include <sys/sysctl.h>
 #endif
 
+
 static DWORD GetProcessorArchitecture()
 {
 	DWORD cpuArch = PROCESSOR_ARCHITECTURE_UNKNOWN;
@@ -596,7 +597,9 @@ BOOL IsProcessorFeaturePresent(DWORD ProcessorFeature)
 {
 	BOOL ret = FALSE;
 #ifdef _M_ARM
-#ifdef __linux__
+#ifdef ANDROID
+   return FALSE;
+#elif defined(__linux__)
 	unsigned caps;
 	caps = GetARMCPUCaps();
 
@@ -745,7 +748,9 @@ BOOL IsProcessorFeaturePresentEx(DWORD ProcessorFeature)
 {
 	BOOL ret = FALSE;
 #ifdef _M_ARM
-#ifdef __linux__
+#ifdef ANDROID
+   return FALSE;
+#elif defined(__linux__)
 	unsigned caps;
 	caps = GetARMCPUCaps();
 
