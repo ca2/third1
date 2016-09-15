@@ -121,6 +121,17 @@ BOOL WLog_Write(wLog* log, wLogMessage* message)
 	wLogAppender* appender;
 	appender = WLog_GetLogAppender(log);
 
+#ifdef ANDROID
+   if (message->Level >= WLOG_ERROR)
+   {
+      __android_log_print(ANDROID_LOG_ERROR, "freerdp", message->TextString);
+   }
+   else
+   {
+      __android_log_print(ANDROID_LOG_INFO, "freerdp", message->TextString);
+   }
+#endif
+
 	if (!appender)
 		return FALSE;
 
