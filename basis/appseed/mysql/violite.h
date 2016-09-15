@@ -120,7 +120,7 @@ int vio_getnameinfo(const struct sockaddr *sa,
                     int flags);
 
 #ifdef HAVE_OPENSSL
-#include "nodeapp/include/openssl/opensslv.h"
+#include "openssl/opensslv.h"
 #if OPENSSL_VERSION_NUMBER < 0x0090700f
 #define DES_cblock des_cblock
 #define DES_key_schedule des_key_schedule
@@ -140,8 +140,8 @@ int vio_getnameinfo(const struct sockaddr *sa,
 /* Set yaSSL to use same type as MySQL do for socket handles */
 typedef my_socket YASSL_SOCKET_T;
 #define YASSL_SOCKET_T_DEFINED
-#include "nodeapp/include/openssl/ssl.h"
-#include "nodeapp/include/openssl/err.h"
+#include "openssl/ssl.h"
+#include "openssl/err.h"
 
 #ifndef EMBEDDED_LIBRARY
 enum enum_ssl_init_error
