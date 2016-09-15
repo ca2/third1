@@ -34,6 +34,10 @@
 
 #include <winpr/path.h>
 
+
+const char * android_get_cache_dir();
+
+
 #if defined(_UWP)
 #include <sys/types.h>
 #elif defined(WIN32)
@@ -78,7 +82,14 @@ static char* GetPath_HOME(void)
 {
 	char* path = NULL;
 
-#ifdef _UWP
+#ifdef ANDROID
+   char sz[1024];
+   strcpy(sz, android_get_cache_dir());
+   if (sz[strlen(sz) - 1] != '/')
+      strcat(sz, "/");
+   strcat(sz, "home");
+   path = _strdup(sz);
+#elif defined(_UWP)
    path = _strdup("");
 #elif defined(_WIN32)
 	path = GetEnvAlloc("UserProfile");
@@ -93,7 +104,14 @@ static char* GetPath_TEMP(void)
 {
 	char* path = NULL;
 
-#ifdef _WIN32
+#ifdef ANDROID
+   char sz[1024];
+   strcpy(sz, android_get_cache_dir());
+   if (sz[strlen(sz) - 1] != '/')
+      strcat(sz, "/");
+   strcat(sz, "temp");
+   path = _strdup(sz);
+#elif defined(_WIN32)
 	path = GetEnvAlloc("TEMP");
 #else
 	path = GetEnvAlloc("TMPDIR");
@@ -109,7 +127,14 @@ static char* GetPath_XDG_DATA_HOME(void)
 {
 	char* path = NULL;
 
-#if defined(WIN32)
+#ifdef ANDROID
+   char sz[1024];
+   strcpy(sz, android_get_cache_dir());
+   if (sz[strlen(sz) - 1] != '/')
+      strcat(sz, "/");
+   strcat(sz, "xdg_home");
+   path = _strdup(sz);
+#elif defined(WIN32)
 	path = GetPath_XDG_CONFIG_HOME();
 #else
 	char* home = NULL;
