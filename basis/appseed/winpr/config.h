@@ -1,7 +1,7 @@
 #ifndef __CONFIG_H
 #define __CONFIG_H
 
-#include "ace/ace.h"
+#include "ace/_ace.h"
 
 #define FREERDP_VENDOR_STRING "ca2"
 
