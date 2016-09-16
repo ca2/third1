@@ -58,7 +58,7 @@
 #define unlink(a) _unlink(a)
 #define ftruncate(a,b) _chsize(a,b)
 
-typedef UINT32 ssize_t;
+//typedef UINT32 ssize_t;
 typedef UINT32 mode_t;
 
 #elif defined(__APPLE__) || defined(__FreeBSD__) || defined(__OpenBSD__)

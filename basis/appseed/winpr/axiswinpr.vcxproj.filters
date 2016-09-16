@@ -124,57 +124,6 @@
     <Filter Include="Source Files\libwinpr\wtsapi">
       <UniqueIdentifier>{3a2997bc-e630-4fd7-bd07-342f3ee20530}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\libwinpr\crt">
-      <UniqueIdentifier>{97e0931f-23ce-465d-81a6-3f2010d0974a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\libwinpr\crypto">
-      <UniqueIdentifier>{fd956c13-5750-4a8d-a591-ef144d945779}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\libwinpr\handle">
-      <UniqueIdentifier>{7c7d16e3-765d-4de8-ad00-e2d913cd9d19}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\libwinpr\io">
-      <UniqueIdentifier>{65637c7a-72ba-48d6-88e2-6f1af072d1e0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\libwinpr\nt">
-      <UniqueIdentifier>{fe9f62dc-058a-477f-acb5-c18211a0a464}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\libwinpr\pipe">
-      <UniqueIdentifier>{a7c4642b-93ba-4dd2-b374-95d9a259706f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\libwinpr\pool">
-      <UniqueIdentifier>{cd49ee7b-fef3-4e25-a5f1-b68001c000f4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\libwinpr\registry">
-      <UniqueIdentifier>{5b559309-b16a-47c2-8982-adbe3708c646}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\libwinpr\rpc">
-      <UniqueIdentifier>{2bc4908c-5d99-4361-8c2a-8fd5a48153d3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\libwinpr\security">
-      <UniqueIdentifier>{be551180-9c72-4c8c-9a26-fb670e4e943e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\libwinpr\sspi">
-      <UniqueIdentifier>{9ea29a17-72c9-466c-8190-50f828a7c89a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\libwinpr\sspi\CredSSP">
-      <UniqueIdentifier>{5b82d232-3950-4313-ae80-c76dd5a9647a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\libwinpr\synch">
-      <UniqueIdentifier>{33565281-7ddd-4eb3-b697-a7502f754bd7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\libwinpr\thread">
-      <UniqueIdentifier>{ec168467-774c-45e3-8e9c-dce380ac56b6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\libwinpr\utils">
-      <UniqueIdentifier>{1adeaf1a-3274-484b-b8c1-d3ab465b7ddb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\libwinpr\utils\trio">
-      <UniqueIdentifier>{c2a013ed-1b7f-4ee1-8c88-2da5ccead587}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\libwinpr\utils\wlog">
-      <UniqueIdentifier>{00b32789-dbd9-4983-b622-9872eb448596}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{ef473d75-2516-46af-8c8d-4a29e98558da}</UniqueIdentifier>
     </Filter>
@@ -189,9 +138,6 @@
     </Filter>
     <Filter Include="Source Files\libwinpr\smartcard">
       <UniqueIdentifier>{69c6ff69-c990-4ffd-be95-dd19f773a537}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\libwinpr\smartcard">
-      <UniqueIdentifier>{c38da6b6-19cb-4699-b729-437b7ed7e6e7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\libwinpr\bitmap">
       <UniqueIdentifier>{1a71e4dc-4e0f-438d-b880-7bbe8c7614c3}</UniqueIdentifier>
@@ -623,135 +569,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="libwinpr\crt\utf.h">
-      <Filter>Header Files\libwinpr\crt</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\crypto\crypto.h">
-      <Filter>Header Files\libwinpr\crypto</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\handle\handle.h">
-      <Filter>Header Files\libwinpr\handle</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\io\io.h">
-      <Filter>Header Files\libwinpr\io</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\nt\nt.h">
-      <Filter>Header Files\libwinpr\nt</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\pipe\pipe.h">
-      <Filter>Header Files\libwinpr\pipe</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\pool\pool.h">
-      <Filter>Header Files\libwinpr\pool</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\registry\registry_reg.h">
-      <Filter>Header Files\libwinpr\registry</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\rpc\ndr_array.h">
-      <Filter>Header Files\libwinpr\rpc</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\rpc\ndr_context.h">
-      <Filter>Header Files\libwinpr\rpc</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\rpc\ndr_correlation.h">
-      <Filter>Header Files\libwinpr\rpc</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\rpc\ndr_pointer.h">
-      <Filter>Header Files\libwinpr\rpc</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\rpc\ndr_private.h">
-      <Filter>Header Files\libwinpr\rpc</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\rpc\ndr_simple.h">
-      <Filter>Header Files\libwinpr\rpc</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\rpc\ndr_string.h">
-      <Filter>Header Files\libwinpr\rpc</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\rpc\ndr_structure.h">
-      <Filter>Header Files\libwinpr\rpc</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\rpc\ndr_union.h">
-      <Filter>Header Files\libwinpr\rpc</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\security\security.h">
-      <Filter>Header Files\libwinpr\security</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\sspi\sspi.h">
-      <Filter>Header Files\libwinpr\sspi</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\sspi\CredSSP\credssp.h">
-      <Filter>Header Files\libwinpr\sspi\CredSSP</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\synch\synch.h">
-      <Filter>Header Files\libwinpr\synch</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\thread\thread.h">
-      <Filter>Header Files\libwinpr\thread</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\utils\trio\strio.h">
-      <Filter>Header Files\libwinpr\utils\trio</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\utils\trio\trio.h">
-      <Filter>Header Files\libwinpr\utils\trio</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\utils\trio\triodef.h">
-      <Filter>Header Files\libwinpr\utils\trio</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\utils\trio\trionan.h">
-      <Filter>Header Files\libwinpr\utils\trio</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\utils\trio\triop.h">
-      <Filter>Header Files\libwinpr\utils\trio</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\utils\trio\triostr.h">
-      <Filter>Header Files\libwinpr\utils\trio</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\utils\wlog\Appender.h">
-      <Filter>Header Files\libwinpr\utils\wlog</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\utils\wlog\BinaryAppender.h">
-      <Filter>Header Files\libwinpr\utils\wlog</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\utils\wlog\ConsoleAppender.h">
-      <Filter>Header Files\libwinpr\utils\wlog</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\utils\wlog\DataMessage.h">
-      <Filter>Header Files\libwinpr\utils\wlog</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\utils\wlog\FileAppender.h">
-      <Filter>Header Files\libwinpr\utils\wlog</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\utils\wlog\ImageMessage.h">
-      <Filter>Header Files\libwinpr\utils\wlog</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\utils\wlog\Layout.h">
-      <Filter>Header Files\libwinpr\utils\wlog</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\utils\wlog\Message.h">
-      <Filter>Header Files\libwinpr\utils\wlog</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\utils\wlog\PacketMessage.h">
-      <Filter>Header Files\libwinpr\utils\wlog</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\utils\wlog\TextMessage.h">
-      <Filter>Header Files\libwinpr\utils\wlog</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\utils\wlog\wlog.h">
-      <Filter>Header Files\libwinpr\utils\wlog</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\smartcard\smartcard_winscard.h">
-      <Filter>Header Files\libwinpr\smartcard</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\smartcard\smartcard_pcsc.h">
-      <Filter>Header Files\libwinpr\smartcard</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\smartcard\smartcard_inspect.h">
-      <Filter>Header Files\libwinpr\smartcard</Filter>
-    </ClInclude>
-    <ClInclude Include="libwinpr\smartcard\smartcard.h">
-      <Filter>Header Files\libwinpr\smartcard</Filter>
-    </ClInclude>
     <ClInclude Include="config.h">
       <Filter>Header Files</Filter>
     </ClInclude>

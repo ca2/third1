@@ -1,4 +1,4 @@
-#include "ace/ace.h"
+#include "ace/_ace.h"
 
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
