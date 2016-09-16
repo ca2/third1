@@ -13,7 +13,7 @@
 ** utility for accessing SQLite databases.
 */
 
-#include "ace/ace.h"
+#include "ace/_ace.h"
 
 #include "sqlite3.h"
 

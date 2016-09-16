@@ -11,7 +11,7 @@
 #define WINCONFIG_H
 
 
-#include "ace/ace.h"
+#include "ace/_ace.h"
 
 
 #ifdef VSNORD
