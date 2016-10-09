@@ -52,6 +52,22 @@ static const BYTE NTLM_NULL_BUFFER[16] =
  * @param s
  */
 
+
+#ifndef WINDOWS
+
+typedef struct {
+	unsigned int dwOSVersionInfoSize;
+	unsigned int dwMajorVersion;
+	unsigned int dwMinorVersion;
+	unsigned int dwBuildNumber;
+	unsigned int dwPlatformId;
+	char szCSDVersion[128];
+} OSVERSIONINFOA, *POSVERSIONINFOA, *LPOSVERSIONINFOA;
+
+#endif // WINDOWS
+
+
+
 void ntlm_get_version_info(NTLM_VERSION_INFO* versionInfo)
 {
 	OSVERSIONINFOA osVersionInfo;
