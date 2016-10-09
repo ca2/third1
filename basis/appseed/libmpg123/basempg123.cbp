@@ -53,6 +53,9 @@
 			<Add option="-DLINUX" />
 			<Add option="-DOPT_MULTI" />
 			<Add option="-DOPT_GENERIC" />
+			<Add directory="src/compat" />
+			<Add directory="src" />
+			<Add directory="../../../app/include/libmpg123" />
 			<Add directory="../../../include" />
 			<Add directory="../../../app/include" />
 			<Add directory="../../../app/thirdparty/appseed" />
@@ -68,12 +71,8 @@
 			<Add directory="../../../app/appseed/base" />
 			<Add directory="../../../app/thirdparty/include" />
 			<Add directory="../../../app" />
-			<Add directory="../libmpg123" />
 			<Add directory="framework" />
 			<Add directory="../../../app/appseed/aura" />
-			<Add directory="src" />
-			<Add directory="src/libmpg123" />
-			<Add directory="src/compat" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-rpath,\\$$ORIGIN" />
@@ -84,23 +83,18 @@
 		</Linker>
 		<Unit filename="framework/config.h" />
 		<Unit filename="src/config.h" />
-		<Unit filename="src/libmpg123/abi_align.h" />
 		<Unit filename="src/libmpg123/compat.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/libmpg123/compat.h" />
 		<Unit filename="src/libmpg123/dct64.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/libmpg123/dct64_i386.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/libmpg123/debug.h" />
-		<Unit filename="src/libmpg123/decode.h" />
 		<Unit filename="src/libmpg123/dither.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/libmpg123/dither.h" />
 		<Unit filename="src/libmpg123/equalizer.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -113,31 +107,18 @@
 		<Unit filename="src/libmpg123/frame.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/libmpg123/frame.h" />
-		<Unit filename="src/libmpg123/gapless.h" />
-		<Unit filename="src/libmpg123/getbits.h" />
-		<Unit filename="src/libmpg123/getcpuflags.h" />
-		<Unit filename="src/libmpg123/huffman.h" />
 		<Unit filename="src/libmpg123/icy.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/libmpg123/icy.h" />
 		<Unit filename="src/libmpg123/icy2utf8.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/libmpg123/icy2utf8.h" />
 		<Unit filename="src/libmpg123/id3.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/libmpg123/id3.h" />
 		<Unit filename="src/libmpg123/index.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/libmpg123/index.h" />
-		<Unit filename="src/libmpg123/intsym.h" />
-		<Unit filename="src/libmpg123/l12_integer_tables.h" />
-		<Unit filename="src/libmpg123/l2tables.h" />
-		<Unit filename="src/libmpg123/l3_integer_tables.h" />
 		<Unit filename="src/libmpg123/layer1.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -150,51 +131,36 @@
 		<Unit filename="src/libmpg123/libmpg123.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/libmpg123/mangle.h" />
-		<Unit filename="src/libmpg123/mpeghead.h" />
-		<Unit filename="src/libmpg123/mpg123lib_intern.h" />
-		<Unit filename="src/libmpg123/newhuffman.h" />
 		<Unit filename="src/libmpg123/ntom.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/libmpg123/optimize.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/libmpg123/optimize.h" />
 		<Unit filename="src/libmpg123/parse.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/libmpg123/parse.h" />
-		<Unit filename="src/libmpg123/reader.h" />
 		<Unit filename="src/libmpg123/readers.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/libmpg123/sample.h" />
 		<Unit filename="src/libmpg123/stringbuf.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/libmpg123/synth.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/libmpg123/synth.h" />
 		<Unit filename="src/libmpg123/synth_8bit.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/libmpg123/synth_8bit.h" />
-		<Unit filename="src/libmpg123/synth_mono.h" />
-		<Unit filename="src/libmpg123/synth_ntom.h" />
 		<Unit filename="src/libmpg123/synth_real.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/libmpg123/synth_s32.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/libmpg123/synth_sse3d.h" />
-		<Unit filename="src/libmpg123/synths.h" />
 		<Unit filename="src/libmpg123/tabinit.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="src/libmpg123/true.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
