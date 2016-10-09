@@ -26,9 +26,6 @@
   <ItemGroup>
     <ClCompile Include="protobuf-c\protobuf-c.c" />
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\..\app\include\protobuf-c.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{357038F7-2578-421F-B23D-E3250CA6738B}</ProjectGuid>
     <ProjectName>protobuf</ProjectName>
@@ -273,7 +270,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../app/include;$(ProjectDir)..;$(ProjectDir)../..;$(ProjectDir)../../../app/include;$(ProjectDir)../../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../app/include;$(ProjectDir)..;$(ProjectDir)../..;$(ProjectDir)../../../app/include;$(ProjectDir)../../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;$(SolutionDir)../../../app/include/protobuf-c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>PROTOBUF_C_EXPORT;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -344,7 +341,7 @@
     </Midl>
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../app/include;$(ProjectDir)..;$(ProjectDir)../..;$(ProjectDir)../../../app/include;$(ProjectDir)../../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../app/include;$(ProjectDir)..;$(ProjectDir)../..;$(ProjectDir)../../../app/include;$(ProjectDir)../../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;$(SolutionDir)../../../app/include/protobuf-c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>PROTOBUF_C_EXPORT;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -426,7 +423,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../app/include;$(ProjectDir)..;$(ProjectDir)../..;$(ProjectDir)../../../app/include;$(ProjectDir)../../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../app/include;$(ProjectDir)..;$(ProjectDir)../..;$(ProjectDir)../../../app/include;$(ProjectDir)../../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;$(SolutionDir)../../../app/include/protobuf-c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>PROTOBUF_C_EXPORT;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -499,7 +496,7 @@
     </Midl>
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)../../../app/include;$(ProjectDir)..;$(ProjectDir)../..;$(ProjectDir)../../../app/include;$(ProjectDir)../../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../app/include;$(ProjectDir)..;$(ProjectDir)../..;$(ProjectDir)../../../app/include;$(ProjectDir)../../..;$(ProjectDir)../../appseed;$(ProjectDir)../../appseed/axis;$(ProjectDir)../../appseed/aura;$(SolutionDir)../../../app/include/protobuf-c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>PROTOBUF_C_EXPORT;_CRT_NONSTDC_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
