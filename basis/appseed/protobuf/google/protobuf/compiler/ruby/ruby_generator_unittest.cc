@@ -36,7 +36,7 @@
 #include <google/protobuf/io/printer.h>
 
 #include <google/protobuf/testing/googletest.h>
-#include <gtest/gtest.h>
+include <gtest/gtest.h>
 #include <google/protobuf/testing/file.h>
 
 namespace google {
