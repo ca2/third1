@@ -104,12 +104,6 @@
 			<Add directory="../../../../time/x64/basis" />
 			<Add directory="../../../nodeapp/thirdparty/library/x64" />
 		</Linker>
-		<ExtraCommands>
-			<Add after="cp ../../../nodeapp/thirdparty/library/x64/libavcodec.so.56 ../../../time/x64/basis/" />
-			<Add after="cp ../../../nodeapp/thirdparty/library/x64/libavutil.so.54 ../../../time/x64/basis/" />
-			<Add after="cp ../../../nodeapp/thirdparty/library/x64/libswresample.so.1 ../../../time/x64/basis/" />
-			<Mode after="always" />
-		</ExtraCommands>
 		<Unit filename="ca2/tables_linux.c">
 			<Option compilerVar="CC" />
 		</Unit>
