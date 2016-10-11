@@ -1315,3 +1315,7 @@
 
 
 
+#ifdef __APPLE__
+#define _(txt) txt
+#endif
+
