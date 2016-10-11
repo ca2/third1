@@ -71,23 +71,23 @@
 
 #include <mach/mach_time.h>
 
-#define CLOCK_REALTIME 0
-#define CLOCK_MONOTONIC 0
-
-int clock_gettime(int clk_id, struct timespec *t)
-{
-	UINT64 time;
-	double seconds;
-	double nseconds;
-	mach_timebase_info_data_t timebase;
-	mach_timebase_info(&timebase);
-	time = mach_absolute_time();
-	nseconds = ((double) time * (double) timebase.numer) / ((double) timebase.denom);
-	seconds = ((double) time * (double) timebase.numer) / ((double) timebase.denom * 1e9);
-	t->tv_sec = seconds;
-	t->tv_nsec = nseconds;
-	return 0;
-}
+//#define CLOCK_REALTIME 0
+//#define CLOCK_MONOTONIC 0
+//
+//int clock_gettime(int clk_id, struct timespec *t)
+//{
+//	UINT64 time;
+//	double seconds;
+//	double nseconds;
+//	mach_timebase_info_data_t timebase;
+//	mach_timebase_info(&timebase);
+//	time = mach_absolute_time();
+//	nseconds = ((double) time * (double) timebase.numer) / ((double) timebase.denom);
+//	seconds = ((double) time * (double) timebase.numer) / ((double) timebase.denom * 1e9);
+//	t->tv_sec = seconds;
+//	t->tv_nsec = nseconds;
+//	return 0;
+//}
 
 #endif
 

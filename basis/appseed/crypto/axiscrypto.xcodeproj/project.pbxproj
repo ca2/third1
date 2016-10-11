@@ -94,12 +94,12 @@
 		07EDC4E91B4EFBEB00AF8928 /* srp_vfy.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DC81B23E146008C63AF /* srp_vfy.c */; };
 		07EDC4EA1B4EFC0C00AF8928 /* _ts.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DCF1B23E188008C63AF /* _ts.c */; };
 		07EDC4EB1B4EFC1100AF8928 /* txt_db.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DD11B23E19B008C63AF /* txt_db.c */; };
-		9A342FF01D5B949700D00D4A /* mem_ace.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AD480B41D5A75D100354801 /* mem_ace.c */; };
 		9A342FF51D5B94E100D00D4A /* libios_ace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A342FF41D5B94E100D00D4A /* libios_ace.dylib */; };
 		9A6715F71D152B740069A961 /* des_old.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DB31B23DF79008C63AF /* des_old.c */; };
 		9A6715F81D152B740069A961 /* des_old2.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DB41B23DF79008C63AF /* des_old2.c */; };
 		9A6715F91D152B740069A961 /* krb5_asn.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DBD1B23E0B1008C63AF /* krb5_asn.c */; };
 		9A6715FA1D152B740069A961 /* th-lock.c in Sources */ = {isa = PBXBuildFile; fileRef = 07558DCD1B23E175008C63AF /* th-lock.c */; };
+		9A9799121DAC3856001CD6D9 /* mem.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A9799111DAC3856001CD6D9 /* mem.c */; };
 		9A9D339919D4C44E00DC2067 /* aes-x86_64.s in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D330519D4C44D00DC2067 /* aes-x86_64.s */; };
 		9A9D339A19D4C44E00DC2067 /* aesni-sha1-x86_64.s in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D330619D4C44D00DC2067 /* aesni-sha1-x86_64.s */; };
 		9A9D339B19D4C44E00DC2067 /* aesni-x86_64.s in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D330719D4C44D00DC2067 /* aesni-x86_64.s */; };
@@ -113,7 +113,6 @@
 		9A9D33A319D4C44E00DC2067 /* sha512-x86_64.s in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D331419D4C44D00DC2067 /* sha512-x86_64.s */; };
 		9A9D33A419D4C44E00DC2067 /* wp-x86_64.s in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D331619D4C44D00DC2067 /* wp-x86_64.s */; };
 		9A9D33A519D4C44E00DC2067 /* x86_64cpuid.s in Sources */ = {isa = PBXBuildFile; fileRef = 9A9D331719D4C44D00DC2067 /* x86_64cpuid.s */; };
-		9AD480B51D5A75D100354801 /* mem_ace.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AD480B41D5A75D100354801 /* mem_ace.c */; };
 		9AD480B71D5A768D00354801 /* libace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD480B61D5A768D00354801 /* libace.dylib */; };
 /* End PBXBuildFile section */
 
@@ -269,6 +268,7 @@
 		9A269F7E1D7ED6CA001F47A8 /* ace.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ace.xcodeproj; path = ../../../app/appseed/ace/ace.xcodeproj; sourceTree = "<group>"; };
 		9A342FF21D5B94AD00D00D4A /* libace.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libace.dylib; path = ../../appseed/ace/build/Debug/libace.dylib; sourceTree = "<group>"; };
 		9A342FF41D5B94E100D00D4A /* libios_ace.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_ace.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/arcade-ios-biflflzsuoocrodvdsvmkqeosgky/Build/Products/Debug-iphonesimulator/libios_ace.dylib"; sourceTree = "<group>"; };
+		9A9799111DAC3856001CD6D9 /* mem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mem.c; sourceTree = "<group>"; };
 		9A9D330519D4C44D00DC2067 /* aes-x86_64.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = "aes-x86_64.s"; sourceTree = "<group>"; };
 		9A9D330619D4C44D00DC2067 /* aesni-sha1-x86_64.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = "aesni-sha1-x86_64.s"; sourceTree = "<group>"; };
 		9A9D330719D4C44D00DC2067 /* aesni-x86_64.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = "aesni-x86_64.s"; sourceTree = "<group>"; };
@@ -300,7 +300,6 @@
 		9A9D336819D4C44D00DC2067 /* sha512-586.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = "sha512-586.s"; sourceTree = "<group>"; };
 		9A9D336A19D4C44D00DC2067 /* wp-mmx.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = "wp-mmx.s"; sourceTree = "<group>"; };
 		9A9D336B19D4C44D00DC2067 /* x86cpuid.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = x86cpuid.s; sourceTree = "<group>"; };
-		9AD480B41D5A75D100354801 /* mem_ace.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mem_ace.c; sourceTree = "<group>"; };
 		9AD480B61D5A768D00354801 /* libace.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libace.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/core-osx-dyhrstllhpqabhamryoxyuxzxxbr/Build/Products/Debug/libace.dylib"; sourceTree = "<group>"; };
 		9AF8B7231D1FDDB50087E7A2 /* axiscrypto_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = axiscrypto_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -335,6 +334,7 @@
 		07782A6D199FE92F00206CA1 /* crypto */ = {
 			isa = PBXGroup;
 			children = (
+				9A9799111DAC3856001CD6D9 /* mem.c */,
 				07782A6E199FE92F00206CA1 /* aes */,
 				07782A91199FE92F00206CA1 /* asn1 */,
 				07782AE6199FE92F00206CA1 /* bf */,
@@ -395,7 +395,6 @@
 				0778A2EF199FFC5800206CA1 /* e_os2_ca2specific.h */,
 				0778A2F0199FFC5800206CA1 /* e_os2_original.h */,
 				0778A2F1199FFC5800206CA1 /* e_os2.h */,
-				9AD480B41D5A75D100354801 /* mem_ace.c */,
 				077CEF181B23C505009A57EF /* _crypto.c */,
 			);
 			path = crypto;
@@ -932,7 +931,7 @@
 		9A269F7F1D7ED6CA001F47A8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A269F851D7ED6CA001F47A8 /* libace.a */,
+				9A269F851D7ED6CA001F47A8 /* libace.dylib */,
 				9A269F871D7ED6CA001F47A8 /* libios_ace.dylib */,
 				9A269F891D7ED6CA001F47A8 /* ace_iosTests.xctest */,
 			);
@@ -1215,7 +1214,7 @@
 		9A1B2F7F16A2AF5C00875A94 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 				TargetAttributes = {
 					9AE24D961904CF46001AEFFB = {
@@ -1250,10 +1249,9 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A269F851D7ED6CA001F47A8 /* libace.a */ = {
+		9A269F851D7ED6CA001F47A8 /* libace.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			name = libace.a;
 			path = libace.dylib;
 			remoteRef = 9A269F841D7ED6CA001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1290,7 +1288,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A9D339D19D4C44E00DC2067 /* x86_64-mont.s in Sources */,
-				9AD480B51D5A75D100354801 /* mem_ace.c in Sources */,
 				9A9D33A419D4C44E00DC2067 /* wp-x86_64.s in Sources */,
 				07558DBA1B23E099008C63AF /* hm_ameth.c in Sources */,
 				07558DA91B23DD56008C63AF /* bss_dgram.c in Sources */,
@@ -1355,6 +1352,7 @@
 				07558DCE1B23E175008C63AF /* th-lock.c in Sources */,
 				07B2752619A02D1200E822E1 /* e_gmp.c in Sources */,
 				07B2752719A02D1200E822E1 /* e_gmp_err.c in Sources */,
+				9A9799121DAC3856001CD6D9 /* mem.c in Sources */,
 				9A9D33A219D4C44E00DC2067 /* sha1-x86_64.s in Sources */,
 				07B2752819A02D1200E822E1 /* e_nuron.c in Sources */,
 				07B2752919A02D1200E822E1 /* e_nuron_err.c in Sources */,
@@ -1372,7 +1370,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A342FF01D5B949700D00D4A /* mem_ace.c in Sources */,
 				9A6715F71D152B740069A961 /* des_old.c in Sources */,
 				9A6715F81D152B740069A961 /* des_old2.c in Sources */,
 				9A6715F91D152B740069A961 /* krb5_asn.c in Sources */,
@@ -1455,21 +1452,27 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_STATIC_ANALYZER_MODE_ON_ANALYZE_ACTION = shallow;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = lib;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_SOCKETS,
@@ -1509,20 +1512,26 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_STATIC_ANALYZER_MODE_ON_ANALYZE_ACTION = shallow;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = lib;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					USE_SOCKETS,
 					OPENSSL_NO_HW_PADLOCK,
@@ -1607,7 +1616,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "basefreeimage_iosTests/basefreeimage_iosTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -1642,7 +1651,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "basefreeimage_iosTests/basefreeimage_iosTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TEST_HOST = "$(BUNDLE_LOADER)";
