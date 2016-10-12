@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include "app/appseed/ace/_ace.h"
+#include "app/appseed/ace/ace.h"
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
@@ -53,19 +53,19 @@ static const BYTE NTLM_NULL_BUFFER[16] =
  */
 
 
-#ifndef WINDOWS
-
-typedef struct {
-	unsigned int dwOSVersionInfoSize;
-	unsigned int dwMajorVersion;
-	unsigned int dwMinorVersion;
-	unsigned int dwBuildNumber;
-	unsigned int dwPlatformId;
-	char szCSDVersion[128];
-} OSVERSIONINFOA, *POSVERSIONINFOA, *LPOSVERSIONINFOA;
-
-#endif // WINDOWS
-
+//#ifndef WINDOWS
+//
+//typedef struct {
+//	unsigned int dwOSVersionInfoSize;
+//	unsigned int dwMajorVersion;
+//	unsigned int dwMinorVersion;
+//	unsigned int dwBuildNumber;
+//	unsigned int dwPlatformId;
+//	char szCSDVersion[128];
+//} OSVERSIONINFOA, *POSVERSIONINFOA, *LPOSVERSIONINFOA;
+//
+//#endif // WINDOWS
+//
 
 
 void ntlm_get_version_info(NTLM_VERSION_INFO* versionInfo)
