@@ -1315,7 +1315,7 @@
 
 
 
-#ifdef __APPLE__
+#if defined(__APPLE__) || defined(ANDROID)
 #define _(txt) txt
 #endif
 
