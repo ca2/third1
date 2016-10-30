@@ -139,6 +139,13 @@
 			remoteGlobalIDString = 07B65773190F3CA2002DAADE;
 			remoteInfo = ace_iosTests;
 		};
+		9A4578FD1DC67A23007A0858 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A269F7E1D7ED6CA001F47A8 /* ace.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A574B9716AAB906000CC4EF;
+			remoteInfo = ace;
+		};
 		9AE24D9D1904CF46001AEFFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A1B2F7F16A2AF5C00875A94 /* Project object */;
@@ -1168,6 +1175,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9A4578FE1DC67A23007A0858 /* PBXTargetDependency */,
 			);
 			name = axiscrypto;
 			productName = basefreeimage_ios;
@@ -1414,6 +1422,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9A4578FE1DC67A23007A0858 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ace;
+			targetProxy = 9A4578FD1DC67A23007A0858 /* PBXContainerItemProxy */;
+		};
 		9AE24D9E1904CF46001AEFFB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9AE24D871904CF46001AEFFB /* ios_axiscrypto */;
@@ -1426,13 +1439,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				INSTALL_PATH = /Library/Frameworks/ca2/basis;
 				MACH_O_TYPE = mh_dylib;
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Debug;
 		};
@@ -1440,13 +1447,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				INSTALL_PATH = /Library/Frameworks/ca2/stage;
 				MACH_O_TYPE = mh_dylib;
-				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = macosx;
-				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Release;
 		};
@@ -1500,7 +1501,7 @@
 					"$(TARGET_BUILD_DIR)",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1556,7 +1557,7 @@
 					"$(TARGET_BUILD_DIR)",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
