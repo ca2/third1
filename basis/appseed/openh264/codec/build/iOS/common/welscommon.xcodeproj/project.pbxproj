@@ -258,7 +258,7 @@
 		9A269FC71D7ED6FB001F47A8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A269FCD1D7ED6FB001F47A8 /* libace.a */,
+				9A269FCD1D7ED6FB001F47A8 /* libace.dylib */,
 				9A269FCF1D7ED6FB001F47A8 /* libios_ace.dylib */,
 				9A269FD11D7ED6FB001F47A8 /* ace_iosTests.xctest */,
 			);
@@ -349,7 +349,7 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A269FCD1D7ED6FB001F47A8 /* libace.a */ = {
+		9A269FCD1D7ED6FB001F47A8 /* libace.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
 			path = libace.dylib;
@@ -520,8 +520,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INSTALL_PATH = "@executable_path";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
@@ -560,8 +560,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INSTALL_PATH = "@executable_path";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
