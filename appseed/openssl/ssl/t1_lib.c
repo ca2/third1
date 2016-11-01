@@ -1401,6 +1401,13 @@ unsigned char *ssl_add_clienthello_tlsext(SSL *s, unsigned char *buf,
     return ret;
 }
 
+void ssl_set_servername_done(SSL * s, int done)
+{
+
+    s->servername_done = done;
+
+}
+
 unsigned char *ssl_add_serverhello_tlsext(SSL *s, unsigned char *buf,
                                           unsigned char *limit, int *al)
 {

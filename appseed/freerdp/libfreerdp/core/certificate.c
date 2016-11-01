@@ -700,30 +700,36 @@ rdpRsaKey* key_new_from_content(const char *keycontent, const char *keyfile)
 			goto out_free_rsa;
 	}
 
-	if (BN_num_bytes(rsa->e) > 4)
+   BIGNUM * e;
+   BIGNUM * n;
+   BIGNUM * d;
+
+   RSA_get0_key(rsa, &n, &e, &d);
+
+	if (BN_num_bytes(e) > 4)
 	{
 		WLog_ERR(TAG, "RSA public exponent too large in %s", keyfile);
 		goto out_free_rsa;
 	}
 
-	key->ModulusLength = BN_num_bytes(rsa->n);
+	key->ModulusLength = BN_num_bytes(n);
 	key->Modulus = (BYTE*) malloc(key->ModulusLength);
 
 	if (!key->Modulus)
 		goto out_free_rsa;
 
-	BN_bn2bin(rsa->n, key->Modulus);
+	BN_bn2bin(n, key->Modulus);
 	crypto_reverse(key->Modulus, key->ModulusLength);
-	key->PrivateExponentLength = BN_num_bytes(rsa->d);
+	key->PrivateExponentLength = BN_num_bytes(d);
 	key->PrivateExponent = (BYTE*) malloc(key->PrivateExponentLength);
 
 	if (!key->PrivateExponent)
 		goto out_free_modulus;
 
-	BN_bn2bin(rsa->d, key->PrivateExponent);
+	BN_bn2bin(d, key->PrivateExponent);
 	crypto_reverse(key->PrivateExponent, key->PrivateExponentLength);
 	memset(key->exponent, 0, sizeof(key->exponent));
-	BN_bn2bin(rsa->e, key->exponent + sizeof(key->exponent) - BN_num_bytes(rsa->e));
+	BN_bn2bin(e, key->exponent + sizeof(key->exponent) - BN_num_bytes(e));
 	crypto_reverse(key->exponent, sizeof(key->exponent));
 	RSA_free(rsa);
 	return key;

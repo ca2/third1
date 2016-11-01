@@ -1,4 +1,4 @@
-/* Copyright (c) 2001, 2013, Oracle and/or its affiliates. All rights reserved.
+/* Copyright (c) 2001, 2014, Oracle and/or its affiliates. All rights reserved.
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -13,16 +13,16 @@
    along with this program; if not, write to the Free Software
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA */
 
-#include <my_global.h>
-#include <my_stacktrace.h>
+#include "my_stacktrace.h"
 
 #ifndef _WIN32
+#include "my_pthread.h"
+#include "m_string.h"
 #include <signal.h>
-#include <my_pthread.h>
-#include <m_string.h>
-#ifdef HAVE_STACKTRACE
+#ifdef HAVE_UNISTD_H
 #include <unistd.h>
-#include <strings.h>
+#endif
+#ifdef HAVE_STACKTRACE
 
 #ifdef __linux__
 #include <ctype.h>          /* isprint */
@@ -130,9 +130,9 @@ static int safe_print_str(const char *addr, int max_len)
   return 0;
 }
 
-#endif
+#endif /* __linux __ */
 
-void my_safe_puts_stderr(const char* val, int max_len)
+void my_safe_puts_stderr(const char* val, size_t max_len)
 {
   char *heap_end;
 
@@ -166,17 +166,17 @@ void my_print_stacktrace(uchar* stack_bottom __attribute__((unused)),
     my_safe_printf_stderr("%s",
       "Error when traversing the stack, stack appears corrupt.\n");
   else
-    my_safe_printf_stderr("%s",
-      "Please read "
-      "http://dev.mysql.com/doc/refman/5.1/en/resolve-stack-dump.html\n"
+    my_safe_printf_stderr("Please read "
+      "http://dev.mysql.com/doc/refman/%u.%u/en/resolve-stack-dump.html\n"
       "and follow instructions on how to resolve the stack trace.\n"
       "Resolved stack trace is much more helpful in diagnosing the\n"
-      "problem, so please do resolve it\n");
+      "problem, so please do resolve it\n",
+      MYSQL_VERSION_MAJOR, MYSQL_VERSION_MINOR);
 }
 
-#elif HAVE_BACKTRACE && (HAVE_BACKTRACE_SYMBOLS || HAVE_BACKTRACE_SYMBOLS_FD)
+#elif HAVE_BACKTRACE
 
-#if BACKTRACE_DEMANGLE
+#if HAVE_ABI_CXA_DEMANGLE
 
 char __attribute__ ((weak)) *
 my_demangle(const char *mangled_name __attribute__((unused)),
@@ -215,7 +215,7 @@ static void my_demangle_symbols(char **addrs, int n)
   }
 }
 
-#endif /* BACKTRACE_DEMANGLE */
+#endif /* HAVE_ABI_CXA_DEMANGLE */
 
 void my_print_stacktrace(uchar* stack_bottom, ulong thread_stack)
 {
@@ -224,31 +224,20 @@ void my_print_stacktrace(uchar* stack_bottom, ulong thread_stack)
   int n = backtrace(addrs, array_elements(addrs));
   my_safe_printf_stderr("stack_bottom = %p thread_stack 0x%lx\n",
                         stack_bottom, thread_stack);
-#if BACKTRACE_DEMANGLE
+#if HAVE_ABI_CXA_DEMANGLE
   if ((strings= backtrace_symbols(addrs, n)))
   {
     my_demangle_symbols(strings, n);
     free(strings);
   }
 #endif
-#if HAVE_BACKTRACE_SYMBOLS_FD
   if (!strings)
   {
     backtrace_symbols_fd(addrs, n, fileno(stderr));
   }
-#endif
 }
 
-#elif defined(TARGET_OS_LINUX)
-
-void my_print_stacktrace(uchar* stack_bottom __attribute__((unused)),
-                         ulong thread_stack __attribute__((unused)))
-{
-  my_safe_printf_stderr("%s",
-    "\nFunction backtrace() not found in glibc though it should \n"
-    "be available from version 2.1 on ... Omitting stacktrace.\n\n");
-}
-#endif /* TARGET_OS_LINUX */
+#endif /* HAVE_PRINTSTACK || HAVE_BACKTRACE */
 #endif /* HAVE_STACKTRACE */
 
 /* Produce a core for the thread */
@@ -373,7 +362,7 @@ static void get_symbol_path(char *path, size_t size)
 
 #define MAX_SYMBOL_PATH 32768
 
-/* Session SDK in VS2003 does not have definition for SYMOPT_NO_PROMPTS*/
+/* Platform SDK in VS2003 does not have definition for SYMOPT_NO_PROMPTS*/
 #ifndef SYMOPT_NO_PROMPTS
 #define SYMOPT_NO_PROMPTS 0
 #endif
@@ -493,50 +482,72 @@ void my_write_core(int unused)
 {
   char path[MAX_PATH];
   char dump_fname[MAX_PATH]= "core.dmp";
-  MINIDUMP_EXCEPTION_INFORMATION info;
-  HANDLE hFile;
 
   if(!exception_ptrs)
     return;
-
-  info.ExceptionPointers= exception_ptrs;
-  info.ClientPointers= FALSE;
-  info.ThreadId= GetCurrentThreadId();
 
   if(GetModuleFileName(NULL, path, sizeof(path)))
   {
     _splitpath(path, NULL, NULL,dump_fname,NULL);
     strncat(dump_fname, ".dmp", sizeof(dump_fname));
   }
+  my_create_minidump(dump_fname, 0, 0);
+}
 
-  hFile= CreateFile(dump_fname, GENERIC_WRITE, 0, 0, CREATE_ALWAYS,
+
+/** Create a minidump.
+  @param name    path of minidump file.
+  @param process HANDLE to process. (0 for own process).
+  @param pid     Process id.
+*/
+
+void my_create_minidump(const char *name, HANDLE process, DWORD pid)
+{
+  char path[MAX_PATH];
+  MINIDUMP_EXCEPTION_INFORMATION info;
+  HANDLE hFile;
+
+  if (process == 0)
+  {
+    /* Does not need to CloseHandle() for the below. */
+    process= GetCurrentProcess();
+    pid= GetCurrentProcessId();
+    info.ExceptionPointers= exception_ptrs;
+    info.ClientPointers= FALSE;
+    info.ThreadId= GetCurrentThreadId();
+  }
+
+  hFile= CreateFile(name, GENERIC_WRITE, 0, 0, CREATE_ALWAYS,
     FILE_ATTRIBUTE_NORMAL, 0);
   if(hFile)
   {
-    /* Create minidump */
-    if(MiniDumpWriteDump(GetCurrentProcess(), GetCurrentProcessId(),
-      hFile, MiniDumpNormal, &info, 0, 0))
+    MINIDUMP_TYPE mdt= (MINIDUMP_TYPE) (MiniDumpNormal |
+                                        MiniDumpWithThreadInfo |
+                                        MiniDumpWithProcessThreadData);
+    /* Create minidump, use info only if same process. */
+    if(MiniDumpWriteDump(process, pid, hFile, mdt,
+                         process ? NULL : &info, 0, 0))
     {
       my_safe_printf_stderr("Minidump written to %s\n",
-                            _fullpath(path, dump_fname, sizeof(path)) ?
-                            path : dump_fname);
+                            _fullpath(path, name, sizeof(path)) ?
+                            path : name);
     }
     else
     {
-      my_safe_printf_stderr("MiniDumpWriteDump() failed, last error %u\n",
-                            (uint) GetLastError());
+      my_safe_printf_stderr("MiniDumpWriteDump() failed, last error %d\n",
+                            GetLastError());
     }
     CloseHandle(hFile);
   }
   else
   {
-    my_safe_printf_stderr("CreateFile(%s) failed, last error %u\n",
-                          dump_fname, (uint) GetLastError());
+    my_safe_printf_stderr("CreateFile(%s) failed, last error %d\n",
+                          name, GetLastError());
   }
 }
 
 
-void my_safe_puts_stderr(const char *val, int len)
+void my_safe_puts_stderr(const char *val, size_t len)
 {
   __try
   {
@@ -556,7 +567,7 @@ size_t my_write_stderr(const void *buf, size_t count)
 {
   DWORD bytes_written;
   SetFilePointer(GetStdHandle(STD_ERROR_HANDLE), 0, NULL, FILE_END);
-  WriteFile(GetStdHandle(STD_ERROR_HANDLE), buf, (DWORD) count, &bytes_written, NULL);
+  WriteFile(GetStdHandle(STD_ERROR_HANDLE), buf, (DWORD)count, &bytes_written, NULL);
   return bytes_written;
 }
 #else
@@ -703,8 +714,11 @@ static size_t my_safe_vsnprintf(char *to, size_t size,
             my_safe_utoa(base, uval, &buff[sizeof(buff)-1]) :
             my_safe_itoa(base, ival, &buff[sizeof(buff)-1]);
 
-          /* Strip off "ffffffff" if we have 'x' format without 'll' */
-          if (*format == 'x' && !have_longlong && ival < 0)
+          /*
+            Strip off "ffffffff" if we have 'x' format without 'll'
+            Similarly for 'p' format on 32bit systems.
+          */
+          if (base == 16 && !have_longlong && ival < 0)
             val_as_str+= 8;
 
           while (*val_as_str && to < end)
@@ -750,3 +764,37 @@ size_t my_safe_printf_stderr(const char* fmt, ...)
   my_write_stderr(to, result);
   return result;
 }
+
+
+void my_safe_print_system_time()
+{
+  char hrs_buf[3]= "00";
+  char mins_buf[3]= "00";
+  char secs_buf[3]= "00";
+  int base= 10;
+#ifdef _WIN32
+  SYSTEMTIME utc_time;
+  long hrs, mins, secs;
+  GetSystemTime(&utc_time);
+  hrs=  utc_time.wHour;
+  mins= utc_time.wMinute;
+  secs= utc_time.wSecond;
+#else
+  /* Using time() instead of my_time() to avoid looping */
+  const time_t curr_time= time(NULL);
+  /* Calculate time of day */
+  const long tmins = curr_time / 60;
+  const long thrs  = tmins / 60;
+  const long hrs   = thrs  % 24;
+  const long mins  = tmins % 60;
+  const long secs  = curr_time % 60;
+#endif
+
+  my_safe_itoa(base, hrs, &hrs_buf[2]);
+  my_safe_itoa(base, mins, &mins_buf[2]);
+  my_safe_itoa(base, secs, &secs_buf[2]);
+
+  my_safe_printf_stderr("---------- %s:%s:%s UTC - ",
+                        hrs_buf, mins_buf, secs_buf);
+}
+

@@ -32,7 +32,7 @@
 struct match {
 	struct re_guts *g;
 	int eflags;
-	struct my_regmatch_t *pmatch;	/* [nsub+1] (0 element unused) */
+	my_regmatch_t *pmatch;	/* [nsub+1] (0 element unused) */
 	char *offp;		/* offsets work from here */
 	char *beginp;		/* start of string -- virtual NUL precedes */
 	char *endp;		/* end of string -- virtual NUL here */

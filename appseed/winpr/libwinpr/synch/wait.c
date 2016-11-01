@@ -67,27 +67,51 @@
 
 #include "../pipe/pipe.h"
 
+/* clock_gettime is not implemented on OSX prior to 10.12 */
 #ifdef __MACH__
 
 #include <mach/mach_time.h>
 
-//#define CLOCK_REALTIME 0
-//#define CLOCK_MONOTONIC 0
-//
-//int clock_gettime(int clk_id, struct timespec *t)
-//{
-//	UINT64 time;
-//	double seconds;
-//	double nseconds;
-//	mach_timebase_info_data_t timebase;
-//	mach_timebase_info(&timebase);
-//	time = mach_absolute_time();
-//	nseconds = ((double) time * (double) timebase.numer) / ((double) timebase.denom);
-//	seconds = ((double) time * (double) timebase.numer) / ((double) timebase.denom * 1e9);
-//	t->tv_sec = seconds;
-//	t->tv_nsec = nseconds;
-//	return 0;
-//}
+#define CLOCK_REALTIME 0
+#define CLOCK_MONOTONIC 0
+
+/* clock_gettime is not implemented on OSX prior to 10.12 */
+int _mach_clock_gettime(int clk_id, struct timespec *t);
+
+int 
+_mach_clock_gettime(int clk_id, struct timespec *t)
+{
+	UINT64 time;
+	double seconds;
+	double nseconds;
+	mach_timebase_info_data_t timebase;
+	mach_timebase_info(&timebase);
+	time = mach_absolute_time();
+	nseconds = ((double) time * (double) timebase.numer) / ((double) timebase.denom);
+	seconds = ((double) time * (double) timebase.numer) / ((double) timebase.denom * 1e9);
+	t->tv_sec = seconds;
+	t->tv_nsec = nseconds;
+	return 0;
+}
+
+/* if clock_gettime is declared, then __CLOCK_AVAILABILITY will be defined */
+#ifdef __CLOCK_AVAILABILITY
+/* If we compiled with Mac OSX 10.12 or later, then clock_gettime will be declared
+ * * but it may be NULL at runtime. So we need to check before using it. */
+int _mach_safe_clock_gettime(int clk_id, struct timespec *t);
+
+int
+_mach_safe_clock_gettime(int clk_id, struct timespec *t) {
+        if( clock_gettime ) {
+                    return clock_gettime(clk_id, t);
+                        }
+            return _mach_clock_gettime(clk_id, t);
+}
+
+#define clock_gettime _mach_safe_clock_gettime
+#else
+#define clock_gettime _mach_clock_gettime
+#endif
 
 #endif
 
@@ -285,7 +309,7 @@ DWORD WaitForSingleObject(HANDLE hHandle, DWORD dwMilliseconds)
 
 DWORD WaitForSingleObjectEx(HANDLE hHandle, DWORD dwMilliseconds, BOOL bAlertable)
 {
-	WLog_ERR(TAG, "%s: Not implemented.");
+	WLog_ERR(TAG, "%s: Not implemented.", __FUNCTION__);
 	SetLastError(ERROR_NOT_SUPPORTED);
 	return WAIT_FAILED;
 }
@@ -525,7 +549,7 @@ DWORD WaitForMultipleObjectsEx(DWORD nCount, const HANDLE *lpHandles, BOOL bWait
 
 DWORD SignalObjectAndWait(HANDLE hObjectToSignal, HANDLE hObjectToWaitOn, DWORD dwMilliseconds, BOOL bAlertable)
 {
-	WLog_ERR(TAG, "%s: Not implemented.");
+	WLog_ERR(TAG, "%s: Not implemented.", __FUNCTION__);
 	SetLastError(ERROR_NOT_SUPPORTED);
 	return WAIT_FAILED;
 }

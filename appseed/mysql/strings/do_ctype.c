@@ -25,12 +25,12 @@
 #include <my_sys.h>
 #include "m_string.h"
 
-uchar table_to_upper[256];
-uchar table_to_lower[256], tab_sort_order[256];
+uchar to_upper[256];
+uchar to_lower[256], sort_order[256];
 
 static int	ascii_output=1;
 static string	tab_names[]={ "to_lower[]={","to_upper[]={","sort_order[]={" };
-static uchar*	tabell[]= {tab_to_lower, tab_to_upper, tab_sort_order};
+static uchar*	tabell[]= {to_lower,to_upper,sort_order};
 
 void	get_options(),init_case_convert();
 
@@ -116,11 +116,7 @@ char **argv[];
 	/* set up max character for which isupper() and toupper() gives */
 	/* right answer. Is usually 127 or 255 */
 
-#ifdef USE_INTERNAL_CTYPE
-#define MAX_CHAR_OK	CHAR_MAX		/* All chars is right */
-#else
 #define MAX_CHAR_OK	127			/* 7 Bit ascii */
-#endif
 
 	/* Initiate arrays for case-conversation */
 
@@ -140,17 +136,8 @@ void init_case_convert()
     to_upper[i]= sort_order[i]= to_lower[i]= (char) i;
 #endif
 
-#ifdef USE_INTERNAL_CTYPE
-  higher_pos=lower_pos= (uchar* ) "";		/* System converts chars */
-#else
-#if defined(DEC_MULTINATIONAL_CHAR) || defined(HP_MULTINATIONAL_CHAR)
-  higher_pos= (uchar *) "\305\304\326\311\334";
-  lower_pos=  (uchar *) "\345\344\366\351\374";
-#else
   higher_pos= (uchar *) "[]\\@^";
   lower_pos=  (uchar *) "{}|`~";
-#endif
-#endif /* USE_INTERNAL_CTYPE */
 
   while (*higher_pos)
   {
@@ -161,13 +148,8 @@ void init_case_convert()
 	/* sets upp sortorder; higer_pos character (upper and lower) is */
 	/* changed to lower_pos character */
 
-#ifdef USE_ISO_8859_1				/* As in USG5 ICL-386 */
-  higher_pos= (uchar *) "\305\304\326\334\311";
-  lower_pos=  (uchar *) "\304\305\326YE";
-#else
   higher_pos= (uchar *) "][\\~`";		/* R{tt ordning p} tecknen */
   lower_pos= (uchar *)	"[\\]YE";		/* Ordning enligt ascii */
-#endif /* USE_ISO_8859_1 */
 
   while (*higher_pos)
   {

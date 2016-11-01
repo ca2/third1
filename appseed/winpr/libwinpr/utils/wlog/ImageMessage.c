@@ -24,7 +24,7 @@
 #include "wlog.h"
 #include <winpr/image.h>
 
-#include "ImageMessage.h"
+#include "wlog/ImageMessage.h"
 
 BOOL WLog_ImageMessage_Write(char* filename, void* data, int width, int height, int bpp)
 {

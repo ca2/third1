@@ -1,4 +1,4 @@
-/* Copyright (C) 2000 MySQL AB
+/* Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -47,7 +47,7 @@ void soundex(CHARSET_INFO * cs, char * out_pntr, char * in_pntr,
 {
   char ch,last_ch;
   char *end;
-  uchar *map=cs->to_upper;
+  const uchar *map=cs->to_upper;
 
   if (remove_garbage)
   {

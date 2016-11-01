@@ -30,7 +30,9 @@
 #endif /* HAVE_PWD_H */
 #else /* ! HAVE_GETPASS */
 #ifndef _WIN32
+#ifdef HAVE_SYS_IOCTL_H
 #include <sys/ioctl.h>
+#endif
 #ifdef HAVE_TERMIOS_H				/* For tty-password */
 #include	<termios.h>
 #define TERMIO	struct termios
@@ -159,7 +161,7 @@ char *get_tty_password_ext(const char *opt_message,
   passbuff = getpass(opt_message ? opt_message : "Enter password: ");
 
   /* copy the password to buff and clear original (static) buffer */
-  strnmov(buff, passbuff, sizeof(buff) - 1);
+  my_stpnmov(buff, passbuff, sizeof(buff) - 1);
 #ifdef _PASSWORD_LEN
   memset(passbuff, 0, _PASSWORD_LEN);
 #endif
@@ -205,7 +207,12 @@ char *get_tty_password_ext(const char *opt_message,
 
 #endif /* _WIN32 */
 
+static char * my_strdup_fct(const char *str, myf flags)
+{
+  return my_strdup(PSI_NOT_INSTRUMENTED, str, flags);
+}
+
 char *get_tty_password(const char *opt_message)
 {
-  return get_tty_password_ext(opt_message, my_strdup);
+  return get_tty_password_ext(opt_message, my_strdup_fct);
 }

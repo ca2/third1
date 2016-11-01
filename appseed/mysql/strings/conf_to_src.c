@@ -1,4 +1,4 @@
-/* Copyright (c) 2000, 2011, Oracle and/or its affiliates. All rights reserved.
+/* Copyright (c) 2000, 2014, Oracle and/or its affiliates. All rights reserved.
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -27,12 +27,12 @@ static CHARSET_INFO all_charsets[512];
 
 
 void
-print_array(FILE *f, const char *set, const char *name, uchar *a, int n)
+print_array(FILE *f, const char *set, const char *name, const uchar *a, int n)
 {
   int i;
 
-  fprintf(f,"uchar %s_%s[] = {\n", name, set);
-  
+  fprintf(f,"static const uchar %s_%s[] = {\n", name, set);
+
   for (i=0 ;i<n ; i++)
   {
     fprintf(f,"0x%02X",a[i]);
@@ -44,12 +44,12 @@ print_array(FILE *f, const char *set, const char *name, uchar *a, int n)
 
 
 void
-print_array16(FILE *f, const char *set, const char *name, uint16 *a, int n)
+print_array16(FILE *f, const char *set, const char *name, const uint16 *a, int n)
 {
   int i;
 
-  fprintf(f,"uint16 %s_%s[] = {\n", name, set);
-  
+  fprintf(f,"static const uint16 %s_%s[] = {\n", name, set);
+
   for (i=0 ;i<n ; i++)
   {
     fprintf(f,"0x%04X",a[i]);
@@ -88,10 +88,10 @@ static void simple_cs_copy_data(CHARSET_INFO *to, CHARSET_INFO *from)
   to->state|= from->state;
 
   if (from->csname)
-    to->csname= (char *) _strdup(from->csname);
+    to->csname= _strdup(from->csname);
   
   if (from->name)
-    to->name= (char *) _strdup(from->name);
+    to->name= _strdup(from->name);
   
   if (from->ctype)
     to->ctype= (uchar*) mdup((char*) from->ctype, MY_CS_CTYPE_TABLE_SIZE);
@@ -157,9 +157,9 @@ my_charset_loader_init(MY_CHARSET_LOADER *loader)
 {
   loader->error[0]= '\0';
   loader->once_alloc= malloc;
-  loader->malloc= malloc;
-  loader->realloc= realloc;
-  loader->free= free;
+  loader->mem_malloc= malloc;
+  loader->mem_realloc= realloc;
+  loader->mem_free= free;
   loader->reporter= default_reporter;
   loader->add_collation= add_collation;
 }
@@ -173,13 +173,13 @@ static int my_read_charset_file(const char *filename)
   MY_CHARSET_LOADER loader;
   
   my_charset_loader_init(&loader);
-  if ((fd=_open(filename,O_RDONLY)) < 0)
+  if ((fd= _open(filename,O_RDONLY)) < 0)
   {
     fprintf(stderr,"Can't open '%s'\n",filename);
     return 1;
   }
   
-  len=_read(fd,buf,MAX_BUF);
+  len= _read(fd,buf,MAX_BUF);
   DBUG_ASSERT(len < MAX_BUF);
   _close(fd);
   
@@ -251,6 +251,7 @@ void dispcset(FILE *f,CHARSET_INFO *cs)
   fprintf(f,"  1,                          /* casedn_multiply*/\n");
   fprintf(f,"  1,                          /* mbminlen      */\n");
   fprintf(f,"  1,                          /* mbmaxlen      */\n");
+  fprintf(f,"  1,                          /* mbmaxlenlen   */\n");
   fprintf(f,"  0,                          /* min_sort_char */\n");
   fprintf(f,"  255,                        /* max_sort_char */\n");
   fprintf(f,"  ' ',                        /* pad_char      */\n");

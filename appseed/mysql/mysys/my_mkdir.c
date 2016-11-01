@@ -1,4 +1,4 @@
-/* Copyright (C) 2000 MySQL AB
+/* Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@ int my_mkdir(const char *dir, int Flags, myf MyFlags)
     if (MyFlags & (MY_FFNF | MY_FAE | MY_WME))
     {
       char errbuf[MYSYS_STRERROR_SIZE];
-      my_error(EE_CANT_MKDIR,  MYF(ME_BELL+ME_WAITTANG), dir,
+      my_error(EE_CANT_MKDIR,  MYF(0), dir,
                my_errno, my_strerror(errbuf, sizeof(errbuf), my_errno));
     }
     DBUG_RETURN(-1);

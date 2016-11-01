@@ -72,7 +72,6 @@ defined(__OpenBSD__) || defined(__DragonFly__)
 #include <sys/sysctl.h>
 #endif
 
-
 static DWORD GetProcessorArchitecture()
 {
 	DWORD cpuArch = PROCESSOR_ARCHITECTURE_UNKNOWN;
@@ -275,72 +274,72 @@ DWORD GetTickCount(void)
 }
 #endif // _WIN32
 
-//#if !defined(_WIN32) || defined(_UWP)
-//
-///* OSVERSIONINFOEX Structure:
-//* http://msdn.microsoft.com/en-us/library/windows/desktop/ms724833
-//*/
-//
-//BOOL GetVersionExA(LPOSVERSIONINFOA lpVersionInformation)
-//{
-//#ifdef _UWP
-//	/* Windows 10 Version Info */
-//	if ((lpVersionInformation->dwOSVersionInfoSize == sizeof(OSVERSIONINFOA)) ||
-//		(lpVersionInformation->dwOSVersionInfoSize == sizeof(OSVERSIONINFOEXA)))
-//	{
-//		lpVersionInformation->dwMajorVersion = 10;
-//		lpVersionInformation->dwMinorVersion = 0;
-//		lpVersionInformation->dwBuildNumber = 0;
-//		lpVersionInformation->dwPlatformId = VER_PLATFORM_WIN32_NT;
-//		ZeroMemory(lpVersionInformation->szCSDVersion, sizeof(lpVersionInformation->szCSDVersion));
-//
-//		if (lpVersionInformation->dwOSVersionInfoSize == sizeof(OSVERSIONINFOEXA))
-//		{
-//			LPOSVERSIONINFOEXA lpVersionInformationEx = (LPOSVERSIONINFOEXA)lpVersionInformation;
-//			lpVersionInformationEx->wServicePackMajor = 0;
-//			lpVersionInformationEx->wServicePackMinor = 0;
-//			lpVersionInformationEx->wSuiteMask = 0;
-//			lpVersionInformationEx->wProductType = VER_NT_WORKSTATION;
-//			lpVersionInformationEx->wReserved = 0;
-//		}
-//
-//		return TRUE;
-//	}
-//#else
-//	/* Windows 7 SP1 Version Info */
-//	if ((lpVersionInformation->dwOSVersionInfoSize == sizeof(OSVERSIONINFOA)) ||
-//		(lpVersionInformation->dwOSVersionInfoSize == sizeof(OSVERSIONINFOEXA)))
-//	{
-//		lpVersionInformation->dwMajorVersion = 6;
-//		lpVersionInformation->dwMinorVersion = 1;
-//		lpVersionInformation->dwBuildNumber = 7601;
-//		lpVersionInformation->dwPlatformId = VER_PLATFORM_WIN32_NT;
-//		ZeroMemory(lpVersionInformation->szCSDVersion, sizeof(lpVersionInformation->szCSDVersion));
-//
-//		if (lpVersionInformation->dwOSVersionInfoSize == sizeof(OSVERSIONINFOEXA))
-//		{
-//			LPOSVERSIONINFOEXA lpVersionInformationEx = (LPOSVERSIONINFOEXA)lpVersionInformation;
-//			lpVersionInformationEx->wServicePackMajor = 1;
-//			lpVersionInformationEx->wServicePackMinor = 0;
-//			lpVersionInformationEx->wSuiteMask = 0;
-//			lpVersionInformationEx->wProductType = VER_NT_WORKSTATION;
-//			lpVersionInformationEx->wReserved = 0;
-//		}
-//
-//		return TRUE;
-//	}
-//#endif
-//
-//	return FALSE;
-//}
-//
-//BOOL GetVersionExW(LPOSVERSIONINFOW lpVersionInformation)
-//{
-//	ZeroMemory(lpVersionInformation->szCSDVersion, sizeof(lpVersionInformation->szCSDVersion));
-//	return GetVersionExA((LPOSVERSIONINFOA) lpVersionInformation);
-//}
-//
-//#endif
+#if !defined(_WIN32) || defined(_UWP)
+
+/* OSVERSIONINFOEX Structure:
+* http://msdn.microsoft.com/en-us/library/windows/desktop/ms724833
+*/
+
+BOOL GetVersionExA(LPOSVERSIONINFOA lpVersionInformation)
+{
+#ifdef _UWP
+	/* Windows 10 Version Info */
+	if ((lpVersionInformation->dwOSVersionInfoSize == sizeof(OSVERSIONINFOA)) ||
+		(lpVersionInformation->dwOSVersionInfoSize == sizeof(OSVERSIONINFOEXA)))
+	{
+		lpVersionInformation->dwMajorVersion = 10;
+		lpVersionInformation->dwMinorVersion = 0;
+		lpVersionInformation->dwBuildNumber = 0;
+		lpVersionInformation->dwPlatformId = VER_PLATFORM_WIN32_NT;
+		ZeroMemory(lpVersionInformation->szCSDVersion, sizeof(lpVersionInformation->szCSDVersion));
+
+		if (lpVersionInformation->dwOSVersionInfoSize == sizeof(OSVERSIONINFOEXA))
+		{
+			LPOSVERSIONINFOEXA lpVersionInformationEx = (LPOSVERSIONINFOEXA)lpVersionInformation;
+			lpVersionInformationEx->wServicePackMajor = 0;
+			lpVersionInformationEx->wServicePackMinor = 0;
+			lpVersionInformationEx->wSuiteMask = 0;
+			lpVersionInformationEx->wProductType = VER_NT_WORKSTATION;
+			lpVersionInformationEx->wReserved = 0;
+		}
+
+		return TRUE;
+	}
+#else
+	/* Windows 7 SP1 Version Info */
+	if ((lpVersionInformation->dwOSVersionInfoSize == sizeof(OSVERSIONINFOA)) ||
+		(lpVersionInformation->dwOSVersionInfoSize == sizeof(OSVERSIONINFOEXA)))
+	{
+		lpVersionInformation->dwMajorVersion = 6;
+		lpVersionInformation->dwMinorVersion = 1;
+		lpVersionInformation->dwBuildNumber = 7601;
+		lpVersionInformation->dwPlatformId = VER_PLATFORM_WIN32_NT;
+		ZeroMemory(lpVersionInformation->szCSDVersion, sizeof(lpVersionInformation->szCSDVersion));
+
+		if (lpVersionInformation->dwOSVersionInfoSize == sizeof(OSVERSIONINFOEXA))
+		{
+			LPOSVERSIONINFOEXA lpVersionInformationEx = (LPOSVERSIONINFOEXA)lpVersionInformation;
+			lpVersionInformationEx->wServicePackMajor = 1;
+			lpVersionInformationEx->wServicePackMinor = 0;
+			lpVersionInformationEx->wSuiteMask = 0;
+			lpVersionInformationEx->wProductType = VER_NT_WORKSTATION;
+			lpVersionInformationEx->wReserved = 0;
+		}
+
+		return TRUE;
+	}
+#endif
+
+	return FALSE;
+}
+
+BOOL GetVersionExW(LPOSVERSIONINFOW lpVersionInformation)
+{
+	ZeroMemory(lpVersionInformation->szCSDVersion, sizeof(lpVersionInformation->szCSDVersion));
+	return GetVersionExA((LPOSVERSIONINFOA) lpVersionInformation);
+}
+
+#endif
 
 #if !defined(_WIN32) || defined(_UWP)
 
@@ -597,9 +596,7 @@ BOOL IsProcessorFeaturePresent(DWORD ProcessorFeature)
 {
 	BOOL ret = FALSE;
 #ifdef _M_ARM
-#ifdef ANDROID
-   return FALSE;
-#elif defined(__linux__)
+#ifdef __linux__
 	unsigned caps;
 	caps = GetARMCPUCaps();
 
@@ -748,9 +745,7 @@ BOOL IsProcessorFeaturePresentEx(DWORD ProcessorFeature)
 {
 	BOOL ret = FALSE;
 #ifdef _M_ARM
-#ifdef ANDROID
-   return FALSE;
-#elif defined(__linux__)
+#ifdef __linux__
 	unsigned caps;
 	caps = GetARMCPUCaps();
 

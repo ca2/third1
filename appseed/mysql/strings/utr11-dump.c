@@ -16,7 +16,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-//#include <string.h>
+#include <string.h>
 
 
 /*
@@ -38,16 +38,16 @@ int main(int ac, char **av)
   int errors= 0;
   int plane[0x10000];
   int page[256];
-  int i;
-
+  int i; 
+  
   memset(plane, 0, sizeof(plane));
   memset(page, 0, sizeof(page));
-
+  
   while (fgets(str, sizeof(str), stdin))
   {
     int code1, code2, width;
     char *end;
-
+    
     if (str[0] == '#')
       continue;
     code1= strtol(str, &end, 16);
@@ -71,24 +71,24 @@ int main(int ac, char **av)
       }
     }
     else
-    {
+    { 
       errors++;
       fprintf(stderr, "error: %s", str);
       continue;
     }
-
+    
     end++;
     width= (end[0] == 'F' || end[0] == 'W') ? 1 : 0;
-
+    
     for ( ; code1 <= code2; code1++)
     {
       plane[code1]= width;
     }
   }
-
+  
   if (errors)
     return 1;
-
+  
   for (i=0; i < 256; i++)
   {
     int j;
@@ -108,7 +108,7 @@ int main(int ac, char **av)
       printf("};\n\n");
     }
   }
-
+  
   printf("static struct {int page; char *p;} utr11_data[256]=\n{\n");
   for (i=0; i < 256; i++)
   {

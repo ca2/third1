@@ -16,7 +16,7 @@
 /*
 #include <stdio.h>
 #include <stdlib.h>
-//#include <string.h>
+#include <string.h>
 */
 #include <my_global.h>
 #include <m_string.h>
@@ -37,15 +37,15 @@ static MY_CTYPE_NAME_ST my_ctype_name[]=
   {"Lt", _MY_U},                /* Letter, Titlecase          */
   {"Lm", _MY_L},                /* Letter, Modifier           */
   {"Lo", _MY_L},                /* Letter, other              */
-
+  
   {"Nd", _MY_NMR},              /* Number, Decimal Digit      */
   {"Nl", _MY_NMR|_MY_U|_MY_L},  /* Number, Letter             */
   {"No", _MY_NMR|_MY_PNT},      /* Number, Other              */
-
+  
   {"Mn", _MY_L|_MY_PNT},        /* Mark, Nonspacing           */
   {"Mc", _MY_L|_MY_PNT},        /* Mark, Spacing Combining    */
   {"Me", _MY_L|_MY_PNT},        /* Mark, Enclosing            */
-
+  
   {"Pc", _MY_PNT},              /* Punctuation, Connector     */
   {"Pd", _MY_PNT},              /* Punctuation, Dash          */
   {"Ps", _MY_PNT},              /* Punctuation, Open          */
@@ -53,16 +53,16 @@ static MY_CTYPE_NAME_ST my_ctype_name[]=
   {"Pi", _MY_PNT},              /* Punctuation, Initial quote */
   {"Pf", _MY_PNT},              /* Punctuation, Final quote   */
   {"Po", _MY_PNT},              /* Punctuation, Other         */
-
+  
   {"Sm", _MY_PNT},              /* Symbol, Math               */
   {"Sc", _MY_PNT},              /* Symbol, Currency           */
   {"Sk", _MY_PNT},              /* Symbol, Modifier           */
   {"So", _MY_PNT},              /* Symbol, Other              */
-
+  
   {"Zs", _MY_SPC},              /* Separator, Space           */
   {"Zl", _MY_SPC},              /* Separator, Line            */
   {"Zp", _MY_SPC},              /* Separator, Paragraph       */
-
+  
   {"Cc", _MY_CTR},              /* Other, Control             */
   {"Cf", _MY_CTR},              /* Other, Format              */
   {"Cs", _MY_CTR},              /* Other, Surrogate           */
@@ -89,7 +89,7 @@ ctypestr2num(const char *tok)
 #define MAX_DECOMPOSITION_LENGTH 2
 
 
-typedef struct
+typedef struct 
 {
   uint code;
   char *name;
@@ -180,7 +180,7 @@ load_unidata(MY_UNIDATA_PARAM *prm, MY_UNIDATA_CHAR *chr)
           ch.general_category[2]= '\0';
           ch.mysql_ctype= ctypestr2num(tok);
           break;
-
+          
         case 3: /* Canonical Combining Class */
           ch.combining_class= atoi(tok);
           /*
@@ -286,8 +286,8 @@ fill_implicit_ctype(MY_UNIDATA_PARAM *prm, MY_UNIDATA_CHAR *unidata)
   for (i= 0x2A700; i <= 0x2B734; i++)
     unidata_char_set_cjk(unidata, prm->maxchar, i);
 
-
- /*
+   
+ /* 
   TODO:
   D800;<Non Private Use High Surrogate, First>;Cs;0;L;;;;;N;;;;;
   DB7F;<Non Private Use High Surrogate, Last>;Cs;0;L;;;;;N;;;;;
@@ -395,10 +395,10 @@ dump_decomposition_page(MY_UNIDATA_PARAM *prm, MY_UNIDATA_CHAR *unidata,
   for (i= 0; i < nchars; i++)
   {
     MY_UNIDATA_CHAR *ch= &unidata[ofs + i];
-
+    
     printf("/* %04X */ {0x%04X,0x%04X},",
            ofs + i, ch->decomposition_mapping[0], ch->decomposition_mapping[1]);
-
+    
     if (ch->decomposition_mapping[0])
       printf(" %s/* [%s-%s][%d-%d] */",
              ch->decomposition_mapping[0] < 0x10000 ? " " : "",
@@ -407,7 +407,7 @@ dump_decomposition_page(MY_UNIDATA_PARAM *prm, MY_UNIDATA_CHAR *unidata,
              unidata[ch->decomposition_mapping[0]].combining_class,
              unidata[ch->decomposition_mapping[1]].combining_class);
     printf("\n");
-  }
+  }  
   printf("};\n\n\n");
 }
 

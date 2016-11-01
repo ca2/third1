@@ -52,7 +52,7 @@ static int fd_write(BIO *h, const char *buf, int num);
 static int fd_read(BIO *h, char *buf, int size);
 static int fd_puts(BIO *h, const char *str);
 static int fd_gets(BIO *h, char *buf, int size);
-static long fd_ctrl(BIO *h, int cmd, long arg1, void *arg2);
+long fd_ctrl(BIO *h, int cmd, long arg1, void *arg2);
 static int fd_new(BIO *h);
 static int fd_free(BIO *data);
 int BIO_fd_should_retry(int s);
@@ -136,7 +136,7 @@ static int fd_write(BIO *b, const char *in, int inl)
     return (ret);
 }
 
-static long fd_ctrl(BIO *b, int cmd, long num, void *ptr)
+long fd_ctrl(BIO *b, int cmd, long num, void *ptr)
 {
     long ret = 1;
     int *ip;

@@ -1,4 +1,4 @@
-/* Copyright (c) 2000, 2010, Oracle and/or its affiliates. All rights reserved.
+/* Copyright (c) 2000, 2014, Oracle and/or its affiliates. All rights reserved.
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@
  * in CFLAGS if building with GCC on Solaris.
  */
 
-//#include <string.h>
+#include <string.h>
 
 static int native_compare(size_t *length, unsigned char **a, unsigned char **b)
 {
@@ -41,6 +41,16 @@ static int native_compare(size_t *length, unsigned char **a, unsigned char **b)
 
 #else	/* __sun */
 
+/**
+  Special case for ORDER BY / GROUP BY CHAR(0) NOT NULL
+ */
+static
+int ptr_compare_zero_length(size_t *compare_length __attribute__((unused)),
+                            uchar **a __attribute__((unused)),
+                            uchar **b __attribute__((unused)))
+{
+  return 0;
+}
 static int ptr_compare(size_t *compare_length, uchar **a, uchar **b);
 static int ptr_compare_0(size_t *compare_length, uchar **a, uchar **b);
 static int ptr_compare_1(size_t *compare_length, uchar **a, uchar **b);
@@ -58,6 +68,8 @@ qsort2_cmp get_ptr_compare (size_t size __attribute__((unused)))
 #else
 qsort2_cmp get_ptr_compare (size_t size)
 {
+  if (size == 0)
+    return (qsort2_cmp) ptr_compare_zero_length;
   if (size < 4)
     return (qsort2_cmp) ptr_compare;
   switch (size & 3) {
@@ -82,9 +94,10 @@ qsort2_cmp get_ptr_compare (size_t size)
 
 static int ptr_compare(size_t *compare_length, uchar **a, uchar **b)
 {
-  int length=  (int) *compare_length;
+  size_t length= *compare_length;
   uchar *first,*last;
 
+  DBUG_ASSERT(length > 0);
   first= *a; last= *b;
   while (--length)
   {
@@ -97,7 +110,7 @@ static int ptr_compare(size_t *compare_length, uchar **a, uchar **b)
 
 static int ptr_compare_0(size_t *compare_length,uchar **a, uchar **b)
 {
-  int length= (int) *compare_length;
+  size_t length= *compare_length;
   uchar *first,*last;
 
   first= *a; last= *b;
@@ -118,7 +131,7 @@ static int ptr_compare_0(size_t *compare_length,uchar **a, uchar **b)
 
 static int ptr_compare_1(size_t *compare_length,uchar **a, uchar **b)
 {
-  int length= (int) *compare_length-1;
+  size_t length= *compare_length-1;
   uchar *first,*last;
 
   first= *a+1; last= *b+1;
@@ -139,7 +152,7 @@ static int ptr_compare_1(size_t *compare_length,uchar **a, uchar **b)
 
 static int ptr_compare_2(size_t *compare_length,uchar **a, uchar **b)
 {
-  int length=(int)  *compare_length-2;
+  size_t length= *compare_length-2;
   uchar *first,*last;
 
   first= *a +2 ; last= *b +2;
@@ -161,7 +174,7 @@ static int ptr_compare_2(size_t *compare_length,uchar **a, uchar **b)
 
 static int ptr_compare_3(size_t *compare_length,uchar **a, uchar **b)
 {
-  int length= (int) ( *compare_length-3);
+  size_t length= *compare_length-3;
   uchar *first,*last;
 
   first= *a +3 ; last= *b +3;

@@ -1,4 +1,4 @@
-/* Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+/* Copyright (c) 2000, 2014, Oracle and/or its affiliates. All rights reserved.
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -20,13 +20,12 @@
 #include <my_dir.h>
 #include <my_xml.h>
 
-
 /*
   The code below implements this functionality:
-
+  
     - Initializing charset related structures
     - Loading dynamic charsets
-    - Searching for a proper CHARSET_INFO
+    - Searching for a proper CHARSET_INFO 
       using charset name, collation name or collation ID
     - Setting server default character set
 */
@@ -45,10 +44,10 @@ get_collation_number_internal(const char *name)
        cs < all_charsets + array_elements(all_charsets);
        cs++)
   {
-    if ( cs[0] && cs[0]->name &&
+    if ( cs[0] && cs[0]->name && 
          !my_strcasecmp(&my_charset_latin1, cs[0]->name, name))
       return cs[0]->number;
-  }
+  }  
   return 0;
 }
 
@@ -59,14 +58,11 @@ static my_bool init_state_maps(CHARSET_INFO *cs)
   uchar *state_map;
   uchar *ident_map;
 
-  if (!(cs->state_map= (uchar*) my_once_alloc(256, MYF(MY_WME))))
+  if (!(cs->state_map= state_map= (uchar*) my_once_alloc(256, MYF(MY_WME))))
     return 1;
 
-  if (!(cs->ident_map= (uchar*) my_once_alloc(256, MYF(MY_WME))))
+  if (!(cs->ident_map= ident_map= (uchar*) my_once_alloc(256, MYF(MY_WME))))
     return 1;
-
-  state_map= cs->state_map;
-  ident_map= cs->ident_map;
 
   /* Fill state_map with states to get a faster parser */
   for (i=0; i < 256 ; i++)
@@ -75,7 +71,8 @@ static my_bool init_state_maps(CHARSET_INFO *cs)
       state_map[i]=(uchar) MY_LEX_IDENT;
     else if (my_isdigit(cs,i))
       state_map[i]=(uchar) MY_LEX_NUMBER_IDENT;
-    else if (my_mbcharlen(cs, i)>1)
+    else if (my_ismb1st(cs, i))
+      /* To get whether it's a possible leading byte for a charset. */
       state_map[i]=(uchar) MY_LEX_IDENT;
     else if (my_isspace(cs,i))
       state_map[i]=(uchar) MY_LEX_SKIP;
@@ -112,6 +109,7 @@ static my_bool init_state_maps(CHARSET_INFO *cs)
   state_map[(uchar)'x']= state_map[(uchar)'X']= (uchar) MY_LEX_IDENT_OR_HEX;
   state_map[(uchar)'b']= state_map[(uchar)'B']= (uchar) MY_LEX_IDENT_OR_BIN;
   state_map[(uchar)'n']= state_map[(uchar)'N']= (uchar) MY_LEX_IDENT_OR_NCHAR;
+
   return 0;
 }
 
@@ -122,7 +120,7 @@ static void simple_cs_init_functions(CHARSET_INFO *cs)
     cs->coll= &my_collation_8bit_bin_handler;
   else
     cs->coll= &my_collation_8bit_simple_ci_handler;
-
+  
   cs->cset= &my_charset_8bit_handler;
 }
 
@@ -135,15 +133,15 @@ static int cs_copy_data(CHARSET_INFO *to, CHARSET_INFO *from)
   if (from->csname)
     if (!(to->csname= my_once_strdup(from->csname,MYF(MY_WME))))
       goto err;
-
+  
   if (from->name)
     if (!(to->name= my_once_strdup(from->name,MYF(MY_WME))))
       goto err;
-
+  
   if (from->comment)
     if (!(to->comment= my_once_strdup(from->comment,MYF(MY_WME))))
       goto err;
-
+  
   if (from->ctype)
   {
     if (!(to->ctype= (uchar*) my_once_memdup((char*) from->ctype,
@@ -230,15 +228,15 @@ static int add_collation(CHARSET_INFO *cs)
         return MY_XML_ERROR;
       memset(all_charsets[cs->number], 0, sizeof(CHARSET_INFO));
     }
-
+    
     if (cs->primary_number == cs->number)
       cs->state |= MY_CS_PRIMARY;
-
+      
     if (cs->binary_number == cs->number)
       cs->state |= MY_CS_BINSORT;
-
+    
     all_charsets[cs->number]->state|= cs->state;
-
+    
     if (!(all_charsets[cs->number]->state & MY_CS_COMPILED))
     {
       CHARSET_INFO *newcs= all_charsets[cs->number];
@@ -248,13 +246,13 @@ static int add_collation(CHARSET_INFO *cs)
       newcs->caseup_multiply= newcs->casedn_multiply= 1;
       newcs->levels_for_compare= 1;
       newcs->levels_for_order= 1;
-
+      
       if (!strcmp(cs->csname,"ucs2") )
       {
 #if defined(HAVE_CHARSET_ucs2) && defined(HAVE_UCA_COLLATIONS)
         copy_uca_collation(newcs, &my_charset_ucs2_unicode_ci);
         newcs->state|= MY_CS_AVAILABLE | MY_CS_LOADED | MY_CS_NONASCII;
-#endif
+#endif        
       }
       else if (!strcmp(cs->csname, "utf8") || !strcmp(cs->csname, "utf8mb3"))
       {
@@ -289,7 +287,7 @@ static int add_collation(CHARSET_INFO *cs)
       }
       else
       {
-        uchar *sort_order= all_charsets[cs->number]->sort_order;
+        const uchar *sort_order= all_charsets[cs->number]->sort_order;
         simple_cs_init_functions(all_charsets[cs->number]);
         newcs->mbminlen= 1;
         newcs->mbmaxlen= 1;
@@ -298,16 +296,16 @@ static int add_collation(CHARSET_INFO *cs)
           all_charsets[cs->number]->state |= MY_CS_LOADED;
         }
         all_charsets[cs->number]->state|= MY_CS_AVAILABLE;
-
+        
         /*
           Check if case sensitive sort order: A < a < B.
           We need MY_CS_FLAG for regex library, and for
           case sensitivity flag for 5.0 client protocol,
-          to support isCaseSensitive() method in JDBC driver
+          to support isCaseSensitive() method in JDBC driver 
         */
         if (sort_order && sort_order['A'] < sort_order['a'] &&
                           sort_order['a'] < sort_order['B'])
-          all_charsets[cs->number]->state|= MY_CS_CSSORT;
+          all_charsets[cs->number]->state|= MY_CS_CSSORT; 
 
         if (my_charset_is_8bit_pure_ascii(all_charsets[cs->number]))
           all_charsets[cs->number]->state|= MY_CS_PUREASCII;
@@ -374,13 +372,19 @@ my_once_alloc_c(size_t size)
 
 static void *
 my_malloc_c(size_t size)
-{ return my_malloc(size, MYF(MY_WME)); }
+{ return my_malloc(key_memory_charset_loader, size, MYF(MY_WME)); }
 
 
 static void *
 my_realloc_c(void *old, size_t size)
-{ return my_realloc(old, size, MYF(MY_WME)); }
+{ return my_realloc(key_memory_charset_loader,
+                    old, size, MYF(MY_WME)); }
 
+static void
+my_free_c(void *ptr)
+{
+  my_free(ptr);
+}
 
 /**
   Initialize character set loader to use mysys memory management functions.
@@ -391,9 +395,9 @@ my_charset_loader_init_mysys(MY_CHARSET_LOADER *loader)
 {
   loader->error[0]= '\0';
   loader->once_alloc= my_once_alloc_c;
-  loader->malloc= my_malloc_c;
-  loader->realloc= my_realloc_c;
-  loader->free= my_free;
+  loader->mem_malloc= my_malloc_c;
+  loader->mem_realloc= my_realloc_c;
+  loader->mem_free= my_free_c;
   loader->reporter= my_charset_error_reporter;
   loader->add_collation= add_collation;
 }
@@ -414,26 +418,27 @@ my_read_charset_file(MY_CHARSET_LOADER *loader,
   int  fd;
   size_t len, tmp_len;
   MY_STAT stat_info;
-
+  
   if (!my_stat(filename, &stat_info, MYF(myflags)) ||
        ((len= (uint)stat_info.st_size) > MY_MAX_ALLOWED_BUF) ||
-       !(buf= (uchar*) my_malloc(len,myflags)))
+       !(buf= (uchar*) my_malloc(key_memory_charset_file,
+                                 len,myflags)))
     return TRUE;
-
+  
   if ((fd= mysql_file_open(key_file_charset, filename, O_RDONLY, myflags)) < 0)
     goto error;
   tmp_len= mysql_file_read(fd, buf, len, myflags);
   mysql_file_close(fd, myflags);
   if (tmp_len != len)
     goto error;
-
+  
   if (my_parse_charset_xml(loader, (char *) buf, len))
   {
     my_printf_error(EE_UNKNOWN_CHARSET, "Error while parsing '%s': %s\n",
                     MYF(0), filename, loader->error);
     goto error;
   }
-
+  
   my_free(buf);
   return FALSE;
 
@@ -502,7 +507,7 @@ static void init_available_charsets(void)
   }
 
   my_charset_loader_init_mysys(&loader);
-  strmov(get_charsets_dir(fname), MY_CHARSET_INDEX);
+  my_stpcpy(get_charsets_dir(fname), MY_CHARSET_INDEX);
   my_read_charset_file(&loader, fname, MYF(0));
 }
 
@@ -516,7 +521,7 @@ void free_charsets(void)
 static const char*
 get_collation_name_alias(const char *name, char *buf, size_t bufsize)
 {
-  if (!strncasecmp(name, "utf8mb3_", 8))
+  if (!native_strncasecmp(name, "utf8mb3_", 8))
   {
     my_snprintf(buf, bufsize, "utf8_%s", name + 8);
     return buf;
@@ -542,7 +547,7 @@ static uint
 get_charset_number_internal(const char *charset_name, uint cs_flags)
 {
   CHARSET_INFO **cs;
-
+  
   for (cs= all_charsets;
        cs < all_charsets + array_elements(all_charsets);
        cs++)
@@ -550,7 +555,7 @@ get_charset_number_internal(const char *charset_name, uint cs_flags)
     if ( cs[0] && cs[0]->csname && (cs[0]->state & cs_flags) &&
          !my_strcasecmp(&my_charset_latin1, cs[0]->csname, charset_name))
       return cs[0]->number;
-  }
+  }  
   return 0;
 }
 
@@ -574,7 +579,7 @@ uint get_charset_number(const char *charset_name, uint cs_flags)
     return get_charset_number_internal(charset_name, cs_flags);
   return 0;
 }
-
+                  
 
 const char *get_charset_name(uint charset_number)
 {
@@ -587,7 +592,7 @@ const char *get_charset_name(uint charset_number)
     if (cs && (cs->number == charset_number) && cs->name)
       return (char*) cs->name;
   }
-
+  
   return "?";   /* this mimics find_type() */
 }
 
@@ -650,8 +655,8 @@ CHARSET_INFO *get_charset(uint cs_number, myf flags)
     return default_charset_info;
 
   my_pthread_once(&charsets_initialized, init_available_charsets);
-
-  if (cs_number >= array_elements(all_charsets))
+ 
+  if (cs_number >= array_elements(all_charsets)) 
     return NULL;
 
   my_charset_loader_init_mysys(&loader);
@@ -660,10 +665,10 @@ CHARSET_INFO *get_charset(uint cs_number, myf flags)
   if (!cs && (flags & MY_WME))
   {
     char index_file[FN_REFLEN + sizeof(MY_CHARSET_INDEX)], cs_string[23];
-    strmov(get_charsets_dir(index_file),MY_CHARSET_INDEX);
+    my_stpcpy(get_charsets_dir(index_file),MY_CHARSET_INDEX);
     cs_string[0]='#';
     int10_to_str(cs_number, cs_string+1, 10);
-    my_error(EE_UNKNOWN_CHARSET, MYF(ME_BELL), cs_string, index_file);
+    my_error(EE_UNKNOWN_CHARSET, MYF(0), cs_string, index_file);
   }
   return cs;
 }
@@ -693,8 +698,8 @@ my_collation_get_by_name(MY_CHARSET_LOADER *loader,
   if (!cs && (flags & MY_WME))
   {
     char index_file[FN_REFLEN + sizeof(MY_CHARSET_INDEX)];
-    strmov(get_charsets_dir(index_file),MY_CHARSET_INDEX);
-    my_error(EE_UNKNOWN_COLLATION, MYF(ME_BELL), name, index_file);
+    my_stpcpy(get_charsets_dir(index_file),MY_CHARSET_INDEX);
+    my_error(EE_UNKNOWN_COLLATION, MYF(0), name, index_file);
   }
   return cs;
 }
@@ -734,8 +739,8 @@ my_charset_get_by_name(MY_CHARSET_LOADER *loader,
   if (!cs && (flags & MY_WME))
   {
     char index_file[FN_REFLEN + sizeof(MY_CHARSET_INDEX)];
-    strmov(get_charsets_dir(index_file),MY_CHARSET_INDEX);
-    my_error(EE_UNKNOWN_CHARSET, MYF(ME_BELL), cs_name, index_file);
+    my_stpcpy(get_charsets_dir(index_file),MY_CHARSET_INDEX);
+    my_error(EE_UNKNOWN_CHARSET, MYF(0), cs_name, index_file);
   }
 
   DBUG_RETURN(cs);
@@ -875,7 +880,8 @@ size_t escape_string_for_mysql(const CHARSET_INFO *charset_info,
      multi-byte character into a valid one. For example, 0xbf27 is not
      a valid GBK character, but 0xbf5c is. (0x27 = ', 0x5c = \)
     */
-    if (use_mb_flag && (tmp_length= my_mbcharlen(charset_info, *from)) > 1)
+    tmp_length= use_mb_flag ? my_mbcharlen_ptr(charset_info, from, end) : 0;
+    if (tmp_length > 1)
       escape= *from;
     else
     switch (*from) {
@@ -926,7 +932,7 @@ size_t escape_string_for_mysql(const CHARSET_INFO *charset_info,
 }
 
 
-#ifdef BACKSLASH_MBTAIL
+#ifdef _WIN32
 static CHARSET_INFO *fs_cset_cache= NULL;
 
 CHARSET_INFO *fs_character_set()
@@ -944,9 +950,9 @@ CHARSET_INFO *fs_character_set()
       As we're now interested in cp932 only,
       let's just detect it using strcmp().
     */
-    fs_cset_cache=
+    fs_cset_cache= 
                 #ifdef HAVE_CHARSET_cp932
-                        !strcmp(buf, "cp932") ? &my_charset_cp932_japanese_ci :
+                        !strcmp(buf, "cp932") ? &my_charset_cp932_japanese_ci : 
                 #endif
                         &my_charset_bin;
   }

@@ -160,7 +160,7 @@ int Handshake_client::write_packet(Blob &data)
       Store in byte 255 the number of 512b blocks that are needed to
       keep all the data.
     */
-    unsigned block_count= (unsigned int) (data.len()/512 + ((data.len() % 512) ? 1 : 0));
+    unsigned block_count= data.len()/512 + ((data.len() % 512) ? 1 : 0);
 
 #if !defined(DBUG_OFF) && defined(WINAUTH_USE_DBUG_LIB)
 
@@ -278,7 +278,7 @@ Blob Handshake_client::process_data(const Blob &data)
   Security_buffer  input(data);
   SECURITY_STATUS  ret;
 
-  m_output.free();
+  m_output.mem_free();
 
   ret= InitializeSecurityContextW(
          &m_cred,
@@ -338,11 +338,11 @@ int win_auth_handshake_client(MYSQL_PLUGIN_VIO *vio, MYSQL *mysql)
     int opt_val= opt ? atoi(opt) : 0;
     if (opt && !opt_val)
     {
-      if (!strncasecmp("on", opt, 2))    opt_val= 2;
-      if (!strncasecmp("yes", opt, 3))   opt_val= 2;
-      if (!strncasecmp("true", opt, 4))  opt_val= 2;
-      if (!strncasecmp("debug", opt, 5)) opt_val= 4;
-      if (!strncasecmp("dbug", opt, 4))  opt_val= 4;
+      if (!_strnicmp("on", opt, 2))    opt_val= 2;
+      if (!_strnicmp("yes", opt, 3))   opt_val= 2;
+      if (!_strnicmp("true", opt, 4))  opt_val= 2;
+      if (!_strnicmp("debug", opt, 5)) opt_val= 4;
+      if (!_strnicmp("dbug", opt, 4))  opt_val= 4;
     }
     set_log_level(opt_val);
   }

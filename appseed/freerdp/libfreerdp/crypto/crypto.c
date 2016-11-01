@@ -98,7 +98,12 @@ static int crypto_rsa_common(const BYTE* input, int length, UINT32 key_length, c
 	BYTE* input_reverse;
 	BYTE* modulus_reverse;
 	BYTE* exponent_reverse;
-	BIGNUM mod, exp, x, y;
+	BIGNUM * mod, * exp, * x, * y;
+
+   mod = BN_new();
+   exp = BN_new();
+   x = BN_new();
+   y = BN_new();
 
 	input_reverse = (BYTE*) malloc(2 * key_length + exponent_size);
 	if (!input_reverse)
@@ -116,26 +121,26 @@ static int crypto_rsa_common(const BYTE* input, int length, UINT32 key_length, c
 	ctx = BN_CTX_new();
 	if (!ctx)
 		goto out_free_input_reverse;
-	BN_init(&mod);
-	BN_init(&exp);
-	BN_init(&x);
-	BN_init(&y);
+//	BN_init(&mod);
+	//BN_init(&exp);
+	//BN_init(&x);
+	//BN_init(&y);
 
-	BN_bin2bn(modulus_reverse, key_length, &mod);
-	BN_bin2bn(exponent_reverse, exponent_size, &exp);
-	BN_bin2bn(input_reverse, length, &x);
-	BN_mod_exp(&y, &x, &exp, &mod, ctx);
+	BN_bin2bn(modulus_reverse, key_length, mod);
+	BN_bin2bn(exponent_reverse, exponent_size, exp);
+	BN_bin2bn(input_reverse, length, x);
+	BN_mod_exp(y, x, exp, mod, ctx);
 
-	output_length = BN_bn2bin(&y, output);
+	output_length = BN_bn2bin(y, output);
 	crypto_reverse(output, output_length);
 
 	if (output_length < (int) key_length)
 		memset(output + output_length, 0, key_length - output_length);
 
-	BN_free(&y);
-	BN_clear_free(&x);
-	BN_free(&exp);
-	BN_free(&mod);
+	BN_free(y);
+	BN_clear_free(x);
+	BN_free(exp);
+	BN_free(mod);
 	BN_CTX_free(ctx);
 
 out_free_input_reverse:

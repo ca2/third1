@@ -41,23 +41,17 @@ int my_rename(const char *from, const char *to, myf MyFlags)
     if (MyFlags & (MY_FAE+MY_WME))
     {
       char errbuf[MYSYS_STRERROR_SIZE];
-      my_error(EE_LINK, MYF(ME_BELL+ME_WAITTANG), from, to,
+      my_error(EE_LINK, MYF(0), from, to,
                my_errno, my_strerror(errbuf, sizeof(errbuf), my_errno));
     }
   }
   else if (MyFlags & MY_SYNC_DIR)
   {
-#ifdef NEED_EXPLICIT_SYNC_DIR
     /* do only the needed amount of syncs: */
-    char dir_from[FN_REFLEN], dir_to[FN_REFLEN];
-    size_t dir_from_length, dir_to_length;
-    dirname_part(dir_from, from, &dir_from_length);
-    dirname_part(dir_to, to, &dir_to_length);
-    if (my_sync_dir(dir_from, MyFlags) ||
-        (strcmp(dir_from, dir_to) &&
-         my_sync_dir(dir_to, MyFlags)))
+    if (my_sync_dir_by_file(from, MyFlags) ||
+        (strcmp(from, to) &&
+         my_sync_dir_by_file(to, MyFlags)))
       error= -1;
-#endif
   }
   DBUG_RETURN(error);
 } /* my_rename */

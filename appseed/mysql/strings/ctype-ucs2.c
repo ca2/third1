@@ -1,4 +1,4 @@
-/* Copyright (c) 2003, 2013, Oracle and/or its affiliates. All rights reserved.
+/* Copyright (c) 2003, 2014, Oracle and/or its affiliates. All rights reserved.
    
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Library General Public
@@ -38,13 +38,12 @@
 #define EILSEQ ENOENT
 #endif
 
-#undef  ULONGLONG_MAX
 #define ULONGLONG_MAX                (~(ulonglong) 0)
-#define MAX_NEGATIVE_NUMBER        ((ulonglong) LL(0x8000000000000000))
+#define MAX_NEGATIVE_NUMBER        ((ulonglong) 0x8000000000000000LL)
 #define INIT_CNT  9
-#define LFACTOR   ULL(1000000000)
-#define LFACTOR1  ULL(10000000000)
-#define LFACTOR2  ULL(100000000000)
+#define LFACTOR   1000000000ULL
+#define LFACTOR1  10000000000ULL
+#define LFACTOR2  100000000000ULL
 
 #ifdef HAVE_CHARSET_mb2_or_mb4
 static unsigned long lfactor[9]=
@@ -399,16 +398,16 @@ bs:
   
   if (negative)
   {
-    if (res  > (ulonglong) LONGLONG_MIN)
+    if (res  > (ulonglong) LLONG_MIN)
       overflow = 1;
   }
-  else if (res > (ulonglong) LONGLONG_MAX)
+  else if (res > (ulonglong) LLONG_MAX)
     overflow = 1;
   
   if (overflow)
   {
     err[0]=ERANGE;
-    return negative ? LONGLONG_MIN : LONGLONG_MAX;
+    return negative ? LLONG_MIN : LLONG_MAX;
   }
   
   return (negative ? -((longlong)res) : (longlong)res);
@@ -606,7 +605,7 @@ my_l10tostr_mb2_or_mb4(const CHARSET_INFO *cs,
     if (val < 0)
     {
       sl= 1;
-      /* Avoid integer overflow in (-val) for LONGLONG_MIN (BUG#31799). */
+      /* Avoid integer overflow in (-val) for LLONG_MIN (BUG#31799). */
       uval  = (unsigned long int)0 - uval;
     }
   }
@@ -654,7 +653,7 @@ my_ll10tostr_mb2_or_mb4(const CHARSET_INFO *cs,
     if (val < 0)
     {
       sl= 1;
-      /* Avoid integer overflow in (-val) for LONGLONG_MIN (BUG#31799). */
+      /* Avoid integer overflow in (-val) for LLONG_MIN (BUG#31799). */
       uval = (ulonglong)0 - uval;
     }
   }
@@ -750,10 +749,10 @@ my_strtoll10_mb2(const CHARSET_INFO *cs,
   negative= 0;
   if (wc == '-')
   {
-    *error= -1;                                        /* Mark as negative number */
+    *error= -1;                          /* Mark as negative number */
     negative= 1;
     res= cs->cset->mb_wc(cs, &wc, (const uchar *) s, (const uchar *) end);
-    if (res < 0)
+    if (res <= 0)
       goto no_conv;
     s+= res;
     cutoff=  MAX_NEGATIVE_NUMBER / LFACTOR2;
@@ -766,7 +765,7 @@ my_strtoll10_mb2(const CHARSET_INFO *cs,
     if (wc == '+')
     {
       res= cs->cset->mb_wc(cs, &wc, (const uchar *) s, (const uchar *) end);
-      if (res < 0)
+      if (res <= 0)
         goto no_conv;
       s+= res;
     }
@@ -785,7 +784,7 @@ my_strtoll10_mb2(const CHARSET_INFO *cs,
       if (s == end)
         goto end_i;                                /* Return 0 */
       res= cs->cset->mb_wc(cs, &wc, (const uchar *) s, (const uchar *) end);
-      if (res < 0)
+      if (res <= 0)
         goto no_conv;
       if (wc != '0')
         break;
@@ -796,7 +795,7 @@ my_strtoll10_mb2(const CHARSET_INFO *cs,
   else
   {
     /* Read first digit to check that it's a valid number */
-    if ((c= (uchar) (wc - '0')) > 9)
+    if ((c= (wc - '0')) > 9)
       goto no_conv;
     i= c;
     n_end= s + 2 * (INIT_CNT-1);
@@ -808,10 +807,10 @@ my_strtoll10_mb2(const CHARSET_INFO *cs,
   for ( ; ; )
   {
     res= cs->cset->mb_wc(cs, &wc, (const uchar *) s, (const uchar *) n_end);
-    if (res < 0)
+    if (res <= 0)
       break;
     s+= res;
-    if ((c= (uchar) (wc - '0')) > 9)
+    if ((c= (wc - '0')) > 9)
       goto end_i;
     i= i*10+c;
   }
@@ -827,10 +826,10 @@ my_strtoll10_mb2(const CHARSET_INFO *cs,
   do
   {
     res= cs->cset->mb_wc(cs, &wc, (const uchar *) s, (const uchar *) end);
-    if (res < 0)
+    if (res <= 0)
       goto no_conv;
     s+= res;
-    if ((c= (uchar) (wc - '0')) > 9)
+    if ((c= (wc - '0')) > 9)
       goto end_i_and_j;
     j= j*10+c;
   } while (s != n_end);
@@ -841,10 +840,10 @@ my_strtoll10_mb2(const CHARSET_INFO *cs,
     goto end3;
   }
   res= cs->cset->mb_wc(cs, &wc, (const uchar *) s, (const uchar *) end);
-  if (res < 0)
+  if (res <= 0)
     goto no_conv;
   s+= res;
-  if ((c= (uchar) (wc - '0')) > 9)
+  if ((c= (wc - '0')) > 9)
     goto end3;
 
   /* Handle the next 1 or 2 digits and store them in k */
@@ -852,16 +851,16 @@ my_strtoll10_mb2(const CHARSET_INFO *cs,
   if (s == end)
     goto end4;
   res= cs->cset->mb_wc(cs, &wc, (const uchar *) s, (const uchar *) end);
-  if (res < 0)
+  if (res <= 0)
     goto no_conv;
   s+= res;
-  if ((c= (uchar) (wc - '0')) > 9)
+  if ((c= (wc - '0')) > 9)
     goto end4;
   k= k*10+c;
   *endptr= (char*) s;
 
   /* number string should have ended here */
-  if (s != end && (c= (uchar) (wc - '0')) <= 9)
+  if (s != end && (c= (wc - '0')) <= 9)
     goto overflow;
 
   /* Check that we didn't get an overflow with the last digit */
@@ -873,7 +872,7 @@ my_strtoll10_mb2(const CHARSET_INFO *cs,
 
 overflow:                                        /* *endptr is set here */
   *error= MY_ERRNO_ERANGE;
-  return negative ? LONGLONG_MIN : (longlong) ULONGLONG_MAX;
+  return negative ? LLONG_MIN : (longlong) ULONGLONG_MAX;
 
 end_i:
   *endptr= (char*) s;
@@ -966,7 +965,7 @@ my_fill_mb2(const CHARSET_INFO *cs, char *s, size_t slen, int fill)
 }
 
 
-static int
+static size_t
 my_vsnprintf_mb2(char *dst, size_t n, const char* fmt, va_list ap)
 {
   char *start=dst, *end= dst + n - 1;
@@ -984,7 +983,7 @@ my_vsnprintf_mb2(char *dst, size_t n, const char* fmt, va_list ap)
     
     fmt++;
     
-    /* Skip if MAX size is used (to be compatible with printf) */
+    /* Skip if max size is used (to be compatible with printf) */
     while ( (*fmt >= '0' && *fmt <= '9') || *fmt == '.' || *fmt == '-')
       fmt++;
     
@@ -1040,7 +1039,7 @@ my_vsnprintf_mb2(char *dst, size_t n, const char* fmt, va_list ap)
   
   DBUG_ASSERT(dst <= end);
   *dst='\0';                                /* End of errmessage */
-  return (int) (dst - start);
+  return (size_t) (dst - start);
 }
 
 
@@ -1048,9 +1047,12 @@ static size_t
 my_snprintf_mb2(const CHARSET_INFO *cs __attribute__((unused)),
                 char* to, size_t n, const char* fmt, ...)
 {
+  size_t retval;
   va_list args;
   va_start(args,fmt);
-  return my_vsnprintf_mb2(to, n, fmt, args);
+  retval= my_vsnprintf_mb2(to, n, fmt, args);
+  va_end(args);
+  return retval;
 }
 
 
@@ -1160,29 +1162,29 @@ my_uni_utf16(const CHARSET_INFO *cs __attribute__((unused)),
 
 
 static inline void
-my_tolower_utf16(MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
+my_tolower_utf16(const MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
 {
-  MY_UNICASE_CHARACTER *page;
+  const MY_UNICASE_CHARACTER *page;
   if ((*wc <= uni_plane->maxchar) && (page= uni_plane->page[*wc >> 8]))
     *wc= page[*wc & 0xFF].tolower;
 }
 
 
 static inline void
-my_toupper_utf16(MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
+my_toupper_utf16(const MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
 {
-  MY_UNICASE_CHARACTER *page;
+  const MY_UNICASE_CHARACTER *page;
   if ((*wc <= uni_plane->maxchar) && (page= uni_plane->page[*wc >> 8]))
     *wc= page[*wc & 0xFF].toupper;
 }
 
 
 static inline void
-my_tosort_utf16(MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
+my_tosort_utf16(const MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
 {
   if (*wc <= uni_plane->maxchar)
   {
-    MY_UNICASE_CHARACTER *page;
+    const MY_UNICASE_CHARACTER *page;
     if ((page= uni_plane->page[*wc >> 8]))
       *wc= page[*wc & 0xFF].sort;
   }
@@ -1202,9 +1204,9 @@ my_caseup_utf16(const CHARSET_INFO *cs, char *src, size_t srclen,
   my_wc_t wc;
   int res;
   char *srcend= src + srclen;
-  MY_UNICASE_INFO *uni_plane= cs->caseinfo;
+  const MY_UNICASE_INFO *uni_plane= cs->caseinfo;
   DBUG_ASSERT(src == dst && srclen == dstlen);
-  
+
   while ((src < srcend) &&
          (res= cs->cset->mb_wc(cs, &wc, (uchar *) src, (uchar *) srcend)) > 0)
   {
@@ -1224,7 +1226,7 @@ my_hash_sort_utf16(const CHARSET_INFO *cs, const uchar *s, size_t slen,
   my_wc_t wc;
   int res;
   const uchar *e= s + cs->cset->lengthsp(cs, (const char *) s, slen);
-  MY_UNICASE_INFO *uni_plane= cs->caseinfo;
+  const MY_UNICASE_INFO *uni_plane= cs->caseinfo;
   ulong tmp1;
   ulong tmp2;
 
@@ -1255,7 +1257,7 @@ my_casedn_utf16(const CHARSET_INFO *cs, char *src, size_t srclen,
   my_wc_t wc;
   int res;
   char *srcend= src + srclen;
-  MY_UNICASE_INFO *uni_plane= cs->caseinfo;
+  const MY_UNICASE_INFO *uni_plane= cs->caseinfo;
   DBUG_ASSERT(src == dst && srclen == dstlen);
 
   while ((src < srcend) &&
@@ -1277,10 +1279,10 @@ my_strnncoll_utf16(const CHARSET_INFO *cs,
                    my_bool t_is_prefix)
 {
   int s_res, t_res;
-  my_wc_t UNINIT_VAR(s_wc), UNINIT_VAR(t_wc);
+  my_wc_t s_wc= 0, t_wc= 0;
   const uchar *se= s + slen;
   const uchar *te= t + tlen;
-  MY_UNICASE_INFO *uni_plane= cs->caseinfo;
+  const MY_UNICASE_INFO *uni_plane= cs->caseinfo;
 
   while (s < se && t < te)
   {
@@ -1341,9 +1343,9 @@ my_strnncollsp_utf16(const CHARSET_INFO *cs,
                      my_bool diff_if_only_endspace_difference)
 {
   int res;
-  my_wc_t UNINIT_VAR(s_wc), UNINIT_VAR(t_wc);
+  my_wc_t s_wc= 0, t_wc= 0;
   const uchar *se= s + slen, *te= t + tlen;
-  MY_UNICASE_INFO *uni_plane= cs->caseinfo;
+  const MY_UNICASE_INFO *uni_plane= cs->caseinfo;
 
   DBUG_ASSERT((slen % 2) == 0);
   DBUG_ASSERT((tlen % 2) == 0);
@@ -1395,9 +1397,8 @@ my_strnncollsp_utf16(const CHARSET_INFO *cs,
 
     for ( ; s < se; s+= s_res)
     {
-      if ((s_res= cs->cset->mb_wc(cs, &s_wc, s, se)) < 0)
+      if ((s_res= cs->cset->mb_wc(cs, &s_wc, s, se)) <= 0)
       {
-        DBUG_ASSERT(0);
         return 0;
       }
       if (s_wc != ' ')
@@ -1485,9 +1486,9 @@ my_wildcmp_utf16_ci(const CHARSET_INFO *cs,
                     const char *wildstr,const char *wildend,
                     int escape, int w_one, int w_many)
 {
-  MY_UNICASE_INFO *uni_plane= cs->caseinfo;
+  const MY_UNICASE_INFO *uni_plane= cs->caseinfo;
   return my_wildcmp_unicode(cs, str, str_end, wildstr, wildend,
-                            escape, w_one, w_many, uni_plane); 
+                            escape, w_one, w_many, uni_plane);
 }
 
 
@@ -1509,7 +1510,7 @@ my_strnncoll_utf16_bin(const CHARSET_INFO *cs,
                        my_bool t_is_prefix)
 {
   int s_res,t_res;
-  my_wc_t UNINIT_VAR(s_wc), UNINIT_VAR(t_wc);
+  my_wc_t s_wc= 0, t_wc= 0;
   const uchar *se=s+slen;
   const uchar *te=t+tlen;
 
@@ -1542,7 +1543,7 @@ my_strnncollsp_utf16_bin(const CHARSET_INFO *cs,
                          my_bool diff_if_only_endspace_difference)
 {
   int res;
-  my_wc_t UNINIT_VAR(s_wc), UNINIT_VAR(t_wc);
+  my_wc_t s_wc= 0, t_wc= 0;
   const uchar *se= s + slen, *te= t + tlen;
 
   DBUG_ASSERT((slen % 2) == 0);
@@ -1592,9 +1593,8 @@ my_strnncollsp_utf16_bin(const CHARSET_INFO *cs,
 
     for ( ; s < se; s+= s_res)
     {
-      if ((s_res= cs->cset->mb_wc(cs, &s_wc, s, se)) < 0)
+      if ((s_res= cs->cset->mb_wc(cs, &s_wc, s, se)) <= 0)
       {
-        DBUG_ASSERT(0);
         return 0;
       }
       if (s_wc != ' ')
@@ -1715,6 +1715,7 @@ CHARSET_INFO my_charset_utf16_general_ci=
   1,                   /* casedn_multiply  */
   2,                   /* mbminlen     */
   4,                   /* mbmaxlen     */
+  1,                   /* mbmaxlenlen  */
   0,                   /* min_sort_char */
   0xFFFF,              /* max_sort_char */
   ' ',                 /* pad char      */
@@ -1749,6 +1750,7 @@ CHARSET_INFO my_charset_utf16_bin=
   1,                   /* casedn_multiply  */
   2,                   /* mbminlen     */
   4,                   /* mbmaxlen     */
+  1,                   /* mbmaxlenlen  */
   0,                   /* min_sort_char */
   0xFFFF,              /* max_sort_char */
   ' ',                 /* pad char      */
@@ -1800,7 +1802,7 @@ my_uni_utf16le(const CHARSET_INFO *cs __attribute__((unused)),
   {
     if (s + 2 > e)
       return MY_CS_TOOSMALL2;
-    int2store(s, wc);
+    int2store(s, (uint16)wc);
     return 2; /* [0000-D7FF,E000-FFFF] */
   }
 
@@ -1822,7 +1824,7 @@ my_lengthsp_utf16le(const CHARSET_INFO *cs __attribute__((unused)),
                     const char *ptr, size_t length)
 {
   const char *end= ptr + length;
-  while (end > ptr + 1 && uint2korr(end - 2) == 0x20)
+  while (end > ptr + 1 && uint2korr((uchar*) end - 2) == 0x20)
     end-= 2;
   return (size_t) (end - ptr);
 }
@@ -1883,6 +1885,7 @@ CHARSET_INFO my_charset_utf16le_general_ci=
   1,                   /* casedn_multiply  */
   2,                   /* mbminlen     */
   4,                   /* mbmaxlen     */
+  1,                   /* mbmaxlenlen  */
   0,                   /* min_sort_char */
   0xFFFF,              /* max_sort_char */
   ' ',                 /* pad char      */
@@ -1917,6 +1920,7 @@ CHARSET_INFO my_charset_utf16le_bin=
   1,                   /* casedn_multiply  */
   2,                   /* mbminlen     */
   4,                   /* mbmaxlen     */
+  1,                   /* mbmaxlenlen  */
   0,                   /* min_sort_char */
   0xFFFF,              /* max_sort_char */
   ' ',                 /* pad char      */
@@ -1939,7 +1943,7 @@ my_utf32_uni(const CHARSET_INFO *cs __attribute__((unused)),
 {
   if (s + 4 > e)
     return MY_CS_TOOSMALL4;
-  *pwc= (s[0] << 24) + (s[1] << 16) + (s[2] << 8) + (s[3]);
+  *pwc= (((my_wc_t)s[0]) << 24) + (s[1] << 16) + (s[2] << 8) + (s[3]);
   return 4;
 }
 
@@ -1960,29 +1964,29 @@ my_uni_utf32(const CHARSET_INFO *cs __attribute__((unused)),
 
 
 static inline void
-my_tolower_utf32(MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
+my_tolower_utf32(const MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
 {
-  MY_UNICASE_CHARACTER *page;
+  const MY_UNICASE_CHARACTER *page;
   if ((*wc <= uni_plane->maxchar) && (page= uni_plane->page[*wc >> 8]))
     *wc= page[*wc & 0xFF].tolower;
 }
 
 
 static inline void
-my_toupper_utf32(MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
+my_toupper_utf32(const MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
 {
-  MY_UNICASE_CHARACTER *page;
+  const MY_UNICASE_CHARACTER *page;
   if ((*wc <= uni_plane->maxchar) && (page= uni_plane->page[*wc >> 8]))
     *wc= page[*wc & 0xFF].toupper;
 }
 
 
 static inline void
-my_tosort_utf32(MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
+my_tosort_utf32(const MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
 {
   if (*wc <= uni_plane->maxchar)
   {
-    MY_UNICASE_CHARACTER *page;
+    const MY_UNICASE_CHARACTER *page;
     if ((page= uni_plane->page[*wc >> 8]))
       *wc= page[*wc & 0xFF].sort;
   }
@@ -2001,9 +2005,9 @@ my_caseup_utf32(const CHARSET_INFO *cs, char *src, size_t srclen,
   my_wc_t wc;
   int res;
   char *srcend= src + srclen;
-  MY_UNICASE_INFO *uni_plane= cs->caseinfo;
+  const MY_UNICASE_INFO *uni_plane= cs->caseinfo;
   DBUG_ASSERT(src == dst && srclen == dstlen);
-  
+
   while ((src < srcend) &&
          (res= my_utf32_uni(cs, &wc, (uchar *)src, (uchar*) srcend)) > 0)
   {
@@ -2023,7 +2027,7 @@ my_hash_sort_utf32(const CHARSET_INFO *cs, const uchar *s, size_t slen,
   my_wc_t wc;
   int res;
   const uchar *e= s + slen;
-  MY_UNICASE_INFO *uni_plane= cs->caseinfo;
+  const MY_UNICASE_INFO *uni_plane= cs->caseinfo;
   ulong tmp1;
   ulong tmp2;
   uint ch;
@@ -2039,7 +2043,7 @@ my_hash_sort_utf32(const CHARSET_INFO *cs, const uchar *s, size_t slen,
   {
     my_tosort_utf32(uni_plane, &wc);
 
-    ch= (unsigned int) (wc >> 24);
+    ch= (wc >> 24);
     tmp1^= (((tmp1 & 63) + tmp2) * ch) + (tmp1 << 8);
     tmp2+= 3;
 
@@ -2071,7 +2075,7 @@ my_casedn_utf32(const CHARSET_INFO *cs, char *src, size_t srclen,
   my_wc_t wc;
   int res;
   char *srcend= src + srclen;
-  MY_UNICASE_INFO *uni_plane= cs->caseinfo;
+  const MY_UNICASE_INFO *uni_plane= cs->caseinfo;
   DBUG_ASSERT(src == dst && srclen == dstlen);
 
   while ((res= my_utf32_uni(cs, &wc, (uchar*) src, (uchar*) srcend)) > 0)
@@ -2091,10 +2095,10 @@ my_strnncoll_utf32(const CHARSET_INFO *cs,
                    const uchar *t, size_t tlen,
                    my_bool t_is_prefix)
 {
-  my_wc_t UNINIT_VAR(s_wc),UNINIT_VAR(t_wc);
+  my_wc_t s_wc= 0, t_wc= 0;
   const uchar *se= s + slen;
   const uchar *te= t + tlen;
-  MY_UNICASE_INFO *uni_plane= cs->caseinfo;
+  const MY_UNICASE_INFO *uni_plane= cs->caseinfo;
 
   while (s < se && t < te)
   {
@@ -2156,9 +2160,9 @@ my_strnncollsp_utf32(const CHARSET_INFO *cs,
                      my_bool diff_if_only_endspace_difference)
 {
   int res;
-  my_wc_t UNINIT_VAR(s_wc), UNINIT_VAR(t_wc);
+  my_wc_t s_wc= 0, t_wc= 0;
   const uchar *se= s + slen, *te= t + tlen;
-  MY_UNICASE_INFO *uni_plane= cs->caseinfo;
+  const MY_UNICASE_INFO *uni_plane= cs->caseinfo;
 
   DBUG_ASSERT((slen % 4) == 0);
   DBUG_ASSERT((tlen % 4) == 0);
@@ -2248,7 +2252,7 @@ my_mbcharlen_utf32(const CHARSET_INFO *cs  __attribute__((unused)) ,
 }
 
 
-static int
+static size_t
 my_vsnprintf_utf32(char *dst, size_t n, const char* fmt, va_list ap)
 {
   char *start= dst, *end= dst + n;
@@ -2269,7 +2273,7 @@ my_vsnprintf_utf32(char *dst, size_t n, const char* fmt, va_list ap)
     
     fmt++;
     
-    /* Skip if MAX size is used (to be compatible with printf) */
+    /* Skip if max size is used (to be compatible with printf) */
     while ( (*fmt>='0' && *fmt<='9') || *fmt == '.' || *fmt == '-')
       fmt++;
     
@@ -2333,7 +2337,7 @@ my_vsnprintf_utf32(char *dst, size_t n, const char* fmt, va_list ap)
   *dst++= '\0';
   *dst++= '\0';
   *dst++= '\0';     /* End of errmessage */
-  return (int) (dst - start - 4);
+  return (size_t) (dst - start - 4);
 }
 
 
@@ -2341,9 +2345,12 @@ static size_t
 my_snprintf_utf32(const CHARSET_INFO *cs __attribute__((unused)),
                   char* to, size_t n, const char* fmt, ...)
 {
+  size_t retval;
   va_list args;
   va_start(args,fmt);
-  return my_vsnprintf_utf32(to, n, fmt, args);
+  retval= my_vsnprintf_utf32(to, n, fmt, args);
+  va_end(args);
+  return retval;
 }
 
 
@@ -2482,7 +2489,7 @@ my_strtoll10_utf32(const CHARSET_INFO *cs __attribute__((unused)),
 
 overflow:                                        /* *endptr is set here */
   *error= MY_ERRNO_ERANGE;
-  return negative ? LONGLONG_MIN : (longlong) ULONGLONG_MAX;
+  return negative ? LLONG_MIN : (longlong) ULONGLONG_MAX;
 
 end_i:
   *endptr= (char*) s;
@@ -2568,12 +2575,17 @@ void my_fill_utf32(const CHARSET_INFO *cs,
                    char *s, size_t slen, int fill)
 {
   char buf[10];
+#ifndef DBUG_OFF
   uint buflen;
+#endif
   char *e= s + slen;
-  
+
   DBUG_ASSERT((slen % 4) == 0);
 
-  buflen= cs->cset->wc_mb(cs, (my_wc_t) fill, (uchar*) buf,
+#ifndef DBUG_OFF
+  buflen=
+#endif
+    cs->cset->wc_mb(cs, (my_wc_t) fill, (uchar*) buf,
                           (uchar*) buf + sizeof(buf));
   DBUG_ASSERT(buflen == 4);
   while (s < e)
@@ -2602,9 +2614,9 @@ my_wildcmp_utf32_ci(const CHARSET_INFO *cs,
                     const char *wildstr, const char *wildend,
                     int escape, int w_one, int w_many)
 {
-  MY_UNICASE_INFO *uni_plane= cs->caseinfo;
+  const MY_UNICASE_INFO *uni_plane= cs->caseinfo;
   return my_wildcmp_unicode(cs, str, str_end, wildstr, wildend,
-                            escape, w_one, w_many, uni_plane); 
+                            escape, w_one, w_many, uni_plane);
 }
 
 
@@ -2625,7 +2637,7 @@ my_strnncoll_utf32_bin(const CHARSET_INFO *cs,
                        const uchar *t, size_t tlen,
                        my_bool t_is_prefix)
 {
-  my_wc_t UNINIT_VAR(s_wc), UNINIT_VAR(t_wc);
+  my_wc_t s_wc= 0, t_wc= 0;
   const uchar *se= s + slen;
   const uchar *te= t + tlen;
 
@@ -2821,6 +2833,7 @@ CHARSET_INFO my_charset_utf32_general_ci=
   1,                   /* casedn_multiply  */
   4,                   /* mbminlen     */
   4,                   /* mbmaxlen     */
+  1,                   /* mbmaxlenlen  */
   0,                   /* min_sort_char */
   0xFFFF,              /* max_sort_char */
   ' ',                 /* pad char      */
@@ -2855,6 +2868,7 @@ CHARSET_INFO my_charset_utf32_bin=
   1,                   /* casedn_multiply  */
   4,                   /* mbminlen     */
   4,                   /* mbmaxlen     */
+  1,                   /* mbmaxlenlen  */
   0,                   /* min_sort_char */
   0xFFFF,              /* max_sort_char */
   ' ',                 /* pad char      */
@@ -2871,7 +2885,7 @@ CHARSET_INFO my_charset_utf32_bin=
 
 #ifdef HAVE_CHARSET_ucs2
 
-static uchar ctype_ucs2[] = {
+static const uchar ctype_ucs2[] = {
     0,
    32, 32, 32, 32, 32, 32, 32, 32, 32, 40, 40, 40, 40, 40, 32, 32,
    32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32,
@@ -2891,7 +2905,7 @@ static uchar ctype_ucs2[] = {
     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0
 };
 
-static uchar to_lower_ucs2[] = {
+static const uchar to_lower_ucs2[] = {
     0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15,
    16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
    32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47,
@@ -2910,7 +2924,7 @@ static uchar to_lower_ucs2[] = {
   240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255
 };
 
-static uchar to_upper_ucs2[] = {
+static const uchar to_upper_ucs2[] = {
     0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15,
    16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
    32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47,
@@ -2956,27 +2970,27 @@ static int my_uni_ucs2(const CHARSET_INFO *cs __attribute__((unused)) ,
 
 
 static inline void
-my_tolower_ucs2(MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
+my_tolower_ucs2(const MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
 {
-  MY_UNICASE_CHARACTER *page;
+  const MY_UNICASE_CHARACTER *page;
   if ((page= uni_plane->page[(*wc >> 8) & 0xFF]))
     *wc= page[*wc & 0xFF].tolower;
 }
 
 
 static inline void
-my_toupper_ucs2(MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
+my_toupper_ucs2(const MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
 {
-  MY_UNICASE_CHARACTER *page;
+  const MY_UNICASE_CHARACTER *page;
   if ((page= uni_plane->page[(*wc >> 8) & 0xFF]))
     *wc= page[*wc & 0xFF].toupper;
 }
 
 
 static inline void
-my_tosort_ucs2(MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
+my_tosort_ucs2(const MY_UNICASE_INFO *uni_plane, my_wc_t *wc)
 {
-  MY_UNICASE_CHARACTER *page;
+  const MY_UNICASE_CHARACTER *page;
   if ((page= uni_plane->page[(*wc >> 8) & 0xFF]))
     *wc= page[*wc & 0xFF].sort;
 }
@@ -2989,9 +3003,9 @@ static size_t my_caseup_ucs2(const CHARSET_INFO *cs, char *src, size_t srclen,
   my_wc_t wc;
   int res;
   char *srcend= src + srclen;
-  MY_UNICASE_INFO *uni_plane= cs->caseinfo;
+  const MY_UNICASE_INFO *uni_plane= cs->caseinfo;
   DBUG_ASSERT(src == dst && srclen == dstlen);
-  
+
   while ((src < srcend) &&
          (res= my_ucs2_uni(cs, &wc, (uchar *)src, (uchar*) srcend)) > 0)
   {
@@ -3010,7 +3024,7 @@ static void my_hash_sort_ucs2(const CHARSET_INFO *cs, const uchar *s,
   my_wc_t wc;
   int res;
   const uchar *e=s+slen;
-  MY_UNICASE_INFO *uni_plane= cs->caseinfo;
+  const MY_UNICASE_INFO *uni_plane= cs->caseinfo;
   ulong tmp1;
   ulong tmp2;
 
@@ -3042,7 +3056,7 @@ static size_t my_casedn_ucs2(const CHARSET_INFO *cs, char *src, size_t srclen,
   my_wc_t wc;
   int res;
   char *srcend= src + srclen;
-  MY_UNICASE_INFO *uni_plane= cs->caseinfo;
+  const MY_UNICASE_INFO *uni_plane= cs->caseinfo;
   DBUG_ASSERT(src == dst && srclen == dstlen);
 
   while ((src < srcend) &&
@@ -3072,10 +3086,10 @@ static int my_strnncoll_ucs2(const CHARSET_INFO *cs,
                              my_bool t_is_prefix)
 {
   int s_res,t_res;
-  my_wc_t UNINIT_VAR(s_wc),UNINIT_VAR(t_wc);
+  my_wc_t s_wc= 0, t_wc= 0;
   const uchar *se=s+slen;
   const uchar *te=t+tlen;
-  MY_UNICASE_INFO *uni_plane= cs->caseinfo;
+  const MY_UNICASE_INFO *uni_plane= cs->caseinfo;
 
   while ( s < se && t < te )
   {
@@ -3137,7 +3151,7 @@ static int my_strnncollsp_ucs2(const CHARSET_INFO *cs __attribute__((unused)),
 {
   const uchar *se, *te;
   size_t minlen;
-  MY_UNICASE_INFO *uni_plane= cs->caseinfo;
+  const MY_UNICASE_INFO *uni_plane= cs->caseinfo;
 
   /* extra safety to make sure the lengths are even numbers */
   slen&= ~1;
@@ -3233,9 +3247,9 @@ int my_wildcmp_ucs2_ci(const CHARSET_INFO *cs,
 		    const char *wildstr,const char *wildend,
 		    int escape, int w_one, int w_many)
 {
-  MY_UNICASE_INFO *uni_plane= cs->caseinfo;
+  const MY_UNICASE_INFO *uni_plane= cs->caseinfo;
   return my_wildcmp_unicode(cs,str,str_end,wildstr,wildend,
-                            escape,w_one,w_many,uni_plane); 
+                            escape,w_one,w_many,uni_plane);
 }
 
 
@@ -3257,7 +3271,7 @@ int my_strnncoll_ucs2_bin(const CHARSET_INFO *cs,
                           my_bool t_is_prefix)
 {
   int s_res,t_res;
-  my_wc_t UNINIT_VAR(s_wc),UNINIT_VAR(t_wc);
+  my_wc_t s_wc= 0, t_wc= 0;
   const uchar *se=s+slen;
   const uchar *te=t+tlen;
 
@@ -3445,6 +3459,7 @@ CHARSET_INFO my_charset_ucs2_general_ci=
     1,                  /* casedn_multiply  */
     2,			/* mbminlen     */
     2,			/* mbmaxlen     */
+    1,			/* mbmaxlenlen  */
     0,			/* min_sort_char */
     0xFFFF,		/* max_sort_char */
     ' ',                /* pad char      */
@@ -3479,6 +3494,7 @@ CHARSET_INFO my_charset_ucs2_general_mysql500_ci=
   1,                                               /* casedn_multiply  */
   2,                                               /* mbminlen         */
   2,                                               /* mbmaxlen         */
+  1,                                               /* mbmaxlenlen      */
   0,                                               /* min_sort_char    */
   0xFFFF,                                          /* max_sort_char    */
   ' ',                                             /* pad char         */
@@ -3513,6 +3529,7 @@ CHARSET_INFO my_charset_ucs2_bin=
     1,                  /* casedn_multiply  */
     2,			/* mbminlen     */
     2,			/* mbmaxlen     */
+    1,			/* mbmaxlenlen  */
     0,			/* min_sort_char */
     0xFFFF,		/* max_sort_char */
     ' ',                /* pad char      */

@@ -36,7 +36,7 @@ struct _wLogLayout
 wLogLayout* WLog_Layout_New(wLog* log);
 void WLog_Layout_Free(wLog* log, wLogLayout* layout);
 
-#include "wlog.h"
+#include "wlog/wlog.h"
 
 #endif /* WINPR_WLOG_LAYOUT_PRIVATE_H */
 

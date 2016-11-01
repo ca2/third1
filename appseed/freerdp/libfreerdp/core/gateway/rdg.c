@@ -36,6 +36,9 @@
 #include "rdg.h"
 #include "../rdp.h"
 
+long fd_ctrl(BIO *b, int cmd, long num, void *ptr);
+
+
 #define TAG FREERDP_TAG("core.gateway.rdg")
 
 #pragma pack(push, 1)
@@ -479,7 +482,7 @@ BOOL rdg_process_in_channel_authorization(rdpRdg* rdg, HttpResponse* response)
 		return FALSE;
 
 	status = tls_write_all(rdg->tlsIn, Stream_Buffer(s), Stream_Length(s));
-
+	
 	Stream_Free(s, TRUE);
 
 	if (status <= 0)
@@ -1177,28 +1180,28 @@ BOOL rdg_process_close_packet(rdpRdg* rdg)
 	wStream* sChunk;
 	int packetSize = 12;
 	char chunkSize[11];
-
+    
 	sprintf_s(chunkSize, sizeof(chunkSize), "%X\r\n", packetSize);
-
+    
 	sChunk = Stream_New(NULL, strlen(chunkSize) + packetSize + 2);
-
+    
 	if (!sChunk)
 		return FALSE;
-
+    
 	Stream_Write(sChunk, chunkSize, strlen(chunkSize));
-
+    
 	Stream_Write_UINT16(sChunk, PKT_TYPE_CLOSE_CHANNEL_RESPONSE);   /* Type */
 	Stream_Write_UINT16(sChunk, 0);   /* Reserved */
 	Stream_Write_UINT32(sChunk, packetSize);   /* Packet length */
-
+    
 	Stream_Write_UINT32(sChunk, 0);   /* Status code */
-
+    
 	Stream_Write(sChunk, "\r\n", 2);
 	Stream_SealLength(sChunk);
-
+    
 	status = tls_write_all(rdg->tlsIn, Stream_Buffer(sChunk), Stream_Length(sChunk));
 	Stream_Free(sChunk, TRUE);
-
+    
 	return (status < 0 ? FALSE : TRUE);
 }
 
@@ -1208,26 +1211,26 @@ BOOL rdg_process_keep_alive_packet(rdpRdg* rdg)
 	wStream* sChunk;
 	int packetSize = 8;
 	char chunkSize[11];
-
+    
 	sprintf_s(chunkSize, sizeof(chunkSize), "%X\r\n", packetSize);
-
+    
 	sChunk = Stream_New(NULL, strlen(chunkSize) + packetSize + 2);
-
+    
 	if (!sChunk)
 		return FALSE;
-
+    
 	Stream_Write(sChunk, chunkSize, strlen(chunkSize));
-
+    
 	Stream_Write_UINT16(sChunk, PKT_TYPE_KEEPALIVE);   /* Type */
 	Stream_Write_UINT16(sChunk, 0);   /* Reserved */
 	Stream_Write_UINT32(sChunk, packetSize);   /* Packet length */
-
+    
 	Stream_Write(sChunk, "\r\n", 2);
 	Stream_SealLength(sChunk);
-
+    
 	status = tls_write_all(rdg->tlsIn, Stream_Buffer(sChunk), Stream_Length(sChunk));
 	Stream_Free(sChunk, TRUE);
-
+    
 	return (status < 0 ? FALSE : TRUE);
 }
 
@@ -1284,7 +1287,7 @@ BOOL rdg_process_control_packet(rdpRdg* rdg, int type, int packetLength)
 			status = rdg_process_keep_alive_packet(rdg);
 			LeaveCriticalSection(&rdg->writeSection);
 			break;
-
+            
 		default:
 			status = rdg_process_unknown_packet(rdg, type);
 			break;
@@ -1389,7 +1392,7 @@ long rdg_bio_callback(BIO* bio, int mode, const char* argp, int argi, long argl,
 static int rdg_bio_write(BIO* bio, const char* buf, int num)
 {
 	int status;
-	rdpRdg* rdg = (rdpRdg*) bio->ptr;
+	rdpRdg* rdg = (rdpRdg*) BIO_get_data(bio);
 
 	BIO_clear_flags(bio, BIO_FLAGS_WRITE);
 
@@ -1418,7 +1421,7 @@ static int rdg_bio_write(BIO* bio, const char* buf, int num)
 static int rdg_bio_read(BIO* bio, char* buf, int size)
 {
 	int status;
-	rdpRdg* rdg = (rdpRdg*) bio->ptr;
+	rdpRdg* rdg = (rdpRdg*) BIO_get_data(bio);
 
 	status = rdg_read_data_packet(rdg, (BYTE*) buf, size);
 
@@ -1454,7 +1457,7 @@ static int rdg_bio_gets(BIO* bio, char* str, int size)
 static long rdg_bio_ctrl(BIO* bio, int cmd, long arg1, void* arg2)
 {
 	int status = 0;
-	rdpRdg* rdg = (rdpRdg*)bio->ptr;
+	rdpRdg* rdg = (rdpRdg*)BIO_get_data(bio);
 	rdpTls* tlsOut = rdg->tlsOut;
 	rdpTls* tlsIn = rdg->tlsIn;
 
@@ -1516,10 +1519,11 @@ static long rdg_bio_ctrl(BIO* bio, int cmd, long arg1, void* arg2)
 
 static int rdg_bio_new(BIO* bio)
 {
-	bio->init = 1;
-	bio->num = 0;
-	bio->ptr = NULL;
-	bio->flags = BIO_FLAGS_SHOULD_RETRY;
+	BIO_set_init(bio, 1);
+	fd_ctrl(bio, BIO_CTRL_RESET, 0, NULL);
+	BIO_set_data(bio, NULL);
+   BIO_clear_flags(bio, -1);
+	BIO_set_flags(bio, BIO_FLAGS_SHOULD_RETRY);
 	return 1;
 }
 
@@ -1528,23 +1532,52 @@ static int rdg_bio_free(BIO* bio)
 	return 1;
 }
 
-static BIO_METHOD rdg_bio_methods =
-{
-	BIO_TYPE_TSG,
-	"RDGateway",
-	rdg_bio_write,
-	rdg_bio_read,
-	rdg_bio_puts,
-	rdg_bio_gets,
-	rdg_bio_ctrl,
-	rdg_bio_new,
-	rdg_bio_free,
-	NULL,
-};
+//static BIO_METHOD rdg_bio_methods =
+//{
+//	BIO_TYPE_TSG,
+//	"RDGateway",
+//	rdg_bio_write,
+//	rdg_bio_read,
+//	rdg_bio_puts,
+//	rdg_bio_gets,
+//	rdg_bio_ctrl,
+//	rdg_bio_new,
+//	rdg_bio_free,
+//	NULL,
+//};
+
+static BIO_METHOD * g_prdg_bio_methods = NULL;
 
 BIO_METHOD* BIO_s_rdg(void)
 {
-	return &rdg_bio_methods;
+   if (g_prdg_bio_methods != NULL)
+   {
+      return g_prdg_bio_methods;
+
+   }
+
+
+   g_prdg_bio_methods = BIO_meth_new(BIO_TYPE_TSG, "RDGateway");
+
+
+
+   BIO_meth_set_write(g_prdg_bio_methods, &rdg_bio_write);
+   BIO_meth_set_read(g_prdg_bio_methods, &rdg_bio_read);
+   BIO_meth_set_puts(g_prdg_bio_methods, &rdg_bio_puts);
+   BIO_meth_set_gets(g_prdg_bio_methods, &rdg_bio_gets);
+   BIO_meth_set_ctrl(g_prdg_bio_methods, &rdg_bio_ctrl);
+   BIO_meth_set_create(g_prdg_bio_methods, &rdg_bio_new);
+   BIO_meth_set_destroy(g_prdg_bio_methods, &rdg_bio_free);
+
+
+
+      return g_prdg_bio_methods;
+
+
+
+	//return &rdg_bio_methods;
+
+
 }
 
 rdpRdg* rdg_new(rdpTransport* transport)
@@ -1610,13 +1643,13 @@ rdpRdg* rdg_new(rdpTransport* transport)
 		if (!rdg->frontBio)
 			goto rdg_alloc_error;
 
-		rdg->frontBio->ptr = rdg;
+		BIO_set_data(rdg->frontBio, rdg);
 
 		rdg->readEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
 
 		if (!rdg->readEvent)
 			goto rdg_alloc_error;
-
+        
 		InitializeCriticalSection(&rdg->writeSection);
 	}
 
@@ -1661,7 +1694,7 @@ void rdg_free(rdpRdg* rdg)
 		CloseHandle(rdg->readEvent);
 		rdg->readEvent = NULL;
 	}
-
+    
 	DeleteCriticalSection(&rdg->writeSection);
 
 	free(rdg);

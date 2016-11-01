@@ -69,7 +69,7 @@ Connection::Connection(MYSQL_PLUGIN_VIO *vio): m_vio(vio), m_error(0)
 
 int Connection::write(const Blob &blob)
 {
-  m_error= m_vio->write_packet(m_vio, blob.ptr(), (int) blob.len());
+  m_error= m_vio->write_packet(m_vio, blob.ptr(), static_cast<int>(blob.len()));
 
 #ifndef DBUG_OFF
   if (m_error)
@@ -130,7 +130,7 @@ Sid::Sid(const wchar_t *account_name): m_data(NULL)
   // Determine required buffer sizes
 
   success= LookupAccountNameW(NULL, account_name, NULL, &sid_size,
-                             NULL, &domain_size, &m_type) != FALSE;
+                             NULL, &domain_size, &m_type);
 
   if (!success && GetLastError() != ERROR_INSUFFICIENT_BUFFER)
   {
@@ -152,7 +152,7 @@ Sid::Sid(const wchar_t *account_name): m_data(NULL)
   success= LookupAccountNameW(NULL, account_name,
                              m_data->User.Sid, &sid_size,
                              domain, &domain_size,
-                             &m_type) != FALSE;
+                             &m_type);
 
   if (!success || !is_valid())
   {
@@ -198,7 +198,7 @@ Sid::Sid(HANDLE token): m_data(NULL)
 
   // Determine required buffer size
 
-  success= GetTokenInformation(token, TokenUser, NULL, 0, &req_size) != FALSE;
+  success= GetTokenInformation(token, TokenUser, NULL, 0, &req_size);
   if (!success && GetLastError() != ERROR_INSUFFICIENT_BUFFER)
   {
 #ifndef DBUG_OFF
@@ -211,7 +211,7 @@ Sid::Sid(HANDLE token): m_data(NULL)
   }
 
   m_data= (TOKEN_USER*) new BYTE[req_size];
-  success= GetTokenInformation(token, TokenUser, m_data, req_size, &req_size) != FALSE;
+  success= GetTokenInformation(token, TokenUser, m_data, req_size, &req_size);
 
   if (!success || !is_valid())
   {
@@ -265,7 +265,7 @@ const char* Sid::as_string()
 
   if (!m_as_string)
   {
-    bool success= ConvertSidToStringSid(m_data->User.Sid, &m_as_string) != FALSE;
+    bool success= ConvertSidToStringSid(m_data->User.Sid, &m_as_string);
 
     if (!success)
     {
@@ -291,7 +291,7 @@ bool Sid::operator ==(const Sid &other)
   if (!is_valid() || !other.is_valid())
     return false;
 
-  return EqualSid(m_data->User.Sid, other.m_data->User.Sid) != FALSE;
+  return EqualSid(m_data->User.Sid, other.m_data->User.Sid);
 }
 
 
@@ -392,8 +392,8 @@ char* wchar_to_utf8(const wchar_t *string, size_t *len)
   int res= WideCharToMultiByte(CP_UTF8,              // convert to UTF-8
                                0,                    // conversion flags
                                string,               // input buffer
-                               (int) str_len,              // its length
-                               buf, (int) buf_len,         // output buffer and its size
+                               str_len,              // its length
+                               buf, buf_len,         // output buffer and its size
                                NULL, NULL);          // default character (not used)
 
   if (res)
@@ -460,8 +460,8 @@ wchar_t* utf8_to_wchar(const char *string, size_t *len)
   res= MultiByteToWideChar(CP_UTF8,            // convert from UTF-8
                            0,                  // conversion flags
                            string,             // input buffer
-                           (int) buf_len,            // its size
-                           buf, (int) buf_len);      // output buffer and its size
+                           buf_len,            // its size
+                           buf, buf_len);      // output buffer and its size
   if (res)
   {
     buf[res]= '\0';

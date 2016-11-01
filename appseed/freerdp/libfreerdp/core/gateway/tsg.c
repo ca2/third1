@@ -74,6 +74,9 @@
  * TsProxySendToServerRequest(ChannelContext)
  */
 
+long fd_ctrl(BIO *b, int cmd, long num, void *ptr);
+
+
 DWORD TsProxySendToServer(handle_t IDL_handle, byte pRpcMessage[], UINT32 count, UINT32* lengths)
 {
 	wStream* s;
@@ -1770,7 +1773,7 @@ BOOL tsg_connect(rdpTsg* tsg, const char* hostname, UINT16 port, int timeout)
 	if (!tsg->bio)
 		return FALSE;
 
-	tsg->bio->ptr = (void*) tsg;
+	BIO_set_data(tsg->bio, (void*) tsg);
 
 	return TRUE;
 }
@@ -1937,7 +1940,7 @@ long transport_bio_tsg_callback(BIO* bio, int mode, const char* argp, int argi, 
 static int transport_bio_tsg_write(BIO* bio, const char* buf, int num)
 {
 	int status;
-	rdpTsg* tsg = (rdpTsg*) bio->ptr;
+	rdpTsg* tsg = (rdpTsg*) BIO_get_data(bio);
 
 	BIO_clear_flags(bio, BIO_FLAGS_WRITE);
 
@@ -1964,7 +1967,7 @@ static int transport_bio_tsg_write(BIO* bio, const char* buf, int num)
 static int transport_bio_tsg_read(BIO* bio, char* buf, int size)
 {
 	int status;
-	rdpTsg* tsg = (rdpTsg*) bio->ptr;
+	rdpTsg* tsg = (rdpTsg*) BIO_get_data(bio);
 
 	BIO_clear_flags(bio, BIO_FLAGS_READ);
 
@@ -2001,7 +2004,7 @@ static int transport_bio_tsg_gets(BIO* bio, char* str, int size)
 static long transport_bio_tsg_ctrl(BIO* bio, int cmd, long arg1, void* arg2)
 {
 	int status = 0;
-	rdpTsg* tsg = (rdpTsg*) bio->ptr;
+	rdpTsg* tsg = (rdpTsg*) BIO_get_data(bio);
 	RpcVirtualConnection* connection = tsg->rpc->VirtualConnection;
 	RpcInChannel* inChannel = connection->DefaultInChannel;
 	RpcOutChannel* outChannel = connection->DefaultOutChannel;
@@ -2064,10 +2067,11 @@ static long transport_bio_tsg_ctrl(BIO* bio, int cmd, long arg1, void* arg2)
 
 static int transport_bio_tsg_new(BIO* bio)
 {
-	bio->init = 1;
-	bio->num = 0;
-	bio->ptr = NULL;
-	bio->flags = BIO_FLAGS_SHOULD_RETRY;
+	BIO_set_init(bio, 1);
+	fd_ctrl(bio, BIO_CTRL_RESET, 0, NULL);
+	BIO_set_data(bio, NULL);
+   BIO_clear_flags(bio, -1);
+   BIO_set_flags(bio, BIO_FLAGS_SHOULD_RETRY);
 	return 1;
 }
 
@@ -2076,21 +2080,43 @@ static int transport_bio_tsg_free(BIO* bio)
 	return 1;
 }
 
-static BIO_METHOD transport_bio_tsg_methods =
-{
-	BIO_TYPE_TSG,
-	"TSGateway",
-	transport_bio_tsg_write,
-	transport_bio_tsg_read,
-	transport_bio_tsg_puts,
-	transport_bio_tsg_gets,
-	transport_bio_tsg_ctrl,
-	transport_bio_tsg_new,
-	transport_bio_tsg_free,
-	NULL,
-};
+//static BIO_METHOD transport_bio_tsg_methods =
+//{
+//	BIO_TYPE_TSG,
+//	"TSGateway",
+//	transport_bio_tsg_write,
+//	transport_bio_tsg_read,
+//	transport_bio_tsg_puts,
+//	transport_bio_tsg_gets,
+//	transport_bio_tsg_ctrl,
+//	transport_bio_tsg_new,
+//	transport_bio_tsg_free,
+//	NULL,
+//};
+
+static BIO_METHOD * g_ptransport_bio_tsg_methods = NULL;
 
 BIO_METHOD* BIO_s_tsg(void)
 {
-	return &transport_bio_tsg_methods;
+
+   if (g_ptransport_bio_tsg_methods != NULL)
+   {
+
+      return g_ptransport_bio_tsg_methods;
+
+   }
+
+   g_ptransport_bio_tsg_methods = BIO_meth_new(BIO_TYPE_TSG, "TSGateway");
+
+   BIO_meth_set_write(g_ptransport_bio_tsg_methods, &transport_bio_tsg_write);
+   BIO_meth_set_read(g_ptransport_bio_tsg_methods, &transport_bio_tsg_read);
+   BIO_meth_set_puts(g_ptransport_bio_tsg_methods, &transport_bio_tsg_puts);
+   BIO_meth_set_gets(g_ptransport_bio_tsg_methods, &transport_bio_tsg_gets);
+   BIO_meth_set_ctrl(g_ptransport_bio_tsg_methods, &transport_bio_tsg_ctrl);
+   BIO_meth_set_create(g_ptransport_bio_tsg_methods, &transport_bio_tsg_new);
+   BIO_meth_set_destroy(g_ptransport_bio_tsg_methods, &transport_bio_tsg_free);
+
+   return g_ptransport_bio_tsg_methods;
+
+//   return &transport_bio_tsg_methods;
 }

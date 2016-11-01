@@ -37,7 +37,7 @@
 #include "../log.h"
 #define TAG WINPR_TAG("file")
 
-#ifdef _WIN32 || defined(_UWP)
+#ifdef _WIN32
 #include <io.h>
 #include <sys/stat.h>
 #else

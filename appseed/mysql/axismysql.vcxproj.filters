@@ -7,9 +7,6 @@
     <Filter Include="Header Files">
       <UniqueIdentifier>{5a4504d9-ee9b-4bc5-9289-b7cf3681ceb9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\atomic">
-      <UniqueIdentifier>{86983d1d-4288-46d4-b544-728ebd48b95f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\libmysql">
       <UniqueIdentifier>{531a5b06-e6c0-4bd2-a36a-824e11212597}</UniqueIdentifier>
     </Filter>
@@ -49,26 +46,11 @@
     <Filter Include="Source Files\mysys_ssl">
       <UniqueIdentifier>{a0e65708-be88-4712-bde5-1dbf9ac95399}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\mysql">
+      <UniqueIdentifier>{c34dbcf7-1017-41de-8c32-e8da654e5707}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="atomic\gcc_builtins.h">
-      <Filter>Header Files\atomic</Filter>
-    </ClInclude>
-    <ClInclude Include="atomic\generic-msvc.h">
-      <Filter>Header Files\atomic</Filter>
-    </ClInclude>
-    <ClInclude Include="atomic\nolock.h">
-      <Filter>Header Files\atomic</Filter>
-    </ClInclude>
-    <ClInclude Include="atomic\rwlock.h">
-      <Filter>Header Files\atomic</Filter>
-    </ClInclude>
-    <ClInclude Include="atomic\solaris.h">
-      <Filter>Header Files\atomic</Filter>
-    </ClInclude>
-    <ClInclude Include="atomic\x86-gcc.h">
-      <Filter>Header Files\atomic</Filter>
-    </ClInclude>
     <ClInclude Include="libmysql\authentication_win\common.h">
       <Filter>Header Files\libmysql\authentication_win</Filter>
     </ClInclude>
@@ -293,13 +275,7 @@
     <ClCompile Include="mysys\mf_same.c">
       <Filter>Source Files\mysys</Filter>
     </ClCompile>
-    <ClCompile Include="mysys\mf_sort.c">
-      <Filter>Source Files\mysys</Filter>
-    </ClCompile>
     <ClCompile Include="mysys\mf_soundex.c">
-      <Filter>Source Files\mysys</Filter>
-    </ClCompile>
-    <ClCompile Include="mysys\mf_tempdir.c">
       <Filter>Source Files\mysys</Filter>
     </ClCompile>
     <ClCompile Include="mysys\mf_tempfile.c">
@@ -315,9 +291,6 @@
       <Filter>Source Files\mysys</Filter>
     </ClCompile>
     <ClCompile Include="mysys\my_access.c">
-      <Filter>Source Files\mysys</Filter>
-    </ClCompile>
-    <ClCompile Include="mysys\my_alarm.c">
       <Filter>Source Files\mysys</Filter>
     </ClCompile>
     <ClCompile Include="mysys\my_alloc.c">
@@ -371,12 +344,6 @@
     <ClCompile Include="mysys\my_gethwaddr.c">
       <Filter>Source Files\mysys</Filter>
     </ClCompile>
-    <ClCompile Include="mysys\my_getncpus.c">
-      <Filter>Source Files\mysys</Filter>
-    </ClCompile>
-    <ClCompile Include="mysys\my_getpagesize.c">
-      <Filter>Source Files\mysys</Filter>
-    </ClCompile>
     <ClCompile Include="mysys\my_getsystime.c">
       <Filter>Source Files\mysys</Filter>
     </ClCompile>
@@ -384,12 +351,6 @@
       <Filter>Source Files\mysys</Filter>
     </ClCompile>
     <ClCompile Include="mysys\my_init.c">
-      <Filter>Source Files\mysys</Filter>
-    </ClCompile>
-    <ClCompile Include="mysys\my_isnan.c">
-      <Filter>Source Files\mysys</Filter>
-    </ClCompile>
-    <ClCompile Include="mysys\my_largepage.c">
       <Filter>Source Files\mysys</Filter>
     </ClCompile>
     <ClCompile Include="mysys\my_lib.c">
@@ -422,9 +383,6 @@
     <ClCompile Include="mysys\my_pread.c">
       <Filter>Source Files\mysys</Filter>
     </ClCompile>
-    <ClCompile Include="mysys\my_pthread.c">
-      <Filter>Source Files\mysys</Filter>
-    </ClCompile>
     <ClCompile Include="mysys\my_rdtsc.c">
       <Filter>Source Files\mysys</Filter>
     </ClCompile>
@@ -438,9 +396,6 @@
       <Filter>Source Files\mysys</Filter>
     </ClCompile>
     <ClCompile Include="mysys\my_seek.c">
-      <Filter>Source Files\mysys</Filter>
-    </ClCompile>
-    <ClCompile Include="mysys\my_sleep.c">
       <Filter>Source Files\mysys</Filter>
     </ClCompile>
     <ClCompile Include="mysys\my_static.c">
@@ -461,9 +416,6 @@
     <ClCompile Include="mysys\my_thr_init.c">
       <Filter>Source Files\mysys</Filter>
     </ClCompile>
-    <ClCompile Include="mysys\my_wincond.c">
-      <Filter>Source Files\mysys</Filter>
-    </ClCompile>
     <ClCompile Include="mysys\my_windac.c">
       <Filter>Source Files\mysys</Filter>
     </ClCompile>
@@ -479,9 +431,6 @@
     <ClCompile Include="mysys\my_write.c">
       <Filter>Source Files\mysys</Filter>
     </ClCompile>
-    <ClCompile Include="mysys\psi_noop.c">
-      <Filter>Source Files\mysys</Filter>
-    </ClCompile>
     <ClCompile Include="mysys\ptr_cmp.c">
       <Filter>Source Files\mysys</Filter>
     </ClCompile>
@@ -492,9 +441,6 @@
       <Filter>Source Files\mysys</Filter>
     </ClCompile>
     <ClCompile Include="mysys\string.c">
-      <Filter>Source Files\mysys</Filter>
-    </ClCompile>
-    <ClCompile Include="mysys\thr_alarm.c">
       <Filter>Source Files\mysys</Filter>
     </ClCompile>
     <ClCompile Include="mysys\thr_lock.c">
@@ -659,19 +605,10 @@
     <ClCompile Include="strings\strmake.c">
       <Filter>Source Files\strings</Filter>
     </ClCompile>
-    <ClCompile Include="strings\strmov.c">
-      <Filter>Source Files\strings</Filter>
-    </ClCompile>
     <ClCompile Include="strings\strnlen.c">
       <Filter>Source Files\strings</Filter>
     </ClCompile>
-    <ClCompile Include="strings\strnmov.c">
-      <Filter>Source Files\strings</Filter>
-    </ClCompile>
     <ClCompile Include="strings\strxmov.c">
-      <Filter>Source Files\strings</Filter>
-    </ClCompile>
-    <ClCompile Include="strings\strxnmov.c">
       <Filter>Source Files\strings</Filter>
     </ClCompile>
     <ClCompile Include="strings\xml.c">
@@ -713,17 +650,32 @@
     <ClCompile Include="my_global.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mysys\mysys.c">
+    <ClCompile Include="mysys\my_chmod.c">
       <Filter>Source Files\mysys</Filter>
     </ClCompile>
-    <ClCompile Include="mysys\myglobal_cc.cc">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="mysys\psi_noop.c">
+      <Filter>Source Files\mysys</Filter>
     </ClCompile>
-    <ClCompile Include="strings\_strings.c">
+    <ClCompile Include="mysys\thr_cond.c">
+      <Filter>Source Files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="mysys\win_timers.c">
+      <Filter>Source Files\mysys</Filter>
+    </ClCompile>
+    <ClCompile Include="strings\ctype-gb18030.c">
       <Filter>Source Files\strings</Filter>
     </ClCompile>
-    <ClCompile Include="mysys\_mysys.c">
-      <Filter>Source Files\mysys</Filter>
+    <ClCompile Include="strings\my_stpmov.c">
+      <Filter>Source Files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="strings\my_stpnmov.c">
+      <Filter>Source Files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="strings\strxnmov.c">
+      <Filter>Source Files\strings</Filter>
+    </ClCompile>
+    <ClCompile Include="mysys_ssl\my_aes_openssl.cc">
+      <Filter>Source Files\mysys_ssl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

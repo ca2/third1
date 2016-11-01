@@ -1,4 +1,4 @@
-/* Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+/* Copyright (c) 2000, 2015, Oracle and/or its affiliates. All rights reserved.
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -21,6 +21,34 @@
 */
 
 #include "vio_priv.h"
+
+#ifdef HAVE_OPENSSL
+PSI_memory_key key_memory_vio_ssl_fd;
+#endif
+
+PSI_memory_key key_memory_vio;
+PSI_memory_key key_memory_vio_read_buffer;
+
+#ifdef HAVE_PSI_INTERFACE
+static PSI_memory_info all_vio_memory[]=
+{
+#ifdef HAVE_OPENSSL
+  {&key_memory_vio_ssl_fd, "ssl_fd", 0},
+#endif
+
+  {&key_memory_vio, "vio", 0},
+  {&key_memory_vio_read_buffer, "read_buffer", 0},
+};
+
+void init_vio_psi_keys()
+{
+  const char* category= "vio";
+  int count;
+
+  count= array_elements(all_vio_memory);
+  mysql_memory_register(category, all_vio_memory, count);
+}
+#endif
 
 #ifdef _WIN32
 
@@ -68,7 +96,8 @@ static void vio_init(Vio *vio, enum enum_vio_type type,
   vio->localhost= flags & VIO_LOCALHOST;
   vio->read_timeout= vio->write_timeout= -1;
   if ((flags & VIO_BUFFERED_READ) &&
-      !(vio->read_buffer= (char*)my_malloc(VIO_READ_BUFFER_SIZE, MYF(MY_WME))))
+      !(vio->read_buffer= (char*)my_malloc(key_memory_vio_read_buffer,
+                                           VIO_READ_BUFFER_SIZE, MYF(MY_WME))))
     flags&= ~VIO_BUFFERED_READ;
 #ifdef _WIN32
   if (type == VIO_TYPE_NAMEDPIPE)
@@ -154,6 +183,16 @@ static void vio_init(Vio *vio, enum enum_vio_type type,
           to another socket-based transport type. For example,
           rebind a TCP/IP transport to SSL.
 
+  @remark If new socket handle passed to vio_reset() is not equal
+          to the socket handle stored in Vio then socket handle will
+          be closed before storing new value. If handles are equal
+          then old socket is not closed. This is important for
+          vio_reset() usage in ssl_do().
+
+  @remark If any error occurs then Vio members won't be altered thus
+          preserving socket handle stored in Vio and not taking
+          ownership over socket handle passed as parameter.
+
   @param vio    A VIO object.
   @param type   A socket-based transport type.
   @param sd     The socket.
@@ -167,25 +206,19 @@ my_bool vio_reset(Vio* vio, enum enum_vio_type type,
                   my_socket sd, void *ssl __attribute__((unused)), uint flags)
 {
   int ret= FALSE;
-  Vio old_vio= *vio;
+  Vio new_vio;
   DBUG_ENTER("vio_reset");
 
   /* The only supported rebind is from a socket-based transport type. */
   DBUG_ASSERT(vio->type == VIO_TYPE_TCPIP || vio->type == VIO_TYPE_SOCKET);
 
-  /*
-    Will be reinitialized depending on the flags.
-    Nonetheless, already buffered inside the SSL layer.
-  */
-  my_free(vio->read_buffer);
-
-  vio_init(vio, type, sd, flags);
+  vio_init(&new_vio, type, sd, flags);
 
   /* Preserve perfschema info for this connection */
-  vio->mysql_socket.m_psi= old_vio.mysql_socket.m_psi;
+  new_vio.mysql_socket.m_psi= vio->mysql_socket.m_psi;
 
 #ifdef HAVE_OPENSSL
-  vio->ssl_arg= ssl;
+  new_vio.ssl_arg= ssl;
 #endif
 
   /*
@@ -193,13 +226,40 @@ my_bool vio_reset(Vio* vio, enum enum_vio_type type,
     the underlying proprieties associated with the timeout,
     such as the socket blocking mode.
   */
-  if (old_vio.read_timeout >= 0)
-    ret|= vio_timeout(vio, 0, old_vio.read_timeout);
+  if (vio->read_timeout >= 0)
+    ret|= vio_timeout(&new_vio, 0, vio->read_timeout);
 
-  if (old_vio.write_timeout >= 0)
-    ret|= vio_timeout(vio, 1, old_vio.write_timeout);
+  if (vio->write_timeout >= 0)
+    ret|= vio_timeout(&new_vio, 1, vio->write_timeout);
 
-  DBUG_RETURN(test(ret));
+  if (ret)
+  {
+    /*
+      vio_reset() failed
+      free resources allocated by vio_init
+    */
+    my_free(new_vio.read_buffer);
+  }
+  else
+  {
+    /*
+      vio_reset() succeeded
+      free old resources and then overwrite VIO structure
+    */
+
+    /*
+      Close socket only when it is not equal to the new one.
+    */
+    if (sd != mysql_socket_getfd(vio->mysql_socket))
+      if (vio->inactive == FALSE)
+        vio->vioshutdown(vio);
+
+    my_free(vio->read_buffer);
+
+    *vio= new_vio;
+  }
+
+  DBUG_RETURN(MY_TEST(ret));
 }
 
 
@@ -211,7 +271,8 @@ Vio *mysql_socket_vio_new(MYSQL_SOCKET mysql_socket, enum enum_vio_type type, ui
   my_socket sd= mysql_socket_getfd(mysql_socket);
   DBUG_ENTER("mysql_socket_vio_new");
   DBUG_PRINT("enter", ("sd: %d", sd));
-  if ((vio = (Vio*) my_malloc(sizeof(*vio),MYF(MY_WME))))
+  if ((vio = (Vio*) my_malloc(key_memory_vio,
+                              sizeof(*vio),MYF(MY_WME))))
   {
     vio_init(vio, type, sd, flags);
     vio->mysql_socket= mysql_socket;
@@ -240,7 +301,8 @@ Vio *vio_new_win32pipe(HANDLE hPipe)
 {
   Vio *vio;
   DBUG_ENTER("vio_new_handle");
-  if ((vio = (Vio*) my_malloc(sizeof(Vio),MYF(MY_WME))))
+  if ((vio = (Vio*) my_malloc(key_memory_vio,
+                              sizeof(Vio),MYF(MY_WME))))
   {
     vio_init(vio, VIO_TYPE_NAMEDPIPE, 0, VIO_LOCALHOST);
     /* Create an object for event notification. */
@@ -251,7 +313,7 @@ Vio *vio_new_win32pipe(HANDLE hPipe)
       DBUG_RETURN(NULL);
     }
     vio->hPipe= hPipe;
-    strmov(vio->desc, "named pipe");
+    my_stpcpy(vio->desc, "named pipe");
   }
   DBUG_RETURN(vio);
 }
@@ -264,7 +326,8 @@ Vio *vio_new_win32shared_memory(HANDLE handle_file_map, HANDLE handle_map,
 {
   Vio *vio;
   DBUG_ENTER("vio_new_win32shared_memory");
-  if ((vio = (Vio*) my_malloc(sizeof(Vio),MYF(MY_WME))))
+  if ((vio = (Vio*) my_malloc(key_memory_vio,
+                              sizeof(Vio),MYF(MY_WME))))
   {
     vio_init(vio, VIO_TYPE_SHARED_MEMORY, 0, VIO_LOCALHOST);
     vio->handle_file_map= handle_file_map;
@@ -276,7 +339,7 @@ Vio *vio_new_win32shared_memory(HANDLE handle_file_map, HANDLE handle_map,
     vio->event_conn_closed= event_conn_closed;
     vio->shared_memory_remain= 0;
     vio->shared_memory_pos= handle_map;
-    strmov(vio->desc, "shared memory");
+    my_stpcpy(vio->desc, "shared memory");
   }
   DBUG_RETURN(vio);
 }
