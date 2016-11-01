@@ -3,22 +3,6 @@
 
 #include "ace/_ace.h"
 
-#define FREERDP_VENDOR_STRING "ca2"
-
-
-#define FREERDP_PRODUCT_STRING "rdpclient"
-
-
-
-#define FREERDP_DATA_PATH "C:/Program Files (x86)/FreeRDP/share/freerdp"
-#define FREERDP_KEYMAP_PATH ""
-#define FREERDP_PLUGIN_PATH "lib/freerdp"
-
-#define FREERDP_INSTALL_PREFIX "C:/Program Files (x86)/FreeRDP"
-
-#define FREERDP_LIBRARY_PATH "lib"
-
-#define FREERDP_ADDIN_PATH "lib/freerdp"
 
 #define CMAKE_SHARED_LIBRARY_SUFFIX ".dll"
 #define CMAKE_SHARED_LIBRARY_PREFIX  ""

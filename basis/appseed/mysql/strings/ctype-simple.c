@@ -76,11 +76,11 @@ my_strnxfrm_simple(const CHARSET_INFO *cs,
                    uchar *dst, size_t dstlen, uint nweights,
                    const uchar *src, size_t srclen, uint flags)
 {
-  uchar *map= cs->sort_order;
+  const uchar *map= cs->sort_order;
   uchar *d0= dst;
-  uint frmlen;
-  if ((frmlen= (uint) MY_MIN(dstlen, nweights)) > srclen)
-    frmlen= (uint)srclen;
+  size_t frmlen;
+  if ((frmlen= MY_MIN(dstlen, nweights)) > srclen)
+    frmlen= srclen;
   if (dst != src)
   {
     const uchar *end;
@@ -94,16 +94,16 @@ my_strnxfrm_simple(const CHARSET_INFO *cs,
       *dst= map[(uchar) *dst];
   }
   return my_strxfrm_pad_desc_and_reverse(cs, d0, dst, d0 + dstlen,
-                                         nweights - frmlen, flags, 0);
+                                         (uint)(nweights - frmlen), flags, 0);
 }
 
 
-int my_strnncoll_simple(const CHARSET_INFO * cs, const uchar *s, size_t slen, 
+int my_strnncoll_simple(const CHARSET_INFO * cs, const uchar *s, size_t slen,
                         const uchar *t, size_t tlen,
                         my_bool t_is_prefix)
 {
   size_t len = ( slen > tlen ) ? tlen : slen;
-  uchar *map= cs->sort_order;
+  const uchar *map= cs->sort_order;
   if (t_is_prefix && slen > tlen)
     slen=tlen;
   while (len--)
@@ -197,7 +197,7 @@ int my_strnncollsp_simple(const CHARSET_INFO *cs, const uchar *a,
 
 size_t my_caseup_str_8bit(const CHARSET_INFO *cs,char *str)
 {
-  uchar *map= cs->to_upper;
+  const uchar *map= cs->to_upper;
   char *str_orig= str;
   while ((*str= (char) map[(uchar) *str]) != 0)
     str++;
@@ -207,7 +207,7 @@ size_t my_caseup_str_8bit(const CHARSET_INFO *cs,char *str)
 
 size_t my_casedn_str_8bit(const CHARSET_INFO *cs,char *str)
 {
-  uchar *map= cs->to_lower;
+  const uchar *map= cs->to_lower;
   char *str_orig= str;
   while ((*str= (char) map[(uchar) *str]) != 0)
     str++;
@@ -220,7 +220,7 @@ size_t my_caseup_8bit(const CHARSET_INFO *cs, char *src, size_t srclen,
                       size_t dstlen __attribute__((unused)))
 {
   char *end= src + srclen;
-  uchar *map= cs->to_upper;
+  const uchar *map= cs->to_upper;
   DBUG_ASSERT(src == dst && srclen == dstlen);
   for ( ; src != end ; src++)
     *src= (char) map[(uchar) *src];
@@ -233,7 +233,7 @@ size_t my_casedn_8bit(const CHARSET_INFO *cs, char *src, size_t srclen,
                       size_t dstlen __attribute__((unused)))
 {
   char *end= src + srclen;
-  uchar *map=cs->to_lower;
+  const uchar *map=cs->to_lower;
   DBUG_ASSERT(src == dst && srclen == dstlen);
   for ( ; src != end ; src++)
     *src= (char) map[(uchar) *src];
@@ -242,7 +242,7 @@ size_t my_casedn_8bit(const CHARSET_INFO *cs, char *src, size_t srclen,
 
 int my_strcasecmp_8bit(const CHARSET_INFO *cs,const char *s, const char *t)
 {
-  uchar *map=cs->to_upper;
+  const uchar *map=cs->to_upper;
   while (map[(uchar) *s] == map[(uchar) *t++])
     if (!*s++) return 0;
   return ((int) map[(uchar) s[0]] - (int) map[(uchar) t[-1]]);
@@ -264,11 +264,11 @@ int my_wc_mb_8bit(const CHARSET_INFO *cs,my_wc_t wc,
 		  uchar *str,
 		  uchar *end)
 {
-  MY_UNI_IDX *idx;
+  const MY_UNI_IDX *idx;
 
   if (str >= end)
     return MY_CS_TOOSMALL;
-  
+
   for (idx=cs->tab_from_uni; idx->tab ; idx++)
   {
     if (idx->from <= wc && idx->to >= wc)
@@ -293,9 +293,9 @@ size_t my_snprintf_8bit(const CHARSET_INFO *cs  __attribute__((unused)),
 		     const char* fmt, ...)
 {
   va_list args;
-  int result;
+  size_t result;
   va_start(args,fmt);
-  result= (int) my_vsnprintf(to, n, fmt, args);
+  result= my_vsnprintf(to, n, fmt, args);
   va_end(args);
   return result;
 }
@@ -305,7 +305,7 @@ void my_hash_sort_simple(const CHARSET_INFO *cs,
 			 const uchar *key, size_t len,
 			 ulong *nr1, ulong *nr2)
 {
-  uchar *sort_order=cs->sort_order;
+  const uchar *sort_order=cs->sort_order;
   const uchar *end;
   ulong tmp1;
   ulong tmp2;
@@ -588,16 +588,16 @@ longlong my_strntoll_8bit(const CHARSET_INFO *cs __attribute__((unused)),
 
   if (negative)
   {
-    if (i  > (ulonglong) LONGLONG_MIN)
+    if (i  > (ulonglong) LLONG_MIN)
       overflow = 1;
   }
-  else if (i > (ulonglong) LONGLONG_MAX)
+  else if (i > (ulonglong) LLONG_MAX)
     overflow = 1;
 
   if (overflow)
   {
     err[0]= ERANGE;
-    return negative ? LONGLONG_MIN : LONGLONG_MAX;
+    return negative ? LLONG_MIN : LLONG_MAX;
   }
 
   return (negative ? -((longlong) i) : (longlong) i);
@@ -755,7 +755,7 @@ size_t my_long10_to_str_8bit(const CHARSET_INFO *cs __attribute__((unused)),
   {
     if (val < 0)
     {
-      /* Avoid integer overflow in (-val) for LONGLONG_MIN (BUG#31799). */
+      /* Avoid integer overflow in (-val) for LLONG_MIN (BUG#31799). */
       uval= (unsigned long int)0 - uval;
       *dst++= '-';
       len--;
@@ -795,7 +795,7 @@ size_t my_longlong10_to_str_8bit(const CHARSET_INFO *cs
   {
     if (val < 0)
     {
-      /* Avoid integer overflow in (-val) for LONGLONG_MIN (BUG#31799). */
+      /* Avoid integer overflow in (-val) for LLONG_MIN (BUG#31799). */
       uval = (ulonglong)0 - uval;
       *dst++= '-';
       len--;
@@ -978,7 +978,7 @@ my_bool my_like_range_simple(const CHARSET_INFO *cs,
     }
     if (*ptr == w_one)				/* '_' in SQL */
     {
-      *min_str++='\0';				/* This should be MIN char */
+      *min_str++='\0';				/* This should be min char */
       *max_str++= (char) cs->max_sort_char;
       continue;
     }
@@ -1130,7 +1130,7 @@ skip:
 	  if (nmatch > 1)
 	  {
 	    match[1].beg= match[0].end;
-	    match[1].end= (uint) (match[0].end+s_length);
+	    match[1].end= match[0].end + (uint)s_length;
 	    match[1].mb_len= match[1].end-match[1].beg;
 	  }
 	}
@@ -1169,7 +1169,8 @@ create_fromuni(CHARSET_INFO *cs,
 {
   uni_idx	idx[PLANE_NUM];
   int		i,n;
-  
+  MY_UNI_IDX	*tab_from_uni;
+
   /*
     Check that Unicode map is loaded.
     It can be not loaded when the collation is
@@ -1205,45 +1206,47 @@ create_fromuni(CHARSET_INFO *cs,
   
   /* Sort planes in descending order */
   qsort(&idx,PLANE_NUM,sizeof(uni_idx),&pcmp);
-  
+
   for (i=0; i < PLANE_NUM; i++)
   {
     int ch,numchars;
-    
+    uchar *tab;
+
     /* Skip empty plane */
     if (!idx[i].nchars)
       break;
-    
+
     numchars=idx[i].uidx.to-idx[i].uidx.from+1;
-    if (!(idx[i].uidx.tab= (uchar *)
-                           (loader->once_alloc) (numchars *
-                                                 sizeof(*idx[i].uidx.tab))))
+    if (!(idx[i].uidx.tab= tab= (uchar *)
+                                (loader->once_alloc)
+                                  (numchars * sizeof(*idx[i].uidx.tab))))
       return TRUE;
-    
-    memset(idx[i].uidx.tab, 0, numchars*sizeof(*idx[i].uidx.tab));
-    
+
+    memset(tab, 0, numchars*sizeof(*idx[i].uidx.tab));
+
     for (ch=1; ch < PLANE_SIZE; ch++)
     {
       uint16 wc=cs->tab_to_uni[ch];
       if (wc >= idx[i].uidx.from && wc <= idx[i].uidx.to && wc)
       {
         int ofs= wc - idx[i].uidx.from;
-        idx[i].uidx.tab[ofs]= ch;
+        tab[ofs]= ch;
       }
     }
   }
-  
+
   /* Allocate and fill reverse table for each plane */
   n=i;
-  if (!(cs->tab_from_uni= (MY_UNI_IDX *)
-                          (loader->once_alloc)(sizeof(MY_UNI_IDX) * (n + 1))))
+  if (!(cs->tab_from_uni= tab_from_uni= (MY_UNI_IDX *)
+                                        (loader->once_alloc)
+                                          (sizeof(MY_UNI_IDX) * (n + 1))))
     return TRUE;
 
   for (i=0; i< n; i++)
-    cs->tab_from_uni[i]= idx[i].uidx;
-  
+    tab_from_uni[i]= idx[i].uidx;
+
   /* Set end-of-list marker */
-  memset(&cs->tab_from_uni[i], 0, sizeof(MY_UNI_IDX));
+  memset(&tab_from_uni[i], 0, sizeof(MY_UNI_IDX));
   return FALSE;
 }
 
@@ -1304,8 +1307,8 @@ int my_mb_ctype_8bit(const CHARSET_INFO *cs, int *ctype,
 }
 
 
-#define CUTOFF  (ULONGLONG_MAX / 10)
-#define CUTLIM  (ULONGLONG_MAX % 10)
+#define CUTOFF  (ULLONG_MAX / 10)
+#define CUTLIM  (ULLONG_MAX % 10)
 #define DIGITS_IN_ULONGLONG 20
 
 static ulonglong d10[DIGITS_IN_ULONGLONG]=
@@ -1380,10 +1383,10 @@ static ulonglong d10[DIGITS_IN_ULONGLONG]=
     0	     ok
     ERANGE   If the the value of the converted number is out of range
     In this case the return value is:
-    - ULONGLONG_MAX if unsigned_flag and the number was too big
+    - ULLONG_MAX if unsigned_flag and the number was too big
     - 0 if unsigned_flag and the number was negative
-    - LONGLONG_MAX if no unsigned_flag and the number is too big
-    - LONGLONG_MIN if no unsigned_flag and the number it too big negative
+    - LLONG_MAX if no unsigned_flag and the number is too big
+    - LLONG_MIN if no unsigned_flag and the number it too big negative
     
     EDOM If the string didn't contain any digits.
     In this case the return value is 0.
@@ -1443,7 +1446,7 @@ my_strntoull10rnd_8bit(const CHARSET_INFO *cs __attribute__((unused)),
     }
   }
   
-  digits= (int) (str - beg);
+  digits= (int)(str - beg);
 
   /* Continue to accumulate into ulonglong */
   for (dot= NULL, ull= ul; str < end; str++)
@@ -1463,7 +1466,7 @@ my_strntoull10rnd_8bit(const CHARSET_INFO *cs __attribute__((unused)),
       */
       if (ull == CUTOFF)
       {
-        ull= ULONGLONG_MAX;
+        ull= ULLONG_MAX;
         addon= 1;
         str++;
       }
@@ -1480,7 +1483,7 @@ my_strntoull10rnd_8bit(const CHARSET_INFO *cs __attribute__((unused)),
       }
       else
       {
-        shift= (int) (dot - str);
+        shift= (int)(dot - str);
         for ( ; str < end && (ch= (uchar) (*str - '0')) < 10; str++);
       }
       goto exp;
@@ -1504,7 +1507,7 @@ my_strntoull10rnd_8bit(const CHARSET_INFO *cs __attribute__((unused)),
     /* Unknown character, exit the loop */
     break; 
   }
-  shift= (int) ( dot ? dot - str : 0 ) ; /* Right shift */
+  shift= dot ? (int)(dot - str) : 0; /* Right shift */
   addon= 0;
 
 exp:    /* [ E [ <sign> ] <unsigned integer> ] */
@@ -1540,7 +1543,7 @@ exp:    /* [ E [ <sign> ] <unsigned integer> ] */
   {
     if (addon)
     {
-      if (ull == ULONGLONG_MAX)
+      if (ull == ULLONG_MAX)
         goto ret_too_big;
       ull++;
     }
@@ -1582,20 +1585,20 @@ ret_sign:
   {
     if (negative)
     {
-      if (ull > (ulonglong) LONGLONG_MIN)
+      if (ull > (ulonglong) LLONG_MIN)
       {
         *error= MY_ERRNO_ERANGE;
-        return (ulonglong) LONGLONG_MIN;
+        return (ulonglong) LLONG_MIN;
       }
       *error= 0;
       return (ulonglong) -(longlong) ull;
     }
     else
     {
-      if (ull > (ulonglong) LONGLONG_MAX)
+      if (ull > (ulonglong) LLONG_MAX)
       {
         *error= MY_ERRNO_ERANGE;
-        return (ulonglong) LONGLONG_MAX;
+        return (ulonglong) LLONG_MAX;
       }
       *error= 0;
       return ull;
@@ -1625,8 +1628,8 @@ ret_too_big:
   *endptr= (char*) str;
   *error= MY_ERRNO_ERANGE;
   return unsigned_flag ?
-         ULONGLONG_MAX :
-         negative ? (ulonglong) LONGLONG_MIN : (ulonglong) LONGLONG_MAX;
+         ULLONG_MAX :
+         negative ? (ulonglong) LLONG_MIN : (ulonglong) LLONG_MAX;
 }
 
 
@@ -1815,7 +1818,7 @@ my_strxfrm_pad_desc_and_reverse(const CHARSET_INFO *cs,
   my_strxfrm_desc_and_reverse(str, frmend, flags, level);
   if ((flags & MY_STRXFRM_PAD_TO_MAXLEN) && frmend < strend)
   {
-    uint fill_length= (uint) (strend - frmend);
+    size_t fill_length= strend - frmend;
     cs->cset->fill(cs, (char*) frmend, fill_length, cs->pad_char);
     frmend= strend;
   }

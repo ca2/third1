@@ -66,13 +66,6 @@ int my_chsize(File fd, my_off_t newlength, int filler, myf MyFlags)
       goto err;
     }
     DBUG_RETURN(0);
-#elif defined(HAVE_CHSIZE)
-    if (chsize(fd, (off_t) newlength))
-    {
-      my_errno=errno;
-      goto err;
-    }
-    DBUG_RETURN(0);
 #else
     /*
       Fill space between requested length and true length with 'filler'
@@ -104,7 +97,7 @@ err:
   if (MyFlags & MY_WME)
   {
     char  errbuf[MYSYS_STRERROR_SIZE];
-    my_error(EE_CANT_CHSIZE, MYF(ME_BELL+ME_WAITTANG),
+    my_error(EE_CANT_CHSIZE, MYF(0),
              my_errno, my_strerror(errbuf, sizeof(errbuf), my_errno));
   }
   DBUG_RETURN(1);

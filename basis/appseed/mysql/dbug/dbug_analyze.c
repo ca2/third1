@@ -216,7 +216,7 @@ char *s;
 
     DBUG_ENTER ("strsave");
     DBUG_PRINT ("strsave", ("%s",s));
-    if (!s || (len = (unsigned int) strlen (s)) == 0) {
+    if (!s || (len = strlen (s)) == 0) {
 	DBUG_RETURN (0);
     }
     MALLOC (retval, ++len, char);
@@ -471,7 +471,7 @@ struct module_t *m;
 unsigned long int *called, *timed;
 {
     char *name = m -> name;
-    unsigned int calls = (unsigned int) m -> m_calls;
+    unsigned int calls = m -> m_calls;
     unsigned long local_time = m -> m_time;
     unsigned long stkuse = m -> m_stkuse;
     unsigned int import;

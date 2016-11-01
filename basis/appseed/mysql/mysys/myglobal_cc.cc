@@ -1,1 +1,0 @@
-#include "my_global_cc.h"

@@ -1,4 +1,4 @@
-/* Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+/* Copyright (c) 2000, 2014, Oracle and/or its affiliates. All rights reserved.
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -20,27 +20,12 @@
 #include	<m_string.h>
 #include	<my_dir.h>	/* Structs used by my_dir,includes sys/types */
 #include	"mysys_err.h"
-#if defined(HAVE_SYS_STAT_H)
-# include <sys/stat.h>
-#endif
-#if defined(HAVE_SYS_TYPES_H)
-# include <sys/types.h>
-#endif
 #if defined(HAVE_DIRENT_H)
 # include <dirent.h>
 # define NAMLEN(dirent) strlen((dirent)->d_name)
 #else
 # define dirent direct
 # define NAMLEN(dirent) (dirent)->d_namlen
-# if defined(HAVE_SYS_NDIR_H)
-#  include <sys/ndir.h>
-# endif
-# if defined(HAVE_SYS_DIR_H)
-#  include <sys/dir.h>
-# endif
-# if defined(HAVE_NDIR_H)
-#  include <ndir.h>
-# endif
 #endif
 
 #if defined(HAVE_READDIR_R)
@@ -50,14 +35,13 @@
 #endif
 
 /*
-  We are assuming that directory we are reading is either has less than
+  We are assuming that directory we are reading is either has less than 
   100 files and so can be read in one initial chunk or has more than 1000
   files and so big increment are suitable.
 */
 #define ENTRIES_START_SIZE (8192/sizeof(FILEINFO))
 #define ENTRIES_INCREMENT  (65536/sizeof(FILEINFO))
 #define NAMES_START_SIZE   32768
-
 
 static int	comp_names(struct fileinfo *a,struct fileinfo *b);
 
@@ -69,9 +53,9 @@ void my_dirend(MY_DIR *buffer)
   DBUG_ENTER("my_dirend");
   if (buffer)
   {
-    delete_dynamic((DYNAMIC_ARRAY*)((char*)buffer +
+    delete_dynamic((DYNAMIC_ARRAY*)((char*)buffer + 
                                     ALIGN_SIZE(sizeof(MY_DIR))));
-    free_root((MEM_ROOT*)((char*)buffer + ALIGN_SIZE(sizeof(MY_DIR)) +
+    free_root((MEM_ROOT*)((char*)buffer + ALIGN_SIZE(sizeof(MY_DIR)) + 
                           ALIGN_SIZE(sizeof(DYNAMIC_ARRAY))), MYF(0));
     my_free(buffer);
   }
@@ -87,7 +71,7 @@ static int comp_names(struct fileinfo *a, struct fileinfo *b)
 } /* comp_names */
 
 
-#if !defined(_WIN32) 
+#if !defined(_WIN32)
 
 MY_DIR	*my_dir(const char *path, myf MyFlags)
 {
@@ -109,44 +93,46 @@ MY_DIR	*my_dir(const char *path, myf MyFlags)
 #endif
 
   dirp = opendir(directory_file_name(tmp_path,(char *) path));
-  if (dirp == NULL ||
-      ! (buffer= my_malloc(ALIGN_SIZE(sizeof(MY_DIR)) +
+  if (dirp == NULL || 
+      ! (buffer= my_malloc(key_memory_MY_DIR,
+                           ALIGN_SIZE(sizeof(MY_DIR)) + 
                            ALIGN_SIZE(sizeof(DYNAMIC_ARRAY)) +
                            sizeof(MEM_ROOT), MyFlags)))
     goto error;
 
-  dir_entries_storage= (DYNAMIC_ARRAY*)(buffer + ALIGN_SIZE(sizeof(MY_DIR)));
+  dir_entries_storage= (DYNAMIC_ARRAY*)(buffer + ALIGN_SIZE(sizeof(MY_DIR))); 
   names_storage= (MEM_ROOT*)(buffer + ALIGN_SIZE(sizeof(MY_DIR)) +
                              ALIGN_SIZE(sizeof(DYNAMIC_ARRAY)));
-
+  
   if (my_init_dynamic_array(dir_entries_storage, sizeof(FILEINFO),
+                            NULL,               /* init_buffer */
                             ENTRIES_START_SIZE, ENTRIES_INCREMENT))
   {
     my_free(buffer);
     goto error;
   }
-  init_alloc_root(names_storage, NAMES_START_SIZE, NAMES_START_SIZE);
-
+  init_alloc_root(key_memory_MY_DIR, names_storage, NAMES_START_SIZE, NAMES_START_SIZE);
+  
   /* MY_DIR structure is allocated and completly initialized at this point */
   result= (MY_DIR*)buffer;
 
   tmp_file=strend(tmp_path);
 
   dp= (struct dirent*) dirent_tmp;
-
+  
   while (!(READDIR(dirp,(struct dirent*) dirent_tmp,dp)))
   {
     if (!(finfo.name= strdup_root(names_storage, dp->d_name)))
       goto error;
-
+    
     if (MyFlags & MY_WANT_STAT)
     {
-      if (!(finfo.mystat= (MY_STAT*)alloc_root(names_storage,
+      if (!(finfo.mystat= (MY_STAT*)alloc_root(names_storage, 
                                                sizeof(MY_STAT))))
         goto error;
-
+      
       memset(finfo.mystat, 0, sizeof(MY_STAT));
-      (void) strmov(tmp_file,dp->d_name);
+      (void) my_stpcpy(tmp_file,dp->d_name);
       (void) my_stat(tmp_path, finfo.mystat, MyFlags);
       if (!(finfo.mystat->st_mode & MY_S_IREAD))
         continue;
@@ -154,7 +140,7 @@ MY_DIR	*my_dir(const char *path, myf MyFlags)
     else
       finfo.mystat= NULL;
 
-    if (push_dynamic(dir_entries_storage, (uchar*)&finfo))
+    if (insert_dynamic(dir_entries_storage, (uchar*)&finfo))
       goto error;
   }
 
@@ -164,7 +150,7 @@ MY_DIR	*my_dir(const char *path, myf MyFlags)
 #endif
   result->dir_entry= (FILEINFO *)dir_entries_storage->buffer;
   result->number_off_files= dir_entries_storage->elements;
-
+  
   if (!(MyFlags & MY_DONT_SORT))
     my_qsort((void *) result->dir_entry, result->number_off_files,
           sizeof(FILEINFO), (qsort_cmp) comp_names);
@@ -181,7 +167,7 @@ MY_DIR	*my_dir(const char *path, myf MyFlags)
   if (MyFlags & (MY_FAE | MY_WME))
   {
     char errbuf[MYSYS_STRERROR_SIZE];
-    my_error(EE_DIR, MYF(ME_BELL+ME_WAITTANG), path,
+    my_error(EE_DIR, MYF(0), path,
              my_errno, my_strerror(errbuf, sizeof(errbuf), my_errno));
   }
   DBUG_RETURN((MY_DIR *) NULL);
@@ -203,7 +189,7 @@ char * directory_file_name (char * dst, const char *src)
 
   if (src[0] == 0)
     src= (char*) ".";				/* Use empty as current */
-  end= strnmov(dst, src, FN_REFLEN + 1);
+  end= my_stpnmov(dst, src, FN_REFLEN + 1);
   if (end[-1] != FN_LIBCHAR)
   {
     end[0]=FN_LIBCHAR;				/* Add last '/' */
@@ -242,7 +228,7 @@ MY_DIR	*my_dir(const char *path, myf MyFlags)
   tmp_file=tmp_path;
   if (!*path)
     *tmp_file++ ='.';				/* From current dir */
-  tmp_file= strnmov(tmp_file, path, FN_REFLEN-5);
+  tmp_file= my_stpnmov(tmp_file, path, FN_REFLEN-5);
   if (tmp_file[-1] == FN_DEVCHAR)
     *tmp_file++= '.';				/* From current dev-dir */
   if (tmp_file[-1] != FN_LIBCHAR)
@@ -252,23 +238,25 @@ MY_DIR	*my_dir(const char *path, myf MyFlags)
   tmp_file[2]='*';
   tmp_file[3]='\0';
 
-  if (!(buffer= my_malloc(ALIGN_SIZE(sizeof(MY_DIR)) +
+  if (!(buffer= my_malloc(key_memory_MY_DIR,
+                          ALIGN_SIZE(sizeof(MY_DIR)) + 
                           ALIGN_SIZE(sizeof(DYNAMIC_ARRAY)) +
                           sizeof(MEM_ROOT), MyFlags)))
     goto error;
 
-  dir_entries_storage= (DYNAMIC_ARRAY*)(buffer + ALIGN_SIZE(sizeof(MY_DIR)));
+  dir_entries_storage= (DYNAMIC_ARRAY*)(buffer + ALIGN_SIZE(sizeof(MY_DIR))); 
   names_storage= (MEM_ROOT*)(buffer + ALIGN_SIZE(sizeof(MY_DIR)) +
                              ALIGN_SIZE(sizeof(DYNAMIC_ARRAY)));
-
+  
   if (my_init_dynamic_array(dir_entries_storage, sizeof(FILEINFO),
+                            NULL,               /* init_buffer */
                             ENTRIES_START_SIZE, ENTRIES_INCREMENT))
   {
     my_free(buffer);
     goto error;
   }
-  init_alloc_root(names_storage, NAMES_START_SIZE, NAMES_START_SIZE);
-
+  init_alloc_root(key_memory_MY_DIR, names_storage, NAMES_START_SIZE, NAMES_START_SIZE);
+  
   /* MY_DIR structure is allocated and completly initialized at this point */
   result= (MY_DIR*)buffer;
 
@@ -317,7 +305,7 @@ MY_DIR	*my_dir(const char *path, myf MyFlags)
       else
         finfo.mystat= NULL;
 
-      if (push_dynamic(dir_entries_storage, (uchar*)&finfo))
+      if (insert_dynamic(dir_entries_storage, (uchar*)&finfo))
         goto error;
     }
     while (_findnext(handle,&find) == 0);
@@ -341,7 +329,7 @@ error:
   if (MyFlags & MY_FAE+MY_WME)
   {
     char errbuf[MYSYS_STRERROR_SIZE];
-    my_error(EE_DIR, MYF(ME_BELL+ME_WAITTANG), path,
+    my_error(EE_DIR, MYF(0), path,
              errno, my_strerror(errbuf, sizeof(errbuf), errno));
   }
   DBUG_RETURN((MY_DIR *) NULL);
@@ -352,7 +340,7 @@ error:
 /****************************************************************************
 ** File status
 ** Note that MY_STAT is assumed to be same as struct stat
-****************************************************************************/
+****************************************************************************/ 
 
 
 int my_fstat(File Filedes, MY_STAT *stat_area,
@@ -376,7 +364,8 @@ MY_STAT *my_stat(const char *path, MY_STAT *stat_area, myf my_flags)
                     (long) stat_area, my_flags));
 
   if (m_used)
-    if (!(stat_area= (MY_STAT *) my_malloc(sizeof(MY_STAT), my_flags)))
+    if (!(stat_area= (MY_STAT *) my_malloc(key_memory_MY_STAT,
+                                           sizeof(MY_STAT), my_flags)))
       goto error;
 #ifndef _WIN32
     if (! stat((char *) path, (struct stat *) stat_area) )
@@ -394,7 +383,7 @@ error:
   if (my_flags & (MY_FAE+MY_WME))
   {
     char errbuf[MYSYS_STRERROR_SIZE];
-    my_error(EE_STAT, MYF(ME_BELL+ME_WAITTANG), path,
+    my_error(EE_STAT, MYF(0), path,
              my_errno, my_strerror(errbuf, sizeof(errbuf), my_errno));
     DBUG_RETURN((MY_STAT *) NULL);
   }

@@ -223,6 +223,35 @@ static int ssl_write(BIO *b, const char *out, int outl)
     return ret;
 }
 
+int ssl_is_connect(BIO *b)
+{
+
+   SSL *ssl;
+   BIO_SSL *bs;
+
+   bs = BIO_get_data(b);
+   ssl = bs->ssl;
+   if (ssl == NULL)
+      return (0);
+
+   return ssl->handshake_func == ssl->method->ssl_connect;
+
+}
+
+int ssl_is_accept(BIO *b)
+{
+   SSL *ssl;
+   BIO_SSL *bs;
+
+   bs = BIO_get_data(b);
+   ssl = bs->ssl;
+   if (ssl == NULL)
+      return (0);
+
+   return ssl->handshake_func == ssl->method->ssl_accept;
+
+}
+
 static long ssl_ctrl(BIO *b, int cmd, long num, void *ptr)
 {
     SSL **sslp, *ssl;

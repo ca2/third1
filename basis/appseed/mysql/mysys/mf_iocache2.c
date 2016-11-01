@@ -1,4 +1,4 @@
-/* Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+/* Copyright (c) 2000, 2014, Oracle and/or its affiliates. All rights reserved.
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -85,7 +85,7 @@ my_off_t my_b_append_tell(IO_CACHE* info)
     Prevent optimizer from putting res in a register when debugging
     we need this to be able to see the value of res when the assert fails
   */
-  dbug_volatile my_off_t res;
+  dbug_volatile my_off_t res; 
 
   /*
     We need to lock the append buffer mutex to keep flush_io_cache()
@@ -111,7 +111,7 @@ my_off_t my_b_append_tell(IO_CACHE* info)
 		== (res=my_tell(info->file,MYF(0))));
     my_seek(info->file,save_pos,MY_SEEK_SET,MYF(0));
   }
-#endif
+#endif  
   res = info->end_of_file + (info->write_pos-info->append_read_pos);
   mysql_mutex_unlock(&info->append_buffer_lock);
   return res;
@@ -165,7 +165,7 @@ void my_b_seek(IO_CACHE *info,my_off_t pos)
   else if (info->type == WRITE_CACHE)
   {
     /* If write is in current buffer, reuse it */
-    if ((ulonglong) offset <
+    if ((ulonglong) offset <=
 	(ulonglong) (info->write_end - info->write_buffer))
     {
       info->write_pos = info->write_buffer + offset;
@@ -329,7 +329,7 @@ size_t my_b_vprintf(IO_CACHE *info, const char* fmt, va_list args)
     /* Copy everything until '%' or end of string */
     const char *start=fmt;
     size_t length;
-
+    
     for (; (*fmt != '\0') && (*fmt != '%'); fmt++) ;
 
     length= (size_t) (fmt - start);
@@ -340,9 +340,9 @@ size_t my_b_vprintf(IO_CACHE *info, const char* fmt, va_list args)
     if (*fmt == '\0')				/* End of format */
       return out_length;
 
-    /*
+    /* 
       By this point, *fmt must be a percent;  Keep track of this location and
-      skip over the percent character.
+      skip over the percent character. 
     */
     DBUG_ASSERT(*fmt == '%');
     backtrack= fmt;
@@ -352,12 +352,12 @@ size_t my_b_vprintf(IO_CACHE *info, const char* fmt, va_list args)
     minimum_width_sign= 1;
     minimum_width= 0;
     precision= 0;
-    /* Skip if MAX size is used (to be compatible with printf) */
+    /* Skip if max size is used (to be compatible with printf) */
 
 process_flags:
     switch (*fmt)
     {
-      case '-':
+      case '-': 
         minimum_width_sign= -1; fmt++; goto process_flags;
       case '0':
         is_zero_padded= TRUE; fmt++; goto process_flags;
@@ -408,6 +408,13 @@ process_flags:
       if (my_b_write(info, (uchar*) par, length2))
 	goto err;
     }
+    else if (*fmt == 'c')                     /* char type parameter */
+    {
+      char par[2];
+      par[0] = va_arg(args, int);
+      if (my_b_write(info, (uchar*) par, 1))
+        goto err;
+    }
     else if (*fmt == 'b')                       /* Sized buffer parameter, only precision makes sense */
     {
       char *par = va_arg(args, char *);
@@ -428,10 +435,10 @@ process_flags:
         length2= (uint) (int10_to_str((long) (uint) iarg,buff,10)- buff);
 
       /* minimum width padding */
-      if (minimum_width > length2)
+      if (minimum_width > length2) 
       {
         char *buffz;
-
+                    
         buffz= my_alloca(minimum_width - length2);
         if (is_zero_padded)
           memset(buffz, '0', minimum_width - length2);

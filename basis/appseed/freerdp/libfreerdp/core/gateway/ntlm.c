@@ -243,7 +243,7 @@ BOOL ntlm_authenticate(rdpNtlm* ntlm)
 		if ((status != SEC_E_OK) && ntlm->table->CompleteAuthToken)
 		{
 			SECURITY_STATUS cStatus;
-
+			
 			cStatus = ntlm->table->CompleteAuthToken(&ntlm->context, &ntlm->outputBufferDesc);
 
 			if (cStatus != SEC_E_OK)

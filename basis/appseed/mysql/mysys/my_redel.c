@@ -17,15 +17,11 @@
 #include <my_dir.h>
 #include <m_string.h>
 #include "mysys_err.h"
-#if defined(HAVE_UTIME_H)
+
+#ifndef _WIN32
 #include <utime.h>
-#elif defined(HAVE_SYS_UTIME_H)
-#include <sys/utime.h>
 #else
-struct utimbuf {
-  time_t actime;
-  time_t modtime;
-};
+#include <sys/utime.h>
 #endif
 
 	/*
@@ -54,7 +50,7 @@ int my_redel(const char *org_name, const char *tmp_name, myf MyFlags)
     char ext[20];
     ext[0]='-';
     get_date(ext+1,2+4,(time_t) 0);
-    strmov(strend(ext),REDEL_EXT);
+    my_stpcpy(strend(ext),REDEL_EXT);
     if (my_rename(org_name, fn_format(name_buff, org_name, "", ext, 2),
 		  MyFlags))
       goto end;
@@ -75,19 +71,11 @@ end:
 
 int my_copystat(const char *from, const char *to, int MyFlags)
 {
-  struct stat statbuf;
+  MY_STAT statbuf;
 
-  if (stat(from, &statbuf))
-  {
-    my_errno=errno;
-    if (MyFlags & (MY_FAE+MY_WME))
-    {
-      char errbuf[MYSYS_STRERROR_SIZE];
-      my_error(EE_STAT, MYF(ME_BELL+ME_WAITTANG), from,
-               errno, my_strerror(errbuf, sizeof(errbuf), errno));
-    }
+  if (my_stat(from, &statbuf, MyFlags) == NULL)
     return -1;				/* Can't get stat on input file */
-  }
+
   if ((statbuf.st_mode & S_IFMT) != S_IFREG)
     return 1;
 
@@ -98,7 +86,7 @@ int my_copystat(const char *from, const char *to, int MyFlags)
     if (MyFlags & (MY_FAE+MY_WME))
     {
       char errbuf[MYSYS_STRERROR_SIZE];
-      my_error(EE_CHANGE_PERMISSIONS, MYF(ME_BELL+ME_WAITTANG), from,
+      my_error(EE_CHANGE_PERMISSIONS, MYF(0), from,
                errno, my_strerror(errbuf, sizeof(errbuf), errno));
     }
     return -1;
@@ -108,7 +96,7 @@ int my_copystat(const char *from, const char *to, int MyFlags)
   if (statbuf.st_nlink > 1 && MyFlags & MY_LINK_WARNING)
   {
     if (MyFlags & MY_LINK_WARNING)
-      my_error(EE_LINK_WARNING,MYF(ME_BELL+ME_WAITTANG),from,statbuf.st_nlink);
+      my_error(EE_LINK_WARNING,MYF(0),from,statbuf.st_nlink);
   }
   /* Copy ownership */
   if (chown(to, statbuf.st_uid, statbuf.st_gid))
@@ -117,7 +105,7 @@ int my_copystat(const char *from, const char *to, int MyFlags)
     if (MyFlags & (MY_FAE+MY_WME))
     {
       char errbuf[MYSYS_STRERROR_SIZE];
-      my_error(EE_CHANGE_OWNERSHIP, MYF(ME_BELL+ME_WAITTANG), from,
+      my_error(EE_CHANGE_OWNERSHIP, MYF(0), from,
                errno, my_strerror(errbuf, sizeof(errbuf), errno));
     }
     return -1;

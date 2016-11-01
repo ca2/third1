@@ -1,4 +1,4 @@
-/* Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+/* Copyright (c) 2000, 2014, Oracle and/or its affiliates. All rights reserved.
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -176,7 +176,7 @@ int init_io_cache(IO_CACHE *info, File file, size_t cachesize,
       DBUG_ASSERT(seek_offset == 0);
     }
     else
-      info->seek_not_done= test(seek_offset != pos);
+      info->seek_not_done= MY_TEST(seek_offset != pos);
   }
 
   info->disk_writes= 0;
@@ -225,7 +225,8 @@ int init_io_cache(IO_CACHE *info, File file, size_t cachesize,
       if (cachesize == min_cache)
         flags|= (myf) MY_WME;
 
-      if ((info->buffer= (uchar*) my_malloc(buffer_block, flags)) != 0)
+      if ((info->buffer= (uchar*) my_malloc(key_memory_IO_CACHE,
+                                            buffer_block, flags)) != 0)
       {
 	info->write_buffer=info->buffer;
 	if (type == SEQ_READ_APPEND)
@@ -418,7 +419,7 @@ int _my_b_read(IO_CACHE *info, uchar *Buffer, size_t Count)
   */
   if (info->seek_not_done)
   {
-    if ((mysql_file_seek(info->file, pos_in_file, MY_SEEK_SET, MYF(0))
+    if ((mysql_file_seek(info->file, pos_in_file, MY_SEEK_SET, MYF(0)) 
         != MY_FILEPOS_ERROR))
     {
       /* No error, reset seek_not_done flag. */
@@ -500,7 +501,7 @@ int _my_b_read(IO_CACHE *info, uchar *Buffer, size_t Count)
     if (Count)
     {
       /* We couldn't fulfil the request. Return, how much we got. */
-      info->error= (int) left_length;
+      info->error= (int)left_length;
       DBUG_RETURN(1);
     }
     length=0;				/* Didn't read any chars */
@@ -617,8 +618,8 @@ void init_io_cache_share(IO_CACHE *read_cache, IO_CACHE_SHARE *cshare,
 
   mysql_mutex_init(key_IO_CACHE_SHARE_mutex,
                    &cshare->mutex, MY_MUTEX_INIT_FAST);
-  mysql_cond_init(key_IO_CACHE_SHARE_cond, &cshare->cond, 0);
-  mysql_cond_init(key_IO_CACHE_SHARE_cond_writer, &cshare->cond_writer, 0);
+  mysql_cond_init(key_IO_CACHE_SHARE_cond, &cshare->cond);
+  mysql_cond_init(key_IO_CACHE_SHARE_cond_writer, &cshare->cond_writer);
 
   cshare->running_threads= num_threads;
   cshare->total_threads=   num_threads;
@@ -1098,7 +1099,7 @@ static void copy_to_read_buffer(IO_CACHE *write_cache,
 
 /*
   Do sequential read from the SEQ_READ_APPEND cache.
-
+  
   We do this in three stages:
    - first read from info->buffer
    - then if there are still data to read, try the file descriptor
@@ -1237,7 +1238,7 @@ read_append_buffer:
     info->append_read_pos += copy_len;
     Count -= copy_len;
     if (Count)
-      info->error = (int) (save_count - Count);
+      info->error = (int)(save_count - Count);
 
     /* Fill read buffer with data from write buffer */
     memcpy(info->buffer, info->append_read_pos,
@@ -1268,7 +1269,7 @@ int _my_b_get(IO_CACHE *info)
   return (int) (uchar) buff;
 }
 
-/*
+/* 
    Write a byte buffer to IO_CACHE and flush to disk
    if IO_CACHE is full.
 
@@ -1400,7 +1401,7 @@ int my_b_safe_write(IO_CACHE *info, const uchar *Buffer, size_t Count)
 {
   /*
     Sasha: We are not writing this with the ? operator to avoid hitting
-    a possible compiler bug. At least gcc 2.95 cannot deal with
+    a possible compiler bug. At least gcc 2.95 cannot deal with 
     several layers of ternary operators that evaluated comma(,) operator
     expressions inside - I do have a test case if somebody wants it
   */
@@ -1432,8 +1433,8 @@ int my_block_write(IO_CACHE *info, const uchar *Buffer, size_t Count,
   {
     /* Of no overlap, write everything without buffering */
     if (pos + Count <= info->pos_in_file)
-      return (int) mysql_file_pwrite(info->file, Buffer, (int) Count, pos,
-		               info->myflags | MY_NABP);
+      return (int)mysql_file_pwrite(info->file, Buffer, Count, pos,
+                                    info->myflags | MY_NABP);
     /* Write the part of the block that is before buffer */
     length= (uint) (info->pos_in_file - pos);
     if (mysql_file_pwrite(info->file, Buffer, length, pos, info->myflags | MY_NABP))
@@ -1441,7 +1442,7 @@ int my_block_write(IO_CACHE *info, const uchar *Buffer, size_t Count,
     Buffer+=length;
     pos+=  length;
     Count-= length;
-#ifndef HAVE_PREAD
+#ifdef _WIN32
     info->seek_not_done=1;
 #endif
   }
@@ -1655,7 +1656,8 @@ int main(int argc, char** argv)
   char* block, *block_end;
   MY_INIT(argv[0]);
   max_block = cache_size*3;
-  if (!(block=(char*)my_malloc(max_block,MYF(MY_WME))))
+  if (!(block=(char*)my_malloc(PSI_NOT_INSTRUMENTED,
+                               max_block,MYF(MY_WME))))
     die("Not enough memory to allocate test block");
   block_end = block + max_block;
   for (p = block,i=0; p < block_end;i++)

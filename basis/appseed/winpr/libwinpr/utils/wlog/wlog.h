@@ -80,8 +80,8 @@ struct _wLog
 
 BOOL WLog_Layout_GetMessagePrefix(wLog* log, wLogLayout* layout, wLogMessage* message);
 
-#include "Layout.h"
-#include "Appender.h"
+#include "wlog/Layout.h"
+#include "wlog/Appender.h"
 
 
 #endif /* WINPR_WLOG_PRIVATE_H */

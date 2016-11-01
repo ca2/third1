@@ -44,6 +44,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA */
   here are useful only in scernarios that use low-level IO with my_win_fileno()
 */
 
+#ifdef _WIN32
+
 #include "mysys_priv.h"
 #include <share.h>
 #include <sys/stat.h>
@@ -676,4 +678,4 @@ int my_win_dup(File fd)
   DBUG_RETURN(-1);
 }
 
-//#endif /*_WIN32*/
+#endif /*_WIN32*/

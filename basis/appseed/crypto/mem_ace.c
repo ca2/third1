@@ -60,7 +60,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <openssl/crypto.h>
-#include "cryptlib.h"
+#include "internal/cryptlib.h"
 
 
 unsigned char cleanse_ctr = 0;

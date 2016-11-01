@@ -25,7 +25,7 @@
 
 #include "wlog.h"
 
-#include "PacketMessage.h"
+#include "wlog/PacketMessage.h"
 
 #include <winpr/crt.h>
 #include <winpr/stream.h>

@@ -40,7 +40,7 @@
 #include <SLES/OpenSLES.h>
 #include <freerdp/client/audin.h>
 
-#include "../audin_main.h"
+#include "audin_main.h"
 #include "opensl_io.h"
 
 typedef struct _AudinOpenSLESDevice

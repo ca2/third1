@@ -1,4 +1,4 @@
-/* Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+/* Copyright (c) 2000, 2014, Oracle and/or its affiliates. All rights reserved.
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -16,17 +16,18 @@
 #include "mysys_priv.h"
 #include "my_static.h"
 #include "mysys_err.h"
-#include <m_string.h>
-#include <m_ctype.h>
-#include <signal.h>
-#include <mysql/psi/mysql_stage.h>
+#include "m_string.h"
+#include "mysql/psi/mysql_stage.h"
+
+#ifdef HAVE_SYS_RESOURCE_H
+#include <sys/resource.h>
+#endif
+
 #ifdef _WIN32
-#ifdef _MSC_VER
 #include <locale.h>
 #include <crtdbg.h>
 /* WSAStartup needs winsock library*/
 #pragma comment(lib, "ws2_32")
-#endif
 my_bool have_tcpip=0;
 static void my_win_init(void);
 static my_bool win32_init_tcp_ip();
@@ -38,7 +39,7 @@ static my_bool win32_init_tcp_ip();
 #define SCALE_USEC      10000
 
 my_bool my_init_done= 0;
-ulong   my_thread_stack_size= 65536;
+ulong  my_thread_stack_size= 65536;
 
 static ulong atoi_octal(const char *str)
 {
@@ -53,6 +54,27 @@ static ulong atoi_octal(const char *str)
 
 MYSQL_FILE *mysql_stdin= NULL;
 static MYSQL_FILE instrumented_stdin;
+
+#if defined(MY_MSCRT_DEBUG)
+int set_crt_report_leaks()
+{
+  HANDLE hLogFile;
+
+  _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF        // debug allocation on
+                 | _CRTDBG_LEAK_CHECK_DF     // leak checks on exit
+                 | _CRTDBG_CHECK_ALWAYS_DF   // memory check (slow)
+                 );
+
+  return ((
+    NULL == (hLogFile= GetStdHandle(STD_ERROR_HANDLE)) ||
+    -1 == _CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE) ||
+    _CRTDBG_HFILE_ERROR == _CrtSetReportFile(_CRT_WARN, hLogFile) ||
+    -1 == _CrtSetReportMode(_CRT_ERROR, _CRTDBG_MODE_FILE) ||
+    _CRTDBG_HFILE_ERROR == _CrtSetReportFile(_CRT_ERROR, hLogFile) ||
+    -1 == _CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_FILE) ||
+    _CRTDBG_HFILE_ERROR == _CrtSetReportFile(_CRT_ASSERT, hLogFile)) ? 1 : 0);
+}
+#endif
 
 
 /**
@@ -71,6 +93,10 @@ my_bool my_init(void)
 
   my_init_done= 1;
 
+#if defined(MY_MSCRT_DEBUG)
+  set_crt_report_leaks();
+#endif
+
   my_umask= 0660;                       /* Default umask for new files */
   my_umask_dir= 0700;                   /* Default umask for new directories */
 
@@ -87,12 +113,12 @@ my_bool my_init(void)
   instrumented_stdin.m_psi= NULL;       /* not yet instrumented */
   mysql_stdin= & instrumented_stdin;
 
-  if (my_thread_global_init())
-    return 1;
-
 #if defined(SAFE_MUTEX)
   safe_mutex_global_init();		/* Must be called early */
 #endif
+
+  if (my_thread_global_init())
+    return 1;
 
 #if defined(MY_PTHREAD_FASTMUTEX) && !defined(SAFE_MUTEX)
   fastmutex_global_init();              /* Must be called early */
@@ -150,7 +176,7 @@ void my_end(int infoflag)
       char ebuff[512];
       my_snprintf(ebuff, sizeof(ebuff), EE(EE_OPEN_WARNING),
                   my_file_opened, my_stream_opened);
-      my_message_stderr(EE_OPEN_WARNING, ebuff, ME_BELL);
+      my_message_stderr(EE_OPEN_WARNING, ebuff, MYF(0));
       DBUG_PRINT("error", ("%s", ebuff));
       my_print_open_files();
     }
@@ -163,10 +189,6 @@ void my_end(int infoflag)
   {
 #ifdef HAVE_GETRUSAGE
     struct rusage rus;
-#ifdef HAVE_purify
-    /* Purify assumes that rus is uninitialized after getrusage call */
-    memset(&rus, 0, sizeof(rus));
-#endif
     if (!getrusage(RUSAGE_SELF, &rus))
       fprintf(info_file,"\n\
 User time %.2f, System time %.2f\n\
@@ -203,14 +225,6 @@ Voluntary context switches %ld, Involuntary context switches %ld\n",
 
   my_thread_end();
   my_thread_global_end();
-#if defined(SAFE_MUTEX)
-  /*
-    Check on destroying of mutexes. A few may be left that will get cleaned
-    up by C++ destructors
-  */
-  safe_mutex_end((infoflag & (MY_GIVE_INFO | MY_CHECK_ERROR)) ? stderr :
-                 (FILE *) 0);
-#endif /* defined(SAFE_MUTEX) */
 
 #ifdef _WIN32
   if (have_tcpip)
@@ -250,19 +264,23 @@ void my_parameter_handler(const wchar_t * expression, const wchar_t * function,
 
 /*
   handle_rtc_failure
-  Catch the RTC error and dump it to stderr
+  Windows: run-time error checks are reported to ...
 */
 
 int handle_rtc_failure(int err_type, const char *file, int line,
                        const char* module, const char *format, ...)
 {
   va_list args;
+  char   buff[2048];
+  size_t len;
+
+  len= my_snprintf(buff, sizeof(buff), "At %s:%d: ", file, line);
+
   va_start(args, format);
-  fprintf(stderr, "Error:");
-  vfprintf(stderr, format, args);
-  fprintf(stderr, " At %s:%d\n", file, line);
+  vsnprintf(buff + len, sizeof(buff) - len, format, args);
   va_end(args);
-  (void) fflush(stderr);
+
+  my_message_local(ERROR_LEVEL, buff);
 
   return 0; /* Error is handled */
 }
@@ -358,17 +376,8 @@ static void my_win_init(void)
   DBUG_ENTER("my_win_init");
 
 #if defined(_MSC_VER)
-#if _MSC_VER < 1300
-  /*
-    Clear the OS system variable TZ and avoid the 100% CPU usage
-    Only for old versions of Visual C++
-  */
-  _putenv("TZ=");
-#endif
-#if _MSC_VER >= 1400
   /* this is required to make crt functions return -1 appropriately */
   _set_invalid_parameter_handler(my_parameter_handler);
-#endif
 #endif
 
 #ifdef __MSVC_RUNTIME_CHECKS
@@ -457,16 +466,8 @@ PSI_stage_info stage_waiting_for_table_level_lock=
 
 #ifdef HAVE_PSI_INTERFACE
 
-#if !defined(HAVE_PREAD) && !defined(_WIN32)
-PSI_mutex_key key_my_file_info_mutex;
-#endif /* !defined(HAVE_PREAD) && !defined(_WIN32) */
-
-#if !defined(HAVE_LOCALTIME_R) || !defined(HAVE_GMTIME_R)
-PSI_mutex_key key_LOCK_localtime_r;
-#endif /* !defined(HAVE_LOCALTIME_R) || !defined(HAVE_GMTIME_R) */
-
 PSI_mutex_key key_BITMAP_mutex, key_IO_CACHE_append_buffer_lock,
-  key_IO_CACHE_SHARE_mutex, key_KEY_CACHE_cache_lock, key_LOCK_alarm,
+  key_IO_CACHE_SHARE_mutex, key_KEY_CACHE_cache_lock,
   key_my_thread_var_mutex, key_THR_LOCK_charset, key_THR_LOCK_heap,
   key_THR_LOCK_lock, key_THR_LOCK_malloc,
   key_THR_LOCK_mutex, key_THR_LOCK_myisam, key_THR_LOCK_net,
@@ -475,17 +476,10 @@ PSI_mutex_key key_BITMAP_mutex, key_IO_CACHE_append_buffer_lock,
 
 static PSI_mutex_info all_mysys_mutexes[]=
 {
-#if !defined(HAVE_PREAD) && !defined(_WIN32)
-  { &key_my_file_info_mutex, "st_my_file_info:mutex", 0},
-#endif /* !defined(HAVE_PREAD) && !defined(_WIN32) */
-#if !defined(HAVE_LOCALTIME_R) || !defined(HAVE_GMTIME_R)
-  { &key_LOCK_localtime_r, "LOCK_localtime_r", PSI_FLAG_GLOBAL},
-#endif /* !defined(HAVE_LOCALTIME_R) || !defined(HAVE_GMTIME_R) */
   { &key_BITMAP_mutex, "BITMAP::mutex", 0},
   { &key_IO_CACHE_append_buffer_lock, "IO_CACHE::append_buffer_lock", 0},
   { &key_IO_CACHE_SHARE_mutex, "IO_CACHE::SHARE_mutex", 0},
   { &key_KEY_CACHE_cache_lock, "KEY_CACHE::cache_lock", 0},
-  { &key_LOCK_alarm, "LOCK_alarm", PSI_FLAG_GLOBAL},
   { &key_my_thread_var_mutex, "my_thread_var::mutex", 0},
   { &key_THR_LOCK_charset, "THR_LOCK_charset", PSI_FLAG_GLOBAL},
   { &key_THR_LOCK_heap, "THR_LOCK_heap", PSI_FLAG_GLOBAL},
@@ -500,29 +494,35 @@ static PSI_mutex_info all_mysys_mutexes[]=
   { &key_THR_LOCK_myisam_mmap, "THR_LOCK_myisam_mmap", PSI_FLAG_GLOBAL}
 };
 
-PSI_cond_key key_COND_alarm, key_IO_CACHE_SHARE_cond,
+PSI_rwlock_key key_SAFE_HASH_lock;
+
+static PSI_rwlock_info all_mysys_rwlocks[]=
+{
+  { &key_SAFE_HASH_lock, "SAFE_HASH::lock", 0}
+};
+
+PSI_cond_key key_IO_CACHE_SHARE_cond,
   key_IO_CACHE_SHARE_cond_writer, key_my_thread_var_suspend,
   key_THR_COND_threads;
 
 static PSI_cond_info all_mysys_conds[]=
 {
-  { &key_COND_alarm, "COND_alarm", PSI_FLAG_GLOBAL},
   { &key_IO_CACHE_SHARE_cond, "IO_CACHE_SHARE::cond", 0},
   { &key_IO_CACHE_SHARE_cond_writer, "IO_CACHE_SHARE::cond_writer", 0},
   { &key_my_thread_var_suspend, "my_thread_var::suspend", 0},
   { &key_THR_COND_threads, "THR_COND_threads", 0}
 };
 
-#ifdef HUGETLB_USE_PROC_MEMINFO
+#ifdef HAVE_LINUX_LARGE_PAGES
 PSI_file_key key_file_proc_meminfo;
-#endif /* HUGETLB_USE_PROC_MEMINFO */
+#endif /* HAVE_LINUX_LARGE_PAGES */
 PSI_file_key key_file_charset, key_file_cnf;
 
 static PSI_file_info all_mysys_files[]=
 {
-#ifdef HUGETLB_USE_PROC_MEMINFO
+#ifdef HAVE_LINUX_LARGE_PAGES
   { &key_file_proc_meminfo, "proc_meminfo", 0},
-#endif /* HUGETLB_USE_PROC_MEMINFO */
+#endif /* HAVE_LINUX_LARGE_PAGES */
   { &key_file_charset, "charset", 0},
   { &key_file_cnf, "cnf", 0}
 };
@@ -530,6 +530,38 @@ static PSI_file_info all_mysys_files[]=
 PSI_stage_info *all_mysys_stages[]=
 {
   & stage_waiting_for_table_level_lock
+};
+
+static PSI_memory_info all_mysys_memory[]=
+{
+#ifdef _WIN32
+  { &key_memory_win_SECURITY_ATTRIBUTES, "win_SECURITY_ATTRIBUTES", 0},
+  { &key_memory_win_PACL, "win_PACL", 0},
+  { &key_memory_win_IP_ADAPTER_ADDRESSES, "win_IP_ADAPTER_ADDRESSES", 0},
+#endif
+
+  { &key_memory_max_alloca, "max_alloca", 0},
+  { &key_memory_array_buffer, "array_buffer", 0},
+  { &key_memory_charset_file, "charset_file", 0},
+  { &key_memory_charset_loader, "charset_loader", 0},
+  { &key_memory_lf_node, "lf_node", 0},
+  { &key_memory_lf_dynarray, "lf_dynarray", 0},
+  { &key_memory_lf_slist, "lf_slist", 0},
+  { &key_memory_LIST, "LIST", 0},
+  { &key_memory_IO_CACHE, "IO_CACHE", 0},
+  { &key_memory_KEY_CACHE, "KEY_CACHE", 0},
+  { &key_memory_SAFE_HASH_ENTRY, "SAFE_HASH_ENTRY", 0},
+  { &key_memory_MY_TMPDIR_full_list, "MY_TMPDIR::full_list", 0},
+  { &key_memory_MY_BITMAP_bitmap, "MY_BITMAP::bitmap", 0},
+  { &key_memory_my_compress_alloc, "my_compress_alloc", 0},
+  { &key_memory_pack_frm, "pack_frm", 0},
+  { &key_memory_my_err_head, "my_err_head", 0},
+  { &key_memory_my_file_info, "my_file_info", 0},
+  { &key_memory_MY_DIR, "MY_DIR", 0},
+  { &key_memory_MY_STAT, "MY_STAT", 0},
+  { &key_memory_QUEUE, "QUEUE", 0},
+  { &key_memory_DYNAMIC_STRING, "DYNAMIC_STRING", 0},
+  { &key_memory_TREE, "TREE", 0}
 };
 
 void my_init_mysys_psi_keys()
@@ -540,6 +572,9 @@ void my_init_mysys_psi_keys()
   count= sizeof(all_mysys_mutexes)/sizeof(all_mysys_mutexes[0]);
   mysql_mutex_register(category, all_mysys_mutexes, count);
 
+  count= sizeof(all_mysys_rwlocks)/sizeof(all_mysys_rwlocks[0]);
+  mysql_rwlock_register(category, all_mysys_rwlocks, count);
+
   count= sizeof(all_mysys_conds)/sizeof(all_mysys_conds[0]);
   mysql_cond_register(category, all_mysys_conds, count);
 
@@ -548,6 +583,9 @@ void my_init_mysys_psi_keys()
 
   count= array_elements(all_mysys_stages);
   mysql_stage_register(category, all_mysys_stages, count);
+
+  count= array_elements(all_mysys_memory);
+  mysql_memory_register(category, all_mysys_memory, count);
 }
 #endif /* HAVE_PSI_INTERFACE */
 

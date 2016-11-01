@@ -30,7 +30,7 @@ static my_bool cache_remove_open_tmp(IO_CACHE *cache __attribute__((unused)),
 {
 #if O_TEMPORARY == 0
   /* The following should always succeed */
-  (void) my_delete(name,MYF(MY_WME | ME_NOINPUT));
+  (void) my_delete(name,MYF(MY_WME));
 #endif /* O_TEMPORARY == 0 */
   return 0;
 }
@@ -47,8 +47,10 @@ my_bool open_cached_file(IO_CACHE *cache, const char* dir, const char *prefix,
                          size_t cache_size, myf cache_myflags)
 {
   DBUG_ENTER("open_cached_file");
-  cache->dir=	 dir ? my_strdup(dir,MYF(cache_myflags & MY_WME)) : (char*) 0;
-  cache->prefix= (prefix ? my_strdup(prefix,MYF(cache_myflags & MY_WME)) :
+  cache->dir=	 dir ? my_strdup(key_memory_IO_CACHE,
+                                 dir,MYF(cache_myflags & MY_WME)) : (char*) 0;
+  cache->prefix= (prefix ? my_strdup(key_memory_IO_CACHE,
+                                     prefix,MYF(cache_myflags & MY_WME)) :
 		 (char*) 0);
   cache->file_name=0;
   cache->buffer=0;				/* Mark that not open */

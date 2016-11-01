@@ -1,4 +1,4 @@
-/* Copyright (c) 2010, 2013, Oracle and/or its affiliates. All rights reserved.
+/* Copyright (c) 2010, 2014, Oracle and/or its affiliates. All rights reserved.
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
 
 /**
   @file
-
+  
   Support code for the client side (libmysql) plugins
 
   Client plugins are somewhat different from server plugins, they are simpler.
@@ -37,13 +37,43 @@
 #include "errmsg.h"
 #include <mysql/client_plugin.h>
 
-#ifdef LINUX
-#define RTLD_NOW 2
+#ifdef HAVE_DLFCN_H
 #include <dlfcn.h>
-#elif defined(APPLEOS)
-
 #endif
 
+#if defined(CLIENT_PROTOCOL_TRACING)
+#include <mysql/plugin_trace.h>
+#endif
+
+PSI_memory_key key_memory_root;
+PSI_memory_key key_memory_load_env_plugins;
+
+#ifdef HAVE_PSI_INTERFACE
+PSI_mutex_key key_mutex_LOCK_load_client_plugin;
+
+static PSI_mutex_info all_client_plugin_mutexes[]=
+{
+  {&key_mutex_LOCK_load_client_plugin, "LOCK_load_client_plugin", PSI_FLAG_GLOBAL}
+};
+
+static PSI_memory_info all_client_plugin_memory[]=
+{
+  {&key_memory_root, "root", PSI_FLAG_GLOBAL},
+  {&key_memory_load_env_plugins, "load_env_plugins", PSI_FLAG_GLOBAL}
+};
+
+static void init_client_plugin_psi_keys()
+{
+  const char* category= "sql";
+  int count;
+
+  count= array_elements(all_client_plugin_mutexes);
+  mysql_mutex_register(category, all_client_plugin_mutexes, count);
+
+  count= array_elements(all_client_plugin_memory);
+  mysql_memory_register(category, all_client_plugin_memory, count);
+}
+#endif /* HAVE_PSI_INTERFACE */
 
 struct st_client_plugin_int {
   struct st_client_plugin_int *next;
@@ -59,7 +89,8 @@ static uint plugin_version[MYSQL_CLIENT_MAX_PLUGINS]=
 {
   0, /* these two are taken by Connector/C */
   0, /* these two are taken by Connector/C */
-  MYSQL_CLIENT_AUTHENTICATION_PLUGIN_INTERFACE_VERSION
+  MYSQL_CLIENT_AUTHENTICATION_PLUGIN_INTERFACE_VERSION,
+  MYSQL_CLIENT_TRACE_PLUGIN_INTERFACE_VERSION,
 };
 
 /*
@@ -91,7 +122,7 @@ static int is_not_initialized(MYSQL *mysql, const char *name)
   @param type   plugin type
 
   @note this does NOT necessarily need a mutex, take care!
-
+  
   @retval a pointer to a found plugin or 0
 */
 static struct st_mysql_client_plugin *
@@ -152,6 +183,20 @@ do_add_plugin(MYSQL *mysql, struct st_mysql_client_plugin *plugin,
     goto err1;
   }
 
+#if defined(CLIENT_PROTOCOL_TRACING) && !defined(MYSQL_SERVER)
+  /*
+    If we try to load a protocol trace plugin but one is already
+    loaded (global trace_plugin pointer is not NULL) then we ignore
+    the new trace plugin and give error. This is done before the
+    new plugin gets initialized.
+  */
+  if (plugin->type == MYSQL_CLIENT_TRACE_PLUGIN && NULL != trace_plugin)
+  {
+    errmsg= "Can not load another trace plugin while one is already loaded";
+    goto err1;
+  }
+#endif
+
   /* Call the plugin initialization function, if any */
   if (plugin->init && plugin->init(errbuf, sizeof(errbuf), argc, args))
   {
@@ -173,6 +218,19 @@ do_add_plugin(MYSQL *mysql, struct st_mysql_client_plugin *plugin,
   p->next= plugin_list[plugin->type];
   plugin_list[plugin->type]= p;
   net_clear_error(&mysql->net);
+
+#if defined(CLIENT_PROTOCOL_TRACING) && !defined(MYSQL_SERVER)
+  /*
+    If loaded plugin is a protocol trace one, then set the global
+    trace_plugin pointer to point at it. When trace_plugin is not NULL,
+    each new connection will be traced using the plugin pointed by it
+    (see MYSQL_TRACE_STAGE() macro in libmysql/mysql_trace.h).
+  */
+  if (plugin->type == MYSQL_CLIENT_TRACE_PLUGIN)
+  {
+    trace_plugin = (struct st_mysql_client_plugin_TRACE*)plugin;
+  }
+#endif
 
   return plugin;
 
@@ -216,7 +274,7 @@ add_plugin_withargs(MYSQL *mysql, struct st_mysql_client_plugin *plugin,
 /**
   Loads plugins which are specified in the environment variable
   LIBMYSQL_PLUGINS.
-
+  
   Multiple plugins must be separated by semicolon. This function doesn't
   return or log an error.
 
@@ -240,7 +298,8 @@ static void load_env_plugins(MYSQL *mysql)
   if(!s)
     return;
 
-  free_env= plugs= my_strdup(s, MYF(MY_WME));
+  free_env= plugs= my_strdup(key_memory_load_env_plugins,
+                             s, MYF(MY_WME));
 
   do {
     if ((s= strchr(plugs, ';')))
@@ -252,6 +311,7 @@ static void load_env_plugins(MYSQL *mysql)
   my_free(free_env);
 
 }
+
 
 /********** extern functions to be used by libmysql *********************/
 
@@ -271,10 +331,15 @@ int mysql_client_plugin_init()
   if (initialized)
     return 0;
 
+#ifdef HAVE_PSI_INTERFACE
+  init_client_plugin_psi_keys();
+#endif /* HAVE_PSI_INTERFACE */
+
   memset(&mysql, 0, sizeof(mysql)); /* dummy mysql for set_mysql_extended_error */
 
-  mysql_mutex_init(0, &LOCK_load_client_plugin, MY_MUTEX_INIT_SLOW);
-  init_alloc_root(&mem_root, 128, 128);
+  mysql_mutex_init(key_mutex_LOCK_load_client_plugin,
+                   &LOCK_load_client_plugin, MY_MUTEX_INIT_SLOW);
+  init_alloc_root(key_memory_root, &mem_root, 128, 128);
 
   memset(&plugin_list, 0, sizeof(plugin_list));
 
@@ -288,6 +353,8 @@ int mysql_client_plugin_init()
   mysql_mutex_unlock(&LOCK_load_client_plugin);
 
   load_env_plugins(&mysql);
+
+  mysql_close_free(&mysql);
 
   return 0;
 }
@@ -319,6 +386,7 @@ void mysql_client_plugin_deinit()
   free_root(&mem_root, MYF(0));
   mysql_mutex_destroy(&LOCK_load_client_plugin);
 }
+
 
 /************* public facing functions, for client consumption *********/
 
@@ -395,20 +463,15 @@ mysql_load_plugin_v(MYSQL *mysql, const char *name, int type,
   strxnmov(dlpath, sizeof(dlpath) - 1,
            plugindir, "/",
            name, SO_EXT, NullS);
-
+   
   DBUG_PRINT ("info", ("dlopeninig %s", dlpath));
   /* Open new dll handle */
-#if defined(ANDROID) || defined(LINUX)
-  if (!(dlhandle= (void *) dlopen(dlpath, 0)))
-#else
-  if (!(dlhandle = dlopen(dlpath, RTLD_NOW)))
-#endif
+  if (!(dlhandle= dlopen(dlpath, RTLD_NOW)))
   {
 #if defined(__APPLE__)
     /* Apple supports plugins with .so also, so try this as well */
     strxnmov(dlpath, sizeof(dlpath) - 1,
-             mysql->options.extension && mysql->options.extension->plugin_dir ?
-             mysql->options.extension->plugin_dir : PLUGINDIR, "/",
+             plugindir, "/",
              name, ".so", NullS);
     if ((dlhandle= dlopen(dlpath, RTLD_NOW)))
       goto have_plugin;
@@ -429,9 +492,9 @@ mysql_load_plugin_v(MYSQL *mysql, const char *name, int type,
   }
 
 #if defined(__APPLE__)
-have_plugin:
+have_plugin:  
 #endif
-  if (!(sym= (void *) dlsym(dlhandle, plugin_declarations_sym)))
+  if (!(sym= dlsym(dlhandle, plugin_declarations_sym)))
   {
     errmsg= "not a plugin";
     dlclose(dlhandle);

@@ -9,9 +9,9 @@
 
 #include <stdio.h>
 #include <errno.h>
-//#define USE_SOCKETS
+#define USE_SOCKETS
 #include "bio_lcl.h"
-#include "cryptlib.h"
+#include "internal/cryptlib.h"
 
 #ifndef OPENSSL_NO_SOCK
 

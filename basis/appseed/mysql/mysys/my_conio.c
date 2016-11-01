@@ -110,7 +110,7 @@ my_win_console_readline(const CHARSET_INFO *cs, char *mbbuf, size_t mbbufsize,
 
   /* Convert Unicode to session character set */
   if (nchars != 0)
-    mblen= my_convert(mbbuf, (uint32) (mbbufsize - 1), cs,
+    mblen= my_convert(mbbuf, mbbufsize - 1, cs,
                       (const char *) u16buf, nchars * sizeof(wchar_t),
                       &my_charset_utf16le_bin, &dummy_errors);
 
@@ -285,8 +285,8 @@ my_win_translate_command_line_args(const CHARSET_INFO *cs, int *argc, char ***ar
     size_t arg_len= wcslen(wargs[i]);
     size_t len, alloced_len= arg_len * cs->mbmaxlen + 1;
     av[i]= (char *) my_once_alloc(alloced_len, MYF(0));
-    len= my_convert(av[i], (uint32) alloced_len, cs,
-                    (const char *) wargs[i], (uint32) ( arg_len * sizeof(wchar_t)),
+    len= my_convert(av[i], alloced_len, cs,
+                    (const char *) wargs[i], arg_len * sizeof(wchar_t),
                     &my_charset_utf16le_bin, &dummy_errors);
     DBUG_ASSERT(len < alloced_len);
     av[i][len]= '\0';

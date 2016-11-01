@@ -359,9 +359,7 @@ static BOOL FileSetFileTime(HANDLE hFile, const FILETIME *lpCreationTime,
 	int rc;
 #if defined(__APPLE__) || defined(ANDROID) || defined(__FreeBSD__)
 	struct stat buf;
-#endif
-/* OpenBSD, NetBSD and DragonflyBSD support POSIX futimens */
-#if defined(ANDROID) || defined(__FreeBSD__)
+	/* OpenBSD, NetBSD and DragonflyBSD support POSIX futimens */
 	struct timeval timevals[2];
 #else
 	struct timespec times[2]; /* last access, last modification */
@@ -379,14 +377,7 @@ static BOOL FileSetFileTime(HANDLE hFile, const FILETIME *lpCreationTime,
 #endif
 	if (!lpLastAccessTime)
 	{
-#if defined(__APPLE__)
-#if !defined(_POSIX_C_SOURCE) || defined(_DARWIN_C_SOURCE)
-		times[0] = buf.st_atimespec;
-#else
-		times[0].tv_sec = buf.st_atime;
-		times[0].tv_nsec = buf.st_atimensec;
-#endif
-#elif defined(__FreeBSD__)
+#if defined(__FreeBSD__) || defined(__APPLE__)
 		timevals[0].tv_sec = buf.st_atime;
 #ifdef _POSIX_SOURCE
 		TIMESPEC_TO_TIMEVAL(&timevals[0], &buf.st_atim);
@@ -408,7 +399,7 @@ static BOOL FileSetFileTime(HANDLE hFile, const FILETIME *lpCreationTime,
 		tmp -= EPOCH_DIFF;
 		tmp /= 10ULL;
 
-#if defined(ANDROID) || defined(__FreeBSD__)
+#if defined(ANDROID) || defined(__FreeBSD__) || defined(__APPLE__)
 		tmp /= 10000ULL;
 
 		timevals[0].tv_sec = tmp / 10000ULL;
@@ -420,14 +411,7 @@ static BOOL FileSetFileTime(HANDLE hFile, const FILETIME *lpCreationTime,
 	}
 	if (!lpLastWriteTime)
 	{
-#ifdef __APPLE__
-#if !defined(_POSIX_C_SOURCE) || defined(_DARWIN_C_SOURCE)
-		times[1] = buf.st_mtimespec;
-#else
-		times[1].tv_sec = buf.st_mtime;
-		times[1].tv_nsec = buf.st_mtimensec;
-#endif
-#elif defined(__FreeBSD__)
+#if defined(__FreeBSD__) || defined(__APPLE__)
 		timevals[1].tv_sec = buf.st_mtime;
 #ifdef _POSIX_SOURCE
 		TIMESPEC_TO_TIMEVAL(&timevals[1], &buf.st_mtim);
@@ -449,7 +433,7 @@ static BOOL FileSetFileTime(HANDLE hFile, const FILETIME *lpCreationTime,
 		tmp -= EPOCH_DIFF;
 		tmp /= 10ULL;
 
-#if defined(ANDROID) || defined(__FreeBSD__)
+#if defined(ANDROID) || defined(__FreeBSD__) || defined(__APPLE__)
 		tmp /= 10000ULL;
 
 		timevals[1].tv_sec = tmp / 10000ULL;
@@ -461,9 +445,7 @@ static BOOL FileSetFileTime(HANDLE hFile, const FILETIME *lpCreationTime,
 	}
 
 	// TODO: Creation time can not be handled!
-#ifdef __APPLE__
-	rc = futimes(fileno(pFile->fp), times);
-#elif defined(ANDROID) || defined(__FreeBSD__)
+#if defined(ANDROID) || defined(__FreeBSD__) || defined(__APPLE__)
 	rc = utimes(pFile->lpFileName, timevals);
 #else
 	rc = futimens(fileno(pFile->fp), times);
@@ -809,7 +791,7 @@ DWORD WINAPI GetFileSize(HANDLE hFile, LPDWORD lpFileSizeHigh)
 	return fileSize.LowPart;
 }
 
-DWORD WINAPI SetFilePointer(HANDLE hFile, LONG lDistanceToMove,
+DWORD SetFilePointer(HANDLE hFile, LONG lDistanceToMove,
 	PLONG lpDistanceToMoveHigh, DWORD dwMoveMethod)
 {
 	BOOL status;
@@ -829,17 +811,17 @@ DWORD WINAPI SetFilePointer(HANDLE hFile, LONG lDistanceToMove,
 	return liNewFilePointer.LowPart;
 }
 
-HANDLE WINAPI FindFirstFileA(LPCSTR lpFileName, LPWIN32_FIND_DATAA lpFindFileData)
+HANDLE FindFirstFileA(LPCSTR lpFileName, LPWIN32_FIND_DATAA lpFindFileData)
 {
 	return FindFirstFileExA(lpFileName, FindExInfoStandard, lpFindFileData, FindExSearchNameMatch, NULL, 0);
 }
 
-HANDLE  WINAPI FindFirstFileW(LPCWSTR lpFileName, LPWIN32_FIND_DATAW lpFindFileData)
+HANDLE FindFirstFileW(LPCWSTR lpFileName, LPWIN32_FIND_DATAW lpFindFileData)
 {
 	return FindFirstFileExW(lpFileName, FindExInfoStandard, lpFindFileData, FindExSearchNameMatch, NULL, 0);
 }
 
-DWORD  GetFullPathNameA(LPCSTR lpFileName, DWORD nBufferLength, LPSTR lpBuffer, LPSTR* lpFilePart)
+DWORD GetFullPathNameA(LPCSTR lpFileName, DWORD nBufferLength, LPSTR lpBuffer, LPSTR* lpFilePart)
 {
 	DWORD dwStatus;
 	WCHAR* lpFileNameW = NULL;
@@ -873,7 +855,7 @@ DWORD  GetFullPathNameA(LPCSTR lpFileName, DWORD nBufferLength, LPSTR lpBuffer, 
 	return dwStatus * 2;
 }
 
-BOOL  WINAPI GetDiskFreeSpaceA(LPCSTR lpRootPathName, LPDWORD lpSectorsPerCluster,
+BOOL GetDiskFreeSpaceA(LPCSTR lpRootPathName, LPDWORD lpSectorsPerCluster,
 	LPDWORD lpBytesPerSector, LPDWORD lpNumberOfFreeClusters, LPDWORD lpTotalNumberOfClusters)
 {
 	BOOL status;
@@ -895,7 +877,7 @@ BOOL  WINAPI GetDiskFreeSpaceA(LPCSTR lpRootPathName, LPDWORD lpSectorsPerCluste
 	return TRUE;
 }
 
-BOOL  WINAPI GetDiskFreeSpaceW(LPCWSTR lpRootPathName, LPDWORD lpSectorsPerCluster,
+BOOL GetDiskFreeSpaceW(LPCWSTR lpRootPathName, LPDWORD lpSectorsPerCluster,
 	LPDWORD lpBytesPerSector, LPDWORD lpNumberOfFreeClusters, LPDWORD lpTotalNumberOfClusters)
 {
 	BOOL status;
@@ -917,13 +899,13 @@ BOOL  WINAPI GetDiskFreeSpaceW(LPCWSTR lpRootPathName, LPDWORD lpSectorsPerClust
 	return TRUE;
 }
 
-DWORD  GetLogicalDriveStringsA(DWORD nBufferLength, LPSTR lpBuffer)
+DWORD GetLogicalDriveStringsA(DWORD nBufferLength, LPSTR lpBuffer)
 {
 	SetLastError(ERROR_INVALID_FUNCTION);
 	return 0;
 }
 
-DWORD   GetLogicalDriveStringsW(DWORD nBufferLength, LPWSTR lpBuffer)
+DWORD GetLogicalDriveStringsW(DWORD nBufferLength, LPWSTR lpBuffer)
 {
 	SetLastError(ERROR_INVALID_FUNCTION);
 	return 0;

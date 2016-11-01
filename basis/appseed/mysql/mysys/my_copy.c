@@ -17,18 +17,12 @@
 #include <my_dir.h> /* for stat */
 #include <m_string.h>
 #include "mysys_err.h"
-#if defined(HAVE_UTIME_H)
-#include <utime.h>
-#elif defined(HAVE_SYS_UTIME_H)
-#include <sys/utime.h>
-#else
-#include <time.h>
-struct utimbuf {
-  time_t actime;
-  time_t modtime;
-};
-#endif
 
+#ifndef _WIN32
+#include <utime.h>
+#else
+#include <sys/utime.h>
+#endif
 
 /*
   int my_copy(const char *from, const char *to, myf MyFlags)
@@ -63,7 +57,7 @@ int my_copy(const char *from, const char *to, myf MyFlags)
   from_file=to_file= -1;
   DBUG_ASSERT(!(MyFlags & (MY_FNABP | MY_NABP))); /* for my_read/my_write */
   if (MyFlags & MY_HOLD_ORIGINAL_MODES)		/* Copy stat if possible */
-    new_file_stat= test(my_stat((char*) to, &new_stat_buff, MYF(0)));
+    new_file_stat= MY_TEST(my_stat((char*) to, &new_stat_buff, MYF(0)));
 
   if ((from_file=my_open(from,O_RDONLY | O_SHARE,MyFlags)) >= 0)
   {
@@ -98,6 +92,10 @@ int my_copy(const char *from, const char *to, myf MyFlags)
     if (my_close(from_file,MyFlags) | my_close(to_file,MyFlags))
       DBUG_RETURN(-1);				/* Error on close */
 
+    /* Reinitialize closed fd, so they won't be closed again. */
+    from_file= -1;
+    to_file= -1;
+
     /* Copy modes if possible */
 
     if (MyFlags & MY_HOLD_ORIGINAL_MODES && !new_file_stat)
@@ -109,7 +107,7 @@ int my_copy(const char *from, const char *to, myf MyFlags)
       if (MyFlags & (MY_FAE+MY_WME))
       {
         char  errbuf[MYSYS_STRERROR_SIZE];
-        my_error(EE_CHANGE_PERMISSIONS, MYF(ME_BELL+ME_WAITTANG), from,
+        my_error(EE_CHANGE_PERMISSIONS, MYF(0), from,
                  errno, my_strerror(errbuf, sizeof(errbuf), errno));
       }
       goto err;
@@ -122,7 +120,7 @@ int my_copy(const char *from, const char *to, myf MyFlags)
       if (MyFlags & (MY_FAE+MY_WME))
       {
         char  errbuf[MYSYS_STRERROR_SIZE];
-        my_error(EE_CHANGE_OWNERSHIP, MYF(ME_BELL+ME_WAITTANG), from,
+        my_error(EE_CHANGE_OWNERSHIP, MYF(0), from,
                  errno, my_strerror(errbuf, sizeof(errbuf), errno));
       }
       goto err;

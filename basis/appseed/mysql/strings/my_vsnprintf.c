@@ -1,4 +1,4 @@
-/* Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+/* Copyright (c) 2000, 2014, Oracle and/or its affiliates. All rights reserved.
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -19,8 +19,8 @@
 #include <m_ctype.h>
 
 
-#define MAX_ARGS 32                           /* MAX positional args count*/
-#define MAX_PRINT_INFO 32                     /* MAX print position count */
+#define MAX_ARGS 32                           /* max positional args count*/
+#define MAX_PRINT_INFO 32                     /* max print position count */
 
 #define LENGTH_ARG     1
 #define WIDTH_ARG      2
@@ -155,10 +155,9 @@ static char *backtick_string(const CHARSET_INFO *cs, char *to, char *end,
 
   for ( ; par < par_end; par+= char_len)
   {
-    uchar c= *(uchar *) par;
-    if (!(char_len= my_mbcharlen(cs, c)))
-      char_len= 1;
-    if (char_len == 1 && c == (uchar) quote_char )
+    if (!(char_len= my_mbcharlen_ptr(cs, par, par_end)))
+      goto err;
+    if (char_len == 1 && *par == quote_char)
     {
       if (start + 1 >= end)
         goto err;
@@ -166,9 +165,9 @@ static char *backtick_string(const CHARSET_INFO *cs, char *to, char *end,
     }
     if (start + char_len >= end)
       goto err;
-    start= strnmov(start, par, char_len);
+    start= my_stpnmov(start, par, char_len);
   }
-    
+
   if (start + 1 >= end)
     goto err;
   *start++= quote_char;
@@ -200,7 +199,7 @@ static char *process_str_arg(const CHARSET_INFO *cs, char *to, char *end,
   if (print_type & ESCAPED_ARG)
     to= backtick_string(cs, to, end, par, plen, '`');
   else
-    to= strnmov(to,par,plen);
+    to= my_stpnmov(to,par,plen);
   return to;
 }
 
@@ -230,7 +229,7 @@ static char *process_dbl_arg(char *to, char *end, size_t width,
   if (width == SIZE_T_MAX)
     width= FLT_DIG; /* width not set, use default */
   else if (width >= NOT_FIXED_DEC)
-    width= NOT_FIXED_DEC - 1; /* MAX.precision for my_fcvt() */
+    width= NOT_FIXED_DEC - 1; /* max.precision for my_fcvt() */
   width= MY_MIN(width, (size_t)(end-to) - 1);
   
   if (arg_type == 'f')
@@ -321,7 +320,8 @@ static char *process_args(const CHARSET_INFO *cs, char *to, char *end,
 {
   ARGS_INFO args_arr[MAX_ARGS];
   PRINT_INFO print_arr[MAX_PRINT_INFO];
-  uint idx= 0, arg_count= (uint) arg_index;
+  uint idx= 0;
+  size_t arg_count= arg_index;
 
 start:
   /* Here we are at the beginning of positional argument, right after $ */
@@ -345,7 +345,7 @@ start:
     args_arr[print_arr[idx].length].arg_type= 'd';
     args_arr[print_arr[idx].length].have_longlong= 0;
     print_arr[idx].flags|= LENGTH_ARG;
-    arg_count= (uint) MY_MAX(arg_count, print_arr[idx].length + 1);
+    arg_count= MY_MAX(arg_count, print_arr[idx].length + 1);
     fmt++;
   }
   else
@@ -364,7 +364,7 @@ start:
       args_arr[print_arr[idx].width].arg_type= 'd';
       args_arr[print_arr[idx].width].have_longlong= 0;
       print_arr[idx].flags|= WIDTH_ARG;
-      arg_count= (uint) MY_MAX(arg_count, print_arr[idx].width + 1);
+      arg_count= MY_MAX(arg_count, print_arr[idx].width + 1);
       fmt++;
     }
     else
@@ -495,7 +495,7 @@ start:
       length= MY_MIN(end - to , print_arr[i].end - print_arr[i].begin);
       if (to + length < end)
         length++;
-      to= strnmov(to, print_arr[i].begin, length);
+      to= my_stpnmov(to, print_arr[i].begin, length);
     }
     DBUG_ASSERT(to <= end);
     *to='\0';				/* End of errmessage */
@@ -512,7 +512,7 @@ start:
     fmt= get_width(fmt, &arg_index);
     DBUG_ASSERT(*fmt == '$');
     fmt++;
-    arg_count= (uint) ( MY_MAX(arg_count, arg_index));
+    arg_count= MY_MAX(arg_count, arg_index);
     goto start;
   }
 
@@ -557,7 +557,7 @@ size_t my_vsnprintf_ex(const CHARSET_INFO *cs, char *to, size_t n,
     length= width= 0;
     print_type= 0;
 
-    /* Read MAX fill size (only used with %d and %u) */
+    /* Read max fill size (only used with %d and %u) */
     if (my_isdigit(&my_charset_latin1, *fmt))
     {
       fmt= get_length(fmt, &length, &print_type);

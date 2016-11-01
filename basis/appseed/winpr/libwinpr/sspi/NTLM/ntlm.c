@@ -28,7 +28,7 @@
 #include <winpr/sysinfo.h>
 #include <winpr/registry.h>
 #include <winpr/endian.h>
-#include <freerdp/config.h>
+#include <freerdp/build-config.h>
 
 #include "ntlm.h"
 #include "../sspi.h"

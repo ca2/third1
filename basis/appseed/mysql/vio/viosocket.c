@@ -28,6 +28,15 @@
 #ifdef FIONREAD_IN_SYS_FILIO
 # include <sys/filio.h>
 #endif
+#ifndef _WIN32
+# include <netinet/tcp.h>
+#endif
+#ifdef HAVE_POLL_H
+# include <poll.h>
+#endif
+#ifdef HAVE_SYS_IOCTL_H
+# include <sys/ioctl.h>
+#endif
 
 int vio_errno(Vio *vio __attribute__((unused)))
 {
@@ -473,9 +482,9 @@ my_socket vio_fd(Vio* vio)
   @param dst_length [out] actual length of the normalized IP address.
 */
 static void vio_get_normalized_ip(const struct sockaddr *src,
-                                  int src_length,
+                                  size_t src_length,
                                   struct sockaddr *dst,
-                                  int *dst_length)
+                                  size_t *dst_length)
 {
   switch (src->sa_family) {
   case AF_INET:
@@ -549,13 +558,13 @@ static void vio_get_normalized_ip(const struct sockaddr *src,
 */
 
 my_bool vio_get_normalized_ip_string(const struct sockaddr *addr,
-                                     int addr_length,
+                                     size_t addr_length,
                                      char *ip_string,
                                      size_t ip_string_size)
 {
   struct sockaddr_storage norm_addr_storage;
   struct sockaddr *norm_addr= (struct sockaddr *) &norm_addr_storage;
-  int norm_addr_length;
+  size_t norm_addr_length;
   int err_code;
 
   vio_get_normalized_ip(addr, addr_length, norm_addr, &norm_addr_length);
@@ -605,7 +614,7 @@ my_bool vio_peer_addr(Vio *vio, char *ip_buffer, uint16 *port,
 
     /* Initialize ip_buffer and port. */
 
-    strmov(ip_buffer, "127.0.0.1");
+    my_stpcpy(ip_buffer, "127.0.0.1");
     *port= 0;
   }
   else
@@ -615,11 +624,11 @@ my_bool vio_peer_addr(Vio *vio, char *ip_buffer, uint16 *port,
 
     struct sockaddr_storage addr_storage;
     struct sockaddr *addr= (struct sockaddr *) &addr_storage;
-    size_socket addr_length= sizeof (addr_storage);
+    socket_len_t addr_length= sizeof (addr_storage);
 
     /* Get sockaddr by socked fd. */
 
-    err_code= mysql_socket_getpeername(vio->mysql_socket, addr, (socklen_t *) &addr_length);
+    err_code= mysql_socket_getpeername(vio->mysql_socket, addr, &addr_length);
 
     if (err_code)
     {
@@ -686,7 +695,7 @@ static my_bool socket_peek_read(Vio *vio, uint *bytes)
   ssize_t res= recv(sd, &buf, sizeof(buf), MSG_PEEK);
   if (res < 0)
     return TRUE;
-  *bytes= (unsigned int) res;
+  *bytes= res;
   return FALSE;
 #endif
 }
@@ -735,7 +744,9 @@ static my_bool socket_peek_read(Vio *vio, uint *bytes)
 int vio_io_wait(Vio *vio, enum enum_vio_io_event event, int timeout)
 {
   int ret;
+#ifndef DBUG_OFF
   short revents= 0;
+#endif
   struct pollfd pfd;
   my_socket sd= mysql_socket_getfd(vio->mysql_socket);
   MYSQL_SOCKET_WAIT_VARIABLES(locker, state) /* no ';' */
@@ -753,12 +764,16 @@ int vio_io_wait(Vio *vio, enum enum_vio_io_event event, int timeout)
   {
   case VIO_IO_EVENT_READ:
     pfd.events= MY_POLL_SET_IN;
+#ifndef DBUG_OFF
     revents= MY_POLL_SET_IN | MY_POLL_SET_ERR | POLLRDHUP;
+#endif
     break;
   case VIO_IO_EVENT_WRITE:
   case VIO_IO_EVENT_CONNECT:
     pfd.events= MY_POLL_SET_OUT;
+#ifndef DBUG_OFF
     revents= MY_POLL_SET_OUT | MY_POLL_SET_ERR;
+#endif
     break;
   }
 
@@ -836,7 +851,7 @@ int vio_io_wait(Vio *vio, enum enum_vio_io_event event, int timeout)
   MYSQL_START_SOCKET_WAIT(locker, &state, vio->mysql_socket, PSI_SOCKET_SELECT, 0);
 
   /* The first argument is ignored on Windows. */
-  ret= select((int) fd + 1, &readfds, &writefds, &exceptfds,
+  ret= select((int)(fd + 1), &readfds, &writefds, &exceptfds, 
               (timeout >= 0) ? &tm : NULL);
 
   MYSQL_END_SOCKET_WAIT(locker, 0);
@@ -859,16 +874,16 @@ int vio_io_wait(Vio *vio, enum enum_vio_io_event event, int timeout)
   switch (event)
   {
   case VIO_IO_EVENT_READ:
-    ret= test(FD_ISSET(fd, &readfds));
+    ret= MY_TEST(FD_ISSET(fd, &readfds));
     break;
   case VIO_IO_EVENT_WRITE:
   case VIO_IO_EVENT_CONNECT:
-    ret= test(FD_ISSET(fd, &writefds));
+    ret= MY_TEST(FD_ISSET(fd, &writefds));
     break;
   }
 
   /* Error conditions pending? */
-  ret|= test(FD_ISSET(fd, &exceptfds));
+  ret|= MY_TEST(FD_ISSET(fd, &exceptfds));
 
   /* Not a timeout, ensure that a condition was met. */
   DBUG_ASSERT(ret);
@@ -951,7 +966,7 @@ vio_socket_connect(Vio *vio, struct sockaddr *addr, socklen_t len, int timeout)
 #else
       errno= error;
 #endif
-      ret= test(error);
+      ret= MY_TEST(error);
     }
   }
 
@@ -962,7 +977,7 @@ vio_socket_connect(Vio *vio, struct sockaddr *addr, socklen_t len, int timeout)
       DBUG_RETURN(TRUE);
   }
 
-  DBUG_RETURN(test(ret));
+  DBUG_RETURN(MY_TEST(ret));
 }
 
 
@@ -1114,7 +1129,7 @@ int vio_getnameinfo(const struct sockaddr *sa,
   }
 
   return getnameinfo(sa, sa_length,
-                     hostname, (unsigned int) hostname_size,
-                     port, (unsigned int) port_size,
+                     hostname, hostname_size,
+                     port, port_size,
                      flags);
 }

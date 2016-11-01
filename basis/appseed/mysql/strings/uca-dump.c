@@ -1,4 +1,4 @@
-/* Copyright (c) 2004, 2011, Oracle and/or its affiliates. All rights reserved.
+/* Copyright (c) 2004, 2013, Oracle and/or its affiliates. All rights reserved.
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-//#include <string.h>
+#include <string.h>
 
 typedef unsigned char uchar;
 typedef unsigned short uint16;
@@ -67,7 +67,7 @@ static int load_uca_file(MY_UCA *uca,
   char str[512];
   size_t lineno, out_of_range_chars= 0;
   char *weights[MY_UCA_MAXWEIGHT_TO_PARSE];
-
+  
   for (lineno= 0; fgets(str, sizeof(str), stdin); lineno++)
   {
     char *comment;
@@ -75,12 +75,12 @@ static int load_uca_file(MY_UCA *uca,
     char *s, *ch[MY_UCA_MAX_CONTRACTION];
     size_t codenum, i, code;
     MY_UCA_ITEM *item= NULL;
-
-
+    
+    
     /* Skip comment lines */
     if (*str== '\r' || *str == '\n' || *str == '#')
       continue;
-
+    
     /* Detect version */
     if (*str == '@' && !strncmp(str, "@version ", 9))
     {
@@ -89,15 +89,15 @@ static int load_uca_file(MY_UCA *uca,
         snprintf(uca->version, MY_UCA_VERSION_SIZE, value);
       continue;
     }
-
+    
     /* Skip big characters */
     if ((code= strtol(str,NULL,16)) > maxchar)
     {
       out_of_range_chars++;
       continue;
     }
-
-
+    
+    
     if ((comment= strchr(str,'#')))
     {
       *comment++= '\0';
@@ -109,8 +109,8 @@ static int load_uca_file(MY_UCA *uca,
               lineno, str);
       continue;
     }
-
-
+    
+    
     if ((weight= strchr(str,';')))
     {
       *weight++= '\0';
@@ -121,7 +121,7 @@ static int load_uca_file(MY_UCA *uca,
       fprintf(stderr, "Warning: could not parse line #%d:\n%s\n", lineno, str);
       continue;
     }
-
+    
     for (codenum= 0, s= strtok(str, " \t"); s;
          codenum++, s= strtok(NULL, " \t"))
     {
@@ -134,13 +134,13 @@ static int load_uca_file(MY_UCA *uca,
       ch[codenum]= s;
       ch[codenum + 1]= 0;
     }
-
+    
     if (codenum > 1)
     {
       MY_UCA_CONTRACTION *c= &uca->contraction[uca->ncontractions++];
       size_t i;
       /* Multi-character weight (contraction) - not supported yet. */
-
+            
       if (uca->ncontractions >= MY_UCA_NCONTRACTIONS)
       {
         fprintf(stderr,
@@ -163,13 +163,13 @@ static int load_uca_file(MY_UCA *uca,
     else
     {
       item= &uca->item[code];
-    }
-
+    }    
+    
     /*
       Split weight string into separate weights
 
       "[p1.s1.t1.q1][p2.s2.t2.q2][p3.s3.t3.q3]" ->
-
+      
       "p1.s1.t1.q1" "p2.s2.t2.q2" "p3.s3.t3.q3"
     */
     item->num= 0;
@@ -187,11 +187,11 @@ static int load_uca_file(MY_UCA *uca,
       s= strtok(NULL, " []");
       item->num++;
     }
-
+    
     for (i= 0; i < item->num; i++)
     {
       size_t level= 0;
-
+      
       if (i >= MY_UCA_MAXWEIGHT_TO_DUMP)
       {
         fprintf(stderr,
@@ -202,7 +202,7 @@ static int load_uca_file(MY_UCA *uca,
         item->num= MY_UCA_MAXWEIGHT_TO_DUMP;
         break;
       }
-
+      
       for (s= weights[i]; *s; )
       {
         char *endptr;
@@ -228,7 +228,7 @@ static int load_uca_file(MY_UCA *uca,
     fprintf(stderr, "%d out-of-range characters skipped\n", out_of_range_chars);
 
   return 0;
-}
+}  
 
 
 /*
@@ -245,38 +245,38 @@ set_implicit_weights(MY_UCA *uca, size_t maxchar)
   {
     size_t base, aaaa, bbbb;
     MY_UCA_ITEM *item= &uca->item[code];
-
+    
     if (item->num)
       continue;
-
+    
     /*
     3400;<CJK Ideograph Extension A, First>
     4DB5;<CJK Ideograph Extension A, Last>
     4E00;<CJK Ideograph, First>
     9FA5;<CJK Ideograph, Last>
     */
-
+    
     if (code >= 0x3400 && code <= 0x4DB5)
       base= 0xFB80;
     else if (code >= 0x4E00 && code <= 0x9FA5)
       base= 0xFB40;
     else
       base= 0xFBC0;
-
+    
     aaaa= base +  (code >> 15);
     bbbb= (code & 0x7FFF) | 0x8000;
     item->weight[0][0]= aaaa;
     item->weight[0][1]= bbbb;
-
+    
     item->weight[1][0]= 0x0020;
     item->weight[1][1]= 0x0000;
-
+    
     item->weight[2][0]= 0x0002;
     item->weight[2][1]= 0x0000;
-
+    
     item->weight[3][0]= 0x0001;
     item->weight[3][2]= 0x0000;
-
+    
     item->num= 2;
   }
 }
@@ -287,12 +287,12 @@ get_page_statistics(MY_UCA *uca, size_t page, size_t level,
                     size_t *maxnum, size_t *ndefs)
 {
   size_t offs;
-
+  
   for (offs= 0; offs < MY_UCA_NCHARS; offs++)
   {
     size_t i, num;
     MY_UCA_ITEM *item= &uca->item[page * MY_UCA_NCHARS + offs];
-
+    
     /* Calculate only non-zero weights */
     for (num= 0, i= 0; i < item->num; i++)
     {
@@ -300,7 +300,7 @@ get_page_statistics(MY_UCA *uca, size_t page, size_t level,
         num++;
     }
     *maxnum= *maxnum < num ? num : *maxnum;
-
+    
     /* Check if default weight */
     if (level == 1 && num == 1)
     {
@@ -314,7 +314,7 @@ get_page_statistics(MY_UCA *uca, size_t page, size_t level,
       if (item->weight[level][0] == 0x0002)
         (*ndefs)++;
     }
-  }
+  } 
 }
 
 
@@ -358,36 +358,24 @@ normalize_weight(MY_UCA_ITEM *item, size_t level,
                  uint16 *weight, size_t weight_elements)
 {
   size_t num, i;
-
+  
   memset(weight, 0, weight_elements * sizeof(*weight));
 
   /*
     Copy non-zero weights only. For example:
-
+    
     [.17A6.0020.0004.00DF][.0000.015F.0004.00DF][.17A6.0020.001F.00DF]
-
+    
     makes [17A6][0000][17A6] on the primary level
-
+    
     pack it to [17A6][17A7]
   */
-
+  
   for (num= 0, i= 0; i < item->num && i < MY_UCA_MAXWEIGHT_TO_DUMP; i++)
   {
     if (item->weight[level][i])
     {
       weight[num]= item->weight[level][i];
-#ifdef INVERT_TERTIARY_WEIGHTS
-      if (level == 2)
-      {
-        /*
-          Invert tertiary weights to sort upper case letters
-          before their lower case counterparts.
-        */
-        if (weight[num] >= 0x20)
-          fprintf(stderr, "Tertiary weight is too big: %02X\n", weight[num]);
-        weight[num]= (uint) (0x20) - weight[num];
-      }
-#endif
       num++;
     }
   }
@@ -399,11 +387,11 @@ static void
 print_one_page(MY_UCA *uca, size_t level,
                size_t page, size_t maxnum)
 {
-  size_t offs, mchars, nchars= 0, chars_per_line;
-
+  size_t offs = 0, mchars, nchars= 0, chars_per_line;
+  
   printf("uint16 %s[]= { /* %04X (%d weights per char) */\n",
          page_name(uca, page, level), page * MY_UCA_NCHARS, maxnum);
-
+  
   /* Calculate how many wights to print per line */
   switch (maxnum)
   {
@@ -416,8 +404,8 @@ print_one_page(MY_UCA *uca, size_t level,
       mchars= uca->item[page * MY_UCA_NCHARS + offs].num;
       chars_per_line= 1;
   }
-
-
+  
+  
   /* Print the page */
   for (offs=0; offs < MY_UCA_NCHARS; offs++)
   {
@@ -448,7 +436,7 @@ print_one_page(MY_UCA *uca, size_t level,
         printf(" ");
       nchars++;
     }
-
+    
     if (nchars >=mchars)
     {
       /* Print "\n" with a comment telling the first code on this line. */
@@ -529,7 +517,7 @@ print_contraction(MY_UCA *uca, MY_UCA_CONTRACTION *c, size_t level)
         MY_UCA_ITEM *item= &uca->item[c->ch[i]];
         sw+= normalize_weight(item, level, sw, MY_UCA_MAXWEIGHT_TO_DUMP);
       }
-
+    
       if (sw - sweight < MY_UCA_MAXWEIGHT_TO_DUMP &&
           !weight_cmp(sweight, weight, MY_UCA_MAXWEIGHT_TO_DUMP))
       {
@@ -654,17 +642,17 @@ main(int ac, char **av)
   static int pageloaded[MY_UCA_NPAGES];
 
   memset(&uca, 0, sizeof(uca));
-
+  
   process_options(ac, av, &uca);
-
+  
   memset(pageloaded, 0, sizeof(pageloaded));
-
+  
   load_uca_file(&uca, maxchar, pageloaded);
-
+  
   /* Now set implicit weights */
   set_implicit_weights(&uca, maxchar);
-
-
+  
+  
   printf("#include \"my_uca.h\"\n");
   printf("\n\n");
   printf("#define MY_UCA_NPAGES %d\n", MY_UCA_NPAGES);
@@ -673,7 +661,7 @@ main(int ac, char **av)
   printf("#define MY_UCA_PSHIFT %d\n", MY_UCA_PSHIFT);
   printf("\n\n");
   printf("/* Created from allkeys.txt. Unicode version '%s'. */\n\n", uca.version);
-
+  
   for (level= 0; level < nlevels; level++)
   {
     size_t page;
@@ -683,38 +671,38 @@ main(int ac, char **av)
     {
       size_t maxnum= 0;
       size_t ndefs= 0;
-
+      
       pagemaxlen[page]= 0;
-
+      
       /* Skip this page if no weights were loaded */
       if (!pageloaded[page])
         continue;
-
+      
       /*
         Calculate number of weights per character
         and number of default weights.
       */
       get_page_statistics(&uca, page, level, &maxnum, &ndefs);
-
-
+      
+      
       maxnum++; /* For zero terminator */
-
-
+      
+      
       /*
         If the page have only default weights
         then no needs to dump it, skip.
       */
       if (ndefs == MY_UCA_NCHARS)
         continue;
-
+      
       pagemaxlen[page]= maxnum;
-
-
+      
+      
       /* Now print this page */
       print_one_page(&uca, level, page, maxnum);
     }
-
-
+    
+    
     /* Print page lengths */
     printf("uchar %s_length%s[%d]={\n",
            prefix_name(&uca), pname[level], MY_UCA_NPAGES);
@@ -747,7 +735,7 @@ main(int ac, char **av)
       print_contractions(&uca, level);
   }
 
-
+  
   printf("int main(void){ return 0;};\n");
   return 0;
 }

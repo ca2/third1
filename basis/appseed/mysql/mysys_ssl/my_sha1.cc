@@ -22,8 +22,8 @@
   Compatibility layer to make available YaSSL's SHA1 implementation.
 */
 
-#include <my_global_cc.h>
-#include <mysql/sha1.h>
+#include <my_global.h>
+#include <sha1.h>
 
 #if defined(HAVE_YASSL)
 #include "sha.hpp"
@@ -37,10 +37,10 @@
 
   @return              void
 */
-void mysql_sha1_yassl(uint8 *digest, const char *buf, int len)
+void mysql_sha1_yassl(uint8 *digest, const char *buf, size_t len)
 {
   TaoCrypt::SHA hasher;
-  hasher.Update((const TaoCrypt::byte *) buf, len);
+  hasher.Update((const TaoCrypt::byte *) buf, (TaoCrypt::word32)len);
   hasher.Final ((TaoCrypt::byte *) digest);
 }
 
@@ -66,7 +66,7 @@ void mysql_sha1_multi_yassl(uint8 *digest, const char *buf1, int len1,
 }
 
 #elif defined(HAVE_OPENSSL)
-#include "openssl/sha.h"
+#include <openssl/sha.h>
 
 int mysql_sha1_reset(SHA_CTX *context)
 {
@@ -98,7 +98,7 @@ int mysql_sha1_result(SHA_CTX *context,
 
   @return              void
 */
-void compute_sha1_hash(uint8 *digest, const char *buf, int len)
+void compute_sha1_hash(uint8 *digest, const char *buf, size_t len)
 {
 #if defined(HAVE_YASSL)
   mysql_sha1_yassl(digest, buf, len);

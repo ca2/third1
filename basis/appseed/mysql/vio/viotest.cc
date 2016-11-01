@@ -14,7 +14,7 @@
    along with this program; if not, write to the Free Software
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA */
 
-/*
+/* 
 **  Virtual I/O library
 **  Written by Andrei Errapart <andreie@no.spam.ee>
 */
@@ -25,7 +25,7 @@
 #include	<sys/stat.h>
 #include	<stdio.h>
 
-//#include	<string.h>
+#include	<string.h>
 
 VIO_NS_USING;
 

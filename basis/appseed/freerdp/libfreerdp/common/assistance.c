@@ -34,7 +34,6 @@
 
 #define TAG FREERDP_TAG("common")
 
-
 /**
  * Password encryption in establishing a remote assistance session of type 1:
  * http://blogs.msdn.com/b/openspecification/archive/2011/10/31/password-encryption-in-establishing-a-remote-assistance-session-of-type-1.aspx

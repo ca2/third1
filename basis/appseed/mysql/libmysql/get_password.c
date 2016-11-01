@@ -26,20 +26,15 @@
 #include <m_string.h>
 #include <m_ctype.h>
 
-
-#ifdef __APPLE__
-#include <ctype.h>
-#endif
-
 #ifdef HAVE_GETPASS
 #ifdef HAVE_PWD_H
 #include <pwd.h>
-#else
-extern char *getpass (const char *__prompt);
 #endif /* HAVE_PWD_H */
 #else /* ! HAVE_GETPASS */
 #if !defined(_WIN32)
+#ifdef HAVE_SYS_IOCTL_H
 #include <sys/ioctl.h>
+#endif
 #ifdef HAVE_TERMIOS_H				/* For tty-password */
 #include	<termios.h>
 #define TERMIO	struct termios
@@ -94,7 +89,8 @@ char *get_tty_password(const char *opt_message)
     pos--;					/* Allow dummy space at end */
   *pos=0;
   _cputs("\n");
-  DBUG_RETURN(my_strdup(to,MYF(MY_FAE)));
+  DBUG_RETURN(my_strdup(PSI_NOT_INSTRUMENTED,
+                        to,MYF(MY_FAE)));
 }
 
 #else
@@ -102,7 +98,7 @@ char *get_tty_password(const char *opt_message)
 #ifndef HAVE_GETPASS
 /*
   Can't use fgets, because readline will get confused
-  length is MAX number of chars in to, not counting \0
+  length is max number of chars in to, not counting \0
   to will not include the eol characters.
 */
 
@@ -113,7 +109,7 @@ static void get_password(char *to,uint length,int fd, my_bool echo)
   for (;;)
   {
     char tmp;
-    if (my_read(fd, (uchar *) &tmp,1,MYF(0)) != 1)
+    if (my_read(fd,&tmp,1,MYF(0)) != 1)
       break;
     if (tmp == '\b' || (int) tmp == 127)
     {
@@ -159,18 +155,14 @@ char *get_tty_password(const char *opt_message)
   DBUG_ENTER("get_tty_password");
 
 #ifdef HAVE_GETPASS
-   const char * pszFallbackPrompt = "Enter password: ";
-   const char * pszPrompt = pszFallbackPrompt;
-   if(opt_message != NULL)
-      pszPrompt = opt_message;
-   passbuff = getpass(pszPrompt);
+  passbuff = getpass(opt_message ? opt_message : "Enter password: ");
 
   /* copy the password to buff and clear original (static) buffer */
-  strnmov(buff, passbuff, sizeof(buff) - 1);
+  my_stpnmov(buff, passbuff, sizeof(buff) - 1);
 #ifdef _PASSWORD_LEN
   memset(passbuff, 0, _PASSWORD_LEN);
 #endif
-#else
+#else 
   if (isatty(fileno(stdout)))
   {
     fputs(opt_message ? opt_message : "Enter password: ",stdout);
@@ -198,9 +190,7 @@ char *get_tty_password(const char *opt_message)
   gtty(fileno(stdin), &org);
   tmp=org;
   tmp.sg_flags &= ~ECHO;
-#ifndef ANDROID
   tmp.sg_flags |= RAW;
-#endif
   stty(fileno(stdin), &tmp);
   get_password(buff,sizeof(buff)-1,fileno(stdin),isatty(fileno(stdout)));
   stty(fileno(stdin), &org);
@@ -209,6 +199,7 @@ char *get_tty_password(const char *opt_message)
     fputc('\n',stdout);
 #endif /* HAVE_GETPASS */
 
-  DBUG_RETURN(my_strdup(buff,MYF(MY_FAE)));
+  DBUG_RETURN(my_strdup(PSI_NOT_INSTRUMENTED,
+                        buff,MYF(MY_FAE)));
 }
 #endif /* _WIN32 */
