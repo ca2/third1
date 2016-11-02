@@ -27,7 +27,7 @@
 #include <winpr/stream.h>
 #include <freerdp/log.h>
 
-#include "rdpgfx_common.h"
+#include "../rdpgfx_common.h"
 
 #include "rdpgfx_codec.h"
 

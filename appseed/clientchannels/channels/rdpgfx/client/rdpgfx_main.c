@@ -40,7 +40,7 @@
 #include <freerdp/addin.h>
 #include <freerdp/channels/log.h>
 
-#include "rdpgfx_common.h"
+#include "../rdpgfx_common.h"
 #include "rdpgfx_codec.h"
 
 #include "rdpgfx_main.h"
