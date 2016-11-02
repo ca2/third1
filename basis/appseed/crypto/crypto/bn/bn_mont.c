@@ -17,7 +17,8 @@
 #include "internal/cryptlib.h"
 #include "bn_lcl.h"
 
-#define MONT_WORD               /* use the faster word-based algorithm */
+//#define MONT_WORD               /* use the faster word-based algorithm */
+#undef MONT_WORD
 
 #ifdef MONT_WORD
 static int BN_from_montgomery_word(BIGNUM *ret, BIGNUM *r, BN_MONT_CTX *mont);
