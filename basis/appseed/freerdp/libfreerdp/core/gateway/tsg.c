@@ -74,7 +74,6 @@
  * TsProxySendToServerRequest(ChannelContext)
  */
 
-long fd_ctrl(BIO *b, int cmd, long num, void *ptr);
 
 
 DWORD TsProxySendToServer(handle_t IDL_handle, byte pRpcMessage[], UINT32 count, UINT32* lengths)
@@ -2068,7 +2067,6 @@ static long transport_bio_tsg_ctrl(BIO* bio, int cmd, long arg1, void* arg2)
 static int transport_bio_tsg_new(BIO* bio)
 {
 	BIO_set_init(bio, 1);
-	fd_ctrl(bio, BIO_CTRL_RESET, 0, NULL);
 	BIO_set_data(bio, NULL);
    BIO_clear_flags(bio, -1);
    BIO_set_flags(bio, BIO_FLAGS_SHOULD_RETRY);

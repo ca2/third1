@@ -35,7 +35,6 @@
 #include <freerdp/crypto/tls.h>
 #include "../core/tcp.h"
 
-long fd_ctrl(BIO *b, int cmd, long num, void *ptr);
 
 #ifdef HAVE_POLL_H
 #include <poll.h>
@@ -45,8 +44,8 @@ long fd_ctrl(BIO *b, int cmd, long num, void *ptr);
 #include <valgrind/memcheck.h>
 #endif
 
-int ssl_is_accept(BIO *b);
-int ssl_is_connect(BIO *b);
+//int ssl_is_accept(BIO *b);
+//int ssl_is_connect(BIO *b);
 
 
 #define TAG FREERDP_TAG("crypto")
@@ -225,10 +224,11 @@ static long bio_rdp_tls_ctrl(BIO* bio, int cmd, long num, void* ptr)
 		case BIO_CTRL_RESET:
 			SSL_shutdown(tls->ssl);
 
-			if (ssl_is_connect(bio))
-				SSL_set_connect_state(tls->ssl);
-			else if (ssl_is_accept(bio))
-				SSL_set_accept_state(tls->ssl);
+			if (SSL_is_server(tls->ssl))
+            SSL_set_accept_state(tls->ssl);
+			else
+            SSL_set_connect_state(tls->ssl);
+
 
 			SSL_clear(tls->ssl);
 
@@ -386,7 +386,6 @@ static int bio_rdp_tls_new(BIO* bio)
 {
 	BIO_RDP_TLS* tls;
 	BIO_set_init(bio, 0);
-   fd_ctrl(bio, BIO_CTRL_RESET, 0, NULL);
    BIO_clear_flags(bio, -1);
 	BIO_set_flags(bio, BIO_FLAGS_SHOULD_RETRY);
 	BIO_set_next(bio, NULL);
@@ -993,7 +992,7 @@ BOOL tls_accept(rdpTls* tls, BIO* underlying, rdpSettings* settings)
 	 * extension debug callback that sets the SSL context's servername_done
 	 * to 1 which effectively disables the parsing of that extension type.
 	 */
-	SSL_set_tlsext_debug_callback(tls->ssl, tls_openssl_tlsext_debug_callback);
+	//SSL_set_tlsext_debug_callback(tls->ssl, tls_openssl_tlsext_debug_callback);
 #endif
 	return tls_do_handshake(tls, FALSE) > 0;
 }
@@ -1021,7 +1020,8 @@ BOOL tls_send_alert(rdpTls* tls)
       SSL_set_quiet_shutdown(tls->ssl, 1);
 
 
-      ssl3_send_alert(tls->ssl, tls->alertLevel, tls->alertDescription);
+      //;; ssl3_send_alert(tls->ssl, tls->alertLevel, tls->alertDescription);
+      SSL_shutdown(tls->ssl);
 
 	}
 

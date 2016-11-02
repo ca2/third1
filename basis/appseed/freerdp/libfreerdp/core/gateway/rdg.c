@@ -36,7 +36,6 @@
 #include "rdg.h"
 #include "../rdp.h"
 
-long fd_ctrl(BIO *b, int cmd, long num, void *ptr);
 
 
 #define TAG FREERDP_TAG("core.gateway.rdg")
@@ -1520,7 +1519,6 @@ static long rdg_bio_ctrl(BIO* bio, int cmd, long arg1, void* arg2)
 static int rdg_bio_new(BIO* bio)
 {
 	BIO_set_init(bio, 1);
-	fd_ctrl(bio, BIO_CTRL_RESET, 0, NULL);
 	BIO_set_data(bio, NULL);
    BIO_clear_flags(bio, -1);
 	BIO_set_flags(bio, BIO_FLAGS_SHOULD_RETRY);
