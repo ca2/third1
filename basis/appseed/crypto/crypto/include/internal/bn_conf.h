@@ -25,12 +25,24 @@
 //{- $config{b32}  ? "#define" : "#undef" -} THIRTY_TWO_BIT
 
 #ifdef _WIN32
+#ifdef _M_X64
+#undef THIRTY_TWO_BIT
 #undef SIXTY_FOUR_BIT_LONG
+#define SIXTY_FOUR_BIT
+#else
+#undef SIXTY_FOUR_BIT
+#undef SIXTY_FOUR_BIT_LONG
+#define THIRTY_TWO_BIT
+#endif
 #else
 #ifdef _LP64
+#undef THIRTY_TWO_BIT
+#undef SIXTY_FOUR_BIT
 #define SIXTY_FOUR_BIT_LONG
 #else
+#undef SIXTY_FOUR_BIT
 #undef SIXTY_FOUR_BIT_LONG
+#define THIRTY_TWO_BIT
 #endif
 #endif
 
