@@ -824,6 +824,12 @@ static H264_CONTEXT_SUBSYSTEM g_Subsystem_x264 =
 #include "wels/codec_def.h"
 #include "wels/codec_api.h"
 //#include "wels/codec_ver.h"
+///////////////////////////////////////////////////////////////////////Camilo
+#define OPENH264_MAJOR (1)
+#define OPENH264_MINOR (4)
+#define OPENH264_REVISION (1)
+#define OPENH264_RESERVED (0)
+///////////////////////////////////////////////////////////////////////Camilo End
 
 //#if (OPENH264_MAJOR == 1) && (OPENH264_MINOR < 3) || (OPENH264_MAJOR < 1)
 //#error "Unsupported OpenH264 version "OPENH264_MAJOR"."OPENH264_MINOR"."OPENH264_REVISION" detected!"
