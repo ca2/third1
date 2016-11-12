@@ -450,7 +450,7 @@ char* GetCombinedPath(const char* basePath, const char* subPath)
 
 BOOL PathMakePathA(LPCSTR path, LPSECURITY_ATTRIBUTES lpAttributes)
 {
-#ifdef _WIN32
+#if defined(_WIN32) && !defined(_UWP)
 	return (SHCreateDirectoryExA(NULL, path, lpAttributes) == ERROR_SUCCESS);
 #else
 	const char delim = PathGetSeparatorA(PATH_STYLE_NATIVE);
@@ -469,9 +469,15 @@ BOOL PathMakePathA(LPCSTR path, LPSECURITY_ATTRIBUTES lpAttributes)
 		if ((p = strchr(p + 1, delim)))
 			* p = '\0';
 
-		if (mkdir(dup, 0777) != 0)
-			if (errno != EEXIST)
-				break;
+#ifdef _UWP
+		if (CreateDirectoryA(dup, NULL) != 0)
+         if (GetLastError() != ERROR_ALREADY_EXISTS)
+            break;
+#else
+      if (mkdir(dup, 0777) != 0)
+         if (errno != EEXIST)
+            break;
+#endif
 
 		if (p)
 			*p = delim;

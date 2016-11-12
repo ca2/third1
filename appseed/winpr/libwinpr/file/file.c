@@ -791,7 +791,11 @@ DWORD WINAPI GetFileSize(HANDLE hFile, LPDWORD lpFileSizeHigh)
 	return fileSize.LowPart;
 }
 
-DWORD SetFilePointer(HANDLE hFile, LONG lDistanceToMove,
+DWORD
+#ifdef _UWP
+WINAPI
+#endif
+SetFilePointer(HANDLE hFile, LONG lDistanceToMove,
 	PLONG lpDistanceToMoveHigh, DWORD dwMoveMethod)
 {
 	BOOL status;
@@ -811,12 +815,20 @@ DWORD SetFilePointer(HANDLE hFile, LONG lDistanceToMove,
 	return liNewFilePointer.LowPart;
 }
 
-HANDLE FindFirstFileA(LPCSTR lpFileName, LPWIN32_FIND_DATAA lpFindFileData)
+HANDLE
+#ifdef _UWP
+WINAPI
+#endif
+FindFirstFileA(LPCSTR lpFileName, LPWIN32_FIND_DATAA lpFindFileData)
 {
 	return FindFirstFileExA(lpFileName, FindExInfoStandard, lpFindFileData, FindExSearchNameMatch, NULL, 0);
 }
 
-HANDLE FindFirstFileW(LPCWSTR lpFileName, LPWIN32_FIND_DATAW lpFindFileData)
+HANDLE
+#ifdef _UWP
+WINAPI
+#endif
+FindFirstFileW(LPCWSTR lpFileName, LPWIN32_FIND_DATAW lpFindFileData)
 {
 	return FindFirstFileExW(lpFileName, FindExInfoStandard, lpFindFileData, FindExSearchNameMatch, NULL, 0);
 }
@@ -854,8 +866,11 @@ DWORD GetFullPathNameA(LPCSTR lpFileName, DWORD nBufferLength, LPSTR lpBuffer, L
 
 	return dwStatus * 2;
 }
-
-BOOL GetDiskFreeSpaceA(LPCSTR lpRootPathName, LPDWORD lpSectorsPerCluster,
+BOOL 
+#ifdef _UWP
+WINAPI
+#endif
+GetDiskFreeSpaceA(LPCSTR lpRootPathName, LPDWORD lpSectorsPerCluster,
 	LPDWORD lpBytesPerSector, LPDWORD lpNumberOfFreeClusters, LPDWORD lpTotalNumberOfClusters)
 {
 	BOOL status;
@@ -877,7 +892,11 @@ BOOL GetDiskFreeSpaceA(LPCSTR lpRootPathName, LPDWORD lpSectorsPerCluster,
 	return TRUE;
 }
 
-BOOL GetDiskFreeSpaceW(LPCWSTR lpRootPathName, LPDWORD lpSectorsPerCluster,
+BOOL
+#ifdef _UWP
+WINAPI
+#endif
+GetDiskFreeSpaceW(LPCWSTR lpRootPathName, LPDWORD lpSectorsPerCluster,
 	LPDWORD lpBytesPerSector, LPDWORD lpNumberOfFreeClusters, LPDWORD lpTotalNumberOfClusters)
 {
 	BOOL status;

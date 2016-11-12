@@ -22,7 +22,11 @@
 #endif
 
 #ifdef _WIN32
+#ifdef _UWP
+#define SEC_ENTRY
+#else
 #define SEC_ENTRY __stdcall
+#endif
 #define SSPI_EXPORT	__declspec(dllexport)
 #else
 #define SEC_ENTRY
