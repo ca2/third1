@@ -139,11 +139,17 @@
     <Filter Include="Binary Files\x64\Debug">
       <UniqueIdentifier>{430fcc29-9dc8-4e8a-b781-9fde35707398}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\channels\rdpsnd\xaudio">
-      <UniqueIdentifier>{e6872c29-f41e-415d-b2f2-982eb65fa441}</UniqueIdentifier>
+    <Filter Include="Source Files\ca2">
+      <UniqueIdentifier>{1119aa99-b1b9-47bc-9803-2fe202a11105}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\channels\rdpsnd\xaudio">
-      <UniqueIdentifier>{6ff14b47-93fd-436e-9fb4-c83c195443ae}</UniqueIdentifier>
+    <Filter Include="Source Files\ca2\channels">
+      <UniqueIdentifier>{68a6c380-e2cf-42f1-887c-4b76cfe9fcfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ca2\channels\rdpsnd">
+      <UniqueIdentifier>{1703aba6-2a7e-4fdf-9157-eda73f952285}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ca2\channels\rdpsnd\xaudio">
+      <UniqueIdentifier>{3962b8d1-0012-4de4-bd6b-e21a9dc18853}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -216,9 +222,6 @@
     <ClInclude Include="channels\rdpgfx\client\rdpgfx_main.h">
       <Filter>Header Files\channels\rdpgfx</Filter>
     </ClInclude>
-    <ClInclude Include="channels\rdpsnd\client\codec_aac.h">
-      <Filter>Header Files\channels\rdpsnd</Filter>
-    </ClInclude>
     <ClInclude Include="channels\rdpsnd\client\rdpsnd_main.h">
       <Filter>Header Files\channels\rdpsnd</Filter>
     </ClInclude>
@@ -245,9 +248,6 @@
     </ClInclude>
     <ClInclude Include="channels\tsmf\client\tsmf_types.h">
       <Filter>Header Files\channels\tsmf</Filter>
-    </ClInclude>
-    <ClInclude Include="channels\rdpsnd\client\xaudio\rdpsnd_xaudio_out.h">
-      <Filter>Header Files\channels\rdpsnd\xaudio</Filter>
     </ClInclude>
     <ClInclude Include="channels\rdpgfx\rdpgfx_common.h">
       <Filter>Header Files\channels\rdpgfx</Filter>
@@ -347,20 +347,17 @@
     <ClCompile Include="channels\remdesk\client\remdesk_main.c">
       <Filter>Source Files\channels\remdesk</Filter>
     </ClCompile>
-    <ClCompile Include="channels\rdpsnd\client\xaudio\rdpsnd_xaudio_out.cpp">
-      <Filter>Source Files\channels\rdpsnd\xaudio</Filter>
-    </ClCompile>
-    <ClCompile Include="channels\client\tables_metrowin.c">
-      <Filter>Source Files\channels\client</Filter>
-    </ClCompile>
-    <ClCompile Include="channels\rdpsnd\client\xaudio\rdpsnd_xaudio.c">
-      <Filter>Source Files\channels\rdpsnd\xaudio</Filter>
-    </ClCompile>
-    <ClCompile Include="channels\rdpsnd\client\codec_aac.c">
-      <Filter>Source Files\channels\rdpsnd</Filter>
-    </ClCompile>
     <ClCompile Include="channels\rdpgfx\rdpgfx_common.c">
       <Filter>Source Files\channels\rdpgfx</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\tables_metrowin.c">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\xaudio\rdpsnd_xaudio.c">
+      <Filter>Source Files\ca2\channels\rdpsnd\xaudio</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\xaudio\rdpsnd_xaudio_out.cpp">
+      <Filter>Source Files\ca2\channels\rdpsnd\xaudio</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

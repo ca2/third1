@@ -202,6 +202,9 @@
     <Filter Include="Source Files\libwinpr\registry">
       <UniqueIdentifier>{4dcf4abf-4b97-4b6d-9712-c56273e49f75}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ca2">
+      <UniqueIdentifier>{eed34e2e-3795-492b-9059-fb6f95cd1f50}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h">
@@ -512,9 +515,6 @@
     <ClCompile Include="libwinpr\sspi\NTLM\ntlm_message.c">
       <Filter>Source Files\libwinpr\sspi\NTLM</Filter>
     </ClCompile>
-    <ClCompile Include="libwinpr\sspi\Negotiate\negotiate.c">
-      <Filter>Source Files\libwinpr\sspi\Negotiate</Filter>
-    </ClCompile>
     <ClCompile Include="libwinpr\utils\lodepng\lodepng.c">
       <Filter>Source Files\libwinpr\sspi\lodepng</Filter>
     </ClCompile>
@@ -755,10 +755,14 @@
     <ClCompile Include="libwinpr\sspi\Schannel\schannel.c">
       <Filter>Source Files\libwinpr\sspi\Schannel</Filter>
     </ClCompile>
+    <ClCompile Include="libwinpr\sspi\Negotiate\negotiate.c">
+      <Filter>Source Files\libwinpr\sspi\NTLM</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\openssl.c">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="axiswinpr.def">
-      <Filter>Source Files</Filter>
-    </None>
+    <None Include="w_winpr.def" />
   </ItemGroup>
 </Project>
