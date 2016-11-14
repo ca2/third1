@@ -704,7 +704,13 @@ rdpRsaKey* key_new_from_content(const char *keycontent, const char *keyfile)
    BIGNUM * n;
    BIGNUM * d;
 
+#ifdef _UWP
+   n = rsa->n;
+   e = rsa->e;
+   d = rsa->d;
+#else
    RSA_get0_key(rsa, &n, &e, &d);
+#endif
 
 	if (BN_num_bytes(e) > 4)
 	{
