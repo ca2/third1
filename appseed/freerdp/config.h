@@ -114,9 +114,9 @@
 /* #undef WITH_DEBUG_ANDROID_JNI */
 /* #undef WITH_DEBUG_RINGBUFFER */
 #endif
+
 #ifdef _WIN32
 #include <WinSock2.h>
 #endif
-
 
 
