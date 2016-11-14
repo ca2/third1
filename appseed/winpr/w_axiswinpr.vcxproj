@@ -71,6 +71,7 @@
     <ClInclude Include="libwinpr\utils\wlog\wlog.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ca2\openssl.c" />
     <ClCompile Include="libwinpr\asn1\asn1.c" />
     <ClCompile Include="libwinpr\bcrypt\bcrypt.c" />
     <ClCompile Include="libwinpr\com\com.c" />
@@ -222,7 +223,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="axiswinpr.def" />
+    <None Include="w_winpr.def" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1C08B221-EB36-4B25-A764-84F5BD143BF4}</ProjectGuid>
@@ -352,7 +353,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>./w_$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalDependencies>ssleay32.lib;libeay32.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -371,7 +372,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <ImportLibrary>$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>./w_$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalDependencies>ssleay32.lib;libeay32.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -391,7 +392,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <ImportLibrary>$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>./w_$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalDependencies>ssleay32.lib;libeay32.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -410,7 +411,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <ImportLibrary>$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>./w_$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalDependencies>ssleay32.lib;libeay32.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -430,7 +431,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <ImportLibrary>$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>./w_$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalDependencies>ssleay32.lib;libeay32.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -449,7 +450,7 @@
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <ImportLibrary>$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>./w_$(ProjectName).def</ModuleDefinitionFile>
       <AdditionalDependencies>ssleay32.lib;libeay32.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
