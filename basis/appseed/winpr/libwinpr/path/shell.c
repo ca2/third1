@@ -78,10 +78,29 @@ static char* GetEnvAlloc(LPCSTR lpName)
 	return env;
 }
 
+
+
+__declspec(dllexport)
+char * winpr_dir_system();
+
 static char* GetPath_HOME(void)
 {
 	char* path = NULL;
-#ifdef _WIN32
+#ifdef _UWP
+   
+   char sz[4096];
+   
+   strcpy(sz, winpr_dir_system());
+
+   if (sz[strlen(sz) - 1] != '\\'
+      && sz[strlen(sz) - 1] != '/')
+      strcat(sz, "\\");
+
+   strcat(sz, "homie");
+
+   path = strdup(sz);
+
+#elif defined(_WIN32)
 	path = GetEnvAlloc("UserProfile");
 #elif defined(__IOS__)
 	path = ios_get_home();
@@ -457,9 +476,20 @@ BOOL PathMakePathA(LPCSTR path, LPSECURITY_ATTRIBUTES lpAttributes)
 	char* dup;
 	char* p;
 
-	/* we only operate on a non-null, absolute path */
-	if (!path || *path != delim)
-		return FALSE;
+   /* we only operate on a non-null, absolute path */
+
+#ifdef _UWP
+   if (!path ||
+      (!(*path == delim && path[1] == delim)
+         && !(
+         (*path >= 'a' && *path <= 'z') || (*path >= 'A' && *path <= 'Z'))
+         && (path[1] == ':')
+         && (path[2] == delim)))
+      return FALSE;
+#else
+   if (!path || *path != delim)
+      return FALSE;
+#endif
 
 	if (!(dup = _strdup(path)))
 		return FALSE;
