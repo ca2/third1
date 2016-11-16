@@ -159,7 +159,7 @@ int BIO_meth_set_callback_ctrl(BIO_METHOD *biom,
 
 
 
-
+#endif
 
 
 
@@ -185,7 +185,7 @@ void ssl_set_servername_done(SSL * s, int done)
 
 
 
-#endif
+
 
 
 
