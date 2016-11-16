@@ -32,6 +32,10 @@ int BIO_get_shutdown(BIO *a)
 {
    return a->shutdown;
 }
+
+
+#ifdef _UWP
+
 # define OPENSSL_zalloc(num) \
         CRYPTO_zalloc(num, __FILE__, __LINE__)
 
@@ -178,3 +182,10 @@ void ssl_set_servername_done(SSL * s, int done)
 {
    s->servername_done = done;
 }
+
+
+
+#endif
+
+
+
