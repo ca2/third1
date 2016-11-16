@@ -458,19 +458,30 @@ static long bio_rdp_tls_callback_ctrl(BIO* bio, int cmd, bio_info_cb* fp)
 
 #define BIO_TYPE_RDP_TLS	68
 
-//static BIO_METHOD bio_rdp_tls_methods =
-//{
-//	BIO_TYPE_RDP_TLS,
-//	"RdpTls",
-//	bio_rdp_tls_write,
-//	bio_rdp_tls_read,
-//	bio_rdp_tls_puts,
-//	bio_rdp_tls_gets,
-//	bio_rdp_tls_ctrl,
-//	bio_rdp_tls_new,
-//	bio_rdp_tls_free,
-//	bio_rdp_tls_callback_ctrl,
-//};
+#ifndef _WIN32
+
+static BIO_METHOD bio_rdp_tls_methods =
+{
+	BIO_TYPE_RDP_TLS,
+	"RdpTls",
+	bio_rdp_tls_write,
+	bio_rdp_tls_read,
+	bio_rdp_tls_puts,
+	bio_rdp_tls_gets,
+	bio_rdp_tls_ctrl,
+	bio_rdp_tls_new,
+	bio_rdp_tls_free,
+	bio_rdp_tls_callback_ctrl,
+};
+
+BIO_METHOD* BIO_s_rdp_tls(void)
+{
+
+   return &bio_rdp_tls_methods;
+
+}
+
+#else
 
 static BIO_METHOD * g_pbio_rdp_tls_methods = NULL;
 
@@ -485,7 +496,6 @@ BIO_METHOD* BIO_s_rdp_tls(void)
 
    }
 
-
    g_pbio_rdp_tls_methods = BIO_meth_new(BIO_TYPE_RDP_TLS, "RdpTls");
 
    BIO_meth_set_write(g_pbio_rdp_tls_methods, &bio_rdp_tls_write);
@@ -497,9 +507,11 @@ BIO_METHOD* BIO_s_rdp_tls(void)
    BIO_meth_set_destroy(g_pbio_rdp_tls_methods, &bio_rdp_tls_free);
    BIO_meth_set_callback_ctrl(g_pbio_rdp_tls_methods, &bio_rdp_tls_callback_ctrl);
 
+   return g_pbio_rdp_tls_methods;
 
-	return g_pbio_rdp_tls_methods;
 }
+
+#endif
 
 BIO* BIO_new_rdp_tls(SSL_CTX* ctx, int client)
 {

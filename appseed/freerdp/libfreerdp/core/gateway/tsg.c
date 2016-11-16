@@ -2078,19 +2078,31 @@ static int transport_bio_tsg_free(BIO* bio)
 	return 1;
 }
 
-//static BIO_METHOD transport_bio_tsg_methods =
-//{
-//	BIO_TYPE_TSG,
-//	"TSGateway",
-//	transport_bio_tsg_write,
-//	transport_bio_tsg_read,
-//	transport_bio_tsg_puts,
-//	transport_bio_tsg_gets,
-//	transport_bio_tsg_ctrl,
-//	transport_bio_tsg_new,
-//	transport_bio_tsg_free,
-//	NULL,
-//};
+
+#ifndef _WIN32
+
+static BIO_METHOD transport_bio_tsg_methods =
+{
+	BIO_TYPE_TSG,
+	"TSGateway",
+	transport_bio_tsg_write,
+	transport_bio_tsg_read,
+	transport_bio_tsg_puts,
+	transport_bio_tsg_gets,
+	transport_bio_tsg_ctrl,
+	transport_bio_tsg_new,
+	transport_bio_tsg_free,
+	NULL,
+};
+
+BIO_METHOD* BIO_s_tsg(void)
+{
+
+   return &transport_bio_tsg_methods;
+
+}
+
+#else
 
 static BIO_METHOD * g_ptransport_bio_tsg_methods = NULL;
 
@@ -2116,5 +2128,6 @@ BIO_METHOD* BIO_s_tsg(void)
 
    return g_ptransport_bio_tsg_methods;
 
-//   return &transport_bio_tsg_methods;
 }
+
+#endif
