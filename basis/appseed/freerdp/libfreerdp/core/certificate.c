@@ -587,9 +587,9 @@ BOOL certificate_read_server_x509_certificate_chain(rdpCertificate* certificate,
 			rdpCertInfo cert_info;
 
 			DEBUG_CERTIFICATE("License Server Certificate");
-			
+
 			ret = certificate_read_x509_certificate(&certificate->x509_cert_chain->array[i], &cert_info);
-			
+
 			DEBUG_LICENSE("modulus length:%d", (int) cert_info.ModulusLength);
 
 			free(cert_info.Modulus);
@@ -704,7 +704,7 @@ rdpRsaKey* key_new_from_content(const char *keycontent, const char *keyfile)
    BIGNUM * n;
    BIGNUM * d;
 
-#ifdef _UWP
+#if defined(_UWP) || defined(LINUX)
    n = rsa->n;
    e = rsa->e;
    d = rsa->d;

@@ -1,4 +1,5 @@
 #include <openssl/bio.h>
+#include <openssl/ssl.h>
 #include <string.h>
 
 
@@ -170,4 +171,10 @@ int BIO_up_ref(BIO *a)
 {
    CRYPTO_add(&(a->references), 1, CRYPTO_LOCK_BIO);
    return 1;
+}
+
+
+void ssl_set_servername_done(SSL * s, int done)
+{
+   s->servername_done = done;
 }

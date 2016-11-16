@@ -83,6 +83,7 @@
 			<Add directory="../../../app/include" />
 			<Add directory="../../../nodeapp/operational_system" />
 			<Add directory="../../../app/appseed" />
+			<Add directory="../../../app/include/freerdp" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-R\\$$$ORIGIN" />
@@ -461,15 +462,6 @@
 		<Unit filename="libfreerdp/crypto/tls.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libfreerdp/gdi/16bpp.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/gdi/32bpp.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/gdi/8bpp.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="libfreerdp/gdi/bitmap.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -497,9 +489,6 @@
 		</Unit>
 		<Unit filename="libfreerdp/gdi/graphics.h" />
 		<Unit filename="libfreerdp/gdi/line.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libfreerdp/gdi/palette.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libfreerdp/gdi/pen.c">
@@ -534,13 +523,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libfreerdp/locale/xkb_layout_ids.h" />
-		<Unit filename="libfreerdp/primitives/prim_16to32bpp.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="libfreerdp/primitives/prim_16to32bpp.h" />
-		<Unit filename="libfreerdp/primitives/prim_16to32bpp_opt.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="libfreerdp/primitives/prim_YCoCg.c">
 			<Option compilerVar="CC" />
 		</Unit>
