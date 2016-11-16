@@ -1530,19 +1530,31 @@ static int rdg_bio_free(BIO* bio)
 	return 1;
 }
 
-//static BIO_METHOD rdg_bio_methods =
-//{
-//	BIO_TYPE_TSG,
-//	"RDGateway",
-//	rdg_bio_write,
-//	rdg_bio_read,
-//	rdg_bio_puts,
-//	rdg_bio_gets,
-//	rdg_bio_ctrl,
-//	rdg_bio_new,
-//	rdg_bio_free,
-//	NULL,
-//};
+#ifndef _WIN32
+
+static BIO_METHOD rdg_bio_methods =
+{
+	BIO_TYPE_TSG,
+	"RDGateway",
+	rdg_bio_write,
+	rdg_bio_read,
+	rdg_bio_puts,
+	rdg_bio_gets,
+	rdg_bio_ctrl,
+	rdg_bio_new,
+	rdg_bio_free,
+	NULL,
+};
+
+BIO_METHOD* BIO_s_rdg(void)
+{
+
+	return &rdg_bio_methods;
+
+
+}
+
+#else
 
 static BIO_METHOD * g_prdg_bio_methods = NULL;
 
@@ -1567,16 +1579,12 @@ BIO_METHOD* BIO_s_rdg(void)
    BIO_meth_set_create(g_prdg_bio_methods, &rdg_bio_new);
    BIO_meth_set_destroy(g_prdg_bio_methods, &rdg_bio_free);
 
-
-
-      return g_prdg_bio_methods;
-
-
-
-	//return &rdg_bio_methods;
-
+   return g_prdg_bio_methods;
 
 }
+
+#endif
+
 
 rdpRdg* rdg_new(rdpTransport* transport)
 {

@@ -443,19 +443,30 @@ static int transport_bio_simple_free(BIO* bio)
 	return 1;
 }
 
-//static BIO_METHOD transport_bio_simple_socket_methods =
-//{
-//	BIO_TYPE_SIMPLE,
-//	"SimpleSocket",
-//	transport_bio_simple_write,
-//	transport_bio_simple_read,
-//	transport_bio_simple_puts,
-//	transport_bio_simple_gets,
-//	transport_bio_simple_ctrl,
-//	transport_bio_simple_new,
-//	transport_bio_simple_free,
-//	NULL,
-//};
+#ifndef _WIN32
+
+static BIO_METHOD transport_bio_simple_socket_methods =
+{
+	BIO_TYPE_SIMPLE,
+	"SimpleSocket",
+	transport_bio_simple_write,
+	transport_bio_simple_read,
+	transport_bio_simple_puts,
+	transport_bio_simple_gets,
+	transport_bio_simple_ctrl,
+	transport_bio_simple_new,
+	transport_bio_simple_free,
+	NULL,
+};
+
+BIO_METHOD* BIO_s_simple_socket(void)
+{
+
+	return &transport_bio_simple_socket_methods;
+
+}
+
+#else
 
 static BIO_METHOD * g_ptransport_bio_simple_socket_methods = NULL;
 
@@ -467,7 +478,7 @@ BIO_METHOD* BIO_s_simple_socket(void)
    {
 
       return g_ptransport_bio_simple_socket_methods;
-    
+
    }
 
    g_ptransport_bio_simple_socket_methods = BIO_meth_new(BIO_TYPE_SIMPLE, "SimpleSocket");
@@ -482,8 +493,9 @@ BIO_METHOD* BIO_s_simple_socket(void)
 
    return g_ptransport_bio_simple_socket_methods;
 
-	/*return &transport_bio_simple_socket_methods;*/
 }
+
+#endif
 
 /* Buffered Socket BIO */
 
@@ -680,19 +692,28 @@ static int transport_bio_buffered_free(BIO* bio)
 	return 1;
 }
 
-//static BIO_METHOD transport_bio_buffered_socket_methods =
-//{
-//	BIO_TYPE_BUFFERED,
-//	"BufferedSocket",
-//	transport_bio_buffered_write,
-//	transport_bio_buffered_read,
-//	transport_bio_buffered_puts,
-//	transport_bio_buffered_gets,
-//	transport_bio_buffered_ctrl,
-//	transport_bio_buffered_new,
-//	transport_bio_buffered_free,
-//	NULL,
-//};
+#ifndef _WIN32
+
+static BIO_METHOD transport_bio_buffered_socket_methods =
+{
+	BIO_TYPE_BUFFERED,
+	"BufferedSocket",
+	transport_bio_buffered_write,
+	transport_bio_buffered_read,
+	transport_bio_buffered_puts,
+	transport_bio_buffered_gets,
+	transport_bio_buffered_ctrl,
+	transport_bio_buffered_new,
+	transport_bio_buffered_free,
+	NULL,
+};
+
+BIO_METHOD* BIO_s_buffered_socket(void)
+{
+	return &transport_bio_buffered_socket_methods;
+}
+
+#else
 
 static BIO_METHOD * g_ptransport_bio_buffered_socket_methods = NULL;
 
@@ -717,8 +738,9 @@ BIO_METHOD* BIO_s_buffered_socket(void)
    BIO_meth_set_destroy(g_ptransport_bio_buffered_socket_methods, &transport_bio_buffered_free);
 
    return g_ptransport_bio_buffered_socket_methods;
-	//return &transport_bio_buffered_socket_methods;
 }
+
+#endif
 
 char* freerdp_tcp_get_ip_address(int sockfd)
 {
