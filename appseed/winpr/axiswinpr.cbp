@@ -95,6 +95,9 @@
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../../time/x64/basis" />
 		</Linker>
+		<Unit filename="ca2/openssl.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="config.h" />
 		<Unit filename="libwinpr/asn1/asn1.c">
 			<Option compilerVar="CC" />
@@ -189,7 +192,7 @@
 		<Unit filename="libwinpr/environment/environment.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libwinpr/error/error_out_of_winpr.c">
+		<Unit filename="libwinpr/error/error.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/file/file.c">
