@@ -1,6 +1,7 @@
 #include <openssl/bio.h>
 #include <openssl/ssl.h>
 #include <string.h>
+#include <winpr/winsock.h>
 
 
 void BIO_set_data(BIO *a, void *ptr)
