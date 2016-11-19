@@ -30,7 +30,7 @@
 #include "transport.h"
 #include "connection.h"
 #include "message.h"
-#include "buildflags.h"
+#include "freerdp/buildflags.h"
 
 #include <assert.h>
 

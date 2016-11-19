@@ -2079,7 +2079,7 @@ static int transport_bio_tsg_free(BIO* bio)
 }
 
 
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__APPLE__)
 
 static BIO_METHOD transport_bio_tsg_methods =
 {

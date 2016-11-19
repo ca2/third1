@@ -16,14 +16,11 @@
 		071EFB621C5562FA00EA68B0 /* drive_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 071EFB581C555F0E00EA68B0 /* drive_main.c */; };
 		071EFB631C55730700EA68B0 /* libswresample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 071EFB341C554AED00EA68B0 /* libswresample.a */; };
 		074BD0C21B5F361500219723 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0C11B5F361500219723 /* AudioToolbox.framework */; };
-		078DF8DD1C529B4100E65274 /* codec_aac.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B098AE1B84934F002AC4F0 /* codec_aac.c */; };
 		078DF8DE1C529B4100E65274 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B091811B608E5400B5BCA7 /* TPCircularBuffer.c */; };
 		07ACFDFB1C4A34E400953A75 /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ACFDF91C4A34E400953A75 /* libavcodec.a */; };
 		07ACFDFC1C4A34E400953A75 /* libavutil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ACFDFA1C4A34E400953A75 /* libavutil.a */; };
 		07B0917C1B608D8500B5BCA7 /* rdpsnd_ios.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B091791B608D8500B5BCA7 /* rdpsnd_ios.c */; };
 		07B0917E1B608D8500B5BCA7 /* TPCircularBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0917B1B608D8500B5BCA7 /* TPCircularBuffer.h */; };
-		07B098B01B84934F002AC4F0 /* codec_aac.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B098AE1B84934F002AC4F0 /* codec_aac.c */; };
-		07B098B11B84934F002AC4F0 /* codec_aac.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B098AF1B84934F002AC4F0 /* codec_aac.h */; };
 		07B098B91B8493F3002AC4F0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0BD1B5F35C100219723 /* Foundation.framework */; };
 		07B098BD1B849411002AC4F0 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B098BC1B849411002AC4F0 /* CoreVideo.framework */; };
 		07B098C11B8494DE002AC4F0 /* VideoDecodeAcceleration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B098C01B8494DE002AC4F0 /* VideoDecodeAcceleration.framework */; };
@@ -284,8 +281,6 @@
 		07B091791B608D8500B5BCA7 /* rdpsnd_ios.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rdpsnd_ios.c; sourceTree = "<group>"; };
 		07B0917B1B608D8500B5BCA7 /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCircularBuffer.h; sourceTree = "<group>"; };
 		07B091811B608E5400B5BCA7 /* TPCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TPCircularBuffer.c; sourceTree = "<group>"; };
-		07B098AE1B84934F002AC4F0 /* codec_aac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = codec_aac.c; sourceTree = "<group>"; };
-		07B098AF1B84934F002AC4F0 /* codec_aac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = codec_aac.h; sourceTree = "<group>"; };
 		07B098B21B8493B5002AC4F0 /* libavcodec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavcodec.a; path = ../../../nodeapp/thirdparty/library/libavcodec.a; sourceTree = "<group>"; };
 		07B098B31B8493B5002AC4F0 /* libavutil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavutil.a; path = ../../../nodeapp/thirdparty/library/libavutil.a; sourceTree = "<group>"; };
 		07B098B41B8493B5002AC4F0 /* libswresample.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libswresample.a; path = ../../../nodeapp/thirdparty/library/libswresample.a; sourceTree = "<group>"; };
@@ -774,8 +769,6 @@
 		07DD6EB51B5F0CA2003A1CE1 /* client */ = {
 			isa = PBXGroup;
 			children = (
-				07B098AE1B84934F002AC4F0 /* codec_aac.c */,
-				07B098AF1B84934F002AC4F0 /* codec_aac.h */,
 				07B091781B608D8500B5BCA7 /* ios */,
 				07DD6EBC1B5F0CA2003A1CE1 /* mac */,
 				07DD6EC41B5F0CA2003A1CE1 /* rdpsnd_main.c */,
@@ -1046,7 +1039,6 @@
 				07DD6F111B5F0CA2003A1CE1 /* audin_main.h in Headers */,
 				07DD6F931B5F0CA2003A1CE1 /* urbdrc_main.h in Headers */,
 				07DD6F4A1B5F0CA2003A1CE1 /* rdpdr_main.h in Headers */,
-				07B098B11B84934F002AC4F0 /* codec_aac.h in Headers */,
 				07DD6F7F1B5F0CA2003A1CE1 /* tsmf_decoder.h in Headers */,
 				07DD6F501B5F0CA2003A1CE1 /* rdpei_common.h in Headers */,
 				07DD6F331B5F0CA2003A1CE1 /* encomsp_main.h in Headers */,
@@ -1235,7 +1227,6 @@
 				9A21174D1D833208000C4336 /* tables_ios.c in Sources */,
 				071EFB621C5562FA00EA68B0 /* drive_main.c in Sources */,
 				071EFB571C555EE700EA68B0 /* drive_file.c in Sources */,
-				078DF8DD1C529B4100E65274 /* codec_aac.c in Sources */,
 				078DF8DE1C529B4100E65274 /* TPCircularBuffer.c in Sources */,
 				07DD6F971B5F0CD3003A1CE1 /* audin_main.c in Sources */,
 				07DD6F9D1B5F0CD3003A1CE1 /* addin.c in Sources */,
@@ -1306,7 +1297,6 @@
 				07DD6F431B5F0CA2003A1CE1 /* devman.c in Sources */,
 				07DD6F711B5F0CA2003A1CE1 /* smartcard_pack.c in Sources */,
 				07DD6F701B5F0CA2003A1CE1 /* smartcard_operations.c in Sources */,
-				07B098B01B84934F002AC4F0 /* codec_aac.c in Sources */,
 				07DD6F5D1B5F0CA2003A1CE1 /* rdpsnd_mac.c in Sources */,
 				07DD6F2F1B5F0CA2003A1CE1 /* echo_main.c in Sources */,
 				07DD6F491B5F0CA2003A1CE1 /* rdpdr_main.c in Sources */,
