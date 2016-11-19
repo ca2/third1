@@ -1530,7 +1530,7 @@ static int rdg_bio_free(BIO* bio)
 	return 1;
 }
 
-#ifndef _WIN32
+#if !defined(_WIN32) && !defined(__APPLE__)
 
 static BIO_METHOD rdg_bio_methods =
 {
