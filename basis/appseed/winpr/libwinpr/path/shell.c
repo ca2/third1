@@ -103,7 +103,7 @@ static char* GetPath_HOME(void)
 #elif defined(_WIN32)
 	path = GetEnvAlloc("UserProfile");
 #elif defined(__IOS__)
-	path = ios_get_home();
+	path = strdup(ios_get_home());
 #else
 	path = GetEnvAlloc("HOME");
 #endif
@@ -116,7 +116,7 @@ static char* GetPath_TEMP(void)
 #ifdef _WIN32
 	path = GetEnvAlloc("TEMP");
 #elif defined(__IOS__)
-    path = ios_get_temp();
+    path = strdup(ios_get_temp());
 #else
 	path = GetEnvAlloc("TMPDIR");
 
