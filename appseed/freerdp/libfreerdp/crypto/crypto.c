@@ -382,7 +382,8 @@ BOOL x509_verify_certificate(CryptoCert cert, char* certificate_store_path)
 	if (cert_ctx == NULL)
 		goto end;
 
-	OpenSSL_add_all_algorithms();
+	//OpenSSL_add_all_algorithms();
+   OPENSSL_init();
 	lookup = X509_STORE_add_lookup(cert_ctx, X509_LOOKUP_file());
 
 	if (lookup == NULL)

@@ -426,8 +426,8 @@
 		07DD71121B5F1752003A1CE1 /* libios_axiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70AB1B5F0FD4003A1CE1 /* libios_axiswinpr.dylib */; };
 		9A09AE891DE0BD4E00C0357F /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A09AE871DE0BD4E00C0357F /* libcrypto.a */; };
 		9A09AE8A1DE0BD4E00C0357F /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A09AE881DE0BD4E00C0357F /* libssl.a */; };
-		9A25A0A31D2601E80044727D /* libios_axiscrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A25A0A11D2601E80044727D /* libios_axiscrypto.dylib */; };
-		9A25A0A41D2601E80044727D /* libios_axisopenssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A25A0A21D2601E80044727D /* libios_axisopenssl.dylib */; };
+		9A8087431DE0FE7F00F70A07 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8087411DE0FE7F00F70A07 /* libcrypto.a */; };
+		9A8087441DE0FE7F00F70A07 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8087421DE0FE7F00F70A07 /* libssl.a */; };
 		9A8DBF661D20B065005AF004 /* libwelsdec.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDCD41D15EF6E00F91F0B /* libwelsdec.dylib */; };
 		9A8DBF671D20B077005AF004 /* libwelsenc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDCFE1D15EF6E00F91F0B /* libwelsenc.dylib */; };
 		9AEFDD2E1D15F5FB00F91F0B /* libios_welsdec.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDCD61D15EF6E00F91F0B /* libios_welsdec.dylib */; };
@@ -726,6 +726,8 @@
 		9A1B358C16A2D7A500875A94 /* libaxisfreerdp.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisfreerdp.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A25A0A11D2601E80044727D /* libios_axiscrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axiscrypto.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-ios-gidstxlhclvvknehqfkxlzuwomwq/Build/Products/Debug-iphonesimulator/libios_axiscrypto.dylib"; sourceTree = "<group>"; };
 		9A25A0A21D2601E80044727D /* libios_axisopenssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axisopenssl.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-ios-gidstxlhclvvknehqfkxlzuwomwq/Build/Products/Debug-iphonesimulator/libios_axisopenssl.dylib"; sourceTree = "<group>"; };
+		9A8087411DE0FE7F00F70A07 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/lib/libcrypto.a"; sourceTree = "<group>"; };
+		9A8087421DE0FE7F00F70A07 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/lib/libssl.a"; sourceTree = "<group>"; };
 		9A8DBF5F1D20B041005AF004 /* libaxisopenssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxisopenssl.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-osx-fokugkqtvnlvpsdowdubnxeuwdel/Build/Products/Debug/libaxisopenssl.dylib"; sourceTree = "<group>"; };
 		9A8DBF641D20B04D005AF004 /* libaxiscrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxiscrypto.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-osx-fokugkqtvnlvpsdowdubnxeuwdel/Build/Products/Debug/libaxiscrypto.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -735,8 +737,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A25A0A31D2601E80044727D /* libios_axiscrypto.dylib in Frameworks */,
-				9A25A0A41D2601E80044727D /* libios_axisopenssl.dylib in Frameworks */,
+				9A8087431DE0FE7F00F70A07 /* libcrypto.a in Frameworks */,
+				9A8087441DE0FE7F00F70A07 /* libssl.a in Frameworks */,
 				9AEFDD351D15F65E00F91F0B /* libios_welsenc.dylib in Frameworks */,
 				9AEFDD2E1D15F5FB00F91F0B /* libios_welsdec.dylib in Frameworks */,
 				07DD71121B5F1752003A1CE1 /* libios_axiswinpr.dylib in Frameworks */,
@@ -1082,6 +1084,8 @@
 		9A09AE861DE0BD4E00C0357F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A8087411DE0FE7F00F70A07 /* libcrypto.a */,
+				9A8087421DE0FE7F00F70A07 /* libssl.a */,
 				9A09AE871DE0BD4E00C0357F /* libcrypto.a */,
 				9A09AE881DE0BD4E00C0357F /* libssl.a */,
 			);
@@ -1739,7 +1743,13 @@
 					"$(inherited)",
 					APPLE_IOS,
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(TARGET_BUILD_DIR)",
+					"$(WorkspaceDir)/../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/lib",
+				);
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "../../include . $(WorkspaceDir)/../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/include framework $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../ ../../ ../ $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../../app/appseed";
 			};
 			name = Debug;
 		};
@@ -1752,6 +1762,7 @@
 					APPLE_IOS,
 				);
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "../../include . $(WorkspaceDir)/../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/include framework $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../ ../../ ../ $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../../app/appseed";
 			};
 			name = Release;
 		};
