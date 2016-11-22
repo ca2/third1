@@ -76,14 +76,7 @@
     <ClInclude Include="libfreerdp\locale\keyboard_xkbfile.h" />
     <ClInclude Include="libfreerdp\locale\liblocale.h" />
     <ClInclude Include="libfreerdp\locale\xkb_layout_ids.h" />
-    <ClInclude Include="libfreerdp\primitives\prim_add.h" />
-    <ClInclude Include="libfreerdp\primitives\prim_alphaComp.h" />
-    <ClInclude Include="libfreerdp\primitives\prim_andor.h" />
-    <ClInclude Include="libfreerdp\primitives\prim_colors.h" />
     <ClInclude Include="libfreerdp\primitives\prim_internal.h" />
-    <ClInclude Include="libfreerdp\primitives\prim_set.h" />
-    <ClInclude Include="libfreerdp\primitives\prim_shift.h" />
-    <ClInclude Include="libfreerdp\primitives\prim_sign.h" />
     <ClInclude Include="libfreerdp\primitives\prim_templates.h" />
   </ItemGroup>
   <ItemGroup>
@@ -193,9 +186,6 @@
     <ClCompile Include="libfreerdp\crypto\er.c" />
     <ClCompile Include="libfreerdp\crypto\per.c" />
     <ClCompile Include="libfreerdp\crypto\tls.c" />
-    <ClCompile Include="libfreerdp\gdi\16bpp.c" />
-    <ClCompile Include="libfreerdp\gdi\32bpp.c" />
-    <ClCompile Include="libfreerdp\gdi\8bpp.c" />
     <ClCompile Include="libfreerdp\gdi\bitmap.c" />
     <ClCompile Include="libfreerdp\gdi\brush.c" />
     <ClCompile Include="libfreerdp\gdi\clipping.c" />
@@ -205,7 +195,6 @@
     <ClCompile Include="libfreerdp\gdi\gfx.c" />
     <ClCompile Include="libfreerdp\gdi\graphics.c" />
     <ClCompile Include="libfreerdp\gdi\line.c" />
-    <ClCompile Include="libfreerdp\gdi\palette.c" />
     <ClCompile Include="libfreerdp\gdi\pen.c" />
     <ClCompile Include="libfreerdp\gdi\region.c" />
     <ClCompile Include="libfreerdp\gdi\shape.c" />
@@ -214,8 +203,6 @@
     <ClCompile Include="libfreerdp\locale\locale.c" />
     <ClCompile Include="libfreerdp\locale\xkb_layout_ids.c" />
     <ClCompile Include="libfreerdp\primitives\primitives.c" />
-    <ClCompile Include="libfreerdp\primitives\prim_16to32bpp.c" />
-    <ClCompile Include="libfreerdp\primitives\prim_16to32bpp_opt.c" />
     <ClCompile Include="libfreerdp\primitives\prim_add.c" />
     <ClCompile Include="libfreerdp\primitives\prim_add_opt.c" />
     <ClCompile Include="libfreerdp\primitives\prim_alphaComp.c" />
@@ -321,9 +308,9 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>welsdecplus;welsencplus;axisopenssl;axiscrypto;axiswinpr;z;ace;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <LibraryDependencies>nordopenssl;nordcrypto;welsdecplus;welsencplus;axiswinpr;z;ace;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <SharedLibrarySearchPath>%(SharedLibrarySearchPath);$(Sysroot)\usr\lib</SharedLibrarySearchPath>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
       <AdditionalDependencies>
       </AdditionalDependencies>
     </Link>
@@ -338,7 +325,7 @@
       <PreprocessorDefinitions>WITH_OPENH264;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
       <LibraryDependencies>welsdecplus;welsencplus;axisopenssl;axiscrypto;axiswinpr;z;ace;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -352,7 +339,7 @@
       <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-unused-but-set-variable</AdditionalOptions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
       <LibraryDependencies>welsdecplus;welsencplus;axisopenssl;axiscrypto;axiswinpr;z;ace;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -366,7 +353,7 @@
       <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-unused-but-set-variable</AdditionalOptions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
       <LibraryDependencies>welsdecplus;welsencplus;axisopenssl;axiscrypto;axiswinpr;z;ace;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>

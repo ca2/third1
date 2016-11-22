@@ -97,7 +97,7 @@
     <Link />
     <Link>
       <LibraryDependencies>axispng;z;axisbzip2;ace;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
@@ -114,7 +114,7 @@
     </ClCompile>
     <Link />
     <Link>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
       <LibraryDependencies>axispng;z;axisbzip2;ace;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -135,7 +135,7 @@
     </ClCompile>
     <Link>
       <LibraryDependencies>axispng;z;axisbzip2;ace;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
@@ -154,7 +154,7 @@
     </ClCompile>
     <Link>
       <LibraryDependencies>axispng;z;axisbzip2;ace;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

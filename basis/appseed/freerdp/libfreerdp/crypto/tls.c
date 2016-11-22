@@ -458,7 +458,7 @@ static long bio_rdp_tls_callback_ctrl(BIO* bio, int cmd, bio_info_cb* fp)
 
 #define BIO_TYPE_RDP_TLS	68
 
-#if !defined(_WIN32) && !defined(__APPLE__)
+#if !defined(_WIN32) && !defined(__APPLE__) && !defined(ANDROID)
 
 static BIO_METHOD bio_rdp_tls_methods =
 {

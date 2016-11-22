@@ -48,7 +48,6 @@
     <ClCompile Include="channels\rdpgfx\client\rdpgfx_codec.c" />
     <ClCompile Include="channels\rdpgfx\client\rdpgfx_main.c" />
     <ClCompile Include="channels\rdpgfx\rdpgfx_common.c" />
-    <ClCompile Include="channels\rdpsnd\client\codec_aac.c" />
     <ClCompile Include="channels\rdpsnd\client\opensles\opensl_io.c" />
     <ClCompile Include="channels\rdpsnd\client\opensles\rdpsnd_opensles.c" />
     <ClCompile Include="channels\rdpsnd\client\rdpsnd_main.c" />
@@ -86,7 +85,6 @@
     <ClInclude Include="channels\rdpdr\client\rdpdr_main.h" />
     <ClInclude Include="channels\rdpei\client\rdpei_main.h" />
     <ClInclude Include="channels\rdpgfx\client\rdpgfx_main.h" />
-    <ClInclude Include="channels\rdpsnd\client\codec_aac.h" />
     <ClInclude Include="channels\rdpsnd\client\rdpsnd_main.h" />
     <ClInclude Include="channels\smartcard\client\smartcard_main.h" />
     <ClInclude Include="channels\tsmf\client\tsmf_audio.h" />
@@ -178,7 +176,7 @@
     <Link>
       <LibraryDependencies>avcodec-57;avutil-55;axisfreerdp;axiswinpr;z;ace;$(StlLibraryName);OpenSLES;m</LibraryDependencies>
       <SharedLibrarySearchPath>%(SharedLibrarySearchPath);$(Sysroot)\usr\lib</SharedLibrarySearchPath>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
       <AdditionalDependencies>
       </AdditionalDependencies>
       <ForceSymbolReferences>
@@ -201,7 +199,7 @@
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
       <LibraryDependencies>avcodec-57;avutil-55;axisfreerdp;axiswinpr;z;ace;$(StlLibraryName);OpenSLES;m</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -215,7 +213,7 @@
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
       <LibraryDependencies>avcodec-57;avutil-55;axisfreerdp;axiswinpr;z;ace;$(StlLibraryName);OpenSLES;m</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -229,7 +227,7 @@
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
       <LibraryDependencies>avcodec-57;avutil-55;axisfreerdp;axiswinpr;z;ace;$(StlLibraryName);OpenSLES;m</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>

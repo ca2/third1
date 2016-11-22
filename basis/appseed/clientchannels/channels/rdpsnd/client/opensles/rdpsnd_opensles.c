@@ -40,7 +40,7 @@
 #include <freerdp/channels/log.h>
 
 #include "opensl_io.h"
-#include "rdpsnd_main.h"
+#include "../rdpsnd_main.h"
 
 typedef struct rdpsnd_opensles_plugin rdpsndopenslesPlugin;
 

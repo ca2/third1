@@ -100,7 +100,7 @@
     <Link>
       <AdditionalDependencies>
       </AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
       <LibraryDependencies>m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -117,7 +117,7 @@
       </ForcedIncludeFiles>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
       <LibraryDependencies>m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -137,7 +137,7 @@
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
       <LibraryDependencies>m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -156,39 +156,48 @@
       <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-unused-but-set-variable</AdditionalOptions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
       <LibraryDependencies>m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="pixman\pixman-access-accessors.c" />
-    <ClCompile Include="pixman\pixman-access.c" />
-    <ClCompile Include="pixman\pixman-arm.c" />
-    <ClCompile Include="pixman\pixman-combine-float.c" />
-    <ClCompile Include="pixman\pixman-combine32.c" />
-    <ClCompile Include="pixman\pixman-edge-accessors.c" />
-    <ClCompile Include="pixman\pixman-edge.c" />
-    <ClCompile Include="pixman\pixman-region16.c" />
-    <ClCompile Include="pixman\pixman-region32.c" />
-    <ClCompile Include="pixman\pixman-solid-fill.c" />
-    <ClCompile Include="pixman\pixman-sse2.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="pixman\pixman-ssse3.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="pixman\_pixman.c" />
-  </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h" />
     <ClInclude Include="pixman\loongson-mmintrin.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="axispixman.def" />
+    <ClCompile Include="pixman\pixman-access-accessors.c" />
+    <ClCompile Include="pixman\pixman-access.c" />
+    <ClCompile Include="pixman\pixman-arm.c" />
+    <ClCompile Include="pixman\pixman-bits-image.c" />
+    <ClCompile Include="pixman\pixman-combine-float.c" />
+    <ClCompile Include="pixman\pixman-combine32.c" />
+    <ClCompile Include="pixman\pixman-conical-gradient.c" />
+    <ClCompile Include="pixman\pixman-edge-accessors.c" />
+    <ClCompile Include="pixman\pixman-edge.c" />
+    <ClCompile Include="pixman\pixman-fast-path.c" />
+    <ClCompile Include="pixman\pixman-filter.c" />
+    <ClCompile Include="pixman\pixman-general.c" />
+    <ClCompile Include="pixman\pixman-glyph.c" />
+    <ClCompile Include="pixman\pixman-gradient-walker.c" />
+    <ClCompile Include="pixman\pixman-image.c" />
+    <ClCompile Include="pixman\pixman-implementation.c" />
+    <ClCompile Include="pixman\pixman-linear-gradient.c" />
+    <ClCompile Include="pixman\pixman-matrix.c" />
+    <ClCompile Include="pixman\pixman-mips.c" />
+    <ClCompile Include="pixman\pixman-mmx.c" />
+    <ClCompile Include="pixman\pixman-noop.c" />
+    <ClCompile Include="pixman\pixman-ppc.c" />
+    <ClCompile Include="pixman\pixman-radial-gradient.c" />
+    <ClCompile Include="pixman\pixman-region16.c" />
+    <ClCompile Include="pixman\pixman-region32.c" />
+    <ClCompile Include="pixman\pixman-solid-fill.c" />
+    <ClCompile Include="pixman\pixman-sse2.c" />
+    <ClCompile Include="pixman\pixman-ssse3.c" />
+    <ClCompile Include="pixman\pixman-timer.c" />
+    <ClCompile Include="pixman\pixman-trap.c" />
+    <ClCompile Include="pixman\pixman-utils.c" />
+    <ClCompile Include="pixman\pixman-x86.c" />
+    <ClCompile Include="pixman\pixman.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
