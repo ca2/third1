@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{b1c922b7-ee4f-46da-9c53-13fcc1e31083}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{9a6f9efa-8502-4be4-a220-915547511274}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Source Files\ssl">
+      <UniqueIdentifier>{130aeab8-3cd1-4907-b14c-4b23b9ea2afc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files">
+      <UniqueIdentifier>{ed1652d6-6243-4c53-aad9-093b00530b76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\aes">
+      <UniqueIdentifier>{d9709819-9f64-4f52-a220-69621bca67e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\rc4">
+      <UniqueIdentifier>{2074d654-fc2a-457b-a470-c54803f22386}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\md5">
+      <UniqueIdentifier>{5c284f5d-8a3d-4cf4-bd4e-2fda4b1f1919}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\camellia">
+      <UniqueIdentifier>{9d33e760-f816-42b9-9aee-f5df7c885d9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\bn">
+      <UniqueIdentifier>{af62d56d-1ba9-462e-bcb7-b261cf6107f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\sha">
+      <UniqueIdentifier>{92079a6e-51f1-4c54-8383-0ecaf61c221f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assembler Files\whrlpool">
+      <UniqueIdentifier>{5b4aa46f-1c3f-45d5-a91b-5092318e7b80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ssl\record">
+      <UniqueIdentifier>{f22c026f-f8e0-429d-a1e6-19bbe5e40738}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ssl\statem">
+      <UniqueIdentifier>{865889ad-5e00-4611-81be-c4931fccaa88}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="asm\x64-win32-masm\aes\aesni-sha1-x86_64.asm">
+      <Filter>Assembler Files\aes</Filter>
+    </None>
+    <None Include="asm\x64-win32-masm\aes\aesni-x86_64.asm">
+      <Filter>Assembler Files\aes</Filter>
+    </None>
+    <None Include="asm\x64-win32-masm\aes\aes-x86_64.asm">
+      <Filter>Assembler Files\aes</Filter>
+    </None>
+    <None Include="asm\x64-win32-masm\md5\md5-x86_64.asm">
+      <Filter>Assembler Files\md5</Filter>
+    </None>
+    <None Include="asm\x64-win32-masm\camellia\cmll-x86_64.asm">
+      <Filter>Assembler Files\camellia</Filter>
+    </None>
+    <None Include="asm\x64-win32-masm\bn\modexp512-x86_64.asm">
+      <Filter>Assembler Files\bn</Filter>
+    </None>
+    <None Include="asm\x64-win32-masm\bn\x86_64-mont.asm">
+      <Filter>Assembler Files\bn</Filter>
+    </None>
+    <None Include="asm\x64-win32-masm\sha\sha1-x86_64.asm">
+      <Filter>Assembler Files\sha</Filter>
+    </None>
+    <None Include="asm\x64-win32-masm\sha\sha512-x86_64.asm">
+      <Filter>Assembler Files\sha</Filter>
+    </None>
+    <None Include="asm\x64-win32-masm\whrlpool\wp-x86_64.asm">
+      <Filter>Assembler Files\whrlpool</Filter>
+    </None>
+    <None Include="asm\x64-win32-masm\x86_64cpuid.asm">
+      <Filter>Assembler Files</Filter>
+    </None>
+    <None Include="asm\x64-win32-masm\rc4\rc4-md5-x86_64.asm">
+      <Filter>Assembler Files\rc4</Filter>
+    </None>
+    <None Include="asm\x64-win32-masm\rc4\rc4-x86_64.asm">
+      <Filter>Assembler Files\rc4</Filter>
+    </None>
+    <None Include="openssl.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ssl\bio_ssl.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\d1_lib.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\d1_msg.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\d1_srtp.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\methods.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\pqueue.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\s3_cbc.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\s3_enc.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\s3_lib.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\s3_msg.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\ssl_asn1.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\ssl_cert.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\ssl_ciph.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\ssl_conf.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\ssl_err.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\ssl_init.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\ssl_lib.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\ssl_mcnf.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\ssl_rsa.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\ssl_sess.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\ssl_stat.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\ssl_txt.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\ssl_utst.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\t1_enc.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\t1_ext.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\t1_lib.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\t1_reneg.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\t1_trce.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\tls_srp.c">
+      <Filter>Source Files\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\record\dtls1_bitmap.c">
+      <Filter>Source Files\ssl\record</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\record\rec_layer_d1.c">
+      <Filter>Source Files\ssl\record</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\record\rec_layer_s3.c">
+      <Filter>Source Files\ssl\record</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\record\ssl3_buffer.c">
+      <Filter>Source Files\ssl\record</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\record\ssl3_record.c">
+      <Filter>Source Files\ssl\record</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\statem\statem.c">
+      <Filter>Source Files\ssl\statem</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\statem\statem_clnt.c">
+      <Filter>Source Files\ssl\statem</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\statem\statem_dtls.c">
+      <Filter>Source Files\ssl\statem</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\statem\statem_lib.c">
+      <Filter>Source Files\ssl\statem</Filter>
+    </ClCompile>
+    <ClCompile Include="ssl\statem\statem_srvr.c">
+      <Filter>Source Files\ssl\statem</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

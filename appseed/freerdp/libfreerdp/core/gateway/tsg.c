@@ -2079,7 +2079,7 @@ static int transport_bio_tsg_free(BIO* bio)
 }
 
 
-#if !defined(_WIN32) && !defined(__APPLE__)
+#if !defined(_WIN32) && !defined(__APPLE__) && !defined(ANDROID)
 
 static BIO_METHOD transport_bio_tsg_methods =
 {

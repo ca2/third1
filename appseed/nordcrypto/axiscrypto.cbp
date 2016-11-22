@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="axiscrypto" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="basis">
+				<Option output="../../../time/x64/basis/libaxiscrypto.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../../../time/x64/basis/" />
+				<Option object_output="../../../time/intermediate/app/axiscrypto" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+				</Compiler>
+				<Linker>
+					<Add directory="../../../time/x64/basis" />
+				</Linker>
+			</Target>
+			<Target title="memdleak">
+				<Option output="../../../time/x64/basis/libaxisopenssl.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="../../../time/x64/basis/" />
+				<Option object_output="../../../time/intermediate/app/axisopenssl" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option createStaticLib="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D_DEBUG" />
+					<Add option="-DMEMDLEAK" />
+				</Compiler>
+				<Linker>
+					<Add directory="../../../time/x64/basis" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-std=c++0x" />
+			<Add option="-fexceptions" />
+			<Add option="-fnon-call-exceptions" />
+			<Add option="-fno-pie" />
+			<Add option="-fno-stack-protector" />
+			<Add option="-Wno-pointer-arith" />
+			<Add option="-Wno-attributes" />
+			<Add option="-Winvalid-pch" />
+			<Add option="-fPIC" />
+			<Add option="-DLINUX" />
+			<Add option="-DUSE_SOCKETS" />
+			<Add directory="../../../include" />
+			<Add directory="../../include" />
+			<Add directory="framework" />
+			<Add directory="../../thirdparty/appseed" />
+			<Add directory="../../thirdparty/include" />
+			<Add directory="." />
+			<Add directory=".." />
+			<Add directory="../.." />
+			<Add directory="../ca2" />
+			<Add directory="../../nodeapp/linux" />
+			<Add directory="../../nodeapp/linux/include" />
+			<Add directory="../../.." />
+			<Add directory="../base" />
+			<Add directory="../../../nodeapp/thirdparty/include" />
+			<Add directory="crypto" />
+			<Add directory="crypto/asn1" />
+			<Add directory="crypto/evp" />
+			<Add directory="crypto/modes" />
+			<Add directory="../../appseed" />
+			<Add directory="../../appseed/aura" />
+		</Compiler>
+		<Linker>
+			<Add option="-Wl,-R\\$$$ORIGIN" />
+			<Add option="-Wl,-z,origin" />
+			<Add option="-ldl" />
+			<Add option="-lpthread" />
+			<Add option="-laura" />
+			<Add option="-Wl,-z,defs" />
+			<Add directory="../../../time/x64/basis" />
+		</Linker>
+		<Unit filename="asm/x64-elf-gas/aes/aes-x86_64.s" />
+		<Unit filename="asm/x64-elf-gas/aes/aesni-sha1-x86_64.s" />
+		<Unit filename="asm/x64-elf-gas/aes/aesni-x86_64.s" />
+		<Unit filename="asm/x64-elf-gas/bn/modexp512-x86_64.s" />
+		<Unit filename="asm/x64-elf-gas/bn/x86_64-mont.s" />
+		<Unit filename="asm/x64-elf-gas/camellia/cmll-x86_64.s" />
+		<Unit filename="asm/x64-elf-gas/md5/md5-x86_64.s" />
+		<Unit filename="asm/x64-elf-gas/rc4/rc4-md5-x86_64.s" />
+		<Unit filename="asm/x64-elf-gas/rc4/rc4-x86_64.s" />
+		<Unit filename="asm/x64-elf-gas/sha/sha1-x86_64.s" />
+		<Unit filename="asm/x64-elf-gas/sha/sha512-x86_64.s" />
+		<Unit filename="asm/x64-elf-gas/whrlpool/wp-x86_64.s" />
+		<Unit filename="asm/x64-elf-gas/x86_64cpuid.s" />
+		<Unit filename="crypto/_crypto.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crypto/aes/aes.h" />
+		<Unit filename="crypto/aes/aes_locl.h" />
+		<Unit filename="crypto/arm_arch.h" />
+		<Unit filename="crypto/asn1/asn1.h" />
+		<Unit filename="crypto/asn1/asn1_locl.h" />
+		<Unit filename="crypto/asn1/asn1_mac.h" />
+		<Unit filename="crypto/asn1/asn1t.h" />
+		<Unit filename="crypto/asn1/charmap.h" />
+		<Unit filename="crypto/bf/bf_locl.h" />
+		<Unit filename="crypto/bf/bf_pi.h" />
+		<Unit filename="crypto/bf/blowfish.h" />
+		<Unit filename="crypto/bio/bio.h" />
+		<Unit filename="crypto/bio/bio_lcl.h" />
+		<Unit filename="crypto/bio/bss_sock.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crypto/bn/_bn.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crypto/bn/bn.h" />
+		<Unit filename="crypto/bn/bn_lcl.h" />
+		<Unit filename="crypto/bn/bn_prime.h" />
+		<Unit filename="crypto/buffer/buffer.h" />
+		<Unit filename="crypto/camellia/camellia.h" />
+		<Unit filename="crypto/camellia/cmll_locl.h" />
+		<Unit filename="crypto/cast/cast.h" />
+		<Unit filename="crypto/cast/cast_lcl.h" />
+		<Unit filename="crypto/cast/cast_s.h" />
+		<Unit filename="crypto/cmac/cm_ameth.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crypto/cmac/cm_pmeth.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crypto/cmac/cmac.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crypto/cmac/cmac.h" />
+		<Unit filename="crypto/cms/cms.h" />
+		<Unit filename="crypto/cms/cms_lcl.h" />
+		<Unit filename="crypto/comp/comp.h" />
+		<Unit filename="crypto/conf/conf.h" />
+		<Unit filename="crypto/conf/conf_api.h" />
+		<Unit filename="crypto/conf/conf_def.h" />
+		<Unit filename="crypto/cryptlib.h" />
+		<Unit filename="crypto/crypto.h" />
+		<Unit filename="crypto/des/des.h" />
+		<Unit filename="crypto/des/des_locl.h" />
+		<Unit filename="crypto/des/des_old.h" />
+		<Unit filename="crypto/des/des_ver.h" />
+		<Unit filename="crypto/des/rpc_des.h" />
+		<Unit filename="crypto/des/spr.h" />
+		<Unit filename="crypto/dh/dh.h" />
+		<Unit filename="crypto/dsa/dsa.h" />
+		<Unit filename="crypto/dsa/dsa_locl.h" />
+		<Unit filename="crypto/dso/dso.h" />
+		<Unit filename="crypto/ebcdic.h" />
+		<Unit filename="crypto/ec/ec.h" />
+		<Unit filename="crypto/ec/ec_lcl.h" />
+		<Unit filename="crypto/ecdh/ecdh.h" />
+		<Unit filename="crypto/ecdh/ech_locl.h" />
+		<Unit filename="crypto/ecdsa/ecdsa.h" />
+		<Unit filename="crypto/ecdsa/ecs_locl.h" />
+		<Unit filename="crypto/engine/eng_int.h" />
+		<Unit filename="crypto/engine/engine.h" />
+		<Unit filename="crypto/err/err.h" />
+		<Unit filename="crypto/evp/evp.h" />
+		<Unit filename="crypto/evp/evp_locl.h" />
+		<Unit filename="crypto/fips_err.h" />
+		<Unit filename="crypto/hmac/hm_ameth.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crypto/hmac/hm_pmeth.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crypto/hmac/hmac.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crypto/hmac/hmac.h" />
+		<Unit filename="crypto/idea/idea.h" />
+		<Unit filename="crypto/idea/idea_lcl.h" />
+		<Unit filename="crypto/jpake/jpake.h" />
+		<Unit filename="crypto/krb5/krb5_asn.h" />
+		<Unit filename="crypto/lhash/lh_stats.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crypto/lhash/lhash.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crypto/lhash/lhash.h" />
+		<Unit filename="crypto/md2/md2.h" />
+		<Unit filename="crypto/md32_common.h" />
+		<Unit filename="crypto/md4/md4.h" />
+		<Unit filename="crypto/md4/md4_locl.h" />
+		<Unit filename="crypto/md5/md5.h" />
+		<Unit filename="crypto/md5/md5_locl.h" />
+		<Unit filename="crypto/mdc2/mdc2.h" />
+		<Unit filename="crypto/mem_aura.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crypto/modes/modes.h" />
+		<Unit filename="crypto/modes/modes_lcl.h" />
+		<Unit filename="crypto/o_dir.h" />
+		<Unit filename="crypto/o_str.h" />
+		<Unit filename="crypto/o_time.h" />
+		<Unit filename="crypto/objects/obj_dat.h" />
+		<Unit filename="crypto/objects/obj_mac.h" />
+		<Unit filename="crypto/objects/obj_xref.h" />
+		<Unit filename="crypto/objects/objects.h" />
+		<Unit filename="crypto/ocsp/ocsp.h" />
+		<Unit filename="crypto/opensslconf.h" />
+		<Unit filename="crypto/opensslv.h" />
+		<Unit filename="crypto/ossl_typ.h" />
+		<Unit filename="crypto/pem/pem.h" />
+		<Unit filename="crypto/pem/pem2.h" />
+		<Unit filename="crypto/pkcs12/pkcs12.h" />
+		<Unit filename="crypto/pkcs7/pkcs7.h" />
+		<Unit filename="crypto/pqueue/pqueue.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crypto/pqueue/pqueue.h" />
+		<Unit filename="crypto/rand/rand.h" />
+		<Unit filename="crypto/rand/rand_lcl.h" />
+		<Unit filename="crypto/rc2/rc2.h" />
+		<Unit filename="crypto/rc2/rc2_locl.h" />
+		<Unit filename="crypto/rc4/rc4.h" />
+		<Unit filename="crypto/rc4/rc4_locl.h" />
+		<Unit filename="crypto/rc4/rc4_utl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crypto/rc5/rc5.h" />
+		<Unit filename="crypto/rc5/rc5_locl.h" />
+		<Unit filename="crypto/ripemd/ripemd.h" />
+		<Unit filename="crypto/ripemd/rmd_locl.h" />
+		<Unit filename="crypto/ripemd/rmdconst.h" />
+		<Unit filename="crypto/rsa/rsa.h" />
+		<Unit filename="crypto/rsa/rsa_locl.h" />
+		<Unit filename="crypto/seed/seed.h" />
+		<Unit filename="crypto/seed/seed_locl.h" />
+		<Unit filename="crypto/sha/sha.h" />
+		<Unit filename="crypto/sha/sha_locl.h" />
+		<Unit filename="crypto/srp/srp.h" />
+		<Unit filename="crypto/srp/srp_grps.h" />
+		<Unit filename="crypto/srp/srp_lcl.h" />
+		<Unit filename="crypto/srp/srp_lib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crypto/srp/srp_vfy.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crypto/stack/safestack.h" />
+		<Unit filename="crypto/stack/stack.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crypto/stack/stack.h" />
+		<Unit filename="crypto/store/store.h" />
+		<Unit filename="crypto/store/str_locl.h" />
+		<Unit filename="crypto/symhacks.h" />
+		<Unit filename="crypto/ts/_ts.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crypto/ts/ts.h" />
+		<Unit filename="crypto/txt_db/txt_db.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crypto/txt_db/txt_db.h" />
+		<Unit filename="crypto/ui/ui.h" />
+		<Unit filename="crypto/ui/ui_compat.h" />
+		<Unit filename="crypto/ui/ui_locl.h" />
+		<Unit filename="crypto/vms_rms.h" />
+		<Unit filename="crypto/whrlpool/whrlpool.h" />
+		<Unit filename="crypto/whrlpool/wp_locl.h" />
+		<Unit filename="crypto/x509/_x509.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crypto/x509/x509.h" />
+		<Unit filename="crypto/x509/x509_vfy.h" />
+		<Unit filename="crypto/x509v3/_x509v3.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crypto/x509v3/ext_dat.h" />
+		<Unit filename="crypto/x509v3/pcy_int.h" />
+		<Unit filename="crypto/x509v3/v3_lib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="crypto/x509v3/x509v3.h" />
+		<Unit filename="engines/_engines.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="engines/ccgost/_ccgost.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="engines/ccgost/e_gost_err.h" />
+		<Unit filename="engines/ccgost/gost2001_keyx.h" />
+		<Unit filename="engines/ccgost/gost89.h" />
+		<Unit filename="engines/ccgost/gost_ameth.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="engines/ccgost/gost_keywrap.h" />
+		<Unit filename="engines/ccgost/gost_lcl.h" />
+		<Unit filename="engines/ccgost/gost_params.h" />
+		<Unit filename="engines/ccgost/gosthash.h" />
+		<Unit filename="engines/e_4758cca_err.h" />
+		<Unit filename="engines/e_aep_err.h" />
+		<Unit filename="engines/e_atalla_err.h" />
+		<Unit filename="engines/e_capi_err.h" />
+		<Unit filename="engines/e_chil_err.h" />
+		<Unit filename="engines/e_cswift_err.h" />
+		<Unit filename="engines/e_gmp_err.h" />
+		<Unit filename="engines/e_nuron_err.h" />
+		<Unit filename="engines/e_sureware_err.h" />
+		<Unit filename="engines/e_ubsec_err.h" />
+		<Unit filename="engines/vendor_defns/aep.h" />
+		<Unit filename="engines/vendor_defns/atalla.h" />
+		<Unit filename="engines/vendor_defns/cswift.h" />
+		<Unit filename="engines/vendor_defns/hw_4758_cca.h" />
+		<Unit filename="engines/vendor_defns/hw_ubsec.h" />
+		<Unit filename="engines/vendor_defns/hwcryptohook.h" />
+		<Unit filename="engines/vendor_defns/sureware.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
