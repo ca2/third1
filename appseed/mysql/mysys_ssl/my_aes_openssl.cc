@@ -127,14 +127,17 @@ int my_aes_encrypt(const unsigned char *source, uint32 source_length,
 
   if (!EVP_EncryptFinal(ctx, dest + u_len, &f_len))
     goto aes_error;                             /* Error */
-
+#if OPENSSL_API_COMPAT < 0x10100000L
   EVP_CIPHER_CTX_cleanup(ctx);
+#endif
   return u_len + f_len;
 
 aes_error:
   /* need to explicitly clean up the error if we want to ignore it */
   ERR_clear_error();
+#if OPENSSL_API_COMPAT < 0x10100000L
   EVP_CIPHER_CTX_cleanup(ctx);
+#endif
   return MY_AES_BAD_DATA;
 }
 
@@ -156,7 +159,11 @@ int my_aes_decrypt(const unsigned char *source, uint32 source_length,
   if (!cipher || (EVP_CIPHER_iv_length(cipher) > 0 && !iv))
     return MY_AES_BAD_DATA;
 
+#if OPENSSL_API_COMPAT < 0x10100000L
   EVP_CIPHER_CTX_init(ctx);
+#else
+  EVP_CIPHER_CTX_reset(ctx);
+#endif
 
   if (!EVP_DecryptInit(ctx, aes_evp_type(mode), rkey, iv))
     goto aes_error;                             /* Error */
@@ -166,14 +173,17 @@ int my_aes_decrypt(const unsigned char *source, uint32 source_length,
     goto aes_error;                             /* Error */
   if (!EVP_DecryptFinal_ex(ctx, dest + u_len, &f_len))
     goto aes_error;                             /* Error */
-
+#if OPENSSL_API_COMPAT < 0x10100000L
   EVP_CIPHER_CTX_cleanup(ctx);
+#endif
   return u_len + f_len;
 
 aes_error:
   /* need to explicitly clean up the error if we want to ignore it */
   ERR_clear_error();
+#if OPENSSL_API_COMPAT < 0x10100000L
   EVP_CIPHER_CTX_cleanup(ctx);
+#endif
   return MY_AES_BAD_DATA;
 }
 

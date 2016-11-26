@@ -413,9 +413,11 @@ void vio_end(void)
   yaSSL_CleanUp();
 #elif defined(HAVE_OPENSSL)
   // This one is needed on the client side
+#if OPENSSL_API_COMPAT < 0x10100000L
   ERR_remove_state(0);
   ERR_free_strings();
   EVP_cleanup();
   CRYPTO_cleanup_all_ex_data();
+#endif
 #endif
 }

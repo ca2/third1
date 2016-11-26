@@ -195,15 +195,18 @@ void ssl_start()
   if (!ssl_algorithms_added)
   {
     ssl_algorithms_added= TRUE;
+#if OPENSSL_API_COMPAT < 0x10100000L
     SSL_library_init();
     OpenSSL_add_all_algorithms();
-
+#endif
   }
 
   if (!ssl_error_strings_loaded)
   {
     ssl_error_strings_loaded= TRUE;
+#if OPENSSL_API_COMPAT < 0x10100000L
     SSL_load_error_strings();
+#endif
   }
 }
 
