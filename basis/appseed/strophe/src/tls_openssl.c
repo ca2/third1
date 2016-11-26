@@ -49,8 +49,14 @@ static void _tls_log_error(xmpp_ctx_t *ctx);
 
 void tls_initialize(void)
 {
+
+#if OPENSSL_API_COMPAT < 0x10100000L
+
     SSL_library_init();
     SSL_load_error_strings();
+
+#endif
+
 }
 
 void tls_shutdown(void)
