@@ -126,10 +126,9 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/platform_configuration/$(Platform)/$(Configuration);$(SolutionDir)../../../include;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../nodeapp/include/openssl;$(SolutionDir)../../../app/include;.;$(SolutionDir)../../..;$(StlIncludeDirectories);$(ProjectDir)../nordcrypto/;$(ProjectDir)../nordcrypto/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>OPENSSL_BUILD_SHLIBCRYPTO</PreprocessorDefinitions>
+      <PreprocessorDefinitions>OPENSSL_NO_ASM;OPENSSL_NO_INLINE_ASM</PreprocessorDefinitions>
       <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-unused-but-set-variable</AdditionalOptions>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
-      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <ExceptionHandling>Disabled</ExceptionHandling>
       <CLanguageStandard>gnu11</CLanguageStandard>
       <ForcedIncludeFiles>
@@ -137,7 +136,7 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>nordcrypto;ace;log;android</LibraryDependencies>
+      <LibraryDependencies>nordcrypto;log;android</LibraryDependencies>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>

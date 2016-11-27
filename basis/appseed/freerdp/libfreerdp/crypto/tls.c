@@ -842,7 +842,6 @@ int tls_connect(rdpTls* tls, BIO* underlying)
 	return tls_do_handshake(tls, TRUE);
 }
 
-void ssl_set_servername_done(SSL * s, int done);
 #ifndef OPENSSL_NO_TLSEXT
 static void tls_openssl_tlsext_debug_callback(SSL* s, int client_server,
         int type, unsigned char* data, int len, void* arg)

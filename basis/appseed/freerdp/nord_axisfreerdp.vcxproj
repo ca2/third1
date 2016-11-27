@@ -243,32 +243,32 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>Gcc_4_9</PlatformToolset>
     <AndroidAPILevel>android-19</AndroidAPILevel>
     <UseOfStl>gnustl_shared</UseOfStl>
     <ThumbMode>Disabled</ThumbMode>
+    <PlatformToolset>Gcc_4_9</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>Gcc_4_9</PlatformToolset>
     <UseOfStl>gnustl_shared</UseOfStl>
     <ThumbMode>Disabled</ThumbMode>
+    <PlatformToolset>Gcc_4_9</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>Gcc_4_9</PlatformToolset>
     <AndroidAPILevel>android-19</AndroidAPILevel>
     <UseOfStl>gnustl_shared</UseOfStl>
     <ThumbMode>Disabled</ThumbMode>
+    <PlatformToolset>Gcc_4_9</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>Gcc_4_9</PlatformToolset>
     <UseOfStl>gnustl_shared</UseOfStl>
     <ThumbMode>Disabled</ThumbMode>
+    <PlatformToolset>Gcc_4_9</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings" />
@@ -298,9 +298,9 @@
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/platform_configuration/$(Platform)/$(Configuration);$(ProjectDir);$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/include;.;framework;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../include;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;$(SolutionDir)../../../include/app/include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WITH_OPENH264;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ExceptionHandling>Disabled</ExceptionHandling>
+      <ExceptionHandling>Enabled</ExceptionHandling>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
-      <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-unused-but-set-variable</AdditionalOptions>
+      <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-attributes -Wno-unused-but-set-variable</AdditionalOptions>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
@@ -308,7 +308,7 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>nordopenssl;nordcrypto;welsdecplus;welsencplus;axiswinpr;z;ace;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <LibraryDependencies>ssl;crypto;welsdecplus;welsencplus;axiswinpr;z;ace;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <SharedLibrarySearchPath>%(SharedLibrarySearchPath);$(Sysroot)\usr\lib</SharedLibrarySearchPath>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
       <AdditionalDependencies>
@@ -317,12 +317,13 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <ClCompile>
-      <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-unused-but-set-variable</AdditionalOptions>
+      <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-attributes -Wno-unused-but-set-variable</AdditionalOptions>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <CLanguageStandard>gnu11</CLanguageStandard>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/platform_configuration/$(Platform)/$(Configuration);$(ProjectDir);$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/include;.;framework;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../include;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;$(SolutionDir)../../../include/app/include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WITH_OPENH264;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>Enabled</ExceptionHandling>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
@@ -336,7 +337,8 @@
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/platform_configuration/$(Platform)/$(Configuration);$(ProjectDir);$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/include;.;framework;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../include;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;$(SolutionDir)../../../include/app/include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WITH_OPENH264;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-unused-but-set-variable</AdditionalOptions>
+      <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-attributes -Wno-unused-but-set-variable</AdditionalOptions>
+      <ExceptionHandling>Enabled</ExceptionHandling>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
@@ -350,7 +352,8 @@
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/platform_configuration/$(Platform)/$(Configuration);$(ProjectDir);$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/include;.;framework;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../include;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;$(SolutionDir)../../../include/app/include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WITH_OPENH264;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-unused-but-set-variable</AdditionalOptions>
+      <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-attributes -Wno-unused-but-set-variable</AdditionalOptions>
+      <ExceptionHandling>Enabled</ExceptionHandling>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>

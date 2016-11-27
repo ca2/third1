@@ -700,9 +700,9 @@ rdpRsaKey* key_new_from_content(const char *keycontent, const char *keyfile)
 			goto out_free_rsa;
 	}
 
-   BIGNUM * e;
-   BIGNUM * n;
-   BIGNUM * d;
+   const BIGNUM * e;
+   const BIGNUM * n;
+   const BIGNUM * d;
 
 #if defined(_UWP) || defined(LINUX)
    n = rsa->n;
