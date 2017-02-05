@@ -850,7 +850,9 @@ static void tls_openssl_tlsext_debug_callback(SSL* s, int client_server,
 	if (type == TLSEXT_TYPE_server_name)
 	{
 		WLog_DBG(TAG, "Client uses SNI (extension disabled)");
+#if !defined(APPLE_IOS)
       ssl_set_servername_done(s, 2);
+#endif
 	}
 }
 #endif
