@@ -279,7 +279,7 @@ static char *dupAndToUpper(const char *str, QRencodeMode hint)
 	char *newstr, *p;
 	QRencodeMode mode;
 
-	newstr = strdup(str);
+	newstr = _strdup(str);
 	if(newstr == NULL) return NULL;
 
 	p = newstr;
