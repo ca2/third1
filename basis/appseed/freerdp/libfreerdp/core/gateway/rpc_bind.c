@@ -38,7 +38,7 @@
 
 /* Syntax UUIDs */
 
-const p_uuid_t TSGU_UUID =
+FREERDP_LOCAL const p_uuid_t TSGU_UUID =
 {
 	0x44E265DD, /* time_low */
 	0x7DAF, /* time_mid */
@@ -48,7 +48,7 @@ const p_uuid_t TSGU_UUID =
 	{ 0x3C, 0xDB, 0x6E, 0x7A, 0x27, 0x29 } /* node[6] */
 };
 
-const p_uuid_t NDR_UUID =
+FREERDP_LOCAL const p_uuid_t NDR_UUID =
 {
 	0x8A885D04, /* time_low */
 	0x1CEB, /* time_mid */
@@ -58,7 +58,7 @@ const p_uuid_t NDR_UUID =
 	{ 0x08, 0x00, 0x2B, 0x10, 0x48, 0x60 } /* node[6] */
 };
 
-const p_uuid_t BTFN_UUID =
+FREERDP_LOCAL const p_uuid_t BTFN_UUID =
 {
 	0x6CB71C2C, /* time_low */
 	0x9812, /* time_mid */
