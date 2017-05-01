@@ -581,10 +581,6 @@
 				INSTALL_PATH = "@executable_path";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(TARGET_BUILD_DIR)",
-				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -637,10 +633,6 @@
 				INSTALL_PATH = "@executable_path";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(TARGET_BUILD_DIR)",
-				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -655,12 +647,6 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/all-mac-exvrklrokleuokawrbpzmvyzamwr/Build/Products/Debug",
-					/ios/app/appseed/aura/build/Debug,
-					/ios/app/axis/freeimage/build/Debug,
-				);
 			};
 			name = Debug;
 		};
@@ -669,12 +655,6 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/all-mac-exvrklrokleuokawrbpzmvyzamwr/Build/Products/Debug",
-					/ios/app/appseed/aura/build/Debug,
-					/ios/app/axis/freeimage/build/Debug,
-				);
 			};
 			name = Release;
 		};
