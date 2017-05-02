@@ -84,8 +84,8 @@
 			<Add directory="../../../app/appseed" />
 		</Compiler>
 		<Linker>
-			<Add option="-Wl,-R\\$$$ORIGIN" />
-			<Add option="-Wl,-z,origin" />
+			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
+			
 			<Add option="-lrt" />
 			<Add option="-ldl" />
 			<Add option="-lpthread" />

@@ -85,8 +85,8 @@
 			<Add directory="channels/urbdrc/client" />
 		</Compiler>
 		<Linker>
-			<Add option="-Wl,-R\\$$$ORIGIN" />
-			<Add option="-Wl,-z,origin" />
+			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
+			
 			<Add option="-lpthread" />
 			<Add option="-lpulse" />
 			<Add option="-laxiswinpr" />
