@@ -83,8 +83,8 @@
 			<Add directory="libwinpr/utils/trio" />
 		</Compiler>
 		<Linker>
-			<Add option="-Wl,-R\\$$$ORIGIN" />
-			<Add option="-Wl,-z,origin" />
+			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
+			
 			<Add option="-lrt" />
 			<Add option="-ldl" />
 			<Add option="-lpthread" />

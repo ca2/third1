@@ -63,8 +63,8 @@
 			<Add directory="../../appseed/aura" />
 		</Compiler>
 		<Linker>
-			<Add option="-Wl,-R\\$$$ORIGIN" />
-			<Add option="-Wl,-z,origin" />
+			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
+			
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../time/x64/basis" />
 		</Linker>
