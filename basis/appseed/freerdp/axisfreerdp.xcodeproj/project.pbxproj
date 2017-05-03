@@ -429,6 +429,9 @@
 		9A8DBF671D20B077005AF004 /* libwelsenc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDCFE1D15EF6E00F91F0B /* libwelsenc.dylib */; };
 		9AEFDD2E1D15F5FB00F91F0B /* libios_welsdec.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDCD61D15EF6E00F91F0B /* libios_welsdec.dylib */; };
 		9AEFDD351D15F65E00F91F0B /* libios_welsenc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDD001D15EF6E00F91F0B /* libios_welsenc.dylib */; };
+		9AFEDBA31EB9C0D1008F0D19 /* tsg.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A0266051EA5A7F0003C82CF /* tsg.c */; };
+		9AFEDBA61EB9C0E6008F0D19 /* rpc_bind.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A0266091EA5A852003C82CF /* rpc_bind.c */; };
+		9AFEDBA71EB9C0E6008F0D19 /* rpc_client.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A0266071EA5A833003C82CF /* rpc_client.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1412,6 +1415,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AFEDBA61EB9C0E6008F0D19 /* rpc_bind.c in Sources */,
+				9AFEDBA71EB9C0E6008F0D19 /* rpc_client.c in Sources */,
+				9AFEDBA31EB9C0D1008F0D19 /* tsg.c in Sources */,
 				078DF8981C5299EC00E65274 /* audio.c in Sources */,
 				078DF8991C5299EC00E65274 /* bitmap.c in Sources */,
 				078DF89A1C5299EC00E65274 /* clear.c in Sources */,
