@@ -8,15 +8,15 @@ dnl Require autoconf version >= 2.57
 AC_PREREQ(2.57)
 
 dnl ############# Initialisation
-AC_INIT([mpg123], [1.23.2], [maintainer@mpg123.org])
+AC_INIT([mpg123], [1.25.0], [maintainer@mpg123.org])
 dnl Increment API_VERSION when the API gets changes (new functions).
 
 dnl libmpg123
-API_VERSION=42
+API_VERSION=44
 LIB_PATCHLEVEL=0
 
 dnl libout123
-OUTAPI_VERSION=1
+OUTAPI_VERSION=2
 OUTLIB_PATCHLEVEL=1
 
 dnl Since we want to be backwards compatible, both sides get set to API_VERSION.
@@ -64,6 +64,7 @@ LT_LDFLAGS=-export-dynamic
 EXEC_LT_LDFLAGS=
 be_static=no
 all_static=no
+lib_static=no
 AC_MSG_CHECKING([if you are up to something totally static with LDFLAGS/CFLAGS])
 for f in $LDFLAGS $CFLAGS
 do
@@ -71,9 +72,14 @@ do
 		-all-static)
 			be_static=yes
 			all_static=yes
+			lib_static=yes
 		;;
 		-static)
 			be_static=yes
+			lib_static=yes
+		;;
+		-static-libgcc)
+			lib_static=yes
 		;;
 	esac
 done
@@ -100,6 +106,12 @@ AC_PROG_EGREP
 AC_C_CONST
 AC_INLINE
 AC_C_BIGENDIAN
+
+if test "x$lib_static" = xyes; then
+        CC="$CC -static-libgcc"
+        CCLD="$CC"
+	echo "Adding -static-libgcc"
+fi
 
 dnl ############# Use Libtool for dynamic module loading
 
@@ -134,45 +146,52 @@ else
 	AC_DEFINE(DYNAMIC_BUILD, 1, [ Define if building with dynamcally linked libmpg123])
 fi
 
-if test x"$modules" = xdisabled
-then
-	echo "Modules disabled, not checking for libltdl."
-else
-	have_ltdl=no
-	AC_CHECK_LIB( [ltdl], [lt_dlinit],
-		[ AC_CHECK_HEADER( [ltdl.h],
-			[
-				have_ltdl=yes
-				AC_DEFINE(HAVE_LTDL, 1, [ Define if libltdl is available ])
-			],
-			[
-				AC_MSG_WARN([Found ltdl library but NOT the header file on your system])
-			] )
-		],
-		[
-			AC_MSG_WARN([ltdl library not found])
-		]
-	)
-	if test x"$modules" = xenabled -a x"$have_ltdl" = xno; then
-		AC_MSG_ERROR([Modules enabled but no libltdl found! This will not work...])
-	fi
-	if test x"$modules" = xauto; then
-		if test x"$have_ltdl" = xyes; then
-			modules=enabled
-			echo "We found libltdl: Modules enabled."
-		else
-			echo "We did not find libltdl: Modules disabled."
-			modules=disabled
-		fi
-	fi
-fi
+dnl We need the windows header also for checking the module mechanism.
+AC_CHECK_HEADERS([windows.h])
 
 if test x"$modules" = xdisabled
 then
-	echo "Modules disabled."
+  echo "Modules disabled, not checking for dynamic loading."
 else
-# Enable module support in source code
-AC_DEFINE( USE_MODULES, 1, [Define if modules are enabled] )
+  have_dl=no
+  # The dlopen() API is either in libc or in libdl.
+  if test x$ac_cv_header_windows_h = xyes; then
+    AC_MSG_CHECKING([if LoadLibrary should be used])
+    AC_LINK_IFELSE([AC_LANG_SOURCE([
+
+#ifdef __CYGWIN__
+#error Cygwin should use dlopen
+#endif
+
+#include <windows.h>
+
+int main() {
+  LoadLibraryW(0);
+  GetProcAddress(0, 0);
+  FreeLibrary(0);
+}
+    ])], [
+    have_dl=yes
+    AC_MSG_RESULT([Using LoadLibrary])
+    ],
+  [AC_MSG_RESULT([no])])
+  else
+    AC_SEARCH_LIBS(dlopen, dl)
+    AC_CHECK_HEADER(dlfcn.h)
+    AC_CHECK_FUNCS(dlopen dlsym dlclose, [ have_dl=yes ])
+  fi
+  if test x"$modules" = xenabled -a x"$have_dl" = xno; then
+    AC_MSG_ERROR([Modules enabled but no runtime loader found! This will not work...])
+  fi
+  if test x"$modules" = xauto; then
+    if test x"$have_dl" = xyes; then
+      modules=enabled
+      echo "We found a runtime loader: Modules enabled."
+    else
+      echo "We did not find a runtime loader: Modules disabled."
+      modules=disabled
+    fi
+  fi
 fi
 
 dnl Configure libtool
@@ -180,6 +199,15 @@ dnl Configure libtool
 AC_LIBTOOL_WIN32_DLL
 AM_PROG_LIBTOOL
 
+if test x"$modules" = xdisabled
+then
+  echo "Modules disabled."
+else
+  # Enable module support in source code
+  AC_DEFINE( USE_MODULES, 1, [Define if modules are enabled] )
+  # Export the module file suffix as LT_MODULE_EXT
+  LT_SYS_MODULE_EXT
+fi
 AM_CONDITIONAL( [HAVE_MODULES], [test "x$modules" = xenabled] )
 
 AC_SUBST(LT_LDFLAGS)
@@ -505,16 +533,17 @@ AC_ARG_ENABLE(yasm,
                 fi
               ], [])
 
-# opt-in for IEEE754 floating point action
-# We want to make sure not to apply hacks relying on IEEE754 storage format on platforms where we did not make sure that this actually is valid.
-# It _should_ be fine for about all computers still out there, but we play safe.
-ieee=no
-case $host in
-  i?86-*|x86_64-*|powerpc*|sparc*)
-    ieee=yes
-  ;;
-esac
-if test "x$ieee" = xyes; then
+AC_ARG_ENABLE(ieeefloat,
+  [  --enable-ieeefloat=[yes/no] use special hackery relying on IEEE 754 floating point storage format (to accurately round to 16 bit integer at bit more efficiently in generic decoder, enabled by default, disable in case you have a very special computer) ],
+  [
+    if test "x$enableval" = xyes; then
+      ieee=enabled
+    else
+      ieee=disabled
+    fi
+  ], [ ieee=enabled ])
+
+if test "x$ieee" = xenabled; then
   echo "We assume IEEE754 floating point format."
   AC_DEFINE(IEEE_FLOAT,   1, [ Define to indicate that float storage follows IEEE754. ])
 fi
@@ -522,10 +551,7 @@ fi
 sys_cppflags=
 newoldwritesample=disabled
 case $host in
-  aarch64-*-linux*|arm64-*-linux*)
-    cpu_type="aarch64"
-  ;;
-  aarch64-apple-darwin*|arm64-apple-darwin*)
+  aarch64-*linux*|arm64-*linux*|aarch64-*bsd*|arm64-*bsd*|aarch64-apple-darwin*|arm64-apple-darwin*)
     cpu_type="aarch64"
   ;;
   arm*-*-linux*-*eabihf|armv7hl*-*-linux*)
@@ -894,16 +920,6 @@ dnl ############## Modules
 # Dummy audio output module is always supported
 output_modules="dummy"
 
-# Decide on module file suffix. Setting it != .la allows removal of .la files.
-AC_ARG_WITH([module-suffix], [
-  --with-module-suffix=.la            (default) Use libtool's .la files for loading modules.
-  --with-module-suffix=[.so|.dll|...] Specify the native module file suffix to bypass .la files.
-])
-if test x"$with_module_suffix" = x; then
-  with_module_suffix=.la
-fi
-AC_DEFINE_UNQUOTED( MODULE_FILE_SUFFIX, "$with_module_suffix", [The suffix for module files.] )
-
 dnl ############## Assembler, compiler properties
 
 # based on posting from John Dalgliesh <johnd@defyne.org> on ffmpeg (LGPL) mailing list
@@ -1017,7 +1033,7 @@ dnl ############## Really basic headers, needed for other checks.
 
 AC_HEADER_STDC
 dnl Is it too paranoid to specifically check for stdint.h and limits.h?
-AC_CHECK_HEADERS([stdio.h stdlib.h string.h unistd.h sched.h sys/ioctl.h sys/types.h stdint.h limits.h inttypes.h sys/time.h sys/wait.h sys/resource.h sys/signal.h signal.h])
+AC_CHECK_HEADERS([stdio.h stdlib.h string.h unistd.h sched.h sys/ioctl.h sys/types.h stdint.h limits.h inttypes.h sys/time.h sys/wait.h sys/resource.h sys/signal.h signal.h sys/select.h dirent.h sys/stat.h])
 
 dnl ############## Types
 
@@ -1133,8 +1149,6 @@ AC_CHECK_FUNCS( strerror )
 
 AC_CHECK_FUNCS( setlocale nl_langinfo )
 
-AC_CHECK_FUNCS( strdup )
-
 AC_CHECK_FUNCS( atoll )
 
 AC_CHECK_FUNCS( mkfifo, [ have_mkfifo=yes ], [ have_mkfifo=no ] )
@@ -1216,15 +1230,15 @@ AC_CHECK_HEADER([os2.h], [ADD_CPPFLAGS="$ADD_CPPFLAGS -DOS2"])
 # On OS/2, we need to link to os2term to make terminal control actually work.
 AC_CHECK_LIB([os2term], [tcsetattr], [ADD_LDFLAGS="$ADD_LDFLAGS -los2term"])
 
-# If debugging is enabled then make warnings errors
+# If debugging is enabled, just enable debugging symbols.
+# All other stuff enters nagging territory.
 if test x"$debugging" = xenabled; then
 	ADD_CFLAGS="-g"
-	# gcc specific...
-	if test x"$GCC" = xyes; then
-		ADD_CFLAGS="$ADD_CFLAGS -Wall -fno-strict-aliasing"
-		if test x"$nagging" = xenabled; then
-			ADD_CFLAGS="$ADD_CFLAGS -Werror -pedantic -DPLAIN_C89"
-		fi
+fi
+# gcc specific...
+if test x"$GCC" = xyes; then
+	if test x"$nagging" = xenabled; then
+		ADD_CFLAGS="$ADD_CFLAGS -Wall -Werror -std=c89 -pedantic -DPLAIN_C89"
 	fi
 fi
 
@@ -1308,7 +1322,7 @@ dnl Not disabling buffer for float mode... check that this is OK now!
     ccalign=no
   ;;
   ppc_nofpu)
-    ADD_CPPFLAGS="$ADD_CPPFLAGS -DOPT_PPC -DREAL_IS_FIXED"
+    ADD_CPPFLAGS="$ADD_CPPFLAGS -DOPT_GENERIC -DOPT_PPC -DREAL_IS_FIXED"
     more_sources=
     ccalign=no
   ;;
@@ -1444,21 +1458,6 @@ dnl Not disabling buffer for float mode... check that this is OK now!
   ;;
   *)
   	AC_MSG_ERROR([Unknown CPU type '$cpu_type'])
-  ;;
-esac
-
-# Mac OS X specific linker flags
-case $cpu_type in
-  3dnow|3dnow_vintage|3dnow_alone|3dnowext|3dnowext_vintage|3dnowext_alone|mmx|mmx_alone|sse|sse_vintage|sse_alone|x86|x86_dither)
-    case $host in
-      i386-apple-darwin8*|*-apple-darwin10*)
-        ADD_LDFLAGS="$ADD_LDFLAGS -Wl,-read_only_relocs,suppress"
-      ;;
-      i386-apple-darwin9*)
-        ADD_CFLAGS="$ADD_CFLAGS -mmacosx-version-min=10.4 -isysroot /Developer/SDKs/MacOSX10.4u.sdk"
-        ADD_LDFLAGS="$ADD_LDFLAGS -Wl,-syslibroot,/Developer/SDKs/MacOSX10.4u.sdk -Wl,-classic_linker -Wl,-read_only_relocs,suppress"
-      ;;
-    esac
   ;;
 esac
 
@@ -1711,7 +1710,13 @@ do
 			# Does not work... instead just check for header
 			# AC_CHECK_LIB( [winmm], [waveOutOpen] )
 			WIN32_LIBS=-lwinmm
-			AC_CHECK_HEADERS([windows.h], output_modules="$output_modules win32" HAVE_WIN32=yes, HAVE_WIN32=no check_failed=yes)
+			if test x$ac_cv_header_windows_h = xyes; then
+				output_modules="$output_modules win32"
+				HAVE_WIN32=yes
+			else
+				HAVE_WIN32=no
+				check_failed=yes
+			fi
 		;;
 		win32_wasapi)
 			# Check for windows ... and win32 wasapi audio
@@ -1771,12 +1776,25 @@ int main(){
 			fi
 		;;
 		coreaudio)
-			COREAUDIO_LIBS="-framework AudioToolbox -framework AudioUnit -framework CoreServices"
-			AC_CHECK_HEADERS([AudioUnit/AudioUnit.h CoreServices/CoreServices.h AudioToolbox/AudioToolbox.h])
+			COREAUDIO_LIBS="-framework AudioToolbox"
+			AC_CHECK_HEADERS([AudioUnit/AudioUnit.h AudioToolbox/AudioToolbox.h])
 			if test "x${ac_cv_header_AudioUnit_AudioUnit_h}" = "xyes" \
-				 -a "x${ac_cv_header_CoreServices_CoreServices_h}" = "xyes" \
 				 -a "x${ac_cv_header_AudioToolbox_AudioToolbox_h}" = "xyes";
 			then
+				OLD_LIBS=$LIBS
+				LIBS="$LIBS $COREAUDIO_LIBS"
+    			AC_MSG_CHECKING([if AudioUnit functions are available within AudioToolbox])
+				AC_TRY_LINK(
+					[#include <AudioUnit/AudioUnit.h>],
+					[AudioUnitInitialize(NULL);],
+					[AC_MSG_RESULT([yes])],
+					[AC_MSG_RESULT([no])
+					 COREAUDIO_LIBS="$COREAUDIO_LIBS -framework AudioUnit"]
+				)
+				LIBS=$OLD_LIBS
+				AC_CHECK_HEADERS([CoreServices/CoreServices.h],
+					[COREAUDIO_LIBS="$COREAUDIO_LIBS -framework CoreServices"]
+				)
 				if test x"$modules" = xdisabled; then
 					AC_MSG_WARN([Disabling buffer because of directly linked CoreAudio! Use the module if you need the buffer.])
 					buffer=disabled
@@ -1789,7 +1807,7 @@ int main(){
 		;;
 		arts)
 			AC_MSG_CHECKING([for artsc])
-			if artsc-config; then
+			if artsc-config > /dev/null 2>&1; then
 				AC_MSG_RESULT([yes])
 				output_modules="$output_modules arts"
 				HAVE_ARTS=yes
@@ -2009,11 +2027,18 @@ AC_SUBST(DUMMY_LIBS)
 AC_SUBST(DUMMY_LDFLAGS)
 AC_SUBST(DUMMY_CFLAGS)
 AM_CONDITIONAL( [HAVE_DUMMY], [test "x$HAVE_DUMMY" = xyes] )
+# Hackery to get rid of module .la files.
+AC_SUBST(output_modules)
+for f in $output_modules
+do
+  output_modules_la="$output_modules_la output_$f.la"
+done
+AC_SUBST(output_modules_la)
 
 # Did user choose default audio subsystem ?
 if test "x$with_default_audio" != "x"; then
 	default_output_module=$with_default_audio
-else 
+else
 	default_output_module=`echo "$output_modules" | $AWK '{ print $1 }'`
 fi
 
@@ -2146,28 +2171,38 @@ AC_DEFINE_UNQUOTED(INDEX_SIZE, $seektable, [size of the frame index seek table])
 
 dnl ############## Win32 function checks
 # Check if we want Unicode for Win32. Cygwin does not need _wopen
-win32_specific_codes=disabled
+if test x$ac_cv_header_windows_h = xyes && test "x$host_os" != "xcygwin"; then
+  win32_specific_codes=enabled
+else
+  win32_specific_codes=disabled
+fi
 win32_unicode=unneeded
 win32_sockets=disabled
 win32_sockets_working=no
 win32_wide_working=no
 win32_winver_bump=no
-AC_CHECK_HEADERS([windows.h], [win32_specific_codes=enabled])
 
-if test "x$win32_specific_codes" = xenabled && test "x$host_os" != "xcygwin"; then
+dnl We do not support non-unicode Windows.
+if test "x$win32_specific_codes" = xenabled; then
 #### Check for Wide functions
   AC_CHECK_FUNC([_wopen], [win32_unicode=enabled],[win32_unicode=disabled])
   AC_MSG_CHECKING([if we want Unicode File Open for Win32])
   if test "x$win32_unicode" = xenabled; then
+    dnl We need to include the header for PathCombineW checking as
+    dnl the actual symbol has a very funny name.
+    oldlibs=$LIBS
+    LIBS="$LIBS -lshlwapi"
     AC_MSG_RESULT([yes])
     AC_MSG_CHECKING([if Unicode functions working])
     AC_LINK_IFELSE([AC_LANG_SOURCE([
       #include <windows.h>
+      #include <shlwapi.h>
       #include <stdlib.h>
       int main()
       {
         MultiByteToWideChar (0, 0, NULL, 0, NULL, 0);
         WideCharToMultiByte (0, 0, NULL, 0, NULL, 0, NULL, NULL);
+        PathCombineW(0,0,0);
         return 0;
       }
     ])], [win32_wide_working=yes], [win32_winver_bump=yes])
@@ -2176,11 +2211,13 @@ if test "x$win32_specific_codes" = xenabled && test "x$host_os" != "xcygwin"; th
         #define WINVER 0x501
         #define _WIN32_WINNT 0x501
         #include <windows.h>
+        #include <shlwapi.h>
         #include <stdlib.h>
         int main()
         {
           MultiByteToWideChar (0, 0, NULL, 0, NULL, 0);
           WideCharToMultiByte (0, 0, NULL, 0, NULL, 0, NULL, NULL);
+          PathCombineW(0,0,0);
           return 0;
         }
       ])], [win32_wide_working=yes], [AC_MSG_RESULT([no])])
@@ -2188,9 +2225,12 @@ if test "x$win32_specific_codes" = xenabled && test "x$host_os" != "xcygwin"; th
     if test "x$win32_wide_working" = xyes; then
       AC_MSG_RESULT([yes])
       AC_DEFINE([WANT_WIN32_UNICODE], [1], [ Define to use Unicode for Windows ])
+    else
+      LIBS=$oldlibs
+      AC_MSG_ERROR([Unicode support for Win32 not working])
     fi
   else
-    AC_MSG_WARN([Unicode File Open for Win32 disabled])
+    AC_MSG_ERROR([Unicode File Open for Win32 not available])
   fi
 
 #### Check for Network functions
@@ -2418,6 +2458,7 @@ echo "
   Equalizer ............... $equalizer
   Optimization detail:
   Integer conversion ...... $integers
+  IEEE 754 hackery ........ $ieee
   New/old WRITE_SAMPLE .... $newoldwritesample
   new Huffman scheme ...... $newhuff
 
@@ -2426,7 +2467,6 @@ Note: Disabling core features is not commonly done and some combinations might n
 echo
 
 echo "  Modules ................. $modules"
-echo "  Module suffix ........... $with_module_suffix"
 echo "  Checked audio modules ... $check_modules
   Detected audio support ..$output_modules
   Default output module ... $default_output_module
@@ -2438,6 +2478,14 @@ fi
 if test x"$with_optimization" = x0; then
 	echo "No optimization flags chosen, make sure you have something basic in your CFLAGS at least...
 "
+fi
+
+if test x"$cpu_type" = xi486; then
+  echo "WARNING: You selected the i486 decoder. This is not recommened for regular use."
+  echo "It was designed for actual i486 CPUs a long time ago. Generic C code is likely"
+  echo "to perform better nowadays. Also, the decoder misses features like volume"
+  echo "scaling and has clipping issues. Continue if you are into software archeology"
+  echo "only."
 fi
 
 echo

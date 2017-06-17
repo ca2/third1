@@ -7,9 +7,17 @@
 	initially written by Clemens Ladisch <clemens@ladisch.de>
 */
 
+/* ALSA headers define struct timeval if no POSIX macro is set,
+   nicely in conflict with definitions in system headers. They had
+   a discussion about that a long time ago:
+     http://mailman.alsa-project.org/pipermail/alsa-devel/2007-June/001684.html
+   ... seems like the conclusion was not carried through.
+ */
+#define _POSIX_SOURCE
+/* Things are still missing if _DEFAULT_SOURCE is not defined (for recent
+   glibc, I presume. */
+#define _DEFAULT_SOURCE
 #include "out123_int.h"
-#include "audio.h"
-#include "module.h"
 #include <errno.h>
 
 /* make ALSA 0.9.x compatible to the 1.0.x API */
@@ -21,8 +29,9 @@
 
 #include "debug.h"
 
-/* in seconds */
-#define BUFFER_LENGTH (ao->device_buffer > 0. ? ao->device_buffer : 0.5)
+/* Total buffer size in seconds, 0.2 is more true to what ALSA maximally uses
+   here (8192 samples). The earlier default of 0.5 was never true. */
+#define BUFFER_LENGTH (ao->device_buffer > 0. ? ao->device_buffer : 0.2)
 
 static const struct {
 	snd_pcm_format_t alsa;
@@ -115,6 +124,7 @@ static int initialize_device(out123_handle *ao)
 		if(!AOQUIET) error("initialize_device(): cannot set period size");
 		return -1;
 	}
+	debug1("period_size=%lu", (unsigned long)period_size);
 	if (snd_pcm_hw_params(pcm, hw) < 0) {
 		if(!AOQUIET) error("initialize_device(): cannot set hw params");
 		return -1;

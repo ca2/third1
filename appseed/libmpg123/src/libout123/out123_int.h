@@ -10,7 +10,7 @@
 #define _MPG123_OUT123_INT_H_
 
 #include "config.h"
-#include "out123_intsym.h"
+#include "intsym.h"
 #include "abi_align.h"
 #include "compat.h"
 #include "out123.h"
@@ -89,6 +89,7 @@ struct out123_struct
 	double preload;	/* buffer fraction to preload before play */
 	int verbose;	/* verbosity to stderr */
 	double device_buffer; /* device buffer in seconds */
+	char *bindir;	/* OUT123_BINDIR */
 /* TODO int intflag;   ... is it really useful/necessary from the outside? */
 };
 

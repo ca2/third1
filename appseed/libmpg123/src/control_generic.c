@@ -277,6 +277,8 @@ static void generic_loadlist(mpg123_handle *fr, char *arg)
 	/* Now got the plain playlist path in arg. On to evil manupulation of mpg123's playlist code. */
 	param.listname = arg;
 	param.listentry = 0; /* The playlist shall not filter. */
+	param.loop = 1;
+	param.shuffle = 0;
 	prepare_playlist(0, NULL);
 	while((file = get_next_file()))
 	{
@@ -364,13 +366,13 @@ int control_generic (mpg123_handle *fr)
 			if (n == 0) {
 				if (!play_frame())
 				{
+					out123_pause(ao);
 					/* When the track ended, user may want to keep it open (to seek back),
 					   so there is a decision between stopping and pausing at the end. */
 					if(param.keep_open)
 					{
 						mode = MODE_PAUSED;
 						/* Hm, buffer should be stopped already, shouldn't it? */
-						if(param.usebuffer) out123_pause(ao);
 						generic_sendmsg("P 1");
 					}
 					else
@@ -496,7 +498,7 @@ int control_generic (mpg123_handle *fr)
 					if (mode != MODE_STOPPED) {
 						/* Do we want to drop here? */
 						out123_drop(ao);
-						out123_stop(ao);
+						out123_pause(ao);
 						close_track();
 						mode = MODE_STOPPED;
 						generic_sendmsg("P 0");
@@ -544,7 +546,7 @@ int control_generic (mpg123_handle *fr)
 				{
 					long rate;
 					int ch;
-					int ret = mpg123_getformat(fr, &rate, &ch, NULL);
+					int ret = mpg123_getformat2(fr, &rate, &ch, NULL, 0);
 					/* I need to have portable printf specifiers that do not truncate the type... more autoconf... */
 					if(ret < 0) generic_sendmsg("E %s", mpg123_strerror(fr));
 					else generic_sendmsg("FORMAT %li %i", rate, ch);

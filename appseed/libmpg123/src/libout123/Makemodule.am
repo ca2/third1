@@ -12,8 +12,6 @@ src_libout123_libout123_la_SOURCES = \
   src/libout123/stringlists.h \
   src/libout123/stringlists.c \
   src/libout123/out123_int.h \
-  src/libout123/out123_intsym.h \
-  src/libout123/compat.c \
   src/libout123/wav.c \
   src/libout123/wav.h \
   src/libout123/wavhead.h
@@ -31,14 +29,18 @@ src_libout123_libout123_la_LDFLAGS = \
 
 src_libout123_libout123_la_LIBADD = \
   src/libout123/libmodule.la \
+  src/compat/libcompat.la
+
+if !HAVE_MODULES
+src_libout123_libout123_la_LIBADD += \
   src/libout123/modules/libdefaultmodule.la
+endif
 
 src_libout123_libmodule_la_SOURCES = src/libout123/module.h
  
 if HAVE_MODULES
 
 src_libout123_libmodule_la_SOURCES += src/libout123/module.c
-src_libout123_libout123_la_LIBADD  += -lltdl
 
 else
 

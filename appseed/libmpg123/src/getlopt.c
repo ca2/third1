@@ -7,10 +7,9 @@
 	old timestamp: Tue Apr  8 07:15:13 MET DST 1997
 */
 
-#include <stdio.h>
 #include "config.h"
-#include "getlopt.h"
 #include "compat.h"
+#include "getlopt.h"
 #include "debug.h"
 
 int loptind = 1;	/* index in argv[] */
@@ -81,7 +80,7 @@ static int performoption (int argc, char *argv[], topt *opt)
 		loptchr = 0;
 		if (opt->var) {
 			if (opt->flags & GLO_CHAR) /* var is *char */
-				*((char **) opt->var) = strdup(loptarg); /* valgrind claims lost memory here */
+				*((char **) opt->var) = compat_strdup(loptarg); /* valgrind claims lost memory here */
 			else if(opt->flags & GLO_LONG)
 				*((long *) opt->var) = atol(loptarg);
 			else if(opt->flags & GLO_INT)

@@ -1,3 +1,176 @@
+1.25.0: MP3 now patent-free worldwide!
+-------
+- Silence test for artsc-config if it is not there.
+- Make sure -static-libgcc from LDFLAGS gets through libtool,
+  fixing 32 bit Windows builds (depend on libgcc DLL otherwise).
+- Fix build with non-GNU make by using plain rm -f instead of silly $(RM)
+  in libout123/modules makefile fragment.
+- Make build work on iOS, including coreaudio backend.
+- libmpg123:
+-- Finally provide position-independent code for x86 with assembly
+   optimisations.The textrels are gone thanks to Won Kyu Park and Taihei Momma.
+-- Clarify some license language in files descending from the original MMX
+   optimisation.
+-- Fix return value overflow check for MPG123_BUFFERFILL.
+-- Introduced mpg123_getformat2() to enable the FORMAT command
+   for the generic control not stealing MPG123_NEW_FORMAT from the main
+   playback loop. The sequence LOADPAUSED-FORMAT-PAUSE (play) is supposed
+   to work now.
+-- Enable aarch64 optimisations on *BSD by default, too. You can always
+   override that stupid OS whitelist using --with-optimization, anyway.
+-- Use of the i486 decoder is now discouraged more prominently, in configure
+   output.
+- out123: Fix stupid crash with verbose mode and tone generation (print
+  the string if the pointer is non-null, not if it is null).
+- libout123: More consistent error messages for dynamic and legacy
+  (built-in) modules. Namely, you get a hint how if you choose a different
+  module than the built-in ones for a static libout123.
+
+1.24.0:
+-------
+- Avoid repeating genre in metadata printout for specifications like
+  (144)Thrash Metal.
+- In remote control mode, only enforce --quiet if no verbosity was required.
+- Prevent --loop and --shuffle or --random from messing with the remote
+  control LOADLIST command (printout of the list would loop without reason).
+- Fix the mpg123 command (esp. our provided binaries on Windows) to now find
+  modules again relative to the executable directory, not the current working
+  directory. This was a regression in 1.23 and might be security-relevant if
+  you called mpg123 in working directories with untrusted content.
+  Note that mpg123 1.23 looked for modules relative to the current working
+  directory only if the installation prefix for modules did not exist.
+  So, usage on an intact installation (with /usr/lib/mpg123 or the like) was
+  safe. Nevertheless this new version fixes the search to be relative to the
+  binary path as it was with 1.22 and before.
+- At least consistent behaviour of playlist code in the face of looping.
+  Looping is about individual tracks, always. They are looped also in random
+  mode. Jumping (prev/next keys) is between tracks and resets the loop counter.
+  The display of currently playing track in the playlist is fixed for random
+  and looped play now (bug 198).
+- Looping is now mentioned for a to-be-repeated track with --verbose.
+- Move some compiler nagging from --enable-debug to --enable-nagging, fix up
+  some new build failures by adding some pesky feature test macros.
+- Try not to pollute the terminal buffer with old progress bars in inverse
+  video. Only the currently live one shall be seen. That one is pretty. The
+  others are not.
+- Using plain dlopen()/LoadLibrary() for opening modules instead of libltdl.
+  This also means that --with-module-suffix is gone in configure.
+- Windows builds only work when Unicode support is there (older than Windows
+  2000/XP will definitely not work anymore).
+- The out123 tool now features tone generation, with a mix of differing
+  wave patterns. Makes sense to be able to test the audio output by itself,
+  and it's fun. See --wave-freq and related parameters.
+- libmpg123 version 43:
+-- Add flags MPG123_NO_PEEK_END and MPG123_FORCE_SEEKABLE, as suggested
+   by Bent Bisballe Nyeng.
+-- Build fix for MSVC (consistent definition of ssize_t, spotted by manx,
+   bug 243).
+-- Build fix for --with-cpu=ppc_nofpu (thanks to Michael Kostylev, bug 244).
+-- Add asm optimized MSVC++ Win32|x64 and UWP|x64 builds
+-- Remove old, broken MSVC++ builds
+- libout123 version 2:
+-- Added OUT123_BINDIR.
+-- New search order for output plugin directory: MPG123_MODDIR, or (relative
+   to executable directory OUT123_BINDIR) ../lib/mpg123, plugins
+   libout123/modules/.libs, libout123/modules, ../libout123/modules/.libs,
+   ../libout123/modules, and at last the installation prefix $libdir/mpg213/.
+   This shall ensure that a build inside a source tree does not try to use old
+   modules from the system prefix. The normal libtool wrapper deals with the
+   shared libout123 or libmpg123 only, not modules.
+   Note that if you set MPG123_MODDIR to a non-existing directory, no modules
+   will be found (earlier versions fell back to other choices).
+-- The OUT123_NAME parameter is now copied by out123_param_from(), as is
+   the newly added OUT123_BINDIR.
+-- Coreaudio: Use AudioComponents API on OSX >= 10.6 (thanks to Michael Weiser).
+-- Coreaudio: Fix behaviour of out123_drop(), not killing the output anymore
+   without re-opening the device (bug 236, thanks to Taihei for the fix).
+
+1.23.8
+------
+- Fix long-standing bad memory read (via integer underflow) in ID3 parser
+  for crafted ID3v2 tags with tiny size information (bug 240). Thanks to
+  Han Lee & Jerold Hoong for the detailed report.
+
+1.23.7
+------
+- Fix the bad RPM spec file (broken since out123 addition, thanks
+  to Srikanth Rao for noticing).
+- More out123_pause() in generic control mode, working around
+  bug 236. The coreaudio output needs to be more robust, though.
+- Do not undef MPG123_EXPORT in the headers, rather be prepared for it
+  being defined already. This fixes MSVC builds, broken since 1.23.0
+  (bug 239).
+
+1.23.6
+------
+- call out123_pause() instead of out123_stop() in remote control STOP
+  command, fixing the regression in 1.23.x of not being able to resume
+  playback with another LOAD unless the new track has differing audio
+  format (bug 234)
+
+1.23.5
+------
+- libout123:
+-- fix build of portaudio and SDL on win32 (too many parentheses,
+   thanks to Sandro Cumerlato for pointing it out)
+-- make out123_errcode() return OUT123_BAD_HANDLE as documented
+   (adding that value to the error enum, was documented but missing),
+   again thanks to Sandro
+- fix windows-builds.sh (shell quoting in copying stage) and add some
+  bits to shipped header to make it directly usable in MSVC (define ssize_t,
+  bug 232)
+- no overwriting of LIBS in Makefile (build system regression in 1.23,
+  thanks to Peter Korsgaard for reporting that one)
+- no printing of message in response to SIGPIPE, as that could trigger
+  a hang if stderr itself is the piped culprit (regression from 1.22, bug 233)
+
+1.23.4
+------
+- mpg123: Fix logic of prebuffering small bits for glitch-free start of
+  playback. The logic as introduced in 1.23.0 actually introduced stuttering!
+  The fix for this is really minimal and I urge everyone to at least include
+  that one. It is the changeset of rev. 4041.
+- libout123:
+-- Actually make OUT123_KEEP_PLAYING on by default, as documented.
+-- Fix buffer logic with regard to draining, use common device writing
+   code to handle resuming from pause. This fixes sdl output with buffer,
+   possibly other sfifo-based outputs like CoreAudio (those were poorly
+   tested with buffer, as the combination is indeed unusual, see bug 230).
+-- Buffer pauses devices for prebuffering, to avoid underruns.
+-- More reliable playback with SDL, Portaudio and CoreAudio outputs.
+   This includes FIFO draining on close to avoid dropping of the end.
+   It should fix parts of bug 230.
+-- Fixed memory leaks with some outputs where a call to the deinit()
+   function is necessary during available/working module checking.
+- mpg123, out123: Use the default output flags to get OUT123_KEEP_PLAYING.
+  Without this, there is a good chance to abort on SIGSTOP/CONT while playing.
+  This is a regression from 1.22 .
+- Build fixes (bugs 227 and 228) and some build system hackery.
+  Gone are libc feature test macros in compat.h . This means always
+  using our own strdup() implementation. Simpler than being bugged by
+  feature test macros in strict compiler mode (when _DEFAULT_SOURCE is not
+  defined).
+- ./configure --enable-nagging does something also without --enable-debug,
+  explictly triggers -std=c89, too (hence the above).
+- Some fixup to make things work in pedantic C89 mode again.
+  It really might be time to swich on some serious C99 for the next release,
+  since there's a followup standard to _that_ which we can ignore now.
+- Update list of renamed internal symbols to reduce conflicts during static
+  linking of libmpg123 or libout123.
+- Internal compatibility functions now handled via libtool convenience
+  archives, avoiding the hackish code copies.
+
+1.23.3:
+-------
+- mpg123: Man page fixes by ESR.
+- Actually check for sys/select.h (again?) in configure so that it is used.
+  Fixes build on a Cygwin install, at least.
+- libmpg123: Always default to enabled IEEE 754 hack for rounding on all
+  platforms, use ./configure --disable-ieeefloat if you do not want it.
+  As a protection for the exotic machine that does not use IEEE floating
+  point storage format, mpg123_init() will error out early if the rounding
+  does not work out.
+
 1.23.2:
 -------
 - mpg123: Fix compact ID3 tag printing to take UTF-8 character count

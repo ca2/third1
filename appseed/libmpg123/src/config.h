@@ -481,3 +481,18 @@
 #define _strdup strdup
 
 #endif
+
+
+
+#if defined(_M_IX86)
+
+#define OPT_MULTI
+#define OPT_GENERIC
+#define OPT_I386
+#define OPT_I586
+#define OPT_MMX
+#define OPT_3DNOW
+#define OPT_3DNOWEXT
+#define OPT_SSE
+
+#endif
