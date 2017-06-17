@@ -6,10 +6,10 @@
 	initially written by Michael Hipp
 */
 
+#include "out123_int.h"
+
 #include <sys/ioctl.h>
 #include <fcntl.h>
-
-#include "out123_int.h"
 
 #ifdef HAVE_LINUX_SOUNDCARD_H
 #include <linux/soundcard.h>
@@ -312,7 +312,7 @@ mpg123_module_t mpg123_output_module_info = {
 	/* api_version */	MPG123_MODULE_API_VERSION,
 	/* name */			"oss",
 	/* description */	"Output audio using OSS",
-	/* revision */		"$Rev: 3894 $",
+	/* revision */		"$Rev: 4021 $",
 	/* handle */		NULL,
 	
 	/* init_output */	init_oss,

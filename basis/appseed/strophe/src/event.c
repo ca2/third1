@@ -290,7 +290,7 @@ void xmpp_run_once(xmpp_ctx_t *ctx, const unsigned long timeout)
 		    ret = sock_read(conn->sock, buf, 4096);
 		}
 
-		if (ret > 0) {
+		if (ret >= 0) {
 		    ret = parser_feed(conn->parser, buf, ret);
 		    if (!ret) {
 			/* parse error, we need to shut down */

@@ -1,10 +1,9 @@
-bv# This is a generic spec file that should "just work" with rpmbuild on any distro.
+# This is a generic spec file that should "just work" with rpmbuild on any distro.
 # Make sure you have appropriate -devel packes installed:
-# - the package providing libltdl.so and .la (libtool or libtool-devel)
 # - devel packages for alsa, sdl, etc... to build the respective output modules.
 Summary:	The fast console mpeg audio decoder/player.
 Name:		mpg123
-Version:	1.23.2
+Version:	1.25.0
 Release:	1
 URL:		http://www.mpg123.org/
 License:	GPL
@@ -13,8 +12,6 @@ Packager:	Michael Ryzhykh <mclroy@gmail.com>
 Source:		http://www.mpg123.org/download/mpg123-%{version}.tar.bz2
 BuildRoot:	%_tmppath/%name-%version
 Prefix: 	/usr
-# That is specific to fedora 4 already.
-#BuildPrereq:	libtool-ltdl-devel
 
 %description
 This is a console based decoder/player for mono/stereo mpeg audio files,
@@ -49,9 +46,9 @@ make
 %{_bindir}/*
 %defattr(644,root,root)
 %doc %{_mandir}/*/mpg123.1.gz
+%doc %{_mandir}/*/out123.1.gz
 %{_libdir}/libmpg123.so.*
 %{_libdir}/libout123.so.*
-%{_libdir}/mpg123/output_*.la
 %{_libdir}/mpg123/output_*.so
 
 %files devel
@@ -68,6 +65,10 @@ make
 %exclude %{_libdir}/mpg123/output_*.a
 
 %changelog
+* 2017-02-27 Thomas Orgis <thomas@orgis.org>
+- libltdl and module .la files gone
+* Sat Sep  3 2016 Srikanth Rao <srirao@bandwidth.com>
+- remove junk added in last edit, add out123 manpage
 * Much later Thomas Orgis <thomas@orgis.org>
 - some blind update
 * Tue Jan  1 2008 Michael Ryzhykh <mclroy@gmail.com>

@@ -238,3 +238,11 @@ void (*catchsignal(int signum, void(*handler)()))()
 }
 #endif
 #endif
+char* compat_strdup(const char *s)
+{
+   if (s == NULL)
+   {
+      return NULL;
+   }
+   return strdup(s);
+}
