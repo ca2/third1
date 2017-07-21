@@ -417,18 +417,13 @@
 		07DD6D7D1B5F0C61003A1CE1 /* primitives.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BB11B5F0C61003A1CE1 /* primitives.c */; };
 		07DD6D7E1B5F0C61003A1CE1 /* primitives.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BB11B5F0C61003A1CE1 /* primitives.c */; };
 		07DD710F1B5F173E003A1CE1 /* libaxiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70A91B5F0FD4003A1CE1 /* libaxiswinpr.dylib */; };
-		07DD71121B5F1752003A1CE1 /* libios_axiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70AB1B5F0FD4003A1CE1 /* libios_axiswinpr.dylib */; };
 		9A0266061EA5A7F0003C82CF /* tsg.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A0266051EA5A7F0003C82CF /* tsg.c */; };
 		9A0266081EA5A833003C82CF /* rpc_client.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A0266071EA5A833003C82CF /* rpc_client.c */; };
 		9A02660A1EA5A852003C82CF /* rpc_bind.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A0266091EA5A852003C82CF /* rpc_bind.c */; };
 		9A09AE891DE0BD4E00C0357F /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A09AE871DE0BD4E00C0357F /* libcrypto.a */; };
 		9A09AE8A1DE0BD4E00C0357F /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A09AE881DE0BD4E00C0357F /* libssl.a */; };
-		9A8087431DE0FE7F00F70A07 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8087411DE0FE7F00F70A07 /* libcrypto.a */; };
-		9A8087441DE0FE7F00F70A07 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8087421DE0FE7F00F70A07 /* libssl.a */; };
 		9A8DBF661D20B065005AF004 /* libwelsdec.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDCD41D15EF6E00F91F0B /* libwelsdec.dylib */; };
 		9A8DBF671D20B077005AF004 /* libwelsenc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDCFE1D15EF6E00F91F0B /* libwelsenc.dylib */; };
-		9AEFDD2E1D15F5FB00F91F0B /* libios_welsdec.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDCD61D15EF6E00F91F0B /* libios_welsdec.dylib */; };
-		9AEFDD351D15F65E00F91F0B /* libios_welsenc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AEFDD001D15EF6E00F91F0B /* libios_welsenc.dylib */; };
 		9AFEDBA31EB9C0D1008F0D19 /* tsg.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A0266051EA5A7F0003C82CF /* tsg.c */; };
 		9AFEDBA61EB9C0E6008F0D19 /* rpc_bind.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A0266091EA5A852003C82CF /* rpc_bind.c */; };
 		9AFEDBA71EB9C0E6008F0D19 /* rpc_client.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A0266071EA5A833003C82CF /* rpc_client.c */; };
@@ -580,7 +575,7 @@
 		0775CB6A1B8488C2005F8295 /* errconnect.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = errconnect.c; sourceTree = "<group>"; };
 		0775CB6D1B8488E4005F8295 /* rdg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rdg.c; sourceTree = "<group>"; };
 		0775CB6E1B8488E4005F8295 /* rdg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rdg.h; sourceTree = "<group>"; };
-		07DD674C1B5F0C16003A1CE1 /* libios_axisfreerdp.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_axisfreerdp.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07DD674C1B5F0C16003A1CE1 /* libios_axisfreerdp.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_axisfreerdp.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		07DD6AC51B5F0C60003A1CE1 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		07DD6AC61B5F0C60003A1CE1 /* dummy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dummy.c; sourceTree = "<group>"; };
 		07DD6AEF1B5F0C60003A1CE1 /* nsc_encode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nsc_encode.h; sourceTree = "<group>"; };
@@ -737,11 +732,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A8087431DE0FE7F00F70A07 /* libcrypto.a in Frameworks */,
-				9A8087441DE0FE7F00F70A07 /* libssl.a in Frameworks */,
-				9AEFDD351D15F65E00F91F0B /* libios_welsenc.dylib in Frameworks */,
-				9AEFDD2E1D15F5FB00F91F0B /* libios_welsdec.dylib in Frameworks */,
-				07DD71121B5F1752003A1CE1 /* libios_axiswinpr.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1076,7 +1066,7 @@
 			isa = PBXGroup;
 			children = (
 				07DD70A91B5F0FD4003A1CE1 /* libaxiswinpr.dylib */,
-				07DD70AB1B5F0FD4003A1CE1 /* libios_axiswinpr.dylib */,
+				07DD70AB1B5F0FD4003A1CE1 /* libios_axiswinpr.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1112,7 +1102,7 @@
 			isa = PBXGroup;
 			children = (
 				9A1B358C16A2D7A500875A94 /* libaxisfreerdp.dylib */,
-				07DD674C1B5F0C16003A1CE1 /* libios_axisfreerdp.dylib */,
+				07DD674C1B5F0C16003A1CE1 /* libios_axisfreerdp.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1121,7 +1111,7 @@
 			isa = PBXGroup;
 			children = (
 				9AEFDCD41D15EF6E00F91F0B /* libwelsdec.dylib */,
-				9AEFDCD61D15EF6E00F91F0B /* libios_welsdec.dylib */,
+				9AEFDCD61D15EF6E00F91F0B /* libios_welsdec.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1130,7 +1120,7 @@
 			isa = PBXGroup;
 			children = (
 				9AEFDCFE1D15EF6E00F91F0B /* libwelsenc.dylib */,
-				9AEFDD001D15EF6E00F91F0B /* libios_welsenc.dylib */,
+				9AEFDD001D15EF6E00F91F0B /* libios_welsenc.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1303,7 +1293,7 @@
 			);
 			name = ios_axisfreerdp;
 			productName = freetype;
-			productReference = 07DD674C1B5F0C16003A1CE1 /* libios_axisfreerdp.dylib */;
+			productReference = 07DD674C1B5F0C16003A1CE1 /* libios_axisfreerdp.a */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9A1B358B16A2D7A500875A94 /* axisfreerdp */ = {
@@ -1373,10 +1363,10 @@
 			remoteRef = 07DD70A81B5F0FD4003A1CE1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07DD70AB1B5F0FD4003A1CE1 /* libios_axiswinpr.dylib */ = {
+		07DD70AB1B5F0FD4003A1CE1 /* libios_axiswinpr.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libios_axiswinpr.dylib;
+			path = libios_axiswinpr.a;
 			remoteRef = 07DD70AA1B5F0FD4003A1CE1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1387,10 +1377,10 @@
 			remoteRef = 9AEFDCD31D15EF6E00F91F0B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9AEFDCD61D15EF6E00F91F0B /* libios_welsdec.dylib */ = {
+		9AEFDCD61D15EF6E00F91F0B /* libios_welsdec.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_welsdec.dylib;
+			path = libios_welsdec.a;
 			remoteRef = 9AEFDCD51D15EF6E00F91F0B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1401,10 +1391,10 @@
 			remoteRef = 9AEFDCFD1D15EF6E00F91F0B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9AEFDD001D15EF6E00F91F0B /* libios_welsenc.dylib */ = {
+		9AEFDD001D15EF6E00F91F0B /* libios_welsenc.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_welsenc.dylib;
+			path = libios_welsenc.a;
 			remoteRef = 9AEFDCFF1D15EF6E00F91F0B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1739,6 +1729,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_EXTENSION = a;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					APPLE_IOS,
@@ -1748,6 +1739,7 @@
 					"$(TARGET_BUILD_DIR)",
 					"$(WorkspaceDir)/../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/lib",
 				);
+				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "../../include . $(WorkspaceDir)/../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/include framework $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../ ../../ ../ $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../../app/appseed";
 			};
@@ -1757,10 +1749,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_EXTENSION = a;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					APPLE_IOS,
 				);
+				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "../../include . $(WorkspaceDir)/../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/include framework $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../ ../../ ../ $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../../app/appseed";
 			};

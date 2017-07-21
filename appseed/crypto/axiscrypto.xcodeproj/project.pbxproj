@@ -1204,7 +1204,6 @@
 		9A27368D1EB9A2700085D2AD /* v3_tlsf.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A0263511EA5A2F2003C82CF /* v3_tlsf.c */; };
 		9A27368E1EB9A2700085D2AD /* v3_utl.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A0263521EA5A2F2003C82CF /* v3_utl.c */; };
 		9A27368F1EB9A2700085D2AD /* v3err.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A0263541EA5A2F2003C82CF /* v3err.c */; };
-		9A342FF51D5B94E100D00D4A /* libios_ace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A342FF41D5B94E100D00D4A /* libios_ace.dylib */; };
 		9A99EF5D1EA6A16B00E56FCE /* wp_block.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A99EF5C1EA6A16B00E56FCE /* wp_block.c */; };
 		9A99EF611EA6A1C700E56FCE /* mem_clr.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A99EF601EA6A1C700E56FCE /* mem_clr.c */; };
 		9AD480B71D5A768D00354801 /* libace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD480B61D5A768D00354801 /* libace.dylib */; };
@@ -1281,7 +1280,7 @@
 
 /* Begin PBXFileReference section */
 		0778A26E199FFC1600206CA1 /* e_os2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = e_os2.h; sourceTree = "<group>"; };
-		07B2729219A019AB00E822E1 /* libios_axiscrypto.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_axiscrypto.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B2729219A019AB00E822E1 /* libios_axiscrypto.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_axiscrypto.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B2729A19A01A4600E822E1 /* libaxiscrypto.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libaxiscrypto.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A025F4A1EA5A2F1003C82CF /* aes_cfb.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aes_cfb.c; sourceTree = "<group>"; };
 		9A025F4C1EA5A2F1003C82CF /* aes_ecb.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aes_ecb.c; sourceTree = "<group>"; };
@@ -2223,7 +2222,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A342FF51D5B94E100D00D4A /* libios_ace.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3791,7 +3789,7 @@
 			isa = PBXGroup;
 			children = (
 				9A269F851D7ED6CA001F47A8 /* libace.dylib */,
-				9A269F871D7ED6CA001F47A8 /* libios_ace.dylib */,
+				9A269F871D7ED6CA001F47A8 /* libios_ace.a */,
 				9A269F891D7ED6CA001F47A8 /* ace_iosTests.xctest */,
 			);
 			name = Products;
@@ -3800,7 +3798,7 @@
 		9A4E845A1D1FD2DE008A419B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				07B2729219A019AB00E822E1 /* libios_axiscrypto.dylib */,
+				07B2729219A019AB00E822E1 /* libios_axiscrypto.a */,
 				07B2729A19A01A4600E822E1 /* libaxiscrypto.dylib */,
 			);
 			name = Products;
@@ -3842,7 +3840,7 @@
 			);
 			name = ios_axiscrypto;
 			productName = basefreeimage_ios;
-			productReference = 07B2729219A019AB00E822E1 /* libios_axiscrypto.dylib */;
+			productReference = 07B2729219A019AB00E822E1 /* libios_axiscrypto.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		9AE24D961904CF46001AEFFB /* axiscrypto_iosTests */ = {
@@ -3911,10 +3909,10 @@
 			remoteRef = 9A269F841D7ED6CA001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A269F871D7ED6CA001F47A8 /* libios_ace.dylib */ = {
+		9A269F871D7ED6CA001F47A8 /* libios_ace.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_ace.dylib;
+			path = libios_ace.a;
 			remoteRef = 9A269F861D7ED6CA001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -5319,10 +5317,12 @@
 		9AE24DA81904CF46001AEFFB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EXECUTABLE_EXTENSION = a;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					OPENSSL_NO_ASM,
 					"$(inherited)",
 				);
+				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -5330,10 +5330,12 @@
 		9AE24DA91904CF46001AEFFB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EXECUTABLE_EXTENSION = a;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					OPENSSL_NO_ASM,
 					"$(inherited)",
 				);
+				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
 			};
 			name = Release;

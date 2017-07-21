@@ -39,7 +39,6 @@
 		5BD896BA1A7B839B00D32B7D /* memory_align.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BD896B91A7B839B00D32B7D /* memory_align.cpp */; };
 		5BDD15ED1A79027600B6CA2E /* mc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BDD15EC1A79027600B6CA2E /* mc.cpp */; };
 		9A106A731D15E4E9007288BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE443D818B722CD0017DF25 /* Foundation.framework */; };
-		9A106A751D15E4F1007288BA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A106A741D15E4F1007288BA /* UIKit.framework */; };
 		F0B204F918FD23BF005DA23F /* copy_mb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B204F818FD23BF005DA23F /* copy_mb.cpp */; };
 		F791965919D3BE2200F60C6B /* intra_pred_common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F791965819D3BE2200F60C6B /* intra_pred_common.cpp */; };
 		FAABAA1818E9354A00D4186F /* sad_common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAABAA1718E9354A00D4186F /* sad_common.cpp */; };
@@ -91,7 +90,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07B09A261B8497A9002AC4F0 /* libios_welscommon.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_welscommon.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B09A261B8497A9002AC4F0 /* libios_welscommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_welscommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C3406B218D96EA600DFA14A /* arm_arch_common_macro.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = arm_arch_common_macro.S; sourceTree = "<group>"; };
 		4C3406B318D96EA600DFA14A /* deblocking_neon.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = deblocking_neon.S; sourceTree = "<group>"; };
 		4C3406B418D96EA600DFA14A /* expand_picture_neon.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = expand_picture_neon.S; sourceTree = "<group>"; };
@@ -144,7 +143,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A106A751D15E4F1007288BA /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,7 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				4CE443D518B722CD0017DF25 /* libwelscommon.dylib */,
-				07B09A261B8497A9002AC4F0 /* libios_welscommon.dylib */,
+				07B09A261B8497A9002AC4F0 /* libios_welscommon.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -259,7 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				9A269FCD1D7ED6FB001F47A8 /* libace.dylib */,
-				9A269FCF1D7ED6FB001F47A8 /* libios_ace.dylib */,
+				9A269FCF1D7ED6FB001F47A8 /* libios_ace.a */,
 				9A269FD11D7ED6FB001F47A8 /* ace_iosTests.xctest */,
 			);
 			name = Products;
@@ -295,7 +293,7 @@
 			);
 			name = ios_welscommon;
 			productName = common;
-			productReference = 07B09A261B8497A9002AC4F0 /* libios_welscommon.dylib */;
+			productReference = 07B09A261B8497A9002AC4F0 /* libios_welscommon.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		4CE443D418B722CD0017DF25 /* welscommon */ = {
@@ -356,10 +354,10 @@
 			remoteRef = 9A269FCC1D7ED6FB001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A269FCF1D7ED6FB001F47A8 /* libios_ace.dylib */ = {
+		9A269FCF1D7ED6FB001F47A8 /* libios_ace.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_ace.dylib;
+			path = libios_ace.a;
 			remoteRef = 9A269FCE1D7ED6FB001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -430,6 +428,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EXECUTABLE_EXTENSION = a;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
@@ -451,6 +450,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../api/svc",
 				);
+				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 			};
@@ -462,6 +462,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EXECUTABLE_EXTENSION = a;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*][arch=arm64]" = (
 					APPLE_IOS,
@@ -481,6 +482,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../api/svc",
 				);
+				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 			};

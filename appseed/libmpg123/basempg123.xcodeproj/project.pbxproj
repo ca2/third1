@@ -84,7 +84,7 @@
 		07B6595E190F40B2002DAADE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B6595D190F40B2002DAADE /* XCTest.framework */; };
 		07B6595F190F40B2002DAADE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B6594F190F40B2002DAADE /* Foundation.framework */; };
 		07B65961190F40B2002DAADE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65960190F40B2002DAADE /* UIKit.framework */; };
-		07B65964190F40B2002DAADE /* libios_basempg123.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B6594D190F40B2002DAADE /* libios_basempg123.dylib */; };
+		07B65964190F40B2002DAADE /* libios_basempg123.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B6594D190F40B2002DAADE /* libios_basempg123.a */; };
 		07B6596A190F40B2002DAADE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 07B65968190F40B2002DAADE /* InfoPlist.strings */; };
 		07B6596C190F40B2002DAADE /* basempg123_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B6596B190F40B2002DAADE /* basempg123_iosTests.m */; };
 		07F620031C8F7A7E00D03984 /* layer2.c in Sources */ = {isa = PBXBuildFile; fileRef = 07AA47381BA1246C00797721 /* layer2.c */; };
@@ -293,7 +293,7 @@
 		07AA47851BA1246C00797721 /* tabinit_mmx.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = tabinit_mmx.S; sourceTree = "<group>"; };
 		07AA47861BA1246C00797721 /* testcpu.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = testcpu.c; sourceTree = "<group>"; };
 		07AA47871BA1246C00797721 /* true.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = true.h; sourceTree = "<group>"; };
-		07B6594D190F40B2002DAADE /* libios_basempg123.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_basempg123.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B6594D190F40B2002DAADE /* libios_basempg123.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_basempg123.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B6594F190F40B2002DAADE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		07B6595C190F40B2002DAADE /* basempg123_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = basempg123_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B6595D190F40B2002DAADE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -321,7 +321,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07B65964190F40B2002DAADE /* libios_basempg123.dylib in Frameworks */,
+				07B65964190F40B2002DAADE /* libios_basempg123.a in Frameworks */,
 				07B6595E190F40B2002DAADE /* XCTest.framework in Frameworks */,
 				07B65961190F40B2002DAADE /* UIKit.framework in Frameworks */,
 				07B6595F190F40B2002DAADE /* Foundation.framework in Frameworks */,
@@ -529,7 +529,7 @@
 			isa = PBXGroup;
 			children = (
 				9A269FE51D7ED70A001F47A8 /* libace.dylib */,
-				9A269FE71D7ED70A001F47A8 /* libios_ace.dylib */,
+				9A269FE71D7ED70A001F47A8 /* libios_ace.a */,
 				9A269FE91D7ED70A001F47A8 /* ace_iosTests.xctest */,
 			);
 			name = Products;
@@ -550,7 +550,7 @@
 			isa = PBXGroup;
 			children = (
 				9AEB75A316F78DF10085103B /* libbasempg123.dylib */,
-				07B6594D190F40B2002DAADE /* libios_basempg123.dylib */,
+				07B6594D190F40B2002DAADE /* libios_basempg123.a */,
 				07B6595C190F40B2002DAADE /* basempg123_iosTests.xctest */,
 			);
 			name = Products;
@@ -623,7 +623,7 @@
 			);
 			name = ios_basempg123;
 			productName = basempg123_ios;
-			productReference = 07B6594D190F40B2002DAADE /* libios_basempg123.dylib */;
+			productReference = 07B6594D190F40B2002DAADE /* libios_basempg123.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		07B6595B190F40B2002DAADE /* basempg123_iosTests */ = {
@@ -708,10 +708,10 @@
 			remoteRef = 9A269FE41D7ED70A001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A269FE71D7ED70A001F47A8 /* libios_ace.dylib */ = {
+		9A269FE71D7ED70A001F47A8 /* libios_ace.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_ace.dylib;
+			path = libios_ace.a;
 			remoteRef = 9A269FE61D7ED70A001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -859,6 +859,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				EXECUTABLE_EXTENSION = a;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					APPLE_IOS,
@@ -872,6 +873,7 @@
 					"$(inherited)",
 					"/ca2/app/appseed/aura/build/Debug-iphoneos",
 				);
+				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -886,6 +888,7 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				ENABLE_NS_ASSERTIONS = NO;
+				EXECUTABLE_EXTENSION = a;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					APPLE_IOS,
@@ -899,6 +902,7 @@
 					"$(inherited)",
 					"/ca2/app/appseed/aura/build/Debug-iphoneos",
 				);
+				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

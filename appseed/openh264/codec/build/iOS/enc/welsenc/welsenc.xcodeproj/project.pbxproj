@@ -80,11 +80,8 @@
 		4CE4472B18BC605C0017DF25 /* wels_preprocess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE446FA18BC605C0017DF25 /* wels_preprocess.cpp */; };
 		4CE4472E18BC605C0017DF25 /* welsEncoderExt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4470618BC605C0017DF25 /* welsEncoderExt.cpp */; };
 		9A106A761D15E512007288BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE4431418B6FFA00017DF25 /* Foundation.framework */; };
-		9A106A781D15E51F007288BA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A106A771D15E51F007288BA /* UIKit.framework */; };
-		9A986D141D226B1E001F4C04 /* libios_welscommon.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A986D131D226B1E001F4C04 /* libios_welscommon.dylib */; };
 		9AED665019469FC1009A3567 /* welsCodecTrace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AED664C19469FC1009A3567 /* welsCodecTrace.cpp */; };
 		9AED66661946A2B3009A3567 /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AED66651946A2B3009A3567 /* utils.cpp */; };
-		9AEFDD361D15F68F00F91F0B /* libios_welsprocessing.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07574DE71C45B59F0020E1F1 /* libios_welsprocessing.dylib */; };
 		F7E9994519EBD1E9009B1021 /* svc_set_mb_syn_cabac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7E9994419EBD1E9009B1021 /* svc_set_mb_syn_cabac.cpp */; };
 		F7E9994919EBD1F8009B1021 /* set_mb_syn_cabac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7E9994819EBD1F8009B1021 /* set_mb_syn_cabac.cpp */; };
 /* End PBXBuildFile section */
@@ -166,7 +163,7 @@
 		04FE0684196FD9370004D7CE /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.h; path = ../../../common/inc/version.h; sourceTree = "<group>"; };
 		072E43381CA895E20096952D /* libwelscommon.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libwelscommon.dylib; path = ../../common/build/Debug/libwelscommon.dylib; sourceTree = "<group>"; };
 		07574DDF1C45B59E0020E1F1 /* welsprocessing.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welsprocessing.xcodeproj; path = ../../processing/welsprocessing.xcodeproj; sourceTree = "<group>"; };
-		07B0988D1B849208002AC4F0 /* libios_welsenc.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_welsenc.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B0988D1B849208002AC4F0 /* libios_welsenc.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_welsenc.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BB9F601B84A1EC007ADA8F /* libwelscommon.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libwelscommon.a; path = "../../../../../../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-mac-exvrklrokleuokawrbpzmvyzamwr/Build/Products/Debug/libwelscommon.a"; sourceTree = "<group>"; };
 		07BB9F6E1B84A21D007ADA8F /* libwelsdec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libwelsdec.a; path = "../../../../../../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-mac-exvrklrokleuokawrbpzmvyzamwr/Build/Products/Debug/libwelsdec.a"; sourceTree = "<group>"; };
 		4C23BC5F195A77E0003B81FC /* intra_pred_sad_3_opt_aarch64_neon.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = intra_pred_sad_3_opt_aarch64_neon.S; path = arm64/intra_pred_sad_3_opt_aarch64_neon.S; sourceTree = "<group>"; };
@@ -276,9 +273,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A986D141D226B1E001F4C04 /* libios_welscommon.dylib in Frameworks */,
-				9AEFDD361D15F68F00F91F0B /* libios_welsprocessing.dylib in Frameworks */,
-				9A106A781D15E51F007288BA /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,7 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				4CE4431118B6FFA00017DF25 /* libwelsenc.dylib */,
-				07B0988D1B849208002AC4F0 /* libios_welsenc.dylib */,
+				07B0988D1B849208002AC4F0 /* libios_welsenc.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -509,7 +503,7 @@
 			isa = PBXGroup;
 			children = (
 				9A269FB51D7ED6F4001F47A8 /* libace.dylib */,
-				9A269FB71D7ED6F4001F47A8 /* libios_ace.dylib */,
+				9A269FB71D7ED6F4001F47A8 /* libios_ace.a */,
 				9A269FB91D7ED6F4001F47A8 /* ace_iosTests.xctest */,
 			);
 			name = Products;
@@ -533,7 +527,7 @@
 			);
 			name = ios_welsenc;
 			productName = welsenc;
-			productReference = 07B0988D1B849208002AC4F0 /* libios_welsenc.dylib */;
+			productReference = 07B0988D1B849208002AC4F0 /* libios_welsenc.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		4CE4431018B6FFA00017DF25 /* welsenc */ = {
@@ -613,10 +607,10 @@
 			remoteRef = 9A269FB41D7ED6F4001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A269FB71D7ED6F4001F47A8 /* libios_ace.dylib */ = {
+		9A269FB71D7ED6F4001F47A8 /* libios_ace.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_ace.dylib;
+			path = libios_ace.a;
 			remoteRef = 9A269FB61D7ED6F4001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -740,6 +734,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EXECUTABLE_EXTENSION = a;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
@@ -764,6 +759,7 @@
 					"$(SRCROOT)/../../../../common/arm",
 					"$(SRCROOT)/../../../../common/arm64",
 				);
+				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -776,6 +772,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EXECUTABLE_EXTENSION = a;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*][arch=arm64]" = (
@@ -799,6 +796,7 @@
 					"$(SRCROOT)/../../../../common/arm",
 					"$(SRCROOT)/../../../../common/arm64",
 				);
+				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -450,7 +450,6 @@
 		9A2116C31D832931000C4336 /* namedPipeClient.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0531D7EDD8A001F47A8 /* namedPipeClient.c */; };
 		9A2116C41D832931000C4336 /* UdpAppender.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0611D7EDE5E001F47A8 /* UdpAppender.c */; };
 		9A2116C51D832931000C4336 /* makecert.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A97EF1C1D807ED3000B4EC2 /* makecert.c */; };
-		9A2116CA1D832959000C4336 /* libios_ace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A269FF31D7ED70E001F47A8 /* libios_ace.dylib */; };
 		9A26A0541D7EDD8A001F47A8 /* generic.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0521D7EDD8A001F47A8 /* generic.c */; };
 		9A26A0551D7EDD8A001F47A8 /* namedPipeClient.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0531D7EDD8A001F47A8 /* namedPipeClient.c */; };
 		9A26A0591D7EDDA7001F47A8 /* cipher.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0561D7EDDA7001F47A8 /* cipher.c */; };
@@ -459,8 +458,6 @@
 		9A26A0621D7EDE5E001F47A8 /* UdpAppender.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0611D7EDE5E001F47A8 /* UdpAppender.c */; };
 		9A26A0971D7EE017001F47A8 /* libace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A269FF11D7ED70E001F47A8 /* libace.dylib */; };
 		9A6CE8361DE0F05E00410C2C /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A9809871DDF97AE00BB294E /* error.c */; };
-		9A8087311DE0F34200F70A07 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A80872F1DE0F34200F70A07 /* libcrypto.a */; };
-		9A8087321DE0F34200F70A07 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8087301DE0F34200F70A07 /* libssl.a */; };
 		9A97EF1D1D807ED3000B4EC2 /* makecert.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A97EF1C1D807ED3000B4EC2 /* makecert.c */; };
 		9A9809881DDF97AE00BB294E /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A9809871DDF97AE00BB294E /* error.c */; };
 		9ACBD1DE1DDFDB36004AF08F /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACBD1DD1DDFDB36004AF08F /* libcrypto.a */; };
@@ -505,7 +502,7 @@
 		0775CAC61B848722005F8295 /* synch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = synch.c; sourceTree = "<group>"; };
 		0775CAC71B848722005F8295 /* timer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = timer.c; sourceTree = "<group>"; };
 		0775CAC81B848722005F8295 /* work.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = work.c; sourceTree = "<group>"; };
-		07DD5DF91B5F0A1E003A1CE1 /* libios_axiswinpr.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_axiswinpr.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07DD5DF91B5F0A1E003A1CE1 /* libios_axiswinpr.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_axiswinpr.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		07DD5E051B5F0B4C003A1CE1 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		07DD5E081B5F0B4C003A1CE1 /* asn1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = asn1.c; sourceTree = "<group>"; };
 		07DD5E0E1B5F0B4C003A1CE1 /* bcrypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bcrypt.c; sourceTree = "<group>"; };
@@ -819,9 +816,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A8087311DE0F34200F70A07 /* libcrypto.a in Frameworks */,
-				9A8087321DE0F34200F70A07 /* libssl.a in Frameworks */,
-				9A2116CA1D832959000C4336 /* libios_ace.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1526,7 +1520,7 @@
 			isa = PBXGroup;
 			children = (
 				9A1B358C16A2D7A500875A94 /* libaxiswinpr.dylib */,
-				07DD5DF91B5F0A1E003A1CE1 /* libios_axiswinpr.dylib */,
+				07DD5DF91B5F0A1E003A1CE1 /* libios_axiswinpr.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1535,7 +1529,7 @@
 			isa = PBXGroup;
 			children = (
 				9A269FF11D7ED70E001F47A8 /* libace.dylib */,
-				9A269FF31D7ED70E001F47A8 /* libios_ace.dylib */,
+				9A269FF31D7ED70E001F47A8 /* libios_ace.a */,
 				9A269FF51D7ED70E001F47A8 /* ace_iosTests.xctest */,
 			);
 			name = Products;
@@ -1848,7 +1842,7 @@
 			);
 			name = ios_axiswinpr;
 			productName = freetype;
-			productReference = 07DD5DF91B5F0A1E003A1CE1 /* libios_axiswinpr.dylib */;
+			productReference = 07DD5DF91B5F0A1E003A1CE1 /* libios_axiswinpr.a */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9A1B358B16A2D7A500875A94 /* axiswinpr */ = {
@@ -1910,10 +1904,10 @@
 			remoteRef = 9A269FF01D7ED70E001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A269FF31D7ED70E001F47A8 /* libios_ace.dylib */ = {
+		9A269FF31D7ED70E001F47A8 /* libios_ace.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_ace.dylib;
+			path = libios_ace.a;
 			remoteRef = 9A269FF21D7ED70E001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -2266,11 +2260,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_EXTENSION = a;
 				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = (
 					"$(inherited)",
 					"$(TARGET_BUILD_DIR)",
 					"$(WorkspaceDir)/../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/lib",
 				);
+				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include/ . framework libwinpr/utils/trio libwinpr/utils $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../ ../../appseed ../../ ../";
 			};
@@ -2280,6 +2276,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_EXTENSION = a;
+				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include/ . framework libwinpr/utils/trio libwinpr/utils $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../ ../../appseed ../../ ../";
 			};

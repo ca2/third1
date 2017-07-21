@@ -60,7 +60,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		077A00AB1B4D4F9E001C85FF /* libios_axisidn.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_axisidn.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		077A00AB1B4D4F9E001C85FF /* libios_axisidn.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_axisidn.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A19A13619C6E1DC0018DF7D /* gunibreak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gunibreak.h; sourceTree = "<group>"; };
 		9A19A13719C6E1DC0018DF7D /* gunicomp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gunicomp.h; sourceTree = "<group>"; };
 		9A19A13819C6E1DC0018DF7D /* gunidecomp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gunidecomp.h; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				9AA5E6D616F7C61B005C45CE /* libaxisidn.dylib */,
-				077A00AB1B4D4F9E001C85FF /* libios_axisidn.dylib */,
+				077A00AB1B4D4F9E001C85FF /* libios_axisidn.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -216,7 +216,7 @@
 			);
 			name = ios_axisidn;
 			productName = FreeImage;
-			productReference = 077A00AB1B4D4F9E001C85FF /* libios_axisidn.dylib */;
+			productReference = 077A00AB1B4D4F9E001C85FF /* libios_axisidn.a */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9AA5E4C216F7C61B005C45CE /* axisidn */ = {
@@ -323,6 +323,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEAD_CODE_STRIPPING = NO;
+				EXECUTABLE_EXTENSION = a;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -332,6 +333,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEAD_CODE_STRIPPING = NO;
+				EXECUTABLE_EXTENSION = a;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
