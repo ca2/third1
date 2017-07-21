@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		07AA47DA1BA1246C00797721 /* abi_align.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AA46FE1BA1246B00797721 /* abi_align.h */; };
 		07AA47DC1BA1246C00797721 /* compat.c in Sources */ = {isa = PBXBuildFile; fileRef = 07AA47001BA1246B00797721 /* compat.c */; };
-		07AA47DD1BA1246C00797721 /* compat.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AA47011BA1246B00797721 /* compat.h */; };
 		07AA47E01BA1246C00797721 /* dct36_avx.S in Sources */ = {isa = PBXBuildFile; fileRef = 07AA47041BA1246B00797721 /* dct36_avx.S */; };
 		07AA47E41BA1246C00797721 /* dct36_x86_64.S in Sources */ = {isa = PBXBuildFile; fileRef = 07AA47081BA1246B00797721 /* dct36_x86_64.S */; };
 		07AA47E51BA1246C00797721 /* dct64.c in Sources */ = {isa = PBXBuildFile; fileRef = 07AA47091BA1246B00797721 /* dct64.c */; };
@@ -40,7 +39,6 @@
 		07AA480C1BA1246C00797721 /* id3.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AA47301BA1246C00797721 /* id3.h */; };
 		07AA480D1BA1246C00797721 /* index.c in Sources */ = {isa = PBXBuildFile; fileRef = 07AA47311BA1246C00797721 /* index.c */; };
 		07AA480E1BA1246C00797721 /* index.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AA47321BA1246C00797721 /* index.h */; };
-		07AA480F1BA1246C00797721 /* intsym.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AA47331BA1246C00797721 /* intsym.h */; };
 		07AA48101BA1246C00797721 /* l12_integer_tables.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AA47341BA1246C00797721 /* l12_integer_tables.h */; };
 		07AA48111BA1246C00797721 /* l2tables.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AA47351BA1246C00797721 /* l2tables.h */; };
 		07AA48121BA1246C00797721 /* l3_integer_tables.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AA47361BA1246C00797721 /* l3_integer_tables.h */; };
@@ -57,7 +55,6 @@
 		07AA48201BA1246C00797721 /* parse.c in Sources */ = {isa = PBXBuildFile; fileRef = 07AA47471BA1246C00797721 /* parse.c */; };
 		07AA48211BA1246C00797721 /* parse.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AA47481BA1246C00797721 /* parse.h */; };
 		07AA48221BA1246C00797721 /* reader.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AA47491BA1246C00797721 /* reader.h */; };
-		07AA48231BA1246C00797721 /* readers.c in Sources */ = {isa = PBXBuildFile; fileRef = 07AA474A1BA1246C00797721 /* readers.c */; };
 		07AA48241BA1246C00797721 /* sample.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AA474B1BA1246C00797721 /* sample.h */; };
 		07AA48261BA1246C00797721 /* stringbuf.c in Sources */ = {isa = PBXBuildFile; fileRef = 07AA474D1BA1246C00797721 /* stringbuf.c */; };
 		07AA48271BA1246C00797721 /* synth.c in Sources */ = {isa = PBXBuildFile; fileRef = 07AA474E1BA1246C00797721 /* synth.c */; };
@@ -110,7 +107,6 @@
 		9A93693D1D2755BC00ED7535 /* ntom.c in Sources */ = {isa = PBXBuildFile; fileRef = 07AA47441BA1246C00797721 /* ntom.c */; };
 		9A93693E1D2755BC00ED7535 /* optimize.c in Sources */ = {isa = PBXBuildFile; fileRef = 07AA47451BA1246C00797721 /* optimize.c */; };
 		9A93693F1D2755BC00ED7535 /* parse.c in Sources */ = {isa = PBXBuildFile; fileRef = 07AA47471BA1246C00797721 /* parse.c */; };
-		9A9369401D2755BC00ED7535 /* readers.c in Sources */ = {isa = PBXBuildFile; fileRef = 07AA474A1BA1246C00797721 /* readers.c */; };
 		9A9369411D2755BC00ED7535 /* stringbuf.c in Sources */ = {isa = PBXBuildFile; fileRef = 07AA474D1BA1246C00797721 /* stringbuf.c */; };
 		9A9369421D2755BC00ED7535 /* synth.c in Sources */ = {isa = PBXBuildFile; fileRef = 07AA474E1BA1246C00797721 /* synth.c */; };
 		9A9369431D2755BC00ED7535 /* synth_8bit.c in Sources */ = {isa = PBXBuildFile; fileRef = 07AA47521BA1246C00797721 /* synth_8bit.c */; };
@@ -118,6 +114,7 @@
 		9A9369471D2755BC00ED7535 /* synth_s32.c in Sources */ = {isa = PBXBuildFile; fileRef = 07AA47661BA1246C00797721 /* synth_s32.c */; };
 		9A9369481D2755BC00ED7535 /* tabinit.c in Sources */ = {isa = PBXBuildFile; fileRef = 07AA47841BA1246C00797721 /* tabinit.c */; };
 		9A986D9D1D226DED001F4C04 /* layer1.c in Sources */ = {isa = PBXBuildFile; fileRef = 07AA47371BA1246C00797721 /* layer1.c */; };
+		9ADD53CD1F20CE740008AA41 /* readers.c in Sources */ = {isa = PBXBuildFile; fileRef = 9ADD53CC1F20CE740008AA41 /* readers.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,7 +165,6 @@
 		07AA46FE1BA1246B00797721 /* abi_align.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = abi_align.h; sourceTree = "<group>"; };
 		07AA46FF1BA1246B00797721 /* check_neon.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = check_neon.S; sourceTree = "<group>"; };
 		07AA47001BA1246B00797721 /* compat.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = compat.c; sourceTree = "<group>"; };
-		07AA47011BA1246B00797721 /* compat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compat.h; sourceTree = "<group>"; };
 		07AA47021BA1246B00797721 /* dct36_3dnow.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = dct36_3dnow.S; sourceTree = "<group>"; };
 		07AA47031BA1246B00797721 /* dct36_3dnowext.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = dct36_3dnowext.S; sourceTree = "<group>"; };
 		07AA47041BA1246B00797721 /* dct36_avx.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = dct36_avx.S; sourceTree = "<group>"; };
@@ -218,7 +214,6 @@
 		07AA47301BA1246C00797721 /* id3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = id3.h; sourceTree = "<group>"; };
 		07AA47311BA1246C00797721 /* index.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = index.c; sourceTree = "<group>"; };
 		07AA47321BA1246C00797721 /* index.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = index.h; sourceTree = "<group>"; };
-		07AA47331BA1246C00797721 /* intsym.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = intsym.h; sourceTree = "<group>"; };
 		07AA47341BA1246C00797721 /* l12_integer_tables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = l12_integer_tables.h; sourceTree = "<group>"; };
 		07AA47351BA1246C00797721 /* l2tables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = l2tables.h; sourceTree = "<group>"; };
 		07AA47361BA1246C00797721 /* l3_integer_tables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = l3_integer_tables.h; sourceTree = "<group>"; };
@@ -238,7 +233,6 @@
 		07AA47471BA1246C00797721 /* parse.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = parse.c; sourceTree = "<group>"; };
 		07AA47481BA1246C00797721 /* parse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parse.h; sourceTree = "<group>"; };
 		07AA47491BA1246C00797721 /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reader.h; sourceTree = "<group>"; };
-		07AA474A1BA1246C00797721 /* readers.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = readers.c; sourceTree = "<group>"; };
 		07AA474B1BA1246C00797721 /* sample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sample.h; sourceTree = "<group>"; };
 		07AA474D1BA1246C00797721 /* stringbuf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stringbuf.c; sourceTree = "<group>"; };
 		07AA474E1BA1246C00797721 /* synth.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = synth.c; sourceTree = "<group>"; };
@@ -311,6 +305,7 @@
 		07D6A76E1B4CB55D004FEBC2 /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../app/appseed/aura/build/Debug-iphoneos/libaura.dylib"; sourceTree = "<group>"; };
 		07FB8C661C9D774A00B78A77 /* config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = config.h; path = src/config.h; sourceTree = SOURCE_ROOT; };
 		9A269FDE1D7ED70A001F47A8 /* ace.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ace.xcodeproj; path = ../../../app/appseed/ace/ace.xcodeproj; sourceTree = "<group>"; };
+		9ADD53CC1F20CE740008AA41 /* readers.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = readers.c; sourceTree = "<group>"; };
 		9AEB75A316F78DF10085103B /* libbasempg123.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libbasempg123.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -354,11 +349,11 @@
 		07AA46FD1BA1246B00797721 /* libmpg123 */ = {
 			isa = PBXGroup;
 			children = (
+				9ADD53CC1F20CE740008AA41 /* readers.c */,
 				07FB8C661C9D774A00B78A77 /* config.h */,
 				07AA489C1BA1249000797721 /* Assembler */,
 				07AA46FE1BA1246B00797721 /* abi_align.h */,
 				07AA47001BA1246B00797721 /* compat.c */,
-				07AA47011BA1246B00797721 /* compat.h */,
 				07AA47091BA1246B00797721 /* dct64.c */,
 				07AA470C1BA1246B00797721 /* dct64_altivec.c */,
 				07AA470F1BA1246B00797721 /* dct64_i386.c */,
@@ -385,7 +380,6 @@
 				07AA47301BA1246C00797721 /* id3.h */,
 				07AA47311BA1246C00797721 /* index.c */,
 				07AA47321BA1246C00797721 /* index.h */,
-				07AA47331BA1246C00797721 /* intsym.h */,
 				07AA47341BA1246C00797721 /* l12_integer_tables.h */,
 				07AA47351BA1246C00797721 /* l2tables.h */,
 				07AA47361BA1246C00797721 /* l3_integer_tables.h */,
@@ -405,7 +399,6 @@
 				07AA47471BA1246C00797721 /* parse.c */,
 				07AA47481BA1246C00797721 /* parse.h */,
 				07AA47491BA1246C00797721 /* reader.h */,
-				07AA474A1BA1246C00797721 /* readers.c */,
 				07AA474B1BA1246C00797721 /* sample.h */,
 				07AA474D1BA1246C00797721 /* stringbuf.c */,
 				07AA474E1BA1246C00797721 /* synth.c */,
@@ -583,13 +576,11 @@
 				07AA480E1BA1246C00797721 /* index.h in Headers */,
 				07AA48001BA1246C00797721 /* gapless.h in Headers */,
 				07AA481F1BA1246C00797721 /* optimize.h in Headers */,
-				07AA480F1BA1246C00797721 /* intsym.h in Headers */,
 				07AA48341BA1246C00797721 /* synth_mono.h in Headers */,
 				07AA480A1BA1246C00797721 /* icy2utf8.h in Headers */,
 				07AA47F61BA1246C00797721 /* debug.h in Headers */,
 				07AA48191BA1246C00797721 /* mangle.h in Headers */,
 				07AA48061BA1246C00797721 /* huffman.h in Headers */,
-				07AA47DD1BA1246C00797721 /* compat.h in Headers */,
 				07AA48021BA1246C00797721 /* getcpuflags.h in Headers */,
 				07AA48411BA1246C00797721 /* synth_sse3d.h in Headers */,
 				07AA481B1BA1246C00797721 /* mpg123lib_intern.h in Headers */,
@@ -767,7 +758,6 @@
 				9A93693D1D2755BC00ED7535 /* ntom.c in Sources */,
 				9A93693E1D2755BC00ED7535 /* optimize.c in Sources */,
 				9A93693F1D2755BC00ED7535 /* parse.c in Sources */,
-				9A9369401D2755BC00ED7535 /* readers.c in Sources */,
 				9A9369411D2755BC00ED7535 /* stringbuf.c in Sources */,
 				9A9369421D2755BC00ED7535 /* synth.c in Sources */,
 				9A9369431D2755BC00ED7535 /* synth_8bit.c in Sources */,
@@ -818,6 +808,7 @@
 				07AA47E91BA1246C00797721 /* dct64_avx.S in Sources */,
 				07AA482B1BA1246C00797721 /* synth_8bit.c in Sources */,
 				07AA48091BA1246C00797721 /* icy2utf8.c in Sources */,
+				9ADD53CD1F20CE740008AA41 /* readers.c in Sources */,
 				07AA483E1BA1246C00797721 /* synth_real.c in Sources */,
 				07AA47EA1BA1246C00797721 /* dct64_avx_float.S in Sources */,
 				07AA48561BA1246C00797721 /* synth_stereo_x86_64_float.S in Sources */,
@@ -830,7 +821,6 @@
 				07AA481E1BA1246C00797721 /* optimize.c in Sources */,
 				07AA47FC1BA1246C00797721 /* feature.c in Sources */,
 				07AA485D1BA1246C00797721 /* tabinit.c in Sources */,
-				07AA48231BA1246C00797721 /* readers.c in Sources */,
 				07AA48261BA1246C00797721 /* stringbuf.c in Sources */,
 				07AA48201BA1246C00797721 /* parse.c in Sources */,
 				07AA48481BA1246C00797721 /* synth_stereo_avx_s32.S in Sources */,

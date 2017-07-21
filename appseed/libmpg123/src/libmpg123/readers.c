@@ -1064,7 +1064,7 @@ static int default_init(mpg123_handle *fr)
 		if(!strncmp((char*)fr->id3buf,"TAG",3))
 		{
 			fr->rdat.flags |= READER_ID3TAG;
-			fr->metaflags  |= MPG123_NEW_ID3;
+			fr->metaflags  |= READER_SEEKABLE;
 		}
 	}
 	/* Switch reader to a buffered one, if allowed. */
