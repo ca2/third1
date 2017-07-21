@@ -66,7 +66,6 @@
 		07EF5D8D1B72F09600863D39 /* sljitLir.h in Headers */ = {isa = PBXBuildFile; fileRef = 07EF5D541B72F09600863D39 /* sljitLir.h */; };
 		07EF5DA01B72F17000863D39 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 07EF5D9F1B72F17000863D39 /* config.h */; };
 		07EF5DA11B72F17000863D39 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 07EF5D9F1B72F17000863D39 /* config.h */; };
-		9A26A02A1D7ED76B001F47A8 /* libios_ace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A269F7B1D7ED6C6001F47A8 /* libios_ace.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,7 +108,7 @@
 
 /* Begin PBXFileReference section */
 		077832E41B72FC99005D0C27 /* pcre2_chartables.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pcre2_chartables.c; sourceTree = "<group>"; };
-		07D6A8471B4CBB45004FEBC2 /* libios_aurapcre.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_aurapcre.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07D6A8471B4CBB45004FEBC2 /* libios_aurapcre.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_aurapcre.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		07EF5D271B72F09600863D39 /* config.h.generic */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = config.h.generic; sourceTree = "<group>"; };
 		07EF5D281B72F09600863D39 /* config.h.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = config.h.in; sourceTree = "<group>"; };
 		07EF5D2A1B72F09600863D39 /* pcre2.h.generic */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pcre2.h.generic; sourceTree = "<group>"; };
@@ -155,7 +154,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A26A02A1D7ED76B001F47A8 /* libios_ace.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,7 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				9A269F791D7ED6C6001F47A8 /* libace.dylib */,
-				9A269F7B1D7ED6C6001F47A8 /* libios_ace.dylib */,
+				9A269F7B1D7ED6C6001F47A8 /* libios_ace.a */,
 				9A269F7D1D7ED6C6001F47A8 /* ace_iosTests.xctest */,
 			);
 			name = Products;
@@ -253,7 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				9AA539B119B763C400B9F861 /* libaurapcre.dylib */,
-				07D6A8471B4CBB45004FEBC2 /* libios_aurapcre.dylib */,
+				07D6A8471B4CBB45004FEBC2 /* libios_aurapcre.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -302,7 +300,7 @@
 			);
 			name = ios_aurapcre;
 			productName = FreeImage;
-			productReference = 07D6A8471B4CBB45004FEBC2 /* libios_aurapcre.dylib */;
+			productReference = 07D6A8471B4CBB45004FEBC2 /* libios_aurapcre.a */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9AA5E4C216F7C61B005C45CE /* aurapcre */ = {
@@ -364,10 +362,10 @@
 			remoteRef = 9A269F781D7ED6C6001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A269F7B1D7ED6C6001F47A8 /* libios_ace.dylib */ = {
+		9A269F7B1D7ED6C6001F47A8 /* libios_ace.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_ace.dylib;
+			path = libios_ace.a;
 			remoteRef = 9A269F7A1D7ED6C6001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -464,6 +462,8 @@
 		07D6A8451B4CBB45004FEBC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EXECUTABLE_EXTENSION = a;
+				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -471,6 +471,8 @@
 		07D6A8461B4CBB45004FEBC2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EXECUTABLE_EXTENSION = a;
+				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
 			};
 			name = Release;

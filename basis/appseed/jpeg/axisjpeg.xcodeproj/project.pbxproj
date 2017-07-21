@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07B6577B190F3CA2002DAADE /* libios_axisjpeg.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libios_axisjpeg.dylib */; };
+		07B6577B190F3CA2002DAADE /* libios_axisjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B65764190F3CA2002DAADE /* libios_axisjpeg.a */; };
 		9A4E870D1D1FD9F3008A419B /* cderror.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4E86AC1D1FD9F3008A419B /* cderror.h */; };
 		9A4E870E1D1FD9F3008A419B /* cdjpeg.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E86AD1D1FD9F3008A419B /* cdjpeg.c */; };
 		9A4E870F1D1FD9F3008A419B /* cdjpeg.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4E86AE1D1FD9F3008A419B /* cdjpeg.h */; };
@@ -180,7 +180,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07B65764190F3CA2002DAADE /* libios_axisjpeg.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_axisjpeg.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B65764190F3CA2002DAADE /* libios_axisjpeg.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_axisjpeg.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B65773190F3CA2002DAADE /* axisjpeg_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = axisjpeg_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A26A00E1D7ED717001F47A8 /* ace.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ace.xcodeproj; path = ../../../app/appseed/ace/ace.xcodeproj; sourceTree = "<group>"; };
 		9A4E86AC1D1FD9F3008A419B /* cderror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cderror.h; sourceTree = "<group>"; };
@@ -264,7 +264,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07B6577B190F3CA2002DAADE /* libios_axisjpeg.dylib in Frameworks */,
+				07B6577B190F3CA2002DAADE /* libios_axisjpeg.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,7 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				9A26A0151D7ED717001F47A8 /* libace.dylib */,
-				9A26A0171D7ED717001F47A8 /* libios_ace.dylib */,
+				9A26A0171D7ED717001F47A8 /* libios_ace.a */,
 				9A26A0191D7ED717001F47A8 /* ace_iosTests.xctest */,
 			);
 			name = Products;
@@ -374,7 +374,7 @@
 			isa = PBXGroup;
 			children = (
 				9A574B9816AAB906000CC4EF /* libaxisjpeg.dylib */,
-				07B65764190F3CA2002DAADE /* libios_axisjpeg.dylib */,
+				07B65764190F3CA2002DAADE /* libios_axisjpeg.a */,
 				07B65773190F3CA2002DAADE /* axisjpeg_iosTests.xctest */,
 			);
 			name = Products;
@@ -413,7 +413,7 @@
 			);
 			name = ios_axisjpeg;
 			productName = math_ios;
-			productReference = 07B65764190F3CA2002DAADE /* libios_axisjpeg.dylib */;
+			productReference = 07B65764190F3CA2002DAADE /* libios_axisjpeg.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		07B65772190F3CA2002DAADE /* axisjpeg_iosTests */ = {
@@ -498,10 +498,10 @@
 			remoteRef = 9A26A0141D7ED717001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A26A0171D7ED717001F47A8 /* libios_ace.dylib */ = {
+		9A26A0171D7ED717001F47A8 /* libios_ace.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_ace.dylib;
+			path = libios_ace.a;
 			remoteRef = 9A26A0161D7ED717001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -687,6 +687,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				EXECUTABLE_EXTENSION = a;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -696,7 +697,7 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				MACH_O_TYPE = mh_dylib;
+				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -712,12 +713,13 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				ENABLE_NS_ASSERTIONS = NO;
+				EXECUTABLE_EXTENSION = a;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				MACH_O_TYPE = mh_dylib;
+				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		07574DCC1C45B52E0020E1F1 /* libwelscommon.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07574DC71C45B50F0020E1F1 /* libwelscommon.dylib */; };
-		078DF8831C5298F200E65274 /* libios_welscommon.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07574DC91C45B50F0020E1F1 /* libios_welscommon.dylib */; };
 		07B09A481B849878002AC4F0 /* adaptive_quantization_aarch64_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 6C749B77197E2A2000A111F9 /* adaptive_quantization_aarch64_neon.S */; };
 		07B09A491B849878002AC4F0 /* vaacalculation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 549947D9196A3FB400BA3D87 /* vaacalculation.cpp */; };
 		07B09A4A1B849878002AC4F0 /* ComplexityAnalysis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 549947C1196A3FB400BA3D87 /* ComplexityAnalysis.cpp */; };
@@ -53,7 +52,6 @@
 		549947F2196A3FB400BA3D87 /* ScrollDetectionFuncs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 549947D5196A3FB400BA3D87 /* ScrollDetectionFuncs.cpp */; };
 		549947F3196A3FB400BA3D87 /* vaacalcfuncs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 549947D8196A3FB400BA3D87 /* vaacalcfuncs.cpp */; };
 		549947F4196A3FB400BA3D87 /* vaacalculation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 549947D9196A3FB400BA3D87 /* vaacalculation.cpp */; };
-		9A106A721D15E4D0007288BA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A106A711D15E4D0007288BA /* UIKit.framework */; };
 		F791965B19D3BF6B00F60C6B /* intra_pred_common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F791965A19D3BF6B00F60C6B /* intra_pred_common.cpp */; };
 /* End PBXBuildFile section */
 
@@ -132,7 +130,7 @@
 
 /* Begin PBXFileReference section */
 		07574DC11C45B50F0020E1F1 /* welscommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welscommon.xcodeproj; path = ../common/welscommon.xcodeproj; sourceTree = "<group>"; };
-		07B09A681B849878002AC4F0 /* libios_welsprocessing.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_welsprocessing.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B09A681B849878002AC4F0 /* libios_welsprocessing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_welsprocessing.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CC6094E197E009D00BE8B8B /* down_sample_aarch64_neon.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = down_sample_aarch64_neon.S; path = arm64/down_sample_aarch64_neon.S; sourceTree = "<group>"; };
 		4CC609591980F34F00BE8B8B /* vaa_calc_aarch64_neon.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = vaa_calc_aarch64_neon.S; path = arm64/vaa_calc_aarch64_neon.S; sourceTree = "<group>"; };
 		4CD0FE35199082AD00375C9A /* pixel_sad_aarch64_neon.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = pixel_sad_aarch64_neon.S; path = arm64/pixel_sad_aarch64_neon.S; sourceTree = "<group>"; };
@@ -190,8 +188,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A106A721D15E4D0007288BA /* UIKit.framework in Frameworks */,
-				078DF8831C5298F200E65274 /* libios_welscommon.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,7 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				5499477C196A3F3900BA3D87 /* libwelsprocessing.dylib */,
-				07B09A681B849878002AC4F0 /* libios_welsprocessing.dylib */,
+				07B09A681B849878002AC4F0 /* libios_welsprocessing.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -408,7 +404,7 @@
 			isa = PBXGroup;
 			children = (
 				9A269FA91D7ED6F0001F47A8 /* libace.dylib */,
-				9A269FAB1D7ED6F0001F47A8 /* libios_ace.dylib */,
+				9A269FAB1D7ED6F0001F47A8 /* libios_ace.a */,
 				9A269FAD1D7ED6F0001F47A8 /* ace_iosTests.xctest */,
 			);
 			name = Products;
@@ -432,7 +428,7 @@
 			);
 			name = ios_welsprocessing;
 			productName = processing;
-			productReference = 07B09A681B849878002AC4F0 /* libios_welsprocessing.dylib */;
+			productReference = 07B09A681B849878002AC4F0 /* libios_welsprocessing.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		5499477B196A3F3900BA3D87 /* welsprocessing */ = {
@@ -512,10 +508,10 @@
 			remoteRef = 9A269FA81D7ED6F0001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A269FAB1D7ED6F0001F47A8 /* libios_ace.dylib */ = {
+		9A269FAB1D7ED6F0001F47A8 /* libios_ace.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_ace.dylib;
+			path = libios_ace.a;
 			remoteRef = 9A269FAA1D7ED6F0001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -606,6 +602,7 @@
 		07B09A661B849878002AC4F0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EXECUTABLE_EXTENSION = a;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
 				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*][arch=arm64]" = (
@@ -637,6 +634,7 @@
 		07B09A671B849878002AC4F0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EXECUTABLE_EXTENSION = a;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
 				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*][arch=arm64]" = (

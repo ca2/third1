@@ -2,7 +2,7 @@
 //  basempg123_iosTests.m
 //  basempg123_iosTests
 //
-//  Created by Carlos Gustavo Cecyn Lundgren on 28/04/14.
+//  Created by Camilo Sasuke Tsumanuma on 28/04/14.
 //  Copyright (c) 2014 Camilo Sasuke Tsumanuma. All rights reserved.
 //
 

@@ -54,7 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		077A01571B4D5479001C85FF /* libios_atomiconv.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_atomiconv.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		077A01571B4D5479001C85FF /* libios_atomiconv.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_atomiconv.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A16454F19C4A60000966C5E /* aliases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aliases.h; sourceTree = "<group>"; };
 		9A16455019C4A60000966C5E /* aliases2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aliases2.h; sourceTree = "<group>"; };
 		9A16455119C4A60000966C5E /* aliases_aix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aliases_aix.h; sourceTree = "<group>"; };
@@ -579,7 +579,7 @@
 			isa = PBXGroup;
 			children = (
 				9A269F611D7ED6BF001F47A8 /* libace.dylib */,
-				9A269F631D7ED6BF001F47A8 /* libios_ace.dylib */,
+				9A269F631D7ED6BF001F47A8 /* libios_ace.a */,
 				9A269F651D7ED6BF001F47A8 /* ace_iosTests.xctest */,
 			);
 			name = Products;
@@ -589,7 +589,7 @@
 			isa = PBXGroup;
 			children = (
 				9A1647A219C4A73900966C5E /* libatomiconv.dylib */,
-				077A01571B4D5479001C85FF /* libios_atomiconv.dylib */,
+				077A01571B4D5479001C85FF /* libios_atomiconv.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -629,7 +629,7 @@
 			);
 			name = ios_atomiconv;
 			productName = atomiconv;
-			productReference = 077A01571B4D5479001C85FF /* libios_atomiconv.dylib */;
+			productReference = 077A01571B4D5479001C85FF /* libios_atomiconv.a */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9A1647A119C4A73900966C5E /* atomiconv */ = {
@@ -691,10 +691,10 @@
 			remoteRef = 9A269F601D7ED6BF001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A269F631D7ED6BF001F47A8 /* libios_ace.dylib */ = {
+		9A269F631D7ED6BF001F47A8 /* libios_ace.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_ace.dylib;
+			path = libios_ace.a;
 			remoteRef = 9A269F621D7ED6BF001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -754,10 +754,12 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EXECUTABLE_EXTENSION = a;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
+				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -773,10 +775,12 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_NS_ASSERTIONS = NO;
+				EXECUTABLE_EXTENSION = a;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
+				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
 			};
 			name = Release;

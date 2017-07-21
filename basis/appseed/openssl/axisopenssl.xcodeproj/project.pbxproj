@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		07502CC11B252B6F008D207C /* libaxiscrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07502CBA1B252A49008D207C /* libaxiscrypto.dylib */; };
-		077A023E1B4D5BF4001C85FF /* libios_axiscrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07502CBC1B252A49008D207C /* libios_axiscrypto.dylib */; };
 		9A0257CD1EA5989E003C82CF /* bio_ssl.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A02579C1EA5989E003C82CF /* bio_ssl.c */; };
 		9A0257CE1EA5989E003C82CF /* d1_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A02579E1EA5989E003C82CF /* d1_lib.c */; };
 		9A0257CF1EA5989E003C82CF /* d1_msg.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A02579F1EA5989E003C82CF /* d1_msg.c */; };
@@ -182,7 +181,7 @@
 		0778A2EF199FFC5800206CA1 /* e_os2_ca2specific.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = e_os2_ca2specific.h; sourceTree = "<group>"; };
 		0778A2F0199FFC5800206CA1 /* e_os2_original.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = e_os2_original.h; sourceTree = "<group>"; };
 		0778A2F1199FFC5800206CA1 /* e_os2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = e_os2.h; sourceTree = "<group>"; };
-		07B2729219A019AB00E822E1 /* libios_axisopenssl.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_axisopenssl.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B2729219A019AB00E822E1 /* libios_axisopenssl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_axisopenssl.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B2729A19A01A4600E822E1 /* libaxisopenssl.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libaxisopenssl.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A02579C1EA5989E003C82CF /* bio_ssl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = bio_ssl.c; path = ssl/bio_ssl.c; sourceTree = "<group>"; };
 		9A02579D1EA5989E003C82CF /* build.info */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = build.info; path = ssl/build.info; sourceTree = "<group>"; };
@@ -248,7 +247,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				077A023E1B4D5BF4001C85FF /* libios_axiscrypto.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				07502CBA1B252A49008D207C /* libaxiscrypto.dylib */,
-				07502CBC1B252A49008D207C /* libios_axiscrypto.dylib */,
+				07502CBC1B252A49008D207C /* libios_axiscrypto.a */,
 				07502CBE1B252A49008D207C /* axiscrypto_iosTests.xctest */,
 			);
 			name = Products;
@@ -319,7 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				9A26A0091D7ED714001F47A8 /* libace.dylib */,
-				9A26A00B1D7ED714001F47A8 /* libios_ace.dylib */,
+				9A26A00B1D7ED714001F47A8 /* libios_ace.a */,
 				9A26A00D1D7ED714001F47A8 /* ace_iosTests.xctest */,
 			);
 			name = Products;
@@ -328,7 +326,7 @@
 		9A4E84491D1FD21A008A419B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				07B2729219A019AB00E822E1 /* libios_axisopenssl.dylib */,
+				07B2729219A019AB00E822E1 /* libios_axisopenssl.a */,
 				07B2729A19A01A4600E822E1 /* libaxisopenssl.dylib */,
 			);
 			name = Products;
@@ -414,7 +412,7 @@
 			);
 			name = ios_axisopenssl;
 			productName = basefreeimage_ios;
-			productReference = 07B2729219A019AB00E822E1 /* libios_axisopenssl.dylib */;
+			productReference = 07B2729219A019AB00E822E1 /* libios_axisopenssl.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		9AE24D961904CF46001AEFFB /* axisopenssl_iosTests */ = {
@@ -487,10 +485,10 @@
 			remoteRef = 07502CB91B252A49008D207C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07502CBC1B252A49008D207C /* libios_axiscrypto.dylib */ = {
+		07502CBC1B252A49008D207C /* libios_axiscrypto.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_axiscrypto.dylib;
+			path = libios_axiscrypto.a;
 			remoteRef = 07502CBB1B252A49008D207C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -508,10 +506,10 @@
 			remoteRef = 9A26A0081D7ED714001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A26A00B1D7ED714001F47A8 /* libios_ace.dylib */ = {
+		9A26A00B1D7ED714001F47A8 /* libios_ace.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_ace.dylib;
+			path = libios_ace.a;
 			remoteRef = 9A26A00A1D7ED714001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -801,7 +799,7 @@
 		9AE24DA81904CF46001AEFFB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MACH_O_TYPE = mh_dylib;
+				EXECUTABLE_EXTENSION = a;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -809,7 +807,7 @@
 		9AE24DA91904CF46001AEFFB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MACH_O_TYPE = mh_dylib;
+				EXECUTABLE_EXTENSION = a;
 				SDKROOT = iphoneos;
 			};
 			name = Release;

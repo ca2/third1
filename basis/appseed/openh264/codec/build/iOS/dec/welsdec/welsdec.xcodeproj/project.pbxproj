@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		07574DEA1C45B5B70020E1F1 /* libwelscommon.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07574DDC1C45B58D0020E1F1 /* libwelscommon.dylib */; };
-		078DF88F1C52992E00E65274 /* libios_welscommon.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07574DDE1C45B58D0020E1F1 /* libios_welscommon.dylib */; };
 		07B098391B8491EC002AC4F0 /* parse_mb_syn_cabac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A3E814319D7A40600C19C1F /* parse_mb_syn_cabac.cpp */; };
 		07B0983A1B8491EC002AC4F0 /* pic_queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4467818BC5EAA0017DF25 /* pic_queue.cpp */; };
 		07B0983B1B8491EC002AC4F0 /* welsDecoderExt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4468518BC5EAB0017DF25 /* welsDecoderExt.cpp */; };
@@ -59,7 +58,6 @@
 		6A3E814219D79AE900C19C1F /* cabac_decoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A3E814119D79AE900C19C1F /* cabac_decoder.cpp */; };
 		6A3E814419D7A40600C19C1F /* parse_mb_syn_cabac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A3E814319D7A40600C19C1F /* parse_mb_syn_cabac.cpp */; };
 		6C749B6A197CC6E600A111F9 /* block_add_aarch64_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 6C749B69197CC6E600A111F9 /* block_add_aarch64_neon.S */; };
-		9A106A7A1D15E52E007288BA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A106A791D15E52E007288BA /* UIKit.framework */; };
 		9AED66561946A1DE009A3567 /* welsCodecTrace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AED66551946A1DE009A3567 /* welsCodecTrace.cpp */; };
 		9AED66591946A203009A3567 /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AED66581946A203009A3567 /* utils.cpp */; };
 		F0B204FC18FD23D8005DA23F /* error_concealment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B204FB18FD23D8005DA23F /* error_concealment.cpp */; };
@@ -141,7 +139,7 @@
 /* Begin PBXFileReference section */
 		04FE0680196FD8BE0004D7CE /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.h; path = ../../../common/inc/version.h; sourceTree = "<group>"; };
 		07574DD61C45B58D0020E1F1 /* welscommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = welscommon.xcodeproj; path = ../../common/welscommon.xcodeproj; sourceTree = "<group>"; };
-		07B098591B8491EC002AC4F0 /* libios_welsdec.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_welsdec.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07B098591B8491EC002AC4F0 /* libios_welsdec.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_welsdec.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CBC1B80194AC4E100214D9E /* intra_pred_aarch64_neon.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = intra_pred_aarch64_neon.S; path = arm64/intra_pred_aarch64_neon.S; sourceTree = "<group>"; };
 		4CE4427918B6FC360017DF25 /* libwelsdec.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libwelsdec.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CE4427C18B6FC360017DF25 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -215,8 +213,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A106A7A1D15E52E007288BA /* UIKit.framework in Frameworks */,
-				078DF88F1C52992E00E65274 /* libios_welscommon.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,7 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				4CE4427918B6FC360017DF25 /* libwelsdec.dylib */,
-				07B098591B8491EC002AC4F0 /* libios_welsdec.dylib */,
+				07B098591B8491EC002AC4F0 /* libios_welsdec.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -409,7 +405,7 @@
 			isa = PBXGroup;
 			children = (
 				9A269FC11D7ED6F8001F47A8 /* libace.dylib */,
-				9A269FC31D7ED6F8001F47A8 /* libios_ace.dylib */,
+				9A269FC31D7ED6F8001F47A8 /* libios_ace.a */,
 				9A269FC51D7ED6F8001F47A8 /* ace_iosTests.xctest */,
 			);
 			name = Products;
@@ -433,7 +429,7 @@
 			);
 			name = ios_welsdec;
 			productName = welsdec;
-			productReference = 07B098591B8491EC002AC4F0 /* libios_welsdec.dylib */;
+			productReference = 07B098591B8491EC002AC4F0 /* libios_welsdec.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		4CE4427818B6FC360017DF25 /* welsdec */ = {
@@ -513,10 +509,10 @@
 			remoteRef = 9A269FC01D7ED6F8001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A269FC31D7ED6F8001F47A8 /* libios_ace.dylib */ = {
+		9A269FC31D7ED6F8001F47A8 /* libios_ace.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_ace.dylib;
+			path = libios_ace.a;
 			remoteRef = 9A269FC21D7ED6F8001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -619,6 +615,7 @@
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DSTROOT = /tmp/welsdec.dst;
+				EXECUTABLE_EXTENSION = a;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*][arch=arm64]" = (
@@ -641,6 +638,7 @@
 					"$(SRCROOT)/../../../../common/arm",
 					"$(SRCROOT)/../../../../common/arm64",
 				);
+				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -655,6 +653,7 @@
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DSTROOT = /tmp/welsdec.dst;
+				EXECUTABLE_EXTENSION = a;
 				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos*][arch=arm64]" = (
 					APPLE_IOS,
 					HAVE_NEON_AARCH64,
@@ -675,6 +674,7 @@
 					"$(SRCROOT)/../../../../common/arm",
 					"$(SRCROOT)/../../../../common/arm64",
 				);
+				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;

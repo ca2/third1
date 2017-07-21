@@ -249,10 +249,7 @@
 		07108CD71B4C97E300A28F80 /* pshpic.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB5D919C5089700866C9E /* pshpic.h */; };
 		07108CD81B4C97E300A28F80 /* hbshim.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB4BB19C5089600866C9E /* hbshim.h */; };
 		9A331BD21D4BC3D600255105 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331BD11D4BC3D600255105 /* libbz2.tbd */; };
-		9A331BE31D4BC42000255105 /* libios_axispng.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331BDC1D4BC3FF00255105 /* libios_axispng.dylib */; };
 		9A331BE41D4BC42700255105 /* libaxispng.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331BDA1D4BC3FF00255105 /* libaxispng.dylib */; };
-		9A331BE61D4BC42F00255105 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331BE51D4BC42F00255105 /* libbz2.tbd */; };
-		9A331C301D4BC57600255105 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C2F1D4BC57600255105 /* libz.tbd */; };
 		9A331C321D4BC57D00255105 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A331C311D4BC57D00255105 /* libz.tbd */; };
 		9AEEB67119C5089700866C9E /* afangles.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB49519C5089500866C9E /* afangles.h */; };
 		9AEEB67319C5089700866C9E /* afblue.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AEEB49919C5089500866C9E /* afblue.h */; };
@@ -557,7 +554,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07108CDC1B4C97E300A28F80 /* libios_axisfreetype.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_axisfreetype.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		07108CDC1B4C97E300A28F80 /* libios_axisfreetype.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_axisfreetype.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A269F961D7ED6E2001F47A8 /* ace.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ace.xcodeproj; path = ../../../app/appseed/ace/ace.xcodeproj; sourceTree = "<group>"; };
 		9A331BD11D4BC3D600255105 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
 		9A331BD31D4BC3FF00255105 /* axispng.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axispng.xcodeproj; path = ../png/axispng.xcodeproj; sourceTree = "<group>"; };
@@ -813,9 +810,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A331C301D4BC57600255105 /* libz.tbd in Frameworks */,
-				9A331BE61D4BC42F00255105 /* libbz2.tbd in Frameworks */,
-				9A331BE31D4BC42000255105 /* libios_axispng.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -851,7 +845,7 @@
 			isa = PBXGroup;
 			children = (
 				9A269F9D1D7ED6E2001F47A8 /* libace.dylib */,
-				9A269F9F1D7ED6E2001F47A8 /* libios_ace.dylib */,
+				9A269F9F1D7ED6E2001F47A8 /* libios_ace.a */,
 				9A269FA11D7ED6E2001F47A8 /* ace_iosTests.xctest */,
 			);
 			name = Products;
@@ -871,7 +865,7 @@
 			isa = PBXGroup;
 			children = (
 				9AEEB49119C5088600866C9E /* libaxisfreetype.dylib */,
-				07108CDC1B4C97E300A28F80 /* libios_axisfreetype.dylib */,
+				07108CDC1B4C97E300A28F80 /* libios_axisfreetype.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1771,7 +1765,7 @@
 			);
 			name = ios_axisfreetype;
 			productName = FreeImage;
-			productReference = 07108CDC1B4C97E300A28F80 /* libios_axisfreetype.dylib */;
+			productReference = 07108CDC1B4C97E300A28F80 /* libios_axisfreetype.a */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9AA5E4C216F7C61B005C45CE /* axisfreetype */ = {
@@ -1837,10 +1831,10 @@
 			remoteRef = 9A269F9C1D7ED6E2001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A269F9F1D7ED6E2001F47A8 /* libios_ace.dylib */ = {
+		9A269F9F1D7ED6E2001F47A8 /* libios_ace.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_ace.dylib;
+			path = libios_ace.a;
 			remoteRef = 9A269F9E1D7ED6E2001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1978,6 +1972,8 @@
 		07108CDA1B4C97E300A28F80 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EXECUTABLE_EXTENSION = a;
+				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1985,6 +1981,8 @@
 		07108CDB1B4C97E300A28F80 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EXECUTABLE_EXTENSION = a;
+				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
