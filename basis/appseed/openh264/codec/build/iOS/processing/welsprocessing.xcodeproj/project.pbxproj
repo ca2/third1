@@ -28,7 +28,6 @@
 		07B09A591B849878002AC4F0 /* down_sample_aarch64_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 4CC6094E197E009D00BE8B8B /* down_sample_aarch64_neon.S */; };
 		07B09A5A1B849878002AC4F0 /* vaa_calc_aarch64_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 4CC609591980F34F00BE8B8B /* vaa_calc_aarch64_neon.S */; };
 		07B09A5B1B849878002AC4F0 /* ScrollDetectionFuncs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 549947D5196A3FB400BA3D87 /* ScrollDetectionFuncs.cpp */; };
-		07B09A5C1B849878002AC4F0 /* intra_pred_common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F791965A19D3BF6B00F60C6B /* intra_pred_common.cpp */; };
 		07B09A5D1B849878002AC4F0 /* imagerotatefuncs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 549947CE196A3FB400BA3D87 /* imagerotatefuncs.cpp */; };
 		07B09A5E1B849878002AC4F0 /* AdaptiveQuantization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 549947A9196A3FB400BA3D87 /* AdaptiveQuantization.cpp */; };
 		07B09A5F1B849878002AC4F0 /* downsample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 549947C8196A3FB400BA3D87 /* downsample.cpp */; };
@@ -207,7 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				07574DC71C45B50F0020E1F1 /* libwelscommon.dylib */,
-				07574DC91C45B50F0020E1F1 /* libios_welscommon.dylib */,
+				07574DC91C45B50F0020E1F1 /* libios_welscommon.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -494,10 +493,10 @@
 			remoteRef = 07574DC61C45B50F0020E1F1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07574DC91C45B50F0020E1F1 /* libios_welscommon.dylib */ = {
+		07574DC91C45B50F0020E1F1 /* libios_welscommon.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_welscommon.dylib;
+			path = libios_welscommon.a;
 			remoteRef = 07574DC81C45B50F0020E1F1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -549,7 +548,6 @@
 				07B09A591B849878002AC4F0 /* down_sample_aarch64_neon.S in Sources */,
 				07B09A5A1B849878002AC4F0 /* vaa_calc_aarch64_neon.S in Sources */,
 				07B09A5B1B849878002AC4F0 /* ScrollDetectionFuncs.cpp in Sources */,
-				07B09A5C1B849878002AC4F0 /* intra_pred_common.cpp in Sources */,
 				07B09A5D1B849878002AC4F0 /* imagerotatefuncs.cpp in Sources */,
 				07B09A5E1B849878002AC4F0 /* AdaptiveQuantization.cpp in Sources */,
 				07B09A5F1B849878002AC4F0 /* downsample.cpp in Sources */,
@@ -712,6 +710,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";
 				WorkspaceDir = "$(SRCROOT)/../../../../../../../nodeapp/seed/metaseed";
 			};

@@ -19,7 +19,6 @@
 		07B098631B849208002AC4F0 /* svc_motion_estimation.S in Sources */ = {isa = PBXBuildFile; fileRef = 6CA38DA21991CACE003EAAE0 /* svc_motion_estimation.S */; };
 		07B098641B849208002AC4F0 /* encoder_data_tables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE446E218BC605C0017DF25 /* encoder_data_tables.cpp */; };
 		07B098651B849208002AC4F0 /* pixel_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 4C34066A18C57D0400DFA14A /* pixel_neon.S */; };
-		07B098661B849208002AC4F0 /* welsCodecTrace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AED664C19469FC1009A3567 /* welsCodecTrace.cpp */; };
 		07B098671B849208002AC4F0 /* ref_list_mgr_svc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE446EE18BC605C0017DF25 /* ref_list_mgr_svc.cpp */; };
 		07B098681B849208002AC4F0 /* slice_multi_threading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE446F118BC605C0017DF25 /* slice_multi_threading.cpp */; };
 		07B098691B849208002AC4F0 /* memory_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 4C34066918C57D0400DFA14A /* memory_neon.S */; };
@@ -293,7 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				07574DE51C45B59F0020E1F1 /* libwelsprocessing.dylib */,
-				07574DE71C45B59F0020E1F1 /* libios_welsprocessing.dylib */,
+				07574DE71C45B59F0020E1F1 /* libios_welsprocessing.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -593,10 +592,10 @@
 			remoteRef = 07574DE41C45B59F0020E1F1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07574DE71C45B59F0020E1F1 /* libios_welsprocessing.dylib */ = {
+		07574DE71C45B59F0020E1F1 /* libios_welsprocessing.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_welsprocessing.dylib;
+			path = libios_welsprocessing.a;
 			remoteRef = 07574DE61C45B59F0020E1F1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -638,7 +637,6 @@
 				07B098631B849208002AC4F0 /* svc_motion_estimation.S in Sources */,
 				07B098641B849208002AC4F0 /* encoder_data_tables.cpp in Sources */,
 				07B098651B849208002AC4F0 /* pixel_neon.S in Sources */,
-				07B098661B849208002AC4F0 /* welsCodecTrace.cpp in Sources */,
 				07B098671B849208002AC4F0 /* ref_list_mgr_svc.cpp in Sources */,
 				07B098681B849208002AC4F0 /* slice_multi_threading.cpp in Sources */,
 				07B098691B849208002AC4F0 /* memory_neon.S in Sources */,
@@ -850,6 +848,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";
 				WorkspaceDir = "$(SRCROOT)/../../../../../../../../nodeapp/seed/metaseed";
 			};

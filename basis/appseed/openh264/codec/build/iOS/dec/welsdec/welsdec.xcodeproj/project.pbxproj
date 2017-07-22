@@ -30,7 +30,6 @@
 		07B0984C1B8491EC002AC4F0 /* decode_mb_aux.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4466A18BC5EAA0017DF25 /* decode_mb_aux.cpp */; };
 		07B0984D1B8491EC002AC4F0 /* decode_slice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4466B18BC5EAA0017DF25 /* decode_slice.cpp */; };
 		07B0984E1B8491EC002AC4F0 /* decoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4466C18BC5EAA0017DF25 /* decoder.cpp */; };
-		07B0984F1B8491EC002AC4F0 /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AED66581946A203009A3567 /* utils.cpp */; };
 		07B098501B8491EC002AC4F0 /* memmgr_nal_unit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4467518BC5EAA0017DF25 /* memmgr_nal_unit.cpp */; };
 		07B098511B8491EC002AC4F0 /* deblocking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4466918BC5EAA0017DF25 /* deblocking.cpp */; };
 		07B098521B8491EC002AC4F0 /* parse_mb_syn_cavlc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CE4467718BC5EAA0017DF25 /* parse_mb_syn_cavlc.cpp */; };
@@ -59,7 +58,6 @@
 		6A3E814419D7A40600C19C1F /* parse_mb_syn_cabac.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A3E814319D7A40600C19C1F /* parse_mb_syn_cabac.cpp */; };
 		6C749B6A197CC6E600A111F9 /* block_add_aarch64_neon.S in Sources */ = {isa = PBXBuildFile; fileRef = 6C749B69197CC6E600A111F9 /* block_add_aarch64_neon.S */; };
 		9AED66561946A1DE009A3567 /* welsCodecTrace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AED66551946A1DE009A3567 /* welsCodecTrace.cpp */; };
-		9AED66591946A203009A3567 /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AED66581946A203009A3567 /* utils.cpp */; };
 		F0B204FC18FD23D8005DA23F /* error_concealment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B204FB18FD23D8005DA23F /* error_concealment.cpp */; };
 /* End PBXBuildFile section */
 
@@ -202,7 +200,6 @@
 		9A269FBA1D7ED6F7001F47A8 /* ace.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ace.xcodeproj; path = ../../../../../../../../app/appseed/ace/ace.xcodeproj; sourceTree = "<group>"; };
 		9AED66551946A1DE009A3567 /* welsCodecTrace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = welsCodecTrace.cpp; path = ../../../common/src/welsCodecTrace.cpp; sourceTree = "<group>"; };
 		9AED66571946A1EB009A3567 /* welsCodecTrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = welsCodecTrace.h; path = ../../../common/inc/welsCodecTrace.h; sourceTree = "<group>"; };
-		9AED66581946A203009A3567 /* utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = utils.cpp; path = ../../../common/src/utils.cpp; sourceTree = "<group>"; };
 		9AED665A1946A21D009A3567 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utils.h; path = ../../../common/inc/utils.h; sourceTree = "<group>"; };
 		F0B204FA18FD23CF005DA23F /* error_concealment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = error_concealment.h; sourceTree = "<group>"; };
 		F0B204FB18FD23D8005DA23F /* error_concealment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = error_concealment.cpp; sourceTree = "<group>"; };
@@ -232,7 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				07574DDC1C45B58D0020E1F1 /* libwelscommon.dylib */,
-				07574DDE1C45B58D0020E1F1 /* libios_welscommon.dylib */,
+				07574DDE1C45B58D0020E1F1 /* libios_welscommon.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -341,7 +338,6 @@
 			children = (
 				6A3E814319D7A40600C19C1F /* parse_mb_syn_cabac.cpp */,
 				6A3E814119D79AE900C19C1F /* cabac_decoder.cpp */,
-				9AED66581946A203009A3567 /* utils.cpp */,
 				F0B204FB18FD23D8005DA23F /* error_concealment.cpp */,
 				4CE4466718BC5EAA0017DF25 /* au_parser.cpp */,
 				4CE4466818BC5EAA0017DF25 /* bit_stream.cpp */,
@@ -495,10 +491,10 @@
 			remoteRef = 07574DDB1C45B58D0020E1F1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07574DDE1C45B58D0020E1F1 /* libios_welscommon.dylib */ = {
+		07574DDE1C45B58D0020E1F1 /* libios_welscommon.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_welscommon.dylib;
+			path = libios_welscommon.a;
 			remoteRef = 07574DDD1C45B58D0020E1F1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -552,7 +548,6 @@
 				07B0984C1B8491EC002AC4F0 /* decode_mb_aux.cpp in Sources */,
 				07B0984D1B8491EC002AC4F0 /* decode_slice.cpp in Sources */,
 				07B0984E1B8491EC002AC4F0 /* decoder.cpp in Sources */,
-				07B0984F1B8491EC002AC4F0 /* utils.cpp in Sources */,
 				07B098501B8491EC002AC4F0 /* memmgr_nal_unit.cpp in Sources */,
 				07B098511B8491EC002AC4F0 /* deblocking.cpp in Sources */,
 				07B098521B8491EC002AC4F0 /* parse_mb_syn_cavlc.cpp in Sources */,
@@ -585,7 +580,6 @@
 				4CE4468D18BC5EAB0017DF25 /* decode_mb_aux.cpp in Sources */,
 				4CE4468E18BC5EAB0017DF25 /* decode_slice.cpp in Sources */,
 				4CE4468F18BC5EAB0017DF25 /* decoder.cpp in Sources */,
-				9AED66591946A203009A3567 /* utils.cpp in Sources */,
 				4CE4469818BC5EAB0017DF25 /* memmgr_nal_unit.cpp in Sources */,
 				4CE4468C18BC5EAB0017DF25 /* deblocking.cpp in Sources */,
 				4CE4469A18BC5EAB0017DF25 /* parse_mb_syn_cavlc.cpp in Sources */,
@@ -729,6 +723,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include . .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/core $(WorkspaceDir)/../../../app/appseed/base $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../.. $(WorkspaceDir)/../../base/include $(WorkspaceDir)/../../../app/base/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/base";
 				WorkspaceDir = "$(SRCROOT)/../../../../../../../../nodeapp/seed/metaseed";
 			};
