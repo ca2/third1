@@ -19,11 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="nord_WelsEncCore.vcxproj">
-      <Project>{8b54fb04-f0cc-4da4-8b90-3473ee947c36}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="codec\encoder\plus\inc\welsEncoderExt.h" />
   </ItemGroup>
   <ItemGroup>
@@ -107,7 +102,7 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>_welsenccore;welsvp;_welscommon;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <LibraryDependencies>welsvp;_welsenccore;_welsdeccore;_welscommon;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <SharedLibrarySearchPath>%(SharedLibrarySearchPath);$(Sysroot)\usr\lib</SharedLibrarySearchPath>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
     </Link>
