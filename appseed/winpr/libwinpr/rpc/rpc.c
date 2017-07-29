@@ -29,7 +29,7 @@
 
 #include "../log.h"
 #define TAG WINPR_TAG("rpc")
-
+#ifndef _UWP
 RPC_STATUS RpcBindingCopy(RPC_BINDING_HANDLE SourceBinding,
                           RPC_BINDING_HANDLE* DestinationBinding)
 {
@@ -971,5 +971,5 @@ RPC_STATUS RpcServerInqBindingHandle(RPC_BINDING_HANDLE* Binding)
 	WLog_ERR(TAG, "Not implemented");
 	return 0;
 }
-
+#endif
 #endif

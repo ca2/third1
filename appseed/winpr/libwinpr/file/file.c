@@ -935,10 +935,12 @@ BOOL PathIsDirectoryEmptyA(LPCSTR pszPath)
 	return FALSE;
 }
 
+#ifndef _UWP
 UINT GetACP(void)
 {
 	return CP_UTF8;
 }
+#endif
 
 #endif
 

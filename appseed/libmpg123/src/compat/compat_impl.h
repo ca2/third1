@@ -244,5 +244,9 @@ char* compat_strdup(const char *s)
    {
       return NULL;
    }
+#ifdef _WIN32
+   return _strdup(s);
+#else
    return strdup(s);
+#endif
 }

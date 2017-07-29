@@ -426,12 +426,12 @@ BOOL GetComputerNameExW(COMPUTER_NAME_FORMAT NameType, LPWSTR lpBuffer, LPDWORD 
 #endif
 
 #if defined(_UWP)
-
+#ifndef _UWP
 DWORD GetTickCount(void)
 {
 	return (DWORD) GetTickCount64();
 }
-
+#endif
 #endif
 
 #if (!defined(_WIN32)) || (defined(_WIN32) && (_WIN32_WINNT < 0x0600))
