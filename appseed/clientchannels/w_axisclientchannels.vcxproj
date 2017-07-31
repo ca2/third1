@@ -273,10 +273,10 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
       <UseFullPaths>true</UseFullPaths>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>swresample.lib;avutil.lib;avformat.lib;avcodec.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -284,6 +284,7 @@
       <FixedBaseAddress>false</FixedBaseAddress>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
       <ImportLibrary>$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
+      <AdditionalOptions>/nodefaultlib:vccorlibd /nodefaultlib:msvcrtd vccorlibd.lib msvcrtd.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
@@ -293,15 +294,16 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PreprocessorDefinitions>_UWP;BUILTIN_CHANNELS;METROWIN;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0602;WIN32_WINNT=0x0602;WINPR_EXPORTS;FREERDP_EXPORTS;_DEBUG;HAVE_CONFIG_H;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>swresample.lib;avutil.lib;avformat.lib;avcodec.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalOptions>/nodefaultlib:vccorlib /nodefaultlib:msvcrt vccorlib.lib msvcrt.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|arm'">
@@ -312,15 +314,16 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PreprocessorDefinitions>_UWP;BUILTIN_CHANNELS;METROWIN;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0602;WIN32_WINNT=0x0602;WINPR_EXPORTS;FREERDP_EXPORTS;_DEBUG;HAVE_CONFIG_H;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>swresample.lib;avutil.lib;avformat.lib;avcodec.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalOptions>/nodefaultlib:vccorlibd /nodefaultlib:msvcrtd vccorlibd.lib msvcrtd.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|arm'">
@@ -330,15 +333,16 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PreprocessorDefinitions>_UWP;BUILTIN_CHANNELS;METROWIN;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0602;WIN32_WINNT=0x0602;WINPR_EXPORTS;FREERDP_EXPORTS;_DEBUG;HAVE_CONFIG_H;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>swresample.lib;avutil.lib;avformat.lib;avcodec.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalOptions>/nodefaultlib:vccorlib /nodefaultlib:msvcrt vccorlib.lib msvcrt.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
@@ -349,15 +353,16 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PreprocessorDefinitions>_UWP;BUILTIN_CHANNELS;METROWIN;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0602;WIN32_WINNT=0x0602;WINPR_EXPORTS;FREERDP_EXPORTS;_DEBUG;HAVE_CONFIG_H;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>swresample.lib;avutil.lib;avformat.lib;avcodec.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalOptions>/nodefaultlib:vccorlibd /nodefaultlib:msvcrtd vccorlibd.lib msvcrtd.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
@@ -367,15 +372,16 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PreprocessorDefinitions>_UWP;BUILTIN_CHANNELS;METROWIN;_WINDOWS;_X86_;UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;WIN32_LEAN_AND_MEAN;WINVER=0x0602;WIN32_WINNT=0x0602;WINPR_EXPORTS;FREERDP_EXPORTS;_DEBUG;HAVE_CONFIG_H;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>swresample.lib;avutil.lib;avformat.lib;avcodec.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <ModuleDefinitionFile>./$(ProjectName).def</ModuleDefinitionFile>
+      <AdditionalOptions>/nodefaultlib:vccorlib /nodefaultlib:msvcrt vccorlib.lib msvcrt.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
