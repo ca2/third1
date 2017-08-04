@@ -40,6 +40,9 @@
 
 #include "rfx_rlgr.h"
 
+
+
+
 /* Constants used in RLGR1/RLGR3 algorithm */
 #define KPMAX	(80)	/* max value for kp or krp */
 #define LSGR	(3)	/* shift count to convert kp to k */
@@ -81,8 +84,12 @@ static INLINE UINT32 lzcnt_s(UINT32 x)
 	if (!x)
 		return 32;
 	
-	if (!g_LZCNT)
+#ifndef _UWP
+
+   if (!g_LZCNT)
 	{
+
+#endif
 		UINT32 y;
 		int n = 32;
 		y = x >> 16;  if (y != 0) { n = n - 16; x = y; }
@@ -90,10 +97,16 @@ static INLINE UINT32 lzcnt_s(UINT32 x)
 		y = x >>  4;  if (y != 0) { n = n -  4; x = y; }
 		y = x >>  2;  if (y != 0) { n = n -  2; x = y; }
 		y = x >>  1;  if (y != 0) return n - 2;
-		return n - x;
+
+#ifndef _UWP
+
+      return n - x;
 	}
 
 	return __lzcnt(x);
+
+#endif
+
 }
 
 int rfx_rlgr_decode(const BYTE* pSrcData, UINT32 SrcSize, INT16* pDstData, UINT32 DstSize, int mode)

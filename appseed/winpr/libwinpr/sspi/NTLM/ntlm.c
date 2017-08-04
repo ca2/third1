@@ -144,7 +144,7 @@ int ntlm_SetContextTargetName(NTLM_CONTEXT* context, char* TargetName)
 
 NTLM_CONTEXT* ntlm_ContextNew()
 {
-	HKEY hKey;
+	HKEY hKey = NULL;
 	LONG status;
 	DWORD dwType;
 	DWORD dwSize;
