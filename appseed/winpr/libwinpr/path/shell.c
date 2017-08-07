@@ -113,7 +113,20 @@ static char* GetPath_HOME(void)
 static char* GetPath_TEMP(void)
 {
 	char* path = NULL;
-#ifdef _WIN32
+#ifdef _UWP
+
+   char sz[4096];
+
+   strcpy(sz, winpr_dir_system());
+
+   if (sz[strlen(sz) - 1] != '\\'
+      && sz[strlen(sz) - 1] != '/')
+      strcat(sz, "\\");
+
+   strcat(sz, "tempiey");
+
+   path = strdup(sz);
+#elif defined(_WIN32)
 	path = GetEnvAlloc("TEMP");
 #elif defined(__IOS__)
     path = strdup(ios_get_temp());
