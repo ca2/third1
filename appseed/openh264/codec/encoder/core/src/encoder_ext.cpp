@@ -2398,7 +2398,7 @@ void OutputCpuFeaturesLog (SLogContext* pLogCtx, uint32_t uiCpuFeatureFlags, uin
 int32_t GetMultipleThreadIdc (SLogContext* pLogCtx, SWelsSvcCodingParam* pCodingParam, int16_t& iSliceNum,
                               int32_t& iCacheLineSize, uint32_t& uiCpuFeatureFlags) {
   // for cpu features detection, Only detect once??
-  int32_t uiCpuCores = 0; // number of logic processors on physical processor package, zero logic processors means HTT not supported
+  int32_t uiCpuCores = 0; // number of logic processors on physical handler package, zero logic processors means HTT not supported
   uiCpuFeatureFlags = WelsCPUFeatureDetect (&uiCpuCores); // detect cpu capacity features
 
 #ifdef X86_ASM
@@ -2419,7 +2419,7 @@ int32_t GetMultipleThreadIdc (SLogContext* pLogCtx, SWelsSvcCodingParam* pCoding
     uiCpuCores = pCodingParam->iMultipleThreadIdc;
   else {
     if (uiCpuCores ==
-        0) { // cpuid not supported or doesn't expose the number of cores, use high level system API as followed to detect number of pysical/logic processor
+        0) { // cpuid not supported or doesn't expose the number of cores, use high level system API as followed to detect number of pysical/logic handler
       uiCpuCores = DynamicDetectCpuCores();
     }// So far so many cpu cores up to MAX_THREADS_NUM mean for server platforms,
     // for client application here it is constrained by maximal to MAX_THREADS_NUM

@@ -1667,7 +1667,7 @@ TAOCRYPT_NAKED void PentiumOptimized::Multiply8Bottom(word* Z, const word* X,
 #undef AS1
 #undef AS2
 
-#else	// not x86 - no processor specific code at this layer
+#else	// not x86 - no handler specific code at this layer
 
 typedef Portable LowLevel;
 

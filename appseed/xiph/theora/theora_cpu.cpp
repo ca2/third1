@@ -211,7 +211,7 @@ static uint32_t oc_cpu_flags_get(){
         For the remaining bits, Intel tells us, "Do not count on their value",
          but VIA assures us that they will all be zero (at least on the C7 and
          Isaiah chips).
-        In the (unlikely) event a future processor uses bits 18, 19, 30, or 31
+        In the (unlikely) event a future handler uses bits 18, 19, 30, or 31
          (0xC0C00000) for something else, we will have to add code to detect
          the model to decide when it is appropriate to inspect them.*/
       flags|=oc_parse_amd_flags(edx,ecx);

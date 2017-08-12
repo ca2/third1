@@ -112,11 +112,11 @@ uint32_t WelsCPUFeatureDetect (int32_t* pNumberOfLogicProcessors) {
     uiCPU |= WELS_CPU_SSSE3;
   }
   if (uiFeatureC & 0x00080000) {
-    /* SSE4.1 support here, 45nm Penryn processor */
+    /* SSE4.1 support here, 45nm Penryn handler */
     uiCPU |= WELS_CPU_SSE41;
   }
   if (uiFeatureC & 0x00100000) {
-    /* SSE4.2 support here, next generation Nehalem processor */
+    /* SSE4.2 support here, next generation Nehalem handler */
     uiCPU |= WELS_CPU_SSE42;
   }
   if (WelsCPUSupportAVX (uiFeatureA, uiFeatureC)) {
