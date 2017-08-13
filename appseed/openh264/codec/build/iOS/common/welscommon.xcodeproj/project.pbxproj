@@ -39,6 +39,7 @@
 		5BD896BA1A7B839B00D32B7D /* memory_align.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BD896B91A7B839B00D32B7D /* memory_align.cpp */; };
 		5BDD15ED1A79027600B6CA2E /* mc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BDD15EC1A79027600B6CA2E /* mc.cpp */; };
 		9A106A731D15E4E9007288BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE443D818B722CD0017DF25 /* Foundation.framework */; };
+		9AEE8FA11F404EBE0035CDF0 /* welsCodecTrace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEE8FA01F404EBE0035CDF0 /* welsCodecTrace.cpp */; };
 		F0B204F918FD23BF005DA23F /* copy_mb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0B204F818FD23BF005DA23F /* copy_mb.cpp */; };
 		F791965919D3BE2200F60C6B /* intra_pred_common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F791965819D3BE2200F60C6B /* intra_pred_common.cpp */; };
 		FAABAA1818E9354A00D4186F /* sad_common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAABAA1718E9354A00D4186F /* sad_common.cpp */; };
@@ -123,6 +124,9 @@
 		5BDD15EC1A79027600B6CA2E /* mc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mc.cpp; sourceTree = "<group>"; };
 		9A106A741D15E4F1007288BA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		9A269FC61D7ED6FB001F47A8 /* ace.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ace.xcodeproj; path = ../../../../../../../app/appseed/ace/ace.xcodeproj; sourceTree = "<group>"; };
+		9AEE8FA01F404EBE0035CDF0 /* welsCodecTrace.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = welsCodecTrace.cpp; sourceTree = "<group>"; };
+		9AEE8FA51F404EEE0035CDF0 /* welsCodecTrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = welsCodecTrace.h; sourceTree = "<group>"; };
+		9AEE8FA61F404F3D0035CDF0 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 		F0B204F718FD23B6005DA23F /* copy_mb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = copy_mb.h; sourceTree = "<group>"; };
 		F0B204F818FD23BF005DA23F /* copy_mb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = copy_mb.cpp; sourceTree = "<group>"; };
 		F556A8221906673900E156A8 /* arm_arch64_common_macro.S */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = arm_arch64_common_macro.S; path = arm64/arm_arch64_common_macro.S; sourceTree = "<group>"; };
@@ -173,6 +177,8 @@
 		4C3406B618D96EA600DFA14A /* inc */ = {
 			isa = PBXGroup;
 			children = (
+				9AEE8FA61F404F3D0035CDF0 /* utils.h */,
+				9AEE8FA51F404EEE0035CDF0 /* welsCodecTrace.h */,
 				F791965719D3BA9300F60C6B /* intra_pred_common.h */,
 				F0B204F718FD23B6005DA23F /* copy_mb.h */,
 				FAABAA1618E9353F00D4186F /* sad_common.h */,
@@ -197,6 +203,7 @@
 		4C3406C318D96EA600DFA14A /* src */ = {
 			isa = PBXGroup;
 			children = (
+				9AEE8FA01F404EBE0035CDF0 /* welsCodecTrace.cpp */,
 				F791965819D3BE2200F60C6B /* intra_pred_common.cpp */,
 				5BA8F2BF19603F5F00011CE4 /* common_tables.cpp */,
 				F0B204F818FD23BF005DA23F /* copy_mb.cpp */,
@@ -416,6 +423,7 @@
 				4C3406CD18D96EA600DFA14A /* cpu.cpp in Sources */,
 				F0B204F918FD23BF005DA23F /* copy_mb.cpp in Sources */,
 				FAABAA1818E9354A00D4186F /* sad_common.cpp in Sources */,
+				9AEE8FA11F404EBE0035CDF0 /* welsCodecTrace.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
