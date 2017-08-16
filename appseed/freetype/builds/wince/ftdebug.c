@@ -66,7 +66,7 @@
     if ( !sz )
       lstrcpyW( buf, L"OutputDebugStringEx: MultiByteToWideChar failed" );
 
-    OutputDebugStringW( buf );
+    output_debug_string( buf );
   }
 
 

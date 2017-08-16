@@ -73,7 +73,7 @@ static BOOL WLog_ConsoleAppender_WriteMessage(wLog* log, wLogAppender* appender,
 		sprintf_s(MessageString, sizeof(MessageString), "%s%s\n",
 			  message->PrefixString, message->TextString);
 
-		OutputDebugStringA(MessageString);
+		output_debug_string(MessageString);
 
 		return TRUE;
 	}

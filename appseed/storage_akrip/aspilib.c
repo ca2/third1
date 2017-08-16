@@ -184,7 +184,7 @@ int WINAPI DllMain( HANDLE hModule, uint32_t dwReason, LPVOID lpReserved )
 
     case DLL_PROCESS_DETACH:
 #ifdef _DBLIBMAIN
-      OutputDebugString( "akrip32: DLL_PROCESS_DETACH" );
+      output_debug_string( "akrip32: DLL_PROCESS_DETACH" );
 #endif
       deinitMutexes();
       UnmapViewOfFile( pcdShared );
@@ -1779,7 +1779,7 @@ void dbprintf( char *fmt, ... )
   va_start( arg, fmt );
 
   vsprintf( buf, fmt, arg );
-  OutputDebugString( buf );
+  output_debug_string( buf );
 
   va_end( arg );
 }

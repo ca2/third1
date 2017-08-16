@@ -517,7 +517,7 @@ uint32_t SPTIExecSCSICommand( LPSRB_ExecSCSICmd lpsrb, int bBeenHereBefore )
     {
       lpsrb->SRB_Status = SS_COMP;
 #ifdef _DEBUG_SCSIPT
-      OutputDebugString( "       : SRB_Status == SS_COMP" );
+      output_debug_string( "       : SRB_Status == SS_COMP" );
 #endif
     }
   else

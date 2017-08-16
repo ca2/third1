@@ -261,7 +261,7 @@ void OPENSSL_showfatal(const char *fmta, ...)
                  * in debug builds, send output to the debugger or any other
                  * tool like DebugView which can monitor the output.
                  */
-                OutputDebugString(pmsg);
+                output_debug_string(pmsg);
 #endif
             }
 
