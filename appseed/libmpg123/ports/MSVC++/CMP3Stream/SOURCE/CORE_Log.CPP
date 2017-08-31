@@ -27,7 +27,7 @@ void IIEP::DebugLog(const char *pcszFormat, ...)
   _vsnprintf(cBuffer, 0x8000, pcszFormat, pcArg);
   va_end(pcArg);
 
-  ::output_debug_string(cBuffer);
+  ::OutputDebugString(cBuffer);
 #endif
 }
 
@@ -44,7 +44,7 @@ void IIEP::DebugLog(const WORD *pcwsFormat, ...)
   _vsnwprintf(wcBuffer, 0x8000, pcwsFormat, pcArg);
   va_end(pcArg);
 
-  ::output_debug_string(wcBuffer);
+  ::OutputDebugString(wcBuffer);
 #endif
 }
 

@@ -68,7 +68,7 @@
     vprintf( fmt, ap );
     /* send the string to the debugger as well */
     vsprintf( buf, fmt, ap );
-    output_debug_string( buf );
+    OutputDebugString( buf );
     va_end( ap );
   }
 
@@ -85,7 +85,7 @@
 
     va_start( ap, fmt );
     vsprintf( buf, fmt, ap );
-    output_debug_string( buf );
+    OutputDebugString( buf );
     va_end( ap );
 
     exit( EXIT_FAILURE );
