@@ -201,7 +201,7 @@ static void rfx_encoder_tile_free(RFX_TILE* tile)
 {
 	free(tile);
 }
-int get_version_ex_a(LPOSVERSIONINFOA lpVersionInformation);
+int ca2_winpr_get_version_ex_a(LPOSVERSIONINFOA lpVersionInformation);
 RFX_CONTEXT* rfx_context_new(BOOL encoder)
 {
 	HKEY hKey;
