@@ -133,7 +133,7 @@
       <AdditionalIncludeDirectories>..\..\..\common\inc;..\..\..\encoder\core\inc;..\..\..\api\svc;..\..\..\processing\interface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_LIB;X86_ASM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <StringPooling>false</StringPooling>
@@ -160,7 +160,6 @@
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)$(TargetName).lib</OutputFile>
       <TargetMachine>MachineX86</TargetMachine>
       <SubSystem>Windows</SubSystem>
     </Lib>
@@ -229,9 +228,9 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..\..\common\inc;..\..\..\encoder\core\inc;..\..\..\api\svc;..\..\..\processing\interface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;_LIB;X86_ASM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <StringPooling>false</StringPooling>
@@ -279,7 +278,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..\..\common\inc;..\..\..\encoder\core\inc;..\..\..\api\svc;..\..\..\processing\interface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;_LIB;X86_ASM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -330,13 +329,16 @@
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <AdditionalIncludeDirectories>..\..\..\common\inc;..\..\..\encoder\core\inc;..\..\..\api\svc;..\..\..\processing\interface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;_LIB;X86_ASM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <StringPooling>true</StringPooling>
+      <StringPooling>false</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <UseFullPaths>true</UseFullPaths>
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <CompileAsManaged>false</CompileAsManaged>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -366,21 +368,23 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <AdditionalIncludeDirectories>..\..\..\common\inc;..\..\..\encoder\core\inc;..\..\..\api\svc;..\..\..\processing\interface;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;_LIB;X86_ASM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <StringPooling>true</StringPooling>
+      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>false</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <UseFullPaths>true</UseFullPaths>
       <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <CompileAsManaged>false</CompileAsManaged>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Lib>
-      <OutputFile>$(OutDir)$(TargetName).lib</OutputFile>
       <SubSystem>Windows</SubSystem>
     </Lib>
     <Bscmake>
@@ -519,6 +523,9 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win64 -DWIN64 -o $(IntDir)%(Filename).obj %(FullPath)
 </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="..\..\..\common\x86\deblock.asm">
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
@@ -539,6 +546,9 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win64 -DWIN64 -o $(IntDir)%(Filename).obj %(FullPath)
 </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="..\..\..\common\x86\expand_picture.asm">
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
@@ -559,6 +569,9 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win64 -DWIN64 -o $(IntDir)%(Filename).obj %(FullPath)
 </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="..\..\..\common\x86\intra_pred_com.asm">
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
@@ -579,6 +592,9 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win64 -DWIN64 -o $(IntDir)%(Filename).obj %(FullPath)
 </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="..\..\..\common\x86\mb_copy.asm">
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
@@ -599,6 +615,9 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win64 -DWIN64 -o $(IntDir)%(Filename).obj %(FullPath)
 </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="..\..\..\common\x86\mc_chroma.asm">
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
@@ -619,6 +638,9 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win64 -DWIN64 -o $(IntDir)%(Filename).obj %(FullPath)
 </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="..\..\..\common\x86\mc_luma.asm">
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
@@ -639,6 +661,9 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win64 -DWIN64 -o $(IntDir)%(Filename).obj %(FullPath)
 </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="..\..\..\common\x86\satd_sad.asm">
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
@@ -659,6 +684,9 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win64 -DWIN64 -o $(IntDir)%(Filename).obj %(FullPath)
 </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="..\..\..\common\x86\vaa.asm">
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
@@ -679,6 +707,9 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win64 -DWIN64 -o $(IntDir)%(Filename).obj %(FullPath)
 </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="..\..\..\encoder\core\x86\coeff.asm">
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
@@ -699,6 +730,9 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win64 -DWIN64 -o $(IntDir)%(Filename).obj %(FullPath)
 </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="..\..\..\encoder\core\x86\dct.asm">
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
@@ -719,6 +753,9 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win64 -DWIN64 -o $(IntDir)%(Filename).obj %(FullPath)
 </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="..\..\..\encoder\core\x86\intra_pred.asm">
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
@@ -739,6 +776,9 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win64 -DWIN64 -o $(IntDir)%(Filename).obj %(FullPath)
 </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="..\..\..\encoder\core\x86\matrix_transpose.asm">
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
@@ -759,6 +799,9 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win64 -DWIN64 -o $(IntDir)%(Filename).obj %(FullPath)
 </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="..\..\..\encoder\core\x86\memzero.asm">
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
@@ -779,6 +822,9 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win64 -DWIN64 -o $(IntDir)%(Filename).obj %(FullPath)
 </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="..\..\..\encoder\core\x86\quant.asm">
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
@@ -799,6 +845,9 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win64 -DWIN64 -o $(IntDir)%(Filename).obj %(FullPath)
 </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="..\..\..\encoder\core\x86\sample_sc.asm">
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
@@ -819,6 +868,9 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win64 -DWIN64 -o $(IntDir)%(Filename).obj %(FullPath)
 </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </CustomBuild>
     <CustomBuild Include="..\..\..\encoder\core\x86\score.asm">
       <Command Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win32 -DPREFIX -DX86_32 -o $(IntDir)%(Filename).obj %(FullPath)
@@ -839,12 +891,10 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='stage|x64'">nasm -I%(RootDir)%(Directory) -I%(RootDir)%(Directory)/../../../common/x86/ -f win64 -DWIN64 -o $(IntDir)%(Filename).obj %(FullPath)
 </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='stage|x64'">$(IntDir)%(Filename).obj;%(Outputs)</Outputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\processing\build\win32\WelsVP.vcxproj">
-      <Project>{e8dfafa1-8dac-4127-8d27-fbd5819ee562}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
