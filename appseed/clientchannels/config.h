@@ -106,4 +106,5 @@
 
 
 
-#define WITH_OPENH264 1
+#define WITH_OPENH264 0
+#define WITH_LIBAVCODEC 0
