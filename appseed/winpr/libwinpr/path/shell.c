@@ -80,7 +80,9 @@ static char* GetEnvAlloc(LPCSTR lpName)
 
 
 
+#if defined(_WIN32)
 __declspec(dllexport)
+#endif
 char * winpr_dir_system();
 
 static char* GetPath_HOME(void)

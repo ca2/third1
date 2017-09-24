@@ -5900,7 +5900,7 @@ for (;; ptr++)
           /* NOTE: cannot write IS_DIGIT(*(++ptr)) here because IS_DIGIT
           references its argument twice. */
 
-          if (*ptr != CHAR_EQUALS_SIGN || (ptr++, !IS_DIGIT(*ptr)))
+             if (*ptr != CHAR_EQUALS_SIGN || ((void)(ptr++), !IS_DIGIT(*ptr)))
             {
             *errorcodeptr = ERR79;
             goto FAILED;
@@ -6084,7 +6084,7 @@ for (;; ptr++)
         /* If terminator == CHAR_NULL it means that the name followed directly
         after the opening parenthesis [e.g. (?(abc)...] and in this case there
         are some further alternatives to try. For the cases where terminator !=
-        CHAR_NULL [things like (?(<name>... or (?('name')... or (?(R&name)... ]
+         CHAR_NULL [th(void)(ings )like (?(<name>... or (?('name')... or (?(R&name)... ]
         we have now checked all the possibilities, so give an error. */
 
         else if (terminator != CHAR_NULL)
