@@ -16,7 +16,7 @@
 /* Include files */
 #define HAVE_FCNTL_H
 #if defined(LINUX) || defined(__APPLE__)
-#define HAVE_UNISTD_H
+#define HAVE_UNISTD_H 1
 #endif
 
 #define HAVE_STDINT_H

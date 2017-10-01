@@ -14,14 +14,11 @@
 		071EFB621C5562FA00EA68B0 /* drive_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 071EFB581C555F0E00EA68B0 /* drive_main.c */; };
 		074BD0C21B5F361500219723 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0C11B5F361500219723 /* AudioToolbox.framework */; };
 		078DF8DE1C529B4100E65274 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B091811B608E5400B5BCA7 /* TPCircularBuffer.c */; };
-		07ACFDFB1C4A34E400953A75 /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ACFDF91C4A34E400953A75 /* libavcodec.a */; };
-		07ACFDFC1C4A34E400953A75 /* libavutil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07ACFDFA1C4A34E400953A75 /* libavutil.a */; };
 		07B0917C1B608D8500B5BCA7 /* rdpsnd_ios.c in Sources */ = {isa = PBXBuildFile; fileRef = 07B091791B608D8500B5BCA7 /* rdpsnd_ios.c */; };
 		07B0917E1B608D8500B5BCA7 /* TPCircularBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 07B0917B1B608D8500B5BCA7 /* TPCircularBuffer.h */; };
 		07B098B91B8493F3002AC4F0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 074BD0BD1B5F35C100219723 /* Foundation.framework */; };
 		07B098BD1B849411002AC4F0 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B098BC1B849411002AC4F0 /* CoreVideo.framework */; };
 		07B098C11B8494DE002AC4F0 /* VideoDecodeAcceleration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B098C01B8494DE002AC4F0 /* VideoDecodeAcceleration.framework */; };
-		07D0E2CB1C4D60DA0032C524 /* libfdk-aac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D0E2CA1C4D60DA0032C524 /* libfdk-aac.a */; };
 		07DD6F101B5F0CA2003A1CE1 /* audin_main.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6E451B5F0CA2003A1CE1 /* audin_main.c */; };
 		07DD6F111B5F0CA2003A1CE1 /* audin_main.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD6E461B5F0CA2003A1CE1 /* audin_main.h */; };
 		07DD6F181B5F0CA2003A1CE1 /* addin.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6E521B5F0CA2003A1CE1 /* addin.c */; };
@@ -381,6 +378,8 @@
 		9A26A0C31D7EE37B001F47A8 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		9A8DBF681D20B096005AF004 /* libcups.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcups.tbd; path = usr/lib/libcups.tbd; sourceTree = SDKROOT; };
 		9A9C04531D4EB37A00F173B2 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
+		9AE9FBA31F7F4CFA00367001 /* libavcodec.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavcodec.dylib; path = ../../../nodeapp/thirdparty/library/libavcodec.dylib; sourceTree = "<group>"; };
+		9AE9FBA51F7F4D0D00367001 /* libavutil.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavutil.dylib; path = ../../../nodeapp/thirdparty/library/libavutil.dylib; sourceTree = "<group>"; };
 		9AEFDD391D1602AB00F91F0B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		9AEFDD3B1D16044E00F91F0B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		9AEFDD3D1D16047400F91F0B /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/CoreVideo.framework; sourceTree = DEVELOPER_DIR; };
@@ -404,9 +403,6 @@
 			files = (
 				9A26A0C41D7EE37B001F47A8 /* CoreServices.framework in Frameworks */,
 				9A8DBF691D20B096005AF004 /* libcups.tbd in Frameworks */,
-				07D0E2CB1C4D60DA0032C524 /* libfdk-aac.a in Frameworks */,
-				07ACFDFB1C4A34E400953A75 /* libavcodec.a in Frameworks */,
-				07ACFDFC1C4A34E400953A75 /* libavutil.a in Frameworks */,
 				07B098C11B8494DE002AC4F0 /* VideoDecodeAcceleration.framework in Frameworks */,
 				07B098BD1B849411002AC4F0 /* CoreVideo.framework in Frameworks */,
 				07B098B91B8493F3002AC4F0 /* Foundation.framework in Frameworks */,
@@ -934,6 +930,7 @@
 				074BD0BB1B5F359A00219723 /* CoreAudio.framework */,
 				07DD6E351B5F0CA2003A1CE1 /* clientchannels */,
 				9A1B358D16A2D7A500875A94 /* Products */,
+				9AE9FBA21F7F4CF900367001 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -972,6 +969,15 @@
 				9A26A0BA1D7EE27A001F47A8 /* tables_mac.c */,
 			);
 			path = ca2;
+			sourceTree = "<group>";
+		};
+		9AE9FBA21F7F4CF900367001 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9AE9FBA51F7F4D0D00367001 /* libavutil.dylib */,
+				9AE9FBA31F7F4CFA00367001 /* libavcodec.dylib */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1395,6 +1401,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
@@ -1417,7 +1424,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
-				USER_HEADER_SEARCH_PATHS = ".. client $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include/ . $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../nodeapp/thirdparty/appseed $(WorkspaceDir)/../../ ../../appseed ../../ ../";
+				USER_HEADER_SEARCH_PATHS = ". .. client $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include/ $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../nodeapp/thirdparty/appseed $(WorkspaceDir)/../../ ../../appseed ../../ ../";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
@@ -1466,6 +1473,7 @@
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
@@ -1486,7 +1494,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = ".. client $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include/ . $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../nodeapp/thirdparty/appseed $(WorkspaceDir)/../../ ../../appseed ../../ ../";
+				USER_HEADER_SEARCH_PATHS = ". .. client $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../app/include/ $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../../nodeapp/thirdparty/appseed $(WorkspaceDir)/../../ ../../appseed ../../ ../";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Release;
@@ -1494,8 +1502,8 @@
 		9A1B359116A2D7A500875A94 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
-				INSTALL_PATH = /Library/Frameworks/ca2/basis;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/opt/local/lib,
@@ -1506,8 +1514,8 @@
 		9A1B359216A2D7A500875A94 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
-				INSTALL_PATH = /Library/Frameworks/ca2/stage;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/opt/local/lib,

@@ -1448,7 +1448,7 @@ static VOID VCAPITYPE rdpsnd_virtual_channel_init_event(LPVOID pInitHandle,
 
 			rdpsnd_virtual_channel_event_terminated(plugin);
 			plugin = NULL;
-			break;
+         break;
 	}
 
 	if (error && plugin && plugin->rdpcontext)
