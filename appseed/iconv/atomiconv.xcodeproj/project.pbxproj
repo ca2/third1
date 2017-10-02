@@ -54,7 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		077A01571B4D5479001C85FF /* libios_atomiconv.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_atomiconv.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		077A01571B4D5479001C85FF /* ios_atomiconv.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = ios_atomiconv.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A16454F19C4A60000966C5E /* aliases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aliases.h; sourceTree = "<group>"; };
 		9A16455019C4A60000966C5E /* aliases2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aliases2.h; sourceTree = "<group>"; };
 		9A16455119C4A60000966C5E /* aliases_aix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aliases_aix.h; sourceTree = "<group>"; };
@@ -284,7 +284,7 @@
 		9A16465819C4A60100966C5E /* viscii.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = viscii.h; sourceTree = "<group>"; };
 		9A16466519C4A60100966C5E /* export.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = export.h; sourceTree = "<group>"; };
 		9A16466C19C4A60100966C5E /* localcharset.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = localcharset.c; sourceTree = "<group>"; };
-		9A1647A219C4A73900966C5E /* libatomiconv.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libatomiconv.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A1647A219C4A73900966C5E /* libatomiconv.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libatomiconv.dylib; path = atomiconv.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A269F5A1D7ED6BE001F47A8 /* ace.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ace.xcodeproj; path = ../../../app/appseed/ace/ace.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -589,7 +589,7 @@
 			isa = PBXGroup;
 			children = (
 				9A1647A219C4A73900966C5E /* libatomiconv.dylib */,
-				077A01571B4D5479001C85FF /* libios_atomiconv.a */,
+				077A01571B4D5479001C85FF /* ios_atomiconv.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -629,7 +629,7 @@
 			);
 			name = ios_atomiconv;
 			productName = atomiconv;
-			productReference = 077A01571B4D5479001C85FF /* libios_atomiconv.a */;
+			productReference = 077A01571B4D5479001C85FF /* ios_atomiconv.a */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9A1647A119C4A73900966C5E /* atomiconv */ = {
@@ -747,80 +747,30 @@
 		077A01551B4D5479001C85FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EXECUTABLE_EXTENSION = a;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
 				MACH_O_TYPE = staticlib;
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos11.0;
 			};
 			name = Debug;
 		};
 		077A01561B4D5479001C85FF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				ENABLE_NS_ASSERTIONS = NO;
 				EXECUTABLE_EXTENSION = a;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
 				MACH_O_TYPE = staticlib;
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos11.0;
 			};
 			name = Release;
 		};
 		9A1647A419C4A73900966C5E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = NO;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CODE_SIGN_IDENTITY = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
 			};
 			name = Debug;
 		};
 		9A1647A519C4A73900966C5E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = NO;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CODE_SIGN_IDENTITY = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
 			};
 			name = Release;
 		};
@@ -848,9 +798,9 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
+				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -912,8 +862,8 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
+				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
