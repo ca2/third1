@@ -803,6 +803,7 @@
 		9AEEBD8519C5806F00866C9E /* ftmodule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftmodule.h; sourceTree = "<group>"; };
 		9AEEBD8619C5806F00866C9E /* ftoption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftoption.h; sourceTree = "<group>"; };
 		9AEEBD8719C5806F00866C9E /* ftstdlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftstdlib.h; sourceTree = "<group>"; };
+		9AF4BEEC1F8350A900197385 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.0.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -830,14 +831,15 @@
 			isa = PBXGroup;
 			children = (
 				9A269F961D7ED6E2001F47A8 /* ace.xcodeproj */,
+				9A331BD31D4BC3FF00255105 /* axispng.xcodeproj */,
 				9A331C311D4BC57D00255105 /* libz.tbd */,
 				9A331C2F1D4BC57600255105 /* libz.tbd */,
 				9A331BE51D4BC42F00255105 /* libbz2.tbd */,
 				9A331BD11D4BC3D600255105 /* libbz2.tbd */,
-				9A331BD31D4BC3FF00255105 /* axispng.xcodeproj */,
 				9AEEB84719C5802F00866C9E /* include */,
 				9AEEB49219C5089500866C9E /* src */,
 				9A4E844F1D1FD2B6008A419B /* Products */,
+				9AF4BEEB1F8350A800197385 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -855,7 +857,7 @@
 			isa = PBXGroup;
 			children = (
 				9A331BDA1D4BC3FF00255105 /* libaxispng.dylib */,
-				9A331BDC1D4BC3FF00255105 /* libios_axispng.a */,
+				9A331BDC1D4BC3FF00255105 /* libios_axispng.dylib */,
 				9A331BDE1D4BC3FF00255105 /* axispng_iosTests.xctest */,
 			);
 			name = Products;
@@ -1316,6 +1318,14 @@
 				9AEEBD8719C5806F00866C9E /* ftstdlib.h */,
 			);
 			path = config;
+			sourceTree = "<group>";
+		};
+		9AF4BEEB1F8350A800197385 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9AF4BEEC1F8350A900197385 /* libz.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1852,10 +1862,10 @@
 			remoteRef = 9A331BD91D4BC3FF00255105 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A331BDC1D4BC3FF00255105 /* libios_axispng.a */ = {
+		9A331BDC1D4BC3FF00255105 /* libios_axispng.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_axispng.a;
+			path = libios_axispng.dylib;
 			remoteRef = 9A331BDB1D4BC3FF00255105 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

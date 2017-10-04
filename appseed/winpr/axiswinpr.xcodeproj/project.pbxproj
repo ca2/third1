@@ -549,6 +549,27 @@
 			remoteGlobalIDString = 07B2729319A01A4600E822E1;
 			remoteInfo = axisopenssl;
 		};
+		9AF4C4961F83DE9800197385 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A269FEA1D7ED70E001F47A8 /* ace.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 07B65763190F3CA2002DAADE;
+			remoteInfo = ios_ace;
+		};
+		9AF4C4981F83DE9800197385 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AE9FC921F7F6AFE00367001 /* axiscrypto.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AE24D871904CF46001AEFFB;
+			remoteInfo = ios_axiscrypto;
+		};
+		9AF4C49A1F83DE9800197385 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AE9FC9E1F7F6B0E00367001 /* axisopenssl.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AE24D871904CF46001AEFFB;
+			remoteInfo = ios_axisopenssl;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -867,6 +888,7 @@
 		9ACBD1DF1DDFDB60004AF08F /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../../../nodeapp/thirdparty/library/libssl.a; sourceTree = "<group>"; };
 		9AE9FC921F7F6AFE00367001 /* axiscrypto.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiscrypto.xcodeproj; path = ../crypto/axiscrypto.xcodeproj; sourceTree = "<group>"; };
 		9AE9FC9E1F7F6B0E00367001 /* axisopenssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axisopenssl.xcodeproj; path = ../openssl/axisopenssl.xcodeproj; sourceTree = "<group>"; };
+		9AF4C7541F83E2CD00197385 /* libios_axiscrypto.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libios_axiscrypto.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1589,7 +1611,7 @@
 			isa = PBXGroup;
 			children = (
 				9A269FF11D7ED70E001F47A8 /* libace.dylib */,
-				9A269FF31D7ED70E001F47A8 /* libios_ace.a */,
+				9A269FF31D7ED70E001F47A8 /* libios_ace.dylib */,
 				9A269FF51D7ED70E001F47A8 /* ace_iosTests.xctest */,
 			);
 			name = Products;
@@ -1717,6 +1739,7 @@
 		9ACBD1DC1DDFDB35004AF08F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9AF4C7541F83E2CD00197385 /* libios_axiscrypto.a */,
 				9A80872F1DE0F34200F70A07 /* libcrypto.a */,
 				9A8087301DE0F34200F70A07 /* libssl.a */,
 				9A8086371DE0F17300F70A07 /* iPhoneSimulator10.1-x86_64.sdk */,
@@ -1919,6 +1942,9 @@
 			buildRules = (
 			);
 			dependencies = (
+				9AF4C4971F83DE9800197385 /* PBXTargetDependency */,
+				9AF4C4991F83DE9800197385 /* PBXTargetDependency */,
+				9AF4C49B1F83DE9800197385 /* PBXTargetDependency */,
 			);
 			name = ios_axiswinpr;
 			productName = freetype;
@@ -1994,10 +2020,10 @@
 			remoteRef = 9A269FF01D7ED70E001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A269FF31D7ED70E001F47A8 /* libios_ace.a */ = {
+		9A269FF31D7ED70E001F47A8 /* libios_ace.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_ace.a;
+			path = libios_ace.dylib;
 			remoteRef = 9A269FF21D7ED70E001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -2039,7 +2065,8 @@
 		9AE9FCA71F7F6B0E00367001 /* libios_axisopenssl.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_axisopenssl.a;
+			name = libios_axisopenssl.a;
+			path = libios_axisopenssl.dylib;
 			remoteRef = 9AE9FCA61F7F6B0E00367001 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -2395,33 +2422,39 @@
 			name = axisopenssl;
 			targetProxy = 9AE9FCAC1F7F6B2500367001 /* PBXContainerItemProxy */;
 		};
+		9AF4C4971F83DE9800197385 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_ace;
+			targetProxy = 9AF4C4961F83DE9800197385 /* PBXContainerItemProxy */;
+		};
+		9AF4C4991F83DE9800197385 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_axiscrypto;
+			targetProxy = 9AF4C4981F83DE9800197385 /* PBXContainerItemProxy */;
+		};
+		9AF4C49B1F83DE9800197385 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ios_axisopenssl;
+			targetProxy = 9AF4C49A1F83DE9800197385 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		07DD5DF71B5F0A1E003A1CE1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_EXTENSION = a;
-				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = (
-					"$(inherited)",
-					"$(TARGET_BUILD_DIR)",
-					"$(WorkspaceDir)/../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/lib",
-				);
 				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include/ . framework libwinpr/utils/trio libwinpr/utils $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../ ../../appseed ../../ ../";
 			};
 			name = Debug;
 		};
 		07DD5DF81B5F0A1E003A1CE1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_EXTENSION = a;
 				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include/ . framework libwinpr/utils/trio libwinpr/utils $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../ ../../appseed ../../ ../";
 			};
 			name = Release;
 		};

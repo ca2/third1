@@ -3778,6 +3778,7 @@
 				07782A6D199FE92F00206CA1 /* crypto */,
 				9A4E845A1D1FD2DE008A419B /* Products */,
 				9AF8B7231D1FDDB50087E7A2 /* axiscrypto_iosTests.xctest */,
+				9AF4C7461F83E25F00197385 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3785,7 +3786,7 @@
 			isa = PBXGroup;
 			children = (
 				9A269F851D7ED6CA001F47A8 /* libace.dylib */,
-				9A269F871D7ED6CA001F47A8 /* libios_ace.a */,
+				9A269F871D7ED6CA001F47A8 /* libios_ace.dylib */,
 				9A269F891D7ED6CA001F47A8 /* ace_iosTests.xctest */,
 			);
 			name = Products;
@@ -3798,6 +3799,13 @@
 				07B2729A19A01A4600E822E1 /* libaxiscrypto.dylib */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		9AF4C7461F83E25F00197385 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3905,10 +3913,10 @@
 			remoteRef = 9A269F841D7ED6CA001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A269F871D7ED6CA001F47A8 /* libios_ace.a */ = {
+		9A269F871D7ED6CA001F47A8 /* libios_ace.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_ace.a;
+			path = libios_ace.dylib;
 			remoteRef = 9A269F861D7ED6CA001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

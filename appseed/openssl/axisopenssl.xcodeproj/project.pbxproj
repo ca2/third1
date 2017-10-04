@@ -310,6 +310,7 @@
 				9A4E844B1D1FD22B008A419B /* openssl */,
 				9A4E84491D1FD21A008A419B /* Products */,
 				9A92C9051D2058690069D173 /* axisopenssl_iosTests.xctest */,
+				9AF4C7491F83E27F00197385 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -374,6 +375,13 @@
 				0778A2F1199FFC5800206CA1 /* e_os2.h */,
 			);
 			name = openssl;
+			sourceTree = "<group>";
+		};
+		9AF4C7491F83E27F00197385 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -488,7 +496,8 @@
 		07502CBC1B252A49008D207C /* libios_axiscrypto.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_axiscrypto.a;
+			name = libios_axiscrypto.a;
+			path = libios_axiscrypto.dylib;
 			remoteRef = 07502CBB1B252A49008D207C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -817,6 +826,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = a;
+				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -825,6 +835,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = a;
+				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
 			};
 			name = Release;

@@ -1476,7 +1476,8 @@
 		07DD70AB1B5F0FD4003A1CE1 /* libios_axiswinpr.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libios_axiswinpr.a;
+			name = libios_axiswinpr.a;
+			path = libios_axiswinpr.dylib;
 			remoteRef = 07DD70AA1B5F0FD4003A1CE1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1511,7 +1512,8 @@
 		9AF1CA511F7F4225005B8774 /* libios_axisopenssl.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_axisopenssl.a;
+			name = libios_axisopenssl.a;
+			path = libios_axisopenssl.dylib;
 			remoteRef = 9AF1CA501F7F4225005B8774 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1852,27 +1854,19 @@
 		07DD674A1B5F0C16003A1CE1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_EXTENSION = a;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					APPLE_IOS,
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(TARGET_BUILD_DIR)",
-					"$(WorkspaceDir)/../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/lib",
-				);
 				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "../../include . $(WorkspaceDir)/../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/include framework $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../ ../../ ../ $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../../app/appseed";
 			};
 			name = Debug;
 		};
 		07DD674B1B5F0C16003A1CE1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_EXTENSION = a;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -1880,7 +1874,6 @@
 				);
 				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
-				USER_HEADER_SEARCH_PATHS = "../../include . $(WorkspaceDir)/../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/include framework $(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../ ../../ ../ $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include $(WorkspaceDir)/../../../app/appseed";
 			};
 			name = Release;
 		};
