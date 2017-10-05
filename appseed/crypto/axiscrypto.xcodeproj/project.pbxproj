@@ -604,7 +604,6 @@
 		9A0266241EA5B4AD003C82CF /* rc4_enc.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A0266231EA5B4AD003C82CF /* rc4_enc.c */; };
 		9A2734371EB9A26E0085D2AD /* mem_clr.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A99EF601EA6A1C700E56FCE /* mem_clr.c */; };
 		9A2734381EB9A26E0085D2AD /* aes_cbc.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AF8557F1EA669A5003201E7 /* aes_cbc.c */; };
-		9A2734391EB9A26E0085D2AD /* aes_x86core.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A02661B1EA5B215003C82CF /* aes_x86core.c */; };
 		9A27343A1EB9A26E0085D2AD /* aes_cfb.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A025F4A1EA5A2F1003C82CF /* aes_cfb.c */; };
 		9A27343B1EB9A26E0085D2AD /* aes_ecb.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A025F4C1EA5A2F1003C82CF /* aes_ecb.c */; };
 		9A27343C1EB9A26E0085D2AD /* aes_ige.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A025F4D1EA5A2F1003C82CF /* aes_ige.c */; };
@@ -711,7 +710,6 @@
 		9A2734A11EB9A26F0085D2AD /* blake2s.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A025FED1EA5A2F1003C82CF /* blake2s.c */; };
 		9A2734A21EB9A26F0085D2AD /* m_blake2b.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A025FEF1EA5A2F1003C82CF /* m_blake2b.c */; };
 		9A2734A31EB9A26F0085D2AD /* m_blake2s.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A025FF01EA5A2F1003C82CF /* m_blake2s.c */; };
-		9A2734A41EB9A26F0085D2AD /* x86_64-gcc.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A0260151EA5A2F1003C82CF /* x86_64-gcc.c */; };
 		9A2734A51EB9A26F0085D2AD /* bn_add.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A0260191EA5A2F1003C82CF /* bn_add.c */; };
 		9A2734A61EB9A26F0085D2AD /* bn_blind.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A02601B1EA5A2F1003C82CF /* bn_blind.c */; };
 		9A2734A71EB9A26F0085D2AD /* bn_const.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A02601C1EA5A2F1003C82CF /* bn_const.c */; };
@@ -3786,7 +3784,7 @@
 			isa = PBXGroup;
 			children = (
 				9A269F851D7ED6CA001F47A8 /* libace.dylib */,
-				9A269F871D7ED6CA001F47A8 /* libios_ace.dylib */,
+				9A269F871D7ED6CA001F47A8 /* libios_ace.a */,
 				9A269F891D7ED6CA001F47A8 /* ace_iosTests.xctest */,
 			);
 			name = Products;
@@ -3913,10 +3911,10 @@
 			remoteRef = 9A269F841D7ED6CA001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A269F871D7ED6CA001F47A8 /* libios_ace.dylib */ = {
+		9A269F871D7ED6CA001F47A8 /* libios_ace.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libios_ace.dylib;
+			path = libios_ace.a;
 			remoteRef = 9A269F861D7ED6CA001F47A8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -4553,7 +4551,6 @@
 			files = (
 				9A2734371EB9A26E0085D2AD /* mem_clr.c in Sources */,
 				9A2734381EB9A26E0085D2AD /* aes_cbc.c in Sources */,
-				9A2734391EB9A26E0085D2AD /* aes_x86core.c in Sources */,
 				9A27343A1EB9A26E0085D2AD /* aes_cfb.c in Sources */,
 				9A27343B1EB9A26E0085D2AD /* aes_ecb.c in Sources */,
 				9A27343C1EB9A26E0085D2AD /* aes_ige.c in Sources */,
@@ -4660,7 +4657,6 @@
 				9A2734A11EB9A26F0085D2AD /* blake2s.c in Sources */,
 				9A2734A21EB9A26F0085D2AD /* m_blake2b.c in Sources */,
 				9A2734A31EB9A26F0085D2AD /* m_blake2s.c in Sources */,
-				9A2734A41EB9A26F0085D2AD /* x86_64-gcc.c in Sources */,
 				9A2734A51EB9A26F0085D2AD /* bn_add.c in Sources */,
 				9A2734A61EB9A26F0085D2AD /* bn_blind.c in Sources */,
 				9A2734A71EB9A26F0085D2AD /* bn_const.c in Sources */,
@@ -5238,6 +5234,13 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos11.0]" = (
+					USE_SOCKETS,
+					OPENSSL_NO_HW_PADLOCK,
+					OPENSSL_NO_INLINE_ASM,
+					"DEBUG=1",
+					"$(inherited)",
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
@@ -5341,6 +5344,10 @@
 					OPENSSL_NO_ASM,
 					"$(inherited)",
 				);
+				"GCC_PREPROCESSOR_DEFINITIONS[sdk=iphoneos11.0]" = (
+					OPENSSL_NO_ASM,
+					"$(inherited)",
+				);
 				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
 			};
@@ -5351,6 +5358,10 @@
 			buildSettings = {
 				EXECUTABLE_EXTENSION = a;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					OPENSSL_NO_ASM,
+					"$(inherited)",
+				);
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = (
 					OPENSSL_NO_ASM,
 					"$(inherited)",
 				);

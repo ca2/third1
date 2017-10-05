@@ -42,7 +42,11 @@
 /* Architecture selection. */
 /* #define SLJIT_CONFIG_X86_32 1 */
 #ifdef __APPLE__
+#ifdef __arm__
+#define SLJIT_CONFIG_ARM_V7 1
+#else
    #define SLJIT_CONFIG_X86_64 1
+#endif
 #endif
 #ifdef LINUX
    #define SLJIT_CONFIG_X86_64 1
