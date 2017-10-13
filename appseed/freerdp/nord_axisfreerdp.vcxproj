@@ -92,7 +92,7 @@
     <ClCompile Include="libfreerdp\cache\palette.c" />
     <ClCompile Include="libfreerdp\cache\pointer.c" />
     <ClCompile Include="libfreerdp\codec\audio.c" />
-    <ClCompile Include="libfreerdp\codec\bitmap.c" />
+    <ClCompile Include="libfreerdp\codec\codec_bitmap.c" />
     <ClCompile Include="libfreerdp\codec\clear.c" />
     <ClCompile Include="libfreerdp\codec\color.c" />
     <ClCompile Include="libfreerdp\codec\dsp.c" />
@@ -124,12 +124,12 @@
     <ClCompile Include="libfreerdp\codec\zgfx.c" />
     <ClCompile Include="libfreerdp\common\addin.c" />
     <ClCompile Include="libfreerdp\common\assistance.c" />
-    <ClCompile Include="libfreerdp\common\settings.c" />
+    <ClCompile Include="libfreerdp\common\common_settings.c" />
     <ClCompile Include="libfreerdp\core\activation.c" />
     <ClCompile Include="libfreerdp\core\autodetect.c" />
     <ClCompile Include="libfreerdp\core\bulk.c" />
     <ClCompile Include="libfreerdp\core\capabilities.c" />
-    <ClCompile Include="libfreerdp\core\certificate.c" />
+    <ClCompile Include="libfreerdp\core\core_certificate.c" />
     <ClCompile Include="libfreerdp\core\channels.c" />
     <ClCompile Include="libfreerdp\core\client.c" />
     <ClCompile Include="libfreerdp\core\codecs.c" />
@@ -186,18 +186,18 @@
     <ClCompile Include="libfreerdp\crypto\er.c" />
     <ClCompile Include="libfreerdp\crypto\per.c" />
     <ClCompile Include="libfreerdp\crypto\tls.c" />
-    <ClCompile Include="libfreerdp\gdi\bitmap.c" />
-    <ClCompile Include="libfreerdp\gdi\brush.c" />
-    <ClCompile Include="libfreerdp\gdi\clipping.c" />
-    <ClCompile Include="libfreerdp\gdi\dc.c" />
-    <ClCompile Include="libfreerdp\gdi\drawing.c" />
-    <ClCompile Include="libfreerdp\gdi\gdi.c" />
-    <ClCompile Include="libfreerdp\gdi\gfx.c" />
-    <ClCompile Include="libfreerdp\gdi\graphics.c" />
-    <ClCompile Include="libfreerdp\gdi\line.c" />
-    <ClCompile Include="libfreerdp\gdi\pen.c" />
-    <ClCompile Include="libfreerdp\gdi\region.c" />
-    <ClCompile Include="libfreerdp\gdi\shape.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_bitmap.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_brush.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_clipping.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_dc.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_drawing.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_gdi.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_gfx.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_graphics.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_line.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_pen.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_region.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi_shape.c" />
     <ClCompile Include="libfreerdp\locale\keyboard.c" />
     <ClCompile Include="libfreerdp\locale\keyboard_layout.c" />
     <ClCompile Include="libfreerdp\locale\locale.c" />
@@ -275,40 +275,39 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
-    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
-    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
-    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
-    <OutDir>$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/platform_configuration/$(Platform)/$(Configuration);$(ProjectDir);$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/include;.;framework;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../include;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;$(SolutionDir)../../../include/app/include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WITH_OPENH264;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ANDROID;VSNORD;WITH_LIBAVCODEC;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
       <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-attributes -Wno-unused-but-set-variable</AdditionalOptions>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <CLanguageStandard>gnu11</CLanguageStandard>
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>ssl;crypto;welsdecplus;welsencplus;axiswinpr;z;ace;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <LibraryDependencies>ssl;crypto;avcodec;avutil;axiswinpr;z;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <SharedLibrarySearchPath>%(SharedLibrarySearchPath);$(Sysroot)\usr\lib</SharedLibrarySearchPath>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
       <AdditionalDependencies>
@@ -318,46 +317,43 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <ClCompile>
       <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-attributes -Wno-unused-but-set-variable</AdditionalOptions>
-      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <CLanguageStandard>gnu11</CLanguageStandard>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/platform_configuration/$(Platform)/$(Configuration);$(ProjectDir);$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/include;.;framework;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../include;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;$(SolutionDir)../../../include/app/include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WITH_OPENH264;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ANDROID;VSNORD;WITH_LIBAVCODEC;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Enabled</ExceptionHandling>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
-      <LibraryDependencies>welsdecplus;welsencplus;axisopenssl;axiscrypto;axiswinpr;z;ace;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <LibraryDependencies>ssl;crypto;avcodec;avutil;axiswinpr;z;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
     <ClCompile>
-      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <CLanguageStandard>gnu11</CLanguageStandard>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/platform_configuration/$(Platform)/$(Configuration);$(ProjectDir);$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/include;.;framework;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../include;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;$(SolutionDir)../../../include/app/include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WITH_OPENH264;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ANDROID;VSNORD;WITH_LIBAVCODEC;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-attributes -Wno-unused-but-set-variable</AdditionalOptions>
       <ExceptionHandling>Enabled</ExceptionHandling>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
-      <LibraryDependencies>welsdecplus;welsencplus;axisopenssl;axiscrypto;axiswinpr;z;ace;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <LibraryDependencies>ssl;crypto;avcodec;avutil;axiswinpr;z;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
     <ClCompile>
-      <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
       <CLanguageStandard>gnu11</CLanguageStandard>
       <CppLanguageStandard>gnu++1y</CppLanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)../../../nodeapp/platform_configuration/$(Platform)/$(Configuration);$(ProjectDir);$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/include;.;framework;$(SolutionDir)../../../nodeapp/include;$(SolutionDir)../../../include;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../;$(ProjectDir)../../;$(ProjectDir)../;$(SolutionDir)../../../include/app/include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WITH_OPENH264;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ANDROID;VSNORD;WITH_LIBAVCODEC;_UNICODE;WINPR_EXPORTS;FREERDP_EXPORTS;HAVE_CONFIG_H;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions> -Wno-unknown-pragmas -Wno-unused-function -Wno-implicit-int -Wno-unused-variable -Wno-pointer-sign -Wno-attributes -Wno-unused-but-set-variable</AdditionalOptions>
       <ExceptionHandling>Enabled</ExceptionHandling>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
-      <LibraryDependencies>welsdecplus;welsencplus;axisopenssl;axiscrypto;axiswinpr;z;ace;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <LibraryDependencies>ssl;crypto;avcodec;avutil;axiswinpr;z;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

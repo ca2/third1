@@ -2,9 +2,6 @@
 #define __CONFIG_H
 
 
-#include "ace/_ace.h"
-
-
 #ifdef METROWIN
 #define _WIN32_WINNT 0x0A00
 #endif

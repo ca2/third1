@@ -1,8 +1,14 @@
+#ifdef WIN32
 #include <windows.h>
+#else
+#include <stdio.h>
+#endif
 
 char * g_pszDirSystem = NULL;
 
+#ifdef WIN32
 __declspec(dllexport)
+#endif
 void winpr_set_dir_system(char * psystem)
 {
 
@@ -10,7 +16,9 @@ void winpr_set_dir_system(char * psystem)
 
 }
 
+#ifdef WIN32
 __declspec(dllexport)
+#endif
 char * winpr_dir_system()
 {
 

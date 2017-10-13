@@ -1,9 +1,6 @@
 #ifndef __CONFIG_H
 #define __CONFIG_H
 
-#include "ace/_ace.h"
-
-
 #define CMAKE_SHARED_LIBRARY_SUFFIX ".dll"
 #define CMAKE_SHARED_LIBRARY_PREFIX  ""
 

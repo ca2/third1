@@ -1,8 +1,6 @@
 #ifndef __CONFIG_H
 #define __CONFIG_H
 
-#include "ace/_ace.h"
-
 //#define FREERDP_DATA_PATH "${FREERDP_DATA_PATH}"
 //#define FREERDP_KEYMAP_PATH "${FREERDP_KEYMAP_PATH}"
 //#define FREERDP_PLUGIN_PATH "${FREERDP_PLUGIN_PATH}"
