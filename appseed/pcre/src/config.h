@@ -101,7 +101,7 @@ sure both macros are undefined; an emulation function will then be used. */
 /* Define to 1 if you have the `strerror' function. */
 /* #undef HAVE_STRERROR */
 #ifdef __APPLE__
-   #define HAVE_STRERROR
+#define HAVE_STRERROR
 #endif
 
 /* Define to 1 if you have the <strings.h> header file. */
@@ -142,13 +142,13 @@ sure both macros are undefined; an emulation function will then be used. */
    However, PCRE2 can also be compiled to use 3 or 4 bytes instead. This
    allows for longer patterns in extreme cases. */
 #ifndef LINK_SIZE
-   #define LINK_SIZE 2
+#define LINK_SIZE 2
 #endif
 
 /* Define to the sub-directory where libtool stores uninstalled libraries. */
 /* This is ignored unless you are using libtool. */
 #ifndef LT_OBJDIR
-   #define LT_OBJDIR ".libs/"
+#define LT_OBJDIR ".libs/"
 #endif
 
 /* The value of MATCH_LIMIT determines the default number of times the
@@ -158,7 +158,7 @@ sure both macros are undefined; an emulation function will then be used. */
    for ever to determine that they do not match. The default is set very large
    so that it does not accidentally catch legitimate cases. */
 #ifndef MATCH_LIMIT
-   #define MATCH_LIMIT 10000000
+#define MATCH_LIMIT 10000000
 #endif
 
 /* The above limit applies to all calls of match(), whether or not they
@@ -170,21 +170,21 @@ sure both macros are undefined; an emulation function will then be used. */
    of MATCH_LIMIT. The default is to use the same value as MATCH_LIMIT. There
    is a runtime method for setting a different limit. */
 #ifndef MATCH_LIMIT_RECURSION
-   #define MATCH_LIMIT_RECURSION MATCH_LIMIT
+#define MATCH_LIMIT_RECURSION MATCH_LIMIT
 #endif
 
 /* This limit is parameterized just in case anybody ever wants to change it.
    Care must be taken if it is increased, because it guards against integer
    overflow caused by enormously large patterns. */
 #ifndef MAX_NAME_COUNT
-   #define MAX_NAME_COUNT 10000
+#define MAX_NAME_COUNT 10000
 #endif
 
 /* This limit is parameterized just in case anybody ever wants to change it.
    Care must be taken if it is increased, because it guards against integer
    overflow caused by enormously large patterns. */
 #ifndef MAX_NAME_SIZE
-   #define MAX_NAME_SIZE 32
+#define MAX_NAME_SIZE 32
 #endif
 
 /* The value of NEWLINE_DEFAULT determines the default newline character
@@ -192,7 +192,7 @@ sure both macros are undefined; an emulation function will then be used. */
    at run time. The valid values are 1 (CR), 2 (LF), 3 (CRLF), 4 (ANY), and 5
    (ANYCRLF). */
 #ifndef NEWLINE_DEFAULT
-   #define NEWLINE_DEFAULT 2
+#define NEWLINE_DEFAULT 2
 #endif
 
 /* Name of package */
@@ -220,7 +220,7 @@ sure both macros are undefined; an emulation function will then be used. */
    parentheses (of any kind) in a pattern. This limits the amount of system
    stack that is used while compiling a pattern. */
 #ifndef PARENS_NEST_LIMIT
-   #define PARENS_NEST_LIMIT 250
+#define PARENS_NEST_LIMIT 250
 #endif
 
 /* The value of PCRE2GREP_BUFSIZE determines the size of buffer used by
@@ -229,7 +229,7 @@ sure both macros are undefined; an emulation function will then be used. */
    this number, because it allows for the buffering of "before" and "after"
    lines. */
 #ifndef PCRE2GREP_BUFSIZE
-   #define PCRE2GREP_BUFSIZE 20480
+#define PCRE2GREP_BUFSIZE 20480
 #endif
 
 /* Define to any value to include debugging code. */
@@ -259,7 +259,7 @@ sure both macros are undefined; an emulation function will then be used. */
 /* Define to any value to enable support for Just-In-Time compiling. */
 /* #undef SUPPORT_JIT */
 #ifndef _M_ARM
-   #define SUPPORT_JIT
+#define SUPPORT_JIT
 #endif
 
 /* Define to any value to allow pcre2grep to be linked with libbz2, so that it
@@ -309,3 +309,8 @@ sure both macros are undefined; an emulation function will then be used. */
 
 /* Define to `unsigned int' if <sys/types.h> does not define. */
 /* #undef size_t */
+
+
+#ifdef CUBE
+#define PCRE2_STATIC
+#endif
