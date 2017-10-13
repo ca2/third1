@@ -12,7 +12,7 @@
 #define VER_PLATFORM_WIN32_WINDOWS              1
 #define VER_PLATFORM_WIN32_NT                   2
 
-#ifndef WINDOWS
+#ifndef _WIN32
 
 #define  VER_NT_WORKSTATION         1
 #define  VER_NT_DOMAIN_CONTROLLER      2
