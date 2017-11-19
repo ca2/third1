@@ -54,7 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		077A01571B4D5479001C85FF /* ios_atomiconv.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = ios_atomiconv.a; path = libios_atomiconv.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		077A01571B4D5479001C85FF /* libios_atomiconv.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_atomiconv.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A16454F19C4A60000966C5E /* aliases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aliases.h; sourceTree = "<group>"; };
 		9A16455019C4A60000966C5E /* aliases2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aliases2.h; sourceTree = "<group>"; };
 		9A16455119C4A60000966C5E /* aliases_aix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aliases_aix.h; sourceTree = "<group>"; };
@@ -589,7 +589,7 @@
 			isa = PBXGroup;
 			children = (
 				9A1647A219C4A73900966C5E /* libatomiconv.dylib */,
-				077A01571B4D5479001C85FF /* ios_atomiconv.a */,
+				077A01571B4D5479001C85FF /* libios_atomiconv.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -629,7 +629,7 @@
 			);
 			name = ios_atomiconv;
 			productName = atomiconv;
-			productReference = 077A01571B4D5479001C85FF /* ios_atomiconv.a */;
+			productReference = 077A01571B4D5479001C85FF /* libios_atomiconv.a */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9A1647A119C4A73900966C5E /* atomiconv */ = {
@@ -656,7 +656,7 @@
 		9A1B2F7F16A2AF5C00875A94 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 			};
 			buildConfigurationList = 9A1B2F8216A2AF5C00875A94 /* Build configuration list for PBXProject "atomiconv" */;
@@ -749,7 +749,7 @@
 			buildSettings = {
 				EXECUTABLE_EXTENSION = a;
 				MACH_O_TYPE = staticlib;
-				SDKROOT = iphoneos11.0;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -758,7 +758,7 @@
 			buildSettings = {
 				EXECUTABLE_EXTENSION = a;
 				MACH_O_TYPE = staticlib;
-				SDKROOT = iphoneos11.0;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
