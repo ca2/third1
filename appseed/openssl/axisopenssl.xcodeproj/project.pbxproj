@@ -145,6 +145,13 @@
 			remoteGlobalIDString = 07B65773190F3CA2002DAADE;
 			remoteInfo = ace_iosTests;
 		};
+		9AA9B7C51FC252E500A3341D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A26A0021D7ED714001F47A8 /* ace.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AA9B0901FC2510100A3341D;
+			remoteInfo = cube_ace;
+		};
 		9AE24D9D1904CF46001AEFFB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A1B2F7F16A2AF5C00875A94 /* Project object */;
@@ -320,6 +327,7 @@
 				9A26A0091D7ED714001F47A8 /* libace.dylib */,
 				9A26A00B1D7ED714001F47A8 /* libios_ace.a */,
 				9A26A00D1D7ED714001F47A8 /* ace_iosTests.xctest */,
+				9AA9B7C61FC252E500A3341D /* libcube_ace.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -526,6 +534,13 @@
 			fileType = wrapper.cfbundle;
 			path = ace_iosTests.xctest;
 			remoteRef = 9A26A00C1D7ED714001F47A8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AA9B7C61FC252E500A3341D /* libcube_ace.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libcube_ace.dylib;
+			remoteRef = 9AA9B7C51FC252E500A3341D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
