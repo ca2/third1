@@ -152,7 +152,7 @@ struct jvirt_sarray_control {
   JSAMPARRAY mem_buffer;	/* => the in-memory buffer */
   JDIMENSION rows_in_array;	/* total virtual array height */
   JDIMENSION samplesperrow;	/* width of array (and of memory buffer) */
-  JDIMENSION maxaccess;		/* MAX rows accessed by access_virt_sarray */
+  JDIMENSION maxaccess;		/* max rows accessed by access_virt_sarray */
   JDIMENSION rows_in_mem;	/* height of memory buffer */
   JDIMENSION rowsperchunk;	/* allocation chunk size in mem_buffer */
   JDIMENSION cur_start_row;	/* first logical row # in the buffer */
@@ -168,7 +168,7 @@ struct jvirt_barray_control {
   JBLOCKARRAY mem_buffer;	/* => the in-memory buffer */
   JDIMENSION rows_in_array;	/* total virtual array height */
   JDIMENSION blocksperrow;	/* width of array (and of memory buffer) */
-  JDIMENSION maxaccess;		/* MAX rows accessed by access_virt_barray */
+  JDIMENSION maxaccess;		/* max rows accessed by access_virt_barray */
   JDIMENSION rows_in_mem;	/* height of memory buffer */
   JDIMENSION rowsperchunk;	/* allocation chunk size in mem_buffer */
   JDIMENSION cur_start_row;	/* first logical row # in the buffer */
@@ -403,7 +403,7 @@ alloc_sarray (j_common_ptr cinfo, int pool_id,
   JDIMENSION rowsperchunk, currow, i;
   long ltemp;
 
-  /* Calculate MAX # of rows allowed in one allocation chunk */
+  /* Calculate max # of rows allowed in one allocation chunk */
   ltemp = (MAX_ALLOC_CHUNK-SIZEOF(large_pool_hdr)) /
 	  ((long) samplesperrow * SIZEOF(JSAMPLE));
   if (ltemp <= 0)
@@ -451,7 +451,7 @@ alloc_barray (j_common_ptr cinfo, int pool_id,
   JDIMENSION rowsperchunk, currow, i;
   long ltemp;
 
-  /* Calculate MAX # of rows allowed in one allocation chunk */
+  /* Calculate max # of rows allowed in one allocation chunk */
   ltemp = (MAX_ALLOC_CHUNK-SIZEOF(large_pool_hdr)) /
 	  ((long) blocksperrow * SIZEOF(JBLOCK));
   if (ltemp <= 0)
@@ -691,10 +691,10 @@ LOCAL(void)
 do_sarray_io (j_common_ptr cinfo, jvirt_sarray_ptr ptr, boolean writing)
 /* Do backing store read or write of a virtual sample array */
 {
-  long bytesperrow, file_offset_t, byte_count, rows, thisrow, i;
+  long bytesperrow, file_offset, byte_count, rows, thisrow, i;
 
   bytesperrow = (long) ptr->samplesperrow * SIZEOF(JSAMPLE);
-  file_offset_t = ptr->cur_start_row * bytesperrow;
+  file_offset = ptr->cur_start_row * bytesperrow;
   /* Loop to read or write each allocation chunk in mem_buffer */
   for (i = 0; i < (long) ptr->rows_in_mem; i += ptr->rowsperchunk) {
     /* One chunk, but check for short chunk at end of buffer */
@@ -710,12 +710,12 @@ do_sarray_io (j_common_ptr cinfo, jvirt_sarray_ptr ptr, boolean writing)
     if (writing)
       (*ptr->b_s_info.write_backing_store) (cinfo, & ptr->b_s_info,
 					    (void FAR *) ptr->mem_buffer[i],
-					    file_offset_t, byte_count);
+					    file_offset, byte_count);
     else
       (*ptr->b_s_info.read_backing_store) (cinfo, & ptr->b_s_info,
 					   (void FAR *) ptr->mem_buffer[i],
-					   file_offset_t, byte_count);
-    file_offset_t += byte_count;
+					   file_offset, byte_count);
+    file_offset += byte_count;
   }
 }
 
@@ -724,10 +724,10 @@ LOCAL(void)
 do_barray_io (j_common_ptr cinfo, jvirt_barray_ptr ptr, boolean writing)
 /* Do backing store read or write of a virtual coefficient-block array */
 {
-  long bytesperrow, file_offset_t, byte_count, rows, thisrow, i;
+  long bytesperrow, file_offset, byte_count, rows, thisrow, i;
 
   bytesperrow = (long) ptr->blocksperrow * SIZEOF(JBLOCK);
-  file_offset_t = ptr->cur_start_row * bytesperrow;
+  file_offset = ptr->cur_start_row * bytesperrow;
   /* Loop to read or write each allocation chunk in mem_buffer */
   for (i = 0; i < (long) ptr->rows_in_mem; i += ptr->rowsperchunk) {
     /* One chunk, but check for short chunk at end of buffer */
@@ -743,12 +743,12 @@ do_barray_io (j_common_ptr cinfo, jvirt_barray_ptr ptr, boolean writing)
     if (writing)
       (*ptr->b_s_info.write_backing_store) (cinfo, & ptr->b_s_info,
 					    (void FAR *) ptr->mem_buffer[i],
-					    file_offset_t, byte_count);
+					    file_offset, byte_count);
     else
       (*ptr->b_s_info.read_backing_store) (cinfo, & ptr->b_s_info,
 					   (void FAR *) ptr->mem_buffer[i],
-					   file_offset_t, byte_count);
-    file_offset_t += byte_count;
+					   file_offset, byte_count);
+    file_offset += byte_count;
   }
 }
 

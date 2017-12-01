@@ -1,4 +1,4 @@
-Libpng 1.6.23 - June 9, 2016
+Libpng 1.6.16 - December 22, 2014
 
 This is a public release of libpng, intended for use in production codes.
 
@@ -7,39 +7,32 @@ Files available for download:
 Source files with LF line endings (for Unix/Linux) and with a
 "configure" script
 
-   libpng-1.6.23.tar.xz (LZMA-compressed, recommended)
-   libpng-1.6.23.tar.gz
+   libpng-1.6.16.tar.xz (LZMA-compressed, recommended)
+   libpng-1.6.16.tar.gz
 
 Source files with CRLF line endings (for Windows), without the
 "configure" script
 
-   lpng1623.7z  (LZMA-compressed, recommended)
-   lpng1623.zip
+   lpng1616.7z  (LZMA-compressed, recommended)
+   lpng1616.zip
 
 Other information:
 
-   libpng-1.6.23-README.txt
-   libpng-1.6.23-LICENSE.txt
-   libpng-1.6.23-*.asc (armored detached GPG signatures)
+   libpng-1.6.16-README.txt
+   libpng-1.6.16-LICENSE.txt
+   libpng-1.6.16-*.asc (armored detached GPG signatures)
 
-Changes since the last public release (1.6.22):
+Changes since the last public release (1.6.15):
+  Added ".align 2" to arm/filter_neon.S to support old GAS assemblers that
+    don't do alignment correctly.
+  Revised Makefile.am and scripts/*.dfn to work with MinGW/MSYS;
+    renamed scripts/*.dfn to scripts/*.c (Bob Friesenhahn and John Bowler).
+  Quiet a "comparison always true" warning in pngstest.c (John Bowler).
+  Restored a test on width that was removed from png.c at libpng-1.6.9
+    (Bug report by Alex Eubanks).
+  Fixed an overflow in png_combine_row with very wide interlaced images.
 
-  Stop a potential memory leak in png_set_tRNS() (Bug report by Ted Ying).
-  Fixed the progressive reader to handle empty first IDAT chunk properly
-    (patch by Timothy Nikkel).  This bug was introduced in libpng-1.6.0 and
-    only affected the libpng16 branch.
-  Added tests in pngvalid.c to check zero-length IDAT chunks in various
-    positions.  Fixed the sequential reader to handle these more robustly
-    (John Bowler).
-  Corrected progressive read input buffer in pngvalid.c. The previous version
-    the code invariably passed just one byte at a time to libpng.  The intent
-    was to pass a random number of bytes in the range 0..511.
-  Moved sse2 prototype from pngpriv.h to contrib/intel/intel_sse.patch.
-  Added missing ")" in pngerror.c (Matt Sarrett).
-  Fixed undefined behavior in png_push_save_buffer(). Do not call
-    memcpy() with a null source, even if count is zero (Leon Scroggins III).
-  Fixed bad link to RFC2083 in png.5 (Nikola Forro).
-
+Send comments/corrections/commendations to png-mng-implement at lists.sf.net
 (subscription required; visit
 https://lists.sourceforge.net/lists/listinfo/png-mng-implement
 to subscribe)

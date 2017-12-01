@@ -203,9 +203,9 @@ jpeg_mem_available (j_common_ptr cinfo, long min_bytes_needed,
 METHODDEF(void)
 read_backing_store (j_common_ptr cinfo, backing_store_ptr info,
 		    void FAR * buffer_address,
-		    long file_offset_t, long byte_count)
+		    long file_offset, long byte_count)
 {
-  if (fseek(info->temp_file, file_offset_t, SEEK_SET))
+  if (fseek(info->temp_file, file_offset, SEEK_SET))
     ERREXIT(cinfo, JERR_TFILE_SEEK);
   if (JFREAD(info->temp_file, buffer_address, byte_count)
       != (size_t) byte_count)
@@ -216,9 +216,9 @@ read_backing_store (j_common_ptr cinfo, backing_store_ptr info,
 METHODDEF(void)
 write_backing_store (j_common_ptr cinfo, backing_store_ptr info,
 		     void FAR * buffer_address,
-		     long file_offset_t, long byte_count)
+		     long file_offset, long byte_count)
 {
-  if (fseek(info->temp_file, file_offset_t, SEEK_SET))
+  if (fseek(info->temp_file, file_offset, SEEK_SET))
     ERREXIT(cinfo, JERR_TFILE_SEEK);
   if (JFWRITE(info->temp_file, buffer_address, byte_count)
       != (size_t) byte_count)

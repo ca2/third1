@@ -138,7 +138,7 @@ typedef FSERROR FAR *FSERRPTR;	/* pointer to error array (in FAR storage!) */
 
 /* Private subobject */
 
-#define MAX_Q_COMPS 4		/* MAX components I can handle */
+#define MAX_Q_COMPS 4		/* max components I can handle */
 
 typedef struct {
   struct jpeg_color_quantizer pub; /* public fields */

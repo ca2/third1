@@ -113,7 +113,7 @@ EXTERN(long) jpeg_mem_available JPP((j_common_ptr cinfo,
  * are private to the system-dependent backing store routines.
  */
 
-#define TEMP_NAME_LENGTH   64	/* MAX length of a temporary file's name */
+#define TEMP_NAME_LENGTH   64	/* max length of a temporary file's name */
 
 
 #ifdef USE_MSDOS_MEMMGR		/* DOS-specific junk */
@@ -141,11 +141,11 @@ typedef struct backing_store_struct {
   JMETHOD(void, read_backing_store, (j_common_ptr cinfo,
 				     backing_store_ptr info,
 				     void FAR * buffer_address,
-				     long file_offset_t, long byte_count));
+				     long file_offset, long byte_count));
   JMETHOD(void, write_backing_store, (j_common_ptr cinfo,
 				      backing_store_ptr info,
 				      void FAR * buffer_address,
-				      long file_offset_t, long byte_count));
+				      long file_offset, long byte_count));
   JMETHOD(void, close_backing_store, (j_common_ptr cinfo,
 				      backing_store_ptr info));
 

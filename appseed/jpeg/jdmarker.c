@@ -286,7 +286,7 @@ get_sof (j_decompress_ptr cinfo, boolean is_baseline, boolean is_prog,
     /* Check to see whether component id has already been seen   */
     /* (in violation of the spec, but unfortunately seen in some */
     /* files).  If so, create "fake" component id equal to the   */
-    /* MAX id seen so far + 1. */
+    /* max id seen so far + 1. */
     for (i = 0, compptr = cinfo->comp_info; i < ci; i++, compptr++) {
       if (c == compptr->component_id) {
 	compptr = cinfo->comp_info;

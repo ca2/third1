@@ -312,7 +312,7 @@ find_biggest_volume (boxptr boxlist, int numboxes)
 
 LOCAL(void)
 update_box (j_decompress_ptr cinfo, boxptr boxp)
-/* Shrink the MIN/MAX bounds of a box to enclose only nonzero elements, */
+/* Shrink the min/max bounds of a box to enclose only nonzero elements, */
 /* and recompute its volume and population */
 {
   my_cquantize_ptr cquantize = (my_cquantize_ptr) cinfo->cquantize;
@@ -468,7 +468,7 @@ median_cut (j_decompress_ptr cinfo, boxptr boxlist, int numboxes,
      * Current algorithm: split at halfway point.
      * (Since the box has been shrunk to minimum volume,
      * any split will produce two nonempty subboxes.)
-     * Note that lb value is MAX for lower box, so must be < old MAX.
+     * Note that lb value is max for lower box, so must be < old max.
      */
     switch (n) {
     case 0:
@@ -660,13 +660,13 @@ find_nearby_colors (j_decompress_ptr cinfo, int minc0, int minc1, int minc2,
   int centerc0, centerc1, centerc2;
   int i, x, ncolors;
   INT32 minmaxdist, min_dist, max_dist, tdist;
-  INT32 mindist[MAXNUMCOLORS];	/* MIN distance to colormap entry i */
+  INT32 mindist[MAXNUMCOLORS];	/* min distance to colormap entry i */
 
   /* Compute true coordinates of update box's upper corner and center.
    * Actually we compute the coordinates of the center of the upper-corner
    * histogram cell, which are the upper bounds of the volume we care about.
    * Note that since ">>" rounds down, the "center" values may be closer to
-   * MIN than to MAX; hence comparisons to them must be "<=", not "<".
+   * min than to max; hence comparisons to them must be "<=", not "<".
    */
   maxc0 = minc0 + ((1 << BOX_C0_SHIFT) - (1 << C0_SHIFT));
   centerc0 = (minc0 + maxc0) >> 1;

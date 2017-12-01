@@ -242,9 +242,9 @@ jpeg_mem_available (j_common_ptr cinfo, long min_bytes_needed,
 METHODDEF(void)
 read_file_store (j_common_ptr cinfo, backing_store_ptr info,
 		 void FAR * buffer_address,
-		 long file_offset_t, long byte_count)
+		 long file_offset, long byte_count)
 {
-  if (jdos_seek(info->handle.file_handle, file_offset_t))
+  if (jdos_seek(info->handle.file_handle, file_offset))
     ERREXIT(cinfo, JERR_TFILE_SEEK);
   /* Since MAX_ALLOC_CHUNK is less than 64K, byte_count will be too. */
   if (byte_count > 65535L)	/* safety check */
@@ -258,9 +258,9 @@ read_file_store (j_common_ptr cinfo, backing_store_ptr info,
 METHODDEF(void)
 write_file_store (j_common_ptr cinfo, backing_store_ptr info,
 		  void FAR * buffer_address,
-		  long file_offset_t, long byte_count)
+		  long file_offset, long byte_count)
 {
-  if (jdos_seek(info->handle.file_handle, file_offset_t))
+  if (jdos_seek(info->handle.file_handle, file_offset))
     ERREXIT(cinfo, JERR_TFILE_SEEK);
   /* Since MAX_ALLOC_CHUNK is less than 64K, byte_count will be too. */
   if (byte_count > 65535L)	/* safety check */
@@ -332,7 +332,7 @@ typedef struct {		/* XMS move specification structure */
 METHODDEF(void)
 read_xms_store (j_common_ptr cinfo, backing_store_ptr info,
 		void FAR * buffer_address,
-		long file_offset_t, long byte_count)
+		long file_offset, long byte_count)
 {
   XMScontext ctx;
   XMSspec spec;
@@ -344,7 +344,7 @@ read_xms_store (j_common_ptr cinfo, backing_store_ptr info,
 
   spec.length = byte_count & (~ 1L);
   spec.src_handle = info->handle.xms_handle;
-  spec.src.offset = file_offset_t;
+  spec.src.offset = file_offset;
   spec.dst_handle = 0;
   spec.dst.ptr = buffer_address;
   
@@ -356,7 +356,7 @@ read_xms_store (j_common_ptr cinfo, backing_store_ptr info,
 
   if (ODD(byte_count)) {
     read_xms_store(cinfo, info, (void FAR *) endbuffer,
-		   file_offset_t + byte_count - 1L, 2L);
+		   file_offset + byte_count - 1L, 2L);
     ((char FAR *) buffer_address)[byte_count - 1L] = endbuffer[0];
   }
 }
@@ -365,7 +365,7 @@ read_xms_store (j_common_ptr cinfo, backing_store_ptr info,
 METHODDEF(void)
 write_xms_store (j_common_ptr cinfo, backing_store_ptr info,
 		 void FAR * buffer_address,
-		 long file_offset_t, long byte_count)
+		 long file_offset, long byte_count)
 {
   XMScontext ctx;
   XMSspec spec;
@@ -379,7 +379,7 @@ write_xms_store (j_common_ptr cinfo, backing_store_ptr info,
   spec.src_handle = 0;
   spec.src.ptr = buffer_address;
   spec.dst_handle = info->handle.xms_handle;
-  spec.dst.offset = file_offset_t;
+  spec.dst.offset = file_offset;
 
   ctx.ds_si = (void far *) & spec;
   ctx.ax = 0x0b00;		/* EMB move */
@@ -389,10 +389,10 @@ write_xms_store (j_common_ptr cinfo, backing_store_ptr info,
 
   if (ODD(byte_count)) {
     read_xms_store(cinfo, info, (void FAR *) endbuffer,
-		   file_offset_t + byte_count - 1L, 2L);
+		   file_offset + byte_count - 1L, 2L);
     endbuffer[0] = ((char FAR *) buffer_address)[byte_count - 1L];
     write_xms_store(cinfo, info, (void FAR *) endbuffer,
-		    file_offset_t + byte_count - 1L, 2L);
+		    file_offset + byte_count - 1L, 2L);
   }
 }
 
@@ -490,7 +490,7 @@ typedef union {			/* EMS move specification structure */
 METHODDEF(void)
 read_ems_store (j_common_ptr cinfo, backing_store_ptr info,
 		void FAR * buffer_address,
-		long file_offset_t, long byte_count)
+		long file_offset, long byte_count)
 {
   EMScontext ctx;
   EMSspec spec;
@@ -498,8 +498,8 @@ read_ems_store (j_common_ptr cinfo, backing_store_ptr info,
   spec.length = byte_count;
   SRC_TYPE(spec) = 1;
   SRC_HANDLE(spec) = info->handle.ems_handle;
-  SRC_PAGE(spec)   = (unsigned short) (file_offset_t / EMSPAGESIZE);
-  SRC_OFFSET(spec) = (unsigned short) (file_offset_t % EMSPAGESIZE);
+  SRC_PAGE(spec)   = (unsigned short) (file_offset / EMSPAGESIZE);
+  SRC_OFFSET(spec) = (unsigned short) (file_offset % EMSPAGESIZE);
   DST_TYPE(spec) = 0;
   DST_HANDLE(spec) = 0;
   DST_PTR(spec)    = buffer_address;
@@ -515,7 +515,7 @@ read_ems_store (j_common_ptr cinfo, backing_store_ptr info,
 METHODDEF(void)
 write_ems_store (j_common_ptr cinfo, backing_store_ptr info,
 		 void FAR * buffer_address,
-		 long file_offset_t, long byte_count)
+		 long file_offset, long byte_count)
 {
   EMScontext ctx;
   EMSspec spec;
@@ -526,8 +526,8 @@ write_ems_store (j_common_ptr cinfo, backing_store_ptr info,
   SRC_PTR(spec)    = buffer_address;
   DST_TYPE(spec) = 1;
   DST_HANDLE(spec) = info->handle.ems_handle;
-  DST_PAGE(spec)   = (unsigned short) (file_offset_t / EMSPAGESIZE);
-  DST_OFFSET(spec) = (unsigned short) (file_offset_t % EMSPAGESIZE);
+  DST_PAGE(spec)   = (unsigned short) (file_offset / EMSPAGESIZE);
+  DST_OFFSET(spec) = (unsigned short) (file_offset % EMSPAGESIZE);
   
   ctx.ds_si = (void far *) & spec;
   ctx.ax = 0x5700;		/* move memory region */
