@@ -863,7 +863,7 @@
 			isa = PBXGroup;
 			children = (
 				07DD70D61B5F1025003A1CE1 /* libaxisfreerdp.dylib */,
-				07DD70D81B5F1025003A1CE1 /* libios_axisfreerdp.dylib */,
+				07DD70D81B5F1025003A1CE1 /* libios_axisfreerdp.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1106,8 +1106,7 @@
 		07DD70B41B5F0FF7003A1CE1 /* libios_axiswinpr.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			name = libios_axiswinpr.a;
-			path = libios_axiswinpr.dylib;
+			path = libios_axiswinpr.a;
 			remoteRef = 07DD70B31B5F0FF7003A1CE1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1118,10 +1117,10 @@
 			remoteRef = 07DD70D51B5F1025003A1CE1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		07DD70D81B5F1025003A1CE1 /* libios_axisfreerdp.dylib */ = {
+		07DD70D81B5F1025003A1CE1 /* libios_axisfreerdp.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			path = libios_axisfreerdp.dylib;
+			path = libios_axisfreerdp.a;
 			remoteRef = 07DD70D71B5F1025003A1CE1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1449,10 +1448,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/opt/local/lib,
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 			};
 			name = Debug;
 		};
@@ -1461,10 +1457,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/opt/local/lib,
-				);
+				LIBRARY_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};
