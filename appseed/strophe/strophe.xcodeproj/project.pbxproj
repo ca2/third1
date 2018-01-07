@@ -39,6 +39,8 @@
 		078DD9621CA1EFAD00290384 /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 078DD93E1CA1EFAD00290384 /* util.c */; };
 		078DD9631CA1EFAD00290384 /* util.h in Headers */ = {isa = PBXBuildFile; fileRef = 078DD93F1CA1EFAD00290384 /* util.h */; };
 		9A26A04F1D7EDCEF001F47A8 /* libauraexpat.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A26A0321D7EDB1C001F47A8 /* libauraexpat.dylib */; };
+		9A3E78742002525700C08FE2 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3E78722002525700C08FE2 /* libcrypto.a */; };
+		9A3E78752002525700C08FE2 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3E78732002525700C08FE2 /* libssl.a */; };
 		9A5DFB3E1CEE3B2E008916A4 /* ca2_stanza.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A5DFB3C1CEE3B2E008916A4 /* ca2_stanza.c */; };
 		9A5DFB3F1CEE3B2E008916A4 /* crypto.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A5DFB3D1CEE3B2E008916A4 /* crypto.c */; };
 		9A5DFB471CEE3B5D008916A4 /* rand.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A5DFB431CEE3B5D008916A4 /* rand.c */; };
@@ -158,6 +160,8 @@
 		0793EA371CA409AB001374D8 /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = ../../../app/appseed/axis/build/Debug/libaxis.dylib; sourceTree = "<group>"; };
 		9A269FD21D7ED700001F47A8 /* ace.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ace.xcodeproj; path = ../../../app/appseed/ace/ace.xcodeproj; sourceTree = "<group>"; };
 		9A26A02C1D7EDB1C001F47A8 /* auraexpat.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = auraexpat.xcodeproj; path = ../expat/auraexpat.xcodeproj; sourceTree = "<group>"; };
+		9A3E78722002525700C08FE2 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "../../../../usr/local/Cellar/openssl@1.1/1.1.0g/lib/libcrypto.a"; sourceTree = "<group>"; };
+		9A3E78732002525700C08FE2 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "../../../../usr/local/Cellar/openssl@1.1/1.1.0g/lib/libssl.a"; sourceTree = "<group>"; };
 		9A5DFB3C1CEE3B2E008916A4 /* ca2_stanza.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ca2_stanza.c; sourceTree = "<group>"; };
 		9A5DFB3D1CEE3B2E008916A4 /* crypto.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crypto.c; sourceTree = "<group>"; };
 		9A5DFB431CEE3B5D008916A4 /* rand.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rand.c; sourceTree = "<group>"; };
@@ -194,6 +198,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A3E78742002525700C08FE2 /* libcrypto.a in Frameworks */,
+				9A3E78752002525700C08FE2 /* libssl.a in Frameworks */,
 				9A26A04F1D7EDCEF001F47A8 /* libauraexpat.dylib in Frameworks */,
 				0762212E1CA21CEF007D4F43 /* libresolv.tbd in Frameworks */,
 			);
@@ -267,6 +273,8 @@
 		9ACBD20A1DE0438C004AF08F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A3E78722002525700C08FE2 /* libcrypto.a */,
+				9A3E78732002525700C08FE2 /* libssl.a */,
 				9ACBD20B1DE0438C004AF08F /* libcrypto.a */,
 				9ACBD20C1DE0438C004AF08F /* libssl.a */,
 			);
@@ -805,6 +813,12 @@
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PREFIX_HEADER = "";
+				HEADER_SEARCH_PATHS = "/usr/local/opt/openssl@1.1/include";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/usr/local/opt/openssl@1.1/lib",
+					"/usr/local/Cellar/openssl@1.1/1.1.0g/lib",
+				);
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -815,6 +829,12 @@
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PREFIX_HEADER = "";
+				HEADER_SEARCH_PATHS = "/usr/local/opt/openssl@1.1/include";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/usr/local/opt/openssl@1.1/lib",
+					"/usr/local/Cellar/openssl@1.1/1.1.0g/lib",
+				);
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
