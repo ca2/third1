@@ -406,6 +406,21 @@
 		9A2194D81FF0E83200D7E28B /* common_settings.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A2194D71FF0E83200D7E28B /* common_settings.c */; };
 		9A2194DA1FF0E84000D7E28B /* core_certificate.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A2194D91FF0E84000D7E28B /* core_certificate.c */; };
 		9A2194DC1FF0EA0A00D7E28B /* libiconv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE9FCDE1F7F713200367001 /* libiconv.a */; };
+		9A3DB1132003EFB500364B87 /* gdi_bitmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A2194C21FF0E17E00D7E28B /* gdi_bitmap.c */; };
+		9A3DB1142003EFB500364B87 /* gdi_brush.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A2194BD1FF0E17D00D7E28B /* gdi_brush.c */; };
+		9A3DB1152003EFB500364B87 /* gdi_clipping.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A2194BE1FF0E17D00D7E28B /* gdi_clipping.c */; };
+		9A3DB1162003EFB500364B87 /* gdi_dc.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A2194C31FF0E17E00D7E28B /* gdi_dc.c */; };
+		9A3DB1172003EFB500364B87 /* gdi_drawing.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A2194C41FF0E17E00D7E28B /* gdi_drawing.c */; };
+		9A3DB1182003EFB500364B87 /* gdi_gdi.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A2194C11FF0E17E00D7E28B /* gdi_gdi.c */; };
+		9A3DB1192003EFB500364B87 /* gdi_gfx.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A2194C61FF0E17E00D7E28B /* gdi_gfx.c */; };
+		9A3DB11A2003EFB500364B87 /* gdi_graphics.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A2194BF1FF0E17D00D7E28B /* gdi_graphics.c */; };
+		9A3DB11B2003EFB500364B87 /* gdi_line.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A2194C01FF0E17D00D7E28B /* gdi_line.c */; };
+		9A3DB11C2003EFB500364B87 /* gdi_pen.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A2194C81FF0E17E00D7E28B /* gdi_pen.c */; };
+		9A3DB11D2003EFB500364B87 /* gdi_region.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A2194C51FF0E17E00D7E28B /* gdi_region.c */; };
+		9A3DB11E2003EFB500364B87 /* gdi_shape.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A2194C71FF0E17E00D7E28B /* gdi_shape.c */; };
+		9A3DB11F2003EFCE00364B87 /* core_certificate.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A2194D91FF0E84000D7E28B /* core_certificate.c */; };
+		9A3DB1202003F01C00364B87 /* codec_bitmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A2194D51FF0E82000D7E28B /* codec_bitmap.c */; };
+		9A3DB1212003F02600364B87 /* common_settings.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A2194D71FF0E83200D7E28B /* common_settings.c */; };
 		9ADB2E271F8007450005D907 /* libfdk-aac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE9FCC31F7F6EFA00367001 /* libfdk-aac.a */; };
 		9ADB2E281F8007570005D907 /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE9FCC51F7F6F4100367001 /* libmp3lame.a */; };
 		9ADB2E2A1F8009F80005D907 /* libopus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE9FCC91F7F6F8600367001 /* libopus.a */; };
@@ -1380,6 +1395,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A3DB1162003EFB500364B87 /* gdi_dc.c in Sources */,
 				9AFEDBA61EB9C0E6008F0D19 /* rpc_bind.c in Sources */,
 				9AFEDBA71EB9C0E6008F0D19 /* rpc_client.c in Sources */,
 				9AFEDBA31EB9C0D1008F0D19 /* tsg.c in Sources */,
@@ -1387,9 +1403,12 @@
 				078DF89A1C5299EC00E65274 /* clear.c in Sources */,
 				078DF89B1C5299EC00E65274 /* color.c in Sources */,
 				078DF89C1C5299EC00E65274 /* dsp.c in Sources */,
+				9A3DB1202003F01C00364B87 /* codec_bitmap.c in Sources */,
 				078DF89D1C5299EC00E65274 /* h264.c in Sources */,
 				078DF89E1C5299EC00E65274 /* interleaved.c in Sources */,
+				9A3DB1192003EFB500364B87 /* gdi_gfx.c in Sources */,
 				078DF89F1C5299EC00E65274 /* jpeg.c in Sources */,
+				9A3DB11D2003EFB500364B87 /* gdi_region.c in Sources */,
 				078DF8A01C5299EC00E65274 /* mppc.c in Sources */,
 				078DF8A11C5299EC00E65274 /* ncrush.c in Sources */,
 				078DF8A21C5299EC00E65274 /* nsc_encode.c in Sources */,
@@ -1425,12 +1444,15 @@
 				078DF8D11C5299ED00E65274 /* keyboard.c in Sources */,
 				078DF8D21C5299ED00E65274 /* locale.c in Sources */,
 				078DF8D41C5299ED00E65274 /* keyboard_layout.c in Sources */,
+				9A3DB1132003EFB500364B87 /* gdi_bitmap.c in Sources */,
 				078DF8D51C5299ED00E65274 /* msusb.c in Sources */,
 				078DF8D61C5299ED00E65274 /* passphrase.c in Sources */,
+				9A3DB1172003EFB500364B87 /* gdi_drawing.c in Sources */,
 				078DF8D71C5299ED00E65274 /* pcap.c in Sources */,
 				078DF8D81C5299ED00E65274 /* profiler.c in Sources */,
 				078DF8D91C5299ED00E65274 /* ringbuffer.c in Sources */,
 				078DF8DA1C5299ED00E65274 /* signal.c in Sources */,
+				9A3DB1212003F02600364B87 /* common_settings.c in Sources */,
 				078DF8DB1C5299ED00E65274 /* stopwatch.c in Sources */,
 				078DF8901C5299E000E65274 /* bitmap.c in Sources */,
 				078DF8911C5299E000E65274 /* brush.c in Sources */,
@@ -1446,6 +1468,7 @@
 				07DD6CE01B5F0C61003A1CE1 /* transport.c in Sources */,
 				07DD6C7A1B5F0C61003A1CE1 /* rts_signature.c in Sources */,
 				07DD6CE81B5F0C61003A1CE1 /* window.c in Sources */,
+				9A3DB11B2003EFB500364B87 /* gdi_line.c in Sources */,
 				07DD6D461B5F0C61003A1CE1 /* prim_add_opt.c in Sources */,
 				07DD6D541B5F0C61003A1CE1 /* prim_colors.c in Sources */,
 				07DD6C621B5F0C61003A1CE1 /* ntlm.c in Sources */,
@@ -1468,8 +1491,10 @@
 				07DD6C361B5F0C61003A1CE1 /* bulk.c in Sources */,
 				07DD6CAE1B5F0C61003A1CE1 /* nla.c in Sources */,
 				07DD6BC21B5F0C61003A1CE1 /* dummy.c in Sources */,
+				9A3DB11E2003EFB500364B87 /* gdi_shape.c in Sources */,
 				07DD6CA61B5F0C61003A1CE1 /* multitransport.c in Sources */,
 				07DD6D781B5F0C61003A1CE1 /* prim_YUV.c in Sources */,
+				9A3DB1182003EFB500364B87 /* gdi_gdi.c in Sources */,
 				07DD6C5E1B5F0C61003A1CE1 /* ncacn_http.c in Sources */,
 				07DD6C4C1B5F0C61003A1CE1 /* connection.c in Sources */,
 				07DD6CB61B5F0C61003A1CE1 /* peer.c in Sources */,
@@ -1486,24 +1511,29 @@
 				07DD6C5A1B5F0C61003A1CE1 /* http.c in Sources */,
 				07DD6C761B5F0C61003A1CE1 /* rts.c in Sources */,
 				07DD6C461B5F0C61003A1CE1 /* client.c in Sources */,
+				9A3DB11F2003EFCE00364B87 /* core_certificate.c in Sources */,
 				07DD6C861B5F0C61003A1CE1 /* graphics.c in Sources */,
 				07DD6CE41B5F0C61003A1CE1 /* update.c in Sources */,
 				07DD6D521B5F0C61003A1CE1 /* prim_andor_opt.c in Sources */,
 				07DD6D681B5F0C61003A1CE1 /* prim_shift_opt.c in Sources */,
 				07DD6D6A1B5F0C61003A1CE1 /* prim_sign.c in Sources */,
+				9A3DB11A2003EFB500364B87 /* gdi_graphics.c in Sources */,
 				07DD6C981B5F0C61003A1CE1 /* listener.c in Sources */,
 				07DD6CCC1B5F0C61003A1CE1 /* surface.c in Sources */,
 				07DD6CA01B5F0C61003A1CE1 /* message.c in Sources */,
 				07DD6C581B5F0C61003A1CE1 /* freerdp.c in Sources */,
 				07DD6C721B5F0C61003A1CE1 /* rpc_fault.c in Sources */,
 				07DD6D641B5F0C61003A1CE1 /* prim_shift.c in Sources */,
+				9A3DB1152003EFB500364B87 /* gdi_clipping.c in Sources */,
 				07DD6CD81B5F0C61003A1CE1 /* tpdu.c in Sources */,
+				9A3DB1142003EFB500364B87 /* gdi_brush.c in Sources */,
 				07DD6C321B5F0C61003A1CE1 /* autodetect.c in Sources */,
 				07DD6D5A1B5F0C61003A1CE1 /* prim_copy.c in Sources */,
 				07DD6C501B5F0C61003A1CE1 /* errinfo.c in Sources */,
 				07DD6CBA1B5F0C61003A1CE1 /* rdp.c in Sources */,
 				07DD6D621B5F0C61003A1CE1 /* prim_set_opt.c in Sources */,
 				07DD6C941B5F0C61003A1CE1 /* license.c in Sources */,
+				9A3DB11C2003EFB500364B87 /* gdi_pen.c in Sources */,
 				07DD6CBE1B5F0C61003A1CE1 /* redirection.c in Sources */,
 				07DD6D5E1B5F0C61003A1CE1 /* prim_set.c in Sources */,
 				07DD6D581B5F0C61003A1CE1 /* prim_colors_opt.c in Sources */,
@@ -1682,6 +1712,11 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					APPLE_IOS,
+				);
+				"HEADER_SEARCH_PATHS[sdk=iphonesimulator*]" = (
+					"$(WorkspaceDir)/../../../app/thirdparty/include",
+					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
+					"$(WorkspaceDir)/../../../nodeapp/iPhoneSimulator11.2-x86_64.sdk/include",
 				);
 				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;

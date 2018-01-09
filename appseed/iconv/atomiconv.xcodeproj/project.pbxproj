@@ -9,7 +9,11 @@
 /* Begin PBXBuildFile section */
 		077A014F1B4D5479001C85FF /* iconv.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1645E319C4A60000966C5E /* iconv.c */; };
 		077A01501B4D5479001C85FF /* relocatable.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A16462B19C4A60100966C5E /* relocatable.c */; };
-		077A01511B4D5479001C85FF /* localcharset.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A16466C19C4A60100966C5E /* localcharset.c */; };
+		9A3DB1352003F21A00364B87 /* localcharset.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A16466C19C4A60100966C5E /* localcharset.c */; };
+		9A3DB1372003F29900364B87 /* localcharset.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3DB1362003F29800364B87 /* localcharset.h */; };
+		9A3DB13E2004062000364B87 /* libiconv_interface.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DB13C2004062000364B87 /* libiconv_interface.c */; };
+		9A3DB13F2004062000364B87 /* libiconv_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3DB13D2004062000364B87 /* libiconv_interface.h */; };
+		9A3DB1412004068900364B87 /* libiconv_interface.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A3DB13C2004062000364B87 /* libiconv_interface.c */; };
 		9AEEAD9D19C4D8E000866C9E /* iconv.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1645E319C4A60000966C5E /* iconv.c */; };
 		9AEEAD9E19C4D8E100866C9E /* relocatable.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A16462B19C4A60100966C5E /* relocatable.c */; };
 		9AEEAD9F19C4D8E100866C9E /* localcharset.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A16466C19C4A60100966C5E /* localcharset.c */; };
@@ -286,6 +290,9 @@
 		9A16466C19C4A60100966C5E /* localcharset.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = localcharset.c; sourceTree = "<group>"; };
 		9A1647A219C4A73900966C5E /* libatomiconv.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libatomiconv.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A269F5A1D7ED6BE001F47A8 /* ace.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ace.xcodeproj; path = ../../../app/appseed/ace/ace.xcodeproj; sourceTree = "<group>"; };
+		9A3DB1362003F29800364B87 /* localcharset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = localcharset.h; sourceTree = "<group>"; };
+		9A3DB13C2004062000364B87 /* libiconv_interface.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = libiconv_interface.c; sourceTree = "<group>"; };
+		9A3DB13D2004062000364B87 /* libiconv_interface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libiconv_interface.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -552,6 +559,7 @@
 		9A16466419C4A60100966C5E /* include */ = {
 			isa = PBXGroup;
 			children = (
+				9A3DB1362003F29800364B87 /* localcharset.h */,
 				9A16466519C4A60100966C5E /* export.h */,
 			);
 			path = include;
@@ -568,6 +576,7 @@
 		9A1B2F7D16A2AF5C00875A94 = {
 			isa = PBXGroup;
 			children = (
+				9A3DB13B200405E100364B87 /* ca2 */,
 				9A269F5A1D7ED6BE001F47A8 /* ace.xcodeproj */,
 				9A16454D19C4A60000966C5E /* lib */,
 				9A16465D19C4A60100966C5E /* libcharset */,
@@ -583,6 +592,15 @@
 				9A269F651D7ED6BF001F47A8 /* ace_iosTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		9A3DB13B200405E100364B87 /* ca2 */ = {
+			isa = PBXGroup;
+			children = (
+				9A3DB13C2004062000364B87 /* libiconv_interface.c */,
+				9A3DB13D2004062000364B87 /* libiconv_interface.h */,
+			);
+			path = ca2;
 			sourceTree = "<group>";
 		};
 		9A4E84761D1FD3E2008A419B /* Products */ = {
@@ -608,6 +626,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A3DB13F2004062000364B87 /* libiconv_interface.h in Headers */,
+				9A3DB1372003F29900364B87 /* localcharset.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -712,9 +732,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A3DB1352003F21A00364B87 /* localcharset.c in Sources */,
 				077A014F1B4D5479001C85FF /* iconv.c in Sources */,
 				077A01501B4D5479001C85FF /* relocatable.c in Sources */,
-				077A01511B4D5479001C85FF /* localcharset.c in Sources */,
+				9A3DB1412004068900364B87 /* libiconv_interface.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -725,6 +746,7 @@
 				9AEEAD9D19C4D8E000866C9E /* iconv.c in Sources */,
 				9AEEAD9E19C4D8E100866C9E /* relocatable.c in Sources */,
 				9AEEAD9F19C4D8E100866C9E /* localcharset.c in Sources */,
+				9A3DB13E2004062000364B87 /* libiconv_interface.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -832,7 +854,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
-				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/atom/iconv $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/atom/iconv/libcharset/include";
+				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/atom/iconv $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../third/appseed/atom/iconv/libcharset/include";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
@@ -886,7 +908,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/atom/iconv $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/atom/iconv/libcharset/include";
+				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/atom/iconv $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../third/appseed/atom/iconv/libcharset/include";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Release;

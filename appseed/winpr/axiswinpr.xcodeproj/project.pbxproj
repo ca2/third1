@@ -433,8 +433,6 @@
 		07DD61941B5F0B4E003A1CE1 /* wnd.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD5FB21B5F0B4D003A1CE1 /* wnd.h */; };
 		07DD61951B5F0B4E003A1CE1 /* wtsapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5FB71B5F0B4D003A1CE1 /* wtsapi.c */; };
 		07DD61961B5F0B4E003A1CE1 /* wtsapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD5FB71B5F0B4D003A1CE1 /* wtsapi.c */; };
-		07DD61971B5F0B4E003A1CE1 /* wtsapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD5FB81B5F0B4D003A1CE1 /* wtsapi.h */; };
-		07DD61981B5F0B4E003A1CE1 /* wtsapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD5FB81B5F0B4D003A1CE1 /* wtsapi.h */; };
 		07DD619B1B5F0B4E003A1CE1 /* wtsapi_win32.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD5FBA1B5F0B4D003A1CE1 /* wtsapi_win32.h */; };
 		07DD619C1B5F0B4E003A1CE1 /* wtsapi_win32.h in Headers */ = {isa = PBXBuildFile; fileRef = 07DD5FBA1B5F0B4D003A1CE1 /* wtsapi_win32.h */; };
 		9A2116BF1D832931000C4336 /* cipher.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0561D7EDDA7001F47A8 /* cipher.c */; };
@@ -451,6 +449,8 @@
 		9A26A05B1D7EDDA7001F47A8 /* rand.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0581D7EDDA7001F47A8 /* rand.c */; };
 		9A26A0621D7EDE5E001F47A8 /* UdpAppender.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0611D7EDE5E001F47A8 /* UdpAppender.c */; };
 		9A26A0971D7EE017001F47A8 /* libace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A269FF11D7ED70E001F47A8 /* libace.dylib */; };
+		9A3DB1222003F05A00364B87 /* core.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A51A70B1F9BE297004D02D4 /* core.c */; };
+		9A3DB1382003F39D00364B87 /* utils_ntlm.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A51A7061F9BE1DA004D02D4 /* utils_ntlm.c */; };
 		9A51A7041F9BE1A2004D02D4 /* pool_timer.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A51A7021F9BE1A2004D02D4 /* pool_timer.c */; };
 		9A51A7051F9BE1A2004D02D4 /* pool_io.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A51A7031F9BE1A2004D02D4 /* pool_io.c */; };
 		9A51A7071F9BE1DA004D02D4 /* utils_ntlm.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A51A7061F9BE1DA004D02D4 /* utils_ntlm.c */; };
@@ -714,7 +714,6 @@
 		07DD5FB11B5F0B4D003A1CE1 /* wnd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wnd.c; sourceTree = "<group>"; };
 		07DD5FB21B5F0B4D003A1CE1 /* wnd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wnd.h; sourceTree = "<group>"; };
 		07DD5FB71B5F0B4D003A1CE1 /* wtsapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wtsapi.c; sourceTree = "<group>"; };
-		07DD5FB81B5F0B4D003A1CE1 /* wtsapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wtsapi.h; sourceTree = "<group>"; };
 		07DD5FBA1B5F0B4D003A1CE1 /* wtsapi_win32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wtsapi_win32.h; sourceTree = "<group>"; };
 		07DD5FC31B5F0B4E003A1CE1 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		9A1B358C16A2D7A500875A94 /* libaxiswinpr.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxiswinpr.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1474,7 +1473,6 @@
 			isa = PBXGroup;
 			children = (
 				07DD5FB71B5F0B4D003A1CE1 /* wtsapi.c */,
-				07DD5FB81B5F0B4D003A1CE1 /* wtsapi.h */,
 				07DD5FBA1B5F0B4D003A1CE1 /* wtsapi_win32.h */,
 			);
 			path = wtsapi;
@@ -1724,7 +1722,6 @@
 				07DD61941B5F0B4E003A1CE1 /* wnd.h in Headers */,
 				07DD604C1B5F0B4E003A1CE1 /* pipe.h in Headers */,
 				07DD61481B5F0B4E003A1CE1 /* strio.h in Headers */,
-				07DD61981B5F0B4E003A1CE1 /* wtsapi.h in Headers */,
 				07DD60DA1B5F0B4E003A1CE1 /* sspi_winpr.h in Headers */,
 				07DD60701B5F0B4E003A1CE1 /* registry_reg.h in Headers */,
 				07DD60181B5F0B4E003A1CE1 /* handle.h in Headers */,
@@ -1802,7 +1799,6 @@
 				07DD61931B5F0B4E003A1CE1 /* wnd.h in Headers */,
 				07DD604B1B5F0B4E003A1CE1 /* pipe.h in Headers */,
 				07DD61471B5F0B4E003A1CE1 /* strio.h in Headers */,
-				07DD61971B5F0B4E003A1CE1 /* wtsapi.h in Headers */,
 				07DD60D91B5F0B4E003A1CE1 /* sspi_winpr.h in Headers */,
 				07DD606F1B5F0B4E003A1CE1 /* registry_reg.h in Headers */,
 				07DD60171B5F0B4E003A1CE1 /* handle.h in Headers */,
@@ -1946,6 +1942,7 @@
 				078DF8371C52978D00E65274 /* synch.c in Sources */,
 				078DF8391C52978D00E65274 /* work.c in Sources */,
 				07DD616A1B5F0B4E003A1CE1 /* ConsoleAppender.c in Sources */,
+				9A3DB1382003F39D00364B87 /* utils_ntlm.c in Sources */,
 				07DD614A1B5F0B4E003A1CE1 /* trio.c in Sources */,
 				07DD60E01B5F0B4E003A1CE1 /* barrier.c in Sources */,
 				07DD60D61B5F0B4E003A1CE1 /* sspi_export.c in Sources */,
@@ -2020,6 +2017,7 @@
 				07DD61041B5F0B4E003A1CE1 /* tls.c in Sources */,
 				07DD610C1B5F0B4E003A1CE1 /* BitStream.c in Sources */,
 				07DD61161B5F0B4E003A1CE1 /* KeyValuePair.c in Sources */,
+				9A3DB1222003F05A00364B87 /* core.c in Sources */,
 				07DD61821B5F0B4E003A1CE1 /* PacketMessage.c in Sources */,
 				07DD612A1B5F0B4E003A1CE1 /* StreamPool.c in Sources */,
 				07DD61361B5F0B4E003A1CE1 /* debug.c in Sources */,
