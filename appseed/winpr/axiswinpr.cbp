@@ -85,7 +85,6 @@
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
-			
 			<Add option="-lrt" />
 			<Add option="-ldl" />
 			<Add option="-lpthread" />
@@ -95,6 +94,9 @@
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../../time/x64/basis" />
 		</Linker>
+		<Unit filename="ca2/get_version_ex.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="ca2/openssl.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -271,17 +273,17 @@
 		<Unit filename="libwinpr/pool/cleanup_group.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libwinpr/pool/io.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="libwinpr/pool/pool.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/pool/pool.h" />
-		<Unit filename="libwinpr/pool/synch.c">
+		<Unit filename="libwinpr/pool/pool_io.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="libwinpr/pool/timer.c">
+		<Unit filename="libwinpr/pool/pool_timer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/pool/synch.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/pool/work.c">
@@ -542,9 +544,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/utils/lodepng/lodepng.h" />
-		<Unit filename="libwinpr/utils/ntlm.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="libwinpr/utils/print.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -572,6 +571,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/utils/trio/triostr.h" />
+		<Unit filename="libwinpr/utils/utils_ntlm.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libwinpr/utils/wlog/Appender.c">
 			<Option compilerVar="CC" />
 		</Unit>

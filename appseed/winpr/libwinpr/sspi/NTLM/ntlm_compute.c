@@ -64,7 +64,7 @@ void ntlm_get_version_info(NTLM_VERSION_INFO* versionInfo)
 {
    OSVERSIONINFOA osVersionInfo;
    osVersionInfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFOA);
-   core_get_version_ex_a(&osVersionInfo);
+   get_version_ex_a(&osVersionInfo);
    versionInfo->ProductMajorVersion = (UINT8) osVersionInfo.dwMajorVersion;
    versionInfo->ProductMinorVersion = (UINT8) osVersionInfo.dwMinorVersion;
    versionInfo->ProductBuild = (UINT16) osVersionInfo.dwBuildNumber;

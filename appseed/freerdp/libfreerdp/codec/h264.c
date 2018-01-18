@@ -1413,10 +1413,11 @@ static BOOL libavcodec_init(H264_CONTEXT* h264)
       goto EXCEPTION;
    }
 
-   if (sys->codec->capabilities & CODEC_CAP_TRUNCATED)
-   {
-      sys->codecContext->flags |= CODEC_FLAG_TRUNCATED;
-   }
+   /// by Camilo, commented out, CODEC_CAP_TRUNCATED not defined
+//   if (sys->codec->capabilities & CODEC_CAP_TRUNCATED)
+//   {
+//      sys->codecContext->flags |= CODEC_FLAG_TRUNCATED;
+//   }
 
    if (avcodec_open2(sys->codecContext, sys->codec, NULL) < 0)
    {
