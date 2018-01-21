@@ -692,12 +692,8 @@
 		9A2194D51FF0E82000D7E28B /* codec_bitmap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = codec_bitmap.c; sourceTree = "<group>"; };
 		9A2194D71FF0E83200D7E28B /* common_settings.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = common_settings.c; sourceTree = "<group>"; };
 		9A2194D91FF0E84000D7E28B /* core_certificate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = core_certificate.c; sourceTree = "<group>"; };
-		9A25A0A11D2601E80044727D /* libios_axiscrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axiscrypto.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-ios-gidstxlhclvvknehqfkxlzuwomwq/Build/Products/Debug-iphonesimulator/libios_axiscrypto.dylib"; sourceTree = "<group>"; };
-		9A25A0A21D2601E80044727D /* libios_axisopenssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axisopenssl.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-ios-gidstxlhclvvknehqfkxlzuwomwq/Build/Products/Debug-iphonesimulator/libios_axisopenssl.dylib"; sourceTree = "<group>"; };
 		9A8087411DE0FE7F00F70A07 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/lib/libcrypto.a"; sourceTree = "<group>"; };
 		9A8087421DE0FE7F00F70A07 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/lib/libssl.a"; sourceTree = "<group>"; };
-		9A8DBF5F1D20B041005AF004 /* libaxisopenssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxisopenssl.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-osx-fokugkqtvnlvpsdowdubnxeuwdel/Build/Products/Debug/libaxisopenssl.dylib"; sourceTree = "<group>"; };
-		9A8DBF641D20B04D005AF004 /* libaxiscrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxiscrypto.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-osx-fokugkqtvnlvpsdowdubnxeuwdel/Build/Products/Debug/libaxiscrypto.dylib"; sourceTree = "<group>"; };
 		9ADB2E2D1F800AD10005D907 /* libtheoraenc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtheoraenc.a; path = ../../../../usr/local/Cellar/theora/1.1.1/lib/libtheoraenc.a; sourceTree = "<group>"; };
 		9AE9FC491F7F59F500367001 /* libavutil.55.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavutil.55.dylib; path = ../../../nodeapp/thirdparty/library/libavutil.55.dylib; sourceTree = "<group>"; };
 		9AE9FC4A1F7F59F600367001 /* libavcodec.57.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavcodec.57.dylib; path = ../../../nodeapp/thirdparty/library/libavcodec.57.dylib; sourceTree = "<group>"; };
@@ -1133,10 +1129,6 @@
 		9A1B358116A2D7A500875A94 = {
 			isa = PBXGroup;
 			children = (
-				9A25A0A11D2601E80044727D /* libios_axiscrypto.dylib */,
-				9A25A0A21D2601E80044727D /* libios_axisopenssl.dylib */,
-				9A8DBF641D20B04D005AF004 /* libaxiscrypto.dylib */,
-				9A8DBF5F1D20B041005AF004 /* libaxisopenssl.dylib */,
 				07DD70A31B5F0FD4003A1CE1 /* axiswinpr.xcodeproj */,
 				07DD6ABB1B5F0C60003A1CE1 /* freerdp */,
 				9A1B358D16A2D7A500875A94 /* Products */,
@@ -1772,6 +1764,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					OPENSSL_NO_DEPRECATED,
 					WITH_LIBAVCODEC,
 					_X86_,
 					_UNICODE,
@@ -1779,7 +1772,7 @@
 					FREERDP_EXPORTS,
 					_DEBUG,
 					HAVE_CONFIG_H,
-					"EXT_PATH=“/Application/ca2/lib/freerdp/extensions\"\nCMAKE_BUILD_TYPE=Release\nCMAKE_INTDIR=\"Debug\"\nfreerdp_EXPORTS WITH_OPENH264 WITH_OPENH264 WITH_OPENH264 WITH_OPENH264",
+					"EXT_PATH=“/Application/ca2/lib/freerdp/extensions\"\nCMAKE_BUILD_TYPE=Release\nCMAKE_INTDIR=\"Debug\"\nfreerdp_EXPORTS WITH_OPENH264 WITH_OPENH264 WITH_OPENH264 WITH_OPENH264 OPENSSL_NO_DEPRECATED OPENSSL_NO_DEPRECATED DAMN OPENSSL_NO_DEPRECATED",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1847,6 +1840,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					OPENSSL_NO_DEPRECATED,
 					WITH_LIBAVCODEC,
 					_X86_,
 					_UNICODE,
@@ -1854,7 +1848,7 @@
 					FREERDP_EXPORTS,
 					_DEBUG,
 					HAVE_CONFIG_H,
-					"EXT_PATH=“/Application/ca2/lib/freerdp/extensions\"\nCMAKE_BUILD_TYPE=Release\nCMAKE_INTDIR=\"Debug\"\nfreerdp_EXPORTS WITH_OPENH264 WITH_OPENH264 WITH_OPENH264 WITH_OPENH264",
+					"EXT_PATH=“/Application/ca2/lib/freerdp/extensions\"\nCMAKE_BUILD_TYPE=Release\nCMAKE_INTDIR=\"Debug\"\nfreerdp_EXPORTS WITH_OPENH264 WITH_OPENH264 WITH_OPENH264 WITH_OPENH264 OPENSSL_NO_DEPRECATED OPENSSL_NO_DEPRECATED DAMN OPENSSL_NO_DEPRECATED",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1889,6 +1883,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					"$(WorkspaceDir)/../../../app/thirdparty/include",
+					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
+					"/usr/local/opt/openssl@1.1/include",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(TARGET_BUILD_DIR)",
@@ -1902,6 +1902,7 @@
 					/usr/local/Cellar/x264/r2795/lib,
 					/usr/local/Cellar/xvid/1.3.4/lib,
 					/usr/local/Cellar/libiconv/1.15/lib,
+					"/usr/local/opt/openssl@1.1/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 			};
@@ -1911,6 +1912,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					"$(WorkspaceDir)/../../../app/thirdparty/include",
+					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
+					"/usr/local/opt/openssl@1.1/include",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(TARGET_BUILD_DIR)",
@@ -1924,6 +1931,7 @@
 					/usr/local/Cellar/x264/r2795/lib,
 					/usr/local/Cellar/xvid/1.3.4/lib,
 					/usr/local/Cellar/libiconv/1.15/lib,
+					"/usr/local/opt/openssl@1.1/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 			};

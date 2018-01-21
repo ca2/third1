@@ -84,7 +84,7 @@
 #include <freerdp/log.h>
 
 #include <winpr/stream.h>
-
+#define OPENSSL_NO_DEPRECATED
 #include "tcp.h"
 
 #define TAG FREERDP_TAG("core")
