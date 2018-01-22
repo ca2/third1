@@ -56,7 +56,7 @@ static const BYTE NTLM_NULL_BUFFER[16] =
 //#ifdef _WIN32
 // _declspec(dllimport)
 //#endif
-int core_get_version_ex_a(LPOSVERSIONINFOA lpVersionInformation);
+int get_version_ex_a(LPOSVERSIONINFOA lpVersionInformation);
 
 
 
