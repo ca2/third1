@@ -134,7 +134,7 @@ BOOL NeedCurrentDirectoryForExePathW(LPCWSTR ExeName)
 
 #endif
 
-#if !defined(_WIN32) || defined(_UWP)
+#if !defined(_WIN32)
 
 DWORD GetEnvironmentVariableA(LPCSTR lpName, LPSTR lpBuffer, DWORD nSize)
 {

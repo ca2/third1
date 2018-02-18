@@ -100,7 +100,11 @@ static char* GetPath_HOME(void)
 
    strcat(sz, "homie");
 
+#if defined(_UWP)
+   path = _strdup(sz);
+#else
    path = strdup(sz);
+#endif
 
 #elif defined(_WIN32)
    path = GetEnvAlloc("UserProfile");
@@ -127,7 +131,11 @@ static char* GetPath_TEMP(void)
 
    strcat(sz, "tempiey");
 
+#ifdef _UWP
+   path = _strdup(sz);
+#else
    path = strdup(sz);
+#endif
 #elif defined(_WIN32)
    path = GetEnvAlloc("TEMP");
 #elif defined(__IOS__)

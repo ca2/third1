@@ -274,13 +274,14 @@ DWORD GetTickCount(void)
 }
 #endif // _WIN32
 
-#if !defined(_WIN32) || defined(_UWP)
+#if !defined(_WIN32) 
 
 /* OSVERSIONINFOEX Structure:
 * http://msdn.microsoft.com/en-us/library/windows/desktop/ms724833
 */
 
-BOOL GetVersionExA(LPOSVERSIONINFOA lpVersionInformation)
+BOOL 
+GetVersionExA(LPOSVERSIONINFOA lpVersionInformation)
 {
 #ifdef _UWP
 	/* Windows 10 Version Info */
@@ -343,7 +344,11 @@ BOOL GetVersionExW(LPOSVERSIONINFOW lpVersionInformation)
 
 #if !defined(_WIN32) || defined(_UWP)
 
-BOOL GetComputerNameA(LPSTR lpBuffer, LPDWORD lpnSize)
+BOOL
+#ifdef _UWP
+WINAPI
+#endif
+GetComputerNameA(LPSTR lpBuffer, LPDWORD lpnSize)
 {
 	char* dot;
 	int length;

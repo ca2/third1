@@ -6,7 +6,7 @@
 
 char * g_pszDirSystem = NULL;
 
-#ifdef WIN32
+#ifdef _WIN32
 __declspec(dllexport)
 #endif
 void winpr_set_dir_system(char * psystem)

@@ -113,10 +113,10 @@
     <ClCompile Include="libwinpr\pool\callback.c" />
     <ClCompile Include="libwinpr\pool\callback_cleanup.c" />
     <ClCompile Include="libwinpr\pool\cleanup_group.c" />
-    <ClCompile Include="libwinpr\pool\io.c" />
     <ClCompile Include="libwinpr\pool\pool.c" />
+    <ClCompile Include="libwinpr\pool\pool_io.c" />
+    <ClCompile Include="libwinpr\pool\pool_timer.c" />
     <ClCompile Include="libwinpr\pool\synch.c" />
-    <ClCompile Include="libwinpr\pool\timer.c" />
     <ClCompile Include="libwinpr\pool\work.c" />
     <ClCompile Include="libwinpr\registry\registry.c" />
     <ClCompile Include="libwinpr\registry\registry_reg.c" />
@@ -189,7 +189,6 @@
     <ClCompile Include="libwinpr\utils\image.c" />
     <ClCompile Include="libwinpr\utils\ini.c" />
     <ClCompile Include="libwinpr\utils\lodepng\lodepng.c" />
-    <ClCompile Include="libwinpr\utils\ntlm.c" />
     <ClCompile Include="libwinpr\utils\print.c" />
     <ClCompile Include="libwinpr\utils\sam.c" />
     <ClCompile Include="libwinpr\utils\ssl.c" />
@@ -197,6 +196,7 @@
     <ClCompile Include="libwinpr\utils\trio\trio.c" />
     <ClCompile Include="libwinpr\utils\trio\trionan.c" />
     <ClCompile Include="libwinpr\utils\trio\triostr.c" />
+    <ClCompile Include="libwinpr\utils\utils_ntlm.c" />
     <ClCompile Include="libwinpr\utils\wlog\Appender.c" />
     <ClCompile Include="libwinpr\utils\wlog\BinaryAppender.c" />
     <ClCompile Include="libwinpr\utils\wlog\CallbackAppender.c" />
@@ -228,8 +228,8 @@
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
     <ApplicationType>Windows Store</ApplicationType>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
-    <WindowsTargetPlatformMinVersion>10.0.15063.0</WindowsTargetPlatformMinVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.16299.0</WindowsTargetPlatformMinVersion>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
