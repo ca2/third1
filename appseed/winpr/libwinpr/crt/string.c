@@ -1,4 +1,4 @@
-/**
+﻿/**
  * WinPR: Windows Portable Runtime
  * String Manipulation (CRT)
  *
@@ -35,6 +35,9 @@
 
 #ifndef _WIN32
 
+#undef _strdup
+#undef strdup
+
 char* _strdup(const char* strSource)
 {
    char* strDestination;
@@ -49,6 +52,10 @@ char* _strdup(const char* strSource)
 
    return strDestination;
 }
+
+#undef _wcsdup
+#undef wcsdup
+
 
 WCHAR* _wcsdup(const WCHAR* strSource)
 {
