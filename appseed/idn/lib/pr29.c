@@ -32,7 +32,7 @@
 #include "pr29.h"
 
 /* Get stringprep_utf8_to_ucs4. */
-#include <stringprep.h>
+#include "stringprep.h"
 
 /*
  * The tables used in this file was extracted by Simon Josefsson from

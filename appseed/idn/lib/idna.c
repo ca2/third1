@@ -35,8 +35,8 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <stringprep.h>
-#include <punycode.h>
+#include "stringprep.h"
+#include "punycode.h"
 
 #include "idna.h"
 

@@ -33,13 +33,13 @@
 #include <config.h>
 
 /* Get stringprep_utf8_to_ucs4, stringprep_locale_to_utf8. */
-#include <stringprep.h>
+#include "stringprep.h"
 
 /* Get strcmp(). */
 #include <string.h>
 
 /* Get specifications. */
-#include <tld.h>
+#include "tld.h"
 
 //typedef long glong;
 
