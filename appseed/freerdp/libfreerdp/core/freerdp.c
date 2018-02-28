@@ -554,13 +554,13 @@ void freerdp_set_focus(freerdp* instance)
 void freerdp_get_version(int* major, int* minor, int* revision)
 {
 	if (major != NULL)
-		*major = FREERDP_VERSION_MAJOR;
+		*major = 2;
 
 	if (minor != NULL)
-		*minor = FREERDP_VERSION_MINOR;
+		*minor = 0;
 
 	if (revision != NULL)
-		*revision = FREERDP_VERSION_REVISION;
+		*revision = 0;
 }
 
 const char* freerdp_get_version_string(void)

@@ -450,15 +450,24 @@
 		9A26A0621D7EDE5E001F47A8 /* UdpAppender.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A26A0611D7EDE5E001F47A8 /* UdpAppender.c */; };
 		9A26A0971D7EE017001F47A8 /* libace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A269FF11D7ED70E001F47A8 /* libace.dylib */; };
 		9A3DB1222003F05A00364B87 /* core.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A51A70B1F9BE297004D02D4 /* core.c */; };
-		9A3DB1382003F39D00364B87 /* utils_ntlm.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A51A7061F9BE1DA004D02D4 /* utils_ntlm.c */; };
-		9A51A7041F9BE1A2004D02D4 /* pool_timer.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A51A7021F9BE1A2004D02D4 /* pool_timer.c */; };
-		9A51A7051F9BE1A2004D02D4 /* pool_io.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A51A7031F9BE1A2004D02D4 /* pool_io.c */; };
-		9A51A7071F9BE1DA004D02D4 /* utils_ntlm.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A51A7061F9BE1DA004D02D4 /* utils_ntlm.c */; };
 		9A51A7091F9BE236004D02D4 /* Source.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A51A7081F9BE236004D02D4 /* Source.c */; };
 		9A51A70D1F9BE297004D02D4 /* core.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A51A70B1F9BE297004D02D4 /* core.c */; };
 		9A6CE8361DE0F05E00410C2C /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A9809871DDF97AE00BB294E /* error.c */; };
 		9A97EF1D1D807ED3000B4EC2 /* makecert.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A97EF1C1D807ED3000B4EC2 /* makecert.c */; };
 		9A9809881DDF97AE00BB294E /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A9809871DDF97AE00BB294E /* error.c */; };
+		9AB7771B20470434009C3590 /* timer.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7771920470433009C3590 /* timer.c */; };
+		9AB7771C20470434009C3590 /* io.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7771A20470434009C3590 /* io.c */; };
+		9AB77720204704F1009C3590 /* ntlm.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7771E204704F1009C3590 /* ntlm.c */; };
+		9AB77725204705AF009C3590 /* kerberos.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB77723204705AF009C3590 /* kerberos.c */; };
+		9AB77726204705AF009C3590 /* kerberos.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB77723204705AF009C3590 /* kerberos.c */; };
+		9AB77727204705AF009C3590 /* kerberos.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB77724204705AF009C3590 /* kerberos.h */; };
+		9AB77728204705AF009C3590 /* kerberos.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB77724204705AF009C3590 /* kerberos.h */; };
+		9AB7772B204705C2009C3590 /* sspi_gss.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB77729204705C1009C3590 /* sspi_gss.h */; };
+		9AB7772C204705C2009C3590 /* sspi_gss.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB77729204705C1009C3590 /* sspi_gss.h */; };
+		9AB7772D204705C2009C3590 /* sspi_gss.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7772A204705C2009C3590 /* sspi_gss.c */; };
+		9AB7772E204705C2009C3590 /* sspi_gss.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7772A204705C2009C3590 /* sspi_gss.c */; };
+		9AB777312047083F009C3590 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB7772F2047083F009C3590 /* libcrypto.a */; };
+		9AB777322047083F009C3590 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB777302047083F009C3590 /* libssl.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -724,9 +733,6 @@
 		9A26A0571D7EDDA7001F47A8 /* hash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hash.c; sourceTree = "<group>"; };
 		9A26A0581D7EDDA7001F47A8 /* rand.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rand.c; sourceTree = "<group>"; };
 		9A26A0611D7EDE5E001F47A8 /* UdpAppender.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = UdpAppender.c; sourceTree = "<group>"; };
-		9A51A7021F9BE1A2004D02D4 /* pool_timer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pool_timer.c; sourceTree = "<group>"; };
-		9A51A7031F9BE1A2004D02D4 /* pool_io.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pool_io.c; sourceTree = "<group>"; };
-		9A51A7061F9BE1DA004D02D4 /* utils_ntlm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utils_ntlm.c; sourceTree = "<group>"; };
 		9A51A7081F9BE236004D02D4 /* Source.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Source.c; sourceTree = "<group>"; };
 		9A51A70B1F9BE297004D02D4 /* core.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = core.c; sourceTree = "<group>"; };
 		9A8086381DE0F17300F70A07 /* build-openssl-1.1.0c.log */ = {isa = PBXFileReference; lastKnownFileType = text; path = "build-openssl-1.1.0c.log"; sourceTree = "<group>"; };
@@ -812,6 +818,15 @@
 		9A8087301DE0F34200F70A07 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "../../../nodeapp/iPhoneSimulator10.1-x86_64.sdk/lib/libssl.a"; sourceTree = "<group>"; };
 		9A97EF1C1D807ED3000B4EC2 /* makecert.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = makecert.c; sourceTree = "<group>"; wrapsLines = 1; };
 		9A9809871DDF97AE00BB294E /* error.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = error.c; sourceTree = "<group>"; };
+		9AB7771920470433009C3590 /* timer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = timer.c; sourceTree = "<group>"; };
+		9AB7771A20470434009C3590 /* io.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = io.c; sourceTree = "<group>"; };
+		9AB7771E204704F1009C3590 /* ntlm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ntlm.c; sourceTree = "<group>"; };
+		9AB77723204705AF009C3590 /* kerberos.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kerberos.c; sourceTree = "<group>"; };
+		9AB77724204705AF009C3590 /* kerberos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kerberos.h; sourceTree = "<group>"; };
+		9AB77729204705C1009C3590 /* sspi_gss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sspi_gss.h; sourceTree = "<group>"; };
+		9AB7772A204705C2009C3590 /* sspi_gss.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sspi_gss.c; sourceTree = "<group>"; };
+		9AB7772F2047083F009C3590 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "../../../../usr/local/Cellar/openssl@1.1/1.1.0g_1/lib/libcrypto.a"; sourceTree = "<group>"; };
+		9AB777302047083F009C3590 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "../../../../usr/local/Cellar/openssl@1.1/1.1.0g_1/lib/libssl.a"; sourceTree = "<group>"; };
 		9ACBD1DD1DDFDB36004AF08F /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../../../nodeapp/thirdparty/library/libcrypto.a; sourceTree = "<group>"; };
 		9ACBD1DF1DDFDB60004AF08F /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../../../nodeapp/thirdparty/library/libssl.a; sourceTree = "<group>"; };
 		9AF4C7541F83E2CD00197385 /* libios_axiscrypto.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libios_axiscrypto.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -829,6 +844,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AB777312047083F009C3590 /* libcrypto.a in Frameworks */,
+				9AB777322047083F009C3590 /* libssl.a in Frameworks */,
 				9A26A0971D7EE017001F47A8 /* libace.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1138,9 +1155,9 @@
 		07DD5EC01B5F0B4D003A1CE1 /* pool */ = {
 			isa = PBXGroup;
 			children = (
+				9AB7771A20470434009C3590 /* io.c */,
+				9AB7771920470433009C3590 /* timer.c */,
 				0775CAC51B848722005F8295 /* pool.c */,
-				9A51A7031F9BE1A2004D02D4 /* pool_io.c */,
-				9A51A7021F9BE1A2004D02D4 /* pool_timer.c */,
 				0775CAC61B848722005F8295 /* synch.c */,
 				0775CAC81B848722005F8295 /* work.c */,
 				07DD5EC11B5F0B4D003A1CE1 /* callback.c */,
@@ -1216,6 +1233,9 @@
 		07DD5F0B1B5F0B4D003A1CE1 /* sspi */ = {
 			isa = PBXGroup;
 			children = (
+				9AB7772A204705C2009C3590 /* sspi_gss.c */,
+				9AB77729204705C1009C3590 /* sspi_gss.h */,
+				9AB77722204705AF009C3590 /* Kerberos */,
 				07DD5F0E1B5F0B4D003A1CE1 /* CredSSP */,
 				07DD5F131B5F0B4D003A1CE1 /* Negotiate */,
 				07DD5F161B5F0B4D003A1CE1 /* NTLM */,
@@ -1333,6 +1353,7 @@
 		07DD5F551B5F0B4D003A1CE1 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				9AB7771E204704F1009C3590 /* ntlm.c */,
 				07DD5F591B5F0B4D003A1CE1 /* collections */,
 				07DD5F6B1B5F0B4D003A1CE1 /* corkscrew */,
 				07DD5F741B5F0B4D003A1CE1 /* lodepng */,
@@ -1346,7 +1367,6 @@
 				07DD5F791B5F0B4D003A1CE1 /* sam.c */,
 				07DD5F7A1B5F0B4D003A1CE1 /* ssl.c */,
 				07DD5F7B1B5F0B4D003A1CE1 /* stream.c */,
-				9A51A7061F9BE1DA004D02D4 /* utils_ntlm.c */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -1659,9 +1679,20 @@
 			path = pkgconfig;
 			sourceTree = "<group>";
 		};
+		9AB77722204705AF009C3590 /* Kerberos */ = {
+			isa = PBXGroup;
+			children = (
+				9AB77723204705AF009C3590 /* kerberos.c */,
+				9AB77724204705AF009C3590 /* kerberos.h */,
+			);
+			path = Kerberos;
+			sourceTree = "<group>";
+		};
 		9ACBD1DC1DDFDB35004AF08F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9AB7772F2047083F009C3590 /* libcrypto.a */,
+				9AB777302047083F009C3590 /* libssl.a */,
 				9AF4C7541F83E2CD00197385 /* libios_axiscrypto.a */,
 				9A80872F1DE0F34200F70A07 /* libcrypto.a */,
 				9A8087301DE0F34200F70A07 /* libssl.a */,
@@ -1680,7 +1711,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				07DD61301B5F0B4E003A1CE1 /* map_info.h in Headers */,
+				9AB77728204705AF009C3590 /* kerberos.h in Headers */,
 				07DD60F21B5F0B4E003A1CE1 /* synch.h in Headers */,
+				9AB7772C204705C2009C3590 /* sspi_gss.h in Headers */,
 				07DD60BC1B5F0B4E003A1CE1 /* ntlm.h in Headers */,
 				07DD60321B5F0B4E003A1CE1 /* log.h in Headers */,
 				07DD60841B5F0B4E003A1CE1 /* ndr_pointer.h in Headers */,
@@ -1757,7 +1790,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				07DD612F1B5F0B4E003A1CE1 /* map_info.h in Headers */,
+				9AB77727204705AF009C3590 /* kerberos.h in Headers */,
 				07DD60F11B5F0B4E003A1CE1 /* synch.h in Headers */,
+				9AB7772B204705C2009C3590 /* sspi_gss.h in Headers */,
 				07DD60BB1B5F0B4E003A1CE1 /* ntlm.h in Headers */,
 				07DD60311B5F0B4E003A1CE1 /* log.h in Headers */,
 				07DD60831B5F0B4E003A1CE1 /* ndr_pointer.h in Headers */,
@@ -1942,7 +1977,6 @@
 				078DF8371C52978D00E65274 /* synch.c in Sources */,
 				078DF8391C52978D00E65274 /* work.c in Sources */,
 				07DD616A1B5F0B4E003A1CE1 /* ConsoleAppender.c in Sources */,
-				9A3DB1382003F39D00364B87 /* utils_ntlm.c in Sources */,
 				07DD614A1B5F0B4E003A1CE1 /* trio.c in Sources */,
 				07DD60E01B5F0B4E003A1CE1 /* barrier.c in Sources */,
 				07DD60D61B5F0B4E003A1CE1 /* sspi_export.c in Sources */,
@@ -2016,6 +2050,7 @@
 				07DD60021B5F0B4E003A1CE1 /* cert.c in Sources */,
 				07DD61041B5F0B4E003A1CE1 /* tls.c in Sources */,
 				07DD610C1B5F0B4E003A1CE1 /* BitStream.c in Sources */,
+				9AB7772E204705C2009C3590 /* sspi_gss.c in Sources */,
 				07DD61161B5F0B4E003A1CE1 /* KeyValuePair.c in Sources */,
 				9A3DB1222003F05A00364B87 /* core.c in Sources */,
 				07DD61821B5F0B4E003A1CE1 /* PacketMessage.c in Sources */,
@@ -2083,6 +2118,7 @@
 				07DD5FE01B5F0B4E003A1CE1 /* comm_sercx2_sys.c in Sources */,
 				07DD5FF21B5F0B4E003A1CE1 /* buffer.c in Sources */,
 				07DD61721B5F0B4E003A1CE1 /* FileAppender.c in Sources */,
+				9AB77726204705AF009C3590 /* kerberos.c in Sources */,
 				07DD5FD21B5F0B4E003A1CE1 /* synthetic.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2099,6 +2135,7 @@
 				07DD60E31B5F0B4E003A1CE1 /* critical.c in Sources */,
 				07DD61551B5F0B4E003A1CE1 /* triostr.c in Sources */,
 				07DD618D1B5F0B4E003A1CE1 /* winhttp.c in Sources */,
+				9AB7772D204705C2009C3590 /* sspi_gss.c in Sources */,
 				07DD60951B5F0B4E003A1CE1 /* ndr_union.c in Sources */,
 				07DD610F1B5F0B4E003A1CE1 /* CountdownEvent.c in Sources */,
 				07DD5FFD1B5F0B4E003A1CE1 /* utf.c in Sources */,
@@ -2133,8 +2170,8 @@
 				07DD60791B5F0B4E003A1CE1 /* ndr_context.c in Sources */,
 				07DD61131B5F0B4E003A1CE1 /* HashTable.c in Sources */,
 				07DD60E71B5F0B4E003A1CE1 /* init.c in Sources */,
-				9A51A7041F9BE1A2004D02D4 /* pool_timer.c in Sources */,
 				07DD60E11B5F0B4E003A1CE1 /* condition.c in Sources */,
+				9AB7771C20470434009C3590 /* io.c in Sources */,
 				07DD609B1B5F0B4E003A1CE1 /* security.c in Sources */,
 				9A26A0591D7EDDA7001F47A8 /* cipher.c in Sources */,
 				9A51A7091F9BE236004D02D4 /* Source.c in Sources */,
@@ -2149,7 +2186,6 @@
 				07DD609F1B5F0B4E003A1CE1 /* smartcard.c in Sources */,
 				07DD60811B5F0B4E003A1CE1 /* ndr_pointer.c in Sources */,
 				07DD60B11B5F0B4E003A1CE1 /* credssp.c in Sources */,
-				9A51A7051F9BE1A2004D02D4 /* pool_io.c in Sources */,
 				07DD616D1B5F0B4E003A1CE1 /* DataMessage.c in Sources */,
 				07DD617D1B5F0B4E003A1CE1 /* Message.c in Sources */,
 				07DD60451B5F0B4E003A1CE1 /* path.c in Sources */,
@@ -2174,6 +2210,8 @@
 				07DD60011B5F0B4E003A1CE1 /* cert.c in Sources */,
 				07DD61031B5F0B4E003A1CE1 /* tls.c in Sources */,
 				07DD610B1B5F0B4E003A1CE1 /* BitStream.c in Sources */,
+				9AB7771B20470434009C3590 /* timer.c in Sources */,
+				9AB77720204704F1009C3590 /* ntlm.c in Sources */,
 				07DD61151B5F0B4E003A1CE1 /* KeyValuePair.c in Sources */,
 				07DD61811B5F0B4E003A1CE1 /* PacketMessage.c in Sources */,
 				07DD61291B5F0B4E003A1CE1 /* StreamPool.c in Sources */,
@@ -2222,9 +2260,9 @@
 				07DD5FCD1B5F0B4E003A1CE1 /* clipboard.c in Sources */,
 				07DD5FD31B5F0B4E003A1CE1 /* com.c in Sources */,
 				0775CACB1B848722005F8295 /* synch.c in Sources */,
-				9A51A7071F9BE1DA004D02D4 /* utils_ntlm.c in Sources */,
 				07DD60FB1B5F0B4E003A1CE1 /* process.c in Sources */,
 				07DD611D1B5F0B4E003A1CE1 /* MessageQueue.c in Sources */,
+				9AB77725204705AF009C3590 /* kerberos.c in Sources */,
 				07DD60751B5F0B4E003A1CE1 /* ndr_array.c in Sources */,
 				07DD60211B5F0B4E003A1CE1 /* scancode.c in Sources */,
 				9A9809881DDF97AE00BB294E /* error.c in Sources */,
@@ -2325,11 +2363,10 @@
 					_UNICODE,
 					WINPR_EXPORTS,
 					FREERDP_EXPORTS,
-					WINPR_EXPORTS,
+					WITH_OPENSSL,
 					_DEBUG,
 					HAVE_CONFIG_H,
 					"CMAKE_INTDIR=\"Debug\"",
-					winpr_EXPORTS,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
@@ -2339,9 +2376,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/usr/local/opt/openssl@1.1/include";
 				INSTALL_PATH = "@executable_path";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
+				LIBRARY_SEARCH_PATHS = "/usr/local/opt/openssl@1.1/lib";
 				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2391,11 +2430,10 @@
 					_UNICODE,
 					WINPR_EXPORTS,
 					FREERDP_EXPORTS,
-					WINPR_EXPORTS,
+					WITH_OPENSSL,
 					_DEBUG,
 					HAVE_CONFIG_H,
 					"CMAKE_INTDIR=\"Debug\"",
-					winpr_EXPORTS,
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -2404,9 +2442,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/usr/local/opt/openssl@1.1/include";
 				INSTALL_PATH = "@executable_path";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
+				LIBRARY_SEARCH_PATHS = "/usr/local/opt/openssl@1.1/lib";
 				MACH_O_TYPE = mh_dylib;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2421,6 +2461,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/usr/local/Cellar/openssl@1.1/1.1.0g_1/lib",
+				);
 			};
 			name = Debug;
 		};
@@ -2428,6 +2472,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/usr/local/Cellar/openssl@1.1/1.1.0g_1/lib",
+				);
 			};
 			name = Release;
 		};

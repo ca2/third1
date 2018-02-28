@@ -2,7 +2,7 @@
 #define __CONFIG_H
 
 #define CMAKE_SHARED_LIBRARY_SUFFIX ".dll"
-#define CMAKE_SHARED_LIBRARY_PREFIX  ""
+#define CMAKE_SHARED_LIBRARY_PREFIX  "lib"
 
 /* Include files */
 #define HAVE_FCNTL_H

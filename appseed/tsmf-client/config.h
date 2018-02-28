@@ -90,4 +90,4 @@
 #endif
 
 
-#define CMAKE_SHARED_LIBRARY_PREFIX "C:\\ca2\\modules\\freerdp\\client\\"
+#define CMAKE_SHARED_LIBRARY_PREFIX "lib"
