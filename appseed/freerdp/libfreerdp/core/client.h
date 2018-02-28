@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-#ifndef FREERDP_CORE_CLIENT_H
-#define FREERDP_CORE_CLIENT_H
+#ifndef FREERDP_LIB_CORE_CLIENT_H
+#define FREERDP_LIB_CORE_CLIENT_H
 
 #include <winpr/crt.h>
 #include <winpr/stream.h>
@@ -35,13 +35,16 @@
 #include <freerdp/client/drdynvc.h>
 #include <freerdp/channels/channels.h>
 
-#define CHANNEL_MAX_COUNT 30
+#define CHANNEL_MAX_COUNT 31
 
 struct rdp_channel_client_data
 {
 	PVIRTUALCHANNELENTRY entry;
+	PVIRTUALCHANNELENTRYEX entryEx;
 	PCHANNEL_INIT_EVENT_FN pChannelInitEventProc;
+	PCHANNEL_INIT_EVENT_EX_FN pChannelInitEventProcEx;
 	void* pInitHandle;
+	void* lpUserParam;
 };
 typedef struct rdp_channel_client_data CHANNEL_CLIENT_DATA;
 
@@ -53,7 +56,9 @@ struct rdp_channel_open_data
 	int flags;
 	void* pInterface;
 	rdpChannels* channels;
+	void* lpUserParam;
 	PCHANNEL_OPEN_EVENT_FN pChannelOpenEventProc;
+	PCHANNEL_OPEN_EVENT_EX_FN pChannelOpenEventProcEx;
 };
 typedef struct rdp_channel_open_data CHANNEL_OPEN_DATA;
 
@@ -104,8 +109,8 @@ struct rdp_channels
 	wMessageQueue* queue;
 
 	DrdynvcClientContext* drdynvc;
-	UINT64 openHandleSeq;
 	CRITICAL_SECTION channelsLock;
+
 	wHashTable* openHandles;
 };
 
@@ -119,4 +124,4 @@ FREERDP_LOCAL UINT freerdp_channels_pre_connect(rdpChannels* channels,
         freerdp* instance);
 FREERDP_LOCAL UINT freerdp_channels_post_connect(rdpChannels* channels,
         freerdp* instance);
-#endif /* FREERDP_CORE_CLIENT_H */
+#endif /* FREERDP_LIB_CORE_CLIENT_H */

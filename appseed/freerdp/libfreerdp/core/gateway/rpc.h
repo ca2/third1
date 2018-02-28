@@ -19,8 +19,8 @@
  * limitations under the License.
  */
 
-#ifndef FREERDP_CORE_RPC_H
-#define FREERDP_CORE_RPC_H
+#ifndef FREERDP_LIB_CORE_GATEWAY_RPC_H
+#define FREERDP_LIB_CORE_GATEWAY_RPC_H
 
 #include <winpr/wtypes.h>
 #include <winpr/stream.h>
@@ -715,7 +715,7 @@ struct rpc_virtual_connection_cookie_entry
 	RpcVirtualConnection* Reference;
 };
 typedef struct rpc_virtual_connection_cookie_entry
-		RpcVirtualConnectionCookieEntry;
+	RpcVirtualConnectionCookieEntry;
 
 struct rpc_client
 {
@@ -782,9 +782,6 @@ FREERDP_LOCAL int rpc_out_channel_read(RpcOutChannel* outChannel, BYTE* data,
 FREERDP_LOCAL int rpc_out_channel_write(RpcOutChannel* outChannel,
                                         const BYTE* data, int length);
 
-FREERDP_LOCAL RpcInChannel* rpc_client_in_channel_new(rdpRpc* rpc);
-FREERDP_LOCAL void rpc_in_channel_free(RpcInChannel* inChannel);
-
 FREERDP_LOCAL RpcOutChannel* rpc_out_channel_new(rdpRpc* rpc);
 FREERDP_LOCAL int rpc_out_channel_replacement_connect(RpcOutChannel* outChannel,
         int timeout);
@@ -803,4 +800,4 @@ FREERDP_LOCAL BOOL rpc_connect(rdpRpc* rpc, int timeout);
 FREERDP_LOCAL rdpRpc* rpc_new(rdpTransport* transport);
 FREERDP_LOCAL void rpc_free(rdpRpc* rpc);
 
-#endif /* FREERDP_CORE_RPC_H */
+#endif /* FREERDP_LIB_CORE_GATEWAY_RPC_H */

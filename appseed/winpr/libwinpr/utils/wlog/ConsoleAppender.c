@@ -73,7 +73,7 @@ static BOOL WLog_ConsoleAppender_WriteMessage(wLog* log, wLogAppender* appender,
 		sprintf_s(MessageString, sizeof(MessageString), "%s%s\n",
 			  message->PrefixString, message->TextString);
 
-		OutputDebugString(MessageString);
+		OutputDebugStringA(MessageString);
 
 		return TRUE;
 	}
@@ -192,10 +192,9 @@ static BOOL WLog_ConsoleAppender_WritePacketMessage(wLog* log, wLogAppender* app
 #if defined(ANDROID)
 	return FALSE;
 #else
-	int PacketId;
 	char* FullFileName;
 
-	PacketId = g_PacketId++;
+	g_PacketId++;
 
 	if (!appender->PacketMessageContext)
 	{

@@ -76,7 +76,7 @@ static void* named_pipe_client_thread(void* arg)
 		goto out;
 	}
 
-	printf("Client ReadFile: %u bytes\n", lpNumberOfBytesRead);
+	printf("Client ReadFile: %"PRIu32" bytes\n", lpNumberOfBytesRead);
 	winpr_HexDump("pipe.test", WLOG_DEBUG, lpReadBuffer, lpNumberOfBytesRead);
 	fSuccess = TRUE;
 out:
@@ -157,7 +157,7 @@ static void* named_pipe_server_thread(void* arg)
 		goto out;
 	}
 
-	printf("Server ReadFile: %u bytes\n", lpNumberOfBytesRead);
+	printf("Server ReadFile: %"PRIu32" bytes\n", lpNumberOfBytesRead);
 	winpr_HexDump("pipe.test", WLOG_DEBUG, lpReadBuffer, lpNumberOfBytesRead);
 	lpNumberOfBytesWritten = 0;
 	nNumberOfBytesToWrite = PIPE_BUFFER_SIZE;
@@ -194,9 +194,6 @@ static void* named_pipe_single_thread(void* arg)
 	int i;
 	int numPipes;
 	BOOL bSuccess = FALSE;
-#ifndef _WIN32
-	WINPR_NAMED_PIPE* p;
-#endif
 	numPipes = TESTNUMPIPESST;
 	memset(servers, 0, sizeof(servers));
 	memset(clients, 0, sizeof(clients));
@@ -217,7 +214,7 @@ static void* named_pipe_single_thread(void* arg)
 
 	for (i = 0; i < numPipes; i++)
 	{
-		p = (WINPR_NAMED_PIPE*)servers[i];
+		WINPR_NAMED_PIPE* p = (WINPR_NAMED_PIPE*)servers[i];
 
 		if (strcmp(lpszPipeNameSt, p->name))
 		{
@@ -272,7 +269,7 @@ static void* named_pipe_single_thread(void* arg)
 
 		if (!fConnected)
 		{
-			printf("%s: ConnectNamedPipe #%d failed. (%u)\n", __FUNCTION__, i, GetLastError());
+			printf("%s: ConnectNamedPipe #%d failed. (%"PRIu32")\n", __FUNCTION__, i, GetLastError());
 			goto out;
 		}
 	}
@@ -281,7 +278,7 @@ static void* named_pipe_single_thread(void* arg)
 
 	for (i = 0; i < numPipes; i++)
 	{
-		p = servers[i];
+		WINPR_NAMED_PIPE* p = servers[i];
 
 		if (p->clientfd < 1)
 		{
@@ -304,7 +301,6 @@ static void* named_pipe_single_thread(void* arg)
 		ZeroMemory(sndbuf, sizeof(sndbuf));
 		ZeroMemory(rcvbuf, sizeof(rcvbuf));
 		sprintf_s(sndbuf, sizeof(sndbuf), "CLIENT->SERVER ON PIPE #%05d", i);
-		p = servers[i];
 
 		if (!WriteFile(clients[i], sndbuf, sizeof(sndbuf), &dwWritten, NULL) ||
 				dwWritten != sizeof(sndbuf))
@@ -331,7 +327,6 @@ static void* named_pipe_single_thread(void* arg)
 		ZeroMemory(sndbuf, sizeof(sndbuf));
 		ZeroMemory(rcvbuf, sizeof(rcvbuf));
 		sprintf_s(sndbuf, sizeof(sndbuf), "SERVER->CLIENT ON PIPE #%05d", i);
-		p = servers[i];
 
 		if (!WriteFile(servers[i], sndbuf, sizeof(sndbuf), &dwWritten, NULL) ||
 				dwWritten != sizeof(sndbuf))
@@ -430,7 +425,6 @@ static void* named_pipe_single_thread(void* arg)
 		CloseHandle(clients[i]);
 	}
 
-	numPipes = 0;
 	bSuccess = TRUE;
 out:
 
@@ -462,22 +456,22 @@ int TestPipeCreateNamedPipe(int argc, char* argv[])
 #endif
 	if (!(ReadyEvent = CreateEvent(NULL, TRUE, FALSE, NULL)))
 	{
-		printf("CreateEvent failure: (%d)\n", GetLastError());
+		printf("CreateEvent failure: (%"PRIu32")\n", GetLastError());
 		return -1;
 	}
 	if (!(SingleThread = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE) named_pipe_single_thread, NULL, 0, NULL)))
 	{
-		printf("CreateThread (SingleThread) failure: (%d)\n", GetLastError());
+		printf("CreateThread (SingleThread) failure: (%"PRIu32")\n", GetLastError());
 		return -1;
 	}
 	if (!(ClientThread = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE) named_pipe_client_thread, NULL, 0, NULL)))
 	{
-		printf("CreateThread (ClientThread) failure: (%d)\n", GetLastError());
+		printf("CreateThread (ClientThread) failure: (%"PRIu32")\n", GetLastError());
 		return -1;
 	}
 	if (!(ServerThread = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE) named_pipe_server_thread, NULL, 0, NULL)))
 	{
-		printf("CreateThread (ServerThread) failure: (%d)\n", GetLastError());
+		printf("CreateThread (ServerThread) failure: (%"PRIu32")\n", GetLastError());
 		return -1;
 	}
 	WaitForSingleObject(SingleThread, INFINITE);

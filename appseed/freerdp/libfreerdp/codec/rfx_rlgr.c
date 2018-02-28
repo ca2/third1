@@ -40,9 +40,6 @@
 
 #include "rfx_rlgr.h"
 
-
-
-
 /* Constants used in RLGR1/RLGR3 algorithm */
 #define KPMAX	(80)	/* max value for kp or krp */
 #define LSGR	(3)	/* shift count to convert kp to k */
@@ -79,17 +76,21 @@
 
 static BOOL g_LZCNT = FALSE;
 
+static INIT_ONCE rfx_rlgr_init_once = INIT_ONCE_STATIC_INIT;
+
+static BOOL CALLBACK rfx_rlgr_init(PINIT_ONCE once, PVOID param, PVOID *context)
+{
+	g_LZCNT = IsProcessorFeaturePresentEx(PF_EX_LZCNT);
+	return TRUE;
+}
+
 static INLINE UINT32 lzcnt_s(UINT32 x)
 {
 	if (!x)
 		return 32;
 	
-#ifndef _UWP
-
-   if (!g_LZCNT)
+	if (!g_LZCNT)
 	{
-
-#endif
 		UINT32 y;
 		int n = 32;
 		y = x >> 16;  if (y != 0) { n = n - 16; x = y; }
@@ -97,19 +98,13 @@ static INLINE UINT32 lzcnt_s(UINT32 x)
 		y = x >>  4;  if (y != 0) { n = n -  4; x = y; }
 		y = x >>  2;  if (y != 0) { n = n -  2; x = y; }
 		y = x >>  1;  if (y != 0) return n - 2;
-
-#ifndef _UWP
-
-      return n - x;
+		return n - x;
 	}
 
 	return __lzcnt(x);
-
-#endif
-
 }
 
-int rfx_rlgr_decode(const BYTE* pSrcData, UINT32 SrcSize, INT16* pDstData, UINT32 DstSize, int mode)
+int rfx_rlgr_decode(RLGR_MODE mode, const BYTE* pSrcData, UINT32 SrcSize, INT16* pDstData, UINT32 DstSize)
 {
 	int vk;
 	int run;
@@ -129,7 +124,7 @@ int rfx_rlgr_decode(const BYTE* pSrcData, UINT32 SrcSize, INT16* pDstData, UINT3
 	wBitStream* bs;
 	wBitStream s_bs;
 
-	g_LZCNT = IsProcessorFeaturePresentEx(PF_EX_LZCNT);
+	InitOnceExecuteOnce(&rfx_rlgr_init_once, rfx_rlgr_init, NULL, NULL);
 
 	k = 1;
 	kp = k << LSGR;
@@ -137,8 +132,8 @@ int rfx_rlgr_decode(const BYTE* pSrcData, UINT32 SrcSize, INT16* pDstData, UINT3
 	kr = 1;
 	krp = kr << LSGR;
 
-	if ((mode != 1) && (mode != 3))
-		mode = 1;
+	if ((mode != RLGR1) && (mode != RLGR3))
+		mode = RLGR1;
 
 	if (!pSrcData || !SrcSize)
 		return -1;
@@ -400,7 +395,7 @@ int rfx_rlgr_decode(const BYTE* pSrcData, UINT32 SrcSize, INT16* pDstData, UINT3
 				kr = krp >> LSGR;
 			}
 
-			if (mode == 1) /* RLGR1 */
+			if (mode == RLGR1) /* RLGR1 */
 			{
 				if (!code)
 				{
@@ -443,7 +438,7 @@ int rfx_rlgr_decode(const BYTE* pSrcData, UINT32 SrcSize, INT16* pDstData, UINT3
 					pOutput++;
 				}
 			}
-			else if (mode == 3) /* RLGR3 */
+			else if (mode == RLGR3) /* RLGR3 */
 			{
 				nIdx = 0;
 
@@ -586,7 +581,7 @@ static void rfx_rlgr_code_gr(RFX_BITSTREAM* bs, int* krp, UINT32 val)
 	}
 }
 
-int rfx_rlgr_encode(RLGR_MODE mode, const INT16* data, int data_size, BYTE* buffer, int buffer_size)
+int rfx_rlgr_encode(RLGR_MODE mode, const INT16* data, UINT32 data_size, BYTE* buffer, UINT32 buffer_size)
 {
 	int k;
 	int kp;

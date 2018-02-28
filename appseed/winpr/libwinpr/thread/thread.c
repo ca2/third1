@@ -77,7 +77,7 @@
 #include <unistd.h>
 #endif
 
-#ifdef HAVE_EVENTFD_H
+#ifdef HAVE_SYS_EVENTFD_H
 #include <sys/eventfd.h>
 #endif
 
@@ -173,7 +173,7 @@ static void dump_thread(WINPR_THREAD* thread)
 	msg = winpr_backtrace_symbols(stack, &used);
 
 	for (i = 0; i < used; i++)
-		WLog_DBG(TAG, "[%d]: %s", i, msg[i]);
+		WLog_DBG(TAG, "[%"PRIdz"]: %s", i, msg[i]);
 
 	free(msg);
 	winpr_backtrace_free(stack);
@@ -181,7 +181,7 @@ static void dump_thread(WINPR_THREAD* thread)
 	msg = winpr_backtrace_symbols(thread->create_stack, &used);
 
 	for (i = 0; i < used; i++)
-		WLog_DBG(TAG, "[%d]: %s", i, msg[i]);
+		WLog_DBG(TAG, "[%"PRIdz"]: %s", i, msg[i]);
 
 	free(msg);
 
@@ -199,7 +199,7 @@ static void dump_thread(WINPR_THREAD* thread)
 		msg = winpr_backtrace_symbols(thread->exit_stack, &used);
 
 		for (i = 0; i < used; i++)
-			WLog_DBG(TAG, "[%d]: %s", i, msg[i]);
+			WLog_DBG(TAG, "[%"PRIdz"]: %s", i, msg[i]);
 
 		free(msg);
 	}
@@ -215,7 +215,7 @@ static BOOL set_event(WINPR_THREAD* thread)
 {
 	int length;
 	BOOL status = FALSE;
-#ifdef HAVE_EVENTFD_H
+#ifdef HAVE_SYS_EVENTFD_H
 	eventfd_t val = 1;
 
 	do
@@ -247,7 +247,7 @@ static BOOL reset_event(WINPR_THREAD* thread)
 {
 	int length;
 	BOOL status = FALSE;
-#ifdef HAVE_EVENTFD_H
+#ifdef HAVE_SYS_EVENTFD_H
 	eventfd_t value;
 
 	do
@@ -282,7 +282,6 @@ static BOOL thread_compare(void* a, void* b)
  * in thread function. */
 static void* thread_launcher(void* arg)
 {
-	DWORD res = 1;
 	void* rc = NULL;
 	WINPR_THREAD* thread = (WINPR_THREAD*) arg;
 	typedef void* (*fkt_t)(void*);
@@ -296,7 +295,7 @@ static void* thread_launcher(void* arg)
 
 	if (!(fkt = (fkt_t)thread->lpStartAddress))
 	{
-		WLog_ERR(TAG, "Thread function argument is %p", fkt);
+		WLog_ERR(TAG, "Thread function argument is %p", (void*)fkt);
 		goto exit;
 	}
 
@@ -326,7 +325,6 @@ exit:
 			thread->dwExitCode = (DWORD)(size_t)rc;
 
 		set_event(thread);
-		res = thread->dwExitCode;
 
 		if (thread->detached || !thread->started)
 			cleanup_handle(thread);
@@ -401,7 +399,7 @@ HANDLE CreateThread(LPSECURITY_ATTRIBUTES lpThreadAttributes,
 #endif
 	thread->pipe_fd[0] = -1;
 	thread->pipe_fd[1] = -1;
-#ifdef HAVE_EVENTFD_H
+#ifdef HAVE_SYS_EVENTFD_H
 	thread->pipe_fd[0] = eventfd(0, EFD_NONBLOCK);
 
 	if (thread->pipe_fd[0] < 0)
@@ -768,7 +766,7 @@ VOID DumpThreadHandles(void)
 
 	for (i = 0; i < used; i++)
 	{
-		WLog_DBG(TAG, "[%d]: %s", i, msg[i]);
+		WLog_DBG(TAG, "[%"PRIdz"]: %s", i, msg[i]);
 	}
 
 	free(msg);
@@ -795,7 +793,7 @@ VOID DumpThreadHandles(void)
 
 			for (i = 0; i < used; i++)
 			{
-				WLog_DBG(TAG, "[%d]: %s", i, msg[i]);
+				WLog_DBG(TAG, "[%"PRIdz"]: %s", i, msg[i]);
 			}
 
 			free(msg);
@@ -810,7 +808,7 @@ VOID DumpThreadHandles(void)
 				msg = winpr_backtrace_symbols(thread->exit_stack, &used);
 
 				for (i = 0; i < used; i++)
-					WLog_DBG(TAG, "[%d]: %s", i, msg[i]);
+					WLog_DBG(TAG, "[%"PRIdz"]: %s", i, msg[i]);
 
 				free(msg);
 			}

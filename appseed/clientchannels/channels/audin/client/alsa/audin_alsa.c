@@ -97,8 +97,8 @@ static BOOL audin_alsa_set_params(AudinALSADevice* alsa,
 	if ((alsa->actual_rate != alsa->target_rate) ||
 	    (alsa->actual_channels != alsa->target_channels))
 	{
-		DEBUG_DVC("actual rate %d / channel %d is "
-		          "different from target rate %d / channel %d, resampling required.",
+		DEBUG_DVC("actual rate %"PRIu32" / channel %"PRIu32" is "
+		          "different from target rate %"PRIu32" / channel %"PRIu32", resampling required.",
 		          alsa->actual_rate, alsa->actual_channels,
 		          alsa->target_rate, alsa->target_channels);
 	}
@@ -136,9 +136,8 @@ static UINT audin_alsa_thread_receive(AudinALSADevice* alsa, BYTE* src,
 		                            alsa->actual_channels, alsa->actual_rate, size / rbytes_per_frame,
 		                            alsa->target_channels, alsa->target_rate);
 		frames = alsa->dsp_context->resampled_frames;
-		DEBUG_DVC("resampled %d frames at %d to %d frames at %d",
+		DEBUG_DVC("resampled %d frames at %"PRIu32" to %d frames at %"PRIu32"",
 		          size / rbytes_per_frame, alsa->actual_rate, frames, alsa->target_rate);
-		size = frames * tbytes_per_frame;
 		src = alsa->dsp_context->resampled_buffer;
 	}
 
@@ -149,7 +148,7 @@ static UINT audin_alsa_thread_receive(AudinALSADevice* alsa, BYTE* src,
 		if (status == WAIT_FAILED)
 		{
 			ret = GetLastError();
-			WLog_ERR(TAG, "WaitForSingleObject failed with error %lu!", ret);
+			WLog_ERR(TAG, "WaitForSingleObject failed with error %"PRIu32"!", ret);
 			break;
 		}
 
@@ -193,7 +192,7 @@ static UINT audin_alsa_thread_receive(AudinALSADevice* alsa, BYTE* src,
 			if (status == WAIT_FAILED)
 			{
 				ret = GetLastError();
-				WLog_ERR(TAG, "WaitForSingleObject failed with error %lu!", ret);
+				WLog_ERR(TAG, "WaitForSingleObject failed with error %"PRIu32"!", ret);
 				break;
 			}
 
@@ -225,24 +224,17 @@ static void* audin_alsa_thread_func(void* arg)
 	long error;
 	BYTE* buffer;
 	int rbytes_per_frame;
-	int tbytes_per_frame;
 	snd_pcm_t* capture_handle = NULL;
 	AudinALSADevice* alsa = (AudinALSADevice*) arg;
 	DWORD status;
 	DEBUG_DVC("in");
-	freerdp_channel_init_thread_context(alsa->rdpcontext);
 	rbytes_per_frame = alsa->actual_channels * alsa->bytes_per_channel;
-	tbytes_per_frame = alsa->target_channels * alsa->bytes_per_channel;
-	buffer = (BYTE*) calloc(1, rbytes_per_frame * alsa->frames_per_packet);
+	buffer = (BYTE*) calloc(alsa->frames_per_packet, rbytes_per_frame);
 
 	if (!buffer)
 	{
 		WLog_ERR(TAG, "calloc failed!");
 		error = CHANNEL_RC_NO_MEMORY;
-
-		if (alsa->rdpcontext)
-			setChannelError(alsa->rdpcontext, error, "calloc failed!");
-
 		goto out;
 	}
 
@@ -252,6 +244,7 @@ static void* audin_alsa_thread_func(void* arg)
 	                          SND_PCM_STREAM_CAPTURE, 0)) < 0)
 	{
 		WLog_ERR(TAG, "snd_pcm_open (%s)", snd_strerror(error));
+		error = CHANNEL_RC_INITIALIZATION_ERROR;
 		goto out;
 	}
 
@@ -268,7 +261,7 @@ static void* audin_alsa_thread_func(void* arg)
 		if (status == WAIT_FAILED)
 		{
 			error = GetLastError();
-			WLog_ERR(TAG, "WaitForSingleObject failed with error %lu!", error);
+			WLog_ERR(TAG, "WaitForSingleObject failed with error %ld!", error);
 			break;
 		}
 
@@ -290,7 +283,7 @@ static void* audin_alsa_thread_func(void* arg)
 
 		if ((error = audin_alsa_thread_receive(alsa, buffer, error * rbytes_per_frame)))
 		{
-			WLog_ERR(TAG, "audin_alsa_thread_receive failed with error %lu", error);
+			WLog_ERR(TAG, "audin_alsa_thread_receive failed with error %ld", error);
 			break;
 		}
 	}
@@ -394,7 +387,7 @@ static UINT audin_alsa_set_format(IAudinDevice* device, audinFormat* format,
 			bs = (format->nBlockAlign - 4 * format->nChannels) * 4;
 			alsa->frames_per_packet = (alsa->frames_per_packet * format->nChannels * 2 /
 			                           bs + 1) * bs / (format->nChannels * 2);
-			DEBUG_DVC("aligned FramesPerPacket=%d",
+			DEBUG_DVC("aligned FramesPerPacket=%"PRIu32"",
 			          alsa->frames_per_packet);
 			break;
 	}
@@ -417,7 +410,7 @@ static UINT audin_alsa_open(IAudinDevice* device, AudinReceive receive,
 	alsa->receive = receive;
 	alsa->user_data = user_data;
 	tbytes_per_frame = alsa->target_channels * alsa->bytes_per_channel;
-	alsa->buffer = (BYTE*) calloc(1, tbytes_per_frame * alsa->frames_per_packet);
+	alsa->buffer = (BYTE*) calloc(alsa->frames_per_packet, tbytes_per_frame);
 
 	if (!alsa->buffer)
 	{
@@ -466,7 +459,7 @@ static UINT audin_alsa_close(IAudinDevice* device)
 		if (WaitForSingleObject(alsa->thread, INFINITE) == WAIT_FAILED)
 		{
 			error = GetLastError();
-			WLog_ERR(TAG, "WaitForSingleObject failed with error %lu", error);
+			WLog_ERR(TAG, "WaitForSingleObject failed with error %"PRIu32"", error);
 			return error;
 		}
 
@@ -505,6 +498,10 @@ static UINT audin_alsa_parse_addin_args(AudinALSADevice* device,
 	        COMMAND_LINE_IGN_UNKNOWN_KEYWORD;
 	status = CommandLineParseArgumentsA(args->argc, (const char**) args->argv,
 	                                    audin_alsa_args, flags, alsa, NULL, NULL);
+
+	if (status < 0)
+		return ERROR_INVALID_PARAMETER;
+
 	arg = audin_alsa_args;
 
 	do
@@ -565,7 +562,7 @@ UINT freerdp_audin_client_subsystem_entry(PFREERDP_AUDIN_DEVICE_ENTRY_POINTS
 
 	if ((error = audin_alsa_parse_addin_args(alsa, args)))
 	{
-		WLog_ERR(TAG, "audin_alsa_parse_addin_args failed with errorcode %lu!", error);
+		WLog_ERR(TAG, "audin_alsa_parse_addin_args failed with errorcode %"PRIu32"!", error);
 		goto error_out;
 	}
 
@@ -600,7 +597,7 @@ UINT freerdp_audin_client_subsystem_entry(PFREERDP_AUDIN_DEVICE_ENTRY_POINTS
 	if ((error = pEntryPoints->pRegisterAudinDevice(pEntryPoints->plugin,
 	             (IAudinDevice*) alsa)))
 	{
-		WLog_ERR(TAG, "RegisterAudinDevice failed with error %lu!", error);
+		WLog_ERR(TAG, "RegisterAudinDevice failed with error %"PRIu32"!", error);
 		goto error_out;
 	}
 

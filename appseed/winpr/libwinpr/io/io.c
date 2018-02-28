@@ -23,19 +23,6 @@
 
 #include <winpr/io.h>
 
-#ifdef _UWP
-#include <winpr/crt.h>
-#include <winpr/wlog.h>
-
-
-#include "../handle/handle.h"
-#include "../pipe/pipe.h"
-#include "../log.h"
-#define TAG WINPR_TAG("io")
-#endif
-
-
-
 #ifndef _WIN32
 
 #ifdef HAVE_UNISTD_H
@@ -56,7 +43,6 @@
 
 #include <winpr/crt.h>
 #include <winpr/wlog.h>
-
 
 #include "../handle/handle.h"
 #include "../pipe/pipe.h"
@@ -213,14 +199,17 @@ BOOL CancelSynchronousIo(HANDLE hThread)
 
 #ifdef _UWP
 
+#include <winpr/crt.h>
+#include <winpr/wlog.h>
 
+#include "../log.h"
 
-#ifndef _UWP
+#define TAG WINPR_TAG("io")
+
 BOOL GetOverlappedResult(HANDLE hFile, LPOVERLAPPED lpOverlapped, LPDWORD lpNumberOfBytesTransferred, BOOL bWait)
 {
 	return GetOverlappedResultEx(hFile, lpOverlapped, lpNumberOfBytesTransferred, bWait ? INFINITE : 0, TRUE);
 }
-#endif
 
 BOOL DeviceIoControl(HANDLE hDevice, DWORD dwIoControlCode, LPVOID lpInBuffer, DWORD nInBufferSize,
 	LPVOID lpOutBuffer, DWORD nOutBufferSize, LPDWORD lpBytesReturned, LPOVERLAPPED lpOverlapped)
@@ -230,22 +219,14 @@ BOOL DeviceIoControl(HANDLE hDevice, DWORD dwIoControlCode, LPVOID lpInBuffer, D
 	return FALSE;
 }
 
-HANDLE
-#ifdef _UWP
-WINAPI
-#endif
-CreateIoCompletionPort(HANDLE FileHandle, HANDLE ExistingCompletionPort, ULONG_PTR CompletionKey, DWORD NumberOfConcurrentThreads)
+HANDLE CreateIoCompletionPort(HANDLE FileHandle, HANDLE ExistingCompletionPort, ULONG_PTR CompletionKey, DWORD NumberOfConcurrentThreads)
 {
 	WLog_ERR(TAG, "%s: Not implemented", __FUNCTION__);
 	SetLastError(ERROR_CALL_NOT_IMPLEMENTED);
 	return NULL;
 }
 
-BOOL
-#ifdef _UWP
-WINAPI
-#endif
-GetQueuedCompletionStatus(HANDLE CompletionPort, LPDWORD lpNumberOfBytesTransferred,
+BOOL GetQueuedCompletionStatus(HANDLE CompletionPort, LPDWORD lpNumberOfBytesTransferred,
 	PULONG_PTR lpCompletionKey, LPOVERLAPPED* lpOverlapped, DWORD dwMilliseconds)
 {
 	WLog_ERR(TAG, "%s: Not implemented", __FUNCTION__);
@@ -253,11 +234,7 @@ GetQueuedCompletionStatus(HANDLE CompletionPort, LPDWORD lpNumberOfBytesTransfer
 	return FALSE;
 }
 
-BOOL
-#ifdef _UWP
-WINAPI
-#endif
-GetQueuedCompletionStatusEx(HANDLE CompletionPort, LPOVERLAPPED_ENTRY lpCompletionPortEntries,
+BOOL GetQueuedCompletionStatusEx(HANDLE CompletionPort, LPOVERLAPPED_ENTRY lpCompletionPortEntries,
 	ULONG ulCount, PULONG ulNumEntriesRemoved, DWORD dwMilliseconds, BOOL fAlertable)
 {
 	WLog_ERR(TAG, "%s: Not implemented", __FUNCTION__);
@@ -265,23 +242,17 @@ GetQueuedCompletionStatusEx(HANDLE CompletionPort, LPOVERLAPPED_ENTRY lpCompleti
 	return FALSE;
 }
 
-BOOL
-#ifdef _UWP
-WINAPI
-#endif
-PostQueuedCompletionStatus(HANDLE CompletionPort, DWORD dwNumberOfBytesTransferred, ULONG_PTR dwCompletionKey, LPOVERLAPPED lpOverlapped)
+BOOL PostQueuedCompletionStatus(HANDLE CompletionPort, DWORD dwNumberOfBytesTransferred, ULONG_PTR dwCompletionKey, LPOVERLAPPED lpOverlapped)
 {
 	WLog_ERR(TAG, "%s: Not implemented", __FUNCTION__);
 	SetLastError(ERROR_CALL_NOT_IMPLEMENTED);
 	return FALSE;
 }
 
-#ifndef _UWP
 BOOL CancelIo(HANDLE hFile)
 {
 	return CancelIoEx(hFile, NULL);
 }
-#endif
 
 BOOL CancelSynchronousIo(HANDLE hThread)
 {

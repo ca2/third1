@@ -37,46 +37,26 @@
 
 #include "rfx_decode.h"
 
-/* stride is bytes between rows in the output buffer. */
-static void rfx_decode_format_rgb(const INT16* r_buf, const INT16* g_buf,
-                                  const INT16* b_buf, UINT32 pixel_format,
-                                  BYTE* dst_buf, UINT32 stride)
-{
-	primitives_t* prims = primitives_get();
-	const INT16* r = r_buf;
-	const INT16* g = g_buf;
-	const INT16* b = b_buf;
-	const INT16* pSrc[3];
-	static const prim_size_t roi_64x64 = { 64, 64 };
-	BYTE* dst = dst_buf;
-	pSrc[0] = r;
-	pSrc[1] = g;
-	pSrc[2] = b;
-	prims->RGBToRGB_16s8u_P3AC4R(
-	    (const INT16**) pSrc, 64 * sizeof(INT16),
-	    dst, stride, pixel_format, &roi_64x64);
-}
-
 static void rfx_decode_component(RFX_CONTEXT* context,
                                  const UINT32* quantization_values,
                                  const BYTE* data, int size, INT16* buffer)
 {
 	INT16* dwt_buffer;
 	dwt_buffer = BufferPool_Take(context->priv->BufferPool, -1); /* dwt_buffer */
-	PROFILER_ENTER(context->priv->prof_rfx_decode_component);
-	PROFILER_ENTER(context->priv->prof_rfx_rlgr_decode);
-	rfx_rlgr_decode(data, size, buffer, 4096, (context->mode == RLGR1) ? 1 : 3);
-	PROFILER_EXIT(context->priv->prof_rfx_rlgr_decode);
-	PROFILER_ENTER(context->priv->prof_rfx_differential_decode);
+	PROFILER_ENTER(context->priv->prof_rfx_decode_component)
+	PROFILER_ENTER(context->priv->prof_rfx_rlgr_decode)
+	context->rlgr_decode(context->mode, data, size, buffer, 4096);
+	PROFILER_EXIT(context->priv->prof_rfx_rlgr_decode)
+	PROFILER_ENTER(context->priv->prof_rfx_differential_decode)
 	rfx_differential_decode(buffer + 4032, 64);
-	PROFILER_EXIT(context->priv->prof_rfx_differential_decode);
-	PROFILER_ENTER(context->priv->prof_rfx_quantization_decode);
+	PROFILER_EXIT(context->priv->prof_rfx_differential_decode)
+	PROFILER_ENTER(context->priv->prof_rfx_quantization_decode)
 	context->quantization_decode(buffer, quantization_values);
-	PROFILER_EXIT(context->priv->prof_rfx_quantization_decode);
-	PROFILER_ENTER(context->priv->prof_rfx_dwt_2d_decode);
+	PROFILER_EXIT(context->priv->prof_rfx_quantization_decode)
+	PROFILER_ENTER(context->priv->prof_rfx_dwt_2d_decode)
 	context->dwt_2d_decode(buffer, dwt_buffer);
-	PROFILER_EXIT(context->priv->prof_rfx_dwt_2d_decode);
-	PROFILER_EXIT(context->priv->prof_rfx_decode_component);
+	PROFILER_EXIT(context->priv->prof_rfx_dwt_2d_decode)
+	PROFILER_EXIT(context->priv->prof_rfx_decode_component)
 	BufferPool_Return(context->priv->BufferPool, dwt_buffer);
 }
 
@@ -86,12 +66,13 @@ static void rfx_decode_component(RFX_CONTEXT* context,
 BOOL rfx_decode_rgb(RFX_CONTEXT* context, RFX_TILE* tile, BYTE* rgb_buffer,
                     int stride)
 {
+	BOOL rc = TRUE;
 	BYTE* pBuffer;
 	INT16* pSrcDst[3];
 	UINT32* y_quants, *cb_quants, *cr_quants;
 	static const prim_size_t roi_64x64 = { 64, 64 };
 	const primitives_t* prims = primitives_get();
-	PROFILER_ENTER(context->priv->prof_rfx_decode_rgb);
+	PROFILER_ENTER(context->priv->prof_rfx_decode_rgb)
 	y_quants = context->quants + (tile->quantIdxY * 10);
 	cb_quants = context->quants + (tile->quantIdxCb * 10);
 	cr_quants = context->quants + (tile->quantIdxCr * 10);
@@ -108,15 +89,14 @@ BOOL rfx_decode_rgb(RFX_CONTEXT* context, RFX_TILE* tile, BYTE* rgb_buffer,
 	                     pSrcDst[1]); /* CbData */
 	rfx_decode_component(context, cr_quants, tile->CrData, tile->CrLen,
 	                     pSrcDst[2]); /* CrData */
-	PROFILER_ENTER(context->priv->prof_rfx_ycbcr_to_rgb);
-	prims->yCbCrToRGB_16s16s_P3P3((const INT16**) pSrcDst, 64 * sizeof(INT16),
-	                              pSrcDst, 64 * sizeof(INT16), &roi_64x64);
-	PROFILER_EXIT(context->priv->prof_rfx_ycbcr_to_rgb);
-	PROFILER_ENTER(context->priv->prof_rfx_decode_format_rgb);
-	rfx_decode_format_rgb(pSrcDst[0], pSrcDst[1], pSrcDst[2],
-	                      context->pixel_format, rgb_buffer, stride);
-	PROFILER_EXIT(context->priv->prof_rfx_decode_format_rgb);
-	PROFILER_EXIT(context->priv->prof_rfx_decode_rgb);
+	PROFILER_ENTER(context->priv->prof_rfx_ycbcr_to_rgb)
+
+	if (prims->yCbCrToRGB_16s8u_P3AC4R((const INT16**)pSrcDst, 64 * sizeof(INT16),
+	                                   rgb_buffer, stride, context->pixel_format, &roi_64x64) != PRIMITIVES_SUCCESS)
+		rc = FALSE;
+
+	PROFILER_EXIT(context->priv->prof_rfx_ycbcr_to_rgb)
+	PROFILER_EXIT(context->priv->prof_rfx_decode_rgb)
 	BufferPool_Return(context->priv->BufferPool, pBuffer);
-	return TRUE;
+	return rc;
 }

@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-#ifndef __GDI_CORE_H
-#define __GDI_CORE_H
+#ifndef FREERDP_LIB_GDI_CORE_H
+#define FREERDP_LIB_GDI_CORE_H
 
 #include "graphics.h"
 #include "brush.h"
@@ -46,7 +46,7 @@ static INLINE BYTE* gdi_get_bitmap_pointer(HGDI_DC hdcBmp, UINT32 x, UINT32 y)
 	else
 	{
 		WLog_ERR(FREERDP_TAG("gdi"),
-		         "gdi_get_bitmap_pointer: requesting invalid pointer: (%d,%d) in %dx%d",
+		         "gdi_get_bitmap_pointer: requesting invalid pointer: (%"PRIu32",%"PRIu32") in %"PRIu32"x%"PRIu32"",
 		         x, y, hBmp->width, hBmp->height);
 		return 0;
 	}
@@ -92,4 +92,4 @@ static INLINE BYTE* gdi_get_brush_pointer(HGDI_DC hdcBrush, UINT32 x, UINT32 y)
 	return p;
 }
 
-#endif /* __GDI_CORE_H */
+#endif /* FREERDP_LIB_GDI_CORE_H */

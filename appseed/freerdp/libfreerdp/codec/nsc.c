@@ -47,7 +47,7 @@ static void nsc_decode(NSC_CONTEXT* context)
 	UINT16 x;
 	UINT16 y;
 	UINT16 rw = ROUND_UP_TO(context->width, 8);
-	BYTE shift = context->ColorLossLevel - 1; /* colorloss recovery + YCoCg shift */;
+	BYTE shift = context->ColorLossLevel - 1; /* colorloss recovery + YCoCg shift */
 	BYTE* bmpdata = context->BitmapData;
 
 	for (y = 0; y < context->height; y++)
@@ -55,7 +55,7 @@ static void nsc_decode(NSC_CONTEXT* context)
 		const BYTE* yplane;
 		const BYTE* coplane;
 		const BYTE* cgplane;
-		const BYTE* aplane = context->priv->PlaneBuffers[3] + y * context->width; /* A */;
+		const BYTE* aplane = context->priv->PlaneBuffers[3] + y * context->width; /* A */
 
 		if (context->ChromaSubsamplingLevel)
 		{
@@ -250,12 +250,12 @@ static BOOL nsc_context_initialize(NSC_CONTEXT* context, wStream* s)
 
 static void nsc_profiler_print(NSC_CONTEXT* context)
 {
-	PROFILER_PRINT_HEADER;
-	PROFILER_PRINT(context->priv->prof_nsc_rle_decompress_data);
-	PROFILER_PRINT(context->priv->prof_nsc_decode);
-	PROFILER_PRINT(context->priv->prof_nsc_rle_compress_data);
-	PROFILER_PRINT(context->priv->prof_nsc_encode);
-	PROFILER_PRINT_FOOTER;
+	PROFILER_PRINT_HEADER
+	PROFILER_PRINT(context->priv->prof_nsc_rle_decompress_data)
+	PROFILER_PRINT(context->priv->prof_nsc_decode)
+	PROFILER_PRINT(context->priv->prof_nsc_rle_compress_data)
+	PROFILER_PRINT(context->priv->prof_nsc_encode)
+	PROFILER_PRINT_FOOTER
 }
 
 BOOL nsc_context_reset(NSC_CONTEXT* context, UINT32 width, UINT32 height)
@@ -293,11 +293,11 @@ NSC_CONTEXT* nsc_context_new(void)
 		goto error_PlanePool;
 
 	PROFILER_CREATE(context->priv->prof_nsc_rle_decompress_data,
-	                "nsc_rle_decompress_data");
-	PROFILER_CREATE(context->priv->prof_nsc_decode, "nsc_decode");
+	                "nsc_rle_decompress_data")
+	PROFILER_CREATE(context->priv->prof_nsc_decode, "nsc_decode")
 	PROFILER_CREATE(context->priv->prof_nsc_rle_compress_data,
-	                "nsc_rle_compress_data");
-	PROFILER_CREATE(context->priv->prof_nsc_encode, "nsc_encode");
+	                "nsc_rle_compress_data")
+	PROFILER_CREATE(context->priv->prof_nsc_encode, "nsc_encode")
 	/* Default encoding parameters */
 	context->ColorLossLevel = 3;
 	context->ChromaSubsamplingLevel = 1;
@@ -327,17 +327,19 @@ void nsc_context_free(NSC_CONTEXT* context)
 	free(context->BitmapData);
 	BufferPool_Free(context->priv->PlanePool);
 	nsc_profiler_print(context);
-	PROFILER_FREE(context->priv->prof_nsc_rle_decompress_data);
-	PROFILER_FREE(context->priv->prof_nsc_decode);
-	PROFILER_FREE(context->priv->prof_nsc_rle_compress_data);
-	PROFILER_FREE(context->priv->prof_nsc_encode);
+	PROFILER_FREE(context->priv->prof_nsc_rle_decompress_data)
+	PROFILER_FREE(context->priv->prof_nsc_decode)
+	PROFILER_FREE(context->priv->prof_nsc_rle_compress_data)
+	PROFILER_FREE(context->priv->prof_nsc_encode)
 	free(context->priv);
 	free(context);
 }
 
 BOOL nsc_context_set_pixel_format(NSC_CONTEXT* context, UINT32 pixel_format)
 {
-	context->pixel_format = pixel_format;
+	if (!context)
+		return FALSE;
+
 	context->format = pixel_format;
 	return TRUE;
 }
@@ -395,13 +397,13 @@ BOOL nsc_process_message(NSC_CONTEXT* context, UINT16 bpp,
 		return FALSE;
 
 	/* RLE decode */
-	PROFILER_ENTER(context->priv->prof_nsc_rle_decompress_data);
+	PROFILER_ENTER(context->priv->prof_nsc_rle_decompress_data)
 	nsc_rle_decompress_data(context);
-	PROFILER_EXIT(context->priv->prof_nsc_rle_decompress_data);
+	PROFILER_EXIT(context->priv->prof_nsc_rle_decompress_data)
 	/* Colorloss recover, Chroma supersample and AYCoCg to ARGB Conversion in one step */
-	PROFILER_ENTER(context->priv->prof_nsc_decode);
+	PROFILER_ENTER(context->priv->prof_nsc_decode)
 	context->decode(context);
-	PROFILER_EXIT(context->priv->prof_nsc_decode);
+	PROFILER_EXIT(context->priv->prof_nsc_decode)
 
 	if (!freerdp_image_copy(pDstData, DstFormat, nDstStride, nXDst, nYDst,
 	                        width, height, context->BitmapData,

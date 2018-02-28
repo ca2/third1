@@ -302,7 +302,7 @@ BOOL interleaved_decompress(BITMAP_INTERLEAVED_CONTEXT* interleaved,
 			break;
 
 		default:
-			WLog_ERR(TAG, "Invalid color depth %d", bpp);
+			WLog_ERR(TAG, "Invalid color depth %"PRIu32"", bpp);
 			return FALSE;
 	}
 
@@ -367,7 +367,7 @@ BOOL interleaved_compress(BITMAP_INTERLEAVED_CONTEXT* interleaved,
 	if ((nWidth > 64) || (nHeight > 64))
 	{
 		WLog_ERR(TAG,
-		         "interleaved_compress: width (%d) or height (%d) is greater than 64", nWidth,
+		         "interleaved_compress: width (%"PRIu32") or height (%"PRIu32") is greater than 64", nWidth,
 		         nHeight);
 		return FALSE;
 	}
@@ -384,9 +384,11 @@ BOOL interleaved_compress(BITMAP_INTERLEAVED_CONTEXT* interleaved,
 	if (!DstFormat)
 		return FALSE;
 
-	status = freerdp_image_copy(interleaved->TempBuffer, DstFormat, 0, 0, 0, nWidth,
-	                            nHeight,
-	                            pSrcData, SrcFormat, nSrcStep, nXSrc, nYSrc, palette, FREERDP_FLIP_NONE);
+	if (!freerdp_image_copy(interleaved->TempBuffer, DstFormat, 0, 0, 0, nWidth,
+	                        nHeight,
+	                        pSrcData, SrcFormat, nSrcStep, nXSrc, nYSrc, palette, FREERDP_FLIP_NONE))
+		return FALSE;
+
 	s = Stream_New(pDstData, maxSize);
 
 	if (!s)

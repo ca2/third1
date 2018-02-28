@@ -146,7 +146,7 @@ BOOL CommReadFile(HANDLE hDevice, LPVOID lpBuffer, DWORD nNumberOfBytesToRead,
 	 *
 	 * ReadIntervalTimeout  | ReadTotalTimeoutMultiplier | ReadTotalTimeoutConstant | VMIN | VTIME | TMAX  |
 	 *         0            |            0               |           0              |   N  |   0   | INDEF | Blocks for N bytes available.
-	     *   0< Ti <MAXULONG    |            0               |           0              |   N  |   Ti  | INDEF | Blocks on first byte, then use Ti between bytes.
+	 *   0< Ti <MAXULONG	|            0               |           0              |   N  |   Ti  | INDEF | Blocks on first byte, then use Ti between bytes.
 	 *       MAXULONG       |            0               |           0              |   0  |   0   |   0   | Returns immediately with bytes available (don't block)
 	 *       MAXULONG       |         MAXULONG           |      0< Tc <MAXULONG     |   N  |   0   |   Tc  | Blocks on first byte during Tc or returns immediately whith bytes available
 	 *       MAXULONG       |            m               |        MAXULONG          |                      | Invalid
@@ -223,7 +223,7 @@ BOOL CommReadFile(HANDLE hDevice, LPVOID lpBuffer, DWORD nNumberOfBytesToRead,
 		if (tcsetattr(pComm->fd, TCSANOW, &currentTermios) < 0)
 		{
 			CommLog_Print(WLOG_WARN,
-			              "CommReadFile failure, could not apply new timeout values: VMIN=%u, VTIME=%u",
+			              "CommReadFile failure, could not apply new timeout values: VMIN=%"PRIu8", VTIME=%"PRIu8"",
 			              vmin, vtime);
 			SetLastError(ERROR_IO_DEVICE);
 			goto return_false;
@@ -315,12 +315,12 @@ BOOL CommReadFile(HANDLE hDevice, LPVOID lpBuffer, DWORD nNumberOfBytesToRead,
 		if (nbRead < 0)
 		{
 			CommLog_Print(WLOG_WARN,
-			              "CommReadFile failed, ReadIntervalTimeout=%lu, ReadTotalTimeoutMultiplier=%lu, ReadTotalTimeoutConstant=%lu VMIN=%u, VTIME=%u",
+			              "CommReadFile failed, ReadIntervalTimeout=%"PRIu32", ReadTotalTimeoutMultiplier=%"PRIu32", ReadTotalTimeoutConstant=%"PRIu32" VMIN=%u, VTIME=%u",
 			              pTimeouts->ReadIntervalTimeout, pTimeouts->ReadTotalTimeoutMultiplier,
 			              pTimeouts->ReadTotalTimeoutConstant,
 			              currentTermios.c_cc[VMIN], currentTermios.c_cc[VTIME]);
 			CommLog_Print(WLOG_WARN,
-			              "CommReadFile failed, nNumberOfBytesToRead=%lu, errno=[%d] %s",
+			              "CommReadFile failed, nNumberOfBytesToRead=%"PRIu32", errno=[%d] %s",
 			              nNumberOfBytesToRead, errno, strerror(errno));
 
 			if (errno == EAGAIN)
@@ -349,6 +349,14 @@ BOOL CommReadFile(HANDLE hDevice, LPVOID lpBuffer, DWORD nNumberOfBytesToRead,
 		}
 
 		*lpNumberOfBytesRead = nbRead;
+
+		EnterCriticalSection(&pComm->EventsLock);
+		if (pComm->PendingEvents & SERIAL_EV_FREERDP_WAITING)
+		{
+			if (pComm->eventChar != '\0' && memchr(lpBuffer, pComm->eventChar, nbRead))
+					pComm->PendingEvents |= SERIAL_EV_RXCHAR;
+		}
+		LeaveCriticalSection(&pComm->EventsLock);
 		goto return_true;
 	}
 
@@ -516,7 +524,7 @@ BOOL CommWriteFile(HANDLE hDevice, LPCVOID lpBuffer,
 			if (nbWritten < 0)
 			{
 				CommLog_Print(WLOG_WARN,
-				              "CommWriteFile failed after %lu bytes written, errno=[%d] %s\n",
+				              "CommWriteFile failed after %"PRIu32" bytes written, errno=[%d] %s\n",
 				              *lpNumberOfBytesWritten, errno, strerror(errno));
 
 				if (errno == EAGAIN)
@@ -546,13 +554,15 @@ BOOL CommWriteFile(HANDLE hDevice, LPCVOID lpBuffer,
 	 * printer. Its driver was expecting the modem line status
 	 * SERIAL_MSR_DSR true after the sending which was never
 	 * happenning otherwise. A purge was also done before each
-	 * Write operation. The serial port was oppened with:
+	 * Write operation. The serial port was opened with:
 	 * DesiredAccess=0x0012019F. The printer worked fine with
 	 * mstsc. */
 	tcdrain(pComm->fd_write);
+
 return_true:
 	LeaveCriticalSection(&pComm->WriteLock);
 	return TRUE;
+
 return_false:
 	LeaveCriticalSection(&pComm->WriteLock);
 	return FALSE;

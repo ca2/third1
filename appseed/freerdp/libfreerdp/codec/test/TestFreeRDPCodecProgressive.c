@@ -1,3 +1,4 @@
+#include <winpr/wtypes.h>
 #include <winpr/crt.h>
 #include <winpr/path.h>
 #include <winpr/image.h>
@@ -7,6 +8,8 @@
 #include <freerdp/codec/region.h>
 
 #include <freerdp/codec/progressive.h>
+
+#include "../progressive.h"
 
 /**
  * Microsoft Progressive Codec Sample Data
@@ -125,7 +128,7 @@
 struct _EGFX_SAMPLE_FILE
 {
 	BYTE* buffer;
-	UINT32 size;
+	size_t size;
 };
 typedef struct _EGFX_SAMPLE_FILE EGFX_SAMPLE_FILE;
 
@@ -263,7 +266,7 @@ static int test_image_fill_unused_quarters(BYTE* pDstData, int nDstStep, int nWi
 	return 1;
 }
 
-BYTE* test_progressive_load_file(char* path, char* file, UINT32* size)
+static BYTE* test_progressive_load_file(char* path, char* file, size_t* size)
 {
 	FILE* fp;
 	BYTE* buffer;
@@ -279,9 +282,9 @@ BYTE* test_progressive_load_file(char* path, char* file, UINT32* size)
 	if (!fp)
 		return NULL;
 
-	fseek(fp, 0, SEEK_END);
-	*size = ftell(fp);
-	fseek(fp, 0, SEEK_SET);
+	_fseeki64(fp, 0, SEEK_END);
+	*size = _ftelli64(fp);
+	_fseeki64(fp, 0, SEEK_SET);
 	buffer = (BYTE*) malloc(*size);
 
 	if (!buffer)
@@ -301,7 +304,7 @@ BYTE* test_progressive_load_file(char* path, char* file, UINT32* size)
 	return buffer;
 }
 
-int test_progressive_load_files(char* ms_sample_path, EGFX_SAMPLE_FILE files[3][4][4])
+static int test_progressive_load_files(char* ms_sample_path, EGFX_SAMPLE_FILE files[3][4][4])
 {
 	int imageNo = 0;
 	int quarterNo = 0;
@@ -463,7 +466,6 @@ int test_progressive_load_files(char* ms_sample_path, EGFX_SAMPLE_FILE files[3][
 	passNo = (passNo + 1) % 4;
 	files[imageNo][quarterNo][passNo].buffer = test_progressive_load_file(ms_sample_path,
 	        "compress/enc_2_3_100_sampleimage3.bin", &(files[imageNo][quarterNo][passNo].size));
-	passNo = (passNo + 1) % 4;
 
 	/* check if all test data has been loaded */
 
@@ -482,7 +484,7 @@ int test_progressive_load_files(char* ms_sample_path, EGFX_SAMPLE_FILE files[3][
 	return 1;
 }
 
-BYTE* test_progressive_load_bitmap(char* path, char* file, UINT32* size, int quarter)
+static BYTE* test_progressive_load_bitmap(char* path, char* file, size_t* size, int quarter)
 {
 	int status;
 	BYTE* buffer;
@@ -513,7 +515,7 @@ BYTE* test_progressive_load_bitmap(char* path, char* file, UINT32* size, int qua
 	return buffer;
 }
 
-int test_progressive_load_bitmaps(char* ms_sample_path, EGFX_SAMPLE_FILE bitmaps[3][4][4])
+static int test_progressive_load_bitmaps(char* ms_sample_path, EGFX_SAMPLE_FILE bitmaps[3][4][4])
 {
 	int imageNo = 0;
 	int quarterNo = 0;
@@ -675,7 +677,6 @@ int test_progressive_load_bitmaps(char* ms_sample_path, EGFX_SAMPLE_FILE bitmaps
 	passNo = (passNo + 1) % 4;
 	bitmaps[imageNo][quarterNo][passNo].buffer = test_progressive_load_bitmap(ms_sample_path,
 	        "decompress/dec_2_3_100_sampleimage3.bmp", &(bitmaps[imageNo][quarterNo][passNo].size), quarterNo);
-	passNo = (passNo + 1) % 4;
 
 	/* check if all test data has been loaded */
 
@@ -741,7 +742,7 @@ static int test_progressive_decode(PROGRESSIVE_CONTEXT* progressive, EGFX_SAMPLE
 	for (pass = 0; pass < count; pass++)
 	{
 		status = progressive_decompress(progressive, files[pass].buffer, files[pass].size,
-		                                g_DstData, PIXEL_FORMAT_XRGB32, g_DstStep, 0, 0, g_Width, g_Height, 0);
+		                                g_DstData, PIXEL_FORMAT_XRGB32, g_DstStep, 0, 0, NULL, 0);
 		printf("ProgressiveDecompress: status: %d pass: %d\n", status, pass + 1);
 		region = &(progressive->region);
 

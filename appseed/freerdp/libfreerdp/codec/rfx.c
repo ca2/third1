@@ -81,72 +81,68 @@ static const UINT32 rfx_default_quantization_values[] =
 
 static void rfx_profiler_create(RFX_CONTEXT* context)
 {
-	PROFILER_CREATE(context->priv->prof_rfx_decode_rgb, "rfx_decode_rgb");
+	PROFILER_CREATE(context->priv->prof_rfx_decode_rgb, "rfx_decode_rgb")
 	PROFILER_CREATE(context->priv->prof_rfx_decode_component,
-	                "rfx_decode_component");
-	PROFILER_CREATE(context->priv->prof_rfx_rlgr_decode, "rfx_rlgr_decode");
+	                "rfx_decode_component")
+	PROFILER_CREATE(context->priv->prof_rfx_rlgr_decode, "rfx_rlgr_decode")
 	PROFILER_CREATE(context->priv->prof_rfx_differential_decode,
-	                "rfx_differential_decode");
+	                "rfx_differential_decode")
 	PROFILER_CREATE(context->priv->prof_rfx_quantization_decode,
-	                "rfx_quantization_decode");
-	PROFILER_CREATE(context->priv->prof_rfx_dwt_2d_decode, "rfx_dwt_2d_decode");
-	PROFILER_CREATE(context->priv->prof_rfx_ycbcr_to_rgb, "prims->yCbCrToRGB");
-	PROFILER_CREATE(context->priv->prof_rfx_decode_format_rgb,
-	                "rfx_decode_format_rgb");
-	PROFILER_CREATE(context->priv->prof_rfx_encode_rgb, "rfx_encode_rgb");
+	                "rfx_quantization_decode")
+	PROFILER_CREATE(context->priv->prof_rfx_dwt_2d_decode, "rfx_dwt_2d_decode")
+	PROFILER_CREATE(context->priv->prof_rfx_ycbcr_to_rgb, "prims->yCbCrToRGB")
+	PROFILER_CREATE(context->priv->prof_rfx_encode_rgb, "rfx_encode_rgb")
 	PROFILER_CREATE(context->priv->prof_rfx_encode_component,
-	                "rfx_encode_component");
-	PROFILER_CREATE(context->priv->prof_rfx_rlgr_encode, "rfx_rlgr_encode");
+	                "rfx_encode_component")
+	PROFILER_CREATE(context->priv->prof_rfx_rlgr_encode, "rfx_rlgr_encode")
 	PROFILER_CREATE(context->priv->prof_rfx_differential_encode,
-	                "rfx_differential_encode");
+	                "rfx_differential_encode")
 	PROFILER_CREATE(context->priv->prof_rfx_quantization_encode,
-	                "rfx_quantization_encode");
-	PROFILER_CREATE(context->priv->prof_rfx_dwt_2d_encode, "rfx_dwt_2d_encode");
-	PROFILER_CREATE(context->priv->prof_rfx_rgb_to_ycbcr, "prims->RGBToYCbCr");
+	                "rfx_quantization_encode")
+	PROFILER_CREATE(context->priv->prof_rfx_dwt_2d_encode, "rfx_dwt_2d_encode")
+	PROFILER_CREATE(context->priv->prof_rfx_rgb_to_ycbcr, "prims->RGBToYCbCr")
 	PROFILER_CREATE(context->priv->prof_rfx_encode_format_rgb,
-	                "rfx_encode_format_rgb");
+	                "rfx_encode_format_rgb")
 }
 
 static void rfx_profiler_free(RFX_CONTEXT* context)
 {
-	PROFILER_FREE(context->priv->prof_rfx_decode_rgb);
-	PROFILER_FREE(context->priv->prof_rfx_decode_component);
-	PROFILER_FREE(context->priv->prof_rfx_rlgr_decode);
-	PROFILER_FREE(context->priv->prof_rfx_differential_decode);
-	PROFILER_FREE(context->priv->prof_rfx_quantization_decode);
-	PROFILER_FREE(context->priv->prof_rfx_dwt_2d_decode);
-	PROFILER_FREE(context->priv->prof_rfx_ycbcr_to_rgb);
-	PROFILER_FREE(context->priv->prof_rfx_decode_format_rgb);
-	PROFILER_FREE(context->priv->prof_rfx_encode_rgb);
-	PROFILER_FREE(context->priv->prof_rfx_encode_component);
-	PROFILER_FREE(context->priv->prof_rfx_rlgr_encode);
-	PROFILER_FREE(context->priv->prof_rfx_differential_encode);
-	PROFILER_FREE(context->priv->prof_rfx_quantization_encode);
-	PROFILER_FREE(context->priv->prof_rfx_dwt_2d_encode);
-	PROFILER_FREE(context->priv->prof_rfx_rgb_to_ycbcr);
-	PROFILER_FREE(context->priv->prof_rfx_encode_format_rgb);
+	PROFILER_FREE(context->priv->prof_rfx_decode_rgb)
+	PROFILER_FREE(context->priv->prof_rfx_decode_component)
+	PROFILER_FREE(context->priv->prof_rfx_rlgr_decode)
+	PROFILER_FREE(context->priv->prof_rfx_differential_decode)
+	PROFILER_FREE(context->priv->prof_rfx_quantization_decode)
+	PROFILER_FREE(context->priv->prof_rfx_dwt_2d_decode)
+	PROFILER_FREE(context->priv->prof_rfx_ycbcr_to_rgb)
+	PROFILER_FREE(context->priv->prof_rfx_encode_rgb)
+	PROFILER_FREE(context->priv->prof_rfx_encode_component)
+	PROFILER_FREE(context->priv->prof_rfx_rlgr_encode)
+	PROFILER_FREE(context->priv->prof_rfx_differential_encode)
+	PROFILER_FREE(context->priv->prof_rfx_quantization_encode)
+	PROFILER_FREE(context->priv->prof_rfx_dwt_2d_encode)
+	PROFILER_FREE(context->priv->prof_rfx_rgb_to_ycbcr)
+	PROFILER_FREE(context->priv->prof_rfx_encode_format_rgb)
 }
 
 static void rfx_profiler_print(RFX_CONTEXT* context)
 {
-	PROFILER_PRINT_HEADER;
-	PROFILER_PRINT(context->priv->prof_rfx_decode_rgb);
-	PROFILER_PRINT(context->priv->prof_rfx_decode_component);
-	PROFILER_PRINT(context->priv->prof_rfx_rlgr_decode);
-	PROFILER_PRINT(context->priv->prof_rfx_differential_decode);
-	PROFILER_PRINT(context->priv->prof_rfx_quantization_decode);
-	PROFILER_PRINT(context->priv->prof_rfx_dwt_2d_decode);
-	PROFILER_PRINT(context->priv->prof_rfx_ycbcr_to_rgb);
-	PROFILER_PRINT(context->priv->prof_rfx_decode_format_rgb);
-	PROFILER_PRINT(context->priv->prof_rfx_encode_rgb);
-	PROFILER_PRINT(context->priv->prof_rfx_encode_component);
-	PROFILER_PRINT(context->priv->prof_rfx_rlgr_encode);
-	PROFILER_PRINT(context->priv->prof_rfx_differential_encode);
-	PROFILER_PRINT(context->priv->prof_rfx_quantization_encode);
-	PROFILER_PRINT(context->priv->prof_rfx_dwt_2d_encode);
-	PROFILER_PRINT(context->priv->prof_rfx_rgb_to_ycbcr);
-	PROFILER_PRINT(context->priv->prof_rfx_encode_format_rgb);
-	PROFILER_PRINT_FOOTER;
+	PROFILER_PRINT_HEADER
+	PROFILER_PRINT(context->priv->prof_rfx_decode_rgb)
+	PROFILER_PRINT(context->priv->prof_rfx_decode_component)
+	PROFILER_PRINT(context->priv->prof_rfx_rlgr_decode)
+	PROFILER_PRINT(context->priv->prof_rfx_differential_decode)
+	PROFILER_PRINT(context->priv->prof_rfx_quantization_decode)
+	PROFILER_PRINT(context->priv->prof_rfx_dwt_2d_decode)
+	PROFILER_PRINT(context->priv->prof_rfx_ycbcr_to_rgb)
+	PROFILER_PRINT(context->priv->prof_rfx_encode_rgb)
+	PROFILER_PRINT(context->priv->prof_rfx_encode_component)
+	PROFILER_PRINT(context->priv->prof_rfx_rlgr_encode)
+	PROFILER_PRINT(context->priv->prof_rfx_differential_encode)
+	PROFILER_PRINT(context->priv->prof_rfx_quantization_encode)
+	PROFILER_PRINT(context->priv->prof_rfx_dwt_2d_encode)
+	PROFILER_PRINT(context->priv->prof_rfx_rgb_to_ycbcr)
+	PROFILER_PRINT(context->priv->prof_rfx_encode_format_rgb)
+	PROFILER_PRINT_FOOTER
 }
 
 static void rfx_tile_init(RFX_TILE* tile)
@@ -171,7 +167,7 @@ static RFX_TILE* rfx_decoder_tile_new(void)
 	if (!(tile = (RFX_TILE*) calloc(1, sizeof(RFX_TILE))))
 		return NULL;
 
-	if (!(tile->data = (BYTE*) malloc(4 * 64 * 64)))
+	if (!(tile->data = (BYTE*) _aligned_malloc(4 * 64 * 64, 16)))
 	{
 		free(tile);
 		return NULL;
@@ -186,7 +182,7 @@ static void rfx_decoder_tile_free(RFX_TILE* tile)
 	if (tile)
 	{
 		if (tile->allocated)
-			free(tile->data);
+			_aligned_free(tile->data);
 
 		free(tile);
 	}
@@ -201,7 +197,7 @@ static void rfx_encoder_tile_free(RFX_TILE* tile)
 {
 	free(tile);
 }
-int ca2_winpr_get_version_ex_a(LPOSVERSIONINFOA lpVersionInformation);
+
 RFX_CONTEXT* rfx_context_new(BOOL encoder)
 {
 	HKEY hKey;
@@ -273,7 +269,7 @@ RFX_CONTEXT* rfx_context_new(BOOL encoder)
 		OSVERSIONINFOA verinfo;
 		ZeroMemory(&verinfo, sizeof(OSVERSIONINFOA));
 		verinfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFOA);
-//		GetVersionExA(&verinfo);
+		GetVersionExA(&verinfo);
 		isVistaOrLater = ((verinfo.dwMajorVersion >= 6)
 		                  && (verinfo.dwMinorVersion >= 0)) ? TRUE : FALSE;
 		priv->UseThreads = isVistaOrLater;
@@ -337,6 +333,8 @@ RFX_CONTEXT* rfx_context_new(BOOL encoder)
 	context->quantization_encode = rfx_quantization_encode;
 	context->dwt_2d_decode = rfx_dwt_2d_decode;
 	context->dwt_2d_encode = rfx_dwt_2d_encode;
+	context->rlgr_decode = rfx_rlgr_decode;
+	context->rlgr_encode = rfx_rlgr_encode;
 	RFX_INIT_SIMD(context);
 	context->state = RFX_STATE_SEND_HEADERS;
 	return context;
@@ -431,7 +429,7 @@ static BOOL rfx_process_message_sync(RFX_CONTEXT* context, wStream* s)
 
 	if (magic != WF_MAGIC)
 	{
-		WLog_ERR(TAG, "invalid magic number 0x%X", magic);
+		WLog_ERR(TAG, "invalid magic number 0x%08"PRIX32"", magic);
 		return FALSE;
 	}
 
@@ -440,11 +438,11 @@ static BOOL rfx_process_message_sync(RFX_CONTEXT* context, wStream* s)
 
 	if (context->version != WF_VERSION_1_0)
 	{
-		WLog_ERR(TAG, "invalid version number 0x%04X", context->version);
+		WLog_ERR(TAG, "invalid version number 0x%08"PRIX32"", context->version);
 		return FALSE;
 	}
 
-	WLog_Print(context->priv->log, WLOG_DEBUG, "version 0x%X", context->version);
+	WLog_Print(context->priv->log, WLOG_DEBUG, "version 0x%08"PRIX32"", context->version);
 	context->decodedHeaderBlocks |= _RFX_DECODED_SYNC;
 	return TRUE;
 }
@@ -468,24 +466,24 @@ static BOOL rfx_process_message_codec_versions(RFX_CONTEXT* context, wStream* s)
 
 	if (numCodecs != 1)
 	{
-		WLog_ERR(TAG, "%s: numCodes is 0x%02X (must be 0x01)", __FUNCTION__, numCodecs);
+		WLog_ERR(TAG, "%s: numCodes is 0x%02"PRIX8" (must be 0x01)", __FUNCTION__, numCodecs);
 		return FALSE;
 	}
 
 	if (context->codec_id != 0x01)
 	{
-		WLog_ERR(TAG, "%s: invalid codec id (0x%02X)", __FUNCTION__, context->codec_id);
+		WLog_ERR(TAG, "%s: invalid codec id (0x%02"PRIX32")", __FUNCTION__, context->codec_id);
 		return FALSE;
 	}
 
 	if (context->codec_version != WF_VERSION_1_0)
 	{
-		WLog_ERR(TAG, "%s: invalid codec version (0x%04X)", __FUNCTION__,
+		WLog_ERR(TAG, "%s: invalid codec version (0x%08"PRIX32")", __FUNCTION__,
 		         context->codec_version);
 		return FALSE;
 	}
 
-	WLog_Print(context->priv->log, WLOG_DEBUG, "id %d version 0x%X.",
+	WLog_Print(context->priv->log, WLOG_DEBUG, "id %"PRIu32" version 0x%"PRIX32".",
 	           context->codec_id, context->codec_version);
 	context->decodedHeaderBlocks |= _RFX_DECODED_VERSIONS;
 	return TRUE;
@@ -517,7 +515,7 @@ static BOOL rfx_process_message_channels(RFX_CONTEXT* context, wStream* s)
 
 	if (Stream_GetRemainingLength(s) < (size_t)(numChannels * 5))
 	{
-		WLog_ERR(TAG, "RfxMessageChannels packet too small for numChannels=%d",
+		WLog_ERR(TAG, "RfxMessageChannels packet too small for numChannels=%"PRIu8"",
 		         numChannels);
 		return FALSE;
 	}
@@ -527,7 +525,7 @@ static BOOL rfx_process_message_channels(RFX_CONTEXT* context, wStream* s)
 
 	if (channelId != 0x00)
 	{
-		WLog_ERR(TAG, "channelId:0x%02X, expected:0x00", channelId);
+		WLog_ERR(TAG, "channelId:0x%02"PRIX8", expected:0x00", channelId);
 		return FALSE;
 	}
 
@@ -536,14 +534,14 @@ static BOOL rfx_process_message_channels(RFX_CONTEXT* context, wStream* s)
 
 	if (!context->width || !context->height)
 	{
-		WLog_ERR(TAG, "%s: invalid channel with/height: %ux%u", __FUNCTION__,
+		WLog_ERR(TAG, "%s: invalid channel with/height: %"PRIu16"x%"PRIu16"", __FUNCTION__,
 		         context->width, context->height);
 		return FALSE;
 	}
 
 	/* Now, only the first monitor can be used, therefore the other channels will be ignored. */
 	Stream_Seek(s, 5 * (numChannels - 1));
-	WLog_Print(context->priv->log, WLOG_DEBUG, "numChannels %d id %d, %dx%d.",
+	WLog_Print(context->priv->log, WLOG_DEBUG, "numChannels %"PRIu8" id %"PRIu8", %"PRIu16"x%"PRIu16".",
 	           numChannels, channelId, context->width, context->height);
 	context->decodedHeaderBlocks |= _RFX_DECODED_CHANNELS;
 	return TRUE;
@@ -567,7 +565,7 @@ static BOOL rfx_process_message_context(RFX_CONTEXT* context, wStream* s)
 	                   tileSize); /* tileSize (2 bytes), must be set to CT_TILE_64x64 (0x0040) */
 	Stream_Read_UINT16(s, properties); /* properties (2 bytes) */
 	WLog_Print(context->priv->log, WLOG_DEBUG,
-	           "ctxId %d tileSize %d properties 0x%X.",
+	           "ctxId %"PRIu8" tileSize %"PRIu16" properties 0x%04"PRIX16".",
 	           ctxId, tileSize, properties);
 	context->properties = properties;
 	context->flags = (properties & 0x0007);
@@ -626,7 +624,7 @@ static BOOL rfx_process_message_frame_begin(RFX_CONTEXT* context,
 	                   frameIdx); /* frameIdx (4 bytes), if codec is in video mode, must be ignored */
 	Stream_Read_UINT16(s, numRegions); /* numRegions (2 bytes) */
 	WLog_Print(context->priv->log, WLOG_DEBUG,
-	           "RFX_FRAME_BEGIN: frameIdx: %d numRegions: %d", frameIdx, numRegions);
+	           "RFX_FRAME_BEGIN: frameIdx: %"PRIu32" numRegions: %"PRIu16"", frameIdx, numRegions);
 	return TRUE;
 }
 
@@ -689,7 +687,7 @@ static BOOL rfx_process_message_region(RFX_CONTEXT* context,
 
 	if (Stream_GetRemainingLength(s) < (size_t)(8 * message->numRects))
 	{
-		WLog_ERR(TAG, "%s: packet too small for num_rects=%d", __FUNCTION__,
+		WLog_ERR(TAG, "%s: packet too small for num_rects=%"PRIu16"", __FUNCTION__,
 		         message->numRects);
 		return FALSE;
 	}
@@ -706,7 +704,8 @@ static BOOL rfx_process_message_region(RFX_CONTEXT* context,
 		Stream_Read_UINT16(s, rect->y); /* y (2 bytes) */
 		Stream_Read_UINT16(s, rect->width); /* width (2 bytes) */
 		Stream_Read_UINT16(s, rect->height); /* height (2 bytes) */
-		WLog_Print(context->priv->log, WLOG_DEBUG, "rect %d (x,y=%d,%d w,h=%d %d).", i,
+		WLog_Print(context->priv->log, WLOG_DEBUG,
+		           "rect %d (x,y=%"PRIu16",%"PRIu16" w,h=%"PRIu16" %"PRIu16").", i,
 		           rect->x, rect->y,
 		           rect->width, rect->height);
 	}
@@ -724,13 +723,13 @@ static BOOL rfx_process_message_region(RFX_CONTEXT* context,
 
 	if (regionType != CBT_REGION)
 	{
-		WLog_ERR(TAG, "%s: invalid region type 0x%04X", __FUNCTION__, regionType);
+		WLog_ERR(TAG, "%s: invalid region type 0x%04"PRIX16"", __FUNCTION__, regionType);
 		return TRUE;
 	}
 
 	if (numTileSets != 0x0001)
 	{
-		WLog_ERR(TAG, "%s: invalid number of tilesets (%u)", __FUNCTION__, numTileSets);
+		WLog_ERR(TAG, "%s: invalid number of tilesets (%"PRIu16")", __FUNCTION__, numTileSets);
 		return FALSE;
 	}
 
@@ -757,7 +756,7 @@ static BOOL rfx_process_message_tileset(RFX_CONTEXT* context,
 {
 	BOOL rc;
 	int i, close_cnt;
-	int pos;
+	size_t pos;
 	BYTE quant;
 	RFX_TILE* tile;
 	UINT32* quants;
@@ -822,7 +821,7 @@ static BOOL rfx_process_message_tileset(RFX_CONTEXT* context,
 	/* quantVals */
 	if (Stream_GetRemainingLength(s) < (size_t)(context->numQuant * 5))
 	{
-		WLog_ERR(TAG, "RfxMessageTileSet packet too small for num_quants=%d",
+		WLog_ERR(TAG, "RfxMessageTileSet packet too small for num_quants=%"PRIu8"",
 		         context->numQuant);
 		return FALSE;
 	}
@@ -846,7 +845,7 @@ static BOOL rfx_process_message_tileset(RFX_CONTEXT* context,
 		*quants++ = (quant & 0x0F);
 		*quants++ = (quant >> 4);
 		WLog_Print(context->priv->log, WLOG_DEBUG,
-		           "quant %d (%d %d %d %d %d %d %d %d %d %d).",
+		           "quant %d (%"PRIu32" %"PRIu32" %"PRIu32" %"PRIu32" %"PRIu32" %"PRIu32" %"PRIu32" %"PRIu32" %"PRIu32" %"PRIu32").",
 		           i, context->quants[i * 10], context->quants[i * 10 + 1],
 		           context->quants[i * 10 + 2], context->quants[i * 10 + 3],
 		           context->quants[i * 10 + 4], context->quants[i * 10 + 5],
@@ -898,7 +897,7 @@ static BOOL rfx_process_message_tileset(RFX_CONTEXT* context,
 		/* RFX_TILE */
 		if (Stream_GetRemainingLength(s) < 6)
 		{
-			WLog_ERR(TAG, "RfxMessageTileSet packet too small to read tile %d/%d", i,
+			WLog_ERR(TAG, "RfxMessageTileSet packet too small to read tile %d/%"PRIu16"", i,
 			         message->numTiles);
 			rc = FALSE;
 			break;
@@ -911,7 +910,7 @@ static BOOL rfx_process_message_tileset(RFX_CONTEXT* context,
 		if (Stream_GetRemainingLength(s) < blockLen - 6)
 		{
 			WLog_ERR(TAG,
-			         "RfxMessageTileSet not enough bytes to read tile %d/%d with blocklen=%d",
+			         "RfxMessageTileSet not enough bytes to read tile %d/%"PRIu16" with blocklen=%"PRIu32"",
 			         i, message->numTiles, blockLen);
 			rc = FALSE;
 			break;
@@ -921,7 +920,7 @@ static BOOL rfx_process_message_tileset(RFX_CONTEXT* context,
 
 		if (blockType != CBT_TILE)
 		{
-			WLog_ERR(TAG, "unknown block type 0x%X, expected CBT_TILE (0xCAC3).",
+			WLog_ERR(TAG, "unknown block type 0x%"PRIX32", expected CBT_TILE (0xCAC3).",
 			         blockType);
 			rc = FALSE;
 			break;
@@ -994,14 +993,13 @@ static BOOL rfx_process_message_tileset(RFX_CONTEXT* context,
 	return rc;
 }
 
-BOOL rfx_process_message(RFX_CONTEXT* context, const BYTE* data,
-                         UINT32 format, UINT32 length,
+BOOL rfx_process_message(RFX_CONTEXT* context, const BYTE* data, UINT32 length,
                          UINT32 left, UINT32 top,
                          BYTE* dst, UINT32 dstFormat,
                          UINT32 dstStride, UINT32 dstHeight,
                          REGION16* invalidRegion)
 {
-	int pos;
+	size_t pos;
 	REGION16 updateRegion;
 	UINT32 blockLen;
 	UINT32 blockType;
@@ -1026,7 +1024,7 @@ BOOL rfx_process_message(RFX_CONTEXT* context, const BYTE* data,
 		/* RFX_BLOCKT */
 		Stream_Read_UINT16(s, blockType); /* blockType (2 bytes) */
 		Stream_Read_UINT32(s, blockLen); /* blockLen (4 bytes) */
-		WLog_Print(context->priv->log, WLOG_DEBUG, "blockType 0x%X blockLen %d",
+		WLog_Print(context->priv->log, WLOG_DEBUG, "blockType 0x%"PRIX32" blockLen %"PRIu32"",
 		           blockType, blockLen);
 
 		if (blockLen == 0)
@@ -1037,7 +1035,7 @@ BOOL rfx_process_message(RFX_CONTEXT* context, const BYTE* data,
 
 		if (Stream_GetRemainingLength(s) < blockLen - 6)
 		{
-			WLog_ERR(TAG, "%s: packet too small for blocklen=%d", __FUNCTION__, blockLen);
+			WLog_ERR(TAG, "%s: packet too small for blocklen=%"PRIu32"", __FUNCTION__, blockLen);
 			goto fail;
 		}
 
@@ -1065,7 +1063,7 @@ BOOL rfx_process_message(RFX_CONTEXT* context, const BYTE* data,
 
 			if (codecId != 0x01)
 			{
-				WLog_ERR(TAG, "%s: invalid codecId 0x%02X", __FUNCTION__, codecId);
+				WLog_ERR(TAG, "%s: invalid codecId 0x%02"PRIX8"", __FUNCTION__, codecId);
 				goto fail;
 			}
 
@@ -1074,7 +1072,7 @@ BOOL rfx_process_message(RFX_CONTEXT* context, const BYTE* data,
 				/* If the blockType is set to WBT_CONTEXT, then channelId MUST be set to 0xFF.*/
 				if (channelId != 0xFF)
 				{
-					WLog_ERR(TAG, "%s: invalid channelId 0x%02X for blockType 0x%04X", __FUNCTION__,
+					WLog_ERR(TAG, "%s: invalid channelId 0x%02"PRIX8" for blockType 0x%08"PRIX32"", __FUNCTION__,
 					         channelId, blockType);
 					goto fail;
 				}
@@ -1084,7 +1082,7 @@ BOOL rfx_process_message(RFX_CONTEXT* context, const BYTE* data,
 				/* For all other values of blockType, channelId MUST be set to 0x00. */
 				if (channelId != 0x00)
 				{
-					WLog_ERR(TAG, "%s: invalid channelId 0x%02X for blockType WBT_CONTEXT",
+					WLog_ERR(TAG, "%s: invalid channelId 0x%02"PRIX8" for blockType WBT_CONTEXT",
 					         __FUNCTION__, channelId);
 					goto fail;
 				}
@@ -1138,7 +1136,7 @@ BOOL rfx_process_message(RFX_CONTEXT* context, const BYTE* data,
 				break;
 
 			default:
-				WLog_ERR(TAG, "%s: unknown blockType 0x%X", __FUNCTION__, blockType);
+				WLog_ERR(TAG, "%s: unknown blockType 0x%"PRIX32"", __FUNCTION__, blockType);
 				goto fail;
 		}
 
@@ -1151,16 +1149,18 @@ BOOL rfx_process_message(RFX_CONTEXT* context, const BYTE* data,
 		UINT32 nbUpdateRects;
 		REGION16 clippingRects;
 		const RECTANGLE_16* updateRects;
+		const DWORD formatSize = GetBytesPerPixel(context->pixel_format);
+		const UINT32 dstWidth = dstStride / GetBytesPerPixel(dstFormat);
 		region16_init(&clippingRects);
 
 		for (i = 0; i < message->numRects; i++)
 		{
 			RECTANGLE_16 clippingRect;
 			const RFX_RECT* rect = &(message->rects[i]);
-			clippingRect.left = left + rect->x;
-			clippingRect.top = top + rect->y;
-			clippingRect.right = clippingRect.left + rect->width;
-			clippingRect.bottom = clippingRect.top + rect->height;
+			clippingRect.left = MIN(left + rect->x, dstWidth);
+			clippingRect.top = MIN(top + rect->y, dstHeight);
+			clippingRect.right = MIN(clippingRect.left + rect->width, dstWidth);
+			clippingRect.bottom = MIN(clippingRect.top + rect->height, dstHeight);
 			region16_union_rect(&clippingRects, &clippingRects, &clippingRect);
 		}
 
@@ -1178,18 +1178,21 @@ BOOL rfx_process_message(RFX_CONTEXT* context, const BYTE* data,
 
 			for (j = 0; j < nbUpdateRects; j++)
 			{
-				UINT32 stride = 64 * GetBytesPerPixel(format);
-				UINT32 nXDst = updateRects[j].left;
-				UINT32 nYDst = updateRects[j].top;
-				UINT32 nXSrc = nXDst - updateRect.left;
-				UINT32 nYSrc = nYDst - updateRect.top;
-				UINT32 nWidth = MIN(64, updateRects[j].right - updateRects[j].left);
-				UINT32 nHeight = MIN(64, updateRects[j].bottom - updateRects[j].top);
+				const UINT32 stride = 64 * formatSize;
+				const UINT32 nXDst = updateRects[j].left;
+				const UINT32 nYDst = updateRects[j].top;
+				const UINT32 nXSrc = nXDst - updateRect.left;
+				const UINT32 nYSrc = nYDst - updateRect.top;
+				const UINT32 nWidth = updateRects[j].right - updateRects[j].left;
+				const UINT32 nHeight = updateRects[j].bottom - updateRects[j].top;
 
 				if (!freerdp_image_copy(dst, dstFormat, dstStride,
 				                        nXDst, nYDst, nWidth, nHeight,
-				                        tile->data, format, stride, nXSrc, nYSrc, NULL, FREERDP_FLIP_NONE))
+				                        tile->data, context->pixel_format, stride, nXSrc, nYSrc, NULL, FREERDP_FLIP_NONE))
+				{
+					region16_uninit(&updateRegion);
 					goto fail;
+				}
 
 				if (invalidRegion)
 					region16_union_rect(invalidRegion, invalidRegion, &updateRects[j]);
@@ -1205,7 +1208,6 @@ BOOL rfx_process_message(RFX_CONTEXT* context, const BYTE* data,
 	}
 
 fail:
-	region16_uninit(&updateRegion);
 	Stream_Free(s, FALSE);
 	rfx_message_free(context, message);
 	return FALSE;
@@ -1616,10 +1618,7 @@ skip_encoding_loop:
 				success = FALSE;
 		}
 		else
-		{
-			free(message->tiles);
 			success = FALSE;
-		}
 	}
 
 	/* when using threads ensure all computations are done */
@@ -1776,7 +1775,7 @@ static BOOL rfx_write_message_tileset(RFX_CONTEXT* context, wStream* s,
 
 #ifdef WITH_DEBUG_RFX
 	WLog_Print(context->priv->log, WLOG_DEBUG,
-	           "numQuant: %d numTiles: %d tilesDataSize: %d",
+	           "numQuant: %"PRIu16" numTiles: %"PRIu16" tilesDataSize: %"PRIu32"",
 	           message->numQuant, message->numTiles, message->tilesDataSize);
 #endif
 	return TRUE;

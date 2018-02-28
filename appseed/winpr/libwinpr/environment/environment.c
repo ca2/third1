@@ -134,7 +134,7 @@ BOOL NeedCurrentDirectoryForExePathW(LPCWSTR ExeName)
 
 #endif
 
-#if !defined(_WIN32)
+#if !defined(_WIN32) || defined(_UWP)
 
 DWORD GetEnvironmentVariableA(LPCSTR lpName, LPSTR lpBuffer, DWORD nSize)
 {
@@ -155,7 +155,8 @@ DWORD GetEnvironmentVariableA(LPCSTR lpName, LPSTR lpBuffer, DWORD nSize)
 	if ((length + 1 > nSize) || (!lpBuffer))
 		return length + 1;
 
-	CopyMemory(lpBuffer, env, length + 1);
+	CopyMemory(lpBuffer, env, length);
+	lpBuffer[length] = '\0';
 
 	return length;
 #else
@@ -230,7 +231,7 @@ LPCH GetEnvironmentStringsA(VOID)
 	envp = environ;
 
 	cchEnvironmentBlock = 128;
-	lpszEnvironmentBlock = (LPCH) malloc(cchEnvironmentBlock * sizeof(CHAR));
+	lpszEnvironmentBlock = (LPCH) calloc(cchEnvironmentBlock, sizeof(CHAR));
 	if (!lpszEnvironmentBlock)
 		return NULL;
 
@@ -364,7 +365,7 @@ LPCH MergeEnvironmentStrings(PCSTR original, PCSTR merge)
 	offset = 0;
 
 	cchEnvironmentBlock = 128;
-	lpszEnvironmentBlock = (LPCH) malloc(cchEnvironmentBlock * sizeof(CHAR));
+	lpszEnvironmentBlock = (LPCH) calloc(cchEnvironmentBlock, sizeof(CHAR));
 
 	if (!lpszEnvironmentBlock)
 	{

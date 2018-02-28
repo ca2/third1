@@ -1,4 +1,4 @@
-﻿/**
+/**
  * WinPR: Windows Portable Runtime
  * String Manipulation (CRT)
  *
@@ -35,144 +35,154 @@
 
 #ifndef _WIN32
 
-#undef _strdup
-#undef strdup
-
 char* _strdup(const char* strSource)
 {
-   char* strDestination;
+	char* strDestination;
 
-   if (strSource == NULL)
-      return NULL;
+	if (strSource == NULL)
+		return NULL;
 
-   strDestination = strdup(strSource);
+	strDestination = strdup(strSource);
 
-   if (strDestination == NULL)
-      WLog_ERR(TAG,"strdup");
+	if (strDestination == NULL)
+		WLog_ERR(TAG,"strdup");
 
-   return strDestination;
+	return strDestination;
 }
-
-#undef _wcsdup
-#undef wcsdup
-
 
 WCHAR* _wcsdup(const WCHAR* strSource)
 {
-   WCHAR* strDestination;
+	WCHAR* strDestination;
 
-   if (strSource == NULL)
-      return NULL;
+	if (strSource == NULL)
+		return NULL;
 
 #if defined(__APPLE__) && defined(__MACH__) || defined(ANDROID) || defined(sun)
-   strDestination = malloc(wcslen((wchar_t*)strSource));
+	strDestination = malloc(wcslen((wchar_t*)strSource));
 
-   if (strDestination != NULL)
-      wcscpy((wchar_t*)strDestination, (const wchar_t*)strSource);
+	if (strDestination != NULL)
+		wcscpy((wchar_t*)strDestination, (const wchar_t*)strSource);
 
 #else
-   strDestination = (WCHAR*) wcsdup((wchar_t*) strSource);
+	strDestination = (WCHAR*) wcsdup((wchar_t*) strSource);
 #endif
 
-   if (strDestination == NULL)
-      WLog_ERR(TAG,"wcsdup");
+	if (strDestination == NULL)
+		WLog_ERR(TAG,"wcsdup");
 
-   return strDestination;
+	return strDestination;
 }
 
 int _stricmp(const char* string1, const char* string2)
 {
-   return strcasecmp(string1, string2);
+	return strcasecmp(string1, string2);
 }
 
 int _strnicmp(const char* string1, const char* string2, size_t count)
 {
-   return strncasecmp(string1, string2, count);
+	return strncasecmp(string1, string2, count);
 }
 
 /* _wcscmp -> wcscmp */
 
 int _wcscmp(const WCHAR* string1, const WCHAR* string2)
 {
-   WCHAR value1, value2;
+	WCHAR value1, value2;
 
-   while (*string1 && (*string1 == *string2))
-   {
-      string1++;
-      string2++;
-   }
+	while (*string1 && (*string1 == *string2))
+	{
+		string1++;
+		string2++;
+	}
 
-   Data_Read_UINT16(string1, value1);
-   Data_Read_UINT16(string2, value2);
-   return value1 - value2;
+	Data_Read_UINT16(string1, value1);
+	Data_Read_UINT16(string2, value2);
+	return value1 - value2;
 }
 
 /* _wcslen -> wcslen */
 
 size_t _wcslen(const WCHAR* str)
 {
-   WCHAR* p = (WCHAR*) str;
+	WCHAR* p = (WCHAR*) str;
 
-   if (!p)
-      return 0;
+	if (!p)
+		return 0;
 
-   while (*p)
-      p++;
+	while (*p)
+		p++;
 
-   return (p - str);
+	return (p - str);
 }
 
 /* _wcschr -> wcschr */
 
 WCHAR* _wcschr(const WCHAR* str, WCHAR c)
 {
-   WCHAR* p = (WCHAR*) str;
-   WCHAR value;
+	WCHAR* p = (WCHAR*) str;
+	WCHAR value;
 
-   Data_Write_UINT16(&value, c);
-   while (*p && (*p != value))
-      p++;
+	Data_Write_UINT16(&value, c);
+	while (*p && (*p != value))
+		p++;
 
-   return ((*p == value) ? p : NULL);
+	return ((*p == value) ? p : NULL);
+}
+
+/* _wcsrchr -> wcsrchr */
+
+WCHAR* _wcsrchr(const WCHAR* str, WCHAR c)
+{
+	WCHAR *p;
+	WCHAR ch;
+
+	if (!str)
+		return NULL;
+
+	for (p = (WCHAR *) 0; (ch = *str); str++)
+		if (ch == c)
+			p = (WCHAR *) str;
+
+	return p;
 }
 
 char* strtok_s(char* strToken, const char* strDelimit, char** context)
 {
-   return strtok_r(strToken, strDelimit, context);
+	return strtok_r(strToken, strDelimit, context);
 }
 
 WCHAR* wcstok_s(WCHAR* strToken, const WCHAR* strDelimit, WCHAR** context)
 {
-   WCHAR* nextToken;
-   WCHAR value;
+	WCHAR* nextToken;
+	WCHAR value;
 
-   if (!strToken)
-      strToken = *context;
+	if (!strToken)
+		strToken = *context;
 
-   Data_Read_UINT16(strToken, value);
-   while (*strToken && _wcschr(strDelimit, value))
-   {
-      strToken++;
-      Data_Read_UINT16(strToken, value);
-   }
+	Data_Read_UINT16(strToken, value);
+	while (*strToken && _wcschr(strDelimit, value))
+	{
+		strToken++;
+		Data_Read_UINT16(strToken, value);
+	}
 
-   if (!*strToken)
-      return NULL;
+	if (!*strToken)
+		return NULL;
 
-   nextToken = strToken++;
+	nextToken = strToken++;
 
-   Data_Read_UINT16(strToken, value);
-   while (*strToken && !(_wcschr(strDelimit, value)))
-   {
-      strToken++;
-      Data_Read_UINT16(strToken, value);
-   }
+	Data_Read_UINT16(strToken, value);
+	while (*strToken && !(_wcschr(strDelimit, value)))
+	{
+		strToken++;
+		Data_Read_UINT16(strToken, value);
+	}
 
-   if (*strToken)
-      *strToken++ = 0;
+	if (*strToken)
+		*strToken++ = 0;
 
-   *context = strToken;
-   return nextToken;
+	*context = strToken;
+	return nextToken;
 }
 
 #endif
@@ -187,375 +197,374 @@ WCHAR* wcstok_s(WCHAR* strToken, const WCHAR* strDelimit, WCHAR** context)
 
 LPSTR CharUpperA(LPSTR lpsz)
 {
-   int i;
-   int length;
+	int i;
+	int length;
 
-   if (!lpsz)
-      return NULL;
+	if (!lpsz)
+		return NULL;
 
-   length = (int) strlen(lpsz);
+	length = (int) strlen(lpsz);
 
-   if (length < 1)
-      return (LPSTR) NULL;
+	if (length < 1)
+		return (LPSTR) NULL;
 
-   if (length == 1)
-   {
-      char c = *lpsz;
+	if (length == 1)
+	{
+		char c = *lpsz;
 
-      if ((c >= 'a') && (c <= 'z'))
-         c = c - 32;
+		if ((c >= 'a') && (c <= 'z'))
+			c = c - 32;
 
-      *lpsz = c;
-      return lpsz;
-   }
+		*lpsz = c;
+		return lpsz;
+	}
 
-   for (i = 0; i < length; i++)
-   {
-      if ((lpsz[i] >= 'a') && (lpsz[i] <= 'z'))
-         lpsz[i] = lpsz[i] - 32;
-   }
+	for (i = 0; i < length; i++)
+	{
+		if ((lpsz[i] >= 'a') && (lpsz[i] <= 'z'))
+			lpsz[i] = lpsz[i] - 32;
+	}
 
-   return lpsz;
+	return lpsz;
 }
 
 LPWSTR CharUpperW(LPWSTR lpsz)
 {
-   WLog_ERR(TAG, "CharUpperW unimplemented!");
-   return (LPWSTR) NULL;
+	WLog_ERR(TAG, "CharUpperW unimplemented!");
+	return (LPWSTR) NULL;
 }
 
 DWORD CharUpperBuffA(LPSTR lpsz, DWORD cchLength)
 {
-   DWORD i;
+	DWORD i;
 
-   if (cchLength < 1)
-      return 0;
+	if (cchLength < 1)
+		return 0;
 
-   for (i = 0; i < cchLength; i++)
-   {
-      if ((lpsz[i] >= 'a') && (lpsz[i] <= 'z'))
-         lpsz[i] = lpsz[i] - 32;
-   }
+	for (i = 0; i < cchLength; i++)
+	{
+		if ((lpsz[i] >= 'a') && (lpsz[i] <= 'z'))
+			lpsz[i] = lpsz[i] - 32;
+	}
 
-   return cchLength;
+	return cchLength;
 }
 
 DWORD CharUpperBuffW(LPWSTR lpsz, DWORD cchLength)
 {
-   DWORD i;
-   WCHAR value;
+	DWORD i;
+	WCHAR value;
 
-   for (i = 0; i < cchLength; i++)
-   {
-      Data_Read_UINT16(&lpsz[i], value);
-      value = WINPR_TOUPPERW(value);
-      Data_Write_UINT16(&lpsz[i], value);
-   }
+	for (i = 0; i < cchLength; i++)
+	{
+		Data_Read_UINT16(&lpsz[i], value);
+		value = WINPR_TOUPPERW(value);
+		Data_Write_UINT16(&lpsz[i], value);
+	}
 
-   return cchLength;
+	return cchLength;
 }
 
 LPSTR CharLowerA(LPSTR lpsz)
 {
-   int i;
-   int length;
+	int i;
+	int length;
 
-   if (!lpsz)
-      return (LPSTR) NULL;
+	if (!lpsz)
+		return (LPSTR) NULL;
 
-   length = (int) strlen(lpsz);
+	length = (int) strlen(lpsz);
 
-   if (length < 1)
-      return (LPSTR) NULL;
+	if (length < 1)
+		return (LPSTR) NULL;
 
-   if (length == 1)
-   {
-      char c = *lpsz;
+	if (length == 1)
+	{
+		char c = *lpsz;
 
-      if ((c >= 'A') && (c <= 'Z'))
-         c = c + 32;
+		if ((c >= 'A') && (c <= 'Z'))
+			c = c + 32;
 
-      *lpsz = c;
-      return lpsz;
-   }
+		*lpsz = c;
+		return lpsz;
+	}
 
-   for (i = 0; i < length; i++)
-   {
-      if ((lpsz[i] >= 'A') && (lpsz[i] <= 'Z'))
-         lpsz[i] = lpsz[i] + 32;
-   }
+	for (i = 0; i < length; i++)
+	{
+		if ((lpsz[i] >= 'A') && (lpsz[i] <= 'Z'))
+			lpsz[i] = lpsz[i] + 32;
+	}
 
-   return lpsz;
+	return lpsz;
 }
 
 LPWSTR CharLowerW(LPWSTR lpsz)
 {
-   WLog_ERR(TAG, "CharLowerW unimplemented!");
-   return (LPWSTR) NULL;
+	WLog_ERR(TAG, "CharLowerW unimplemented!");
+	return (LPWSTR) NULL;
 }
 
 DWORD CharLowerBuffA(LPSTR lpsz, DWORD cchLength)
 {
-   DWORD i;
+	DWORD i;
 
-   if (cchLength < 1)
-      return 0;
+	if (cchLength < 1)
+		return 0;
 
-   for (i = 0; i < cchLength; i++)
-   {
-      if ((lpsz[i] >= 'A') && (lpsz[i] <= 'Z'))
-         lpsz[i] = lpsz[i] + 32;
-   }
+	for (i = 0; i < cchLength; i++)
+	{
+		if ((lpsz[i] >= 'A') && (lpsz[i] <= 'Z'))
+			lpsz[i] = lpsz[i] + 32;
+	}
 
-   return cchLength;
+	return cchLength;
 }
 
 DWORD CharLowerBuffW(LPWSTR lpsz, DWORD cchLength)
 {
-   DWORD i;
-   WCHAR value;
+	DWORD i;
+	WCHAR value;
 
-   for (i = 0; i < cchLength; i++)
-   {
-      Data_Read_UINT16(&lpsz[i], value);
-      value = WINPR_TOLOWERW(value);
-      Data_Write_UINT16(&lpsz[i], value);
-   }
+	for (i = 0; i < cchLength; i++)
+	{
+		Data_Read_UINT16(&lpsz[i], value);
+		value = WINPR_TOLOWERW(value);
+		Data_Write_UINT16(&lpsz[i], value);
+	}
 
-   return cchLength;
+	return cchLength;
 }
 
 BOOL IsCharAlphaA(CHAR ch)
 {
-   if (((ch >= 'a') && (ch <= 'z')) || ((ch >= 'A') && (ch <= 'Z')))
-      return 1;
-   else
-      return 0;
+	if (((ch >= 'a') && (ch <= 'z')) || ((ch >= 'A') && (ch <= 'Z')))
+		return 1;
+	else
+		return 0;
 }
 
 BOOL IsCharAlphaW(WCHAR ch)
 {
-   WLog_ERR(TAG, "IsCharAlphaW unimplemented!");
-   return 0;
+	WLog_ERR(TAG, "IsCharAlphaW unimplemented!");
+	return 0;
 }
 
 BOOL IsCharAlphaNumericA(CHAR ch)
 {
-   if (((ch >= 'a') && (ch <= 'z')) || ((ch >= 'A') && (ch <= 'Z')) ||
-         ((ch >= '0') && (ch <= '9')))
-      return 1;
-   else
-      return 0;
+	if (((ch >= 'a') && (ch <= 'z')) || ((ch >= 'A') && (ch <= 'Z')) ||
+			((ch >= '0') && (ch <= '9')))
+		return 1;
+	else
+		return 0;
 }
 
 BOOL IsCharAlphaNumericW(WCHAR ch)
 {
-   WLog_ERR(TAG, "IsCharAlphaNumericW unimplemented!");
-   return 0;
+	WLog_ERR(TAG, "IsCharAlphaNumericW unimplemented!");
+	return 0;
 }
 
 BOOL IsCharUpperA(CHAR ch)
 {
-   if ((ch >= 'A') && (ch <= 'Z'))
-      return 1;
-   else
-      return 0;
+	if ((ch >= 'A') && (ch <= 'Z'))
+		return 1;
+	else
+		return 0;
 }
 
 BOOL IsCharUpperW(WCHAR ch)
 {
-   WLog_ERR(TAG, "IsCharUpperW unimplemented!");
-   return 0;
+	WLog_ERR(TAG, "IsCharUpperW unimplemented!");
+	return 0;
 }
 
 BOOL IsCharLowerA(CHAR ch)
 {
-   if ((ch >= 'a') && (ch <= 'z'))
-      return 1;
-   else
-      return 0;
+	if ((ch >= 'a') && (ch <= 'z'))
+		return 1;
+	else
+		return 0;
 }
 
 BOOL IsCharLowerW(WCHAR ch)
 {
-   WLog_ERR(TAG, "IsCharLowerW unimplemented!");
-   return 0;
+	WLog_ERR(TAG, "IsCharLowerW unimplemented!");
+	return 0;
 }
 
 int lstrlenA(LPCSTR lpString)
 {
-   return (int) strlen(lpString);
+	return (int) strlen(lpString);
 }
 
 int lstrlenW(LPCWSTR lpString)
 {
-   LPWSTR p;
+	LPWSTR p;
 
-   if (!lpString)
-      return 0;
+	if (!lpString)
+		return 0;
 
-   p = (LPWSTR) lpString;
+	p = (LPWSTR) lpString;
 
-   while (*p)
-      p++;
+	while (*p)
+		p++;
 
-   return (int) (p - lpString);
+	return (int) (p - lpString);
 }
 
 int lstrcmpA(LPCSTR lpString1, LPCSTR lpString2)
 {
-   return strcmp(lpString1, lpString2);
+	return strcmp(lpString1, lpString2);
 }
 
 int lstrcmpW(LPCWSTR lpString1, LPCWSTR lpString2)
 {
-   WCHAR value1, value2;
+	WCHAR value1, value2;
 
-   while (*lpString1 && (*lpString1 == *lpString2))
-   {
-      lpString1++;
-      lpString2++;
-   }
+	while (*lpString1 && (*lpString1 == *lpString2))
+	{
+		lpString1++;
+		lpString2++;
+	}
 
-   Data_Read_UINT16(lpString1, value1);
-   Data_Read_UINT16(lpString2, value2);
-   return value1 - value2;
+	Data_Read_UINT16(lpString1, value1);
+	Data_Read_UINT16(lpString2, value2);
+	return value1 - value2;
 }
 
 #endif
 
 int ConvertLineEndingToLF(char* str, int size)
 {
-   int status;
-   char* end;
-   char* pInput;
-   char* pOutput;
+	int status;
+	char* end;
+	char* pInput;
+	char* pOutput;
 
-   end = &str[size];
-   pInput = pOutput = str;
+	end = &str[size];
+	pInput = pOutput = str;
 
-   while (pInput < end)
-   {
-      if ((pInput[0] == '\r') && (pInput[1] == '\n'))
-      {
-         *pOutput++ = '\n';
-         pInput += 2;
-      }
-      else
-      {
-         *pOutput++ = *pInput++;
-      }
-   }
+	while (pInput < end)
+	{
+		if ((pInput[0] == '\r') && (pInput[1] == '\n'))
+		{
+			*pOutput++ = '\n';
+			pInput += 2;
+		}
+		else
+		{
+			*pOutput++ = *pInput++;
+		}
+	}
 
-   status = (int) (pOutput - str);
+	status = (int) (pOutput - str);
 
-   return status;
+	return status;
 }
 
 char* ConvertLineEndingToCRLF(const char* str, int* size)
 {
-   int count;
-   char* newStr;
-   char* pOutput;
-   const char* end;
-   const char* pInput;
+	int count;
+	char* newStr;
+	char* pOutput;
+	const char* end;
+	const char* pInput;
 
-   end = &str[*size];
+	end = &str[*size];
 
-   count = 0;
-   pInput = str;
+	count = 0;
+	pInput = str;
 
-   while (pInput < end)
-   {
-      if (*pInput == '\n')
-         count++;
+	while (pInput < end)
+	{
+		if (*pInput == '\n')
+			count++;
 
-      pInput++;
-   }
+		pInput++;
+	}
 
-   newStr = (char*) malloc(*size + (count * 2) + 1);
+	newStr = (char*) malloc(*size + (count * 2) + 1);
 
-   if (!newStr)
-      return NULL;
+	if (!newStr)
+		return NULL;
 
-   pInput = str;
-   pOutput = newStr;
+	pInput = str;
+	pOutput = newStr;
 
-   while (pInput < end)
-   {
-      if ((*pInput == '\n') && ((pInput > str) && (pInput[-1] != '\r')))
-      {
-         *pOutput++ = '\r';
-         *pOutput++ = '\n';
-      }
-      else
-      {
-         *pOutput++ = *pInput;
-      }
+	while (pInput < end)
+	{
+		if ((*pInput == '\n') && ((pInput > str) && (pInput[-1] != '\r')))
+		{
+			*pOutput++ = '\r';
+			*pOutput++ = '\n';
+		}
+		else
+		{
+			*pOutput++ = *pInput;
+		}
 
-      pInput++;
-   }
+		pInput++;
+	}
 
-   *size = (int) (pOutput - newStr);
+	*size = (int) (pOutput - newStr);
 
-   return newStr;
+	return newStr;
 }
 
 char* StrSep(char** stringp, const char* delim)
 {
-   char* start = *stringp;
-   char* p;
+	char* start = *stringp;
+	char* p;
 
-   p = (start != NULL) ? strpbrk(start, delim) : NULL;
+	p = (start != NULL) ? strpbrk(start, delim) : NULL;
 
-   if (!p)
-      *stringp = NULL;
-   else
-   {
-      *p = '\0';
-      *stringp = p + 1;
-   }
+	if (!p)
+		*stringp = NULL;
+	else
+	{
+		*p = '\0';
+		*stringp = p + 1;
+	}
 
-   return start;
+	return start;
 }
 
 INT64 GetLine(char** lineptr, size_t* size, FILE* stream)
 {
 #if defined(_WIN32)
-   char c;
-   char *n;
-   size_t step = 32;
-   size_t used = 0;
+	char c;
+	char *n;
+	size_t step = 32;
+	size_t used = 0;
 
-   if (!lineptr || !size)
-   {
-      errno = EINVAL;
-      return -1;
-   }
+	if (!lineptr || !size)
+	{
+		errno = EINVAL;
+		return -1;
+	}
 
-   do
-   {
-      if (used + 2 >= *size)
-      {
-         *size += step;
-         n = realloc(*lineptr, *size);
-         if (!n)
-         {
-            return -1;
-         }
-         *lineptr = n;
-      }
-      c = fgetc(stream);
-      if (c != EOF)
-         (*lineptr)[used++] = c;
-   }
-   while((c != '\n') && (c != '\r') && (c != EOF));
-   (*lineptr)[used] = '\0';
+	do
+	{
+		if (used + 2 >= *size)
+		{
+			*size += step;
+			n = realloc(*lineptr, *size);
+			if (!n)
+			{
+				return -1;
+			}
+			*lineptr = n;
+		}
+        c = fgetc(stream);
+        if (c != EOF)
+            (*lineptr)[used++] = c;
+    } while((c != '\n') && (c != '\r') && (c != EOF));
+    (*lineptr)[used] = '\0';
 
-   return used;
+	return used;
 #elif !defined(ANDROID) && !defined(IOS)
-   return getline(lineptr, size, stream);
+	return getline(lineptr, size, stream);
 #else
-   return -1;
+	return -1;
 #endif
 }

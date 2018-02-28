@@ -31,6 +31,7 @@
 #include <freerdp/log.h>
 #include <freerdp/graphics.h>
 #include <freerdp/codec/bitmap.h>
+#include <freerdp/gdi/gdi.h>
 
 #include "orders.h"
 
@@ -712,7 +713,7 @@ static INLINE BOOL update_read_delta_points(wStream* s, DELTA_POINT* points,
 
 	if (Stream_GetRemainingLength(s) < zeroBitsSize)
 	{
-		WLog_ERR(TAG, "Stream_GetRemainingLength(s) < %i", zeroBitsSize);
+		WLog_ERR(TAG, "Stream_GetRemainingLength(s) < %"PRIu32"", zeroBitsSize);
 		return FALSE;
 	}
 
@@ -821,7 +822,7 @@ static INLINE BOOL FIELD_SKIP_BUFFER16(wStream* s, UINT32 TARGET_LEN)
 
 	if (!Stream_SafeSeek(s, TARGET_LEN))
 	{
-		WLog_ERR(TAG, "error skipping %d bytes", TARGET_LEN);
+		WLog_ERR(TAG, "error skipping %"PRIu32" bytes", TARGET_LEN);
 		return FALSE;
 	}
 
@@ -1262,7 +1263,7 @@ static BOOL update_read_polyline_order(wStream* s, ORDER_INFO* orderInfo,
 
 		if (!new_points)
 		{
-			WLog_ERR(TAG, "realloc(%i) failed", new_num);
+			WLog_ERR(TAG, "realloc(%"PRIu32") failed", new_num);
 			return FALSE;
 		}
 
@@ -1686,7 +1687,7 @@ static BOOL update_read_cache_bitmap_order(wStream* s,
 
 	if ((cache_bitmap->bitmapBpp < 1) || (cache_bitmap->bitmapBpp > 32))
 	{
-		WLog_ERR(TAG, "invalid bitmap bpp %d", cache_bitmap->bitmapBpp);
+		WLog_ERR(TAG, "invalid bitmap bpp %"PRIu32"", cache_bitmap->bitmapBpp);
 		return FALSE;
 	}
 
@@ -1955,7 +1956,7 @@ static BOOL update_read_cache_bitmap_v3_order(wStream* s,
 
 	if ((bitmapData->bpp < 1) || (bitmapData->bpp > 32))
 	{
-		WLog_ERR(TAG, "invalid bpp value %d", bitmapData->bpp);
+		WLog_ERR(TAG, "invalid bpp value %"PRIu32"", bitmapData->bpp);
 		return FALSE;
 	}
 
@@ -2294,7 +2295,6 @@ static BOOL update_read_cache_brush_order(wStream* s,
         UINT16 flags)
 {
 	int i;
-	int size;
 	BYTE iBitmapFormat;
 	BOOL compressed = FALSE;
 
@@ -2311,13 +2311,11 @@ static BOOL update_read_cache_brush_order(wStream* s,
 
 	if ((cache_brush->cx == 8) && (cache_brush->cy == 8))
 	{
-		size = (cache_brush->bpp == 1) ? 8 : 8 * 8 * cache_brush->bpp;
-
 		if (cache_brush->bpp == 1)
 		{
 			if (cache_brush->length != 8)
 			{
-				WLog_ERR(TAG,  "incompatible 1bpp brush of length:%d", cache_brush->length);
+				WLog_ERR(TAG,  "incompatible 1bpp brush of length:%"PRIu32"", cache_brush->length);
 				return TRUE; // should be FALSE ?
 			}
 
@@ -2373,7 +2371,6 @@ BOOL update_write_cache_brush_order(wStream* s,
                                     UINT16* flags)
 {
 	int i;
-	int size;
 	BYTE iBitmapFormat;
 	BOOL compressed = FALSE;
 
@@ -2391,13 +2388,11 @@ BOOL update_write_cache_brush_order(wStream* s,
 
 	if ((cache_brush->cx == 8) && (cache_brush->cy == 8))
 	{
-		size = (cache_brush->bpp == 1) ? 8 : 8 * 8 * cache_brush->bpp;
-
 		if (cache_brush->bpp == 1)
 		{
 			if (cache_brush->length != 8)
 			{
-				WLog_ERR(TAG,  "incompatible 1bpp brush of length:%d", cache_brush->length);
+				WLog_ERR(TAG,  "incompatible 1bpp brush of length:%"PRIu32"", cache_brush->length);
 				return FALSE;
 			}
 
@@ -2466,7 +2461,7 @@ static BOOL update_read_create_offscreen_bitmap_order(wStream* s,
 		if (deleteList->cIndices > deleteList->sIndices)
 		{
 			UINT16* new_indices;
-			new_indices = (UINT16*)realloc(deleteList->indices, deleteList->sIndices * 2);
+			new_indices = (UINT16*)realloc(deleteList->indices, deleteList->cIndices * 2);
 
 			if (!new_indices)
 				return FALSE;
@@ -2573,7 +2568,7 @@ static BOOL update_read_create_nine_grid_bitmap_order(
 	if ((create_nine_grid_bitmap->bitmapBpp < 1)
 	    || (create_nine_grid_bitmap->bitmapBpp > 32))
 	{
-		WLog_ERR(TAG, "invalid bpp value %d", create_nine_grid_bitmap->bitmapBpp);
+		WLog_ERR(TAG, "invalid bpp value %"PRIu32"", create_nine_grid_bitmap->bitmapBpp);
 		return FALSE;
 	}
 
@@ -2612,7 +2607,7 @@ static BOOL update_read_stream_bitmap_first_order(
 	if ((stream_bitmap_first->bitmapBpp < 1)
 	    || (stream_bitmap_first->bitmapBpp > 32))
 	{
-		WLog_ERR(TAG, "invalid bpp value %d", stream_bitmap_first->bitmapBpp);
+		WLog_ERR(TAG, "invalid bpp value %"PRIu32"", stream_bitmap_first->bitmapBpp);
 		return FALSE;
 	}
 
@@ -2923,7 +2918,7 @@ static BOOL update_recv_primary_order(rdpUpdate* update, wStream* s, BYTE flags)
 
 	if (orderInfo->orderType >= PRIMARY_DRAWING_ORDER_COUNT)
 	{
-		WLog_ERR(TAG,  "Invalid Primary Drawing Order (0x%02X)", orderInfo->orderType);
+		WLog_ERR(TAG,  "Invalid Primary Drawing Order (0x%08"PRIX32")", orderInfo->orderType);
 		return FALSE;
 	}
 
@@ -2949,8 +2944,6 @@ static BOOL update_recv_primary_order(rdpUpdate* update, wStream* s, BYTE flags)
 	}
 
 	orderInfo->deltaCoordinates = (flags & ORDER_DELTA_COORDINATES) ? TRUE : FALSE;
-	WLog_Print(update->log, WLOG_DEBUG,  "%s Primary Drawing Order (0x%02X)",
-	           PRIMARY_DRAWING_ORDER_STRINGS[orderInfo->orderType], orderInfo->orderType);
 
 	switch (orderInfo->orderType)
 	{
@@ -2961,6 +2954,10 @@ static BOOL update_recv_primary_order(rdpUpdate* update, wStream* s, BYTE flags)
 				return FALSE;
 			}
 
+			WLog_Print(update->log, WLOG_DEBUG,
+			           "%s Primary Drawing Order (0x%08"PRIX32") rop=%s [0x%08"PRIx32"]",
+			           PRIMARY_DRAWING_ORDER_STRINGS[orderInfo->orderType], orderInfo->orderType,
+			           gdi_rop3_code_string(primary->dstblt.bRop), gdi_rop3_code(primary->dstblt.bRop));
 			IFCALL(primary->DstBlt, context, &primary->dstblt);
 			break;
 
@@ -2971,6 +2968,10 @@ static BOOL update_recv_primary_order(rdpUpdate* update, wStream* s, BYTE flags)
 				return FALSE;
 			}
 
+			WLog_Print(update->log, WLOG_DEBUG,
+			           "%s Primary Drawing Order (0x%08"PRIX32") rop=%s [0x%08"PRIx32"]",
+			           PRIMARY_DRAWING_ORDER_STRINGS[orderInfo->orderType], orderInfo->orderType,
+			           gdi_rop3_code_string(primary->patblt.bRop), gdi_rop3_code(primary->patblt.bRop));
 			IFCALL(primary->PatBlt, context, &primary->patblt);
 			break;
 
@@ -2981,6 +2982,10 @@ static BOOL update_recv_primary_order(rdpUpdate* update, wStream* s, BYTE flags)
 				return FALSE;
 			}
 
+			WLog_Print(update->log, WLOG_DEBUG,
+			           "%s Primary Drawing Order (0x%08"PRIX32") rop=%s [0x%08"PRIx32"]",
+			           PRIMARY_DRAWING_ORDER_STRINGS[orderInfo->orderType], orderInfo->orderType,
+			           gdi_rop3_code_string(primary->scrblt.bRop), gdi_rop3_code(primary->scrblt.bRop));
 			IFCALL(primary->ScrBlt, context, &primary->scrblt);
 			break;
 
@@ -2992,6 +2997,8 @@ static BOOL update_recv_primary_order(rdpUpdate* update, wStream* s, BYTE flags)
 				return FALSE;
 			}
 
+			WLog_Print(update->log, WLOG_DEBUG,  "%s Primary Drawing Order (0x%08"PRIX32")",
+			           PRIMARY_DRAWING_ORDER_STRINGS[orderInfo->orderType], orderInfo->orderType);
 			IFCALL(primary->OpaqueRect, context, &primary->opaque_rect);
 			break;
 
@@ -3003,6 +3010,8 @@ static BOOL update_recv_primary_order(rdpUpdate* update, wStream* s, BYTE flags)
 				return FALSE;
 			}
 
+			WLog_Print(update->log, WLOG_DEBUG,  "%s Primary Drawing Order (0x%08"PRIX32")",
+			           PRIMARY_DRAWING_ORDER_STRINGS[orderInfo->orderType], orderInfo->orderType);
 			IFCALL(primary->DrawNineGrid, context, &primary->draw_nine_grid);
 			break;
 
@@ -3014,6 +3023,10 @@ static BOOL update_recv_primary_order(rdpUpdate* update, wStream* s, BYTE flags)
 				return FALSE;
 			}
 
+			WLog_Print(update->log, WLOG_DEBUG,
+			           "%s Primary Drawing Order (0x%08"PRIX32") rop=%s [0x%08"PRIx32"]",
+			           PRIMARY_DRAWING_ORDER_STRINGS[orderInfo->orderType], orderInfo->orderType,
+			           gdi_rop3_code_string(primary->multi_dstblt.bRop), gdi_rop3_code(primary->multi_dstblt.bRop));
 			IFCALL(primary->MultiDstBlt, context, &primary->multi_dstblt);
 			break;
 
@@ -3025,6 +3038,10 @@ static BOOL update_recv_primary_order(rdpUpdate* update, wStream* s, BYTE flags)
 				return FALSE;
 			}
 
+			WLog_Print(update->log, WLOG_DEBUG,
+			           "%s Primary Drawing Order (0x%08"PRIX32") rop=%s [0x%08"PRIx32"]",
+			           PRIMARY_DRAWING_ORDER_STRINGS[orderInfo->orderType], orderInfo->orderType,
+			           gdi_rop3_code_string(primary->multi_patblt.bRop), gdi_rop3_code(primary->multi_patblt.bRop));
 			IFCALL(primary->MultiPatBlt, context, &primary->multi_patblt);
 			break;
 
@@ -3036,6 +3053,10 @@ static BOOL update_recv_primary_order(rdpUpdate* update, wStream* s, BYTE flags)
 				return FALSE;
 			}
 
+			WLog_Print(update->log, WLOG_DEBUG,
+			           "%s Primary Drawing Order (0x%08"PRIX32") rop=%s [0x%08"PRIx32"]",
+			           PRIMARY_DRAWING_ORDER_STRINGS[orderInfo->orderType], orderInfo->orderType,
+			           gdi_rop3_code_string(primary->multi_scrblt.bRop), gdi_rop3_code(primary->multi_scrblt.bRop));
 			IFCALL(primary->MultiScrBlt, context, &primary->multi_scrblt);
 			break;
 
@@ -3048,6 +3069,8 @@ static BOOL update_recv_primary_order(rdpUpdate* update, wStream* s, BYTE flags)
 				return FALSE;
 			}
 
+			WLog_Print(update->log, WLOG_DEBUG,  "%s Primary Drawing Order (0x%08"PRIX32")",
+			           PRIMARY_DRAWING_ORDER_STRINGS[orderInfo->orderType], orderInfo->orderType);
 			IFCALL(primary->MultiOpaqueRect, context, &primary->multi_opaque_rect);
 			break;
 
@@ -3060,6 +3083,8 @@ static BOOL update_recv_primary_order(rdpUpdate* update, wStream* s, BYTE flags)
 				return FALSE;
 			}
 
+			WLog_Print(update->log, WLOG_DEBUG,  "%s Primary Drawing Order (0x%08"PRIX32")",
+			           PRIMARY_DRAWING_ORDER_STRINGS[orderInfo->orderType], orderInfo->orderType);
 			IFCALL(primary->MultiDrawNineGrid, context, &primary->multi_draw_nine_grid);
 			break;
 
@@ -3070,6 +3095,8 @@ static BOOL update_recv_primary_order(rdpUpdate* update, wStream* s, BYTE flags)
 				return FALSE;
 			}
 
+			WLog_Print(update->log, WLOG_DEBUG,  "%s Primary Drawing Order (0x%08"PRIX32")",
+			           PRIMARY_DRAWING_ORDER_STRINGS[orderInfo->orderType], orderInfo->orderType);
 			IFCALL(primary->LineTo, context, &primary->line_to);
 			break;
 
@@ -3080,6 +3107,8 @@ static BOOL update_recv_primary_order(rdpUpdate* update, wStream* s, BYTE flags)
 				return FALSE;
 			}
 
+			WLog_Print(update->log, WLOG_DEBUG,  "%s Primary Drawing Order (0x%08"PRIX32")",
+			           PRIMARY_DRAWING_ORDER_STRINGS[orderInfo->orderType], orderInfo->orderType);
 			IFCALL(primary->Polyline, context, &primary->polyline);
 			break;
 
@@ -3090,6 +3119,10 @@ static BOOL update_recv_primary_order(rdpUpdate* update, wStream* s, BYTE flags)
 				return FALSE;
 			}
 
+			WLog_Print(update->log, WLOG_DEBUG,
+			           "%s Primary Drawing Order (0x%08"PRIX32") rop=%s [0x%08"PRIx32"]",
+			           PRIMARY_DRAWING_ORDER_STRINGS[orderInfo->orderType], orderInfo->orderType,
+			           gdi_rop3_code_string(primary->memblt.bRop), gdi_rop3_code(primary->memblt.bRop));
 			IFCALL(primary->MemBlt, context, &primary->memblt);
 			break;
 
@@ -3100,6 +3133,10 @@ static BOOL update_recv_primary_order(rdpUpdate* update, wStream* s, BYTE flags)
 				return FALSE;
 			}
 
+			WLog_Print(update->log, WLOG_DEBUG,
+			           "%s Primary Drawing Order (0x%08"PRIX32") rop=%s [0x%08"PRIx32"]",
+			           PRIMARY_DRAWING_ORDER_STRINGS[orderInfo->orderType], orderInfo->orderType,
+			           gdi_rop3_code_string(primary->mem3blt.bRop), gdi_rop3_code(primary->mem3blt.bRop));
 			IFCALL(primary->Mem3Blt, context, &primary->mem3blt);
 			break;
 
@@ -3111,6 +3148,8 @@ static BOOL update_recv_primary_order(rdpUpdate* update, wStream* s, BYTE flags)
 				return FALSE;
 			}
 
+			WLog_Print(update->log, WLOG_DEBUG,  "%s Primary Drawing Order (0x%08"PRIX32")",
+			           PRIMARY_DRAWING_ORDER_STRINGS[orderInfo->orderType], orderInfo->orderType);
 			IFCALL(primary->SaveBitmap, context, &primary->save_bitmap);
 			break;
 
@@ -3122,6 +3161,8 @@ static BOOL update_recv_primary_order(rdpUpdate* update, wStream* s, BYTE flags)
 				return FALSE;
 			}
 
+			WLog_Print(update->log, WLOG_DEBUG,  "%s Primary Drawing Order (0x%08"PRIX32")",
+			           PRIMARY_DRAWING_ORDER_STRINGS[orderInfo->orderType], orderInfo->orderType);
 			IFCALL(primary->GlyphIndex, context, &primary->glyph_index);
 			break;
 
@@ -3132,6 +3173,8 @@ static BOOL update_recv_primary_order(rdpUpdate* update, wStream* s, BYTE flags)
 				return FALSE;
 			}
 
+			WLog_Print(update->log, WLOG_DEBUG,  "%s Primary Drawing Order (0x%08"PRIX32")",
+			           PRIMARY_DRAWING_ORDER_STRINGS[orderInfo->orderType], orderInfo->orderType);
 			IFCALL(primary->FastIndex, context, &primary->fast_index);
 			break;
 
@@ -3142,6 +3185,8 @@ static BOOL update_recv_primary_order(rdpUpdate* update, wStream* s, BYTE flags)
 				return FALSE;
 			}
 
+			WLog_Print(update->log, WLOG_DEBUG,  "%s Primary Drawing Order (0x%08"PRIX32")",
+			           PRIMARY_DRAWING_ORDER_STRINGS[orderInfo->orderType], orderInfo->orderType);
 			IFCALL(primary->FastGlyph, context, &primary->fast_glyph);
 			break;
 
@@ -3152,6 +3197,8 @@ static BOOL update_recv_primary_order(rdpUpdate* update, wStream* s, BYTE flags)
 				return FALSE;
 			}
 
+			WLog_Print(update->log, WLOG_DEBUG,  "%s Primary Drawing Order (0x%08"PRIX32")",
+			           PRIMARY_DRAWING_ORDER_STRINGS[orderInfo->orderType], orderInfo->orderType);
 			IFCALL(primary->PolygonSC, context, &primary->polygon_sc);
 			break;
 
@@ -3162,6 +3209,8 @@ static BOOL update_recv_primary_order(rdpUpdate* update, wStream* s, BYTE flags)
 				return FALSE;
 			}
 
+			WLog_Print(update->log, WLOG_DEBUG,  "%s Primary Drawing Order (0x%08"PRIX32")",
+			           PRIMARY_DRAWING_ORDER_STRINGS[orderInfo->orderType], orderInfo->orderType);
 			IFCALL(primary->PolygonCB, context, &primary->polygon_cb);
 			break;
 
@@ -3172,6 +3221,8 @@ static BOOL update_recv_primary_order(rdpUpdate* update, wStream* s, BYTE flags)
 				return FALSE;
 			}
 
+			WLog_Print(update->log, WLOG_DEBUG,  "%s Primary Drawing Order (0x%08"PRIX32")",
+			           PRIMARY_DRAWING_ORDER_STRINGS[orderInfo->orderType], orderInfo->orderType);
 			IFCALL(primary->EllipseSC, context, &primary->ellipse_sc);
 			break;
 
@@ -3182,6 +3233,8 @@ static BOOL update_recv_primary_order(rdpUpdate* update, wStream* s, BYTE flags)
 				return FALSE;
 			}
 
+			WLog_Print(update->log, WLOG_DEBUG,  "%s Primary Drawing Order (0x%08"PRIX32")",
+			           PRIMARY_DRAWING_ORDER_STRINGS[orderInfo->orderType], orderInfo->orderType);
 			IFCALL(primary->EllipseCB, context, &primary->ellipse_cb);
 			break;
 
@@ -3218,10 +3271,10 @@ static BOOL update_recv_secondary_order(rdpUpdate* update, wStream* s,
 	next = Stream_Pointer(s) + ((INT16) orderLength) + 7;
 
 	if (orderType < SECONDARY_DRAWING_ORDER_COUNT)
-		WLog_Print(update->log, WLOG_DEBUG,  "%s Secondary Drawing Order (0x%02X)",
+		WLog_Print(update->log, WLOG_DEBUG,  "%s Secondary Drawing Order (0x%02"PRIX8")",
 		           SECONDARY_DRAWING_ORDER_STRINGS[orderType], orderType);
 	else
-		WLog_Print(update->log, WLOG_DEBUG,  "Unknown Secondary Drawing Order (0x%02X)",
+		WLog_Print(update->log, WLOG_DEBUG,  "Unknown Secondary Drawing Order (0x%02"PRIX8")",
 		           orderType);
 
 	switch (orderType)
@@ -3356,11 +3409,11 @@ static BOOL update_recv_altsec_order(rdpUpdate* update, wStream* s,
 
 	if (orderType < ALTSEC_DRAWING_ORDER_COUNT)
 		WLog_Print(update->log, WLOG_DEBUG,
-		           "%s Alternate Secondary Drawing Order (0x%02X)",
+		           "%s Alternate Secondary Drawing Order (0x%02"PRIX8")",
 		           ALTSEC_DRAWING_ORDER_STRINGS[orderType], orderType);
 	else
 		WLog_Print(update->log, WLOG_DEBUG,
-		           "Unknown Alternate Secondary Drawing Order: 0x%02X", orderType);
+		           "Unknown Alternate Secondary Drawing Order: 0x%02"PRIX8"", orderType);
 
 	switch (orderType)
 	{
@@ -3457,7 +3510,7 @@ static BOOL update_recv_altsec_order(rdpUpdate* update, wStream* s,
 			break;
 
 		case ORDER_TYPE_GDIPLUS_END:
-			if (update_read_draw_gdiplus_end_order(s, &(altsec->draw_gdiplus_end)))
+			if (!update_read_draw_gdiplus_end_order(s, &(altsec->draw_gdiplus_end)))
 			{
 				WLog_ERR(TAG,
 				         "ORDER_TYPE_GDIPLUS_END - update_read_draw_gdiplus_end_order() failed");
@@ -3507,7 +3560,6 @@ static BOOL update_recv_altsec_order(rdpUpdate* update, wStream* s,
 
 		case ORDER_TYPE_WINDOW:
 			return update_recv_altsec_window_order(update, s);
-			break;
 
 		case ORDER_TYPE_COMPDESK_FIRST:
 			break;

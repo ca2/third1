@@ -29,7 +29,7 @@
 
 #include "../log.h"
 #define TAG WINPR_TAG("rpc")
-#ifndef _UWP
+
 RPC_STATUS RpcBindingCopy(RPC_BINDING_HANDLE SourceBinding,
                           RPC_BINDING_HANDLE* DestinationBinding)
 {
@@ -155,8 +155,6 @@ RPC_STATUS RpcStringBindingParseW(RPC_WSTR StringBinding, RPC_WSTR* ObjUuid,
 	return 0;
 }
 
-#endif
-
 RPC_STATUS RpcStringFreeA(RPC_CSTR* String)
 {
 	if (String)
@@ -172,8 +170,6 @@ RPC_STATUS RpcStringFreeW(RPC_WSTR* String)
 
 	return RPC_S_OK;
 }
-
-#ifndef _UWP
 
 RPC_STATUS RpcIfInqId(RPC_IF_HANDLE RpcIfHandle, RPC_IF_ID* RpcIfId)
 {
@@ -975,5 +971,5 @@ RPC_STATUS RpcServerInqBindingHandle(RPC_BINDING_HANDLE* Binding)
 	WLog_ERR(TAG, "Not implemented");
 	return 0;
 }
-#endif
+
 #endif

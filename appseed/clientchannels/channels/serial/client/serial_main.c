@@ -119,25 +119,32 @@ static UINT32 _GetLastErrorToIoStatus(SERIAL_DEVICE* serial)
 			/* no default */
 	}
 
-	WLog_Print(serial->log, WLOG_DEBUG, "unexpected last-error: 0x%lx",
+	WLog_Print(serial->log, WLOG_DEBUG, "unexpected last-error: 0x%08"PRIX32"",
 	           GetLastError());
 	return STATUS_UNSUCCESSFUL;
 }
 
-static void serial_process_irp_create(SERIAL_DEVICE* serial, IRP* irp)
+static UINT serial_process_irp_create(SERIAL_DEVICE* serial, IRP* irp)
 {
 	DWORD DesiredAccess;
 	DWORD SharedAccess;
 	DWORD CreateDisposition;
 	UINT32 PathLength;
+
+	if (Stream_GetRemainingLength(irp->input) < 32)
+		return ERROR_INVALID_DATA;
+
 	Stream_Read_UINT32(irp->input, DesiredAccess);		/* DesiredAccess (4 bytes) */
 	Stream_Seek_UINT64(irp->input);				/* AllocationSize (8 bytes) */
 	Stream_Seek_UINT32(irp->input);				/* FileAttributes (4 bytes) */
 	Stream_Read_UINT32(irp->input, SharedAccess);		/* SharedAccess (4 bytes) */
-	Stream_Read_UINT32(irp->input,
-	                   CreateDisposition);	/* CreateDisposition (4 bytes) */
+	Stream_Read_UINT32(irp->input, CreateDisposition);	/* CreateDisposition (4 bytes) */
 	Stream_Seek_UINT32(irp->input); 			/* CreateOptions (4 bytes) */
 	Stream_Read_UINT32(irp->input, PathLength);		/* PathLength (4 bytes) */
+
+	if (Stream_GetRemainingLength(irp->input) < PathLength)
+		return ERROR_INVALID_DATA;
+
 	Stream_Seek(irp->input, PathLength);			/* Path (variable) */
 	assert(PathLength == 0); /* MS-RDPESP 2.2.2.2 */
 #ifndef _WIN32
@@ -157,7 +164,7 @@ static void serial_process_irp_create(SERIAL_DEVICE* serial, IRP* irp)
 	 *
 	 */
 	WLog_Print(serial->log, WLOG_DEBUG,
-	           "DesiredAccess: 0x%lX, SharedAccess: 0x%lX, CreateDisposition: 0x%lX",
+	           "DesiredAccess: 0x%"PRIX32", SharedAccess: 0x%"PRIX32", CreateDisposition: 0x%"PRIX32"",
 	           DesiredAccess, SharedAccess, CreateDisposition);
 	/* FIXME: As of today only the flags below are supported by CommCreateFileA: */
 	DesiredAccess     = GENERIC_READ | GENERIC_WRITE;
@@ -174,7 +181,7 @@ static void serial_process_irp_create(SERIAL_DEVICE* serial, IRP* irp)
 
 	if (!serial->hComm || (serial->hComm == INVALID_HANDLE_VALUE))
 	{
-		WLog_Print(serial->log, WLOG_WARN, "CreateFile failure: %s last-error: 0x%lX\n",
+		WLog_Print(serial->log, WLOG_WARN, "CreateFile failure: %s last-error: 0x%08"PRIX32"",
 		           serial->device.name, GetLastError());
 		irp->IoStatus = STATUS_UNSUCCESSFUL;
 		goto error_handle;
@@ -191,34 +198,38 @@ static void serial_process_irp_create(SERIAL_DEVICE* serial, IRP* irp)
 	/* dcb.fBinary = TRUE; */
 	/* SetCommState(serial->hComm, &dcb); */
 	assert(irp->FileId == 0);
-	irp->FileId =
-	    irp->devman->id_sequence++; /* FIXME: why not ((WINPR_COMM*)hComm)->fd? */
+	irp->FileId = irp->devman->id_sequence++; /* FIXME: why not ((WINPR_COMM*)hComm)->fd? */
 	irp->IoStatus = STATUS_SUCCESS;
-	WLog_Print(serial->log, WLOG_DEBUG, "%s (DeviceId: %d, FileId: %d) created.",
+	WLog_Print(serial->log, WLOG_DEBUG, "%s (DeviceId: %"PRIu32", FileId: %"PRIu32") created.",
 	           serial->device.name, irp->device->id, irp->FileId);
 error_handle:
 	Stream_Write_UINT32(irp->output, irp->FileId);	/* FileId (4 bytes) */
 	Stream_Write_UINT8(irp->output, 0);		/* Information (1 byte) */
+	return CHANNEL_RC_OK;
 }
 
-static void serial_process_irp_close(SERIAL_DEVICE* serial, IRP* irp)
+static UINT serial_process_irp_close(SERIAL_DEVICE* serial, IRP* irp)
 {
+	if (Stream_GetRemainingLength(irp->input) < 32)
+		return ERROR_INVALID_DATA;
+
 	Stream_Seek(irp->input, 32); /* Padding (32 bytes) */
 
 	if (!CloseHandle(serial->hComm))
 	{
-		WLog_Print(serial->log, WLOG_WARN, "CloseHandle failure: %s (%d) closed.",
+		WLog_Print(serial->log, WLOG_WARN, "CloseHandle failure: %s (%"PRIu32") closed.",
 		           serial->device.name, irp->device->id);
 		irp->IoStatus = STATUS_UNSUCCESSFUL;
 		goto error_handle;
 	}
 
-	WLog_Print(serial->log, WLOG_DEBUG, "%s (DeviceId: %d, FileId: %d) closed.",
+	WLog_Print(serial->log, WLOG_DEBUG, "%s (DeviceId: %"PRIu32", FileId: %"PRIu32") closed.",
 	           serial->device.name, irp->device->id, irp->FileId);
 	serial->hComm = NULL;
 	irp->IoStatus = STATUS_SUCCESS;
 error_handle:
 	Stream_Zero(irp->output, 5); /* Padding (5 bytes) */
+	return CHANNEL_RC_OK;
 }
 
 /**
@@ -232,11 +243,15 @@ static UINT serial_process_irp_read(SERIAL_DEVICE* serial, IRP* irp)
 	UINT64 Offset;
 	BYTE* buffer = NULL;
 	DWORD nbRead = 0;
+
+	if (Stream_GetRemainingLength(irp->input) < 32)
+		return ERROR_INVALID_DATA;
+
 	Stream_Read_UINT32(irp->input, Length); /* Length (4 bytes) */
 	Stream_Read_UINT64(irp->input, Offset); /* Offset (8 bytes) */
 	Stream_Seek(irp->input, 20); /* Padding (20 bytes) */
-	buffer = (BYTE*)calloc(Length, sizeof(BYTE));
 
+	buffer = (BYTE*)calloc(Length, sizeof(BYTE));
 	if (buffer == NULL)
 	{
 		irp->IoStatus = STATUS_NO_MEMORY;
@@ -246,7 +261,7 @@ static UINT serial_process_irp_read(SERIAL_DEVICE* serial, IRP* irp)
 	/* MS-RDPESP 3.2.5.1.4: If the Offset field is not set to 0, the value MUST be ignored
 	 * assert(Offset == 0);
 	 */
-	WLog_Print(serial->log, WLOG_DEBUG, "reading %d bytes from %s", Length,
+	WLog_Print(serial->log, WLOG_DEBUG, "reading %"PRIu32" bytes from %s", Length,
 	           serial->device.name);
 
 	/* FIXME: CommReadFile to be replaced by ReadFile */
@@ -257,12 +272,12 @@ static UINT serial_process_irp_read(SERIAL_DEVICE* serial, IRP* irp)
 	else
 	{
 		WLog_Print(serial->log, WLOG_DEBUG,
-		           "read failure to %s, nbRead=%ld, last-error: 0x%lX", serial->device.name,
+		           "read failure to %s, nbRead=%"PRIu32", last-error: 0x%08"PRIX32"", serial->device.name,
 		           nbRead, GetLastError());
 		irp->IoStatus = _GetLastErrorToIoStatus(serial);
 	}
 
-	WLog_Print(serial->log, WLOG_DEBUG, "%lu bytes read from %s", nbRead,
+	WLog_Print(serial->log, WLOG_DEBUG, "%"PRIu32" bytes read from %s", nbRead,
 	           serial->device.name);
 error_handle:
 	Stream_Write_UINT32(irp->output, nbRead); /* Length (4 bytes) */
@@ -283,11 +298,15 @@ error_handle:
 	return CHANNEL_RC_OK;
 }
 
-static void serial_process_irp_write(SERIAL_DEVICE* serial, IRP* irp)
+static UINT serial_process_irp_write(SERIAL_DEVICE* serial, IRP* irp)
 {
 	UINT32 Length;
 	UINT64 Offset;
 	DWORD nbWritten = 0;
+
+	if (Stream_GetRemainingLength(irp->input) < 32)
+		return ERROR_INVALID_DATA;
+
 	Stream_Read_UINT32(irp->input, Length); /* Length (4 bytes) */
 	Stream_Read_UINT64(irp->input, Offset); /* Offset (8 bytes) */
 	Stream_Seek(irp->input, 20); /* Padding (20 bytes) */
@@ -297,7 +316,7 @@ static void serial_process_irp_write(SERIAL_DEVICE* serial, IRP* irp)
 	 * Using a serial printer, noticed though this field could be
 	 * set.
 	 */
-	WLog_Print(serial->log, WLOG_DEBUG, "writing %d bytes to %s", Length,
+	WLog_Print(serial->log, WLOG_DEBUG, "writing %"PRIu32" bytes to %s", Length,
 	           serial->device.name);
 
 	/* FIXME: CommWriteFile to be replaced by WriteFile */
@@ -309,15 +328,17 @@ static void serial_process_irp_write(SERIAL_DEVICE* serial, IRP* irp)
 	else
 	{
 		WLog_Print(serial->log, WLOG_DEBUG,
-		           "write failure to %s, nbWritten=%ld, last-error: 0x%lX", serial->device.name,
+		           "write failure to %s, nbWritten=%"PRIu32", last-error: 0x%08"PRIX32"", serial->device.name,
 		           nbWritten, GetLastError());
 		irp->IoStatus = _GetLastErrorToIoStatus(serial);
 	}
 
-	WLog_Print(serial->log, WLOG_DEBUG, "%lu bytes written to %s", nbWritten,
+	WLog_Print(serial->log, WLOG_DEBUG, "%"PRIu32" bytes written to %s", nbWritten,
 	           serial->device.name);
 	Stream_Write_UINT32(irp->output, nbWritten); /* Length (4 bytes) */
 	Stream_Write_UINT8(irp->output, 0); /* Padding (1 byte) */
+
+	return CHANNEL_RC_OK;
 }
 
 
@@ -334,14 +355,20 @@ static UINT serial_process_irp_device_control(SERIAL_DEVICE* serial, IRP* irp)
 	UINT32 OutputBufferLength;
 	BYTE*  OutputBuffer = NULL;
 	DWORD  BytesReturned = 0;
-	Stream_Read_UINT32(irp->input,
-	                   OutputBufferLength); /* OutputBufferLength (4 bytes) */
-	Stream_Read_UINT32(irp->input,
-	                   InputBufferLength); /* InputBufferLength (4 bytes) */
+
+	if (Stream_GetRemainingLength(irp->input) < 32)
+		return ERROR_INVALID_DATA;
+
+	Stream_Read_UINT32(irp->input, OutputBufferLength); /* OutputBufferLength (4 bytes) */
+	Stream_Read_UINT32(irp->input, InputBufferLength); /* InputBufferLength (4 bytes) */
+
 	Stream_Read_UINT32(irp->input, IoControlCode); /* IoControlCode (4 bytes) */
 	Stream_Seek(irp->input, 20); /* Padding (20 bytes) */
-	OutputBuffer = (BYTE*)calloc(OutputBufferLength, sizeof(BYTE));
 
+	if (Stream_GetRemainingLength(irp->input) < InputBufferLength)
+		return ERROR_INVALID_DATA;
+
+	OutputBuffer = (BYTE*)calloc(OutputBufferLength, sizeof(BYTE));
 	if (OutputBuffer == NULL)
 	{
 		irp->IoStatus = STATUS_NO_MEMORY;
@@ -349,7 +376,6 @@ static UINT serial_process_irp_device_control(SERIAL_DEVICE* serial, IRP* irp)
 	}
 
 	InputBuffer = (BYTE*)calloc(InputBufferLength, sizeof(BYTE));
-
 	if (InputBuffer == NULL)
 	{
 		irp->IoStatus = STATUS_NO_MEMORY;
@@ -358,20 +384,20 @@ static UINT serial_process_irp_device_control(SERIAL_DEVICE* serial, IRP* irp)
 
 	Stream_Read(irp->input, InputBuffer, InputBufferLength);
 	WLog_Print(serial->log, WLOG_DEBUG,
-	           "CommDeviceIoControl: CompletionId=%d, IoControlCode=[0x%X] %s",
+	           "CommDeviceIoControl: CompletionId=%"PRIu32", IoControlCode=[0x%"PRIX32"] %s",
 	           irp->CompletionId, IoControlCode, _comm_serial_ioctl_name(IoControlCode));
 
 	/* FIXME: CommDeviceIoControl to be replaced by DeviceIoControl() */
 	if (CommDeviceIoControl(serial->hComm, IoControlCode, InputBuffer,
 	                        InputBufferLength, OutputBuffer, OutputBufferLength, &BytesReturned, NULL))
 	{
-		/* WLog_Print(serial->log, WLOG_DEBUG, "CommDeviceIoControl: CompletionId=%d, IoControlCode=[0x%X] %s done", irp->CompletionId, IoControlCode, _comm_serial_ioctl_name(IoControlCode)); */
+		/* WLog_Print(serial->log, WLOG_DEBUG, "CommDeviceIoControl: CompletionId=%"PRIu32", IoControlCode=[0x%"PRIX32"] %s done", irp->CompletionId, IoControlCode, _comm_serial_ioctl_name(IoControlCode)); */
 		irp->IoStatus = STATUS_SUCCESS;
 	}
 	else
 	{
 		WLog_Print(serial->log, WLOG_DEBUG,
-		           "CommDeviceIoControl failure: IoControlCode=[0x%X] %s, last-error: 0x%lX",
+		           "CommDeviceIoControl failure: IoControlCode=[0x%"PRIX32"] %s, last-error: 0x%08"PRIX32"",
 		           IoControlCode, _comm_serial_ioctl_name(IoControlCode), GetLastError());
 		irp->IoStatus = _GetLastErrorToIoStatus(serial);
 	}
@@ -381,8 +407,7 @@ error_handle:
 	 * BytesReturned == OutputBufferLength when
 	 * CommDeviceIoControl returns FALSE */
 	assert(OutputBufferLength == BytesReturned);
-	Stream_Write_UINT32(irp->output,
-	                    BytesReturned); /* OutputBufferLength (4 bytes) */
+	Stream_Write_UINT32(irp->output, BytesReturned); /* OutputBufferLength (4 bytes) */
 
 	if (BytesReturned > 0)
 	{
@@ -419,32 +444,32 @@ static UINT serial_process_irp(SERIAL_DEVICE* serial, IRP* irp)
 {
 	UINT error = CHANNEL_RC_OK;
 	WLog_Print(serial->log, WLOG_DEBUG,
-	           "IRP MajorFunction: 0x%04X MinorFunction: 0x%04X\n",
+	           "IRP MajorFunction: 0x%08"PRIX32" MinorFunction: 0x%08"PRIX32"\n",
 	           irp->MajorFunction, irp->MinorFunction);
 
 	switch (irp->MajorFunction)
 	{
 		case IRP_MJ_CREATE:
-			serial_process_irp_create(serial, irp);
+			error = serial_process_irp_create(serial, irp);
 			break;
 
 		case IRP_MJ_CLOSE:
-			serial_process_irp_close(serial, irp);
+			error = serial_process_irp_close(serial, irp);
 			break;
 
 		case IRP_MJ_READ:
 			if ((error = serial_process_irp_read(serial, irp)))
-				WLog_ERR(TAG, "serial_process_irp_read failed with error %lu!", error);
+				WLog_ERR(TAG, "serial_process_irp_read failed with error %"PRIu32"!", error);
 
 			break;
 
 		case IRP_MJ_WRITE:
-			serial_process_irp_write(serial, irp);
+			error = serial_process_irp_write(serial, irp);
 			break;
 
 		case IRP_MJ_DEVICE_CONTROL:
 			if ((error = serial_process_irp_device_control(serial, irp)))
-				WLog_ERR(TAG, "serial_process_irp_device_control failed with error %lu!",
+				WLog_ERR(TAG, "serial_process_irp_device_control failed with error %"PRIu32"!",
 				         error);
 
 			break;
@@ -462,12 +487,11 @@ static void* irp_thread_func(void* arg)
 {
 	IRP_THREAD_DATA* data = (IRP_THREAD_DATA*)arg;
 	UINT error;
-	freerdp_channel_init_thread_context(data->serial->rdpcontext);
 
 	/* blocks until the end of the request */
 	if ((error = serial_process_irp(data->serial, data->irp)))
 	{
-		WLog_ERR(TAG, "serial_process_irp failed with error %lu", error);
+		WLog_ERR(TAG, "serial_process_irp failed with error %"PRIu32"", error);
 		goto error_out;
 	}
 
@@ -529,7 +553,7 @@ static void create_irp_thread(SERIAL_DEVICE* serial, IRP* irp)
 			if (waitResult == WAIT_OBJECT_0)
 			{
 				/* terminating thread */
-				/* WLog_Print(serial->log, WLOG_DEBUG, "IRP thread with CompletionId=%d naturally died", id); */
+				/* WLog_Print(serial->log, WLOG_DEBUG, "IRP thread with CompletionId=%"PRIuz" naturally died", id); */
 				CloseHandle(irpThread);
 				ListDictionary_Remove(serial->IrpThreads, (void*)id);
 				serial->IrpThreadToBeTerminatedCount--;
@@ -538,7 +562,7 @@ static void create_irp_thread(SERIAL_DEVICE* serial, IRP* irp)
 			{
 				/* unexpected thread state */
 				WLog_Print(serial->log, WLOG_WARN,
-				           "WaitForSingleObject, got an unexpected result=0x%lX\n", waitResult);
+				           "WaitForSingleObject, got an unexpected result=0x%"PRIX32"\n", waitResult);
 				assert(FALSE);
 			}
 
@@ -547,7 +571,7 @@ static void create_irp_thread(SERIAL_DEVICE* serial, IRP* irp)
 
 		if (serial->IrpThreadToBeTerminatedCount > 0)
 		{
-			WLog_Print(serial->log, WLOG_DEBUG, "%d IRP thread(s) not yet terminated",
+			WLog_Print(serial->log, WLOG_DEBUG, "%"PRIu32" IRP thread(s) not yet terminated",
 			           serial->IrpThreadToBeTerminatedCount);
 			Sleep(1); /* 1 ms */
 		}
@@ -571,7 +595,7 @@ static void create_irp_thread(SERIAL_DEVICE* serial, IRP* irp)
 	{
 		/* Thread still alived <=> Request still pending */
 		WLog_Print(serial->log, WLOG_DEBUG,
-		           "IRP recall: IRP with the CompletionId=%d not yet completed!",
+		           "IRP recall: IRP with the CompletionId=%"PRIu32" not yet completed!",
 		           irp->CompletionId);
 		assert(FALSE); /* unimplemented */
 		/* TODO: asserts that previousIrpThread handles well
@@ -666,8 +690,7 @@ static void terminate_pending_irp_threads(SERIAL_DEVICE* serial)
 		}
 
 		CloseHandle(irpThread);
-		WLog_Print(serial->log, WLOG_DEBUG, "IRP thread terminated, CompletionId %d",
-		           id);
+		WLog_Print(serial->log, WLOG_DEBUG, "IRP thread terminated, CompletionId %p", (void*) id);
 	}
 
 	ListDictionary_Clear(serial->IrpThreads);
@@ -680,7 +703,6 @@ static void* serial_thread_func(void* arg)
 	wMessage message;
 	SERIAL_DEVICE* serial = (SERIAL_DEVICE*) arg;
 	UINT error = CHANNEL_RC_OK;
-	freerdp_channel_init_thread_context(serial->rdpcontext);
 
 	while (1)
 	{
@@ -762,7 +784,7 @@ static UINT serial_free(DEVICE* device)
 	if (WaitForSingleObject(serial->MainThread, INFINITE) == WAIT_FAILED)
 	{
 		error = GetLastError();
-		WLog_ERR(TAG, "WaitForSingleObject failed with error %lu!", error);
+		WLog_ERR(TAG, "WaitForSingleObject failed with error %"PRIu32"!", error);
 		return error;
 	}
 
@@ -924,7 +946,7 @@ UINT DeviceServiceEntry(PDEVICE_SERVICE_ENTRY_POINTS pEntryPoints)
 		if ((error = pEntryPoints->RegisterDevice(pEntryPoints->devman,
 		             (DEVICE*) serial)))
 		{
-			WLog_ERR(TAG, "EntryPoints->RegisterDevice failed with error %lu!", error);
+			WLog_ERR(TAG, "EntryPoints->RegisterDevice failed with error %"PRIu32"!", error);
 			goto error_out;
 		}
 
