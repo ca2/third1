@@ -416,6 +416,26 @@
 		9AB7776520470C43009C3590 /* proxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB7776220470C43009C3590 /* proxy.h */; };
 		9AB7776720470CAC009C3590 /* rpc_bind.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7776620470CAC009C3590 /* rpc_bind.c */; };
 		9AB7776920470CDE009C3590 /* tsg.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7776820470CDE009C3590 /* tsg.c */; };
+		9AC1FCC8204C406300305BFF /* bitmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7775C20470C11009C3590 /* bitmap.c */; };
+		9AC1FCC9204C406300305BFF /* h264_ffmpeg.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7775D20470C11009C3590 /* h264_ffmpeg.c */; };
+		9AC1FCCA204C406300305BFF /* settings.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7775A20470B83009C3590 /* settings.c */; };
+		9AC1FCCB204C406300305BFF /* proxy.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7776120470C43009C3590 /* proxy.c */; };
+		9AC1FCCC204C406300305BFF /* certificate.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7775820470A80009C3590 /* certificate.c */; };
+		9AC1FCCD204C406300305BFF /* tsg.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7776820470CDE009C3590 /* tsg.c */; };
+		9AC1FCCE204C406300305BFF /* rpc_bind.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7776620470CAC009C3590 /* rpc_bind.c */; };
+		9AC1FCCF204C406300305BFF /* bitmap.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7773D20470A31009C3590 /* bitmap.c */; };
+		9AC1FCD0204C406300305BFF /* brush.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7773C20470A30009C3590 /* brush.c */; };
+		9AC1FCD1204C406300305BFF /* clipping.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7774420470A31009C3590 /* clipping.c */; };
+		9AC1FCD2204C406300305BFF /* dc.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7773420470A30009C3590 /* dc.c */; };
+		9AC1FCD3204C406300305BFF /* drawing.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7773820470A30009C3590 /* drawing.c */; };
+		9AC1FCD4204C406300305BFF /* gdi.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7773720470A30009C3590 /* gdi.c */; };
+		9AC1FCD5204C406300305BFF /* gfx.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7774320470A31009C3590 /* gfx.c */; };
+		9AC1FCD6204C406300305BFF /* graphics.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7774220470A31009C3590 /* graphics.c */; };
+		9AC1FCD7204C406300305BFF /* line.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7773320470A30009C3590 /* line.c */; };
+		9AC1FCD8204C406300305BFF /* pen.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7773B20470A30009C3590 /* pen.c */; };
+		9AC1FCD9204C406300305BFF /* region.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7774120470A31009C3590 /* region.c */; };
+		9AC1FCDA204C406300305BFF /* shape.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7773620470A30009C3590 /* shape.c */; };
+		9AC1FCDB204C406300305BFF /* video.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7774020470A31009C3590 /* video.c */; };
 		9ADB2E2B1F800AB80005D907 /* libswresample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE9FCCD1F7F6FA400367001 /* libswresample.a */; };
 		9AE9FCB51F7F6DA700367001 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE9FCB41F7F6DA600367001 /* AudioToolbox.framework */; };
 		9AE9FCB71F7F6DBD00367001 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE9FCB61F7F6DBD00367001 /* CoreFoundation.framework */; };
@@ -1405,6 +1425,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AC1FCC8204C406300305BFF /* bitmap.c in Sources */,
+				9AC1FCC9204C406300305BFF /* h264_ffmpeg.c in Sources */,
+				9AC1FCCA204C406300305BFF /* settings.c in Sources */,
+				9AC1FCCB204C406300305BFF /* proxy.c in Sources */,
+				9AC1FCCC204C406300305BFF /* certificate.c in Sources */,
+				9AC1FCCD204C406300305BFF /* tsg.c in Sources */,
+				9AC1FCCE204C406300305BFF /* rpc_bind.c in Sources */,
+				9AC1FCCF204C406300305BFF /* bitmap.c in Sources */,
+				9AC1FCD0204C406300305BFF /* brush.c in Sources */,
+				9AC1FCD1204C406300305BFF /* clipping.c in Sources */,
+				9AC1FCD2204C406300305BFF /* dc.c in Sources */,
+				9AC1FCD3204C406300305BFF /* drawing.c in Sources */,
+				9AC1FCD4204C406300305BFF /* gdi.c in Sources */,
+				9AC1FCD5204C406300305BFF /* gfx.c in Sources */,
+				9AC1FCD6204C406300305BFF /* graphics.c in Sources */,
+				9AC1FCD7204C406300305BFF /* line.c in Sources */,
+				9AC1FCD8204C406300305BFF /* pen.c in Sources */,
+				9AC1FCD9204C406300305BFF /* region.c in Sources */,
+				9AC1FCDA204C406300305BFF /* shape.c in Sources */,
+				9AC1FCDB204C406300305BFF /* video.c in Sources */,
 				9AFEDBA71EB9C0E6008F0D19 /* rpc_client.c in Sources */,
 				078DF8981C5299EC00E65274 /* audio.c in Sources */,
 				078DF89A1C5299EC00E65274 /* clear.c in Sources */,
@@ -1704,6 +1744,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					APPLE_IOS,
+					WITH_OPENSSL,
 				);
 				"HEADER_SEARCH_PATHS[sdk=iphonesimulator*]" = (
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
@@ -1722,6 +1763,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					APPLE_IOS,
+					WITH_OPENSSL,
 				);
 				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
@@ -1883,6 +1925,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					OPENSSL_NO_DEPRECATED,
+					WITH_LIBAVCODEC,
+					_X86_,
+					_UNICODE,
+					WINPR_EXPORTS,
+					FREERDP_EXPORTS,
+					_DEBUG,
+					HAVE_CONFIG_H,
+					"EXT_PATH=“/Application/ca2/lib/freerdp/extensions\"\nCMAKE_BUILD_TYPE=Release\nCMAKE_INTDIR=\"Debug\"\nfreerdp_EXPORTS WITH_OPENH264 WITH_OPENH264 WITH_OPENH264 WITH_OPENH264 OPENSSL_NO_DEPRECATED OPENSSL_NO_DEPRECATED DAMN OPENSSL_NO_DEPRECATED WITH_OPENSSL",
+				);
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
@@ -1903,6 +1956,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					OPENSSL_NO_DEPRECATED,
+					WITH_LIBAVCODEC,
+					_X86_,
+					_UNICODE,
+					WINPR_EXPORTS,
+					FREERDP_EXPORTS,
+					_DEBUG,
+					HAVE_CONFIG_H,
+					"EXT_PATH=“/Application/ca2/lib/freerdp/extensions\"\nCMAKE_BUILD_TYPE=Release\nCMAKE_INTDIR=\"Debug\"\nfreerdp_EXPORTS WITH_OPENH264 WITH_OPENH264 WITH_OPENH264 WITH_OPENH264 OPENSSL_NO_DEPRECATED OPENSSL_NO_DEPRECATED DAMN OPENSSL_NO_DEPRECATED WITH_OPENSSL",
+				);
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
 					"$(WorkspaceDir)/../../../app/thirdparty/include",

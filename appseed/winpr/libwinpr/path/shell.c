@@ -89,7 +89,7 @@ static char* GetPath_HOME(void)
 #ifdef _WIN32
 	path = GetEnvAlloc("UserProfile");
 #elif defined(__IOS__)
-	path = ios_get_home();
+	path = strdup(ios_get_home());
 #else
 	path = GetEnvAlloc("HOME");
 #endif

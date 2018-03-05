@@ -29,11 +29,11 @@
 #ifdef WITH_OPENSSL
 
 #include <openssl/opensslv.h>
+#include <openssl/rsa.h>
 
 #if OPENSSL_VERSION_NUMBER < 0x10100000L || defined(LIBRESSL_VERSION_NUMBER)
 
 #include <openssl/bio.h>
-#include <openssl/rsa.h>
 #include <openssl/bn.h>
 
 #define BIO_get_data(b)                 (b)->ptr
