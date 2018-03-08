@@ -28,7 +28,7 @@
 #include <freerdp/log.h>
 #include <freerdp/utils/profiler.h>
 
-#include "rdpgfx_common.h"
+#include "../rdpgfx_common.h"
 
 #include "rdpgfx_codec.h"
 

@@ -27,13 +27,13 @@ extern void echo_DVCPluginEntry();
 extern void rdpei_DVCPluginEntry();
 extern void rdpgfx_DVCPluginEntry();
 
-extern BOOL VCAPITYPE cliprdr_VirtualChannelEntry(PCHANNEL_ENTRY_POINTS);
-extern BOOL VCAPITYPE drdynvc_VirtualChannelEntry(PCHANNEL_ENTRY_POINTS);
-extern BOOL VCAPITYPE encomsp_VirtualChannelEntry(PCHANNEL_ENTRY_POINTS);
-extern BOOL VCAPITYPE rail_VirtualChannelEntry(PCHANNEL_ENTRY_POINTS);
-extern BOOL VCAPITYPE rdpdr_VirtualChannelEntry(PCHANNEL_ENTRY_POINTS);
-extern BOOL VCAPITYPE rdpsnd_VirtualChannelEntry(PCHANNEL_ENTRY_POINTS);
-extern BOOL VCAPITYPE remdesk_VirtualChannelEntry(PCHANNEL_ENTRY_POINTS);
+extern BOOL VCAPITYPE cliprdr_VirtualChannelEntryEx(PCHANNEL_ENTRY_POINTS_EX, PVOID pInitHandle);
+extern BOOL VCAPITYPE drdynvc_VirtualChannelEntryEx(PCHANNEL_ENTRY_POINTS_EX, PVOID pInitHandle);
+extern BOOL VCAPITYPE encomsp_VirtualChannelEntryEx(PCHANNEL_ENTRY_POINTS_EX, PVOID pInitHandle);
+extern BOOL VCAPITYPE rail_VirtualChannelEntryEx(PCHANNEL_ENTRY_POINTS_EX, PVOID pInitHandle);
+extern BOOL VCAPITYPE rdpdr_VirtualChannelEntryEx(PCHANNEL_ENTRY_POINTS_EX, PVOID pInitHandle);
+extern BOOL VCAPITYPE rdpsnd_VirtualChannelEntryEx(PCHANNEL_ENTRY_POINTS_EX, PVOID pInitHandle);
+extern BOOL VCAPITYPE remdesk_VirtualChannelEntryEx(PCHANNEL_ENTRY_POINTS_EX, PVOID pInitHandle);
 
 extern void drive_DeviceServiceEntry();
 extern void printer_DeviceServiceEntry();
@@ -50,16 +50,16 @@ const STATIC_ENTRY CLIENT_DVCPluginEntry_TABLE[] =
    { "rdpgfx", rdpgfx_DVCPluginEntry },
    { NULL, NULL }
 };
-const STATIC_ENTRY CLIENT_VirtualChannelEntry_TABLE[] =
+const STATIC_ENTRY CLIENT_VirtualChannelEntryEx_TABLE[] =
 {
 
-   { "cliprdr", cliprdr_VirtualChannelEntry },
-   { "drdynvc", drdynvc_VirtualChannelEntry },
-   { "encomsp", encomsp_VirtualChannelEntry },
-   { "rail", rail_VirtualChannelEntry },
-   { "rdpdr", rdpdr_VirtualChannelEntry },
-   { "rdpsnd", rdpsnd_VirtualChannelEntry },
-   { "remdesk", remdesk_VirtualChannelEntry },
+   { "cliprdr",(UINT(*)()) cliprdr_VirtualChannelEntryEx },
+   { "drdynvc",(UINT(*)())  drdynvc_VirtualChannelEntryEx },
+   { "encomsp",(UINT(*)())  encomsp_VirtualChannelEntryEx },
+   { "rail",(UINT(*)())  rail_VirtualChannelEntryEx },
+   { "rdpdr",(UINT(*)())  rdpdr_VirtualChannelEntryEx },
+   { "rdpsnd",(UINT(*)())  rdpsnd_VirtualChannelEntryEx },
+   { "remdesk",(UINT(*)())  remdesk_VirtualChannelEntryEx },
    { NULL, NULL }
 };
 const STATIC_ENTRY CLIENT_DeviceServiceEntry_TABLE[] =
@@ -75,7 +75,7 @@ const STATIC_ENTRY CLIENT_DeviceServiceEntry_TABLE[] =
 const STATIC_ENTRY_TABLE CLIENT_STATIC_ENTRY_TABLES[] =
 {
    { "DVCPluginEntry", CLIENT_DVCPluginEntry_TABLE },
-   { "VirtualChannelEntry", CLIENT_VirtualChannelEntry_TABLE },
+   { "VirtualChannelEntry", CLIENT_VirtualChannelEntryEx_TABLE },
    { "DeviceServiceEntry", CLIENT_DeviceServiceEntry_TABLE },
    { NULL, NULL }
 };
@@ -151,19 +151,19 @@ const STATIC_SUBSYSTEM_ENTRY CLIENT_SMARTCARD_SUBSYSTEM_TABLE[] =
 const STATIC_ADDIN_TABLE CLIENT_STATIC_ADDIN_TABLE[] =
 {
    { "audin", audin_DVCPluginEntry, CLIENT_AUDIN_SUBSYSTEM_TABLE },
-   { "cliprdr", cliprdr_VirtualChannelEntry, CLIENT_CLIPRDR_SUBSYSTEM_TABLE },
+   { "cliprdr",(UINT(*)())  cliprdr_VirtualChannelEntryEx, CLIENT_CLIPRDR_SUBSYSTEM_TABLE },
    { "disp", disp_DVCPluginEntry, CLIENT_DISP_SUBSYSTEM_TABLE },
-   { "drdynvc", drdynvc_VirtualChannelEntry, CLIENT_DRDYNVC_SUBSYSTEM_TABLE },
+   { "drdynvc", (UINT(*)()) drdynvc_VirtualChannelEntryEx, CLIENT_DRDYNVC_SUBSYSTEM_TABLE },
    { "drive", drive_DeviceServiceEntry, CLIENT_DRIVE_SUBSYSTEM_TABLE },
    { "echo", echo_DVCPluginEntry, CLIENT_ECHO_SUBSYSTEM_TABLE },
-   { "encomsp", encomsp_VirtualChannelEntry, CLIENT_ENCOMSP_SUBSYSTEM_TABLE },
+   { "encomsp",(UINT(*)())  encomsp_VirtualChannelEntryEx, CLIENT_ENCOMSP_SUBSYSTEM_TABLE },
    { "printer", printer_DeviceServiceEntry, CLIENT_PRINTER_SUBSYSTEM_TABLE },
-   { "rail", rail_VirtualChannelEntry, CLIENT_RAIL_SUBSYSTEM_TABLE },
-   { "rdpdr", rdpdr_VirtualChannelEntry, CLIENT_RDPDR_SUBSYSTEM_TABLE },
+   { "rail", (UINT(*)()) rail_VirtualChannelEntryEx, CLIENT_RAIL_SUBSYSTEM_TABLE },
+   { "rdpdr",(UINT(*)())  rdpdr_VirtualChannelEntryEx, CLIENT_RDPDR_SUBSYSTEM_TABLE },
    { "rdpei", rdpei_DVCPluginEntry, CLIENT_RDPEI_SUBSYSTEM_TABLE },
    { "rdpgfx", rdpgfx_DVCPluginEntry, CLIENT_RDPGFX_SUBSYSTEM_TABLE },
-   { "rdpsnd", rdpsnd_VirtualChannelEntry, CLIENT_RDPSND_SUBSYSTEM_TABLE },
-   { "remdesk", remdesk_VirtualChannelEntry, CLIENT_REMDESK_SUBSYSTEM_TABLE },
+   { "rdpsnd", (UINT(*)()) rdpsnd_VirtualChannelEntryEx, CLIENT_RDPSND_SUBSYSTEM_TABLE },
+   { "remdesk",(UINT(*)())  remdesk_VirtualChannelEntryEx, CLIENT_REMDESK_SUBSYSTEM_TABLE },
    { "smartcard", smartcard_DeviceServiceEntry, CLIENT_SMARTCARD_SUBSYSTEM_TABLE },
    { NULL, NULL, NULL }
 };

@@ -675,7 +675,7 @@ static BOOL clear_decompress_bands_data(CLEAR_CONTEXT* clear,
 		{
 			UINT32 vBarHeight;
 			CLEAR_VBAR_ENTRY* vBarEntry = NULL;
-			CLEAR_VBAR_ENTRY* vBarShortEntry;
+			CLEAR_VBAR_ENTRY* vBarShortEntry = NULL;
 			BOOL vBarUpdate = FALSE;
 			const BYTE* pSrcPixel;
 
