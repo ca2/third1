@@ -82,7 +82,7 @@ const STATIC_ENTRY_TABLE CLIENT_STATIC_ENTRY_TABLES[] =
 
 
 extern void winmm_freerdp_audin_client_subsystem_entry();
-extern void winmm_freerdp_rdpsnd_client_subsystem_entry();
+//extern void winmm_freerdp_rdpsnd_client_subsystem_entry();
 
 
 const STATIC_SUBSYSTEM_ENTRY CLIENT_AUDIN_SUBSYSTEM_TABLE[] =
@@ -136,7 +136,7 @@ const STATIC_SUBSYSTEM_ENTRY CLIENT_RDPGFX_SUBSYSTEM_TABLE[] =
 };
 const STATIC_SUBSYSTEM_ENTRY CLIENT_RDPSND_SUBSYSTEM_TABLE[] =
 {
-   { "winmm", "", winmm_freerdp_rdpsnd_client_subsystem_entry },
+   //{ "winmm", "", winmm_freerdp_rdpsnd_client_subsystem_entry },
    { NULL, NULL, NULL }
 };
 const STATIC_SUBSYSTEM_ENTRY CLIENT_REMDESK_SUBSYSTEM_TABLE[] =
