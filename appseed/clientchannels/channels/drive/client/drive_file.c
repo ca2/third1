@@ -188,7 +188,11 @@ static BOOL drive_file_set_fullpath(DRIVE_FILE* file, WCHAR* fullpath)
 
 	free(file->fullpath);
 	file->fullpath = fullpath;
+	#ifdef LINUX
+	file->filename = wcsrchr(file->fullpath, L'/');
+	#else
 	file->filename = _wcsrchr(file->fullpath, L'/');
+	#endif
 
 	if (file->filename == NULL)
 		file->filename = file->fullpath;
@@ -200,7 +204,9 @@ static BOOL drive_file_set_fullpath(DRIVE_FILE* file, WCHAR* fullpath)
 
 static BOOL drive_file_init(DRIVE_FILE* file)
 {
+
 	UINT CreateDisposition = 0;
+
 	DWORD dwAttr = GetFileAttributesW(file->fullpath);
 
 	if (dwAttr != INVALID_FILE_ATTRIBUTES)

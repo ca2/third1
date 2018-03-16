@@ -18,6 +18,7 @@
 				<Compiler>
 					<Add option="-fPIC" />
 					<Add option="-g" />
+					<Add option="`pkg-config --cflags uuid`" />
 					<Add option="-D_DEBUG" />
 					<Add directory="." />
 					<Add directory=".." />
