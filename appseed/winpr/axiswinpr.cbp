@@ -16,6 +16,7 @@
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
+					<Add option="-fPIC" />
 					<Add option="-g" />
 					<Add option="-D_DEBUG" />
 					<Add directory="." />
@@ -59,6 +60,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-std=c++14" />
+			<Add option="-fPIC" />
 			<Add option="-fexceptions" />
 			<Add option="-fnon-call-exceptions" />
 			<Add option="-fno-pie" />
@@ -66,9 +68,9 @@
 			<Add option="-Wno-pointer-arith" />
 			<Add option="-Wno-attributes" />
 			<Add option="-Winvalid-pch" />
-			<Add option="-fPIC" />
-			<Add option="-D__linux__" />
 			<Add option="-DLINUX" />
+			<Add option="-DWITH_OPENSSL" />
+			<Add option="-D__linux__" />
 			<Add option="-DHAVE_CONFIG_H" />
 			<Add option="-DBYEWINDOWS_UNICODE" />
 			<Add option="-DSIXTY_FOUR_BIT_LONG" />
@@ -82,6 +84,7 @@
 			<Add directory="libwinpr/utils/trio" />
 			<Add directory="../../../app/include" />
 			<Add directory="../../../app/appseed" />
+			<Add directory="../freerdp" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
@@ -273,17 +276,17 @@
 		<Unit filename="libwinpr/pool/cleanup_group.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="libwinpr/pool/io.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libwinpr/pool/pool.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/pool/pool.h" />
-		<Unit filename="libwinpr/pool/pool_io.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="libwinpr/pool/pool_timer.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="libwinpr/pool/synch.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/pool/timer.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/pool/work.c">
@@ -368,6 +371,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/sspi/CredSSP/credssp.h" />
+		<Unit filename="libwinpr/sspi/Kerberos/kerberos.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/sspi/Kerberos/kerberos.h" />
 		<Unit filename="libwinpr/sspi/NTLM/ntlm.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -401,6 +408,9 @@
 		</Unit>
 		<Unit filename="libwinpr/sspi/sspi.h" />
 		<Unit filename="libwinpr/sspi/sspi_export.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="libwinpr/sspi/sspi_gss.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/sspi/sspi_winpr.c">
@@ -544,6 +554,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/utils/lodepng/lodepng.h" />
+		<Unit filename="libwinpr/utils/ntlm.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="libwinpr/utils/print.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -571,7 +584,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/utils/trio/triostr.h" />
-		<Unit filename="libwinpr/utils/utils_ntlm.c">
+		<Unit filename="libwinpr/utils/winpr.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="libwinpr/utils/wlog/Appender.c">
