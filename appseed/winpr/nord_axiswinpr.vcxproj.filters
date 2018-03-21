@@ -199,6 +199,12 @@
     <Filter Include="Source Files\libwinpr\registry">
       <UniqueIdentifier>{208e7742-14b3-44c7-88af-e1da9a4366c0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\libwinpr\sspi\Kerberos">
+      <UniqueIdentifier>{4fd6c6f4-a76a-4f86-bff1-3649db3e2d77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\libwinpr\sspi\Kerberos">
+      <UniqueIdentifier>{2faf549b-834e-4280-acf3-96b83a26fab8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libwinpr\crt\utf.h">
@@ -326,6 +332,9 @@
     </ClInclude>
     <ClInclude Include="config.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libwinpr\sspi\Kerberos\kerberos.h">
+      <Filter>Header Files\libwinpr\sspi\Kerberos</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -746,18 +755,27 @@
     <ClCompile Include="libwinpr\error\error.c">
       <Filter>Source Files\libwinpr\error</Filter>
     </ClCompile>
-    <ClCompile Include="libwinpr\pool\pool_io.c">
-      <Filter>Source Files\libwinpr\pool</Filter>
-    </ClCompile>
-    <ClCompile Include="libwinpr\pool\pool_timer.c">
-      <Filter>Source Files\libwinpr\pool</Filter>
-    </ClCompile>
-    <ClCompile Include="libwinpr\utils\utils_ntlm.c">
-      <Filter>Source Files\libwinpr\utils</Filter>
-    </ClCompile>
     <ClCompile Include="core.c">
       <Filter>Source Files\libwinpr</Filter>
     </ClCompile>
     <ClCompile Include="Source.c" />
+    <ClCompile Include="libwinpr\pool\io.c">
+      <Filter>Source Files\libwinpr\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\pool\timer.c">
+      <Filter>Source Files\libwinpr\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\utils\ntlm.c">
+      <Filter>Source Files\libwinpr\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\Kerberos\kerberos.c">
+      <Filter>Source Files\libwinpr\sspi\Kerberos</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\sspi_gss.c">
+      <Filter>Source Files\libwinpr\sspi</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
