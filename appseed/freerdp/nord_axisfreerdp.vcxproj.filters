@@ -451,9 +451,6 @@
     <ClCompile Include="libfreerdp\primitives\prim_YUV.c">
       <Filter>Source Files\libfreerdp\primitives</Filter>
     </ClCompile>
-    <ClCompile Include="libfreerdp\primitives\prim_YUV_opt.c">
-      <Filter>Source Files\libfreerdp\primitives</Filter>
-    </ClCompile>
     <ClCompile Include="libfreerdp\core\errbase.c">
       <Filter>Source Files\libfreerdp\core</Filter>
     </ClCompile>
@@ -499,9 +496,6 @@
     <ClCompile Include="libfreerdp\codec\dsp.c">
       <Filter>Source Files\libfreerdp\codec</Filter>
     </ClCompile>
-    <ClCompile Include="libfreerdp\codec\h264.c">
-      <Filter>Source Files\libfreerdp\codec</Filter>
-    </ClCompile>
     <ClCompile Include="libfreerdp\codec\interleaved.c">
       <Filter>Source Files\libfreerdp\codec</Filter>
     </ClCompile>
@@ -536,9 +530,6 @@
       <Filter>Source Files\libfreerdp\codec</Filter>
     </ClCompile>
     <ClCompile Include="libfreerdp\codec\rfx_decode.c">
-      <Filter>Source Files\libfreerdp\codec</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\codec\rfx_differential.c">
       <Filter>Source Files\libfreerdp\codec</Filter>
     </ClCompile>
     <ClCompile Include="libfreerdp\codec\rfx_dwt.c">
@@ -628,12 +619,6 @@
     <ClCompile Include="libfreerdp\utils\stopwatch.c">
       <Filter>Source Files\libfreerdp\utils</Filter>
     </ClCompile>
-    <ClCompile Include="libfreerdp\common\common_settings.c">
-      <Filter>Source Files\libfreerdp\common</Filter>
-    </ClCompile>
-    <ClCompile Include="libfreerdp\core\core_certificate.c">
-      <Filter>Source Files\libfreerdp\core</Filter>
-    </ClCompile>
     <ClCompile Include="libfreerdp\codec\bitmap.c">
       <Filter>Source Files\libfreerdp\codec</Filter>
     </ClCompile>
@@ -675,6 +660,21 @@
     </ClCompile>
     <ClCompile Include="libfreerdp\gdi\video.c">
       <Filter>Source Files\libfreerdp\gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\codec\h264_ffmpeg.c">
+      <Filter>Source Files\libfreerdp\codec</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\common\settings.c">
+      <Filter>Source Files\libfreerdp\common</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\certificate.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\core\proxy.c">
+      <Filter>Source Files\libfreerdp\core</Filter>
+    </ClCompile>
+    <ClCompile Include="libfreerdp\primitives\prim_YUV_ssse3.c">
+      <Filter>Source Files\libfreerdp\primitives</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

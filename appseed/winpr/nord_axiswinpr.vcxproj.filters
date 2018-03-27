@@ -205,6 +205,9 @@
     <Filter Include="Header Files\libwinpr\sspi\Kerberos">
       <UniqueIdentifier>{2faf549b-834e-4280-acf3-96b83a26fab8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\libwinpr\sysinfo\cpufeatures">
+      <UniqueIdentifier>{d4c7c060-c10f-4f64-bccf-7fa78a865de9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libwinpr\crt\utf.h">
@@ -776,6 +779,10 @@
     </ClCompile>
     <ClCompile Include="ca2.c">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\get_version_ex.c" />
+    <ClCompile Include="libwinpr\sysinfo\cpufeatures\cpu-features.c">
+      <Filter>Source Files\libwinpr\sysinfo\cpufeatures</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

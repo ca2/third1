@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ca2.c" />
+    <ClCompile Include="ca2\get_version_ex.c" />
     <ClCompile Include="core.c" />
     <ClCompile Include="libwinpr\asn1\asn1.c" />
     <ClCompile Include="libwinpr\bcrypt\bcrypt.c" />
@@ -157,6 +158,7 @@
     <ClCompile Include="libwinpr\synch\srw.c" />
     <ClCompile Include="libwinpr\synch\timer.c" />
     <ClCompile Include="libwinpr\synch\wait.c" />
+    <ClCompile Include="libwinpr\sysinfo\cpufeatures\cpu-features.c" />
     <ClCompile Include="libwinpr\sysinfo\sysinfo.c" />
     <ClCompile Include="libwinpr\thread\argv.c" />
     <ClCompile Include="libwinpr\thread\process.c" />
@@ -290,7 +292,7 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>ssl;crypto;z;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <LibraryDependencies>ace;ssl;crypto;z;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
       <SharedLibrarySearchPath>%(SharedLibrarySearchPath);$(Sysroot)\usr\lib</SharedLibrarySearchPath>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
     </Link>
@@ -307,7 +309,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
-      <LibraryDependencies>ssl;crypto;z;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <LibraryDependencies>ace;ssl;crypto;z;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
@@ -322,7 +324,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
-      <LibraryDependencies>ssl;crypto;z;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <LibraryDependencies>ace;ssl;crypto;z;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
@@ -337,7 +339,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\nodeapp\thirdparty\library\$(Platform)\$(Configuration)\;$(SolutionDir)..\..\..\time\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
-      <LibraryDependencies>ssl;crypto;z;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
+      <LibraryDependencies>ace;ssl;crypto;z;m;$(StlLibraryName);%(LibraryDependencies)</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
