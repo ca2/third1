@@ -317,7 +317,7 @@ DWORD GetTickCount(void)
 }
 #endif // _WIN32
 
-#if !defined(_WIN32) || defined(_UWP)
+#if !defined(_WIN32)
 
 /* OSVERSIONINFOEX Structure:
 * http://msdn.microsoft.com/en-us/library/windows/desktop/ms724833
@@ -389,6 +389,8 @@ BOOL GetVersionExW(LPOSVERSIONINFOW lpVersionInformation)
 
 #if !defined(_WIN32) || defined(_UWP)
 
+#if !defined(_UWP)
+
 BOOL GetComputerNameA(LPSTR lpBuffer, LPDWORD lpnSize)
 {
    char* dot;
@@ -422,6 +424,8 @@ BOOL GetComputerNameA(LPSTR lpBuffer, LPDWORD lpnSize)
    *lpnSize = length;
    return TRUE;
 }
+
+#endif
 
 BOOL GetComputerNameExA(COMPUTER_NAME_FORMAT NameType, LPSTR lpBuffer, LPDWORD lpnSize)
 {
@@ -509,14 +513,14 @@ BOOL GetComputerNameExW(COMPUTER_NAME_FORMAT NameType, LPWSTR lpBuffer, LPDWORD 
 
 #endif
 
-#if defined(_UWP)
-
-DWORD GetTickCount(void)
-{
-   return (DWORD) GetTickCount64();
-}
-
-#endif
+//#if defined(_UWP)
+//
+//DWORD GetTickCount(void)
+//{
+//   return (DWORD) GetTickCount64();
+//}
+//
+//#endif
 
 #if (!defined(_WIN32)) || (defined(_WIN32) && (_WIN32_WINNT < 0x0600))
 

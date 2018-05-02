@@ -22,6 +22,8 @@
 #include "config.h"
 #endif
 
+int make_path(const char * psz);
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -86,10 +88,10 @@ static char* GetEnvAlloc(LPCSTR lpName)
 static char* GetPath_HOME(void)
 {
    char* path = NULL;
-#ifdef _WIN32
+#if defined(__IOS__) || defined(ANDROID) || defined(_UWP)
+   path = _strdup(nodeos_get_home());
+#elif defined(_WIN32)
    path = GetEnvAlloc("UserProfile");
-#elif defined(__IOS__) || defined(ANDROID)
-   path = strdup(nodeos_get_home());
 #else
    path = GetEnvAlloc("HOME");
 #endif
@@ -460,7 +462,7 @@ char* GetCombinedPath(const char* basePath, const char* subPath)
 BOOL PathMakePathA(LPCSTR path, LPSECURITY_ATTRIBUTES lpAttributes)
 {
 #if defined(_UWP)
-   return FALSE;
+   return make_path(path);
 #elif defined(_WIN32)
    return (SHCreateDirectoryExA(NULL, path, lpAttributes) == ERROR_SUCCESS);
 #else
@@ -523,6 +525,69 @@ BOOL PathFileExistsW(LPCWSTR pszPath)
    return ret;
 }
 
+#if defined(_UWP)
+
+BOOL PathIsDirectoryEmptyA(LPCSTR pszPath)
+{
+
+   TCHAR szDir[MAX_PATH];
+   size_t length_of_arg;
+   DWORD dwError = 0;
+
+
+   length_of_arg = strnlen(pszPath, MAX_PATH);
+
+   if (length_of_arg > (MAX_PATH - 3))
+   {
+      return  FALSE;
+   }
+
+   strncpy(szDir, MAX_PATH, pszPath);
+   if (pszPath[length_of_arg - 1] != '\\' && pszPath[length_of_arg - 1] != '/')
+   {
+      strncat(szDir, MAX_PATH, TEXT("\\"));
+   }
+   strncat(szDir, MAX_PATH, TEXT("*"));
+
+   int empty = 1;
+
+   HANDLE hFind;
+
+   WIN32_FIND_DATA FindFileData;
+
+   if ((hFind = FindFirstFile("C:/some/folder/*.txt", &FindFileData)) != INVALID_HANDLE_VALUE)
+   {
+
+      do
+      {
+
+         printf("%s\n", FindFileData.cFileName);
+
+         if (strcmp(FindFileData.cFileName, ".") == 0 || strcmp(FindFileData.cFileName, "..") == 0)
+         {
+
+            continue;    /* Skip . and .. */
+
+         }
+
+         empty = 0;
+
+         break;
+
+      }
+      while (FindNextFile(hFind, &FindFileData));
+
+      FindClose(hFind);
+
+   }
+
+   return empty;
+}
+
+
+
+#else
+
 BOOL PathIsDirectoryEmptyA(LPCSTR pszPath)
 {
    struct dirent *dp;
@@ -545,6 +610,9 @@ BOOL PathIsDirectoryEmptyA(LPCSTR pszPath)
 }
 
 
+
+#endif
+
 BOOL PathIsDirectoryEmptyW(LPCWSTR pszPath)
 {
    LPSTR lpFileNameA = NULL;
@@ -554,11 +622,10 @@ BOOL PathIsDirectoryEmptyW(LPCWSTR pszPath)
       return FALSE;
 
    ret = PathIsDirectoryEmptyA(lpFileNameA);
-   free (lpFileNameA);
+   free(lpFileNameA);
 
    return ret;
 }
-
 
 #else
 

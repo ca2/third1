@@ -205,6 +205,9 @@
     <Filter Include="Source Files\ca2">
       <UniqueIdentifier>{eed34e2e-3795-492b-9059-fb6f95cd1f50}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\libwinpr\sspi\Kerberos">
+      <UniqueIdentifier>{f1b76832-53a2-4365-8af1-952e654f571c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h">
@@ -482,9 +485,6 @@
     <ClCompile Include="libwinpr\security\security.c">
       <Filter>Source Files\libwinpr\security</Filter>
     </ClCompile>
-    <ClCompile Include="libwinpr\sspi\sspi.c">
-      <Filter>Source Files\libwinpr\sspi</Filter>
-    </ClCompile>
     <ClCompile Include="libwinpr\sspi\sspi_export.c">
       <Filter>Source Files\libwinpr\sspi</Filter>
     </ClCompile>
@@ -758,14 +758,23 @@
     <ClCompile Include="ca2\get_version_ex.c">
       <Filter>Source Files\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="libwinpr\pool\pool_io.c">
+    <ClCompile Include="libwinpr\pool\io.c">
       <Filter>Source Files\libwinpr\pool</Filter>
     </ClCompile>
-    <ClCompile Include="libwinpr\pool\pool_timer.c">
+    <ClCompile Include="libwinpr\pool\timer.c">
       <Filter>Source Files\libwinpr\pool</Filter>
     </ClCompile>
-    <ClCompile Include="libwinpr\utils\utils_ntlm.c">
+    <ClCompile Include="libwinpr\utils\ntlm.c">
       <Filter>Source Files\libwinpr\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\Kerberos\kerberos.c">
+      <Filter>Source Files\libwinpr\sspi\Kerberos</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\sspi_gss.c">
+      <Filter>Source Files\libwinpr\sspi</Filter>
+    </ClCompile>
+    <ClCompile Include="libwinpr\sspi\sspi.c">
+      <Filter>Source Files\libwinpr\sspi</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

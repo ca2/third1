@@ -171,7 +171,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalDependencies>avcodec.lib;avutil.lib;ssleay32.lib;libeay32.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>avcodec.lib;avutil.lib;ssleay32.lib;libeay32.lib;rpct4.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -192,7 +192,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalDependencies>avcodec.lib;avutil.lib;ssleay32.lib;libeay32.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>avcodec.lib;avutil.lib;ssleay32.lib;libeay32.lib;rpct4.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -213,7 +213,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalDependencies>avcodec.lib;avutil.lib;ssleay32.lib;libeay32.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>avcodec.lib;avutil.lib;ssleay32.lib;libeay32.lib;rpct4.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -235,7 +235,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalDependencies>avcodec.lib;avutil.lib;ssleay32.lib;libeay32.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>avcodec.lib;avutil.lib;ssleay32.lib;libeay32.lib;rpct4.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -256,7 +256,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalDependencies>avcodec.lib;avutil.lib;ssleay32.lib;libeay32.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>avcodec.lib;avutil.lib;ssleay32.lib;libeay32.lib;rpct4.lib;WindowsApp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>$(SolutionDir)../../../nodeapp/thirdparty/library/$(PlatformName)/$(Configuration)/$(TargetName).lib</ImportLibrary>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -344,8 +344,8 @@
     <ClCompile Include="libfreerdp\cache\palette.c" />
     <ClCompile Include="libfreerdp\cache\pointer.c" />
     <ClCompile Include="libfreerdp\codec\audio.c" />
+    <ClCompile Include="libfreerdp\codec\bitmap.c" />
     <ClCompile Include="libfreerdp\codec\clear.c" />
-    <ClCompile Include="libfreerdp\codec\codec_bitmap.c" />
     <ClCompile Include="libfreerdp\codec\color.c" />
     <ClCompile Include="libfreerdp\codec\dsp.c" />
     <ClCompile Include="libfreerdp\codec\h264.c" />
@@ -364,7 +364,6 @@
     <ClCompile Include="libfreerdp\codec\region.c" />
     <ClCompile Include="libfreerdp\codec\rfx.c" />
     <ClCompile Include="libfreerdp\codec\rfx_decode.c" />
-    <ClCompile Include="libfreerdp\codec\rfx_differential.c" />
     <ClCompile Include="libfreerdp\codec\rfx_dwt.c" />
     <ClCompile Include="libfreerdp\codec\rfx_encode.c" />
     <ClCompile Include="libfreerdp\codec\rfx_neon.c" />
@@ -378,16 +377,16 @@
     <ClCompile Include="libfreerdp\codec\zgfx.c" />
     <ClCompile Include="libfreerdp\common\addin.c" />
     <ClCompile Include="libfreerdp\common\assistance.c" />
-    <ClCompile Include="libfreerdp\common\common_settings.c" />
+    <ClCompile Include="libfreerdp\common\settings.c" />
     <ClCompile Include="libfreerdp\core\activation.c" />
     <ClCompile Include="libfreerdp\core\autodetect.c" />
     <ClCompile Include="libfreerdp\core\bulk.c" />
     <ClCompile Include="libfreerdp\core\capabilities.c" />
+    <ClCompile Include="libfreerdp\core\certificate.c" />
     <ClCompile Include="libfreerdp\core\channels.c" />
     <ClCompile Include="libfreerdp\core\client.c" />
     <ClCompile Include="libfreerdp\core\codecs.c" />
     <ClCompile Include="libfreerdp\core\connection.c" />
-    <ClCompile Include="libfreerdp\core\core_certificate.c" />
     <ClCompile Include="libfreerdp\core\errbase.c" />
     <ClCompile Include="libfreerdp\core\errconnect.c" />
     <ClCompile Include="libfreerdp\core\errinfo.c" />
@@ -419,6 +418,7 @@
     <ClCompile Include="libfreerdp\core\nla.c" />
     <ClCompile Include="libfreerdp\core\orders.c" />
     <ClCompile Include="libfreerdp\core\peer.c" />
+    <ClCompile Include="libfreerdp\core\proxy.c" />
     <ClCompile Include="libfreerdp\core\rdp.c" />
     <ClCompile Include="libfreerdp\core\redirection.c" />
     <ClCompile Include="libfreerdp\core\security.c" />
@@ -440,18 +440,19 @@
     <ClCompile Include="libfreerdp\crypto\er.c" />
     <ClCompile Include="libfreerdp\crypto\per.c" />
     <ClCompile Include="libfreerdp\crypto\tls.c" />
-    <ClCompile Include="libfreerdp\gdi\gdi_bitmap.c" />
-    <ClCompile Include="libfreerdp\gdi\gdi_brush.c" />
-    <ClCompile Include="libfreerdp\gdi\gdi_clipping.c" />
-    <ClCompile Include="libfreerdp\gdi\gdi_dc.c" />
-    <ClCompile Include="libfreerdp\gdi\gdi_drawing.c" />
-    <ClCompile Include="libfreerdp\gdi\gdi_gdi.c" />
-    <ClCompile Include="libfreerdp\gdi\gdi_gfx.c" />
-    <ClCompile Include="libfreerdp\gdi\gdi_graphics.c" />
-    <ClCompile Include="libfreerdp\gdi\gdi_line.c" />
-    <ClCompile Include="libfreerdp\gdi\gdi_pen.c" />
-    <ClCompile Include="libfreerdp\gdi\gdi_region.c" />
-    <ClCompile Include="libfreerdp\gdi\gdi_shape.c" />
+    <ClCompile Include="libfreerdp\gdi\bitmap.c" />
+    <ClCompile Include="libfreerdp\gdi\brush.c" />
+    <ClCompile Include="libfreerdp\gdi\clipping.c" />
+    <ClCompile Include="libfreerdp\gdi\dc.c" />
+    <ClCompile Include="libfreerdp\gdi\drawing.c" />
+    <ClCompile Include="libfreerdp\gdi\gdi.c" />
+    <ClCompile Include="libfreerdp\gdi\gfx.c" />
+    <ClCompile Include="libfreerdp\gdi\graphics.c" />
+    <ClCompile Include="libfreerdp\gdi\line.c" />
+    <ClCompile Include="libfreerdp\gdi\pen.c" />
+    <ClCompile Include="libfreerdp\gdi\region.c" />
+    <ClCompile Include="libfreerdp\gdi\shape.c" />
+    <ClCompile Include="libfreerdp\gdi\video.c" />
     <ClCompile Include="libfreerdp\locale\keyboard.c" />
     <ClCompile Include="libfreerdp\locale\keyboard_layout.c" />
     <ClCompile Include="libfreerdp\locale\locale.c" />
@@ -475,7 +476,6 @@
     <ClCompile Include="libfreerdp\primitives\prim_YCoCg.c" />
     <ClCompile Include="libfreerdp\primitives\prim_YCoCg_opt.c" />
     <ClCompile Include="libfreerdp\primitives\prim_YUV.c" />
-    <ClCompile Include="libfreerdp\primitives\prim_YUV_opt.c" />
     <ClCompile Include="libfreerdp\utils\passphrase.c" />
     <ClCompile Include="libfreerdp\utils\pcap.c" />
     <ClCompile Include="libfreerdp\utils\profiler.c" />
