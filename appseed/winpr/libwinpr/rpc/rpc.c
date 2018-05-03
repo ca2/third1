@@ -159,8 +159,6 @@ RPC_STATUS RpcStringBindingParseW(RPC_WSTR StringBinding, RPC_WSTR* ObjUuid,
 
 #endif
 
-#ifdef _UWP
-
 RPC_STATUS RpcStringFreeA(RPC_CSTR* String)
 {
    if (String)
@@ -176,8 +174,6 @@ RPC_STATUS RpcStringFreeW(RPC_WSTR* String)
 
    return RPC_S_OK;
 }
-
-#endif
 
 #ifndef _UWP
 

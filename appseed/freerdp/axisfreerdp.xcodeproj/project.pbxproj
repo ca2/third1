@@ -442,6 +442,7 @@
 		9AE9FCBD1F7F6E0900367001 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE9FCBC1F7F6E0900367001 /* CoreMedia.framework */; };
 		9AE9FCC01F7F6E3400367001 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE9FCB81F7F6DD500367001 /* VideoToolbox.framework */; };
 		9AE9FCC21F7F6E5300367001 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE9FCC11F7F6E5300367001 /* libz.tbd */; };
+		9AED5543209AFBE400F08971 /* prim_YUV_ssse3.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AED5542209AFBE400F08971 /* prim_YUV_ssse3.c */; };
 		9AFEDBA71EB9C0E6008F0D19 /* rpc_client.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A0266071EA5A833003C82CF /* rpc_client.c */; };
 /* End PBXBuildFile section */
 
@@ -740,6 +741,7 @@
 		9AE9FCD91F7F703800367001 /* libxvidcore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libxvidcore.a; path = ../../../../usr/local/Cellar/xvid/1.3.4/lib/libxvidcore.a; sourceTree = "<group>"; };
 		9AE9FCDB1F7F705500367001 /* libiconv.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.tbd; path = usr/lib/libiconv.2.tbd; sourceTree = SDKROOT; };
 		9AE9FCDE1F7F713200367001 /* libiconv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libiconv.a; path = ../../../../usr/local/Cellar/libiconv/1.15/lib/libiconv.a; sourceTree = "<group>"; };
+		9AED5542209AFBE400F08971 /* prim_YUV_ssse3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = prim_YUV_ssse3.c; sourceTree = "<group>"; };
 		9AF1CA3B1F7F4175005B8774 /* libaxiscrypto.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libaxiscrypto.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AF1CA591F7F42E1005B8774 /* libavcodec.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavcodec.dylib; path = ../../../nodeapp/thirdparty/library/libavcodec.dylib; sourceTree = "<group>"; };
 		9AF1CA5B1F7F4303005B8774 /* libavutil.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavutil.dylib; path = ../../../nodeapp/thirdparty/library/libavutil.dylib; sourceTree = "<group>"; };
@@ -1055,6 +1057,7 @@
 		07DD6B8F1B5F0C60003A1CE1 /* primitives */ = {
 			isa = PBXGroup;
 			children = (
+				9AED5542209AFBE400F08971 /* prim_YUV_ssse3.c */,
 				07DD6B931B5F0C60003A1CE1 /* prim_add.c */,
 				07DD6B951B5F0C60003A1CE1 /* prim_add_opt.c */,
 				07DD6B961B5F0C60003A1CE1 /* prim_alphaComp.c */,
@@ -1699,6 +1702,7 @@
 				07DD6C9F1B5F0C61003A1CE1 /* message.c in Sources */,
 				07DD6C571B5F0C61003A1CE1 /* freerdp.c in Sources */,
 				0775CAFE1B848797005F8295 /* audio.c in Sources */,
+				9AED5543209AFBE400F08971 /* prim_YUV_ssse3.c in Sources */,
 				07DD6C711B5F0C61003A1CE1 /* rpc_fault.c in Sources */,
 				9AB7775220470A32009C3590 /* region.c in Sources */,
 				07DD6D631B5F0C61003A1CE1 /* prim_shift.c in Sources */,
@@ -1941,6 +1945,7 @@
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
 					"/usr/local/opt/openssl@1.1/include",
 					/usr/local/opt/ffmpeg/include,
+					"$(WorkspaceDir)/../../../third/appseed/winpr",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1972,6 +1977,7 @@
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
 					"/usr/local/opt/openssl@1.1/include",
 					/usr/local/opt/ffmpeg/include,
+					"$(WorkspaceDir)/../../../third/appseed/winpr",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
