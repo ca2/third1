@@ -1,8 +1,13 @@
-#include <glad/glad.h>
-#include <glad/glad_glx.h>
+#include <glad/glad.h> // slave of testosterone
+#include <glad/glad_glx.h> // slave of testosterone
+#include <GL/freeglut.h> // almost? fix for slave of testosterone
 #include <X11/Xlib.h>
 #include <X11/extensions/Xcomposite.h>
 #include <pthread.h>
+#include <sys/mman.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 #include <vector>
 
@@ -12,10 +17,10 @@
 
 #include "ca2plugin-main.hpp"
 #include "ca2plugin-helper.hpp"
-#include "xcursor.h"
 
 #define xdisp (ca2plugin::disp())
 #define WIN_STRING_DIV "\r\n"
+
 
 bool ca2pluginMain::init()
 {
@@ -67,43 +72,12 @@ obs_properties_t *ca2pluginMain::properties()
 				desc.c_str());
 	}
 
-	obs_properties_add_int(props, "cut_top", obs_module_text("CropTop"),
-			0, 4096, 1);
-	obs_properties_add_int(props, "cut_left", obs_module_text("CropLeft"),
-			0, 4096, 1);
-	obs_properties_add_int(props, "cut_right", obs_module_text("CropRight"),
-			0, 4096, 1);
-	obs_properties_add_int(props, "cut_bot", obs_module_text("CropBottom"),
-			0, 4096, 1);
-
-	obs_properties_add_bool(props, "swap_redblue",
-			obs_module_text("SwapRedBlue"));
-	obs_properties_add_bool(props, "lock_x", obs_module_text("LockX"));
-
-	obs_properties_add_bool(props, "show_cursor",
-			obs_module_text("CaptureCursor"));
-
-	obs_properties_add_bool(props, "include_border",
-			obs_module_text("IncludeXBorder"));
-
-	obs_properties_add_bool(props, "exclude_alpha",
-			obs_module_text("ExcludeAlpha"));
 
 	return props;
 }
 
 void ca2pluginMain::defaults(obs_data_t *settings)
 {
-	obs_data_set_default_string(settings, "capture_window", "");
-	obs_data_set_default_int(settings, "cut_top", 0);
-	obs_data_set_default_int(settings, "cut_left", 0);
-	obs_data_set_default_int(settings, "cut_right", 0);
-	obs_data_set_default_int(settings, "cut_bot", 0);
-	obs_data_set_default_bool(settings, "swap_redblue", false);
-	obs_data_set_default_bool(settings, "lock_x", false);
-	obs_data_set_default_bool(settings, "show_cursor", true);
-	obs_data_set_default_bool(settings, "include_border", false);
-	obs_data_set_default_bool(settings, "exclude_alpha", false);
 }
 
 #define FIND_WINDOW_INTERVAL 2.0
@@ -112,17 +86,14 @@ struct ca2pluginMain_private
 {
 	ca2pluginMain_private()
 		:win(0)
-		,cut_top(0), cur_cut_top(0)
-		,cut_left(0), cur_cut_left(0)
-		,cut_right(0), cur_cut_right(0)
-		,cut_bot(0), cur_cut_bot(0)
-		,inverted(false)
 		,width(0),height(0)
-		,pixmap(0)
-		,glxpixmap(0)
 		,tex(0)
-		,gltex(0)
 	{
+
+		m_p = (uint32_t *) MAP_FAILED;
+		
+		m_iFile = -1;
+
 		pthread_mutexattr_init(&lockattr);
 		pthread_mutexattr_settype(&lockattr, PTHREAD_MUTEX_RECURSIVE);
 
@@ -131,55 +102,55 @@ struct ca2pluginMain_private
 
 	~ca2pluginMain_private()
 	{
+		
+		close_map();
+
 		pthread_mutex_destroy(&lock);
+
 		pthread_mutexattr_destroy(&lockattr);
+
 	}
 
 	obs_source_t *source;
 
+	uint32_t * m_p;
+
+	int m_iFileSize;
+
+	int m_iFile;
+	
+	void close_map();
+
 	std::string windowName;
+
 	Window win = 0;
-	int cut_top, cur_cut_top;
-	int cut_left, cur_cut_left;
-	int cut_right, cur_cut_right;
-	int cut_bot, cur_cut_bot;
-	bool inverted;
-	bool swapRedBlue;
-	bool lockX;
-	bool include_border;
-	bool exclude_alpha;
+
+	Window winMap = 0;
 
 	double window_check_time = 0.0;
 
 	uint32_t width;
 	uint32_t height;
-	uint32_t border;
 
-	Pixmap pixmap;
-	GLXPixmap glxpixmap;
 	gs_texture_t *tex;
-	gs_texture_t *gltex;
 
 	pthread_mutex_t lock;
 	pthread_mutexattr_t lockattr;
 
-	bool show_cursor = true;
-	bool cursor_outside = false;
-	xcursor_t *cursor = nullptr;
 };
 
 
 ca2pluginMain::ca2pluginMain(obs_data_t *settings, obs_source_t *source)
 {
+	
 	p = new ca2pluginMain_private;
+	
 	p->source = source;
 
-	obs_enter_graphics();
-	p->cursor = xcursor_init(xdisp);
-	obs_leave_graphics();
-
 	updateSettings(settings);
+
 }
+
 
 static void xcc_cleanup(ca2pluginMain_private *p);
 
@@ -194,12 +165,8 @@ ca2pluginMain::~ca2pluginMain()
 
 	xcc_cleanup(p);
 
-	if (p->cursor) {
-		xcursor_destroy(p->cursor);
-		p->cursor = nullptr;
-	}
-
 	delete p;
+
 }
 
 static Window getWindowFromString(std::string wstr)
@@ -247,36 +214,70 @@ static Window getWindowFromString(std::string wstr)
 
 static void xcc_cleanup(ca2pluginMain_private *p)
 {
-	PLock lock(&p->lock);
-	XDisplayLock xlock;
-
-	if (p->gltex) {
-		gs_texture_destroy(p->gltex);
-		p->gltex = 0;
-	}
-
-	if (p->glxpixmap) {
-		glXDestroyPixmap(xdisp, p->glxpixmap);
-		p->glxpixmap = 0;
-	}
-
-	if (p->pixmap) {
-		XFreePixmap(xdisp, p->pixmap);
-		p->pixmap = 0;
-	}
-
-	if (p->win) {
-		XCompositeUnredirectWindow(xdisp, p->win,
-				CompositeRedirectAutomatic);
-		XSelectInput(xdisp, p->win, 0);
-		p->win = 0;
-	}
 }
+  /* reverse:  reverse string s in place */
+ void reverse(char *s)
+ {
+     int i, j;
+     char c;
+
+     for (i = 0, j = strlen(s)-1; i<j; i++, j--) {
+         c = s[i];
+         s[i] = s[j];
+         s[j] = c;
+     }
+}  
+ void itoa64(int64_t n, char *s)
+ {
+
+     int64_t i;
+	  int64_t sign = n;
+
+     if (sign  < 0)  /* record sign */
+         n = -n;          /* make n positive */
+     i = 0;
+     do {       /* generate digits in reverse order */
+         s[i++] = n % 10 + '0';   /* get next digit */
+     } while ((n /= 10) > 0);     /* delete it */
+     if (sign < 0)
+         s[i++] = '-';
+     s[i] = '\0';
+     reverse(s);
+}  
+
+void ca2pluginMain_private::close_map()
+{
+   
+	if(m_p != (uint32_t *)MAP_FAILED)
+   {
+
+      ::munmap(m_p, m_iFileSize);
+
+      m_p = (uint32_t *) MAP_FAILED;
+
+		m_iFileSize = -1;
+
+   }
+
+   if(m_iFile != -1)
+   {
+
+      ::close(m_iFile);
+
+      m_iFile = -1;
+
+   }
+	
+}
+
 
 void ca2pluginMain::updateSettings(obs_data_t *settings)
 {
+
 	PLock lock(&p->lock);
+
 	XErrorLock xlock;
+	
 	ObsGsContextHolder obsctx;
 
 	blog(LOG_DEBUG, "Settings updating");
@@ -285,183 +286,50 @@ void ca2pluginMain::updateSettings(obs_data_t *settings)
 
 	xcc_cleanup(p);
 
-	if (settings) {
-		const char *windowName = obs_data_get_string(settings,
-				"capture_window");
+	if (settings)
+	{
+	
+		const char * windowName = obs_data_get_string(settings, "capture_window");
 
 		p->windowName = windowName;
+
 		p->win = getWindowFromString(windowName);
 
-		p->cut_top = obs_data_get_int(settings, "cut_top");
-		p->cut_left = obs_data_get_int(settings, "cut_left");
-		p->cut_right = obs_data_get_int(settings, "cut_right");
-		p->cut_bot = obs_data_get_int(settings, "cut_bot");
-		p->lockX = obs_data_get_bool(settings, "lock_x");
-		p->swapRedBlue = obs_data_get_bool(settings, "swap_redblue");
-		p->show_cursor = obs_data_get_bool(settings, "show_cursor");
-		p->include_border = obs_data_get_bool(settings, "include_border");
-		p->exclude_alpha = obs_data_get_bool(settings, "exclude_alpha");
-	} else {
+	} 
+	else
+	{
+
 		p->win = prevWin;
+
 	}
 
 	xlock.resetError();
 
-	if (p->win)
-		XCompositeRedirectWindow(xdisp, p->win,
-				CompositeRedirectAutomatic);
-
-	if (xlock.gotError()) {
-		blog(LOG_ERROR, "XCompositeRedirectWindow failed: %s",
-				xlock.getErrorText().c_str());
-		return;
-	}
-
-	if (p->win)
-		XSelectInput(xdisp, p->win, StructureNotifyMask | ExposureMask);
-	XSync(xdisp, 0);
-
-	XWindowAttributes attr;
-	if (!p->win || !XGetWindowAttributes(xdisp, p->win, &attr)) {
-		p->win = 0;
-		p->width = 0;
-		p->height = 0;
-		return;
-	}
-
-	if (p->win && p->cursor && p->show_cursor) {
-		Window child;
-		int x, y;
-
-		XTranslateCoordinates(xdisp, p->win, attr.root, 0, 0, &x, &y,
-				&child);
-		xcursor_offset(p->cursor, x, y);
-	}
-
-	gs_color_format cf = GS_RGBA;
-
-	if (p->exclude_alpha) {
-		cf = GS_BGRX;
-	}
-
-	p->border = attr.border_width;
-
-	if (p->include_border) {
-		p->width = attr.width + p->border * 2;
-		p->height = attr.height + p->border * 2;
-	} else {
-		p->width = attr.width;
-		p->height = attr.height;
-	}
-
-	if (p->cut_top + p->cut_bot < (int)p->height) {
-		p->cur_cut_top = p->cut_top;
-		p->cur_cut_bot = p->cut_bot;
-	} else {
-		p->cur_cut_top = 0;
-		p->cur_cut_bot = 0;
-	}
-
-	if (p->cut_left + p->cut_right < (int)p->width) {
-		p->cur_cut_left = p->cut_left;
-		p->cur_cut_right = p->cut_right;
-	} else {
-		p->cur_cut_left = 0;
-		p->cur_cut_right = 0;
-	}
-
-	if (p->tex)
-		gs_texture_destroy(p->tex);
-
-	uint8_t *texData = new uint8_t[width() * height() * 4];
-
-	memset(texData, 0, width() * height() * 4);
-
-	const uint8_t* texDataArr[] = { texData, 0 };
-
-	p->tex = gs_texture_create(width(), height(), cf, 1,
-			texDataArr, 0);
-
-	delete[] texData;
-
-	if (p->swapRedBlue) {
-		GLuint tex = *(GLuint*)gs_texture_get_obj(p->tex);
-		glBindTexture(GL_TEXTURE_2D, tex);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_SWIZZLE_B, GL_RED);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_SWIZZLE_R, GL_BLUE);
-		glBindTexture(GL_TEXTURE_2D, 0);
-	}
-
-	const int attrs[] =
+	if (!p->win)
 	{
-		GLX_BIND_TO_TEXTURE_RGBA_EXT, GL_TRUE,
-		GLX_DRAWABLE_TYPE, GLX_PIXMAP_BIT,
-		GLX_BIND_TO_TEXTURE_TARGETS_EXT, GLX_TEXTURE_2D_BIT_EXT,
-		GLX_DOUBLEBUFFER, GL_FALSE,
-		None
-	};
 
-	int nelem = 0;
-	GLXFBConfig* configs = glXChooseFBConfig(xdisp,
-			ca2plugin::getRootWindowScreen(attr.root),
-			attrs, &nelem);
-
-	if (nelem <= 0) {
-		blog(LOG_ERROR, "no matching fb config found");
 		p->win = 0;
-		p->height = 0;
+
 		p->width = 0;
+
+		p->height = 0;
+
 		return;
+
 	}
 
-	glXGetFBConfigAttrib(xdisp, configs[0], GLX_Y_INVERTED_EXT, &nelem);
-	p->inverted = nelem != 0;
+	p->width = 0;
 
-	xlock.resetError();
+	p->height = 0;
 
-	p->pixmap = XCompositeNameWindowPixmap(xdisp, p->win);
+	p->close_map();
 
-	if (xlock.gotError()) {
-		blog(LOG_ERROR, "XCompositeNameWindowPixmap failed: %s",
-				xlock.getErrorText().c_str());
-		p->pixmap = 0;
-		XFree(configs);
-		return;
-	}
-
-	const int attribs[] =
-	{
-		GLX_TEXTURE_TARGET_EXT, GLX_TEXTURE_2D_EXT,
-		GLX_TEXTURE_FORMAT_EXT, GLX_TEXTURE_FORMAT_RGBA_EXT,
-		None
-	};
-
-	p->glxpixmap = glXCreatePixmap(xdisp, configs[0], p->pixmap, attribs);
-
-	if (xlock.gotError()) {
-		blog(LOG_ERROR, "glXCreatePixmap failed: %s",
-				xlock.getErrorText().c_str());
-		XFreePixmap(xdisp, p->pixmap);
-		XFree(configs);
-		p->pixmap = 0;
-		p->glxpixmap = 0;
-		return;
-	}
-
-	XFree(configs);
-
-	p->gltex = gs_texture_create(p->width, p->height, cf, 1, 0,
-			GS_GL_DUMMYTEX);
-
-	GLuint gltex = *(GLuint*)gs_texture_get_obj(p->gltex);
-	glBindTexture(GL_TEXTURE_2D, gltex);
-	glXBindTexImageEXT(xdisp, p->glxpixmap, GLX_FRONT_LEFT_EXT, NULL);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 }
+
 
 void ca2pluginMain::tick(float seconds)
 {
+
 	if (!obs_source_showing(p->source))
 		return;
 
@@ -470,17 +338,25 @@ void ca2pluginMain::tick(float seconds)
 	if (!lock.isLocked())
 		return;
 
+
 	ca2plugin::processEvents();
 
-	if (p->win && ca2plugin::windowWasReconfigured(p->win)) {
+	if (p->win && ca2plugin::windowWasReconfigured(p->win))
+	{
+
 		p->window_check_time = FIND_WINDOW_INTERVAL;
+
 		p->win = 0;
+
 	}
 
 	XDisplayLock xlock;
+	
 	XWindowAttributes attr;
 
-	if (!p->win || !XGetWindowAttributes(xdisp, p->win, &attr)) {
+	if (!p->win || !XGetWindowAttributes(xdisp, p->win, &attr))
+	{
+
 		p->window_check_time += (double)seconds;
 
 		if (p->window_check_time < FIND_WINDOW_INTERVAL)
@@ -490,90 +366,254 @@ void ca2pluginMain::tick(float seconds)
 
 		p->window_check_time = 0.0;
 
-		if (newWin && XGetWindowAttributes(xdisp, newWin, &attr)) {
+		if (newWin && XGetWindowAttributes(xdisp, newWin, &attr))
+		{
+			
 			p->win = newWin;
+
 			updateSettings(0);
-		} else {
+
+		} 
+		else
+		{
+			
 			return;
+
 		}
 	}
 
-	if (!p->tex || !p->gltex)
+	if(p->m_p == (uint32_t *) MAP_FAILED || p->win != p->winMap)
+	{
+
+		if(p->m_p != (uint32_t *) MAP_FAILED)
+		{
+		
+			p->close_map();
+
+		}
+
+		if(p->win == 0)
+		{
+
+			p->winMap = 0;
+
+			return;
+
+		}
+
+		char sz[1024];
+		char sz2[1024];
+		char szCmd[1024];
+		char szId[64];
+
+		strcpy(sz, "/var/tmp/ca2");
+		strcat(sz, getenv("HOME"));
+		strcat(sz, "/ca2screen-");
+
+		itoa64(p->win,szId);
+		strcat(sz, szId);
+
+		p->m_iFileSize = 8192 * 4096 * 4;
+
+   	p->m_iFile = ::open(sz, O_RDONLY);
+
+	   if(p->m_iFile == -1)
+   	{
+
+      	p->close_map();
+
+			return;
+
+	   }
+
+		strcpy(sz2, sz);
+		strcat(sz2, ".fileidcreated");
+
+		strcpy(szCmd, "touch ");
+		strcat(szCmd, sz2);
+		system(szCmd);
+
+   	p->m_p = (uint32_t *)mmap(NULL,p->m_iFileSize, PROT_READ,MAP_SHARED,p->m_iFile,0);
+
+		if(p->m_p == (uint32_t*) MAP_FAILED)
+		{
+
+			p->close_map();
+
+			return;
+
+		}
+
+		int64_t * pdata = (int64_t *)p->m_p;
+		
+		strcpy(sz2, sz);
+		strcat(sz2, ".mapsucceeded");
+		strcpy(szCmd, "touch ");
+		strcat(szCmd, sz2);
+		system(szCmd);
+
+		strcpy(sz2, sz);
+		strcat(sz2, ".w");
+		p->width = *pdata++; 
+		itoa64(p->width,szId);
+		strcat(sz2, szId);
+		strcpy(szCmd, "touch ");
+		strcat(szCmd, sz2);
+		system(szCmd);
+
+		strcpy(sz2, sz);
+		strcat(sz2, ".h");
+		p->height = *pdata++;
+		itoa64(p->height,szId);
+		strcat(sz2, szId);
+		strcpy(szCmd, "touch ");
+		strcat(szCmd, sz2);
+		system(szCmd);
+
+		if(p->width == 0 || p->width > 4096)
+		{
+
+			return;
+
+		}
+
+		if(p->height == 0 || p->height > 4096)
+		{
+
+			return;
+
+		}
+
+		strcpy(sz2, sz);
+		strcat(sz2, ".s");
+		itoa64(*pdata++,szId);
+
+		strcat(sz2, szId);
+
+		strcpy(szCmd, "touch ");
+		strcat(szCmd, sz2);
+		system(szCmd);
+
+		strcpy(sz2, sz);
+		strcat(sz2, ".first64bits");
+		itoa64(*pdata++,szId);
+
+		strcat(sz2, szId);
+
+		strcpy(szCmd, "touch ");
+		strcat(szCmd, sz2);
+		system(szCmd);
+
+		ObsGsContextHolder obsctx;
+
+		gs_color_format cf = GS_RGBA;
+
+		if (p->tex)
+		{
+
+			gs_texture_destroy(p->tex);
+
+		}
+
+		uint8_t *texData = new uint8_t[width() * height() * 4];
+
+		memset(texData, 0, width() * height() * 4);
+
+		const uint8_t* texDataArr[] = { texData, 0 };
+
+		p->tex = gs_texture_create(width(), height(), cf, 1, texDataArr, 0);
+
+		delete[] texData;
+
+		p->winMap = p->win;
+
+	}
+	
+	if (!p->tex)
+	{
+
 		return;
+
+	}
 
 	obs_enter_graphics();
 
-	if (p->lockX) {
-		XLockDisplay(xdisp);
-		XSync(xdisp, 0);
+	uint32_t * pcolorref = p->m_p  == (uint32_t*)MAP_FAILED? NULL: p->m_p;
+
+	if(pcolorref)
+	{
+
+		try
+		{
+		
+			int64_t * pdata = (int64_t *)pcolorref;
+
+			int64_t cx = *pdata++;
+
+			int64_t cy = *pdata++;
+
+			int64_t scan = *pdata++;
+
+			GLuint t = *(GLuint*)gs_texture_get_obj(p->tex);
+		
+			glBindTexture(GL_TEXTURE_2D, t);
+
+			glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width(), height(),  GL_BGRA, GL_UNSIGNED_BYTE, p->m_p);
+
+		}
+		catch(...)
+		{
+
+		}
+
 	}
-
-	if (p->include_border) {
-		gs_copy_texture_region(
-				p->tex, 0, 0,
-				p->gltex,
-				p->cur_cut_left,
-				p->cur_cut_top,
-				width(), height());
-	} else {
-		gs_copy_texture_region(
-				p->tex, 0, 0,
-				p->gltex,
-				p->cur_cut_left + p->border,
-				p->cur_cut_top + p->border,
-				width(), height());
-	}
-
-	if (p->cursor && p->show_cursor) {
-		xcursor_tick(p->cursor);
-
-		p->cursor_outside =
-			p->cursor->x < p->cur_cut_left                   ||
-			p->cursor->y < p->cur_cut_top                    ||
-			p->cursor->x > int(p->width  - p->cur_cut_right) ||
-			p->cursor->y > int(p->height - p->cur_cut_bot);
-	}
-
-	if (p->lockX)
-		XUnlockDisplay(xdisp);
 
 	obs_leave_graphics();
+
 }
+
 
 void ca2pluginMain::render(gs_effect_t *effect)
 {
+
 	if (!p->win)
+	{
+
 		return;
+
+	}
 
 	PLock lock(&p->lock, true);
 
 	effect = obs_get_base_effect(OBS_EFFECT_PREMULTIPLIED_ALPHA);
 
 	if (!lock.isLocked() || !p->tex)
+	{
+
 		return;
 
+	}
+
 	gs_eparam_t *image = gs_effect_get_param_by_name(effect, "image");
+
 	gs_effect_set_texture(image, p->tex);
 
-	while (gs_effect_loop(effect, "Draw")) {
+	while (gs_effect_loop(effect, "Draw"))
+	{
+
 		gs_draw_sprite(p->tex, 0, 0, 0);
+
 	}
 
-	if (p->cursor && p->gltex && p->show_cursor && !p->cursor_outside) {
-		effect = obs_get_base_effect(OBS_EFFECT_DEFAULT);
-
-		while (gs_effect_loop(effect, "Draw")) {
-			xcursor_render(p->cursor);
-		}
-	}
 }
+
 
 uint32_t ca2pluginMain::width()
 {
 	if (!p->win)
 		return 0;
 
-	return p->width - p->cur_cut_left - p->cur_cut_right;
+	return p->width;
 }
 
 uint32_t ca2pluginMain::height()
@@ -581,7 +621,7 @@ uint32_t ca2pluginMain::height()
 	if (!p->win)
 		return 0;
 
-	return p->height - p->cur_cut_bot - p->cur_cut_top;
+	return p->height;
 }
 
 
