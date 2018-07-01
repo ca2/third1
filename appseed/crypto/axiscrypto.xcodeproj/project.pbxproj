@@ -2155,12 +2155,12 @@
 		9A02661B1EA5B215003C82CF /* aes_x86core.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aes_x86core.c; sourceTree = "<group>"; };
 		9A0266211EA5B4A4003C82CF /* rc4_skey.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rc4_skey.c; sourceTree = "<group>"; };
 		9A0266231EA5B4AD003C82CF /* rc4_enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rc4_enc.c; sourceTree = "<group>"; };
+		9A6540EC20E7D7BB00B5C10E /* axiscrypto_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = axiscrypto_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A99EF5C1EA6A16B00E56FCE /* wp_block.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wp_block.c; sourceTree = "<group>"; };
 		9A99EF601EA6A1C700E56FCE /* mem_clr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mem_clr.c; sourceTree = "<group>"; };
 		9AF8557B1EA6697F003201E7 /* camellia.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = camellia.c; sourceTree = "<group>"; };
 		9AF8557C1EA6697F003201E7 /* cmll_cbc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cmll_cbc.c; sourceTree = "<group>"; };
 		9AF8557F1EA669A5003201E7 /* aes_cbc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aes_cbc.c; sourceTree = "<group>"; };
-		9AF8B7231D1FDDB50087E7A2 /* axiscrypto_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = axiscrypto_iosTests.xctest; path = "/xcore/third/appseed/crypto/build/Debug-iphoneos/axiscrypto_iosTests.xctest"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3720,6 +3720,7 @@
 				07782A6D199FE92F00206CA1 /* crypto */,
 				9A4E845A1D1FD2DE008A419B /* Products */,
 				9AF4C7461F83E25F00197385 /* Frameworks */,
+				9A6540EC20E7D7BB00B5C10E /* axiscrypto_iosTests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3791,7 +3792,7 @@
 			);
 			name = axiscrypto_iosTests;
 			productName = basefreeimage_iosTests;
-			productReference = 9AF8B7231D1FDDB50087E7A2 /* axiscrypto_iosTests.xctest */;
+			productReference = 9A6540EC20E7D7BB00B5C10E /* axiscrypto_iosTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -3800,7 +3801,7 @@
 		9A1B2F7F16A2AF5C00875A94 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 				TargetAttributes = {
 					9AE24D961904CF46001AEFFB = {
@@ -5096,12 +5097,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -5171,12 +5174,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
