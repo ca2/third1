@@ -1,5 +1,18 @@
 project(ca2plugin)
 
+if(WIN32)
+
+include_directories(SYSTEM
+	"${CMAKE_SOURCE_DIR}/libobs"
+)
+
+elseif(APPLE)
+
+include_directories(SYSTEM
+	"${CMAKE_SOURCE_DIR}/libobs"
+)
+
+elseif("${CMAKE_SYSTEM_NAME}" MATCHES "Linux")
 
 find_package(X11 REQUIRED)
 if(NOT X11_Xcomposite_FOUND)
@@ -9,13 +22,14 @@ endif()
 
 find_package(XCB COMPONENTS XCB SHM XFIXES XINERAMA REQUIRED)
 find_package(X11_XCB REQUIRED)
-
 include_directories(SYSTEM
 	"${CMAKE_SOURCE_DIR}/libobs"
 	${X11_Xcomposite_INCLUDE_PATH}
 	${X11_X11_INCLUDE_PATH}
 	${XCB_INCLUDE_DIRS}
 )
+
+endif()
 
 if(MSVC)
 	set(ca2plugin_PLATFORM_DEPS

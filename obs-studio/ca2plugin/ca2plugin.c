@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <obs-module.h>
 #define PSAPI_VERSION 1
 #define WIN32_LEAN_AND_MEAN
@@ -20,6 +20,10 @@
 #include <stdint.h>
 #include <inttypes.h>
 
+#ifdef WIN32
+#pragma comment(lib, "psapi.lib")
+#endif
+
 #if defined(_UNICODE)
 #define _T(x) L ##x
 #else
@@ -29,14 +33,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-#ifdef _WIN32
 CHAR szName[] = "Local\\ca2screen-%" PRIu64;
-CHAR szNameMutex[] = "Local\\ca2screen-%" PRIu64 "-mutex";
-#pragma comment(lib, "psapi.lib")
-#else
-char szName[] = "$HOME/.ca2/ca2screen-%" PRIu64;
-char szNameMutex[] = "$HOME/.ca2/ca2screen-%" PRIu64 "-mutex";
-#endif
+CHAR szNameMutex[] = "Local\\ca2screenmutex-%" PRIu64;
 
 /* this is a workaround to A/Vs going crazy whenever certain functions (such as
 * OpenProcess) are used */
@@ -73,12 +71,12 @@ struct dc_capture
 
 };
 
-extern void dc_capture_init(struct ca2plugin * wc, struct dc_capture *capture, int x, int y,
+extern void dc_capture_init(struct window_capture * wc, struct dc_capture *capture, int x, int y,
                             uint32_t width, uint32_t height, bool cursor,
                             bool compatibility);
 extern void dc_capture_free(struct dc_capture *capture);
 
-extern void dc_capture_capture(struct ca2plugin * wc, struct dc_capture *capture, HWND window);
+extern void dc_capture_capture(struct window_capture * wc, struct dc_capture *capture, HWND window);
 extern void dc_capture_render(struct dc_capture *capture, gs_effect_t *effect);
 
 #pragma once
@@ -90,6 +88,7 @@ enum window_priority
    WINDOW_PRIORITY_CLASS,
    WINDOW_PRIORITY_TITLE,
    WINDOW_PRIORITY_EXE,
+   WINDOW_PRIORITY_TITLE_AND_EXE
 };
 
 enum window_search_mode
@@ -121,7 +120,20 @@ extern HWND find_window(enum window_search_mode mode,
 
 
 
-struct ca2plugin
+
+
+#define TEXT_WINDOW_CAPTURE obs_module_text("ca2Plugin")
+#define TEXT_WINDOW         obs_module_text("ca2Plugin.Window")
+#define TEXT_CAPTURE_CURSOR obs_module_text("CaptureCursor")
+#define TEXT_COMPATIBILITY  obs_module_text("Compatibility")
+#define TEXT_REFRESH_LIST  obs_module_text("RefreshList")
+#define TEXT_MATCH_PRIORITY  obs_module_text("Priority")
+#define TEXT_MATCH_TITLE  obs_module_text("Title")
+#define TEXT_MATCH_CLASS  obs_module_text("Class")
+#define TEXT_MATCH_EXE  obs_module_text("Executablepath")
+#define TEXT_MATCH_TITLE_AND_EXE  obs_module_text("TitleAndExecutablePath")
+
+struct window_capture
 {
    obs_source_t         *source;
    obs_property_t *plist;
@@ -150,7 +162,7 @@ struct ca2plugin
 
 };
 
-static obs_source_t *get_transition(struct ca2plugin *ss)
+static obs_source_t *get_transition(struct window_capture *ss)
 {
    obs_source_t *tr;
 
@@ -163,22 +175,11 @@ static obs_source_t *get_transition(struct ca2plugin *ss)
 }
 
 
-#define TEXT_WINDOW_CAPTURE obs_module_text("WindowCapture")
-#define TEXT_WINDOW         obs_module_text("WindowCapture.Window")
-#define TEXT_MATCH_PRIORITY obs_module_text("WindowCapture.Priority")
-#define TEXT_MATCH_TITLE    obs_module_text("WindowCapture.Priority.Title")
-#define TEXT_MATCH_CLASS    obs_module_text("WindowCapture.Priority.Class")
-#define TEXT_MATCH_EXE      obs_module_text("WindowCapture.Priority.Exe")
-#define TEXT_CAPTURE_CURSOR obs_module_text("CaptureCursor")
-#define TEXT_COMPATIBILITY  obs_module_text("Compatibility")
-
-
-static void update_settings(struct ca2plugin *wc, obs_data_t *s)
+static void update_settings(struct window_capture *wc, obs_data_t *s)
 {
-
-   const char * window = obs_data_get_string(s, "window");
-
-   int priority = (int)obs_data_get_int(s, "priority");
+   const char *window = obs_data_get_string(s, "window");
+   int        priority = (int)obs_data_get_int(s, "priority");
+//   int         priority = WINDOW_PRIORITY_EXE_AND_TITLE_ONLY;
 
    bfree(wc->title);
    bfree(wc->class);
@@ -187,51 +188,172 @@ static void update_settings(struct ca2plugin *wc, obs_data_t *s)
    build_window_strings(window, &wc->class, &wc->title, &wc->executable);
 
    wc->priority = (enum window_priority)priority;
+   wc->cursor = obs_data_get_bool(s, "cursor");
+   wc->use_wildcards = obs_data_get_bool(s, "use_wildcards");
+   //wc->compatibility = obs_data_get_bool(s, "compatibility");
+   wc->compatibility = 1;
+}
 
+/* ------------------------------------------------------------------------- */
+
+static const char *wc_getname(void *unused)
+{
+   UNUSED_PARAMETER(unused);
+   return TEXT_WINDOW_CAPTURE;
+}
+
+
+
+
+
+
+
+static void *wc_create(obs_data_t *settings, obs_source_t *source)
+{
+   struct window_capture *wc = bzalloc(sizeof(struct window_capture));
+   wc->source = source;
+
+   pthread_mutex_init_value(&wc->mutex);
+   if (pthread_mutex_init(&wc->mutex, NULL) != 0)
+      return NULL;
+
+   update_settings(wc, settings);
+   return wc;
+}
+
+static void wc_destroy(void *data)
+{
+   struct window_capture *wc = data;
+
+   if (wc)
+   {
+
+      obs_enter_graphics();
+      dc_capture_free(&wc->capture);
+      obs_leave_graphics();
+
+      bfree(wc->title);
+      bfree(wc->class);
+      bfree(wc->executable);
+
+      if (wc->m_hmutex != NULL)
+      {
+
+         if (WaitForSingleObject(wc->m_hmutex, INFINITE) == WAIT_OBJECT_0)
+         {
+
+            if (wc->m_pBuf != NULL)
+            {
+
+               UnmapViewOfFile(wc->m_pBuf);
+
+               wc->m_pBuf = NULL;
+
+            }
+
+            if (wc->m_hMapFile != NULL)
+            {
+
+               CloseHandle(wc->m_hMapFile);
+
+               wc->m_hMapFile = NULL;
+
+            }
+
+            ReleaseMutex(wc->m_hmutex);
+
+         }
+
+         CloseHandle(wc->m_hmutex);
+
+      }
+
+
+      bfree(wc);
+
+   }
 }
 
 static void wc_update(void *data, obs_data_t *settings)
 {
-
-   struct ca2plugin *wc = data;
-
+   struct window_capture *wc = data;
    update_settings(wc, settings);
 
+   /* forces a reset */
    wc->window = NULL;
-
 }
 
 static uint32_t wc_width(void *data)
 {
-   struct ca2plugin *wc = data;
+   struct window_capture *wc = data;
    return wc->capture.width;
 }
 
 static uint32_t wc_height(void *data)
 {
-   struct ca2plugin *wc = data;
+   struct window_capture *wc = data;
    return wc->capture.height;
 }
 
-static obs_properties_t *wc_properties(void *unused)
+
+static void wc_defaults(obs_data_t *defaults)
 {
-   UNUSED_PARAMETER(unused);
+
+   obs_data_set_default_bool(defaults, "cursor", true);
+
+   obs_data_set_default_bool(defaults, "compatibility", false);
+
+}
+
+
+bool RefreshListClicked(obs_properties_t * props, obs_property_t *p, void *data)
+{
+
+   struct window_capture *wc = data;
+
+   //if (wc->capture.valid)
+   //{
+   //   wc->resize_timer = 0.0f;
+   //   dc_capture_free(&wc->capture);
+   //   RECT rect;
+   //   GetClientRect(wc->window, &rect);
+   //   dc_capture_init(wc, &wc->capture, 0, 0, rect.right, rect.bottom,
+   //      wc->cursor, wc->compatibility);
+   //}
+
+
+   fill_window_list(wc->plist, EXCLUDE_MINIMIZED, NULL);
+
+   return true;
+
+}
+
+
+static obs_properties_t *wc_properties(void *data)
+{
+
+   struct window_capture *wc = data;
+
 
    obs_properties_t *ppts = obs_properties_create();
-   obs_property_t *p;
+
+   wc->plist = obs_properties_add_list(ppts, "window", TEXT_WINDOW,
+                                       OBS_COMBO_TYPE_LIST, OBS_COMBO_FORMAT_STRING);
+   fill_window_list(wc->plist, EXCLUDE_MINIMIZED, NULL);
 
 
-   p = obs_properties_add_list(ppts, "window", TEXT_WINDOW, OBS_COMBO_TYPE_LIST, OBS_COMBO_FORMAT_STRING);
+   obs_properties_add_button(ppts, "refresh_list", TEXT_REFRESH_LIST, &RefreshListClicked);
 
-   fill_window_list(p, EXCLUDE_MINIMIZED, NULL);
-
-   p = obs_properties_add_list(ppts, "priority", TEXT_MATCH_PRIORITY, OBS_COMBO_TYPE_LIST, OBS_COMBO_FORMAT_INT);
-
+   obs_property_t * p = obs_properties_add_list(ppts, "priority", TEXT_MATCH_PRIORITY,
+                        OBS_COMBO_TYPE_LIST, OBS_COMBO_FORMAT_INT);
+   obs_property_list_add_int(p, TEXT_MATCH_TITLE_AND_EXE, WINDOW_PRIORITY_TITLE_AND_EXE);
    obs_property_list_add_int(p, TEXT_MATCH_TITLE, WINDOW_PRIORITY_TITLE);
-
    obs_property_list_add_int(p, TEXT_MATCH_CLASS, WINDOW_PRIORITY_CLASS);
-
    obs_property_list_add_int(p, TEXT_MATCH_EXE, WINDOW_PRIORITY_EXE);
+
+   //obs_properties_add_bool(ppts, "cursor", TEXT_CAPTURE_CURSOR);
+
+   //obs_properties_add_bool(ppts, "compatibility", TEXT_COMPATIBILITY);
 
    return ppts;
 }
@@ -240,14 +362,15 @@ static obs_properties_t *wc_properties(void *unused)
 
 static void wc_tick(void *data, float seconds)
 {
-   struct ca2plugin *wc = data;
+   struct window_capture *wc = data;
    RECT rect;
    bool reset_capture = false;
 
    if (!obs_source_showing(wc->source))
       return;
 
-   if (!wc->window || !IsWindow(wc->window))
+   if (!wc->window || !IsWindow(wc->window)
+         || !window_rating(wc->window, wc->priority, wc->class, wc->title, wc->executable))
    {
       if (!wc->title && !wc->class)
          return;
@@ -300,113 +423,70 @@ static void wc_tick(void *data, float seconds)
    obs_leave_graphics();
 }
 
-static const char *wc_getname(void *unused)
-{
-   UNUSED_PARAMETER(unused);
-   return TEXT_WINDOW_CAPTURE;
-}
-
-
-
-
-
-
-
-static void *wc_create(obs_data_t *settings, obs_source_t *source)
-{
-   struct ca2plugin *wc = bzalloc(sizeof(struct ca2plugin));
-   wc->source = source;
-
-   pthread_mutex_init_value(&wc->mutex);
-   if (pthread_mutex_init(&wc->mutex, NULL) != 0)
-      return NULL;
-
-   update_settings(wc, settings);
-   return wc;
-}
-
-static void wc_destroy(void *data)
-{
-   struct ca2plugin *wc = data;
-
-   if (wc)
-   {
-
-      obs_enter_graphics();
-      dc_capture_free(&wc->capture);
-      obs_leave_graphics();
-
-      bfree(wc->title);
-      bfree(wc->class);
-      bfree(wc->executable);
-
-      if (wc->m_hmutex != NULL)
-      {
-
-         if (WaitForSingleObject(wc->m_hmutex, INFINITE) == WAIT_OBJECT_0)
-         {
-
-            if (wc->m_pBuf != NULL)
-            {
-
-               UnmapViewOfFile(wc->m_pBuf);
-
-               wc->m_pBuf = NULL;
-
-            }
-
-            if (wc->m_hMapFile != NULL)
-            {
-
-               CloseHandle(wc->m_hMapFile);
-
-               wc->m_hMapFile = NULL;
-
-            }
-
-            ReleaseMutex(wc->m_hmutex);
-
-         }
-
-         CloseHandle(wc->m_hmutex);
-
-      }
-
-
-      bfree(wc);
-
-   }
-}
-
-
-
-
-static void wc_defaults(obs_data_t *defaults)
-{
-
-   obs_data_set_default_bool(defaults, "cursor", true);
-
-   obs_data_set_default_bool(defaults, "compatibility", false);
-
-}
-
-
-
 static void wc_render(void *data, gs_effect_t *effect)
 {
-
-   struct ca2plugin *wc = data;
-
+   struct window_capture *wc = data;
    dc_capture_render(&wc->capture, obs_get_base_effect(OBS_EFFECT_PREMULTIPLIED_ALPHA));
 
    UNUSED_PARAMETER(effect);
-
 }
 
 
-#include "audio_render.c"
+static inline bool ss_audio_render_(obs_source_t *transition, uint64_t *ts_out,
+                                    struct obs_source_audio_mix *audio_output,
+                                    uint32_t mixers, size_t channels, size_t sample_rate)
+{
+   struct obs_source_audio_mix child_audio;
+   uint64_t source_ts;
 
-struct obs_source_info ca2plugin_info =
+   if (obs_source_audio_pending(transition))
+      return false;
+
+   source_ts = obs_source_get_audio_timestamp(transition);
+   if (!source_ts)
+      return false;
+
+   obs_source_get_audio_mix(transition, &child_audio);
+   for (size_t mix = 0; mix < MAX_AUDIO_MIXES; mix++)
+   {
+      if ((mixers & (1 << mix)) == 0)
+         continue;
+
+      for (size_t ch = 0; ch < channels; ch++)
+      {
+         float *out = audio_output->output[mix].data[ch];
+         float *in = child_audio.output[mix].data[ch];
+
+         memcpy(out, in, AUDIO_OUTPUT_FRAMES *
+                MAX_AUDIO_CHANNELS * sizeof(float));
+      }
+   }
+
+   *ts_out = source_ts;
+
+   UNUSED_PARAMETER(sample_rate);
+   return true;
+}
+
+static bool ss_audio_render(void *data, uint64_t *ts_out,
+                            struct obs_source_audio_mix *audio_output,
+                            uint32_t mixers, size_t channels, size_t sample_rate)
+{
+   struct window_capture *wc = data;
+   obs_source_t *transition = get_transition(wc);
+   bool success;
+
+   if (!transition)
+      return false;
+
+   success = ss_audio_render_(transition, ts_out, audio_output, mixers,
+                              channels, sample_rate);
+
+   obs_source_release(transition);
+   return success;
+}
+
+struct obs_source_info window_capture_info =
 {
    .id = "ca2plugin",
    .type = OBS_SOURCE_TYPE_INPUT,
@@ -452,7 +532,7 @@ static inline void init_textures(struct dc_capture *capture)
    capture->valid = true;
 }
 
-void dc_capture_init(struct ca2plugin * wc, struct dc_capture *capture, int x, int y,
+void dc_capture_init(struct window_capture * wc, struct dc_capture *capture, int x, int y,
                      uint32_t width, uint32_t height, bool cursor,
                      bool compatibility)
 {
@@ -466,8 +546,8 @@ void dc_capture_init(struct ca2plugin * wc, struct dc_capture *capture, int x, i
 
    obs_enter_graphics();
 
-   //if (!gs_gdi_texture_available())
-   compatibility = true;
+   if (!gs_gdi_texture_available())
+      compatibility = true;
 
    capture->compatibility = compatibility;
    capture->num_textures = compatibility ? 1 : 2;
@@ -616,7 +696,6 @@ void dc_capture_free(struct dc_capture *capture)
    memset(capture, 0, sizeof(struct dc_capture));
 
 
-
 }
 
 static void draw_cursor(struct dc_capture *capture, HDC hdc, HWND window)
@@ -676,42 +755,32 @@ static inline void dc_capture_release_dc(struct dc_capture *capture)
    }
 }
 
-
-void dc_capture_capture(struct ca2plugin * wc, struct dc_capture *capture, HWND window)
+void dc_capture_capture(struct window_capture * wc, struct dc_capture *capture, HWND window)
 {
-
    HDC hdc;
 
    if (capture->capture_cursor)
    {
-
       memset(&capture->ci, 0, sizeof(CURSORINFO));
-
       capture->ci.cbSize = sizeof(CURSORINFO);
-
       capture->cursor_captured = GetCursorInfo(&capture->ci);
-
    }
 
    if (++capture->cur_tex == capture->num_textures)
-   {
-
       capture->cur_tex = 0;
 
-   }
-
    hdc = dc_capture_get_dc(capture);
-
    if (!hdc)
    {
-
-      blog(LOG_WARNING, "[capture_screen] Failed to get texture DC");
-
+      blog(LOG_WARNING, "[capture_screen] Failed to get "
+           "texture DC");
       return;
-
    }
-
    HBITMAP bmp = capture->bmp;
+   //hdc_target = GetDC(window);
+
+
+
 
    if (wc->m_hmutex != NULL)
    {
@@ -727,25 +796,58 @@ void dc_capture_capture(struct ca2plugin * wc, struct dc_capture *capture, HWND 
 
          int64_t * p = (int64_t *)wc->m_pBuf;
 
-         int64_t cx = *p++;
-         int64_t cy = *p++;
-         int64_t scan = *p++;
+         int64_t cxParam = *p++;
+         int64_t cyParam = *p++;
+         int64_t m_iScan = *p++;
 
          m_bitmapinfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-         m_bitmapinfo.bmiHeader.biWidth = (LONG)cx;
-         m_bitmapinfo.bmiHeader.biHeight = (LONG)-cy;
+         m_bitmapinfo.bmiHeader.biWidth = (LONG)cxParam;
+         m_bitmapinfo.bmiHeader.biHeight = (LONG)-cyParam;
          m_bitmapinfo.bmiHeader.biPlanes = 1;
          m_bitmapinfo.bmiHeader.biBitCount = 32;
          m_bitmapinfo.bmiHeader.biCompression = BI_RGB;
-         m_bitmapinfo.bmiHeader.biSizeImage = (LONG)(cy * scan);
+         m_bitmapinfo.bmiHeader.biSizeImage = (LONG)(cxParam * sizeof(COLORREF) * cyParam);
 
-         //if (bmp == NULL)
+         //COLORREF * m_pcolorref = NULL;
+         //HDC hdc_target = CreateCompatibleDC(NULL);
+         //HBITMAP hbmp = CreateDIBSection(NULL, &m_bitmapinfo, DIB_RGB_COLORS, (void **)&m_pcolorref, NULL, 0);
+
+         ////         memcpy(m_pcolorref, p, m_bitmapinfo.bmiHeader.biSizeImage);
+         //int64_t area = cxParam * cyParam;
+
+         //memcpy(capture->pcolorref, p, area * sizeof(COLORREF));
+
+         //unsigned char * p1 = (unsigned char *)capture->pcolorref;
+
+
+         //while (area > 0)
          //{
 
-         //   bmp = (HBITMAP) GetCurrentObject(hdc, OBJ_BITMAP);
+         //   p1[0] = p1[0] * p1[3] / 255;
+         //   p1[1] = p1[1] * p1[3] / 255;
+         //   p1[2] = p1[2] * p1[3] / 255;
+
+         //   p1 += 4;
+         //   area--;
+
          //}
 
-         SetDIBits(hdc, bmp, 0, (UINT) cy, p, &m_bitmapinfo, DIB_RGB_COLORS);
+         SetDIBits(hdc, bmp, 0, (UINT) cyParam, p, &m_bitmapinfo, DIB_RGB_COLORS);
+         //Bit
+
+         //SelectObject(hdc_target, hbmp);
+         //BitBlt(hdc_target, 0, 0, capture->width, capture->height,
+         // hdc, capture->x, capture->y, SRCCOPY);
+         //BLENDFUNCTION blendPixelFunction = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
+         //AlphaBlend(hdc_target, 0, 0, capture->width, capture->height,
+         //   hdc_target, 0, 0, capture->width, capture->height,
+         //   blendPixelFunction);
+
+
+
+         // DeleteDC(hdc_target);
+
+         //DeleteObject(hbmp);
 
       }
 
@@ -753,23 +855,34 @@ void dc_capture_capture(struct ca2plugin * wc, struct dc_capture *capture, HWND 
 
    }
 
+
+   //hdc_target = GetDCEx(window, NULL, DCX_WINDOW);
+   //hdc_target = GetWindowLongPtr(window, GWLP_USERDATA);
+   // Note: CAPTUREBLT flag is required to capture layered windows
+   //http://forums.codeguru.com/member.php?89934-ovidiucucu&s=993e355d39eaa5c27a1f83c614cafa87
+   //http://forums.codeguru.com/showthread.php?477515-Windows-SDK-GDI-How-to-capture-layered-windows
+   //DWORD dwRop = SRCCOPY | CAPTUREBLT;
+   //BOOL bRet = BitBlt(hdc, 0, 0, capture->width, capture->height, hdc_target, capture->x, capture->y, dwRop);
+   //BitBlt(hdc, 0, 0, capture->width, capture->height,
+   // hdc_target, capture->x, capture->y, dwRop);
+   //BLENDFUNCTION blendPixelFunction = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
+   //AlphaBlend(hdc, 0, 0, capture->width, capture->height,
+   //   hdc_target, 0, 0, capture->width, capture->height,
+   //   blendPixelFunction);
+
+   //ReleaseDC(window, hdc_target);
+
    if (capture->cursor_captured)
-   {
-
       draw_cursor(capture, hdc, window);
-
-   }
 
    dc_capture_release_dc(capture);
 
    capture->textures_written[capture->cur_tex] = true;
-
 }
 
 static void draw_texture(struct dc_capture *capture, int id,
                          gs_effect_t *effect)
 {
-
    gs_texture_t   *texture = capture->textures[id];
    gs_technique_t *tech = gs_effect_get_technique(effect, "Draw");
    gs_eparam_t    *image = gs_effect_get_param_by_name(effect, "image");
@@ -785,12 +898,12 @@ static void draw_texture(struct dc_capture *capture, int id,
          if (capture->compatibility)
          {
             gs_blend_state_push();
-            // gs_blend_function_separate(GS_BLEND_ONE, GS_BLEND_INVSRCALPHA, GS_BLEND_ONE, GS_BLEND_INVSRCALPHA);
+            //gs_blend_function_separate(GS_BLEND_ONE, GS_BLEND_INVSRCALPHA, GS_BLEND_ONE, GS_BLEND_INVSRCALPHA);
             gs_blend_function(GS_BLEND_SRCALPHA, GS_BLEND_INVSRCALPHA);
             // gs_blend_function(GS_BLEND_SRCALPHA, GS_BLEND_SRCALPHA);
-            // gs_blend_function_separate(GS_BLEND_SRCALPHA, GS_BLEND_ONE, GS_BLEND_SRCALPHA, GS_BLEND_INVSRCALPHA);
+            //gs_blend_function_separate(GS_BLEND_SRCALPHA, GS_BLEND_ONE, GS_BLEND_SRCALPHA, GS_BLEND_INVSRCALPHA);
             gs_enable_blending(true);
-            // gs_reset_blend_state();
+            //gs_reset_blend_state();
             gs_draw_sprite(texture, GS_FLIP_V, 0, 0);
             gs_blend_state_pop();
          }
@@ -843,7 +956,7 @@ extern void build_window_strings(const char *str,
    *title = NULL;
    *exe = NULL;
 
-   if (!str || *str == '\0')
+   if (!str)
    {
       return;
    }
@@ -892,28 +1005,11 @@ bool get_window_exe(struct dstr *name, HWND window)
    if (id == GetCurrentProcessId())
       return false;
 
-   process = open_process(PROCESS_QUERY_INFORMATION, false, id);
+   process = open_process(PROCESS_QUERY_LIMITED_INFORMATION, false, id);
    if (!process)
       goto fail;
 
-   BOOL bDebug = FALSE;
-
-   if (!CheckRemoteDebuggerPresent(process, &bDebug))
-   {
-      DWORD dwLastError = GetLastError();
-
-      OutputDebugString("E");;
-   }
-   else if (bDebug)
-   {
-      if (!success)
-         dstr_copy(name, "being debugged");
-
-      dstr_free(&temp);
-      CloseHandle(process);
-      return false;
-   }
-
+   //if (!GetProcessImageFileNameW(process, wname, MAX_PATH))
    if (!GetProcessImageFileNameW(process, wname, MAX_PATH))
       goto fail;
 
@@ -934,55 +1030,39 @@ fail:
    return true;
 }
 
-
 void get_window_title(struct dstr *name, HWND hwnd)
 {
    wchar_t *temp;
+   int len;
 
+   DWORD_PTR dw = 0;
 
-   DWORD_PTR nCharLen = 0;
-
-   DWORD dwStart = GetTickCount();
-
-   DWORD dwTimeout = max(10, 300);
-
-   if (!SendMessageTimeoutW(hwnd, WM_GETTEXTLENGTH, 0, 0, SMTO_ABORTIFHUNG, dwTimeout, &nCharLen))
+   //if (!SendMessageTimeoutW(hwnd, WM_GETTEXTLENGTH, 0, 0, SMTO_ABORTIFHUNG | SMTO_NOTIMEOUTIFNOTHUNG, 100, &dw))
+   if (!SendMessageTimeoutW(hwnd, WM_GETTEXTLENGTH, 0, 0, SMTO_ABORTIFHUNG, 20, &dw))
    {
 
       return;
 
    }
 
-   dwTimeout = min(dwTimeout, max(10, (GetTickCount() - dwStart) - dwTimeout));
-
-   int nByteLen = sizeof(wchar_t) * (nCharLen + 1);
-
-   temp = malloc(nByteLen);
-
-   memset(temp, 0, nByteLen);
-
-   DWORD_PTR lresult = 0;
-
-   if (!SendMessageTimeoutW(hwnd, WM_GETTEXT, nCharLen + 1, (LPARAM)temp, SMTO_ABORTIFHUNG, dwTimeout, &lresult))
-   {
-
-      free(temp);
-
+   //len = GetWindowTextLengthW(hwnd);
+   len = dw;
+   if (!len)
       return;
 
+   temp = malloc(sizeof(wchar_t) * (len + 1));
+   //if (SendMessageTimeoutW(hwnd, WM_GETTEXT, len + 1, (LPARAM) temp, SMTO_ABORTIFHUNG | SMTO_NOTIMEOUTIFNOTHUNG, 100, &dw))
+   if (SendMessageTimeoutW(hwnd, WM_GETTEXT, len + 1, (LPARAM)temp, SMTO_ABORTIFHUNG, 20, &dw))
+   {
+      temp[dw] = L'\0';
+      dstr_from_wcs(name, temp);
+
    }
-
-   dstr_from_wcs(name, temp);
-
    free(temp);
-
 }
-
-
 
 void get_window_class(struct dstr *class, HWND hwnd)
 {
-
    wchar_t temp[256];
 
    temp[0] = 0;
@@ -1037,43 +1117,31 @@ static bool check_window_valid(HWND window, enum window_search_mode mode)
    DWORD styles, ex_styles;
    RECT  rect;
 
-   if (!IsWindowVisible(window) ||
-         (mode == EXCLUDE_MINIMIZED && IsIconic(window)))
-      return false;
+   //if (!IsWindowVisible(window) ||
+   // (mode == EXCLUDE_MINIMIZED && IsIconic(window)))
+   //return false;
 
    GetClientRect(window, &rect);
    styles = (DWORD)GetWindowLongPtr(window, GWL_STYLE);
    ex_styles = (DWORD)GetWindowLongPtr(window, GWL_EXSTYLE);
 
+   //if (ex_styles & WS_EX_TOOLWINDOW)
+   // return false;
    if (styles & WS_CHILD)
       return false;
-   if (mode == EXCLUDE_MINIMIZED && (rect.bottom == 0 || rect.right == 0))
-      return false;
+   //if (mode == EXCLUDE_MINIMIZED && (rect.bottom == 0 || rect.right == 0))
+   // return false;
 
    return true;
 }
 
 static inline HWND next_window(HWND window, enum window_search_mode mode)
 {
-
    while (true)
    {
-
       window = GetNextWindow(window, GW_HWNDNEXT);
-
-      if (!window)
-      {
-
-         return NULL;
-
-      }
-
-      if (check_window_valid(window, mode))
-      {
-
+      if (!window || check_window_valid(window, mode))
          break;
-
-      }
    }
 
    return window;
@@ -1081,47 +1149,37 @@ static inline HWND next_window(HWND window, enum window_search_mode mode)
 
 static inline HWND first_window(enum window_search_mode mode)
 {
-
    HWND window = GetWindow(GetDesktopWindow(), GW_CHILD);
-
    if (!check_window_valid(window, mode))
-   {
-
       window = next_window(window, mode);
-
-   }
-
    return window;
-
 }
 
 
-static int ca2_window(HWND window)
+static int is_ca2_window(HWND window)
 {
-
    struct dstr cur_class = { 0 };
-
+   //struct dstr cur_title = { 0 };
+   //struct dstr cur_exe = { 0 };
    int total = 0;
 
+//   if (!get_window_exe(&cur_exe, window))
+   //    return 0;
+   //get_window_title(&cur_title, window);
    get_window_class(&cur_class, window);
 
-   if (dstr_ncmpi(&cur_class, "ca2FrameOrView", 14) == 0)
-   {
 
+
+
+   if (dstr_cmpi(&cur_class, "ca2FrameOrView") == 0)
       total += 1;
 
-      struct dstr cur_title = { 0 };
-
-      get_window_title(&cur_title, window);
-
-      dstr_free(&cur_title);
-
-   }
 
    dstr_free(&cur_class);
+   //dstr_free(&cur_title);
+   //dstr_free(&cur_exe);
 
    return total;
-
 }
 
 
@@ -1135,7 +1193,7 @@ void fill_window_list(obs_property_t *p, enum window_search_mode mode,
    while (window)
    {
 
-      if (ca2_window(window))
+      if (is_ca2_window(window))
       {
 
          add_window(p, window, callback);
@@ -1154,9 +1212,9 @@ static int window_rating(HWND window,
    struct dstr cur_class = { 0 };
    struct dstr cur_title = { 0 };
    struct dstr cur_exe = { 0 };
-   int         class_val = 0;
+   int         class_val = 1;
    int         title_val = 1;
-   int         exe_val = 0;
+   int         exe_val = 1;
    int         total = 0;
 
    if (!get_window_exe(&cur_exe, window))
@@ -1170,15 +1228,32 @@ static int window_rating(HWND window,
       class_val += 3;
    else if (priority == WINDOW_PRIORITY_TITLE)
       title_val += 3;
+   else if (priority == WINDOW_PRIORITY_TITLE_AND_EXE)
+   {
+      exe_val += 3;
+      title_val += 6;
+      class_val = 0;
+   }
    else
       exe_val += 3;
 
-   if (dstr_cmpi(&cur_class, class) == 0)
-      total += class_val;
-   if (dstr_cmpi(&cur_title, title) == 0)
-      total += title_val;
-   if (dstr_cmpi(&cur_exe, exe) == 0)
-      total += exe_val;
+   if (priority == WINDOW_PRIORITY_TITLE_AND_EXE)
+   {
+      if (dstr_cmpi(&cur_title, title) == 0 && dstr_cmpi(&cur_exe, exe) == 0)
+         total += title_val;
+
+   }
+   else
+   {
+      if (dstr_cmpi(&cur_class, class) == 0)
+         total += class_val;
+      if (dstr_cmpi(&cur_title, title) == 0)
+         total += title_val;
+      if (dstr_cmpi(&cur_exe, exe) == 0)
+         total += exe_val;
+
+
+   }
 
    dstr_free(&cur_class);
    dstr_free(&cur_title);
@@ -1199,11 +1274,8 @@ HWND find_window(enum window_search_mode mode,
 
    while (window)
    {
-
-      struct dstr cur_exe = { 0 };
-      if (get_window_exe(&cur_exe, window) && ca2_window(window))
+      if (is_ca2_window(window))
       {
-         dstr_free(&cur_exe);
          int rating = window_rating(window, priority, class, title, exe);
          if (rating > best_rating)
          {
@@ -1211,10 +1283,6 @@ HWND find_window(enum window_search_mode mode,
             best_window = window;
          }
 
-      }
-      else
-      {
-         dstr_free(&cur_exe);
       }
       window = next_window(window, mode);
    }
@@ -1228,7 +1296,7 @@ HWND find_window(enum window_search_mode mode,
 OBS_DECLARE_MODULE()
 OBS_MODULE_USE_DEFAULT_LOCALE("ca2plugin", "en-US")
 
-extern struct obs_source_info ca2plugin_info;
+extern struct obs_source_info window_capture_info;
 
 
 /* temporary, will eventually be erased once we figure out how to create both
@@ -1263,7 +1331,7 @@ bool obs_module_load(void)
 
    obs_leave_graphics();
 
-   obs_register_source(&ca2plugin_info);
+   obs_register_source(&window_capture_info);
 
 
    return true;
@@ -1307,19 +1375,8 @@ static void deobfuscate_str(char *str, uint64_t val)
 
 void *get_obfuscated_func(HMODULE module, const char *str, uint64_t val)
 {
-
    char new_name[128];
-
    strcpy(new_name, str);
-
    deobfuscate_str(new_name, val);
-
    return GetProcAddress(module, new_name);
-
 }
-
-
-
-
-
-
