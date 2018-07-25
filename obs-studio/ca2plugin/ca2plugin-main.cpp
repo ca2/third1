@@ -72,12 +72,43 @@ obs_properties_t *ca2pluginMain::properties()
 				desc.c_str());
 	}
 
+	obs_properties_add_int(props, "cut_top", obs_module_text("CropTop"),
+			0, 4096, 1);
+	obs_properties_add_int(props, "cut_left", obs_module_text("CropLeft"),
+			0, 4096, 1);
+	obs_properties_add_int(props, "cut_right", obs_module_text("CropRight"),
+			0, 4096, 1);
+	obs_properties_add_int(props, "cut_bot", obs_module_text("CropBottom"),
+			0, 4096, 1);
+
+	obs_properties_add_bool(props, "swap_redblue",
+			obs_module_text("SwapRedBlue"));
+	obs_properties_add_bool(props, "lock_x", obs_module_text("LockX"));
+
+	obs_properties_add_bool(props, "show_cursor",
+			obs_module_text("CaptureCursor"));
+
+	obs_properties_add_bool(props, "include_border",
+			obs_module_text("IncludeXBorder"));
+
+	obs_properties_add_bool(props, "exclude_alpha",
+			obs_module_text("ExcludeAlpha"));
 
 	return props;
 }
 
 void ca2pluginMain::defaults(obs_data_t *settings)
 {
+	obs_data_set_default_string(settings, "capture_window", "");
+	obs_data_set_default_int(settings, "cut_top", 0);
+	obs_data_set_default_int(settings, "cut_left", 0);
+	obs_data_set_default_int(settings, "cut_right", 0);
+	obs_data_set_default_int(settings, "cut_bot", 0);
+	obs_data_set_default_bool(settings, "swap_redblue", false);
+	obs_data_set_default_bool(settings, "lock_x", false);
+	obs_data_set_default_bool(settings, "show_cursor", true);
+	obs_data_set_default_bool(settings, "include_border", false);
+	obs_data_set_default_bool(settings, "exclude_alpha", false);
 }
 
 #define FIND_WINDOW_INTERVAL 2.0
@@ -86,14 +117,17 @@ struct ca2pluginMain_private
 {
 	ca2pluginMain_private()
 		:win(0)
+		,cut_top(0), cur_cut_top(0)
+		,cut_left(0), cur_cut_left(0)
+		,cut_right(0), cur_cut_right(0)
+		,cut_bot(0), cur_cut_bot(0)
+		,inverted(false)
 		,width(0),height(0)
+		,pixmap(0)
+		,glxpixmap(0)
 		,tex(0)
+		,gltex(0)
 	{
-
-		m_p = (uint32_t *) MAP_FAILED;
-		
-		m_iFile = -1;
-
 		pthread_mutexattr_init(&lockattr);
 		pthread_mutexattr_settype(&lockattr, PTHREAD_MUTEX_RECURSIVE);
 
