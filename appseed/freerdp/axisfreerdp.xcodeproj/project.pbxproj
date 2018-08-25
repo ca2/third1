@@ -384,12 +384,13 @@
 		07DD6D7E1B5F0C61003A1CE1 /* primitives.c in Sources */ = {isa = PBXBuildFile; fileRef = 07DD6BB11B5F0C61003A1CE1 /* primitives.c */; };
 		07DD710F1B5F173E003A1CE1 /* libaxiswinpr.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD70A91B5F0FD4003A1CE1 /* libaxiswinpr.dylib */; };
 		9A0266081EA5A833003C82CF /* rpc_client.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A0266071EA5A833003C82CF /* rpc_client.c */; };
+		9A038C5421311BF4004C97FA /* libswresample.3.1.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A038C5321311BF4004C97FA /* libswresample.3.1.100.dylib */; };
+		9A038C5621311C91004C97FA /* libavcodec.58.18.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A038C5521311C91004C97FA /* libavcodec.58.18.100.dylib */; };
 		9A9C4E372045875400046215 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9C4E352045875400046215 /* libcrypto.a */; };
 		9A9C4E382045875400046215 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9C4E362045875400046215 /* libssl.a */; };
 		9A9C4E3C204587F700046215 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE9FCCB1F7F6F9100367001 /* libiconv.tbd */; };
 		9A9C4E3D2045880600046215 /* libatomiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE9FCC81F7F6F5100367001 /* libatomiconv.dylib */; };
 		9A9C4E5020458BD700046215 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE9FCBE1F7F6E1D00367001 /* CoreVideo.framework */; };
-		9AB776EF2046F07D009C3590 /* libavcodec.57.107.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AB776EE2046F07D009C3590 /* libavcodec.57.107.100.dylib */; };
 		9AB7774520470A32009C3590 /* line.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7773320470A30009C3590 /* line.c */; };
 		9AB7774620470A32009C3590 /* dc.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7773420470A30009C3590 /* dc.c */; };
 		9AB7774720470A32009C3590 /* brush.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB7773520470A30009C3590 /* brush.h */; };
@@ -436,7 +437,6 @@
 		9AC1FCD9204C406300305BFF /* region.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7774120470A31009C3590 /* region.c */; };
 		9AC1FCDA204C406300305BFF /* shape.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7773620470A30009C3590 /* shape.c */; };
 		9AC1FCDB204C406300305BFF /* video.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AB7774020470A31009C3590 /* video.c */; };
-		9ADB2E2B1F800AB80005D907 /* libswresample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE9FCCD1F7F6FA400367001 /* libswresample.a */; };
 		9AE9FCB51F7F6DA700367001 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE9FCB41F7F6DA600367001 /* AudioToolbox.framework */; };
 		9AE9FCB71F7F6DBD00367001 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE9FCB61F7F6DBD00367001 /* CoreFoundation.framework */; };
 		9AE9FCBD1F7F6E0900367001 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE9FCBC1F7F6E0900367001 /* CoreMedia.framework */; };
@@ -670,6 +670,8 @@
 		07DD6BB21B5F0C61003A1CE1 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		07DD70A31B5F0FD4003A1CE1 /* axiswinpr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = axiswinpr.xcodeproj; path = ../winpr/axiswinpr.xcodeproj; sourceTree = "<group>"; };
 		9A0266071EA5A833003C82CF /* rpc_client.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rpc_client.c; sourceTree = "<group>"; };
+		9A038C5321311BF4004C97FA /* libswresample.3.1.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libswresample.3.1.100.dylib; path = ../../../../usr/local/Cellar/ffmpeg/4.0.1/lib/libswresample.3.1.100.dylib; sourceTree = "<group>"; };
+		9A038C5521311C91004C97FA /* libavcodec.58.18.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavcodec.58.18.100.dylib; path = ../../../../usr/local/Cellar/ffmpeg/4.0.1/lib/libavcodec.58.18.100.dylib; sourceTree = "<group>"; };
 		9A09AE871DE0BD4E00C0357F /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../../../nodeapp/thirdparty/library/libcrypto.a; sourceTree = "<group>"; };
 		9A09AE881DE0BD4E00C0357F /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../../../nodeapp/thirdparty/library/libssl.a; sourceTree = "<group>"; };
 		9A1B358C16A2D7A500875A94 /* libaxisfreerdp.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxisfreerdp.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -759,14 +761,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AB776EF2046F07D009C3590 /* libavcodec.57.107.100.dylib in Frameworks */,
+				9A038C5621311C91004C97FA /* libavcodec.58.18.100.dylib in Frameworks */,
+				9A038C5421311BF4004C97FA /* libswresample.3.1.100.dylib in Frameworks */,
 				9A9C4E5020458BD700046215 /* CoreVideo.framework in Frameworks */,
 				9AE9FCC01F7F6E3400367001 /* VideoToolbox.framework in Frameworks */,
 				9A9C4E3D2045880600046215 /* libatomiconv.dylib in Frameworks */,
 				9A9C4E3C204587F700046215 /* libiconv.tbd in Frameworks */,
 				9A9C4E372045875400046215 /* libcrypto.a in Frameworks */,
 				9A9C4E382045875400046215 /* libssl.a in Frameworks */,
-				9ADB2E2B1F800AB80005D907 /* libswresample.a in Frameworks */,
 				9AE9FCC21F7F6E5300367001 /* libz.tbd in Frameworks */,
 				9AE9FCBD1F7F6E0900367001 /* CoreMedia.framework in Frameworks */,
 				9AE9FCB71F7F6DBD00367001 /* CoreFoundation.framework in Frameworks */,
@@ -1110,6 +1112,8 @@
 		9A09AE861DE0BD4E00C0357F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A038C5521311C91004C97FA /* libavcodec.58.18.100.dylib */,
+				9A038C5321311BF4004C97FA /* libswresample.3.1.100.dylib */,
 				9AB776EE2046F07D009C3590 /* libavcodec.57.107.100.dylib */,
 				9AB776EC2046EE82009C3590 /* libavcodec.a */,
 				9AB776E92046487F009C3590 /* libavformat.a */,
@@ -1956,6 +1960,7 @@
 					"$(TARGET_BUILD_DIR)",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/library",
 					/usr/local/Cellar/ffmpeg/3.4.2/lib,
+					/usr/local/Cellar/ffmpeg/4.0.1/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 			};
@@ -1987,24 +1992,7 @@
 					"$(inherited)",
 					"$(TARGET_BUILD_DIR)",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/library",
-					"/usr/local/Cellar/fdk-aac/0.1.5/lib",
-					/usr/local/Cellar/lame/3.99.5/lib,
-					/usr/local/Cellar/opus/1.2.1/lib,
-					/usr/local/Cellar/libvorbis/1.3.5_1/lib,
-					/usr/local/Cellar/theora/1.1.1/lib,
-					/usr/local/Cellar/libvpx/1.6.1/lib,
-					/usr/local/Cellar/x264/r2795/lib,
-					/usr/local/Cellar/xvid/1.3.4/lib,
-					/usr/local/Cellar/libiconv/1.15/lib,
-					"/usr/local/opt/openssl@1.1/lib",
-					"/usr/local/Cellar/openssl@1.1/1.1.0g_1/lib",
-					/usr/local/Cellar/lame/3.100/lib,
-					/usr/local/Cellar/x264/r2854/lib,
-					/usr/local/Cellar/xvid/1.3.5/lib,
-					/usr/local/Cellar/libvpx/1.7.0/lib,
-					/usr/local/Cellar/ffmpeg/3.4.2/lib,
-					"/usr/local/Cellar/ffmpeg/HEAD-40102a2/lib",
-					"/usr/local/Cellar/x264/HEAD-7d0ff22/lib",
+					/usr/local/Cellar/ffmpeg/4.0.1/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 			};
