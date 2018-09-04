@@ -85,10 +85,18 @@ static char* GetEnvAlloc(LPCSTR lpName)
    return env;
 }
 
+#if defined(APPLE_IOS) || defined(ANDROID) || defined(_UWP)
+#if defined(_UWP)
+CLASS_DECL_EXPORT
+#endif
+const char * nodeos_get_home();
+#endif
+
+
 static char* GetPath_HOME(void)
 {
    char* path = NULL;
-#if defined(__IOS__) || defined(ANDROID) || defined(_UWP)
+#if defined(APPLE_IOS) || defined(ANDROID) || defined(_UWP)
    path = _strdup(nodeos_get_home());
 #elif defined(_WIN32)
    path = GetEnvAlloc("UserProfile");
@@ -98,12 +106,19 @@ static char* GetPath_HOME(void)
    return path;
 }
 
+#if defined(APPLE_IOS) || defined(ANDROID) || defined(_UWP)
+#if defined(_UWP)
+CLASS_DECL_EXPORT
+#endif
+const char * nodeos_get_temp();
+#endif
+
 static char* GetPath_TEMP(void)
 {
    char* path = NULL;
 #ifdef _WIN32
    path = GetEnvAlloc("TEMP");
-#elif defined(__IOS__) || defined(ANDROID)
+#elif defined(APPLE_IOS) || defined(ANDROID)
    path = nodeos_get_temp();
 #else
    path = GetEnvAlloc("TMPDIR");

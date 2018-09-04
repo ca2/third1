@@ -2317,6 +2317,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = a;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					_X86_,
+					_UNICODE,
+					WINPR_EXPORTS,
+					FREERDP_EXPORTS,
+					WITH_OPENSSL,
+					_DEBUG,
+					HAVE_CONFIG_H,
+					"CMAKE_INTDIR=\"Debug\"",
+					APPLE_IOS,
+				);
 				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
 			};
@@ -2326,6 +2337,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_EXTENSION = a;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					_X86_,
+					_UNICODE,
+					WINPR_EXPORTS,
+					FREERDP_EXPORTS,
+					WITH_OPENSSL,
+					_DEBUG,
+					HAVE_CONFIG_H,
+					"CMAKE_INTDIR=\"Debug\"",
+					APPLE_IOS,
+				);
 				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
 			};
@@ -2398,7 +2420,7 @@
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include/ . framework libwinpr/utils/trio libwinpr/utils $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../ ../../appseed ../../ ../";
-				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/macos";
+				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
 		};
@@ -2463,7 +2485,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../include $(WorkspaceDir)/../../../nodeapp/include $(WorkspaceDir)/../../../app/include/ . framework libwinpr/utils/trio libwinpr/utils $(WorkspaceDir)/../../../ $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/axis $(WorkspaceDir)/../../../app/appseed/aura $(WorkspaceDir)/../../ ../../appseed ../../ ../";
-				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/macos";
+				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Release;
 		};
