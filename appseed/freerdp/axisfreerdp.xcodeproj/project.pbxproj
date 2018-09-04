@@ -386,6 +386,7 @@
 		9A0266081EA5A833003C82CF /* rpc_client.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A0266071EA5A833003C82CF /* rpc_client.c */; };
 		9A038C5421311BF4004C97FA /* libswresample.3.1.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A038C5321311BF4004C97FA /* libswresample.3.1.100.dylib */; };
 		9A038C5621311C91004C97FA /* libavcodec.58.18.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A038C5521311C91004C97FA /* libavcodec.58.18.100.dylib */; };
+		9A77FCED213F046200B3A133 /* prim_YUV_ssse3.c in Sources */ = {isa = PBXBuildFile; fileRef = 9AED5542209AFBE400F08971 /* prim_YUV_ssse3.c */; };
 		9A9C4E372045875400046215 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9C4E352045875400046215 /* libcrypto.a */; };
 		9A9C4E382045875400046215 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A9C4E362045875400046215 /* libssl.a */; };
 		9A9C4E3C204587F700046215 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE9FCCB1F7F6F9100367001 /* libiconv.tbd */; };
@@ -1556,6 +1557,7 @@
 				07DD6C461B5F0C61003A1CE1 /* client.c in Sources */,
 				07DD6C861B5F0C61003A1CE1 /* graphics.c in Sources */,
 				07DD6CE41B5F0C61003A1CE1 /* update.c in Sources */,
+				9A77FCED213F046200B3A133 /* prim_YUV_ssse3.c in Sources */,
 				07DD6D521B5F0C61003A1CE1 /* prim_andor_opt.c in Sources */,
 				07DD6D681B5F0C61003A1CE1 /* prim_shift_opt.c in Sources */,
 				07DD6D6A1B5F0C61003A1CE1 /* prim_sign.c in Sources */,
@@ -1758,6 +1760,7 @@
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 					"$(WorkspaceDir)/../../../nodeapp/iPhoneSimulator11.2-x86_64.sdk/include",
+					"$(WorkspaceDir)/../../../third/appseed/winpr",
 				);
 				MACH_O_TYPE = staticlib;
 				SDKROOT = iphoneos;
@@ -1838,6 +1841,7 @@
 					/usr/local/include,
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
+					"$(WorkspaceDir)/../../../third/appseed/winpr",
 				);
 				INSTALL_PATH = "@executable_path";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1915,6 +1919,7 @@
 					/usr/local/include,
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
+					"$(WorkspaceDir)/../../../third/appseed/winpr",
 				);
 				INSTALL_PATH = "@executable_path";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
