@@ -116,7 +116,7 @@ Private Declare Function ReleaseDC Lib "user32.dll" ( _
 Private Declare Function GetDC Lib "user32.dll" ( _
     ByVal hWnd As Long) As Long
     
-Private Declare Function GetDesktopWindow Lib "user32.dll" () As Long
+Private Declare Function get_desktop_window Lib "user32.dll" () As Long
     
 Private Declare Function GetDCEx Lib "user32.dll" ( _
     ByVal hWnd As Long, _
@@ -3455,7 +3455,7 @@ Dim lpSA As Long
    ' This makes you use code like you would in C/C++:
    
    ' // this code assumes there is a bitmap loaded and
-   ' // present in a variable called ‘dib’
+   ' // present in a variable called ï¿½dibï¿½
    ' if(FreeImage_GetBPP(Bitmap) == 8) {
    '   // Build a greyscale palette
    '   RGBQUAD *pal = FreeImage_GetPalette(Bitmap);
@@ -3568,7 +3568,7 @@ Dim lpSA As Long
    ' This makes you use code like you would in C/C++:
    
    ' // this code assumes there is a bitmap loaded and
-   ' // present in a variable called ‘dib’
+   ' // present in a variable called ï¿½dibï¿½
    ' if(FreeImage_GetBPP(Bitmap) == 8) {
    '   // Build a greyscale palette
    '   RGBQUAD *pal = FreeImage_GetPalette(Bitmap);
@@ -3706,7 +3706,7 @@ Dim lpSA As Long
    ' This makes you use code like you would in C/C++:
    
    ' // this code assumes there is a bitmap loaded and
-   ' // present in a variable called ‘dib’
+   ' // present in a variable called ï¿½dibï¿½
    ' if(FreeImage_GetBPP(Bitmap) == 8) {
    '   // Remove transparency information
    '   byte *transt = FreeImage_GetTransparencyTable(Bitmap);
@@ -7902,7 +7902,7 @@ Dim tR As RECT
    ' parameter, the whole screen/desktop window will be captured.
 
    If (hWnd = 0) Then
-      hWnd = GetDesktopWindow()
+      hWnd = get_desktop_window()
       hDC = GetDCEx(hWnd, 0, 0)
       ' get desktop's width and height
       lWidth = GetDeviceCaps(hDC, HORZRES)

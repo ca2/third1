@@ -1082,7 +1082,7 @@ static inline HWND next_window(HWND window, enum window_search_mode mode)
 static inline HWND first_window(enum window_search_mode mode)
 {
 
-   HWND window = GetWindow(GetDesktopWindow(), GW_CHILD);
+   HWND window = GetWindow(get_desktop_window(), GW_CHILD);
 
    if (!check_window_valid(window, mode))
    {
