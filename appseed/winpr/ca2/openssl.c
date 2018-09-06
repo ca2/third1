@@ -3,6 +3,7 @@
 #include <string.h>
 #include <winpr/winsock.h>
 
+#if OPENSSL_VERSION_NUMBER < 0x10100000L
 
 void BIO_set_data(BIO *a, void *ptr)
 {
@@ -33,7 +34,7 @@ int BIO_get_shutdown(BIO *a)
 {
    return a->shutdown;
 }
-
+#endif
 
 #ifdef _UWP
 
@@ -162,7 +163,7 @@ int BIO_meth_set_callback_ctrl(BIO_METHOD *biom,
 
 #endif
 
-
+ #if OPENSSL_VERSION_NUMBER < 0x10100000L
 
 void BIO_set_next(BIO *b, BIO *next)
 {
@@ -179,11 +180,13 @@ int BIO_up_ref(BIO *a)
 }
 
 
+
 void ssl_set_servername_done(SSL * s, int done)
 {
    s->servername_done = done;
 }
 
+#endif
 
 
 
