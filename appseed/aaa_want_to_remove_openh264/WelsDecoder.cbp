@@ -7,7 +7,7 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="basis">
-				<Option output="../../../nodeapp/thirdparty/library/x64/libWelsDecoder.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../nodelfs/thirdparty/library/x64/libWelsDecoder.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../time/x64/basis/" />
 				<Option object_output="../../../time/intermediate/app/WelsDecoder" />
 				<Option type="3" />
@@ -66,7 +66,7 @@
 			<Add option="-lWelsCommon" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../time/x64/basis" />
-			<Add directory="../../../nodeapp/thirdparty/library/x64" />
+			<Add directory="../../../nodelfs/thirdparty/library/x64" />
 		</Linker>
 		<Unit filename="codec/decoder/core/inc/au_parser.h" />
 		<Unit filename="codec/decoder/core/inc/bit_stream.h" />

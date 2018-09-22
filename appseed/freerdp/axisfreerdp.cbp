@@ -8,7 +8,7 @@
 		<Option extended_obj_names="1" />
 		<Build>
 			<Target title="basis">
-				<Option output="../../../nodeapp/thirdparty/library/x64/libaxisfreerdp.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../nodelfs/thirdparty/library/x64/libaxisfreerdp.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../time/x64/basis/" />
 				<Option object_output="../../../time/intermediate/app/axisfreerdp" />
 				<Option type="3" />
@@ -99,7 +99,7 @@
 			<Add option="-lavutil" />
 			<Add option="-Wl,-z,defs" />
 			<Add directory="../../../../time/x64/basis" />
-			<Add directory="../../../nodeapp/thirdparty/library/x64" />
+			<Add directory="../../../nodelfs/thirdparty/library/x64" />
 		</Linker>
 		<Unit filename="config.h" />
 		<Unit filename="dummy.c">
