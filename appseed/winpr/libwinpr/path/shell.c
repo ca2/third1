@@ -87,7 +87,7 @@ static char* GetEnvAlloc(LPCSTR lpName)
 
 #if defined(APPLE_IOS) || defined(ANDROID) || defined(_UWP)
 #if defined(_UWP)
-CLASS_DECL_EXPORT
+__declspec(dllexport)
 #endif
 const char * nodeos_get_home();
 #endif
@@ -108,7 +108,7 @@ static char* GetPath_HOME(void)
 
 #if defined(APPLE_IOS) || defined(ANDROID) || defined(_UWP)
 #if defined(_UWP)
-CLASS_DECL_EXPORT
+__declspec(dllexport)
 #endif
 const char * nodeos_get_temp();
 #endif
