@@ -3,46 +3,16 @@
 #include <X11/Xlib.h>
 #include <X11/extensions/Xcomposite.h>
 #include <pthread.h>
-#include <sys/mman.h>
-#include <sys/stat.h>
-#include <fcntl.h>
+
 #include <vector>
-#include <unistd.h>
+
 #include <obs-module.h>
 #include <graphics/vec4.h>
 #include <util/platform.h>
-#include <linux/limits.h>
-#include "util/threading.h"
 
-
-extern THREAD_LOCAL graphics_t *thread_graphics;
 #include "ca2plugin-main.hpp"
 #include "ca2plugin-helper.hpp"
 #include "xcursor.h"
-static inline bool gs_obj_valid(const void *obj, const char *f,
-		const char *name)
-{
-	if (!obj) {
-		blog(LOG_DEBUG, "%s: Null '%s' parameter", f, name);
-		return false;
-	}
-
-	return true;
-}
-static inline bool gs_valid(const char *f)
-{
-	if (!thread_graphics) {
-		blog(LOG_DEBUG, "%s: called while not in a graphics context",
-				f);
-		return false;
-	}
-
-	return true;
-}
-#define ptr_valid(ptr, func) gs_obj_valid(ptr, func, #ptr)
-#define gs_valid_p2(func, param1, param2) \
-	(gs_valid(func) && ptr_valid(param1, func) \
-	 && ptr_valid(param2, func))
 
 #define xdisp (ca2plugin::disp())
 #define WIN_STRING_DIV "\r\n"
@@ -157,40 +127,12 @@ struct ca2pluginMain_private
 		pthread_mutexattr_settype(&lockattr, PTHREAD_MUTEX_RECURSIVE);
 
 		pthread_mutex_init(&lock, &lockattr);
-		
-		m_paddr = NULL;
-		
-		m_iFd = -1;
-
-		m_iSize = 8192 * 4096 * 4;
-
 	}
 
 	~ca2pluginMain_private()
 	{
-		
-		if(m_paddr != NULL)
-		{
-
-			munmap(m_paddr, m_iSize);
-
-			m_paddr = NULL;
-	
-		}
-
-
-		if(m_iFd >= 0)
-		{
-			
-			::close(m_iFd);
-
-			m_iFd = -1;
-
-		}
-
 		pthread_mutex_destroy(&lock);
 		pthread_mutexattr_destroy(&lockattr);
-
 	}
 
 	obs_source_t *source;
@@ -206,10 +148,6 @@ struct ca2pluginMain_private
 	bool lockX;
 	bool include_border;
 	bool exclude_alpha;
-
-	int m_iSize;
-	int m_iFd;
-	void * m_paddr;
 
 	double window_check_time = 0.0;
 
@@ -341,10 +279,9 @@ void ca2pluginMain::updateSettings(obs_data_t *settings)
 	XErrorLock xlock;
 	ObsGsContextHolder obsctx;
 
-	blog(LOG_DEBUG, "ca2Plugin Main Settings updating");
+	blog(LOG_DEBUG, "Settings updating");
 
 	Window prevWin = p->win;
-
 
 	xcc_cleanup(p);
 
@@ -378,45 +315,6 @@ void ca2pluginMain::updateSettings(obs_data_t *settings)
 		blog(LOG_ERROR, "XCompositeRedirectWindow failed: %s",
 				xlock.getErrorText().c_str());
 		return;
-	}
-
-	char filepath[PATH_MAX];
-
-	sprintf(filepath, "/var/tmp/ca2/%s/ca2screen-%d", getenv("HOME"), (int) p->win);
-
-	if(p->m_paddr != NULL)
-	{
-
-		munmap(p->m_paddr, p->m_iSize);
-
-		p->m_paddr = NULL;
-		
-	}
-
-	if(p->m_iFd >= 0)
-	{
-		
-		close(p->m_iFd);
-
-		p->m_iFd = -1;
-
-	}
-
-	p->m_iFd = open(filepath, O_RDONLY); //6 = read+write for me!
-
-	if(p->m_iFd >= 0)
-	{
-
-		p->m_paddr = mmap(NULL, p->m_iSize, PROT_READ, MAP_SHARED, p->m_iFd, 0);
-
-		printf("Mapped at %p\n", p->m_paddr);
-
-	}
-	else
-	{
-
-		printf("File not opened for mapping\n");
-
 	}
 
 	if (p->win)
@@ -482,7 +380,7 @@ void ca2pluginMain::updateSettings(obs_data_t *settings)
 	const uint8_t* texDataArr[] = { texData, 0 };
 
 	p->tex = gs_texture_create(width(), height(), cf, 1,
-			texDataArr, GS_DYNAMIC);
+			texDataArr, 0);
 
 	delete[] texData;
 
@@ -610,97 +508,14 @@ void ca2pluginMain::tick(float seconds)
 		XSync(xdisp, 0);
 	}
 
-
-	if(p->m_paddr != NULL)
-	{
-
-		int64_t * pi = (int64_t *) p->m_paddr;
-		int64_t cx = *pi++;
-		int64_t cy = *pi++;
-		int64_t iScan = *pi++;
-
-		// copied from gs_text_set_image
-
-		gs_texture_t * tex = p->tex;
-		uint8_t * data = (uint8_t * )pi;
-		uint32_t linesize = iScan;
-		bool flip = false;
-
-		if (gs_valid_p2("gs_texture_set_image", tex, data))
-		{
-
-			int32_t height = (int32_t)gs_texture_get_height(tex);
-
-			if(cy < height)
-			{
-
-				height = cy;
-
-			}
-			
-			uint32_t linesize_out;
-
-			uint8_t *ptr;
-
-			if (gs_texture_map(tex, &ptr, &linesize_out))
-			{
-
-				uint32_t row_copy = (linesize < linesize_out) ? linesize : linesize_out;
-
-				int32_t y;
-
-				if (flip)
-				{
-				
-					for (y = height-1; y >= 0; y--)
-					{
-
-						memcpy(ptr  + (uint32_t)y * linesize_out,
-							data + (uint32_t)(height - y - 1) * linesize,
-							row_copy);
-
-					}
-
-				}
-				else if (linesize == linesize_out) 
-				{
-					
-					memcpy(ptr, data, row_copy * height);
-
-				}
-				else
-				{
-					for (y = 0; y < height; y++)
-					{
-
-						memcpy(ptr  + (uint32_t)y * linesize_out,
-							data + (uint32_t)y * linesize,
-							row_copy);
-
-					}
-
-				}
-
-				gs_texture_unmap(tex);
-
-			}
-
-		}
-
-	}
-	else if (p->include_border)
-	{
-	
+	if (p->include_border) {
 		gs_copy_texture_region(
 				p->tex, 0, 0,
 				p->gltex,
 				p->cur_cut_left,
 				p->cur_cut_top,
 				width(), height());
-	}
-	else
-	{
-	
+	} else {
 		gs_copy_texture_region(
 				p->tex, 0, 0,
 				p->gltex,
@@ -778,7 +593,7 @@ obs_source_t *get_transition(ca2pluginMain *ss)
 	PLock lock(&ss->p->lock);
    tr = ss->p->source;
    obs_source_addref(tr);
-
+   
    return tr;
 }
 
