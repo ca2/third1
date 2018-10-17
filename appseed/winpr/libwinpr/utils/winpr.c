@@ -29,12 +29,18 @@
 #include <winpr/crt.h>
 #include <winpr/string.h>
 #include <winpr/winpr.h>
-#include <winpr/version.h>
+//#include <winpr/version.h>
 #include <winpr/wlog.h>
 
 #if !defined(WIN32)
 #include <pthread.h>
 #endif
+
+#define WINPR_VERSION_MAJOR 1
+#define WINPR_VERSION_MINOR 1
+#define WINPR_VERSION_REVISION 1
+#define WINPR_VERSION_FULL "1.1.1"
+#define GIT_REVISION "1.1.1"
 
 void winpr_get_version(int* major, int* minor, int* revision)
 {
